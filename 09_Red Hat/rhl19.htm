@@ -1,0 +1,2060 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Red Hat Linux Unleashed rhl19.htm </TITLE>
+
+<LINK REL="ToC" HREF="index.htm">
+
+<LINK REL="Index" HREF="htindex.htm">
+
+<LINK REL="Next" HREF="rhl20.htm">
+
+<LINK REL="Previous" HREF="rhl18.htm"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+
+<A NAME="I0"></A>
+
+<H2>Red Hat Linux Unleashed rhl19.htm</H2>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl18.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl20.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+<HR ALIGN=CENTER>
+
+<P>
+
+<UL>
+
+<UL>
+
+<UL>
+
+<LI>
+
+<A HREF="#E68E127" >What Is TeX?</A>
+
+<LI>
+
+<A HREF="#E68E128" >Typesetting Versus Writing</A>
+
+<LI>
+
+<A HREF="#E68E129" >TeX</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E258" >Simple Text Formatting</A>
+
+<LI>
+
+<A HREF="#E69E259" >Fonts</A>
+
+<LI>
+
+<A HREF="#E69E260" >Controlling Spacing</A>
+
+<LI>
+
+<A HREF="#E69E261" >Page Layout</A>
+
+<LI>
+
+<A HREF="#E69E262" >Using Groups</A>
+
+<LI>
+
+<A HREF="#E69E263" >Mathematical Symbols</A>
+
+<LI>
+
+<A HREF="#E69E264" >Using Figures in Your Document</A>
+
+<LI>
+
+<A HREF="#E69E265" >Macros</A></UL>
+
+<LI>
+
+<A HREF="#E68E130" >LaTeX An Enhancement of TeX</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E266" >Defining a LaTeX Document</A>
+
+<LI>
+
+<A HREF="#E69E267" >Packages</A>
+
+<LI>
+
+<A HREF="#E69E268" >Using Special Characters</A>
+
+<LI>
+
+<A HREF="#E69E269" >Putting Structure into a LaTeX Document</A>
+
+<LI>
+
+<A HREF="#E69E270" >Adding Other Structural Elements</A>
+
+<LI>
+
+<A HREF="#E69E271" >Working with Figures and Tables</A></UL>
+
+<LI>
+
+<A HREF="#E68E131" >VirTeX and IniTeX</A>
+
+<LI>
+
+<A HREF="#E68E132" >Summary</A></UL></UL></UL>
+
+<HR ALIGN=CENTER>
+
+<A NAME="E66E19"></A>
+
+<H1 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>19</B></FONT></CENTER></H1>
+
+<BR>
+
+<A NAME="E67E19"></A>
+
+<H2 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>TeX</B></FONT></CENTER></H2>
+
+<BR>
+
+<P>This chapter looks at the following topics:
+
+<BR>
+
+<UL>
+
+<LI>What TeX is and why you would want to use it
+
+<BR>
+
+<BR>
+
+<LI>The differences between typesetting and writing
+
+<BR>
+
+<BR>
+
+<LI>The enhanced version of TeX called LaTeX
+
+<BR>
+
+<BR>
+
+<LI>What VirTeX and IniTeX are
+
+<BR>
+
+<BR>
+
+</UL>
+
+<BR>
+
+<A NAME="E68E127"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>What Is </B><B>TeX?</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>TeX (pronounced tech) is a text formatting system invented by Donald Knuth. It lets you produce professionally typeset documents by embedding TeX commands within a normal ASCII text file. This text file can then be converted to what is known as a DVI 
+(device-independent file), which can be either previewed on-screen using an X Window program called xdvi or converted to a printer-specific file format, such as PostScript, HP LaserJet, or for other popular printers.
+
+<BR>
+
+<P>TeX is a powerful program in that it enables you to define specific typesetting commands (such as font size, page size, or space between lines). It also works as a programming language that enables you to create macros for defining more abstract units 
+of text such as documents, headings, and paragraphs. The benefit of these high-level macros is that they enable you to concentrate on the authoring of a document, not the typesetting. The key appeal of TeX for engineers and scientists is that it supports 
+the typesetting of complex mathematical formulas.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E128"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Typesetting Versus Writing</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The usefulness of a document can be limited by its appearance. Consider two documents: one that is well-organized with clearly defined units of text such as chapters, headings, and paragraphs, and another that has no paragraph breaks and no space 
+between lines. The first document is much more appealing to the reader, whereas the second document is downright painful to read. So, despite the best efforts of an author to create a magnum opus, or even a recipe for strawberry jam, the meaning behind the 
+words may get lost in a typographical abyss.
+
+<BR>
+
+<P>In book publishing, authors aren't usually responsible for anything beyond the genius of their words. They usually leave the design and crafting of the book to a book designer. This person then hands the design template to page layout technicians. TeX 
+performs this book design and typesetting role for you, enabling you, the author, to be your own publisher. It gives you control over the publication of your own material while still permitting you to concentrate on what you're supposed to be writing 
+about!
+
+<BR>
+
+<BR>
+
+<A NAME="E68E129"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>TeX</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>A TeX file can be created with any Linux text editor such as vi or Emacs. You can enter text into a file called arkana.tex like this:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Do you suppose that Alfred Hitchcock would have had as successful a directing
+
+career if he did not have the considerable talents of actors Cary Grant and
+
+James Stewart in his most popular films? That's a tough one to answer... \bye</FONT></PRE>
+
+<P>After you have saved your file, use the TeX program to convert it to a DVI file using this command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ tex arkana</FONT></PRE>
+
+<P>The resulting arkana.dvi file that is created contains your text. This file can be used by different output devices (hence the name) for viewing or printing. For example, if you want to print your DVI file to a PostScript printer, convert it to a ps 
+format, and print it using the dvi2ps utility:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ dvi2ps arkana.ps | lp</FONT></PRE>
+
+<P>This assumes that the default printer is PostScript-capable. If you want to just preview how the text looks, use the X application xdvi:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ xdvi arkana.dvi &amp;</FONT></PRE>
+
+<P>The TeX command also produces a log file entitled arkana.log, containing any error and warning messages, and other information such as the number of pages of output. The beauty of all this indirect representation of TeX output is that the TeX source 
+file and its resulting DVI are very portable, particularly from Linux to its ancestor UNIX.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E258"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Simple Text Formatting</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Most of the work in creating a TeX document is putting in the words that discuss whatever you're writing about. As shown earlier, it is fairly simple to create an unadorned TeX file: The only special command you used was \bye. This command tells the TeX 
+program that it has reached the end of the document. The \bye command uses one of several characters that TeX treats with special interest, specifically the backslash or escape character. Here is the set of special characters that TeX recognizes: \, {, }, 
+~, #, $, %, ^, &amp;, and the space character. The meaning behind these characters will be discussed as you progress.
+
+<BR>
+
+<P>One of the main conveniences of TeX is the intelligent way it deals with text. Words are any sequence of characters separated by whitespace characters. The number of whitespace characters between words is immaterial because TeX treats them as one 
+character. Sentences are recognized by the last word preceding a ., ?, !, or :. Paragraphs are distinguished by a blank line following a sentence. Much like the spaces between words, TeX treats excess blank lines as redundant and ignores them. Thus, the 
+text
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">How do you compare
+
+these two terrific leading men? James Stewart had that good-natured,
+
+All-American charm mixed
+
+with a surprising element of vulnerability, uncommon
+
+among other major Hollywood actors.
+
+Cary Grant, on the other
+
+hand, was versatile enough to play the villain as well as the suave hero in many films.</FONT></PRE>
+
+<P>is formatted by TeX as follows:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">How do you compare these two terrific leading men? James Stewart had that good-natured, All-American charm mixed with a surprising element of vulnerability, uncommon among other major Hollywood actors.
+
+Cary Grant, on the other hand, was versatile enough to play the villain as well as the suave hero in many films.</FONT></PRE>
+
+<P>You can also insert comments into your TeX file using the % character. Text following a % character is treated as a comment and not made part of the TeX output. The text
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">From her% Nothing to do with Hitchcock
+
+% ...nothing at all
+
+e to there</FONT></PRE>
+
+<P>is formatted as
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">From here to there</FONT></PRE>
+
+<P>TeX has several commands for manipulating paragraphs. The \par command starts a new paragraph, which has the same effect as inserting a blank line.
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">From here \par to there</FONT></PRE>
+
+<P>The preceding line is formatted as follows:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">From here
+
+to there</FONT></PRE>
+
+<P>The \noindent command tells TeX not to indent the paragraph:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">I grew up on Newcastle Street.
+
+\noindent That was close to Hazlehurst.</FONT></PRE>
+
+<P>This is output as follows:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">I grew up on Newcastle Street.
+
+That was close to Hazlehurst.</FONT></PRE>
+
+<P>You can also use the escape character before a space in order to force the insertion of an extra space:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">I think that I need an extra\ \ \ space or two.
+
+I'm sure of it.</FONT></PRE>
+
+<P>This becomes
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">I think that I need an extra space or two.
+
+I'm sure of it.</FONT></PRE>
+
+<BR>
+
+<A NAME="E69E259"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Fonts</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Fonts are representations of characters that share similar size and style. The default font that TeX uses is Roman. You can override this by using the internal names that TeX associates with fonts that are externally loaded. You can also add new font 
+definitions. The definitions that TeX knows about by default are: \rm (Roman), \tt (typewriter), \bf (bold), \sl (slanted), and \it (italic). TeX continues using whatever font was last specified (including the default) until it is instructed to do 
+otherwise. Therefore, the text
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">This is roman, but I think I will switch to \tt typewriter for a while; then again, maybe \it italic would be nice. Now back to \rm roman.</FONT></PRE>
+
+<P>appears as follows:
+
+<BR>
+
+<P>This is roman, but I think I will switch to typewriter for a while; then again, maybe italic would be nice. Now back to Roman.
+
+<BR>
+
+<P>You can add a font and change its size using a command like this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">\font \fontname=auxiliary font</FONT></PRE>
+
+<P>To use a 12-point roman font, redefine the \rm definition to use the cmr12 auxiliary font, like this:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">\font\rm=cmr12
+
+We are changing from this font \rm to that font.</FONT></PRE>
+
+<P>This formats as follows:
+
+<BR>
+
+<P>We are changing from this font to that font.
+
+<BR>
+
+<P>Fonts have up to 256 different symbols including the standard numeric, uppercase, and lowercase character symbols that you use most frequently. Symbols that are not represented on a standard keyboard can be accessed using the \char command. This command 
+uses the integer that follows it as a character code index into a font's character table. For example, the text
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">TeX would interpret \char 37 as a comment symbol
+
+but it would not
+
+care about a \char 43 sign.</FONT></PRE>
+
+<P>is processed by TeX as follows:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">TeX would interpret % as a comment symbol but it would not
+
+care about a + sign.</FONT></PRE>
+
+<BR>
+
+<A NAME="E69E260"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Controlling Spacing</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>You've seen how you can insert individual extra spaces in TeX files. Now, let's examine how you can have more control over the spacing of larger portions of text. TeX has a series of commands that recognize the following units of measurement:
+
+<BR>
+
+<UL>
+
+<LH><B>Unit</B><B> </B><B>Meaning</B></LH>
+
+<BR>
+
+</UL>
+
+<UL>
+
+<UL>
+
+<P>em Approximately the width of the character M, depending on the font in use
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>in Inches
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>pt Points (1 inch equals 72 points)
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>mm Millimeters (1 inch equals 25.4 millimeters)
+
+<BR>
+
+</UL></UL>
+
+<P>These units are used with decimal numbers to specify the amount of spacing that you need. The \hskip command can insert a horizontal space on a line, like this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">\tt From here \hskip 0.5in to there</FONT></PRE>
+
+<P>This produces the following output:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">From here to there</FONT></PRE>
+
+<P>You can also supply a negative number, which moves the text following the \hskip command to the left (the negative direction). The \hfil command distributes horizontal space in a paragraph when space is available. The interesting thing about the \hfil 
+command is the fact that TeX inserts one implicitly for each paragraph. Bearing this detail in mind, you can use this command to flush text left or right, or center it on a line, like this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">\noindent \hfil Some centered text. \par</FONT></PRE>
+
+<P>This is output as follows:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Some centered text.</FONT></PRE>
+
+<P>The \vskip command can insert a vertical space between paragraphs using a given unit of measurement (much like \hskip). The command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">\vskip 40mm</FONT></PRE>
+
+<P>places a vertical space of 40 millimeters between its preceding and succeeding paragraphs. TeX also provides vertical skipping commands in convenient units: \smallskip, \medskip, and \bigskip.
+
+<BR>
+
+<P>The vertical equivalent of \hfil is the \vfill command, which can distribute vertical spaces between paragraphs when extra space (nontext) is available. TeX assumes an implicit \vfill command at the end of a document.
+
+<BR>
+
+<P>You can also explicitly add line breaks and page breaks to your document with the \break command. If this command appears within a paragraph, TeX inserts a line break. If it appears between paragraphs, a page break is inserted. Conversely, you can 
+specify points in your document where you want the text to be kept together and not broken across lines or pages. This is done by using the \nobreak command.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E261"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Page Layout</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>A page is composed of a header, footer, and body. The header and footer contain information such as chapter title, section heading, and page number. The body is where the main information in your document appears. By changing how this information is 
+ordered in your TeX document, you are actually designing the look of the finished product.
+
+<BR>
+
+<P>The \headline and \footline commands both take arguments that specify their content. The format of these commands is as follows:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">\headline={parameters}</FONT></PRE>
+
+<P>The parameters could be a list of things such as a page number command and an \hfil command:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">\headline={\hfil \the\pageno}
+
+\footline={\hfil}</FONT></PRE>
+
+<P>This pair of commands creates a right-justified page number and a blank footer on each page.
+
+<BR>
+
+<P>You can change the size of the text box that TeX uses for paragraphs by using the \hsize command. For instance, the text
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">\hsize=2in
+
+This text is 2 inches wide but we could choose to make it wider or thinner.</FONT></PRE>
+
+<P>produces the following:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">This text is 2 inches wide but we could choose to make it wider or thinner.</FONT></PRE>
+
+<P>Margins can be adjusted inward or outward using the \leftskip and \rightskip commands, respectively. By providing positive values to these commands, they move the margin inward, depending on which side you specify (left or right). As you may expect, 
+negative values have the opposite effect: They move the margins outward. Indentation is controlled similarly using the \parindent command.
+
+<BR>
+
+<P>The \baselineskip and \parskip commands control the regular vertical spacing between lines and paragraphs, as in the following:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">\baselineskip=0.15in
+
+\parskip=0.3in</FONT></PRE>
+
+<P>Baseline refers to the distance between the bottoms of characters (such as an i) on consecutive lines.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E262"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Using Groups</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Normally, TeX continues using such things as fonts and text styles until you explicitly change the format. The grouping features of TeX enable you to define changes that are local to particular sections of text. The formatting originally specified is 
+then restored after the group has been processed.
+
+<BR>
+
+<P>There are two ways to specify how text is grouped. One is to use the \begingroup and \endgroup command pair. The other is to use the braces { and }. Although both of these perform grouping roles, braces are also used to specify parameters to commands 
+and, as such, must be used with care.
+
+<BR>
+
+<P>As an illustration of the use of groups in TeX, the text
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Let's see \begingroup \it how {\bf this grouping stuff} really
+
+works \endgroup, shall we?</FONT></PRE>
+
+<P>produces the following:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Let's see how this grouping stuff really
+
+works, shall we?</FONT></PRE>
+
+<P>You may have noted from the example that, in fact, groups can contain other groups.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E263"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Mathematical Symbols</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>One of the most powerful features of TeX is its capability to generate correct mathematical notation for formulas with convenient commands. This is one of the key reasons behind TeX's popularity among engineers and scientists.
+
+<BR>
+
+<P>TeX distinguishes between formulas that must appear within regular text (inline formulas) and those that must appear on their own line (displayed formulas). You must use the $ symbol to denote inline formulas, as in
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">The equation $2+3=x$ must evaluate to $x=5$.</FONT></PRE>
+
+<P>which is generated as the following:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">The equation 2+3=x must evaluate to x=5.</FONT></PRE>
+
+<P>However, displayed formulas are denoted using two consecutive $ symbols, as in
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">The equation $$2+3=x$$ must evaluate to $$x=5$$.</FONT></PRE>
+
+<P>which produces the following:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">The equation
+
+2+3=x
+
+must evaluate to
+
+x=5.</FONT></PRE>
+
+<P>Table 19.1 shows some of the math symbols that TeX can generate, their associated commands, and their meaning.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 19.1. Some of the math symbols that </B><B>TeX</B><B> can generate.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Symbol</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>TeX</I><I> Command</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Meaning</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+P
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\pi
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Pi</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+&aring;
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\sum
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Sum</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+{
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\{
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Open bracket</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+}
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\}
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Close bracket</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+&#166;
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\int
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Integral</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+&#163;
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\leq
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Less than or equal to</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+&#179;
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\geq
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Greater than or equal to</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+&#185;
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\neq
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Not equal to</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+&#183;
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\bullet
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Bullet</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+_
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\ldots
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Horizontal ellipsis</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+D
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\diamond
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Diamond</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+D
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\Delta
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Delta</FONT>
+
+</TABLE><P>TeX uses particular fonts for the formulas it produces. These can be overridden in the usual fashion, but the changes are applicable only to letters and digits.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E264"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Using Figures in Your Document</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Figures that are drawn outside of TeX can be inserted into their own space. This space &quot;floats.&quot; In other words, TeX knows that it must keep track of the figure space as the text around it is added or deleted. This flexibility means that you, 
+the writer, need not worry about exactly where in the document your figures will appear.
+
+<BR>
+
+<P>To insert a figure that must appear at the top of a page, use the following command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">\topinsert figure \endinsert</FONT></PRE>
+
+<P>Here, figure can be an external reference or an internal definition. TeX tries to place the figure at the top of the next page with sufficient space.
+
+<BR>
+
+<P>You can also tell TeX that you want a figure to appear on its own page by using this command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">\pageinsert figure \endinsert</FONT></PRE>
+
+<BR>
+
+<A NAME="E69E265"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Macros</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Macros have made TeX a highly extendible system. They essentially enable you to create new commands by associating existing commands and text sequences to a macro name. After they are defined, these macros can be used in other parts of your document to 
+replace repetitive pieces of text, or to encapsulate abstract operations.
+
+<BR>
+
+<P>A macro is defined once, using the following format:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">\def macroname {new text}</FONT></PRE>
+
+<P>In this case, macroname is a name or TeX command preceded by a backslash character. Any reference to this macro name is replaced by the new text throughout the document. For example, the macro definition
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">\def\brg{burger}
+
+Ham\brg, cheese\brg, lim\brg.</FONT></PRE>
+
+<P>is output as follows:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Hamburger, cheeseburger, limburger.</FONT></PRE>
+
+<P>Macros can refer to other macros, as in
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">\def\tig{a tigger }
+
+\def\wond{a wonderful thing }
+
+\def\pooh{\wond is \tig cause \tig is \wond}
+
+\pooh\par</FONT></PRE>
+
+<P>which produces the following:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">a wonderful thing is a tigger cause a tigger is a wonderful thing</FONT></PRE>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>You must be careful of recursive macro definitions&#151;macros that refer to their own names within their definition. Such macro definitions cause TeX to continuously (and vainly) evaluate the macro, leading to an infinite loop. The following is an 
+example of this:
+
+<BR>\def\itself{\itself}
+
+<BR>\itself</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>TeX macros have the added feature of being able to accept parameters when expanded, if a list of formal parameters has been specified in the macro definition. To create a macro using parameters, you would use this format:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">\def macroname (list of formal parameters) {new text}</FONT></PRE>
+
+<P>Here, the list of parameters is specified as #1, #1#2, #1#2#3, and so on. This is a powerful aspect of macros because it can change the output of an expanded macro based on the parameter in use. For example, the code
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">\def\parm#1{This is the #1 time I'll say this.}
+
+\parm{first}
+
+\parm{second}
+
+\parm{last}</FONT></PRE>
+
+<P>produces the following:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">This is the first time I'll say this.
+
+This is the second time I'll say this.
+
+This is the last time I'll say this.</FONT></PRE>
+
+<P>Each parameter that is used must be passed separately by enclosing it in braces, as in
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">\def\family#1#2{My #1 is #2.}
+
+\family{wife}{Cindy}
+
+\family{sister}{Sheila}
+
+\family{father}{Myles}</FONT></PRE>
+
+<P>which makes the following output:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">My wife is Cindy.
+
+My sister is Sheila.
+
+My father is Myles.</FONT></PRE>
+
+<P>You must specify an appropriate match of parameters in your macro definition. The macro definition
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">\def\mistake#1{This is wrong because of #2.}</FONT></PRE>
+
+<P>is incorrect because it refers to a second parameter that is not specified in the formal parameter list.
+
+<BR>
+
+<P>Macros can be redefined in your document, but you should be aware that only the most recent definition will be applied. Also, macros defined within groups are only valid within the scope of the group.
+
+<BR>
+
+<P>Macro definitions can be nested within each other, as in the following:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">\def\hey{Hey\def\hey{hey}}
+
+\hey, \hey, \hey.</FONT></PRE>
+
+<P>This has the following output:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Hey, hey, hey.</FONT></PRE>
+
+<P>As with many topics within this book, we have examined only some of the highlights of TeX. There is much more to learn but, having covered the basics regarding macros, you can now look at the most popular extension of TeX, which uses macros to enhance 
+the creation of documents. This extension is LaTeX.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E130"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>LaTeX</B><B> An Enhancement of </B><B>TeX</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>LaTeX is a collection of macros that build on the capabilities of TeX and provide a higher level of abstraction for the creation of documents. It is essentially a style library that encourages uniform formatting and typesetting across documents. LaTeX 
+macros shift the emphasis away from the details of things such as &quot;set text to 8-point slanted&quot; to concepts that writers identify more readily with, such as the emphasis of a word or phrase. Thus, LaTeX macros have names that are more 
+representative of the way writers think when they are writing.
+
+<BR>
+
+<P>Because LaTeX is an extension of TeX, you'll find it easy to become quickly productive in LaTeX, assuming that you have some experience in TeX. White space and spacing between paragraphs are handled in the same manner as in TeX. The special characters 
+in TeX are the same in LaTeX, and comments are denoted using the % character.
+
+<BR>
+
+<P>The key differences between TeX and LaTeX become apparent as you learn more about the macros that define the layout of your document in a convenient fashion.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E266"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Defining a </B><B>LaTeX</B><B> Document</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Every LaTeX document begins with the \documentclass command. The parameter passed to this command specifies what kind of document you want to write. The basic document classes are described in Table 19.2.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 19.2. Document classes.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Document Class</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Description</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+article
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Used for short reports, reference cards, presentations, scientific journals, and so on.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+book
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Used for complete books.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+report
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Used for reports having several chapters, theses, and so on.</FONT>
+
+</TABLE><P>To create a very basic LaTeX document, simply place some words between the two commands \begin{document} and \end{document}. The text that precedes the \begin{document} command is called the preamble, and the text that comes after is known as 
+the body. So, you can create a very simple document such as the following:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">\documentclass{article}
+
+\begin{document}
+
+What a small document this is.
+
+\end{document}</FONT></PRE>
+
+<P>To process this document (which you will edit in a file called gloves.tex), use the following command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">% latex gloves</FONT></PRE>
+
+<P>This produces a DVI file and a log file in the same manner used by TeX. The DVI file can either be converted to PostScript, or viewed directly using xdvi.
+
+<BR>
+
+<P>You can specify options with the type of document in the \documentclass command using the following format:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">\documentclass[option]{document class}</FONT></PRE>
+
+<P>These options relate to the physical structure of the document. Some of the more common ones are listed in Table 19.3.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 19.3. </B><B>\documentclass</B><B> options.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Option</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Description</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+10pt, 11pt, 12pt
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The default font for the document, which is 10pt if not otherwise stated.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+fleqn
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Displays formulas as left-justified instead of centered.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+leqno
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Numbers formulas on the left side.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+letterpaper, a4 paper
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The paper size, which is letterpaper by default.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+openright, openany
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Starts the first page of a chapter on the right side, or on the next available page.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+titlepage, notitlepage
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Does or does not start a new page after the title.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+twocolumn
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Splits each page into two columns (useful for newsletters).</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+twoside, oneside
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Generates double- or single-sided output.</FONT>
+
+</TABLE><P>Some of the differences between document classes are encapsulated by the defaults that they use for the options mentioned. For instance, articles and reports are single-sided by default, whereas books are not. Articles do not use the options for 
+title pages and starting right-sided chapters because they do not understand what a chapter is. Thus, the document classes in LaTeX are smart enough to do the kind of layout that you expect for the type of document you need.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E267"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Packages</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>LaTeX also has the \usepackage command, which enables you to extend the capabilities of LaTeX even further by using an external package of features. The format is as follows:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">\usepackage{package name}</FONT></PRE>
+
+<P>package name can be any of several available packages. For instance, the doc package is used for the documentation of LaTeX programs, and the makeidx package provides support for the production of indexes.
+
+<BR>
+
+<P>You can also control what page styles LaTeX applies to your document by using the \pagestyle command. Table 19.4 describes the basic page styles available.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 19.4. Page styles.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Style</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Description</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+empty
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Sets the header and footers to be empty.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+headings
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Prints the current chapter heading and page number on each page with an empty footer.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+plain
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Prints the page number centered in the footer (the default page style).</FONT>
+
+</TABLE><P>You can also vary page styles in your document using the \thispagestyle command. This applies the supplied page style to the current page only.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E268"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Using Special Characters</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>LaTeX supports the use of international characters, such as umlauts (_) and circumflexes (^). These characters are generated using a command variant on the letter itself. For example, the text
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">What a na\&quot;\i ve ma^itre d' you are!</FONT></PRE>
+
+<P>produces the following:
+
+<BR>
+
+<P>What a na&iuml;ve ma^itre d' you are!
+
+<BR>
+
+<P>International spacing can also be applied using the \frenchspacing command. This command tells LaTeX not to insert the usual extra space after a period.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E269"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Putting Structure into a </B><B>LaTeX</B><B> Document</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>LaTeX has commands that make it easy to enhance your document structurally, thus making it easier for the reader to digest. For the article document class, the commands are as follows: \section, \subsection, \subsubsection, \paragraph, \subparagraph, 
+and \appendix. These commands, with the exception of \appendix, accept titles as arguments, and are declared before the body of text that they represent. LaTeX takes care of the rest; it sets the appropriate spacing between sections, section numbering, and 
+title font. The \appendix command uses alphabetic increments in order to number succeeding appendix sections.
+
+<BR>
+
+<P>For the report and book classes, there are two additional commands: \part and \chapter. The \part command enables you to insert a section without affecting the numbering sequence of the chapters. You can suppress the appearance of a section in the table 
+of contents by inserting a * character in the section command, as in the following:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">\section*{I don't want to know about it}</FONT></PRE>
+
+<P>You probably want to add a title to your document. This is done by specifying the arguments to the title commands and then calling the \maketitle command:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">...
+
+\title{Confessions of a LaTeX Enthusiast}
+
+\author{Me}
+
+\date
+
+\begin{document}
+
+\maketitle
+
+...</FONT></PRE>
+
+<P>To insert a table of contents in your document, issue the \tableofcontents command (big surprise) at the point where you want the table to appear. When you process your document with LaTeX, it needs two passes: one to make note of all the section 
+numbers, and the other to build the table of contents from the information it collected in the first pass.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E270"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Adding Other Structural Elements</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>You can add cross-references to your document, which tie associated elements such as text, figures, and tables to text in other parts of your document. Use the \label command to set a point that you want to refer to, and give it an argument that is any 
+name you choose. This name can then be referred to by the \ref and \pageref commands to generate a cross-reference containing the section number and page number that the section title appears on.
+
+<BR>
+
+<P>You can easily add footnotes using the \footnote command, which accepts the text of the footnote as an argument.
+
+<BR>
+
+<P>Structure is also enhanced by controlling the presentation of the text that appears between section titles. This can be easily managed by using LaTeX environments. Environments are specified by bounding a portion of text with \begin and \end commands, 
+and passing an environment name to each command, as in the following:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">\begin{hostileenvironment}
+
+Looks like we're surrounded, said Custer.
+
+\end{hostileenvironment}</FONT></PRE>
+
+<P>LaTeX has many predefined environments for practical applications, as described in Table 19.5.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 19.5. Predefined environments.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Environment</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Description</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+center
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Centers text.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+description
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Used to present descriptive paragraphs.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+enumerate
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Used for numbered or bulleted lists.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+flushleft
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Paragraphs are left-aligned.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+flushright
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Paragraphs are right-aligned.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+itemize
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Used for simple lists.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+quote
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Used to quote single paragraphs.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+quotation
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Used for longer quotes that span several paragraphs.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+tabular
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Typesets tables with optional row and column separators.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+verbatim
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Produces typed text. Useful for representing programming code, for example.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+verse
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Used to control the linebreaks in poems.</FONT>
+
+</TABLE><BR>
+
+<A NAME="E69E271"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Working with Figures and Tables</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>LaTeX also supports the variable placement (or &quot;floating&quot;) of figures and tables in a document using the table and figure environments. A figure could be specified as follows:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">\begin{figure}[!hbp]
+
+\makebox[\textwidth]{\framebox[2in]{\rule{Opt}{2in}}}
+
+\end{figure}</FONT></PRE>
+
+<P>The options passed to the \begin{figure} command are placement specifiers that indicate your preferences for the location of the figure. LaTeX has to juggle the placement of floating figures and tables in a document by using these preferences, as well 
+as internal guidelines such as the maximum number of floats allowed per page. In this example, you told LaTeX to keep the figure with its adjacent text (h), at the bottom of the next applicable page , or, failing that, on a special page with other floating 
+figures (p). The ! character overrides LaTeX's best intentions for placing the figure, which may not necessarily jibe with what you are saying with the other placement specifiers.
+
+<BR>
+
+<P>Tables and figures can be labeled using the \caption command, which must be issued within the table or figure environment.
+
+<BR>
+
+<P>These are just some of the basics for using LaTeX, but hopefully they are sufficient to give you a place to start on the road to making your documents more visually appealing. You have probably noticed that LaTeX is somewhat easier to work with than TeX 
+itself, because it hides much detail from you as an author.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E131"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>VirTeX and IniTeX</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Two other TeX-related programs work together but perform slightly different roles. The IniTeX program is used to create a TeX format (.fmt) file containing font definitions and macros. The VirTeX program can then quickly load this precompiled format 
+file, much more quickly than TeX can. The command to use a format file is as follows:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ virtex \&amp;myformat sometexfile</FONT></PRE>
+
+<P>The &amp; character is necessary for VirTeX to recognize that it is loading a format file first; the &amp; must be escaped using the \ character so as not to confuse the shell. The difference between VirTeX and IniTeX is that VirTeX can't be used to 
+create TeX format files, but it executes much faster.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E132"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Summary</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>TeX is a document-formatting system for Linux that enables authors to produce their own high-quality publications. It produces documents that are portable among output devices such as printers or displays. TeX supports many typographical features and is 
+particularly well-suited to the formatting of correct mathematical notation. It has macros that can be used to enhance the power of its basic command set. LaTeX, one of the most popular extensions to TeX, uses sophisticated macros to help you organize and 
+typeset your documents based on its con<A NAME="I2"></A>tents.
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl18.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="#I0" TARGET="_self"><IMG SRC="purtop.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Page Top"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl20.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+</BODY></HTML>
+
+
+

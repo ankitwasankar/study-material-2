@@ -1,0 +1,917 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Red Hat Linux Unleashed rhl01.htm </TITLE>
+
+<LINK REL="ToC" HREF="index.htm">
+
+<LINK REL="Index" HREF="htindex.htm">
+
+<LINK REL="Next" HREF="rhl02.htm">
+
+<LINK REL="Previous" HREF="rhlfm.htm"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+
+<A NAME="I0"></A>
+
+<H2>Red Hat Linux Unleashed rhl01.htm</H2>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhlfm.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl02.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+<HR ALIGN=CENTER>
+
+<P>
+
+<UL>
+
+<UL>
+
+<UL>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E1" >What This Book Is Not</A></UL>
+
+<LI>
+
+<A HREF="#E68E4" >What Is Linux?</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E2" >How to Pronounce Linux</A>
+
+<LI>
+
+<A HREF="#E69E3" >Linux Versus UNIX</A></UL>
+
+<LI>
+
+<A HREF="#E68E5" >What Do I Get with a Linux System?</A>
+
+<LI>
+
+<A HREF="#E68E6" >The Downside of Linux and the Reason for This Book</A>
+
+<LI>
+
+<A HREF="#E68E7" >About Linux's Copyright</A>
+
+<LI>
+
+<A HREF="#E68E8" >Hardware Requirements</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E4" >Other Hardware Requirements</A>
+
+<LI>
+
+<A HREF="#E69E5" >Special Requirements for X</A></UL>
+
+<LI>
+
+<A HREF="#E68E9" >Before You Get Started</A>
+
+<LI>
+
+<A HREF="#E68E10" >Summary</A></UL></UL></UL>
+
+<HR ALIGN=CENTER>
+
+<A NAME="E66E1"></A>
+
+<H1 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>1</B></FONT></CENTER></H1>
+
+<BR>
+
+<A NAME="E67E1"></A>
+
+<H2 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>Introduction to Linux</B></FONT></CENTER></H2>
+
+<BR>
+
+<P>Welcome to Linux.
+
+<BR>
+
+<P>This book is about Linux, a clone of the UNIX operating system that runs on machines with an Intel 80386 processor or better, as well as Intel-compatible CPUs, such as AMD and Cyrix.
+
+<BR>
+
+<P>This first chapter introduces you to the major features of Linux and helps get you acquainted with them. It does not go into great detail or cover any advanced topics, as this is done in later chapters. Instead, it is intended to give you a head start 
+in understanding what Linux is, what Linux offers you, and what you need to run it.
+
+<BR>
+
+<P>Don't be afraid to experiment. The system won't bite you. You can't destroy anything by working on it. UNIX has some amount of security built in, to prevent &quot;normal&quot; users (the role you will now assume) from damaging files that are essential 
+to the system. The absolute worst thing that can happen is that you'll delete all of your files and have to go back and reinstall the system. So, at this point, you have nothing to lose.
+
+<BR>
+
+<P>One word of caution when reading this chapter: At times it will delve into topics that may seem very alien to you, especially if you are new to UNIX and Linux. Don't despair. As you go through this book, you will become more and more familiar with the 
+topics introduced here. Linux is not an easy system to pick up in one day, so don't try to do it. There is no substitute for experience, so relax and learn Linux at your own pace.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E1"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>What This Book Is Not</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>This book makes several assumptions about you, the reader. I hope we can safely assume that you have some working knowledge of PCs and Microsoft's Disk Operating System (MS-DOS). (In some Linux documentation, MS-DOS is also referred to as &quot;messy 
+DOS,&quot; but I'll let you be the judge of that!) If you are not familiar with DOS or computers in general, now would be a good time to pick up a book to introduce yourself to PCs. Even so, you should be able to follow this book without needing any extra 
+material.
+
+<BR>
+
+<P>Some readers of this book will be familiar with UNIX. If that's the case, a lot of the early material will be familiar to you, especially when we talk about the shells. If you are new to UNIX, don't be concerned: This book was written with you in mind 
+and should guide you through your early hesitant sessions at the console and show you everything you need to know. Pretty soon, you'll be an expert! Now, let's get started with Linux.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E4"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>What Is Linux?</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Linux is a free, UNIX work-alike designed for Intel processors on PC architecture machines. Linux is not UNIX, as UNIX is a copyrighted piece of software that demands license fees when any part of its source code is used. Linux was written from scratch 
+to avoid license fees entirely, although the operation of the Linux operating system is based entirely on UNIX. It shares UNIX's command set and look-and-feel, so if you know either UNIX or Linux, you know the other, too.
+
+<BR>
+
+<P>Linux supports a wide range of software, from TeX (a text formatting language) to X (a graphical user interface) to the GNU C/C++ compilers to TCP/IP networking. Linux is also compliant with the POSIX.1 standard, so porting applications between Linux 
+and UNIX systems is a snap.
+
+<BR>
+
+<P>New users of UNIX and Linux may be a bit intimidated by the size and apparent complexity of the system before them. There are many good books on using UNIX out there, for all levels of expertise ranging from novice to expert. However, few (if any) of 
+these books cover, specifically, the topic of using Linux. Although 95 percent of using Linux is exactly like using other UNIX systems, the most straightforward way to get going on your new system is with a book tailored for Linux (such as this one, 
+amazingly enough!).
+
+<BR>
+
+<BR>
+
+<A NAME="E69E2"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>How to Pronounce Linux</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Pronouncing the word Linux is one of the great controversies of the Linux world. Americans pronounce the proper name Linus with a long i sound, as in style. However, because Linux was originally based on a small, PC-based implementation of UNIX called 
+Minix (pronounced with a short i), the actual pronunciation of Linux preserves this characteristic: It's officially pronounced &quot;LIH nucks.&quot;
+
+<BR>
+
+<BR>
+
+<A NAME="E69E3"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Linux Versus UNIX</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>UNIX is a trademark of X/Open. Linux is not a trademark, and has no connection to the trademark UNIX or X/Open.
+
+<BR>
+
+<P>UNIX is one of the most popular operating systems worldwide because of its large support base and distribution. It was originally developed as a multitasking system for minicomputers and mainframes in the mid-1970s, but it has since grown to become one 
+of the most widely used operating systems anywhere, despite its sometimes confusing interface and lack of central standardization.
+
+<BR>
+
+<P>UNIX is a multitasking, multiuser operating system. This means that there can be many people using one computer at the same time, running many different applications. (This differs from MS-DOS, where only one person can use the system at any one time.)
+
+<BR>
+
+<P>Under UNIX, for users to identify themselves to the system, they must log in, which entails two steps: Entering your login name (the name by which the system identifies you), and entering your password, which is your personal secret key to logging in to 
+your account. Because only you know your password, no one else can log in to the system under your username.
+
+<BR>
+
+<P>In addition, each UNIX system has a hostname assigned to it. It is this hostname that gives your machine a name, gives it character, class, and charm. The hostname is used to identify individual machines on a network, but even if your machine isn't 
+networked, it should have a hostname.
+
+<BR>
+
+<P>Versions of UNIX exist for many systems, ranging from personal computers to supercomputers. Most versions of UNIX for personal computers are quite expensive and cumbersome. Where does Linux fit in? Well, Linux is free (solves the expensive part), very 
+powerful, and easy to install and maintain by an individual (so much for the cumbersome part).
+
+<BR>
+
+<BR>
+
+<A NAME="E68E5"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>What Do I Get with a Linux System?</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Linux is a freely distributable version of UNIX developed primarily by Linus Torvalds at the University of Helsinki in Finland. Linux was further developed with the help of many UNIX programmers and wizards across the Internet, allowing anyone with 
+enough know-how and gumption to hack a custom UNIX kernel the ability to develop and change the system.
+
+<BR>
+
+<P>UNIX and its clones have long been perceived as large, resource-hungry, disk-devouring systems. Linux is not such a beast. It is small, fast, and flexible.
+
+<BR>
+
+<P>Linux has been publicly available since around November of 1991. v0.10 went out in November of 1991, v0.11 in December of 1991. There are very few small bugs now, and in its current state Linux is mostly useful for people who are willing to port code 
+and write new code. Because Linux is very close to a reliable and stable system, Linus decided that v0.13 will be known as v0.95.
+
+<BR>
+
+<P>So what are some of the important features of Linux that make it so unique? Here are a few:
+
+<BR>
+
+<UL>
+
+<LI>Full multitasking and 32-bit support. Linux, like all other versions of UNIX, is a real multitasking system, allowing multiple users to run many programs on the same system at once. Linux is also a full 32-bit operating system, utilizing the special 
+protected-mode features of Intel 80386 and later processors and their work-alikes.
+
+<BR>
+
+<BR>
+
+<LI>The X Window System. The X Window System is the de facto industry-standard graphics system for UNIX machines. A complete version of the X Window System, known as XFree86, is available for Linux. The X Window System is a very powerful graphics 
+interface, supporting many applications.
+
+<BR>
+
+<BR>
+
+<LI>TCP/IP (Transmission Control Protocol/Internet Protocol) support. This is the set of protocols that links millions of university and business computers into a worldwide network known as the Internet. With an Ethernet connection, you can have access to 
+the Internet or to a local area network from your Linux system. Using SLIP (Serial Line Internet Protocol) or PPP (Point to Point Protocol), you can access the Internet over phone lines with a modem.
+
+<BR>
+
+<BR>
+
+<LI>Virtual memory and shared libraries. Linux can use a portion of your hard drive as virtual memory, expanding your total amount of available RAM. Linux also implements shared libraries, allowing programs that use standard subroutines to find the code 
+for these subroutines in the libraries at runtime. This saves a large amount of space on your system; each application doesn't store its own copy of these common routines.
+
+<BR>
+
+<BR>
+
+<LI>The Linux kernel uses no code from AT&amp;T or any other proprietary source. Much of the software available for Linux is free. In fact, a large number of utilities in Linux are developed by the GNU project at the Free Software Foundation in Cambridge, 
+Massachusetts. However, Linux enthusiasts, hackers, programmers, and recently even commercial companies from all over the world have contributed to the growing pool of Linux software.
+
+<BR>
+
+<BR>
+
+<LI>Linux supports (almost) all of the features of commercial versions of UNIX. In fact, some of the features found in Linux may not be available on other proprietary UNIX systems.
+
+<BR>
+
+<BR>
+
+<LI>GNU software support. Linux supports a wide range of free software written by the GNU Project, including utilities such as the GNU C and C++ compiler, gawk, groff, and so on. Many of the essential system utilities used by Linux are GNU software.
+
+<BR>
+
+<BR>
+
+<LI>Linux is compatible with the IEEE POSIX.1 standard. Linux has been developed with software portability in mind, thus supporting many important features of other UNIX standards.
+
+<BR>
+
+<BR>
+
+<LI>Virtual memory support. Linux utilizes all of your system's memory, without memory limits or segmentation through the use of a virtual memory manager.
+
+<BR>
+
+<BR>
+
+<LI>Built-in support for networking, multitasking, and other features. You'll see this touted as &quot;New Technology&quot; in systems such as Windows NT. In fact, UNIX (and now, Linux) has implemented this &quot;new technology&quot; for more than 15 
+years.
+
+<BR>
+
+<BR>
+
+<LI>Linux is cheaper to get than most commercially available UNIX systems and UNIX clones. If you have the patience and access to the Internet, the only price you pay for Linux is your time. Linux is freely available on the Internet. For a nominal fee of 
+anywhere from US $30 to US $90, you can save yourself some time and get CD-ROM or floppy-disk distributions from several commercial vendors (or from this book).
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>Arguably, the most important advantage of using Linux is that you get to work with an honest-to-goodness kernel. All of the kernel source code is available for Linux, and you have the ability to modify it to suit your needs. Looking at the kernel code 
+is an educational experience in itself.
+
+<BR>
+
+<P>Undoubtedly, the development of Linux has been so rapid because of the availability of the source code. Also, with an ever-expanding group of hackers who want to get their hands dirty with their own system, Linux has grown steadily into the fully packed 
+operating system that it is today.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Linux uses the Intel 80386 chip's protected mode-functions extensively, and is a true 32-bit operating system. CPUs before the 80386 will not run Linux as they lack protected modes.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E68E6"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>The Downside of Linux and the Reason for This Book</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Linux is a hacker's project, written by a multitude of gifted programmers for the sheer joy of programming and sharing the code. This hacker attitude can be a daunting experience for someone not familiar with UNIX, and its side effects are sometimes 
+noticed quite easily (such as a lack of documentation, obtuse commands, and dependencies on other programs that are not clear). Luckily, there is little problem with stable Linux software because it has been worked on by many people; it's the early 
+releases of new software that tend to show these holes.
+
+<BR>
+
+<P>Help with Linux is generally not a phone call away as it is with a commercial version of UNIX. You can get help from the Internet newsgroups and other members of the Linux community via e-mail. However, when it's midnight and your system just won't boot 
+like the README file said it would, you do feel a sense of despair.
+
+<BR>
+
+<P>There is a huge distinction between commercial versions of UNIX and Linux: Commercial versions of UNIX are designed for customers and will work out of the box, whereas Linux is not guaranteed to work at all on your system. You are indeed on your own.
+
+<BR>
+
+<P>Actually, the only problem for new users is a lack of basic UNIX system-administrative knowledge. Setting up and running your own UNIX system is something most UNIX users never get to do, even after years of experience. Yes, you get to do it yourself, 
+but it ain't that easy. You might actually consider being nice to your local UNIX system administrator after installing Linux for the first time.
+
+<BR>
+
+<P>Here are some other parts of Linux that you should be warned about:
+
+<BR>
+
+<UL>
+
+<LI>Some of the features on your favorite UNIX system may not be available for your Linux system. Your choice in this matter is to either write the application yourself, convince someone else to write it, or find an alternative process (the easiest out in 
+most cases).
+
+<BR>
+
+<BR>
+
+<LI>As with software, some of the hardware in your machine may not be supported by Linux. Again, your choices are to either write the driver software yourself or get it from somewhere else.
+
+<BR>
+
+<BR>
+
+<LI>You do have to spend some time and effort managing your Linux machine. You do develop a knack for fixing problems from experience. However, only with experience can you learn to recognize common problems and find or develop solutions.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>Even with standard Linux distributions, there are sometimes little quirks that need to be fixed by hand in order for everything to work correctly. If you have previous UNIX experience, it should be easy to find these problems. However, if you're new to 
+UNIX, it would serve you well to read up on using and running a UNIX system before you dive in.
+
+<BR>
+
+<P>To reiterate, Linux isn't for everyone. Many users can get in over their heads when starting with Linux. To keep your head above water, I strongly encourage you to find a good book on using UNIX system administration.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E7"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>About Linux's Copyright</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Ah, yes&#151;that old topic of copyrights. Compared to death and taxes, Linux copyrights are a mere annoyance.
+
+<BR>
+
+<P>Actually, Linux is copyrighted under the GNU General Public License, sometimes called the GPL or copyleft. (Note the left instead of right.) This copyleft license was developed by the Free Software Foundation to enable programmers to write &quot;free 
+software,&quot; where &quot;free&quot; refers to freedom, not just cost. The GPL provides for the protection of such free software in a number of ways:
+
+<BR>
+
+<UL>
+
+<LI>It allows the original author to retain the software's copyright.
+
+<BR>
+
+<BR>
+
+<LI>It allows others to take the software and modify it, or even base other programs on it.
+
+<BR>
+
+<BR>
+
+<LI>It allows others to redistribute or resell the software, or modified versions of the software. Note that you can even resell the software for profit. However, in reselling or redistributing the software, you cannot restrict any of these rights from the 
+party you're selling it to.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Also, if you sell the software, you have to be able to provide at no cost the full source code so that others can modify the software and resell it if they wish. You cannot hold back the source of your modifications.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>The original authors of the Linux software may never see a dime of these revenues. This is allowed by the GNU GPL because the point of free software isn't to make money. This is simply an understanding between the authors of the software and those using 
+or selling it.
+
+<BR>
+
+<P>One other thing: Free software, as covered by the GNU GPL (which includes Linux), comes with absolutely no warranty. However, individual vendors may provide support for the software, which usually includes a warranty. Unless you purchased such support, 
+the assumption is that the software comes with no such warranty, and if you use a piece of free software that goes haywire and wipes everything on your system, neither the authors nor those who distributed the software to you are liable.
+
+<BR>
+
+<P>Free software as covered by the GPL is not shareware, nor is it in the public domain. Neither of these terms correctly describes what free software really is. The complete GNU GPL is printed in <A HREF="rhlxe.htm">Appendix E</A>, &quot;Copyright 
+Information.&quot; To sum it all up, you can freely distribute Linux as much as you like, and you can even modify it and distribute your own version of Linux. But in doing so, you can't take away those rights from others. In short, you must attribute the 
+original authors of the work.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Please note that there are absolutely no warranties with any of the software you get with Linux. If an application goes awry and wipes your disk, you have no one's neck to wring. Unless someone explicitly gives you a warranty in writing on their 
+software, do not assume any warranty whatsoever for anything other than what is explicitly written in the warranties.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E68E8"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Hardware Requirements</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Now that you know a little about the good and bad points of Linux, let's see what's required in terms of hardware.
+
+<BR>
+
+<P>Unlike some other versions of UNIX for the PC, Linux is very small. You can run an entire system from a single, high-density 5.25-inch floppy. However, to run a complete Linux system, there are other hardware requirements.
+
+<BR>
+
+<P>Linux, by its very nature, is continuously expanding, and more features are added every day. However, hardware compatibility is limited to that hardware the developers themselves have access to. For instance, if none of the Linux developers has access 
+to the WhizBang Slice-O-Matic T3222 Ethernet card from a no-name manufacturer, then chances are it isn't supported.
+
+<BR>
+
+<P>On the other hand, there are many generic drivers for hardware, such as the IDE disk driver, which should work with all IDE hard drives and adapters regardless of manufacturer. Of course, the developers of the drivers couldn't test their software 
+against every IDE device on the market, so they assume the IDE standards are followed by manufacturers. If a device doesn't work, it's probably because the manufacturer deviated from the standards, or added features the generic drivers can't handle.
+
+<BR>
+
+<P>A good place to look on the CD-ROM is in the /docs/howto directory for the Hardware-HOWTO file. This file will list a lot of the supported hardware for Linux.
+
+<BR>
+
+<P>If your favorite peripheral isn't supported by Linux, all that's required is to write a kernel driver for it. This may be easy or difficult, depending on the hardware and the technical specifications that are available. For example, some hardware 
+developers prefer to write their own drivers for MS-DOS and Windows, and not release specifications for third parties to write their own. Therefore, writing drivers for Linux will be difficult, if not impossible.
+
+<BR>
+
+<P>The following is a rough guideline of some hardware requirements for Linux. You do not have to follow them directly, but this list should give you a rough idea of what's required:
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>If you're in the market for a new system, you should heed the following recommendations.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<UL>
+
+<LI>An Intel 80386 or better CPU (the faster and more powerful the better, of course). You don't need a math coprocessor, although it's strongly recommended as it speeds up a lot of graphics operations, especially under X. If you have an 80386 chip, 80387 
+math coprocessors are available separately and are installed in a socket on your motherboard. If you have a 80486 processor, the math coprocessor is on the 486 chip itself. (The exception is the 80486SX, which is a 486 chip without the coprocessor 
+components.) Pentium and Pentium Pro CPUs have the coprocessor built in.
+
+<BR>
+
+<BR>
+
+<LI>  If you don't have a math coprocessor, the Linux kernel will emulate floating-point math for you. If you do have one, however, floating-point math will be handled by the hardware, which for some applications is a real plus.
+
+<BR>
+
+<BR>
+
+<LI>Your system must be either an ISA, EISA, PCI, or local bus architecture machine. These terms specify how the CPU communicates with hardware, and are a characteristic of your motherboard. Most existing systems use the ISA bus architecture.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>MicroChannel architecture (MCA) machines, such as the IBM PS/2 line, are not currently supported.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<UL>
+
+<LI>At least 4MB of RAM.
+
+<BR>
+
+<BR>
+
+<LI>  Memory is speed, so if you have more RAM you'll thank yourself for it later. If you're a power user, 8MB should be more than enough for most applications. If you want to run X Window, your system will require at least 8MB of RAM.
+
+<BR>
+
+<BR>
+
+<LI>A hard drive with space available for installing Linux. The amount of space required depends on the amount of software you're installing and how much free space you wish to leave yourself. You can install Linux in very small amounts of disk space, but 
+a realistic minimum is about 150MB. For a full system with X and development tools, much more is required. The complete installation can use up 250MB, with more useful for data files.
+
+<BR>
+
+<BR>
+
+<LI>A Hercules, CGA, EGA, VGA, or Super VGA video card and monitor. In general, if your video card and monitor work under MS-DOS or Microsoft Windows, then Linux should be able to use them without any problem. However, if you're going to use the X Window 
+system (either Metro-X or Xfree86), some video configurations are not supported.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<BR>
+
+<A NAME="E69E4"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Other Hardware Requirements</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Linux will also run on a number of laptop machines (some laptops use certain software interrupts to power the memory, and Linux doesn't work well with these systems to date). The best way to find out if Linux will run on your hardware is just to try it 
+out.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>At the time of writing, Linux doesn't run on an IBM PS/2 computer. Stay tuned to the Internet for details.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>There are other hardware drivers currently under development for Linux. To use these drivers, however, you usually have to patch them into your kernel code, which assumes that you already have a running Linux system (a kind of chicken-and-egg problem if 
+you have not already installed Linux). In such cases, you can install whatever Linux you happen to have and then apply the patches with the Linux patch command.
+
+<BR>
+
+<P>Then there is the issue of tape drives for Linux. There is a working QIC-02 device driver for Linux, supporting Everex/Wangtek cards. There are additional patches for the QIC-02 to support Archive SC402/499R. You can find them in /pub/linux/alpha/qic-02 
+directory at tsx-11.mit.edu server. (There have been reports of some bugs in the driver, but you can back up and restore.)
+
+<BR>
+
+<P>Most of the newer tape drivers are all for SCSI drives, so if you have a SCSI tape drive, chances are that it is supported.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E5"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Special Requirements for X</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Your 4MB of RAM will make X run very slowly. You should have at least 8MB of RAM for running programs in X. You will need another 6MB to 10MB of disk space for the GCC compiler in addition to X if you want to develop applications for X.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Do not try to bring up an Xserver that does not support your hardware. There have been cases where damage has resulted from pushing the monitor (especially fixed-frequency monitors) beyond its capabilities.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>As far as mice go, Linux supports both serial and Bus varieties. For the serial mice, you can use Logitech, Microsoft, MouseSystems, or compatibles. The following Bus mice are known to work: Logitech, Microsoft, ATI_XL, and PS/2 (aux).
+
+<BR>
+
+<P>There you have it, a brief introduction to an operating system that could very well change the way you program. Now for getting yourself ready for Linux.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E9"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Before You Get Started</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Assuming that you have hardware compatible with Linux, obtaining and installing the system is not difficult. But be prepared to be a bit frustrated at first, if you are new to UNIX or Linux. The two best defenses against frustration with using Linux are 
+the following:
+
+<BR>
+
+<OL>
+
+<LI>Get organized.
+
+<BR>
+
+<BR>
+
+<LI>Educate yourself about Linux and UNIX.
+
+<BR>
+
+<BR>
+
+</OL>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Experience with my bad memory has forced me to keep an indexed log of all the bugs, quirks, and symptoms in Linux. I have a dog-eared notebook of all the weird features of Linux.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E68E10"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Summary</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>In this chapter we learned about Linux and some of its more prominent features:
+
+<BR>
+
+<UL>
+
+<LI>UNIX is a trademark of X/Open. Linux is not a trademark, and has no connection to the trademark UNIX or X/Open.
+
+<BR>
+
+<BR>
+
+<LI>Linux is designed to run on Intel 80386 and faster CPUs and their compatibles.
+
+<BR>
+
+<BR>
+
+<LI>Linux has most of the UNIX-like features and applications built in to it. These features include a Virtual File System (VFS), networking, multitasking and multiuser capabilities along with a host of applications such as Xfree86, Metro-X, TeX, and the 
+GNU utilities.
+
+<BR>
+
+<BR>
+
+<LI>You will learn a lot about operating systems when working with Linux.
+
+<BR>
+
+<BR>
+
+<LI>Linux is copyrighted under the GNU copyleft agreement. See <A HREF="rhlxe.htm">Appendix E</A> for the complete text.
+
+<BR>
+
+<BR>
+
+<LI>The hardware requirements for Linux include at least an 80386 processor, a minimum of 100MB of disk space, 4MB of RAM and a 3.5-inch floppy drive.
+
+<BR>
+
+<BR>
+
+<LI>The more memory you have, the faster Linux will run.
+
+<BR>
+
+<BR>
+
+<LI>The swap space on Linux is an area on the disk used by Linux as a scratch area when working with lots of processes.
+
+<BR>
+
+<BR>
+
+<LI>You will need 8MB of RAM to get X Window to run with an acceptable degree of performance.
+
+<BR>
+
+<BR>
+
+<LI>You will need to educate yourself a little on Linux and UNIX before you start the installation procedure. This is especially important if you are new to UNIX.
+
+<BR>
+
+<BR>
+
+<LI>There are several ways of finding help on topics in Linux: The Linux Documentation Project, via FAQs, INFO-SHEETS, and from the files on the CD-ROM itself.
+
+<BR>
+
+<BR>
+
+<LI>The Hardware-HOWTO document contains a lot of information about all the devices supported by Linux.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>It's best to check the Linux Hardware Compatibility List on the CD-ROM before starting your installation process or buying anything for your PC.
+
+<BR><A NAME="I2"></A>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhlfm.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="#I0" TARGET="_self"><IMG SRC="purtop.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Page Top"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl02.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+</BODY></HTML>
+
+
+

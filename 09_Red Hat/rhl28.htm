@@ -1,0 +1,2642 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Red Hat Linux Unleashed rhl28.htm </TITLE>
+
+<LINK REL="ToC" HREF="index.htm">
+
+<LINK REL="Index" HREF="htindex.htm">
+
+<LINK REL="Next" HREF="rhl29.htm">
+
+<LINK REL="Previous" HREF="rhl27.htm"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+
+<A NAME="I0"></A>
+
+<H2>Red Hat Linux Unleashed rhl28.htm</H2>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl27.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl29.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+<HR ALIGN=CENTER>
+
+<P>
+
+<UL>
+
+<UL>
+
+<UL>
+
+<LI>
+
+<A HREF="#E68E226" >What Is C++?</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E345" >Why C++?</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E70E6" >Data Encapsulation</A>
+
+<LI>
+
+<A HREF="#E70E7" >Inheritance</A>
+
+<LI>
+
+<A HREF="#E70E8" >Polymorphism</A></UL>
+
+<LI>
+
+<A HREF="#E69E346" >Classes of Objects and Methods</A>
+
+<LI>
+
+<A HREF="#E69E347" >GCC Options</A>
+
+<LI>
+
+<A HREF="#E69E348" >Debugging and Profiling Options</A>
+
+<LI>
+
+<A HREF="#E69E349" >GCC C++ Specific Options</A></UL>
+
+<LI>
+
+<A HREF="#E68E227" >Debugging C++ Applications</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E350" >Debugging Virtual Functions</A>
+
+<LI>
+
+<A HREF="#E69E351" >Debugging Exception Handlers</A>
+
+<LI>
+
+<A HREF="#E69E352" >Summary of gdb C++ Specific Commands</A></UL>
+
+<LI>
+
+<A HREF="#E68E228" >GNU C++ Class Libraries</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E353" >Streams</A>
+
+<LI>
+
+<A HREF="#E69E354" >Strings</A>
+
+<LI>
+
+<A HREF="#E69E355" >Random Numbers</A>
+
+<LI>
+
+<A HREF="#E69E356" >Data Collection</A>
+
+<LI>
+
+<A HREF="#E69E357" >Linked Lists</A>
+
+<LI>
+
+<A HREF="#E69E358" >Plex Classes</A>
+
+<LI>
+
+<A HREF="#E69E359" >Stacks</A>
+
+<LI>
+
+<A HREF="#E69E360" >Queues</A>
+
+<LI>
+
+<A HREF="#E69E361" >Sets</A></UL>
+
+<LI>
+
+<A HREF="#E68E229" >Summary</A></UL></UL></UL>
+
+<HR ALIGN=CENTER>
+
+<A NAME="E66E28"></A>
+
+<H1 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>28</B></FONT></CENTER></H1>
+
+<BR>
+
+<A NAME="E67E28"></A>
+
+<H2 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>Programming in C++</B></FONT></CENTER></H2>
+
+<BR>
+
+<P><A HREF="rhl27.htm">Chapter 27</A>, &quot;Programming in C,&quot; introduced you to the C programming environment and C programming tools that come with Linux. This chapter describes the same kinds of information for C++. This chapter covers the 
+following topics:
+
+<BR>
+
+<UL>
+
+<LI>What C++ is
+
+<BR>
+
+<BR>
+
+<LI>Why to use C++
+
+<BR>
+
+<BR>
+
+<LI>The GNU C++ compiler
+
+<BR>
+
+<BR>
+
+<LI>Debugging C++ applications
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>In addition to these topics, this chapter also looks at some of the C++ programming tools and class libraries that are included on the Linux CD.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E226"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>What Is C++?</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>C++ is an object-oriented extension to the C programming language. It was developed at Bell Labs in the early 1980s and is quickly becoming the language of choice in the computer industry. Dozens of C++ compilers are available on the market today. The 
+most common of these for PC-based systems are Borland C++, Microsoft's Visual C++, Symantec C++, and Watcom C++. These compilers can compile MS-DOS, MS Windows, OS/2, and Windows NT programs. In addition to the number of C++ compilers that are available on 
+DOS-based machines, a great number are also based on other hardware architectures.
+
+<BR>
+
+<P>Most UNIX systems have C++ compilers available from the system vendor. Linux also comes with a C++ compiler. This is the GNU C++ compiler. The GNU C++ compiler is very closely related to the GNU C compiler (GCC). In fact, since Release 2.0 of GCC, the 
+GNU C++ compiler has been integrated with GCC. Previous to Release 2.0 of GCC, the GNU C++ compiler was a separate program known as g++. One of the major enhancements in Release 2.0 of GCC was merging these two compilers.
+
+<BR>
+
+<P>GCC now incorporates a C compiler, a C++ compiler, and an Objective C compiler, although you will still find the g++ executable on your system.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E345"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Why C++?</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>C++ and object-oriented programming (OOP) did not just happen. There were many fundamental reasons for the shift from structured programming to OOP. In the early days of computer programming, back when PDP-8s still roamed the earth in great numbers, 
+there was a shift from machine language coding to assembler language coding. This was done because the computers of the day were a little more powerful than their predecessors. Programmers wanted to make their lives easier by moving some of the burden of 
+programming onto the computer.
+
+<BR>
+
+<P>As the years went by and computers got even more powerful, new, higher-level languages started to appear. Examples of these languages are FORTRAN, COBOL, Pascal, and C. With these languages came a programming methodology known as structured programming. 
+Structured programming helped to simplify the systems being designed by enabling programmers to break the problem into small pieces and then implement these pieces as functions or procedures in whatever language was being used.
+
+<BR>
+
+<P>The structured programming approach worked well for small to medium-sized software applications, but it started to fall apart as systems reached a certain size. OOP tried to solve some of the problems that structured programming was causing. It did this 
+by extending some of the structured programming concepts and by introducing some of its own.
+
+<BR>
+
+<P>The main concepts that OOP focuses on are the following:
+
+<BR>
+
+<UL>
+
+<LI>Data encapsulation
+
+<BR>
+
+<BR>
+
+<LI>Inheritance
+
+<BR>
+
+<BR>
+
+<LI>Polymorphism
+
+<BR>
+
+<BR>
+
+</UL>
+
+<BR>
+
+<A NAME="E70E6"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Data Encapsulation</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>In structured programming, problems often arose where there was a data structure that was common to several different pieces of code. One piece of code could access that data without the other piece of code being aware that anything was happening.
+
+<BR>
+
+<P>Data encapsulation is a process of grouping common data together, storing it into a data type, and providing a consistent interface to that data. This ensures that no one can access that data without going through the user interface that has been 
+defined for that data.
+
+<BR>
+
+<P>The biggest benefit that this kind of mechanism provides is that it protects code outside the code that is directly managing this data from being affected if the structure of the data changes. This greatly reduces the complexity of large software 
+systems.
+
+<BR>
+
+<P>C++ implements data encapsulation through the use of classes.
+
+<BR>
+
+<BR>
+
+<A NAME="E70E7"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Inheritance</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>Inheritance is a form of code reuse in which you can inherit or use the data and behavior of other pieces of code. Inheritance is typically used only when a piece of software logically has many of the same characteristics as another piece of software, 
+such as when one object is a specialization of another object.
+
+<BR>
+
+<P>Inheritance is implemented in C++ by allowing objects to be subclassed by other objects.
+
+<BR>
+
+<BR>
+
+<A NAME="E70E8"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Polymorphism</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>Polymorphism occurs when a language allows you to define functions that perform different operations on objects depending on their type. The true power of this lies in the fact that you can send a message to a base class and that message can be passed 
+down to each of its subclasses and mean different things to each of them.
+
+<BR>
+
+<P>Polymorphism is implemented in C++ using virtual functions.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E346"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Classes of Objects and Methods</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>In C++, classes can be thought of as C structures that contain not only the data fields but also operations that can be performed on those data fields. A simple example of this concept is a geometric shape. A geometric shape can be many things, such as 
+a rectangle, a triangle, or a circle. All geometric shapes have certain attributes in common, including area and volume. You could define a structure in C called shape in the following way:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">struct shape{
+
+float area;
+
+float volume;
+
+}</FONT></PRE>
+
+<P>If you added some common behavior to this structure, you would have the equivalent of a C++ class. This would be written as follows:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">class shape {
+
+public:
+
+float area;
+
+float volume;
+
+float calc_area();
+
+float calc_volume():
+
+};</FONT></PRE>
+
+<P>You have now defined a C++ class. The calc_area and calc_volume items are known as methods of the class (instead of functions, as in C). If you were to define a variable that was of type shape as
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">shape circle;</FONT></PRE>
+
+<P>you would have created a circle object. An object is an instance of a class, or a variable that is defined to be of the type of a class.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E347"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>GCC Options</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>This section describes some of the GCC options that are most commonly used. I will first talk about some of the options that can be used both with C and C++ and then talk about C++ specific options. Any of the compiler options that you use with C you 
+can use with C++ as well, but some of them may not make any sense in the context of a C++ compile. If you specify options that don't make sense, the compiler just ignores them.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>When you are compiling C++ programs, it is easiest to use the g++ script. This sets all the default C++ options so you don't have to.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>A great number of compiler options can be passed to GCC. Many of these options are specific to a certain hardware platform or are for making fine-tuning adjustments to the code that is produced. You will probably never use any of these kinds of options. 
+The options covered in this chapter are those that you will use on a regular basis.
+
+<BR>
+
+<P>Many of the GCC options consist of more than one character. For this reason, you must specify each option with its own hyphen and not group options after a single hyphen as you can with most Linux commands.
+
+<BR>
+
+<P>When you compile a program using GCC without any command-line options, it creates an executable file (assuming that the compile was successful) and calls it a.out. For example, the following command would create a file named a.out in the current 
+directory:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">gcc test.C</FONT></PRE>
+
+<P>To specify a name other than a.out for the executable file, you can use the -o compiler option. For example, to compile a C++ program file named count.C (the capital C is used to show C++ code, as opposed to a small c for C code) into an executable file 
+named count, you would type the following command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">gcc -o count count.C</FONT></PRE>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>When you are using the -o option, the executable filename must occur directly after the -o on the command line.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>Other compiler options allow you to specify how far you want the compile to proceed. The -c option tells GCC to compile the code into object code and skip the assembly and linking stages of the compile. This option is used quite often because it makes 
+the compilation of multifile C++ programs faster and easier to manage. Object code files created by GCC have an .o extension by default.
+
+<BR>
+
+<P>The -S compiler option tells GCC to stop the compile after it has generated the assembler files for the C code. Assembler files generated by GCC have an .s extension by default. The -E option instructs the compiler to perform only the preprocessing 
+compiler stage on the input files. When this option is used, the output from the preprocessor is sent to the standard output rather than being stored in a file.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E348"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Debugging and Profiling Options</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>GCC supports several debugging and profiling options. Of these options, the two that you are most likely to use for C++ programs are the -gstabs+ option and the -pg option.
+
+<BR>
+
+<P>The -gstabs+ option tells GCC to produce stabs format debugging information that the GNU debugger (gdb) can use to help you debug your program. For more information on debugging your C++ programs, refer to the &quot;Debugging C++ Applications&quot; 
+section later in this chapter.
+
+<BR>
+
+<P>The -pg option tells GCC to add extra code to your program that will, when executed, generate profile information that can be used by the gprof program to display timing information about your program. For more information on gprof, refer to the 
+&quot;gprof&quot; section in <A HREF="rhl27.htm">Chapter 27</A>.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E349"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>GCC C++ Specific Options</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The GCC options that control how a C++ program is compiled are listed in Table 28.1.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 28.1. GCC options.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Option</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Meaning</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-fall-virtual
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Treats all possible member functions as virtual. This applies to all functions except for constructor functions and new or deleted member functions.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-fdollars-in-identifiers
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Accepts $ in identifiers. You can also prohibit the use of $ in identifiers by using the -fno-dollars-in-identifiers option.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-felide-constructors
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Tells the compiler to leave out constructors whenever possible.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-fenum-int-equiv
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Permits implicit conversion of int to enumeration types.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-fexternal-templates
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Produces smaller code for template declarations. This is done by having the compiler generate only a single copy of each template function where it is defined.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-fmemoize-lookups
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Uses heuristics to compile faster. These heuristics are not enabled by default because they are effective only for certain input files.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-fno-strict-prototype
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Treats a function declaration with no arguments the same way that C would treat it. This means that the compiler treats a function prototype that has no arguments as a function that will accept an unknown number of arguments.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-fnonnull-objects
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Assumes that objects reached through references are not null.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-fsave-memoized
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Same as -fmemorize-lookups.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-fthis-is-variable
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Permits assignment to &quot;this.&quot;</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-nostdinc++
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Does not search for header files in the standard directories specific to C++.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-traditional
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+This option has the same effect as -fthis-is-variable, but also attempts to support some aspects of traditional C compilers.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-fno-default-inline
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Does not assume that functions defined within a class scope are inline functions.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-Wenum-clash
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Warns about conversion between different enumeration types.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-Woverloaded-virtual
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Warns when derived class function declaration may be an error in defining a virtual function. When you define a virtual function in a derived class, it must have the same signature as the function in the base class. This option tells the compiler to warn 
+you if you have defined a function that has the same name and a different signature as a function that is defined in one of the base classes.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-Wtemplate-debugging
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+If you are using templates, this option warns you if debugging is not yet available.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-gstabs+
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Tells the compiler to generate debugging information in stabs format, using GNU extensions understood only by the GNU debugger. The extra information produced by this option is necessary to ensure that gdb handles C++ programs properly.</FONT>
+
+</TABLE><BR>
+
+<A NAME="E68E227"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Debugging C++ Applications</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>A very important part of developing C++ programs is being able to debug them efficiently. The GNU debug application that was introduced in <A HREF="rhl27.htm">Chapter 27</A> can also be used to debug C++ applications. This section describes some of the 
+differences between debugging C applications and debugging C++ applications.
+
+<BR>
+
+<P>The basic gdb commands that were introduced in <A HREF="rhl27.htm">Chapter 27</A> are listed again for your convenience in Table 28.2.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 28.2. Basic </B><B>gdb</B><B> commands.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Command</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Description</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+file
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Loads the executable file that is to be debugged.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+kill
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Terminates the program you are currently debugging.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+list
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Lists sections of the source code used to generate the executable file.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+next
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Advances one line of source code in the current function, without stepping into other functions.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+step
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Advances one line of source code in the current function, and does step into other functions.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+run
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Executes the program that is currently being debugged.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+quit
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Terminates gdb.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+watch
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Enables you to examine the value of a program variable whenever the value changes.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+break
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Sets a breakpoint in the code; this causes the execution of the program to be suspended whenever this point is reached.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+make
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+This command enables you to remake the executable program without quitting gdb or using another window.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+shell
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Enables you to execute UNIX shell commands without leaving gdb.</FONT>
+
+</TABLE><P>From the programmer's perspective, you have more details to be aware of when debugging C++ code than when you are debugging C code. This is because of the C++ features such as virtual functions and exception handling. gdb has added features to 
+support debugging both of these C++ specific features.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E350"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Debugging Virtual Functions</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>As described in the &quot;Polymorphism&quot; section of this chapter, virtual functions are C++'s way of implementing polymorphism. This means that there may be more than one function in a program with the same name. The only way to tell these functions 
+apart is by their signatures. The signature of a function is composed of the types of all the arguments to the function. For example, a function with the prototype
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">void func(int, real);</FONT></PRE>
+
+<P>has a signature of int,real.
+
+<BR>
+
+<P>You can see how this could cause gdb a few problems. For example, if you had defined a class that had a virtual function called calculate, and two objects with different definitions for this function were created, how would you set a breakpoint to 
+trigger on this function? You set breakpoints in C by specifying the function name as an argument to the gdb break command, as follows:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"> (gdb) break calculate</FONT></PRE>
+
+<P>This does not work in the case of a virtual function because the debugger would not be able to tell which calculate you wanted the breakpoint to be set on. gdb was extended in a few ways so that it could handle virtual functions. The first way to solve 
+the problem is to enter the function name by specifying its prototype as well. This would be done in the following way:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">break 'calculate (float)'</FONT></PRE>
+
+<P>This would give gdb enough information to determine which function the breakpoint was meant for. A second solution that gdb supports is using a breakpoint menu. Breakpoint menus allow you to specify the function name of a function. If there is more than 
+one function definition for that function, it gives you a menu of choices. The first choice in the menu is to abort the break command. The second choice is to set a breakpoint on all the functions that the break command matches. The remaining choices 
+correspond to each function that matches the break command. The following code shows an example of a breakpoint menu:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">(gdb) break shape::calculate
+
+ [0] cancel
+
+ [1] all
+
+ [2] file: shapes.C: line number: 153
+
+ [3] file: shapes.C: line number: 207
+
+ [4] file: shapes.C: line number: 247
+
+&gt; 2 3
+
+Breakpoint 1 at 0xb234: file shapes.C, line 153
+
+Breakpoint 2 at 0xa435: file shapes.C, line 207
+
+Multiple breakpoints were set
+
+Use the &quot;delete&quot; command to delete unwanted breakpoints
+
+ (gdb)</FONT></PRE>
+
+<BR>
+
+<A NAME="E69E351"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Debugging Exception Handlers</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Exceptions are errors that occur within your program. Exception handlers are pieces of code that are written to handle errors and potential errors. For example, if you were writing a C program and calling the malloc function to get a block of memory, 
+you would typically check malloc's return code to make sure the memory allocation was successful. If C supported exception handling, you could specify a function that would receive or catch exceptions, and the malloc function would send or throw an 
+exception to your function if one occurred.
+
+<BR>
+
+<P>The gdb added two new commands to support C++ exception handling: the catch command and the catch info command. The catch command is used to set a breakpoint in active exception handlers. The syntax of this command is as follows:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">catch exceptions</FONT></PRE>
+
+<P>exceptions is a list of the exceptions to catch.
+
+<BR>
+
+<P>The catch info command is used to display all the active exception handlers.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E352"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Summary of </B><B>gdb</B><B> C++ Specific Commands</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>In addition to the gdb commands that have been added to support some of the new language features contained in C++, there are also some new set and show options. These options are listed in Table 28.3.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 28.3. </B><B>gdb's</B><B> C++ </B><B>set</B><B> and </B><B>show</B><B> options.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Command</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Description</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+set print demangle
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Prints C++ names in their source form rather than in the encoded or mangled form that is passed to the assembler.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+show print demangle
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Shows whether print demangle is on or off.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+set demangle-style
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Sets the style of demangled output. The options are auto, gnu, lucid, and arm.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+show demangle-style
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Shows which demangle style is being used.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+set print object
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+When displaying a pointer to an object, identifies the actual type of the object.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+show print object
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Shows whether print object is turned on or off.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+set print vtbl
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Pretty prints C++ virtual function tables.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+show print vtbl
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Shows whether print vtbl is turned on or off.</FONT>
+
+</TABLE><BR>
+
+<A NAME="E68E228"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>GNU C++ Class Libraries</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>GNU C++ comes packaged with an extensive class library. A class library is a reusable set of classes that can be used to perform a specified set of functions. Some typical examples of class libraries are class libraries that handle database access, 
+class libraries that handle graphical user interface programming, and class libraries that implement data structures.
+
+<BR>
+
+<P>Examples of graphical user interface class libraries include the Microsoft Foundation Classes and Borland's Object Windows Library, both of which are class libraries that are used for developing Windows applications.
+
+<BR>
+
+<P>This section introduces several of the features that are offered by the GNU C++ class library.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E353"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Streams</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The GNU iostream library, called libio, implements GNU C++'s standard input and output facilities. This library is similar to the I/O libraries that are supplied by other C++ compilers. The main parts of the iostream library are the input, output, and 
+error streams. These correspond to the standard input, output, and error streams that are found in C and are called cin, cout, and cerr respectively. The streams can be written to and read from using the &lt;&lt; operator for output and the &gt;&gt; 
+operator for input.
+
+<BR>
+
+<P>The following program uses the iostream library to perform its input and output:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">#include &lt;iostream.h&gt;
+
+int main ()
+
+{
+
+char name[10];
+
+cout &lt;&lt; &quot;Please enter your name.\n&quot;;
+
+cin &gt;&gt; name;
+
+cout &lt;&lt; &quot;Hello, &quot; &lt;&lt; name &lt;&lt; &quot;, how is it going?\n&quot;;
+
+}</FONT></PRE>
+
+<BR>
+
+<A NAME="E69E354"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Strings</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The GNU string class extends GNU C++'s string manipulation capabilities. The stringclass essentially replaces the character array definitions that existed in C and all the stringfunctions that go along with the character arrays.
+
+<BR>
+
+<P>The string class adds UNIX shell type string operators to the C++ language, as well as a large number of additional operators. Table 28.4 lists many of the operators that are available with the string class.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 28.4. String class operators.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Operator</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Meaning</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+str1 == str2
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns TRUE if str1 is equal to str2</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+str1 != str2
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns TRUE if str1 is not equal to str2</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+str1 &lt; str2
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns TRUE if str1 is less than str2</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+str1 &lt;= str2
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns TRUE if str1 is less than or equal to str2</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+str1 &gt; str2
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns TRUE if str1 is greater than str2</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+str1 &gt;= str2
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns TRUE if str1 is greater than or equal to str2</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+compare(str1,str2)
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Compares str1 to str2 without considering the case of the characters</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+str3 = str1 + str2
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Stores the result of str1 concatenated with str2 into str3</FONT>
+
+</TABLE><P>A number of other operators are available in the string class for performing different types of string comparisons, concatenations, and substring extraction and manipulation.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E355"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Random Numbers</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Classes are provided in the GCC C++ class library that allow you to generate several different kinds of random numbers. The classes used to generate these numbers are the Random class and the RNG class.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E356"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Data Collection</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The class library provides two different classes that perform data collection and analysis functions. The two classes are SampleStatistic and SampleHistogram. The SampleStatistic class provides a way of collecting samples and also provides numerous 
+statistical functions that can perform calculations on the collected data. Some of the calculations that can be performed are mean, variance, standard deviation, minimum, and maximum.
+
+<BR>
+
+<P>The SampleHistogram class is derived from the SampleStatistic class and supports the collection and display of samples in bucketed intervals.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E357"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Linked Lists</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The GNU C++ library supports two kinds of linked lists: single linked lists, implemented by the SLList class, and doubly linked lists, implemented by the DLList class. Both of these types of lists support all the standard linked list operations. A 
+summary of the operations that these classes support is shown in Table 28.5.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 28.5. List operators.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Operator</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Description</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+list.empty()
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns TRUE if list is empty</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+list.length()
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns the number of elements in list</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+list.prepend
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Places a at the front of list</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+list.append
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Places a at the end of list</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+list.join(list2)
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Appends list2 to list, destroying list2 in the process</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+a = list.front()
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns a pointer to the element that is stored at the head of the list</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+a = list.rear()
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns a pointer to the element that is stored at the end of the list</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+a = list.remove_front()
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Deletes and returns the element that is stored at the front of the list</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+list.del_front()
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Deletes the first element without returning it</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+list.clear()
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Deletes all items from list</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+list.ins_after(i, a)
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Inserts a after position i in the list</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+list.del_after(i)
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Deletes the element following position i in the list</FONT>
+
+</TABLE><P>Doubly linked lists also support the operations listed in Table 28.6.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 28.6. Doubly linked list operators.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Operator</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Description</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+a = list.remove_rear()
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Deletes and returns the element stored at the end of the list</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+list.del_real()
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Deletes the last element, without returning it</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+list.ins_before(i, a)
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Inserts a before position i in the list</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+list.del(i, dir)
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Deletes the element at the current position and then moves forward one position if dir is positive and backward one position if dir is 0 or negative</FONT>
+
+</TABLE><BR>
+
+<A NAME="E69E358"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Plex Classes</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Plex classes are classes that behave like arrays but are much more powerful. Plex classes have the following properties:
+
+<BR>
+
+<UL>
+
+<LI>They have arbitrary upper and lower index bounds.
+
+<BR>
+
+<BR>
+
+<LI>They can dynamically expand in both the lower and upper bound directions.
+
+<BR>
+
+<BR>
+
+<LI>Elements may be accessed by indices. Unlike typical arrays, bounds checking is performed at runtime.
+
+<BR>
+
+<BR>
+
+<LI>Only elements that have been specifically initialized or added can be accessed.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>Four different types of Plexes are defined: the FPlex, the XPlex, the RPlex, and the MPlex. The FPlex is a Plex that can grow or shrink only within declared bounds. An XPlex can dynamically grow in any direction without any restrictions. An RPlex is 
+almost identical to an XPlex, but it has better indexing capabilities. Finally, the MPlex is the same as an RPlex except that it allows elements to be logically deleted and restored.
+
+<BR>
+
+<P>Table 28.7 lists some of the operations that are valid on all four of the Plexes.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 28.7. Operations defined for Plexes.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Operation</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Description</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Plex b
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Assigns a copy of Plex a to Plex b</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+b = a
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Copies Plex a into b</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+a.length()
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns the number of elements in a</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+a.empty()
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns TRUE if a has no elements</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+a.full()
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns TRUE if a is full</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+a.clear()
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Removes all the elements from a</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+a.append
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Appends Plex b to the high part of a</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+a.prepend
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Prepends Plex b to the low part of a</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+a.fill(z)
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Sets all elements of a equal to z</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+a.valid(i)
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns TRUE if i is a valid index into a</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+a.low_element()
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns a pointer to the element in the lowest position in a</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+a.high_element()
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns a pointer to the element in the highest position in a</FONT>
+
+</TABLE><P>Plexes are a very useful class on which many of the other classes in the GNU C++ class library are based. Some of the Stack, Queue, and Linked list types are built on top of the Plex class.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E359"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Stacks</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The stacks class implements the standard version of a last-in-first-out (LIFO) stack. Three different implementations of stacks are offered by the GNU C++ class library: the VStack, the XPStack, and the SLStack. The VStack is a fixed-size stack, meaning 
+that you must specify an upper bound on the size of the stack when you first create it. The XPStack and the SLStack are both dynamically sized stacks that are implemented in a slightly different way.
+
+<BR>
+
+<P>Table 28.8 lists the operations that can be performed on the Stack classes.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 28.8. Stack class operators.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Operator</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Description</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Stack st
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Declares st to be a stack</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Stack st(sz)
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Declares st to be a stack of size sz</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+st.empty()
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns TRUE if stack is empty</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+st.full()
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns TRUE if stack is full</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+st.length()
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns the number of elements in stack</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+st.push(x)
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Puts element x onto the top of the stack</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+x = st.pop()
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Removes and returns the top element from the stack</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+st.top()
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns a pointer to the top element in the stack</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+st.del_top()
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Deletes the top element from the stack without returning it</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+st.clear()
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Deletes all elements from stack</FONT>
+
+</TABLE><BR>
+
+<A NAME="E69E360"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Queues</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The Queue class implements a standard version of a first-in-first-out (FIFO) queue. Three different kinds of queue are provided by the GNU C++ class library: the VQueue, the XPQueue, and the SLQueue. The VQueue is a fixed-size queue, so you must specify 
+an upper bound on the size of this kind of queue when you first create it. The XPQueue and the SLQueue are both dynamically sized queues, so no upper bound is required. The operations supported by the Queue classes are listed in Table 28.9.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 28.9. Queue class operators.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Operator</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Description</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Queue q
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Declares q to be a queue</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Queue q(sz)
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Declares q to be a queue of size sz</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+q.empty()
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns TRUE if q is empty</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+q.full()
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns TRUE if q is full</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+q.length()
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns the number of elements in q</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+q.enq(x)
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Adds the x element to q</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+x = q.deq()
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Removes and returns an element from q</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+q.front()
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns a pointer to the front of q</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+q.del_front()
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Removes an element from q and does not return the result</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+q.clear
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Removes all elements from the queue</FONT>
+
+</TABLE><P>In addition to the normal kind of queue that is discussed in this section, the GNU C++ class library also supports double-ended queues and priority queues. Both of these types of queues have similar behavior to the regular queue. The 
+double-ended queue adds operators for returning a pointer to the rear of the queue and deleting elements from the rear of the queue. The priority queues are arranged so that a user has fast access to the least element in the queue. They support additional 
+operators that allow for searching for elements in the queue.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E361"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Sets</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The Set class is used to store groups of information. The only restriction on this information is that no duplicate elements are allowed. The class library supports several different implementations of sets. All of the implementations support the same 
+operators. These operators are shown in Table 28.10.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 28.10. Set operators.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Operator</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Description</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Set s 
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Declares a set named s that is initially empty</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Set s(sz)
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Declares a set named s that is initially empty and has a set maximum size of sz</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+s.empty()
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns TRUE if s is empty</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+s.length()
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns the number of elements in s</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+i = s.add(z)
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Adds z to s, returning its index value</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+s.del(z)
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Deletes z from s</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+s.clear()
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Removes all elements from s</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+s.contains(z)
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns TRUE if z is in s</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+s.(i)
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns a pointer to the element indexed by i</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+i = a.first()
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns the index of the first item in the set</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+s.next(i)
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Makes i equal to the index of the next element in s</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+i = s.seek(z)
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Sets i to the index of z if z is in s, and 0 otherwise</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+set1 == set2
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns TRUE if set1 contains all the same elements as set2</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+set1 != set2
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns TRUE if set1 does not contain all the same elements as set2</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+set1 &lt;= set2
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns TRUE if set1 is a subset of set2</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+set1 |= set2
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Adds all elements of set2 to set1</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+set1 -= set2
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Deletes all the elements that are contained in set2 from set1</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+set1 &amp;= set2
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Deletes all elements from set1 that occur in set1 and not in set2</FONT>
+
+</TABLE><P>The class library contains another class that is similar to sets. This class is known as the bag. A bag is a group of elements that can be in any order (just as is the case with sets) but in which there can also be duplicates. Bags use all the 
+operators that sets use except for the ==, !=, |=, &lt;=, |=, -=, and &amp;= operators. In addition, bags add two new operators for dealing with elements that are in the bag more than once. These new operators are shown in Table 28.11.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 28.11. Additional operators for bags.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Operator</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Description</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+b.remove(z)
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Deletes all occurrences of z from b</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+b.nof(z)
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns the number of occurrences of z that are in b</FONT>
+
+</TABLE><P>Many other classes available in the GNU C++ class library provide functions other than those listed here. In addition to what comes with the compiler, many other freely available class libraries can be useful as well.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E229"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Summary</B></FONT></CENTER></H3>
+
+<BR>
+
+<P><A NAME="I2"></A>C++ offers many advantages over C. Some of these advantages come from the concepts of object-oriented programming, and others come from the highly flexible class libraries that are available to C++ programmers. This chapter gave a brief 
+introduction to object-oriented programming and also talked about the C++ features that exist in the GNU C compiler and the GNU debugger.
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl27.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="#I0" TARGET="_self"><IMG SRC="purtop.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Page Top"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl29.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+</BODY></HTML>
+
+
+

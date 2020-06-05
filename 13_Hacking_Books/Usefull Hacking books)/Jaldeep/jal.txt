@@ -1,0 +1,14 @@
+Pranav u will give  the presentation topics no. (given below)  1,2,3
+1         iintroduction
+ 
+2.          Handover
+ 
+3.           Vertical Handoff
+ ----------------------------------------------
+i will give 4,5,6,7
+--------
+4      How Mobile IP works?
+5       Vertical Handoff using TCP/IP
+6         Diadvantages of using MobileIP scheme for Vertical Handover
+7        Conclusion
+

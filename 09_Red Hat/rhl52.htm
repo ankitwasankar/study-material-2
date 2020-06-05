@@ -1,0 +1,2314 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Red Hat Linux Unleashed rhl52.htm </TITLE>
+
+<LINK REL="ToC" HREF="index.htm">
+
+<LINK REL="Index" HREF="htindex.htm">
+
+<LINK REL="Next" HREF="rhl53.htm">
+
+<LINK REL="Previous" HREF="rhl51.htm"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+
+<A NAME="I0"></A>
+
+<H2>Red Hat Linux Unleashed rhl52.htm</H2>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl51.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl53.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+<HR ALIGN=CENTER>
+
+<P>
+
+<UL>
+
+<UL>
+
+<UL>
+
+<LI>
+
+<A HREF="#E68E401" >Upgrading and Installing New Kernel Software</A>
+
+<LI>
+
+<A HREF="#E68E402" >Compiling the Kernel from Source Code</A>
+
+<LI>
+
+<A HREF="#E68E403" >Adding Drivers to the Kernel</A>
+
+<LI>
+
+<A HREF="#E68E404" >Upgrading Libraries</A>
+
+<LI>
+
+<A HREF="#E68E405" >Developing Modules</A>
+
+<LI>
+
+<A HREF="#E68E406" >The Red Hat Live File System</A>
+
+<LI>
+
+<A HREF="#E68E407" >An Introduction to the Linux Source Tree</A>
+
+<LI>
+
+<A HREF="#E68E408" >A Brief Introduction to ELF</A>
+
+<LI>
+
+<A HREF="#E68E409" >Summary</A></UL></UL></UL>
+
+<HR ALIGN=CENTER>
+
+<A NAME="E66E52"></A>
+
+<H1 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>52</B></FONT></CENTER></H1>
+
+<BR>
+
+<A NAME="E67E52"></A>
+
+<H2 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>Working with the Kernel</B></FONT></CENTER></H2>
+
+<BR>
+
+<P>This chapter will look at:
+
+<BR>
+
+<UL>
+
+<LI>How to install and recompile the kernel of Linux
+
+<BR>
+
+<BR>
+
+<LI>How to add new software to the kernel
+
+<BR>
+
+<BR>
+
+<LI>How to install new versions of the shared libraries
+
+<BR>
+
+<BR>
+
+<LI>The steps necessary to create a new Linux kernel
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>Usually, you will want to leave the kernel alone, except when you are performing a major upgrade or installing a new device driver that has special kernel modifications. The details of the process are usually supplied with the software. However, this 
+chapter gives you a good idea of the general process.
+
+<BR>
+
+<P>Few people will want to change the details in the kernel source code, because they lack the knowledge to do so (or have enough knowledge to know that hacking the kernel can severely damage the system). However, most users will want to install new 
+versions of Linux, add patches, or modify the kernel's behavior a little.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Don't modify the kernel unless you know what you are doing. If you damage the source code, your kernel may be unusable&#151;and in the worst cases, your file system may be affected. Take care and follow instructions carefully. You need to know 
+several things about kernel manipulation, and this chapter looks at only the basics.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>Several versions of Linux are commonly used, with a few inconsistencies between them. For that reason, the exact instructions given here may not work with your version of Linux. However, the general approach is the same, and only the directory or 
+utility names may be different. Most versions of Linux supply documentation that lists the recompilation process and the locations of the source code and compiled programs.
+
+<BR>
+
+<P>Before you do anything with the kernel or utilities, make sure you have a good set of emergency boot disks, and preferably, a complete backup on tape or diskette. Although the process of modifying the kernel is not difficult, every now and then it does 
+cause problems that can leave you stranded without a working system. Boot disks are the best way to recover, so make at least one extra set.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E401"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Upgrading and Installing New Kernel Software</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Linux is a dynamic operating system. New releases of the kernel, or parts of the operating system that can be linked into the kernel, are made available at regular intervals to users. Whether or not you want to upgrade to the new releases is up to you 
+and usually depends on the features or bug fixes that the new release offers. You will probably have to recompile and relink the kernel when new software is added, unless it is loaded as a utility or device driver.
+
+<BR>
+
+<P>You should avoid upgrading your system with every new release, for a couple of reasons. The most common problem with constant upgrades is that you may be stuck with a new software package that causes backward compatibility problems with your existing 
+system or that has a major problem with it that was not patched before the new software was released. This can cause you no end of trouble. Most new software releases wipe out existing configuration information, so you have to reconfigure the packages that 
+are being installed from scratch.
+
+<BR>
+
+<P>Another problem with constant upgrades is that the frequency with which new releases are made available is so high that you can probably spend more time simply loading and recompiling kernels and utilities than actually using the system. This becomes 
+tiresome after a while. Because most major releases of the Linux operating system are available, the number of changes to the system is usually quite small. Therefore, you should read the release notes carefully to ensure that the release is worth the 
+installation time and trouble.
+
+<BR>
+
+<P>The best advice is to upgrade only once or twice a year, and only when there is a new feature or enhancement to your system that will make a significant difference in the way you use Linux. It's tempting to always have the latest and newest versions of 
+the operating system, but there is a lot to be said for having a stable, functioning operating system.
+
+<BR>
+
+<P>If you do upgrade to a new release, bear in mind that you don't have to upgrade everything. The last few Linux releases have changed only about five percent of the operating system with each new major package upgrade. Instead of replacing the entire 
+system, just install those parts that will have a definite effect, such as the kernel, compilers and their libraries, and frequently used utilities. This saves time and reconfiguration.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E402"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Compiling the Kernel from Source Code</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Upgrading, replacing, or adding new code to the kernel is usually a simple process: you obtain the source for the kernel, make any configuration changes, compile it, and then place it in the proper location on the file system to run the system properly. 
+The process is often automated for you by a shell script or installation program, and some upgrades are completely automated&#151;you don't need to do anything except start the upgrade utility.
+
+<BR>
+
+<P>Kernel sources for new releases of Linux are available from CD-ROM distributions, FTP sites (see <A HREF="rhlxa.htm">Appendix A</A>, &quot;Linux FTP Sites and Newsgroups&quot;), user groups, and many other locations. Most kernel versions are numbered 
+with a version and a patch level, so you will see kernel names such as 1.12.123, where 1 is the major release, 12 is the minor version release, and 123 is the patch number. Most sites of kernel source code maintain several versions simultaneously, so check 
+through the source directories for the latest version of the kernel.
+
+<BR>
+
+<P>Patch releases are sometimes numbered differently and do not require the entire source of the kernel to install. They just require the source of the patch. In most cases, the patch overlays a section of existing source code, and a simple recompilation 
+is all that's necessary to install the patch. Patches are released quite frequently.
+
+<BR>
+
+<P>Most kernel source programs are maintained as a gzipped tar file. Unpack the files into a subdirectory called /usr/src, which is where most of the source code is kept for Linux. Some versions of Linux keep other directories for the kernel source, so you 
+may want to check any documentation supplied with the system or look for a README file in one of the three /usr/src subdirectories, linux, linux-1.2.13, or redhat for more instructions.
+
+<BR>
+
+<P>Often, unpacking the gzipped tar file in /usr/src creates a subdirectory called /usr/src/linux, which can overwrite your last version of the kernel source. Before starting the unpacking process, rename or copy any existing /usr/src/linux (or whatever 
+name is used with the new kernel) so you have a backup version in case of problems.
+
+<BR>
+
+<P>After the kernel source has been unpacked, you need to create two symbolic links to the /usr/include directory, if they are not created already or set by the installation procedure. Usually, the link commands required are
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">ln -sf /usr/src/linux/include/linux /usr/include/linux
+
+ln -sf /usr/src/linux/include/asm /usr/include/asm</FONT></PRE>
+
+<P>If the directory names shown are different from your version of Linux, substitute the new directory names for /usr/src/linux. Without these links, the upgrade or installation of a new kernel cannot proceed.
+
+<BR>
+
+<P>After the source code has been ungzipped and untarred and the links have been established, the compilation process can begin. You must have a version of gcc or g++ (the GNU C and C++ compilers) or some other compatible compiler available for the 
+compilation. You may have to check with the source-code documentation to make sure you have the correct versions of the compilers; occasionally, new kernel features are added that are not supported by older versions of gcc or g++.
+
+<BR>
+
+<P>Check the file /usr/src/linux/Makefile (or whatever path the Makefile is in with your source distribution). There will be a line in the file that defined the ROOT_DEV, which is the device that is used as the root file system when Linux boots. Usually 
+the line looks like this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">ROOT_DEV = CURRENT</FONT></PRE>
+
+<P>If you have any other value, make sure it is correct for your file-system configuration. If the Makefile has no value, set it as shown in the preceding code line.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>It's a good idea to run make clean; make depend; make mrproper before rebuilding the kernel to make sure all old files are removed.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>The compilation process begins when you change to the /usr/src/linux directory and issue the following command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">make config</FONT></PRE>
+
+<P>This command invokes the make utility for the C compiler. The process may be slightly different for some versions of Linux, so you should check with any release or installation notes supplied with the source code.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Be sure that you are running either /bin/bash or /bin/sh before you run make. Running another shell such as tcsh may cause you problems with the make files.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>The config program issues a series of questions and prompts that you need to answer to indicate any configuration issues that need to be completed before the actual compilation begins. These may be about the type of disk drive you are using, the CPU, 
+any partitions, or other devices, such as CD-ROMs. Answer the questions as well as you can. If you are unsure, choose the default values or the choice that makes the most sense. The worst case is that you might have to redo the process if the system 
+doesn't run properly. (You do have an emergency boot disk ready, don't you?)
+
+<BR>
+
+<P>Next, you have to set all the source dependencies. This is a step that is commonly skipped, and it can cause several problems if it is not performed for each software release. Issue the command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">make dep</FONT></PRE>
+
+<P>If the software you are installing does not have a dep file, check with the release or installation notes to ensure that the dependencies are correctly handled by the other steps.
+
+<BR>
+
+<P>After that, you can finally compile the new kernel. The command to start the process is
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">make zImage
+
+make zdisk
+
+make zlilo</FONT></PRE>
+
+<P>This compiles the source code and leaves the new kernel image file in the current directory (usually /usr/src/linux). The make zdisk is really necessary for creating a boot disk, and therefore expects a blank, unformatted disk in the floppy drive and 
+will ask you for one as it runs. Not all releases or upgrades to the kernel support compressed image compilation.
+
+<BR>
+
+<P>The last step in the process is to copy the new kernel image file to the boot device or a boot floppy. Use the following command to place the file on a floppy:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">cp Image /dev/fd0</FONT></PRE>
+
+<P>To be safe, copy the old kernel to a known image and then copy the newly created image to the root. This would be accomplished with these two commands:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">mv /vmlinuz /vmlinuz.oldcp /usr/src/linux/arch/i386/boot/zImage /vmlinuz</FONT></PRE>
+
+<P>Now all that remains is to reboot the system and see if the new kernel loads properly. If there are any problems, boot from a floppy, restore the old kernel, and start the process again. Check the documentation supplied with the release source code for 
+any information about problems you may encounter or steps that may have been added to the process.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E403"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Adding Drivers to the Kernel</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>You may want to link in new device drivers or special software to the kernel without going through the upgrade process of the kernel itself. This is often necessary when you add a new device to the system, such as a multiport board or an optical drive, 
+that should be loaded during the boot process. Alternatively, you may be adding special security software that must be linked into the kernel.
+
+<BR>
+
+<P>The add-in kernel software usually has installation instructions provided, but the general process is to locate the source in a directory that can be found by the kernel-recompilation process (such as the /usr/src directory). To instruct the make 
+utility to add the new code to the kernel, you often need to modify the Makefile. These modifications may be performed manually or by an installation script. Some software has its own Makefile supplied for this reason.
+
+<BR>
+
+<P>At this point, it's time to begin the kernel recompilation with the new software added into the load. The process is the same as shown in the preceding section; the kernel is installed in the boot location or set by LILO. Typically, the entire process 
+takes about 10 minutes and is quite trouble-free, unless the vendor of the kernel modification did a sloppy job. Make sure that the source code provided for the modification will work with your version of the Linux kernel by reading any text files that 
+accompany the code and software-compatibility files included with most distributions of Linux.
+
+<BR>
+
+<P>The latest version numbers to look for are found in the newsgroup discussions. To see the version of kernel source tree to build your kernel, use the command: uname -a. The version number of your kernel should be 1.2.13 or higher.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E404"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Upgrading Libraries</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Most of the software on a Linux system is set to use shared libraries (a set of subroutines used by many programs). When you see the message
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Incompatible library version</FONT></PRE>
+
+<P>displayed after you have performed an upgrade to the system and you try to execute a utility, it means that the libraries have been updated and need to be recompiled. Most libraries are backward compatible, so existing software should work properly even 
+after a library upgrade.
+
+<BR>
+
+<P>Library upgrades occur less frequently than kernel upgrades, and you can find them in the same places. There are usually documents that guide you to the latest version of a library, or there may be a file explaining which libraries are necessary with 
+new versions of the operating system kernel.
+
+<BR>
+
+<P>Most library upgrades are gzipped tar files, and the process for unpacking them is the same as for kernel source code&#151;except that the target directories are usually /lib, /usr/lib, and /usr/include. Usually, any files that have the extension .a or 
+.aa go in the /usr/lib directory. Shared library image files, which have the format libc.so.version, are installed into /lib.
+
+<BR>
+
+<P>You may have to change symbolic links within the file system to point to the latest version of the library. For example, if you are running library version libc.so.4.4.1 and upgrade to libc.so.5.2.18, you must remove the old link and reset the symbolic 
+link set in /lib to this libc.so.5.2.18 file. The command is:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">ln -sf /lib/libc/so/4/4/1 /lib/libc.so.5.2.18</FONT></PRE>
+
+<P>where the last filename in the link command is the name of the current library file in /lib. Your library name may be different, so check the directory and release or installation notes first.
+
+<BR>
+
+<P>You would also need to change the symbolic link for the file libm.so.version in the same manner. Do not delete the symbolic links; all programs that depend on the shared library (including ls) would be unable to function without them.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E405"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Developing Modules</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>A module is an object file that is loaded at runtime by the Linux kernel. Modules offer a bit of functionality that does not have to be loaded in memory all the time. When a particular function in a module is found, the Linux kernel will load it in. 
+Types of modules include, but are not limited to, the following:
+
+<BR>
+
+<UL>
+
+<LI>Tape module via the ftape module
+
+<BR>
+
+<BR>
+
+<LI>PPP/SLIP modules
+
+<BR>
+
+<BR>
+
+<LI>CD-ROM modules
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>First check to see if your kernel supports modules. To do this, run the make config command and see what the default response to the question of &quot;dynamic loading support&quot; is. If the answer to this question is not Yes, you should answer Yes, 
+and then rebuild, install, and boot from a new kernel. If the system already supports modules, you can begin with the next step of making modules.
+
+<BR>
+
+<P>To make the modules on your system, go to /usr/src/linux directory and run the two commands:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">make modules
+
+<BR>
+
+make modules_install.</FONT></PRE>
+
+<P>Be prepared to wait a while.
+
+<BR>
+
+<P>To list the current modules in your kernel, use the lsmod command. To insert a module, use the command insmod moduleName. To remove a module, use the command rmmod moduleName. Modules can be loaded automatically by placing the commands to load them in 
+the /etc/rc.d/rc.sysinit file.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E406"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>The Red Hat Live File System</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Red Hat offers a &quot;live&quot; file system on CD-ROM. If you are short on disk space or do not want the entire Red Hat distribution on your hard drive, you can run off the CD-ROM with the &quot;live&quot; file system. It's easy to mount the CD-ROM as 
+an extension of the file system with the command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">mount -t iso9660 /dev/cdrom /mntFS</FONT></PRE>
+
+<P>From then on the CD-ROM will be accessed under the /mntFS directory. To check out the source files, and so on for your Red Hat distribution you would look in the directory /mntFS/live/usr/src/linux. The Red Hat subdirectory under the 
+/mntFS/live/usr/src/ directory is empty. (An oversight you ask? No, if you buy the official version from Red Hat you get a second CD with the source tree on it!)
+
+<BR>
+
+<P>There are only a few subdirectories under the live file system. These directories are listed here relative to the /mntFS/live tree:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">total 145
+
+drwxrwxr-x 16 root root 2048 Mar 6 13:53 .
+
+drwxr-xr-x 6 root root 2048 Mar 6 13:32 ..
+
+-r&#151;r&#151;r&#151; 1 root root 586 Mar 6 14:10 TRANS.TBL
+
+drwxr-xr-x 2 root root 8192 Mar 6 13:45 bin
+
+drwxr-xr-x 2 root root 2048 Mar 6 13:45 boot
+
+drwxr-xr-x 3 root root 77824 Mar 6 13:45 dev
+
+drwxr-xr-x 11 root root 12288 Mar 6 13:45 etc
+
+drwxr-xr-x 6 root root 2048 Mar 6 13:45 home
+
+drwxr-xr-x 3 root root 6144 Mar 6 13:45 lib
+
+drwxr-xr-x 2 root root 2048 Mar 6 13:32 lost+found
+
+drwxr-xr-x 4 root root 2048 Mar 6 13:45 mnt
+
+dr-xr-xr-x 29 root root 6144 Mar 6 13:46 proc
+
+drwxr-xr-x 4 root root 2048 Mar 6 13:46 root
+
+drwxr-xr-x 2 root root 10240 Mar 6 13:46 sbin
+
+drwxrwxrwx 3 root root 2048 Mar 6 13:46 tmp
+
+drwxr-xr-x 19 root root 4096 Mar 6 13:45 usr
+
+drwxr-xr-x 13 root root 2048 Mar 6 13:46 var</FONT></PRE>
+
+<P>Most of these subdirectories are not as heavily populated as the root directory of a hard disk installed system.
+
+<BR>
+
+<P>Running off the CD-ROM may save you disk space, but it certainly does not save you time. Also, you cannot configure some important files in directories off the mount point. The inability to read/write certain directories even as root may cause some 
+system administrative scripts to fail.
+
+<BR>
+
+<P>Also, the performance of the system when run from the CD-ROM on a 486 DX4, with 32MB of RAM, was slow. Really, there should be no need to run any serious application by running off the CD-ROM. You can install fewer components if you have to. Actually 
+running off the CD-ROM is very slow and really intended for trying out packages and loading files from your CD-ROM. Do not attempt to run off the CD-ROM even if you have a 6X drive since the performance will be very slow.
+
+<BR>
+
+<P>Also, keep in mind that to run off the CD-ROM you will need to create boot disks as described in the first three chapters of this book. The image to use for CD-ROM boot capability for the RAM disk is called liveram.img. In addition to the RAM disk, you 
+will have to have a blank, formatted disk to use as your data repository. Please refer to the installation sections in the first three chapters of this book on how to create boot and ram disks. Please see <A HREF="rhl04.htm">Chapter 4</A>, 
+&quot;LILO,&quot; for more information.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E407"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>An Introduction to the Linux Source Tree</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The Linux source code can be found in the /usr/src/linux directory.
+
+<BR>
+
+<P>You will need to look at the source code if you want to make enhancements to the kernel. For the reader interested in kernels, this directory is a very good reference.
+
+<BR>
+
+<P>The first point to start is to look in the /usr/src/include directory and see what header files you have available. This way you can tell what system services are available. (See Table 52.1.) I have deliberately left out redundant, old, or unused 
+headers files. By examining the header files, you can see what files and systems are available in Linux.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 52.1. Linux header files.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>FILE </I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Description</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+a.out.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Generated for the GNU C compilers.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+autoconf.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Automatically generated C config file, don't edit it!</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+aztcd.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Definitions for an AztechCD268 CD-ROM interface.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+binfmts.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Binary formats for the files.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+bios32.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+BIOS32, PCI BIOS functions and defines.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+blkdev.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Block device information.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+busmouse.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Header file for Logitech Bus Mouse driver.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+cdrom.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+General header for all CD-ROM drives.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+cdu31a.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Definitions for a Sony interface CD-ROM drive.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+coff.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The COFF file format definitions.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+config.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Linux kernel configuration header.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+ctype.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Standard C types header.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+cyclades.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+For the Cyclades devices.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+debugreg.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Debug registers header file.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+delay.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Delay routines for precomputed loops_per_second value.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+elf.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The Executable and Linking format definitions.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+errno.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The standard error return definitions.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+etherdevice.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Ethernet device handlers declarations.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+ext2_fs.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The new extended filesystem (e2fs) declarations.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+ext_fs.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The ext filesystem (efs) definitions, older linux.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+fcntl.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The standard file control declaration.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+fd.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Floppy disk software control definitions.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+fdreg.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Some defines for the floppy disk controller itself.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+fs.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Definitions for some important file table structures.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+genhd.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Generic hard disk header declarations.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+hdreg.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Declarations for the AT hard disk controllers.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+head.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Intel's Global and Interrupt Descriptor Table.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+hpfs_fs.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The HP file system information.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+icmp.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Definitions for the ICMP protocol.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+if.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Definitions for the INET interface module.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+if_arp.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Definitions for the ARP (RFC 826) protocol.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+if_ether.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Definitions for the Ethernet IEEE 802.3 interface.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+if_plip.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+PLIP tuning facilities for the new Niibe PLIP.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+if_slip.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Special use with the SLIP/CSLIP/KISS TNC driver.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+igmp.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Internet Gateway Management Protocol (IGMP).</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+in.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Definitions of the Internet Protocol.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+in_systm.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Miscellaneous internetwork definitions for kernel.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+inet.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Internet Protocol headers.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+interrupt.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+For Linux interrupt drivers.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+ioctl.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Standard IO control definitions.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+ioport.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+For detecting, reserving, allocating system resources.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+ip.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Definitions for the IP protocol.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+ipc.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+For Interprocess communication</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+ipx.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+For sockets in network programming.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+iso_fs.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The ISO file system headers.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+kd.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Kernel development declarations.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+kernel.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Kernel header file declarations.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+kernel_stat.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+More Kernel statistics header file declarations.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+keyboard.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Declaration for using the keyboard.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+ldt.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Definitions for use with Inter Local Descriptor Tables.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+limits.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Limits for the kernel to use.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+linkage.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Linking declarations for the kernel.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+locks.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+File locking definitions.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+lp.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Line Printer support header.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+major.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Major device number header.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+malloc.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Standard memory management function header.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+math_emu.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Math emulation declarations.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+mc146818rtc.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Register definitions for RealTime Clock and CMOS RAM.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+mcd.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Definitions for a Mitsumi CD-ROM interface.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+minix.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The minix filesystem constants/structures.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+mm.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Memory manager for kernel.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+mman.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Memory Mapping definitions.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+module.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Dynamic loading of modules into the kernel.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+mouse.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Serial mouse.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+msdos_fs.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The MS-DOS file system constants/structures.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+msg.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+For message processing in Linux IPC.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+param.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Internal Linux parameters header.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+pci.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+PCI bus defines and function prototypes.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+personality.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Linux file personality declarations.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+pipe_fs_i.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+For use with Linux file pipes.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+ppp.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+For use with Point-To-Point Protocol with Linux.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+proc_fs.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The proc file system constants/structures.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+ptrace.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Defines to help the user use the ptrace system call.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+resource.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Resource control/accounting header file for Linux.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+route.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Global definitions for the IP router interface.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+sbpcd.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+For Panasonic CD-ROMs.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+sched.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The Linux task scheduler.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+scsicam.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+SCSI RAM support functions, use for HDIO_GETGEO, and so on.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+sem.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+For use with semaphores on Linux.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+serial.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Linux serial IO definitions.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+serial_reg.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+For the UART port assignments.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+shm.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+For shared memory use on Linux.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+signal.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+For Linux signal information.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+skbuff.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+For the 'struct sk_buff' memory handlers.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+socket.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The socket-level I/O control calls.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+sockios.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+More of the socket-level I/O control calls.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+sonycd535.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Commands for the CD-ROMs by Sony (CDU-531-5).</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+soundcard.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+For interfacing with Soundcards.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+stat.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Standard C and UNIX definitions.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+stddef.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Standard C definitions.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+string.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+String functions declarations for C programmers.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+symtab_begin.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Symbol table entries.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+symtab_end.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Symbol table entries.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+sys.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+All system call entry points.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+sysv_fs.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The SystemV/Coherent file system definitions.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+tasks.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Specifying the max number of tasks at one time in Linux.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+tcp.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Definitions for the TCP protocol.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+termios.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Terminal IO declarations.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+time.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Standard declarations for use with timers.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+timer.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Do not modify this timer declarations file.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+times.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+For use with Linux kernel timers.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+timex.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+For TIMEX devices.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+tpqic02.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Include file for QIC-02 driver for Linux.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+tqueue.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The task queue handling information for Linux.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+tty.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Defines some structures used by tty_io.c.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+tty_driver.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Interface between low-level tty driver and kernel.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+types.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Standard Linux types.h file.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+udp.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Definitions for the UDP protocol.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+ultrasound.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+For Ultrasound CD-ROM devices.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+umsdos_fs.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The UMSDOS file system header.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+un.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Linux header for socket programming.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+unistd.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Standard UNIX file header.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+user.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+For use with core dumps and user segments.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+utime.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Time information.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+utsname.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Time information and structures.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+version.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Linux version information.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+vfs.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Virtual file system headers.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+vm86.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Virtual memory management routines.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+vt.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+For use with virtual terminals.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+xd.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Definitions for IO ports, and so on, for XT hard controllers.</FONT>
+
+</TABLE><P>Let's give an example of how you would use this header file information. Let's say that in the default kernel for the sbcpd (Panasonic CD-ROM) drive, it takes very long for it boot since it probes the IO ports to see where the drive is in the IO 
+port memory space. You know you have set your jumpers on the drive to 0x260, why not just have it look there and keep going. You are sick of typing in the sequence every time you boot: sbpcd=0x260,SoundBlaster Sounds good. Let's look at the sbpcd.h file in 
+/usr/src/linux/include/linux. First become root and make sure that you have write privileges to this header file to save your changes to. Look at the part of the file where it says to define your CD-ROM port base address as CDROM_PORT and specify the type 
+of your interface card as SBPRO. So you can change the address lines in file after line 90 as the following:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">#undef CDROM_PORT /* get rid of previous declarations. */
+
+#undef SBPRO /* get rid of previous declarations. */
+
+#undef SOUND_BASE /* get rid of previous declarations. */
+
+/* override these values. */
+
+#define CDROM_PORT 0x230 /* &lt;&lt;&lt; port address */
+
+#define SBPRO 0 /* &lt;&lt;&lt; interface type * /
+
+#define SOUND_BASE 0x220 /* &lt;&lt;&lt; sound address of this card or 0 */</FONT></PRE>
+
+<P>Now get out of the editor after making the changes. Rebuild the kernel and install it as discussed earlier in this chapter. Reboot and there you have it&#151;a fast boot.
+
+<BR>
+
+<P>This is only a quick example of how to use the valueable resource of information to customize your Linux system. I am sure that with some exploring you can come across some more examples.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E408"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>A Brief Introduction to ELF</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The Executable and Linking Format (ELF) has become a hot topic for Linux users lately. All major releases of the Linux kernel and libraries will support the ELF format in the future. The general idea is that ELF will be the common object file format for 
+all Linux binaries. The public release of all ELF file format compatible compilers are here with the kernel on the CD-ROM, and hopefully with the future releases of Linux.
+
+<BR>
+
+<P>First of all, the current shared libraries are a bit bulky to manage. When you are dealing with large packages such as the X Window System that span a big tree hierarchy, building and maintaining such a library is a formidable task. Also, the a.out 
+shared library scheme does not support the dynamic load function: dlopen().
+
+<BR>
+
+<P>So what's the big deal about ELF? The general UNIX programming community seems to like this file format. In fact, several commercial versions of UNIX, such as Solaris and Unixware already use ELF. More vendors such as SCO, HP are moving to towards 
+supporting it in the future. (By the way, Microsoft's NT is not based on ELF.) There is no reason why the Linux community should be left behind.
+
+<BR>
+
+<P>There are three basic types of ELF files: object (.o) files, a.out executables and shared libraries. Even though functionally the three types of files perform different functions, internally they are very similar in structure. One common part in all 
+different ELF file types (including a.out and other executable file formats) is the idea of a section. A section represents a portion of the file containing a set of related information. A binary image of a file consists of many sections. For example, 
+executable code is always placed in a section known as .text, all data variables initialized by the user are placed in a section known as .data, and uninitialized data is placed in a section known as .bss (historically known as Below Stack Segment).
+
+<BR>
+
+<P>Dividing executables into sections has many important advantages. For example, once you have loaded the executable portions of an executable into memory, the values at these memory locations need not change. Unless of course you happen to be of the 
+twisted mentality that actually modifies code while it's executing. Executable code which could modify itself is considered a dispicable programming practice in most cases.
+
+<BR>
+
+<P>Given this set of code segments, the memory manager on a machine can set aside portions of memory as read-only. Thereafter any attempt to modify a read-only memory location will result in a core dump. So all attempts to modify read-only memory are 
+considered fatal errors. Rather than set individual bits of memory and slow the computer down, you can set bits on portions of memory known as pages. (On an Intel 386 machine, a page is 4096 bytes long.) Pages are normally set at 1024 byte multiples since 
+most paging systems work on 1024 byte boundaries. This was the reason to switch from the ZMAGIC file format to the QMAGIC format in ELF files. Both formats have a 32-byte header at the start of the file, but with ZMAGIC the .text section starts at byte 
+offset 1024 followed by a header. The QMAGIC .text section includes the header and starts at the beginning of the file. ZMAGIC took up more space than QMAGIC and did not page easily since it was not on a 1024 byte boundary. A 1024 byte boundary makes items 
+easily cache-able with the current Linux buffering scheme.
+
+<BR>
+
+<P>For program security and consistency, we want all executable parts in read-only memory and all modifiable data locations in writable memory. The read-only memory is therefore sacrosanct from erroneous memory updates. It's efficient to group all of the 
+executable portions together in one section (.text) and all modifiable data areas together into another area of memory (.data). Data sections are further divided into two sections: uninitialized data (.bss) and initialized data (.data). The .bss section is 
+different from .data because .bss doesn't take up space in the file, it only tells how much space will be needed for uninitialized variables.
+
+<BR>
+
+<P>When the kernel starts to load and run an executable, it looks at the image header on what to do when loading the image. First the kernel locates the .text section within the executable, then loads them into memory and then marks these executeable 
+memory pages as read-only to prevent self-modifying code The kernel then locates the .data section in read-write memory. After that loading and initializing .data, the kernel allocates space for, and loads the .bss section. (The Linux kernel will zero out 
+the .bss section by default.)
+
+<BR>
+
+<P>Each a.out or ELF file also includes a symbol table, which is a list of all of the symbols in the program. A symbol is a named address of a program entry point or a variable, and more. Symbols are defined or referenced within the file. Information about 
+a symbol in the symbol table contains the address associated with the symbol, and some kind of tag indicating the type of the symbol at the minimum. ELF files have considerably more information per symbol than a.out file.
+
+<BR>
+
+<P>Symbol information is critical when debugging files. However, the size of the executeable file is greater than it has to be. You can remove symbol tables the strip utility. The advantage is that the final executable is smaller once stripped. The 
+disadvantage is that you lose the ability to debug the stripped binary. With a.out it is always possible to remove the symbol table from a file, but with ELF you typically need some symbolic information in the file for the program to load and run. So in an 
+ELF image, the strip program will always leave some symbolic information behind.
+
+<BR>
+
+<P>Now let's see the topic of relocation. First compile a program with the following line in it:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">printf(&quot;Hello World\n&quot;);</FONT></PRE>
+
+<P>The compiler will generate an object file which contains a reference to the function printf. Since your program has not defined this symbol, it is an external reference. The executable object code for program will contain an instruction to call printf, 
+but in the object code we do not yet know the actual location to call to perform this function. The compiler will generate assembler code which in turn will be passed to the assembler portion for conversion where a relocation reference will be generated.
+
+<BR>
+
+<P>A relocation reference contains three major components: One is an index into the symbol table, so the kernel loader will symbol to what is being referenced and the other is an offset into the .text section, which refers to the address of the operand of 
+the call instructions. The third component is a tag of the type of relocation. When gcc links this file, its linker will resolve the relocations by patching the external references into library text sections. The output from this process after the linker 
+will be the a.out file (unless you specified a different name with -o name option). An a.out executable will therefore not have any relocations. The kernel loader, ld, cannot resolve such symbols and will not run such a binary.
+
+<BR>
+
+<P>So how's the ELF format different from the a.out format? Let's look at a.out formats first. First, the header of an a.out file (look at struct exec, defined in /usr/src/linux/include/linux/a.out.h) contains only allows the .text, .data, and .bss 
+sections and does not directly support any additional sections. Two, a.out contains only the sizes of the various sections not the offsets of where they are in the file since the offsets are predefined constants. Also, there is no built-in shared library 
+support. The a.out format was developed before shared library technology was developed, so shared libraries are not very cleanly supported. It is not impossible to design shared library implementations that work with a.out. ELF allows us to discard some of 
+the hacks that were required to piggyback a shared library implementation onto a.out.
+
+<BR>
+
+<P>Now let's look a little bit at what a shared library is. Non-shared libraries (also known as static libraries) contain common useful procedures callable from programs. When you link against a static library, the linker must extract all library functions 
+you require and make them part of your executable making it bulky.
+
+<BR>
+
+<P>A shared library lets you take a static version of library and pre-link it into some kind of special type of executable. When you link your program against the shared library, the linker does not extract the binary code from shared library into your 
+executeable, rather it simply adds a reference to the code's offset and the library to use. After linking, when the loader runs your program, it knows where to get the code from which library to fill in any memory gaps.
+
+<BR>
+
+<P>With the current a.out scheme, shared libraries must be loaded in predefined locations in memory. ELF shared libraries are position independent. This means that you can load them at just about any location in memory to get them to work. ELF shared 
+libraries have to be compiled with -fPIC switch to generate position independant code. When you compile something to be -fPIC, the compiler reserves one machine register (register ebx on the i386) to point to the start of a global offset table (GOT). The 
+cost is that this register is reserved by the compiler and results in less flexibility in optimizing code. ebx register in an i386 machine is not very popular so it's not that big a loss in speed.
+
+<BR>
+
+<P>Another ELF feature is that its shared libraries resolve symbols and externals at run time by using a symbol table and a list of relocations. Symbol resolution is performed before the image executes. The ELF support in Linux makes it very efficient 
+since all symbols are referenced off the same global variable for the ELF library, rather than a fixed location in memory. Basically each global variable defined or referenced in the shared library means that the kernel uses the ebx register to compute and 
+load the address of the variable from the GOT to get the address. The advantage of using one global variable is that when the loader ld moves an entire .text or .data section, you need only resolve one global address and do no address resolutions.
+
+<BR>
+
+<P>A similar setup is used for functions with the use of a Procedure Link Table (PLT). The use of the PLT enables the programmer to redefine (override) functions which might be in the shared library. Then the PLT entry for the function can be used instead 
+of the regular library entry. A PLT is only an array of jump instructions, one for each function that you might need to go to. Thus if a particular function is called from many positions within the shared library, the call will always pass through one jump 
+instruction. You can then control all calls to this file by setting or resetting this one location register. Efficient and clean.
+
+<BR>
+
+<P>This chapter cannot possibly cover all you need to know about the ELF format. For more information about the ELF file format, obtain the ELF specifications from a number of sources&#151;for example <A HREF="ftp://<A 
+NAME="I2"></A>ftp.intel.com">ftp.intel.com</A> in pub/tis/elf11g.zip.
+
+<BR>
+
+<P>The specifications are also available in a printed format. See SYSTEM V Application Binary Interface (ISBN 0-13-100439-5) and SYSTEM V Application Binary Interface, Intel386 Architecture Processor Supplement (ISBN 0-13-104670-5).
+
+<BR>
+
+<BR>
+
+<A NAME="E68E409"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Summary</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Recompiling kernel source and adding new features to the kernel proceeds smoothly, as long as you know what you are doing. Don't let the process scare you, but always keep boot disks on hand. Follow instructions wherever available, because most new 
+software has special requirements for linking into the kernel or replacing existing systems.
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl51.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="#I0" TARGET="_self"><IMG SRC="purtop.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Page Top"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl53.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+</BODY></HTML>
+
+
+

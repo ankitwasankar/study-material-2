@@ -1,0 +1,2353 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Red Hat Linux Unleashed rhl57.htm </TITLE>
+
+<LINK REL="ToC" HREF="index.htm">
+
+<LINK REL="Index" HREF="htindex.htm">
+
+<LINK REL="Next" HREF="rhl58.htm">
+
+<LINK REL="Previous" HREF="rhl56.htm"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+
+<A NAME="I0"></A>
+
+<H2>Red Hat Linux Unleashed rhl57.htm</H2>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl56.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl58.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+<HR ALIGN=CENTER>
+
+<P>
+
+<UL>
+
+<UL>
+
+<UL>
+
+<LI>
+
+<A HREF="#E68E438" >Installing DOSemu from Source Distributions</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E556" >Building an Executable Version of DOSemu</A></UL>
+
+<LI>
+
+<A HREF="#E68E439" >Configuring DOSemu</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E557" >Making a DOS Boot Floppy</A>
+
+<LI>
+
+<A HREF="#E69E558" >Configuring Parameters in /etc/dosemu.conf</A>
+
+<LI>
+
+<A HREF="#E69E559" >Getting DOSemu To Run for the First Time</A>
+
+<LI>
+
+<A HREF="#E69E560" >Configuring Disk Options</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E70E28" >Accessing a Dedicated MS-DOS Disk or Partition</A>
+
+<LI>
+
+<A HREF="#E70E29" >How To Access Any Linux Directory from DOSemu</A></UL>
+
+<LI>
+
+<A HREF="#E69E561" >Creating Diskimages</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E70E30" >Creating Floppy Image Files</A>
+
+<LI>
+
+<A HREF="#E70E31" >Accessing a Floppy Image Under DOSemu</A>
+
+<LI>
+
+<A HREF="#E70E32" >Creating Hard Diskimage Files Under Linux</A>
+
+<LI>
+
+<A HREF="#E70E33" >Accessing a Diskimage Under DOS</A></UL>
+
+<LI>
+
+<A HREF="#E69E562" >Configuring Video Options for the Virtual Consoles of Linux</A>
+
+<LI>
+
+<A HREF="#E69E563" >Using DOSemu from Other Than a Virtual Console</A>
+
+<LI>
+
+<A HREF="#E69E564" >Configuring Keyboards</A>
+
+<LI>
+
+<A HREF="#E69E565" >Configuring Serial Ports</A>
+
+<LI>
+
+<A HREF="#E69E566" >Configuring Printers</A>
+
+<LI>
+
+<A HREF="#E69E567" >Using Debug Parameters</A>
+
+<LI>
+
+<A HREF="#E69E568" >Other Configuration Parameters</A></UL>
+
+<LI>
+
+<A HREF="#E68E440" >Runtime Options of DOSemu</A>
+
+<LI>
+
+<A HREF="#E68E441" >Limitations of DOSemu</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E569" >Notable Software That Won't Run Under DOSemu</A>
+
+<LI>
+
+<A HREF="#E69E570" >Hardware Limitations for DOSemu</A>
+
+<LI>
+
+<A HREF="#E69E571" >Performance Limitations</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E70E34" >CPU Performance</A>
+
+<LI>
+
+<A HREF="#E70E35" >Disk Performance</A>
+
+<LI>
+
+<A HREF="#E70E36" >Video Performance</A></UL></UL>
+
+<LI>
+
+<A HREF="#E68E442" >Mouse Support</A>
+
+<LI>
+
+<A HREF="#E68E443" >Optimizing DOSemu</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E572" >Using Garrot</A>
+
+<LI>
+
+<A HREF="#E69E573" >Other Optimization Suggestions</A></UL>
+
+<LI>
+
+<A HREF="#E68E444" >Sources for More Documentation About DOSemu</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E574" >Where To Get More Information About DOSemu</A></UL>
+
+<LI>
+
+<A HREF="#E68E445" >How DOSemu Works</A>
+
+<LI>
+
+<A HREF="#E68E446" >A Brief History of DOSemu and Its Contributing Authors</A></UL></UL></UL>
+
+<HR ALIGN=CENTER>
+
+<A NAME="E66E57"></A>
+
+<H1 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>57</B></FONT></CENTER></H1>
+
+<BR>
+
+<A NAME="E67E57"></A>
+
+<H2 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>DOSemu</B></FONT></CENTER></H2>
+
+<BR>
+
+<P>DOSemu stands for DOS emulator. This is a bit of a misnomer, because DOSemu does not actually emulate MS-DOS. Instead, it provides an environment in Linux under which MS-DOS and MS-DOS applications can be run. DOSemu enables you to run MS-DOS sessions
+
+<BR>
+
+<UL>
+
+<LI>On a virtual console
+
+<BR>
+
+<BR>
+
+<LI>Within an xterm
+
+<BR>
+
+<BR>
+
+<LI>As an X Window application
+
+<BR>
+
+<BR>
+
+<LI>Over a serial or network connection
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>The development of DOSemu is not yet complete. A small but growing number of MS-DOS applications will run under DOSemu. The most impressive application reported to run under DOSemu is the real mode of MS Windows 3.0.
+
+<BR>
+
+<P>MS-DOS applications will not run as fast under DOSemu as they would under native MS-DOS, but most applications are fast enough. You have the added advantage of being able to run Linux and MS-DOS applications side by side.
+
+<BR>
+
+<P>The design of DOSemu will always cause some speed degradation, but the same design also provides the capability to virtualize a PC. The disk drives, serial ports, and memory configurations configured under DOSemu do not need to match the hardware that 
+actually exists on your PC.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>There are a few things you need to be wary of when you first start using DOSemu. DOSemu is considered to be alpha software. Major disk corruption is unlikely to happen when you run DOSemu, but you should take normal precautions. You should back up 
+anything valuable on your DOS and Linux hard-drive partitions before actually running DOSemu.
+
+<BR>Although DOSemu is strictly user-level code, some unexpected results may occur. When you first configure and test DOSemu you should shut down any critical Linux applications and be prepared to reboot your machine. This may seem like an unnecessary 
+precaution for an experienced Linux user. However, my first attempt at DOSemu caused my modem to hang up because DOSemu reset the configured serial ports.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E68E438"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Installing DOSemu from Source Distributions</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>DOSemu is available on some CD-ROM distributions and on most major Linux BBSs and FTP sites such as <A HREF="ftp://sunsite.unc.edu">sunsite.unc.edu</A> (in directory /pub/Linux/system/Emulators/dosemu). The latest version available as of this writing 
+was 0.53pl39 (pre-release 0.53, patch level 39). DOSemu is dependent on the version of the Linux kernel installed. Version 0.52 will not work with kernels newer than 1.1.30, nor will version 0.53 work with Linux kernels prior to 1.1.30.
+
+<BR>
+
+<P>For the truly adventuresome, the latest development version of DOSemu is available on the Internet via anonymous FTP at <A HREF="ftp://dspsun.eas.asu.edu/pub/dosemu/">dspsun.eas.asu.edu/pub/dosemu/</A>. As with the development version of any software, 
+it is not as thoroughly tested, and may have some serious bugs. Stick to the released versions if at all possible.
+
+<BR>
+
+<P>The latest released version at the time of writing that is stable was /pub/linux/ALPHA/dosemu/dosemu0.60.4.tgz from <A HREF="ftp://tsx-11.mit.edu">tsx-11.mit.edu</A>. Be cautious with later releases.
+
+<BR>
+
+<P>The DOSemu distribution needs to be installed in a directory under /usr/src. DOSemu will not build correctly if the distribution is installed elsewhere. A DOSemu distribution consists of a compressed tar file that is unpacked by a shell command such as
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">bash# tar -zxvf filename.tar.gz</FONT></PRE>
+
+<P>DOSemu is undergoing constant revisions. Review the QuickStart and other README files before proceeding.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E556"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Building an Executable Version of DOSemu</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>DOSemu is distributed as source code that needs to be compiled and linked before you use it. This is not a very complicated task because the process is automated. To build DOSemu, you need the following software installed:
+
+<BR>
+
+<UL>
+
+<LI>GNU C compiler version 2.5.8 or later
+
+<BR>
+
+<BR>
+
+<LI>GNU make
+
+<BR>
+
+<BR>
+
+<LI>libc 4.5.21 or later
+
+<BR>
+
+<BR>
+
+<LI>ncurses
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>To build DOSemu, log in as root, change directory (cd) to the directory created by unpacking the tar archive and type the following commands:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">bash# make config
+
+bash# make depend
+
+bash# make most</FONT></PRE>
+
+<P>The DOSemu distribution includes a reference manual written in TeX. If you have TeX installed and want to create a typeset version of the manual, use make everything instead of make most.
+
+<BR>
+
+<P>To properly compile DOSemu, you need to be logged in as root, and have approximately 12MB of virtual memory free. Use the top command to check how much free memory is available. You can increase the free memory by either installing an additional swap 
+file or by killing unnecessary processes. Fortunately, you only need excess memory to compile DOSemu.
+
+<BR>
+
+<P>The full build of DOSemu takes approximately 10 minutes on a 90 MHz Pentium. When the build is complete, you are ready to configure and run DOSemu.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E439"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Configuring DOSemu</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>DOSemu can be configured to boot MS-DOS from a floppy or hard drive. As when configuring a real PC, you usually start by booting from a floppy and work up to booting from a hard drive.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E557"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Making a DOS Boot Floppy</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The simplest and safest way to initially configure DOSemu is by using a boot floppy. Create a bootable DOS floppy from your favorite DOS distribution. DOSemu supports MS-DOS Versions 3.3 through 6.22, as well as DR-DOS 6.0.
+
+<BR>
+
+<P>In addition to bootable DOS, the disk should have the following DOS files:
+
+<BR>
+
+<UL>
+
+<LI>format.com
+
+<BR>
+
+<BR>
+
+<LI>sys.com
+
+<BR>
+
+<BR>
+
+<LI>DOS mouse driver for your mouse
+
+<BR>
+
+<BR>
+
+<LI>A simple file editor such as edit, edlin, or ted
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>From the dosemu subdirectory, copy the following device drivers onto the floppy:
+
+<BR>
+
+<UL>
+
+<LI>emufs.sys
+
+<BR>
+
+<BR>
+
+<LI>ems.sys
+
+<BR>
+
+<BR>
+
+<LI>cdrom.sys
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>From the command subdirectory copy the following file:
+
+<BR>
+
+<UL>
+
+<UL>
+
+<P>exitemu.com
+
+<BR>
+
+</UL></UL>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>The easiest way to copy files from a Linux directory to an MS-DOS formatted floppy is to use the mcopy command. For example:
+
+<BR>mcopy filename a:</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E69E558"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Configuring Parameters in </B><B>/etc/dosemu.conf</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Everything you need to configure DOSemu exists in the file /etc/dosemu.conf. A user-specific configuration file can be created in a user's home directory named ~/.dosrc. Both of these files have the same format. I will refer to these files 
+interchangeably as dosemu.conf. A sample configuration file is in the examples/ subdirectory of the standard DOSemu distribution. Look for the file named dosemu.dist.
+
+<BR>
+
+<P>The example file is several hundred lines long. Most of this configuration file contains comments to help explain the configuration options. Anything to the right of a # character is a comment. A # in the first column means that the entire line is a 
+comment. Sample configuration lines for nearly all supported hardware and software options are contained in this file. Most DOSemu configurations can be expressed in 25 to 30 lines.
+
+<BR>
+
+<P>Configuration parameters in /etc/dosemu.conf have two basic formats. A parameter that needs just one value has the form parameter value. A parameter that needs multiple values has the form parameter { value1 value2 ... }.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E559"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Getting DOSemu To Run for the First Time</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>One way to configure DOSemu is to copy the example configuration file to /etc/dosemu.conf, and then edit the parameters based on information in the comments. Another way is to create a simple dosemu.conf file and add to it as needed. A bare-bones file 
+looks like the following:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">timint on
+
+keyboard { layout us keybint on rawkeyboard on }
+
+video { vga console }
+
+cpu 80486
+
+bootA
+
+floppy { device /dev/fd0 threeinch }</FONT></PRE>
+
+<P>Use a text editor to make the following customizations to dosemu.conf based on your actual hardware:
+
+<BR>
+
+<UL>
+
+<LI>Change the video line to cga, ega, or ma if you don't have VGA.
+
+<BR>
+
+<BR>
+
+<LI>Change the cpu to 80386 if you do not have a 80486 or Pentium.
+
+<BR>
+
+<BR>
+
+<LI>If your boot floppy is a 5.25, replace threeinch with fiveinch.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>Make sure your drive A floppy is not mounted under Linux and insert your boot floppy into drive A. Start DOSemu from a virtual console by typing DOS. Your version of DOS will boot from drive A, and you should be at the familiar A:&gt; prompt. If you are 
+using an empty MS-DOS disk, you will soon run out of things to do. To exit DOSemu prompt press Alt-Ctrl-PgDn, or use the exitemu.com command provided on your boot floppy.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E560"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Configuring Disk Options</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Most Linux users have DOS partitions on a hard drive. Some may even have a separate hard drive dedicated to DOS. This section shows several ways to configure DOSemu to access these drives as native DOS disks. You can abandon your boot floppy and boot 
+from a hard drive, even if you do not have an MS-DOS formatted drive or partition anywhere.
+
+<BR>
+
+<BR>
+
+<A NAME="E70E28"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Accessing a Dedicated MS-DOS Disk or Partition</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>The easiest way to access a hard drive is to configure the drive in your dosemu.conf file. The disk or partition in question must be formatted for MS-DOS and be a primary partition. Extended DOS partitions are not yet supported. The format of the 
+parameter entry to access a hard drive is
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">disk { type &quot;device&quot; readonly }</FONT></PRE>
+
+<P>The type parameter can be partition or wholedisk, and the device is the Linux device being accessed. Typical names would be /dev/hda1 for a partition or /dev/sda for an entire disk. The readonly qualifier is optional, and like the name infers, it 
+write-locks the disk or partition in question. If you boot Linux from a hard drive using LILO, do not access that drive using wholedisk. When DOSemu boots from that drive, it will give you a LILO prompt. Unfortunately, neither LILO nor Linux will run from 
+within a DOSemu session.
+
+<BR>
+
+<P>The following are some examples of valid entries for disks:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">disk { partition &quot;/dev/sda4&quot; } # mount 4th partition
+
+disk { partition &quot;/dev/hda1&quot; readonly} # mount 1st IDE partition readonly
+
+disk { wholedisk &quot;/dev/sda&quot; } # mount the whole 1st SCSI disk</FONT></PRE>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Linux may have other tasks also accessing disks. To avoid problems with file corruption, disks mounted as read/write under Linux should be configured as read-only. Use umask=022 in the /etc/fstab entry for the dos partition:
+
+<BR>/dev/hda1 /dos messydos umask=022</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E70E29"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>How To Access Any Linux Directory from DOSemu</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>A much safer way to access a DOS directory is through the emufs.sys device driver. This driver enables you to access any Linux subdirectory as a logical device under DOS. In your config.sys of your boot device, simply add the lines
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">device = emufs.sys /c</FONT></PRE>
+
+<P>where /c is the Linux directory you want to mount. The next available drive letter is used for this logical drive.
+
+<BR>
+
+<P>Any disk or device mounted in the Linux file system can be made available to DOSemu as a logical disk through the emufs driver. Disks and directories do not need to be DOS formatted and can include CD-ROMs as well as NFS and IPX mounted disks. However, 
+files in these directories must be in the MS-DOS 6.0 format to be visible under DOSemu.
+
+<BR>
+
+<P>With a logical device you can do typical operations such as read, write, and delete files, and run executables. Utilities such as drvspace, undelete, and defrag will not work on disks accessed through dosemufs.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E561"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Creating Diskimages</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>DOSemu has an additional abstraction called a diskimage. A diskimage is a Linux file that appears to DOS as a logical device. Either a floppy or a hard disk is supported as a diskimage. A diskimage makes an ideal boot device because the size can be set 
+just large enough to boot MS-DOS. Unlike drives accessed by dosemufs, drives configured by diskimages work with utilities like undelete, scandisk, and defrag.
+
+<BR>
+
+<BR>
+
+<A NAME="E70E30"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Creating Floppy Image Files</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>A floppy disk file is easy to create under Linux. The floppy image file does not need to do anything except exist initially. To create an initial floppy image file use the touch command; for example,
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">touch filename</FONT></PRE>
+
+<P>This new floppy will appear as an unformatted floppy when you boot DOSemu. Because the size of the floppy is configured in DOSemu, formatting the floppy will expand the image file to the expected size (1.44MB for a high-density, 3.5-inch floppy).
+
+<BR>
+
+<BR>
+
+<A NAME="E70E31"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Accessing a Floppy Image Under DOSemu</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>To use a floppy disk, you need to specify the floppy geometry for the benefit of DOS.
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">floppy { heads 2 sectors 18 tracks 80 threeinch file /usr/dos/hdimage }</FONT></PRE>
+
+<P>This simulates a 1.44MB, 3.5-inch floppy. A diskimage floppy can be used in the same way as any floppy, except that it cannot be removed. Expect the diskimage floppy to operate significantly faster than a real floppy, with formatting taking only a few 
+seconds.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Some DOS utilities that like to reboot MS-DOS, such as DRVSPACE, will check to see if you have a floppy in drive A before allowing you to continue. Because you cannot eject a floppy diskimage, you need to remove the floppy configuration and restart 
+DOSemu.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E70E32"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Creating Hard Diskimage Files Under Linux</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>Hard diskimage files are more confusing to configure than floppies. To initially create the hard disk file, use the command mkhdimage found in the periph directory of the DOSemu distribution. Instead of specifying the size of the image, you need to 
+specify the number of heads, sectors, and cylinders of the disk to create. The following is an example mkhdimage command that creates a 10MB disk:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">mkhdimage -h 8 -s 20 -c 128 &gt; /usr/dos/hdimage</FONT></PRE>
+
+<P>To compute the size of a disk based on disk geometry, multiply heads&#180;sectors&#180;cylinders&#180;512 (number of bytes per sector under MS-DOS). Because these parameters do not represent the real characteristics of a disk, the ratio of heads to 
+sectors to cylinders does not matter to DOSemu. However, MS-DOS will only recognize the first 1024 cylinders of a disk.
+
+<BR>
+
+<P>Because mkhdimage only creates a file of 128 bytes, no other check of available space for the configured amount takes place. Do not configure a diskimage drive larger than the available disk space.
+
+<BR>
+
+<BR>
+
+<A NAME="E70E33"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Accessing a Diskimage Under DOS</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>To use a diskimage as a logical hard drive, use the disk parameter with a type of image rather than wholedisk or partition, as well as the name of the Linux file used.
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">disk { image &quot;/usr/dos/hdimage&quot; }</FONT></PRE>
+
+<P>Like floppy diskimages, hard diskimages are not initially formatted. When a diskimage file is initialized it is also unpartitioned. Use the MS-DOS fdisk utility to create a partition on the drive you configure. To avoid confusion and data loss, 
+configure DOSemu with only one real floppy and only the new hard diskimage for a hard drive. Sometimes a new diskimage will appear to fdisk to have a partition created, but MS-DOS is unable to access the partition. The easy fix is to delete the existing 
+partition and re-create it.
+
+<BR>
+
+<P>Hard diskimages are different than floppies in that disk space used under Linux is allocated on demand. A newly formatted diskimage of any size takes up enough disk space to store FAT information. The disk file grows as disk space is used under DOS. An 
+interesting observation is if a diskimage is drvspaced under MS-DOS, drvspace will allocate the entire amount of space for its drive mapping.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E562"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Configuring Video Options for the Virtual Consoles of Linux</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Linux's virtual console can support more than just text-mode virtual consoles. Due to the direct-access nature of most DOS-based video, this is perhaps DOSemu's biggest weakness. Not all video boards will work correctly with DOSemu, and even fewer will 
+work perfectly. The basic configuration for the video section with graphics looks like the following:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">video { type console graphics chipset chipset_type memsize kb vbios_seg address
+
+vbios_size=hex }</FONT></PRE>
+
+<P>If your video board is 100 percent VGA&#151;compatible, omitting everything past the keyword graphics might work.
+
+<BR>
+
+<P>The following chipset keywords are supported:
+
+<BR>
+
+<UL>
+
+<LI>et4000
+
+<BR>
+
+<BR>
+
+<LI>s3 (801, 805, and 928)
+
+<BR>
+
+<BR>
+
+<LI>diamond
+
+<BR>
+
+<BR>
+
+<LI>trident
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>Video boards that do not have the BIOS configured at 0&#180;C000 need the vbios_seg to be set to the actual address. When in doubt, the video BIOS starting address (vbios_seg) as well as the video BIOS size (vbios_size) can be determined by the 
+Microsoft Diagnostics (MSD) utility that comes with MS-DOS and Windows.
+
+<BR>
+
+<P>The following line will allow DOS access to known video ports directly, and will help compati-bility:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">allowvideoaccess on</FONT></PRE>
+
+<BR>
+
+<A NAME="E69E563"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Using DOSemu from Other Than a Virtual Console</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>DOSemu does not need to run under just a Linux virtual console. DOSemu can run in an xterm, on a remote (network or dial-up) connection, or within its own X Window interface. Remote connections and xterms are configurable in exactly the same way as are 
+virtual consoles, except that no levels of graphics are possible. Remote sessions typically cannot generate a Ctrl-Alt-PgDn to end the session; using the exitemu.com is the quickest way to end a remote DOS session.
+
+<BR>
+
+<P>The X Window interface to DOSemu is called xdos. Xdos is a relatively recent development for DOSemu, and has only a few additional features over running DOSemu in an xterm. Xdos has built-in mouse support so that a mouse supported under X Window also 
+works within the xdos window. Graphics support does not yet exist for xdos, but may be eventually possible&#151;development work is underway. Figure 57.1 shows an example xdos session running within X Window. Configuration parameters available for xdos are 
+listed in Table 57.1.
+
+<BR>
+
+<P><B> <A HREF="57rhl01.gif">Figure 57.1. Example xdos session running under X </B><B>Window.</A></B>
+
+<BR>
+
+<P>Parameters specific to xdos take the form
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">X { param1 value1 param2 value2}</FONT></PRE>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 57.1. Xdos-specific </B><B>dosemu.conf</B><B> parameters.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Parameter</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Sample </I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Meaning</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+title
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+&quot;DOS box&quot; 
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+X Window&#151;specific title.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+display
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+&quot;mybox:0&quot;
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+X server to use if xdos is to be displayed on another X server.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+font
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+&quot;vga&quot;
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Monospaced font to be used.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+icon_name
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+&quot;xdos&quot;
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Icon name to use when DOSemu iconized.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+updatelines
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+25
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Number of text lines in the display.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+updatefreq
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+8
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+How often X updates the xdos screen. 20 is approximately once per second.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+blinkrate
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+8
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+How often the cursor blinks.</FONT>
+
+</TABLE><P>A starting point for configuring xdos is the following line:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">X { title &quot;DOS box&quot; icon_name &quot;xdos&quot; updatelines 25 updatefreq 8}</FONT></PRE>
+
+<BR>
+
+<A NAME="E69E564"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Configuring Keyboards</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The DOSemu keyboard can be configured to handle a number of different keyboard layouts for international keyboards. If a given layout is available in the Linux kernel configuration, it is probably available to DOSemu. The following is the default 
+configuration for a keyboard:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">keyboard { layout us keybint on rawkeyboard off }</FONT></PRE>
+
+<P>The keybint option enables DOSemu to handle keyboard interrupts more accurately but is a bit unstable.
+
+<BR>
+
+<P>The normal keyboard handlers should suffice for simpler DOS tasks, but will not handle more complicated keystrokes. Keyboard-intensive packages like WordPerfect that make heavy use of Alt and Ctrl keys need to be represented better. The rawkeyboard 
+option offers a nearly complete representation of the PC keyboard by bypassing all key translations. This is known as raw mode. To use raw mode simply turn it on in the keyboard configuration. Raw mode is only possible when you are running DOSemu from a 
+virtual console.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>If DOSemu unexpectedly exits while a keyboard is in raw mode, you may be stuck with a disabled keyboard. The only option may be to reboot your PC.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>If you are running xdos the keyboard mapping is controlled mainly by your ~/.Xmodmap file. Because the backspace and delete keys are typically reversed under X Window, the following Linux commands will restore the expected keystrokes:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">xmodmap -e &quot;keycode 107 = 0xffff&quot;
+
+xmodmap -e &quot;keycode 22 = 0xff08&quot;</FONT></PRE>
+
+<P>Changing this mapping may cause the same problem with other X Window applications.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Sometimes keystrokes are echoed in duplicate. This phenomenon happens on consoles that have the istrip setting turned on. To turn istrip off, use stty.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E69E565"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Configuring Serial Ports</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>To configure serial ports you simply need to make them known to DOSemu. The basic configuration looks like the following:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">serial { com1 device /dev/cua0 }</FONT></PRE>
+
+<P>This example maps DOSemu's com1 to Linux's serial port 0 (which maps to COM1 under native DOS). You can specify additional parameters, such as the port address and IRQ. All of the serial port parameters except the Linux port apply only to ports 
+configured under DOSemu. DOSemu accesses the real serial ports as Linux devices that are configured by the kernel. The IRQ, com port number, and port addresses are what you want DOSemu to simulate, and do not need to match the actual hardware. The same IRQ 
+restrictions between COM 1/3 and COM 2/4 still exist under DOSemu. If you cannot use two ports simultaneously under Linux, you cannot do so under DOSemu.
+
+<BR>
+
+<P>The following example configures the hardware com1 as com3 with a different IRQ and base address:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">serial { com3 base 0x3e8 iq 5 device /dev/cua0 }</FONT></PRE>
+
+<P>It is generally less confusing if you configure ports as they really exist.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E566"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Configuring Printers</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Printers under DOSemu can print to a device or file, or you can let a Linux program such as lpr handle the output. Each printer statement in dosemu.conf is assigned an LPT device number in the order in which it occurs in the file. Multiple printers can 
+be declared to DOSemu; however, MS-DOS has a set limit of three LPT devices.
+
+<BR>
+
+<P>To configure a printer to save to a file or device, simply specify the file keyword and the name of the file or device. A time-out value will specify how long DOSemu waits in seconds after the last character is received before flushing data and closing 
+the file or device. The following are some example printer configurations using a file and device designation:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">printer { file &quot;/usr/tmp/dos-print-1&quot; timeout 10 }
+
+printer { file &quot;/dev/lp1&quot; timeout 10 }</FONT></PRE>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Direct access to a printer using the device name can cause problems if other Linux tasks also access that device. Avoid this method if possible.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>To configure a printer to send data through an external program such as lpr, specify the command to use and any options to include on the print line. The option parameter must contain the string %s in the same place you would specify the filename if you 
+were using this command under Linux (for example, lpr -p %s). An example of configuring the printer to print using lpr is as follows:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">printer { command &quot;lpr&quot; options &quot;-p %s&quot; timeout 10 }</FONT></PRE>
+
+<P>DOSemu implements printing as a two-step process:
+
+<BR>
+
+<UL>
+
+<LI>Save the file to temporary disk file.
+
+<BR>
+
+<BR>
+
+<LI>Issue a command to print the file.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>When the time-out expires, DOSemu closes the temporary file and issues the specified command. The directory /usr/tmp needs to exist to save the temporary files, and should have world access. Setting the sticky bit on this directory will help speed up 
+printing. The sticky bit speeds up file access by maintaining the files in memory rather than only on disk.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E567"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Using Debug Parameters</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>A large level of debugging information is available under DOSemu. This information is sent to stderr, but can be sent to a file using redirection; for example,
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">dos 2&gt; dbg.out</FONT></PRE>
+
+<P>or through a DOS command-line option,
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">dos -p dbg.out</FONT></PRE>
+
+<P>There are approximately 20 different debug message types that can be turned on. When you are configuring DOSemu, the most useful message type is the config parameter. This points out syntax problems in the configuration file. Turning on debug 
+information is most helpful when DOSemu returns to the shell prompt without any error messages.
+
+<BR>
+
+<P>The following example debug configuration shows all the available debug parameters :
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">debug { config off disk off warning off hardware off
+
+port off read off general off IPC off
+
+video off write off xms off ems off
+
+serial off keyb off dpmi off printer off
+
+mouse off}</FONT></PRE>
+
+<BR>
+
+<A NAME="E69E568"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Other Configuration Parameters</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>There are several miscellaneous parameters that can be adjusted for DOSemu. Table 57.2 shows the various parameters and their meanings.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 57.2. Other DOSemu configuration parameters.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Parameter</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Possible Values</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Meaning</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+dosbanner
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+on or off
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Turns on/off welcome banner when booting DOSemu.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+mathco
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+on or off
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Tells MS-DOS if a coprocessor is available. Because Linux already emulates a math coprocessor, set this to &quot;on&quot;.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+dpmi
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+on or off
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Turns on DPMI support. This is a bit unstable, so use with caution.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+FastFloppy
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+number
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Turns on higher speed floppy access. Use with caution.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+speaker
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+off native
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Turns on access to speaker by direct access, emulated or by a speaker emulation mode.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+EmuSYS
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+File extension
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Uses an alternative config.sys file with this file extension. A good value might be &quot;EMU&quot;. Alternative to DOS 6 boot menus.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+EmuBat
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+File extension
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Uses an alternative autoexec.bat file with this file extension. Similar to EmuSYS.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Cpu
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+80286, 80386
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+CPU type to emulate. Because you won't fool all programs, use what you really have.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+ipxsupport
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+on or off
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Allows IPX access through the Linux kernel.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+xms
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Size in kilobytes
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Amount of XMS memory to make available.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+ems
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Size in kilobytes
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Amount of EMS memory to make available.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Hogthreshold
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Number
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The higher the number, the longer DOS can &quot;hog&quot; the CPU waiting for a keystroke. An initial setting of 5000 is a good starting point. Set to 0 to turn off hog detection.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+bootB
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080><BR></FONT>
+
+
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Specifies that DOS is to boot from the floppy configured as B.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+port{ }
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080><BR></FONT>
+
+
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Allows DOSemu access to specific hardware ports. List the hex values of hardware ports desired.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+mouse
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Type of mouse
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Microsoft, Logitech, mmseries, you have Mouseman, Hitachi, busmouse, Mousesystems, and PS2 are supported.</FONT>
+
+</TABLE><BR>
+
+<A NAME="E68E440"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Runtime Options of DOSemu</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Table 57.3 shows command options supported on the DOSemu command line. Options specified here will override conflicting parameters specified in the dosemu.conf file. A few other options are available, but are either intended for development use or are 
+not completely supported as of yet. Use the -? option to get a complete list of the command options.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 57.3. DOSemu command-line options.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Option</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Meaning</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-A
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Boot from floppy drive A</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-C
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Boot from hard drive C</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-D
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Set debug options</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-F
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Number of floppy disks to use from dosemu.conf (1-4)</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-H
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Number of hard disks to use from dosemu.conf (1 or 2)</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-P
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Copy debug information to file, same as using 2&gt;</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-V
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Turn on VGA emulation</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-c
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Optimize video performance under virtual consoles</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-e
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Specify the amount of EMS memory to make available</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-f
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Flip definition of A: and B: floppy drives</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-k
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Use raw keyboard console (rawkeyboard in dosemu.conf)</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-t
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Deliver time interrupt 9</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-x
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Specify the amount of XMS memory to make available</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-?
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Print command summary only</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-2
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Emulate a 286</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-3
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Emulate a 386</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-4
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Emulate a 486</FONT>
+
+</TABLE><BR>
+
+<A NAME="E68E441"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Limitations of DOSemu</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>DOSemu is not perfect yet. Development is underway, with many known opportunities for speed optimizations and improvements.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E569"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Notable Software That Won't Run Under DOSemu</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Perhaps the most significant application that does not run under DOSemu is Windows 3.1. As with Linux in general, volunteers are working to correct this. Other software that requires DOS Protected Mode Interface (DPMI) is also likely to cause problems. 
+To find an up-to-date list of software that has been successfully used under DOSemu, look for the file /doc/EMUsucess.txt in the DOSemu distribution.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E570"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Hardware Limitations for DOSemu</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Not all video cards are currently supported under DOSemu. More popular cards are supported simply because developers are more likely to have them. Some non-typical hardware is reported to work under DOSemu with some patches.
+
+<BR>
+
+<P>Sound cards are problematic under DOSemu. They have the potential to perform DMA (direct memory access) to memory the Linux kernel had allocated elsewhere. A generic sound-card interface that interacted with the kernel's built-in sound card support 
+would solve this problem.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E571"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Performance Limitations</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>DOSemu runs slower than a native MS-DOS session. I have successfully run a few older benchmark programs under DOSemu to
+
+<BR>
+
+<P><A NAME="I2"></A> compare the performance degradation to native MS-DOS. Benchmark results are not a perfect measure, but they do demonstrate potential performance in some distinct areas. I measured three different areas: CPU performance, disk 
+performance, and video performance, each of which produced strangely different results.
+
+<BR>
+
+<BR>
+
+<A NAME="E70E34"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>CPU Performance</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>DOSemu's raw CPU speed depends on what else is happening under Linux. With an otherwise idle Linux box, DOSemu's compute speed is close to that of a native MS-DOS session. The Landmark Version 2.0 and PC-Bench Version 5.6 show similar performance, with 
+perhaps a 10 to 20 percent performance penalty under DOSemu for the instruction mix, CPU, and FPU measurements.
+
+<BR>
+
+<BR>
+
+<A NAME="E70E35"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Disk Performance</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>Determining the disk speed degradation under DOSemu proved to be difficult. In some cases there was a performance decrease, and in others a performance increase. This discrepancy seems directly related to the quality of support of the controller and 
+disk drive from the underlying Linux kernel, as well as the built-in caching provided by Linux.
+
+<BR>
+
+<P>Linux runs as a pure 32-bit operating system, and handles I/O operations to disk controllers in bait mode. This, combined with much better SCSI support, can lead to equal or better disk benchmark numbers under DOSemu than under native DOS. Not all disks 
+are as fast under DOSemu, with performance degradation ranging from small to huge. As with CPU speed, disk speed depends on what other Linux tasks are doing.
+
+<BR>
+
+<BR>
+
+<A NAME="E70E36"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Video Performance</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>Video support is Linux's Achilles' heel. Text performance is much slower when not running DOSemu under a virtual console. Under a virtual console, benchmarked text speed approaches that of native MS-DOS. When you are using real-world applications, the 
+text speed is dramatically slower, with an observed speed as low as 20 percent of the speed under native MS-DOS. Graphics speed is even worse.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E442"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Mouse Support</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>For mouse support, you can get Microsoft compatible mouse drivers from oak.oakland.edu:/Simtel/msdos/mouse/mouse701.zip (mscmouse). Make sure you have the correct port assigned to the mouse. Even so, some mice do not get recognized for up to 60 seconds, 
+so be patient.
+
+<BR>
+
+<P>Another known problem is that DOSemu is not able to use COM4 after DOSemu finishes execution. This port is at 0x2E8, /dev/cua3 in Linux and uses interrupt 5. You can run the command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">setserial /dev/cua3 irq 5</FONT></PRE>
+
+<P>Another cure is to disable the allowvideoportaccess on line in the config file.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E443"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Optimizing DOSemu</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>There are a few changes that will help DOS performance under DOSemu short of buying a faster PC.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E572"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Using Garrot</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Garrot is an MS-DOS based Terminate and Stay Resident (TSR) program written by Thomas G. McWilliams that releases CPU time from a DOSemu process back to Linux. Some MS-DOS applications poll endlessly on events such as keyboard input. Garrot keeps track 
+of how long a DOS application has been running without giving control back to Linux. After a threshold of time has expired, control returns to Linux. The Garrot threshold is best determined by trial and error. A good initial value is half the bogo-mips 
+value. Bogo-mips is the value that the Linux kernel assigns for internal delay loops, and is displayed when booting the Linux kernel.
+
+<BR>
+
+<P>For CPU-intensive DOS applications, Garrot will cause a minor degradation in CPU speed. For non-CPU&#151;intensive applications, Garrot will show a dramatic decrease in overall CPU usage, as measured by the Linux utility top.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E573"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Other Optimization Suggestions</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The following parameters in dosemu.conf will help speed up various aspects of DOSemu:
+
+<BR>
+
+<UL>
+
+<LI>Hogthreshold. Set this to half the value shown in boot up messages for BogoMIP message.
+
+<BR>
+
+<BR>
+
+<LI>fastfloppy
+
+<BR>
+
+<BR>
+
+<LI>X parameters &quot;updatefreq&quot; and &quot;updatelines&quot;
+
+<BR>
+
+<BR>
+
+<LI>-c option on the DOS command line
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>Because DOSemu runs as a Linux process, any general Linux optimizations should also help performance under DOSemu. Typical optimizations include having enough swap space, optimizing the kernel, and killing unneeded Linux processes.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E444"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Sources for More Documentation About DOSemu</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The DOSemu manual (dosemu.texinfo) written by Robert Sanders has not been updated in some time but is still a good source of information. It is distributed with DOSemu.
+
+<BR>
+
+<P>The &quot;dosEMU Novice's Altering Guide&quot; or DANG is a road map to the inner workings of DOSemu. It is designed for the adventurous, those people who wish to modify the source code themselves. DANG is maintained by Alistair MacDonald 
+(am20@unix.york.ac.uk) and is posted periodically to the MSDOS channel of Linux Activists.
+
+<BR>
+
+<P>The EMU success list (EMUsuccess.txt) is a list of all programs that have been reported to work with DOSemu. It is posted periodically to the mailing list. The most recent version can be found on <A 
+HREF="ftp://dspsun.eas.asu.edu/pub/dosemu">dspsun.eas.asu.edu/pub/dosemu</A>.
+
+<BR>
+
+<P>Of course, there is the DOSemu FAQ/HOWTO. But you already know about that, don't you? It is also posted frequently to the mailing list. The most recent version can be found on <A 
+HREF="ftp://dspsun.eas.asu.edu/pub/dosemu">dspsun.eas.asu.edu/pub/dosemu</A>.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E574"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Where To Get More Information About DOSemu</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Try subscribing to the linux-msdos-digest mailing list. To subscribe, send e-mail to <A HREF="mailto:Majordomo@vger.rutgers.edu">Majordomo@vger.rutgers.edu</A> with the following command in the body of your e-mail message:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">subscribe linux-msdos-digest your_username@your.email.address</FONT></PRE>
+
+<P>To get rid of these messages, send e-mail to <A HREF="mailto:Majordomo@vger.rutgers.edu">Majordomo@vger.rutgers.edu</A> with the following command in the body of your e-mail message:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">unsubscribe linux-msdos-digest your_username@your.email.address</FONT></PRE>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>The Netware-HOWTO by Lauri Tischler (<A HREF="mailto:ltischler@fipower.pp.fi">ltischler@fipower.pp.fi</A>) is now a separate document. It is included with the DOSemu distribution and may also be found at <A 
+HREF="ftp://sunsite.unc.edu">sunsite.unc.edu</A>.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E68E445"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>How DOSemu Works</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>DOSemu works similar to the DOS feature of MS Windows in that it uses the virtual 86 (vm86) feature of the i386 and above chips. Under vm86, a process runs under a private 80x86 environment that is isolated by the i386 processor from any other process.
+
+<BR>
+
+<P>In addition to private access to an 80&#180;86 processor, MS-DOS and MS-DOS applications need to interact with PC hardware through port accesses and interrupt functions. In vm86 mode, both port access and interrupts return vm86 back to the DOSemu.
+
+<BR>
+
+<P>For port access attempts, DOSemu tries to recognize the port, and either simulates its function or passes the request to the real hardware. Ports that DOSemu are allowed to map are configured by the Port parameter in dosemu.conf. Direct access to 
+hardware ports is possible under Linux through /dev/kmem support.
+
+<BR>
+
+<P>DOS interrupt functions are widely understood and well-documented. Interrupts are caught from virtual 86 mode, and are implemented by executing the equivalent functionality as Linux system calls.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E446"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>A Brief History of DOSemu and Its Contributing Authors</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The first release of DOSemu was written by Matthias Lautner in September 1992. Since that time, many other people have contributed major pieces of functionality. There are too many authors to name, but some of the more significant contributors include 
+Robert Sanders, James MacLean, Andres Tridgell, Stephen Tweedie, and Andreas Kies. Other parts of DOSemu functionality were borrowed from Carnegie Mellon's MACH DOS emulator.
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl56.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="#I0" TARGET="_self"><IMG SRC="purtop.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Page Top"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl58.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+</BODY></HTML>
+
+
+

@@ -1,0 +1,1114 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Red Hat Linux Unleashed rhl20.htm </TITLE>
+
+<LINK REL="ToC" HREF="index.htm">
+
+<LINK REL="Index" HREF="htindex.htm">
+
+<LINK REL="Next" HREF="rhl21.htm">
+
+<LINK REL="Previous" HREF="rhl19.htm"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+
+<A NAME="I0"></A>
+
+<H2>Red Hat Linux Unleashed rhl20.htm</H2>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl19.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl21.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+<HR ALIGN=CENTER>
+
+<P>
+
+<UL>
+
+<UL>
+
+<UL>
+
+<LI>
+
+<A HREF="#E68E133" >Where To Start</A>
+
+<LI>
+
+<A HREF="#E68E134" >Printing Plain Text Files</A>
+
+<LI>
+
+<A HREF="#E68E135" >Hardware and Drivers</A>
+
+<LI>
+
+<A HREF="#E68E136" >Printer Device Names</A>
+
+<LI>
+
+<A HREF="#E68E137" >The Infamous lpr, lpd, and lpc Commands</A>
+
+<LI>
+
+<A HREF="#E68E138" >The /etc/printcap File</A>
+
+<LI>
+
+<A HREF="#E68E139" >How It All Fits</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E272" >The Staircase Effect</A></UL>
+
+<LI>
+
+<A HREF="#E68E140" >PostScript Support</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E273" >Printing DVI Files</A></UL>
+
+<LI>
+
+<A HREF="#E68E141" >Summary</A></UL></UL></UL>
+
+<HR ALIGN=CENTER>
+
+<A NAME="E66E20"></A>
+
+<H1 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>20</B></FONT></CENTER></H1>
+
+<BR>
+
+<A NAME="E67E20"></A>
+
+<H2 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>Printing</B></FONT></CENTER></H2>
+
+<BR>
+
+<P>This chapter introduces you to the topic of using the print facilities under Linux. We will cover the following topics:
+
+<BR>
+
+<UL>
+
+<LI>Printing files under Linux
+
+<BR>
+
+<BR>
+
+<LI>Getting the correct drivers for your hardware
+
+<BR>
+
+<BR>
+
+<LI>An introduction to printer device names
+
+<BR>
+
+<BR>
+
+<LI>Using the infamous lpr, lpd, and lpc commands
+
+<BR>
+
+<BR>
+
+<LI>Working with the /etc/printcap file
+
+<BR>
+
+<BR>
+
+<LI>How printing really works under Linux
+
+<BR>
+
+<BR>
+
+<LI>Using a PostScript printer with DVI support
+
+<BR>
+
+<BR>
+
+</UL>
+
+<BR>
+
+<A NAME="E68E133"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Where To Start</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>If you are reading this chapter after being frustrated with the efforts of getting even a text file printed from Linux, you are at the right chapter.
+
+<BR>
+
+<P>On the other hand, if you have not even begun to deal with the act of printing from Linux to your printer, consider yourself lucky to have saved some time. Why, you ask? Well, chances are the default kernel you are booting with does not have printing 
+enabled in it. If the capability is not there, you have to rebuild the kernel. How to rebuild and install the kernel has been dealt with in detail in <A HREF="rhl05.htm">Chapter 5</A>, &quot;Odds and Ends.&quot; All you have to remember is that you have to 
+answer &quot;y&quot; (for yes) when asked whether you want printing enabled. The first time you build your kernel, the default is &quot;n&quot; (for no, don't build it). In later versions of the kernel, this option will be set to &quot;y,&quot; but don't 
+hold your breath just yet.
+
+<BR>
+
+<P>Once you have rebuilt and installed your kernel, you should be able to cat files to the /dev/lp or use the standard UNIX command lpr to print out the parallel or serial printer port on your PC.
+
+<BR>
+
+<P>If you have a serial printer, your printer will be one of the devices called /dev/ttyS?, /dev/ttys?, or /dev/cua?. If you have your printer hooked to the parallel, the devices would be /dev/lp0, and so on. Typing cat file &gt;/dev/???? should force what 
+you type to the printer, where the question marks signify the device name. You may have to be logged in as root to be able to write to the printing device, because these ports usually have a restricted number of processes with write permission.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E134"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Printing Plain Text Files</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Most plain text files in the UNIX world are boring. No page numbers, line breaks, formatting information, or logical page breaks. If you have a dot matrix printer, the output can cross over the perforations. The output on the pages can be flushed way to 
+the left, making it look lopsided with extra spacing on the right side of the page.
+
+<BR>
+
+<P>For this reason, it's a good idea to send the text file through a program called a formatter. A simple formatter on Linux and UNIX is the pr command. The pr command is designed to format plain text for printing using a lineprinter. With pr you can add 
+headers, footers, page numbers, date, margins, double-spaced lines, and so on. If you are a DOS user, you can think of the pr command as the PRINT command&#151;in other words, a simple print utility.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E135"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Hardware and Drivers</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>We briefly touched the topic of printer drivers not being included in the default kernel. This section gives a little bit more detail on how to select your driver. There are two ways the kernel driver may be used to run the parallel printer ports. The 
+first method, the original, is the polling driver. You will see this polling method used most often in most UNIX systems. The other method, the kernel driver, which may be used to run the parallel printer ports, is the interrupt driver. In principle, the 
+interrupt driver only deals with the port when it gets an interrupt and should therefore be more efficient. In practice, people have found that efficiency depends on the type of machine. Selecting one or the other probably doesn't make too much difference 
+in most situations.
+
+<BR>
+
+<P>For the polling driver, you may adjust its polling frequency with the program tunelp without kernel twiddling. The actual driver is in the kernel source file lp.c. To choose the interrupt driver instead of the polled, use the program tunelp to set it. 
+You can get tunelp from the CD as part of the installation process or from the sunsite archives at /pub/Linux/system/Printing/tunelp-1.3.tar.gz.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E136"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Printer Device Names</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>On an XT bus system LPT1: becomes /dev/lp0 (major=6, minor=0); on an AT system, LPT1: becomes /dev/lp1 (major=6, minor=1). See Table 20.1 for device numbers for printers on Linux. See <A HREF="rhl53.htm">Chapter 53</A>, &quot;Writing Device 
+Drivers,&quot; for a description of what major and minor mean. Basically, major refers to type of device and minor refers to the actual device if more than one device type can exist on the same machine. So if you have two parallel ports, the first is 
+referred to with major=6, the next as minor=0.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 20.1. Device numbers for printers on Linux.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Name</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Major</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Minor</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>I/O address</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+lp0
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+6
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+0
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+0x3bc</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+lp1
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+6
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+1
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+0x378</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+lp2
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+6
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+2
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+0x278</FONT>
+
+</TABLE><P>For a serial printer, use the /dev/ttyS? or /devttys? device. Don't use the /dev/cua? device for serial printing, because these are usually reserved for modems. The /dev/ttyS? devices have major=4 and the /dev/cua? devices have major=5.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E137"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>The Infamous </B><B>lpr</B><B>, </B><B>lpd</B><B>, and </B><B>lpc</B><B> Commands</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The lpr, lpd, and lpc commands are perhaps the programs hated the most by novices in the Linux community. If everything falls in place with these programs, you are set. If something is wrong, you have to know how these commands work together to get 
+printing up and running.
+
+<BR>
+
+<P>You can always print directly to the printer by using the following command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">ls &gt; /dev/lp0</FONT></PRE>
+
+<P>Unfortunately, this command can interfere with other users trying to print. Also, this command may not even work if the computer is not able to time the sending of characters to the lineprinter correctly. On a slow printer, or a printer which is 
+deselected or disconnected, this could cause your shell to hang.
+
+<BR>
+
+<P>What Linux does is spool the data. Spooling means collecting data into a file, and then starting up a background process to send the data to the printer. There is a spool area for each printer connected to your machine. Data designated for the printer 
+is collected in the spool area at the rate of one file per print job. A background process&#151;called the printer daemon&#151;constantly scans the spool areas for new files to print. When one appears, the data is removed from the spool area and sent to 
+the appropriate printer. When more than one file is waiting to be printed, they will be printed in the order they were completed. The spool area is really a queue.
+
+<BR>
+
+<P>The printer daemon needs the following information to do its job: the physical device to use, the spool area to look in, and if printing on a remote machine, the name of the remote machine and printer for remote printing. All this information is stored 
+in a file called /etc/printcap.
+
+<BR>
+
+<P>There are five programs that use this information. These programs are in the /usr/bin and /usr/sbin directories: lpr, lpq, lpc, lprm, and lpd. The first four are used to submit, cancel, and inspect print jobs. The /usr/sbin/lpd program is the printer 
+daemon. There are man pages for all these commands, which you should consult for more information.
+
+<BR>
+
+<P>The thing to remember is that by default lpr, lprm, lpc, and lpq operate on a printer called lp. You can define an environment variable called PRINTER to specify the printer name. For example, to print to the hplj printer, use lp -Phplj to override any 
+setting of the PRINTER variable. Here is a quick introduction to some of the key commands related to printing under Linux:
+
+<BR>
+
+<UL>
+
+<LI>The lpr command submits a job to the printer.
+
+<BR>
+
+<BR>
+
+<LI>The lpq command shows you the contents of the spool directory for a given printer. Each file is specified by an ID and its location in the queue.
+
+<BR>
+
+<BR>
+
+<LI>The lprm command removes a job from the printer queue. You have to specify the ID returned for that job specified by lpq.
+
+<BR>
+
+<BR>
+
+<LI>The lpc command is the printer control command. This command lets you check the status of each printer and set its state. You can enable or disable printers and their queues. If no parameters are specified, lpc is in interactive mode, and you can type 
+in your commands at a prompt. Replies to your commands are printed immediately. Type a ? for a list of commands you can use.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>All these programs work off one directory, usually the /var/spool/lpd. Each printer has its own area under this directory to spool data in. For my ps printer, I have a /var/spool/lpd/ps directory.
+
+<BR>
+
+<P>The printer spool directories should belong to the daemon group and are both user and group read/writable, and world -readable. That is, the directory has to have permissions of -rwxrwxr-x (0775).
+
+<BR>
+
+<P>Each spool directory should contain four files: .seq, errs, lock, and status. These files should have the permissions -rw-rw-r-. The .seq file contains the job number counter for lpr to assign a job. The status file contains the message to be reported 
+by lpc stat. The lock file is used by lpd to prevent itself trying to print two jobs to the same printer at once. The errs file is a log of printer failures and is not required. The status file has a text description of what the lpd program is doing with 
+that file, for example printing, waiting, and so on.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E138"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>The /etc/printcap File</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The file /etc/printcap is a text file and is owned by root. The contents of /etc/printcap is not the easiest thing to read. Each entry in this file contains a description for a printer and how data is to be handled for that printer. For example, a 
+printcap entry will define what physical device is to be used, what spool directory data for that device should be stored in, what preprocessing should be performed on the data, where errors on the physical device should be logged, and so forth. You can 
+limit the amount of data that may be sent in a single job, or limit access to a printer to certain types of users.
+
+<BR>
+
+<P>You can have multiple printcap entries defining several different ways to handle data destined for the same physical printer. For example, a physical printer may support both PostScript and HP LaserJet data formats, depending on some setup sequence 
+being sent to the physical printer before each job. It would make sense to define two printers, one of which preprocesses the data by prepending the HP LaserJet sequence, while the other prepends the PostScript sequence. Programs that generate HP data 
+would send it to the HP printer, while programs generating PostScript would print to the PostScript printer.
+
+<BR>
+
+<P>Programs that change the data before it is sent to the physical printer are called filters. It is possible for a filter to send no data at all to a physical printer. An example of such a filter entry in a printcap file is shown in the following lines:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"># Sample printcap entry with two aliases
+
+myprinter|laserwriter:\
+
+# lp is the device to print to - here the first parallel printer.
+
+:lp=/dev/lp0: \
+
+# sd means 'spool directory' - where print data is collected
+
+:sd=/var/spool/lpd/myprinter:</FONT></PRE>
+
+<P>Here's a brief summary of some of the entries in /etc/printcap. All fields in each entry are enclosed between a pair of colons and are denoted by a two-letter code. The two-letter code is followed by a value that depends on the type of field. There are 
+three types of fields&#151;string, boolean, and numeric. See Table 20.2 for a listing of some /etc/printcap fields.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 20.2. Some fields for </B><B>/etc/printcap.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Code</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Type</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Description</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+lp
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+string
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Specifies the device to print to, such as /dev/lp0</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+sd
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+string
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Specifies the name of the spool directory for this printer</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+lf
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+string
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Specifies the file to which errors on this printer are to be logged</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+if
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+string
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Specifies the input filter name</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+rm
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+string
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Specifies the name of a remote printing host</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+rp
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+string
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Specifies the name of a remote printer</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+sh
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+boolean
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Specifies this to suppress headers (banner pages)</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+sf
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+boolean
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Specifies this to suppress end-of-job form feeds</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+mx
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+numeric
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Specifies the maximum allowable print job size (in blocks)</FONT>
+
+</TABLE><P>Input filters are programs that take print data on their standard input and generate output on their standard output. A typical use of an input filter is to detect plain text and convert it into PostScript. That is, raw text is its input, and 
+PostScript is its output.
+
+<BR>
+
+<P>When you specify an input filter, the printer daemon does not send the spooled print data to the specified device. Instead, it runs the input filter with the spooled data as standard input and the print device as standard output.
+
+<BR>
+
+<P>Sending your print data to a printer attached to another machine is done via the remote machine rm field and the remote printer rp field. Make sure that the print device field lp is empty. Note that data will still be spooled locally before being 
+transferred to the remote machine, and any input filters you specify will also be run.
+
+<BR>
+
+<P>Suppressing form feeds (sf) is most useful if your printer is typically used for output from word- processing packages. Most WP packages create complete pages of data, so if the printer daemon is adding a form feed to the end of each job, you get a 
+blank page after each job. If the printer is usually used for program or directory listings, however, having that form feed ensures that the final page is completely ejected, so each listing starts at the top of a new page.
+
+<BR>
+
+<P>The mx field enables you to limit the size of the print data to be spooled. The number you specify is in BUFSIZE blocks (1KB under Linux). If you specify zero, the limit is removed, enabling print jobs to be limited only by available disk space. Note 
+that the limit is on the size of the spooled data, not the amount of data sent to the physical printer. If a user tries to exceed this limit, the file is truncated. The user will see a message saying lpr: &lt;filename&gt;: copy file is too large. This is 
+useful if you have users or programs that may deliberately or accidentally create excessively large output. For PostScript physical printers, the limit is not useful at all because a very small amount of spooled PostScript data can generate a large number 
+of output pages.
+
+<BR>
+
+<P>In order for any other machines to print using your printers, their names have to be registered in either the file /etc/hosts.equiv or /etc/hosts.lpd. Both files are simple text files with one host name per line. For security, add hosts to 
+/etc/hosts.lpd only. Do not use /etc/hosts.equiv because that gives more access rights to tasks rather than simply sending print jobs out to the printer.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E139"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>How It All Fits</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Let's go through the steps of setting up printer support on /dev/lp1. Make sure you do this as root.
+
+<BR>
+
+<OL>
+
+<LI>Create the spool directory for your printer, which we will call foobar for now. Make the permission -rwxrwxr-x.
+
+<BR>mkdir /var/spool/lpd /var/spool/lpd/foobar
+
+<BR>chown root.daemon /var/spool/lpd /var/spool/lpd/foobar
+
+<BR>chmod ug=rwx,o=rx /var/spool/lpd /var/spool/lpd/foobar
+
+<BR>
+
+<LI>In the directory /var/spool/lpd/foobar, create the necessary files and give them the correct permissions and owner:
+
+<BR>cd /var/spool/lpd/foobar
+
+<BR>touch .seq errs status lock
+
+<BR>chown root.daemon .seq errs status lock
+
+<BR>chmod ug=rw,o=r .seq errs status lock
+
+<BR>
+
+<LI>Create the shell script input_filter in the directory /var/spool/lpd/foobar. You can have this as an empty file, too. Just be sure that the file is owned by root, group daemon, and is executable by anyone.
+
+<BR>cd /var/spool/lpd/foobar
+
+<BR>chmod ug=rwx,o=rx input_filter
+
+<BR>
+
+<LI>Create the file /etc/printcap if it doesn't already exist. Remove all entries in it and add the test printcap entry given in Listing 20.1. Make sure the file is owned by root, and read-only to everyone else (-rw-r-r-).
+
+<BR>
+
+<BR>
+
+
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 20.1. A sample </B><B>/etc/printcap </B><B>file.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">#
+
+# Copyright 1983 Regents of the University of California.
+
+# All rights reserved.
+
+#
+
+# Redistribution and use in source and binary forms are permitted
+
+# provided that this notice is preserved and that due credit is given
+
+# to the University of California at Berkeley. The name of the University
+
+# may not be used to endorse or promote products derived from this
+
+# software without specific prior written permission. This software
+
+# is provided &quot;as is&quot; without express or implied warranty.
+
+#
+
+# @(#)etc.printcap 5.2 (Berkeley) 5/5/88
+
+#
+
+# DecWriter over a tty line.
+
+#lp|ap|arpa|ucbarpa|LA-180 DecWriter III:\
+
+# :br#1200:fs#06320:tr=\f:of=/usr/lib/lpf:lf=/usr/adm/lpd-errs:
+
+#lp:lp=/dev/lp0:sd=/var/spool/lp0:of=/usr/lib/lpf: lf=/usr/adm/lpd-errs
+
+#
+
+# Generic printer:
+
+lp:lp=/dev/lp1:sd=/var/spool/lp1:sh
+
+#
+
+# typical remote printer entry
+
+#ucbvax|vax|vx|ucbvax line printer:\
+
+# :lp=:rm=ucbvax:sd=/var/spool/vaxlpd:lf=/usr/adm/lpd-errs:
+
+#varian|va|Benson Varian:\
+
+# :lp=/dev/va0:sd=/var/spool/vad:mx#2000:pl#58:px#2112:py#1700:tr=\f:\
+
+# :of=/usr/lib/vpf:if=/usr/lib/vpf:tf=/usr/lib/rvcat:cf=/usr/lib/vdmp:\
+
+# :gf=/usr/lib/vplotf:df=/usr/local/dvif:\
+
+# :vf=/usr/lib/vpltdmp:lf=/usr/adm/lpd-errs:
+
+#versatec|vp|Versatec plotter:\
+
+# :lp=/dev/vp0:sd=/var/spool/vpd:sb:sf:mx#0:pw#106:pl#86:px#7040:py#2400:\
+
+# :of=/usr/lib/vpfW:if=/usr/lib/vpsf:tf=/usr/lib/vcat:cf=/usr/lib/vdmp:\
+
+# :gf=/usr/lib/vplotf:vf=/usr/lib/vpltdmp:lf=/usr/adm/lpd-errs:\
+
+# :tr=\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
+
+#\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
+
+#\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n:
+
+#
+
+#lp|panasonic:lp=/dev/lp1:sd=/var/spool/lp/panasonic:lf=/usr/bin/mail:mc#1:\
+
+# ft=$$c$$p$$r$$f:hl#2:fl#3:ht=$$c$$n$$r$$t:sh:
+
+#
+
+# HP Laser jet plus
+
+#lp|hpj:\
+
+# :lp=/dev/lp1:\
+
+# :sd=/var/spool/lp1:\
+
+# :mx#0:\
+
+# :of=/var/spool/lp1/hpjlp:
+
+# :lf=/var/spool/lp1/hp-log:
+
+#
+
+#lp|Generic dot-matrix printer entry:\
+
+# :lp=/dev/lp1:\
+
+# :sd=/var/spool/lp1/lp:sh:\
+
+# :if=/usr/sbin/lpf:\
+
+# :df=/var/spool/lp1/filter.ps:\
+
+# :tf=/var/spool/lp1/filter.ps:\
+
+# :af=/var/spool/lp1/lp-acct:\
+
+# :lf=/var/spool/lp1/lp-err:</FONT></PRE>
+
+<LI><A NAME="I2"></A>Start the lp daemon with the lpd command.
+
+<BR>
+
+<BR>
+
+<LI>Do a test print using the command:
+
+<BR>ls -l | lpr -Pmyprinter
+
+<BR>
+
+</OL>
+
+<P>You can restrict remote users by group name by specifying the groups permitted, using one or more rg fields; for example, /etc/printcap - :rg=admin: restricts access to a printer to those users belonging to the group admin. You can also restrict access 
+to those users with accounts on your system, by specifying the boolean flag :rs: in your /etc/printcap.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E272"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>The Staircase Effect</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The staircase effect results in lines printed one after another, with each line beginning where that last one ended. Usually, the output results in a few lines on the first page followed by many blank pages. An example of such an output is as follows:
+
+<BR>
+
+<UL>
+
+<UL>
+
+<P>one
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P> two
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>  three
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>   four
+
+<BR>
+
+</UL></UL>
+
+<P>Linux terminates each line of a file with a linefeed but not a carriage return. Therefore, the physical printing device should start each line below the end of the previous line. Some printers can be set to treat &quot;linefeed&quot; as &quot;carriage 
+return, linefeed,&quot; others cannot be set this way. If your printer can be set to treat &quot;linefeed&quot; as &quot;carriage return, linefeed,&quot; then do that. If the printer cannot be modified, you should create a shell script filter that reads:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">#!/bin/sh
+
+if [ &quot;$1&quot; = -c ]; then
+
+cat
+
+else
+
+sed -e s/$/^M/
+
+fi
+
+# the &quot;echo -ne&quot; assumes that /bin/sh is really bash
+
+echo -ne \\f</FONT></PRE>
+
+<P>Install this filter as the if filter by putting :if=/usr/lib/lpf: (or whatever) in your /etc/printcap entry for the printer.
+
+<BR>
+
+<P>Magic filters deduce their input files types from &quot;magic numbers,&quot; which is a distinctive byte pattern at particular offsets. Magic filters are usually Perl scripts, Shell scripts, or C programs that simply identify the file type and then call 
+the appropriate non-magic filter. A magic filter usage example is the &quot;file&quot; command which tries to interpret the type of file by reading the first few bytes.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E140"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>PostScript Support</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The Linux and UNIX community is completely PostScript dependent when it comes to documentation. If you don't have PostScript printing capability in your printer, there are times when you cannot even read documentation for software packages.
+
+<BR>
+
+<P>If you have access to a PostScript printer, no problem. Print all you want. On the other hand, if you want to save paper or do not have access to a PostScript printer, consider using Ghostscript. See <A HREF="rhl25.htm">Chapter 25</A>, 
+&quot;Ghostscript,&quot; for more information about installing and using Ghostscript. In a nutshell, Ghostscript, which comes from the GNU project, is a PostScript interpreter that accepts PostScript input and generates output appropriate for X displays, 
+printers, and some specialized display hardware and fax software.
+
+<BR>
+
+<P>There are a number of utilities that enable text to be printed to a PostScript device.
+
+<BR>
+
+<UL>
+
+<LI>a2ps. This utility takes text and turns it into a PostScript document with headers and footers and page numbers. You can even print two pages on one sheet of paper.
+
+<BR>
+
+<BR>
+
+<LI>nenscript. The nenscript program is a clone of the commercial enscript program. The functionality is the same as that of a2ps.
+
+<BR>
+
+<BR>
+
+<LI>gslp. This is a PostScript program that comes with Ghostscript and is used to print a preamble to text files to convert the text files into PostScript. Check the man pages for gslp.ps.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<BR>
+
+<A NAME="E69E273"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Printing DVI Files</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>A DVI file is the processed output from a LaTeX or TeX input file. To print a DVI file to a PostScript printer, you can use dvips or eps. The dvips program converts DVI into PostScript. The output can be piped into Ghostscript or sent directly via lpr 
+to a PostScript printer. eps is a program which converts DVI files directly into the standard Epson printer language. It is a DVI driver for Epson printers.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E141"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Summary</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>This chapter has given you a quick tour of the printing system under Linux. Armed with the information in this chapter, you should be able to get printing to work on your Linux machine.
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl19.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="#I0" TARGET="_self"><IMG SRC="purtop.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Page Top"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl21.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+</BODY></HTML>
+
+
+

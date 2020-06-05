@@ -1,0 +1,2013 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Red Hat Linux Unleashed rhl27.htm </TITLE>
+
+<LINK REL="ToC" HREF="index.htm">
+
+<LINK REL="Index" HREF="htindex.htm">
+
+<LINK REL="Next" HREF="rhl28.htm">
+
+<LINK REL="Previous" HREF="rhl26.htm"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+
+<A NAME="I0"></A>
+
+<H2>Red Hat Linux Unleashed rhl27.htm</H2>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl26.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl28.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+<HR ALIGN=CENTER>
+
+<P>
+
+<UL>
+
+<UL>
+
+<UL>
+
+<LI>
+
+<A HREF="#E68E221" >What Is C?</A>
+
+<LI>
+
+<A HREF="#E68E222" >The GNU C Compiler</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E332" >Invoking GCC</A>
+
+<LI>
+
+<A HREF="#E69E333" >GCC Options</A>
+
+<LI>
+
+<A HREF="#E69E334" >Optimization Options</A>
+
+<LI>
+
+<A HREF="#E69E335" >Debugging and Profiling Options</A></UL>
+
+<LI>
+
+<A HREF="#E68E223" >Debugging GCC Programs with gdb</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E336" >Compiling Code for Debugging</A>
+
+<LI>
+
+<A HREF="#E69E337" >gdb Basic Commands</A>
+
+<LI>
+
+<A HREF="#E69E338" >Sample gdb Session</A></UL>
+
+<LI>
+
+<A HREF="#E68E224" >Additional C Programming Tools</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E339" >xxgdb</A>
+
+<LI>
+
+<A HREF="#E69E340" >calls</A>
+
+<LI>
+
+<A HREF="#E69E341" >cproto</A>
+
+<LI>
+
+<A HREF="#E69E342" >indent</A>
+
+<LI>
+
+<A HREF="#E69E343" >gprof</A>
+
+<LI>
+
+<A HREF="#E69E344" >f2c and p2c</A></UL>
+
+<LI>
+
+<A HREF="#E68E225" >Summary</A></UL></UL></UL>
+
+<HR ALIGN=CENTER>
+
+<A NAME="E66E27"></A>
+
+<H1 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>27</B></FONT></CENTER></H1>
+
+<BR>
+
+<A NAME="E67E27"></A>
+
+<H2 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>Programming in C</B></FONT></CENTER></H2>
+
+<BR>
+
+<P>Linux is distributed with a wide range of software-development tools. Many of these tools support the development of C and C++ applications. This chapter describes the tools that can be used to develop and debug C applications under Linux. It is not 
+intended to be a tutorial on the C programming language, but rather to describe how to use the C compiler and some of the other C programming tools that are included with Linux. In this chapter you will learn about the following:
+
+<BR>
+
+<UL>
+
+<LI>What C is
+
+<BR>
+
+<BR>
+
+<LI>The GNU C compiler
+
+<BR>
+
+<BR>
+
+<LI>Debugging GCC applications with gdb
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>You also will look at some of the useful C tools that are included with the Linux distribution. These tools include pretty print programs, additional debugging tools, and automatic function prototypers.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Pretty print programs are programs that automatically reformat code so that it has consistent indenting.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E68E221"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>What Is C?</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>C is a general-purpose programming language that has been around since the early days of the UNIX operating system. It was originally created by Dennis Ritchie at Bell Laboratories to aid in the development of UNIX. The first versions of UNIX were 
+written using assembly language and a language called B. C was developed to overcome some of the shortcomings of B. Since that time, C has become one of the most widely used computer languages in the world.
+
+<BR>
+
+<P>Why did C gain so much support in the programming world? Some of the reasons that C is so commonly used include the following:
+
+<BR>
+
+<UL>
+
+<LI>It is a very portable language. Almost any computer that you can think of has at least one C compiler available for it, and the language syntax and function libraries are standardized across platforms. This is a very attractive feature for developers.
+
+<BR>
+
+<BR>
+
+<LI>Executable programs written in C are fast.
+
+<BR>
+
+<BR>
+
+<LI>C is the system language with all versions of UNIX.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>C has evolved quite a bit over the last 20 years. In the late 1980s, the American National Standards Institute published a standard for the C language known as ANSI C. This further helped to secure C's future by making it even more consistent between 
+platforms. The 1980s also saw an object-oriented extension to C called C++. C++ will be described in the next chapter, &quot;Programming in C++.&quot;
+
+<BR>
+
+<P>The C compiler that is available for Linux is the GNU C compiler, abbreviated GCC. This compiler was created under the Free Software Foundation's programming license and is therefore freely distributable. You will find it on the book's companion CD-ROM.
+
+
+<BR>
+
+<BR>
+
+<A NAME="E68E222"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>The GNU C Compiler</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The GNU C Compiler (GCC) that is packaged with the Red Hat Linux distribution is a fully functional, ANSI C compatible compiler. If you are familiar with a C compiler on a different operating system or hardware platform, you will be able to learn GCC 
+very quickly. This section describes how to invoke GCC and introduces some of the commonly used GCC compiler options.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E332"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Invoking GCC</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The GCC compiler is invoked by passing it a number of options and a number of filenames. The basic syntax for invoking gcc is this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">gcc [options] [filenames]</FONT></PRE>
+
+<P>The operations specified by the command-line options will be performed on each of the files that are specified on the command line. The next section describes the options that you will use most often.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E333"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>GCC Options</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>There are more than 100 compiler options that can be passed to GCC. You will probably never use many of these options, but you will use some of them on a regular basis. Many of the GCC options consist of more than one character. For this reason you must 
+specify each option with its own hyphen, and you cannot group options after a single hyphen as you can with most Linux commands. For example, the following two commands are not the same:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">gcc -p -g test.c
+
+gcc -pg test.c</FONT></PRE>
+
+<P>The first command tells GCC to compile test.c with profile information for the prof command and also to store debugging information within the executable. The second command just tells GCC to compile test.c with profile information for the gprof 
+command.
+
+<BR>
+
+<P>When you compile a program using gcc without any command-line options, it will create an executable file (assuming that the compile was successful) and call it a.out. For example, the following command would create a file named a.out in the current 
+directory.
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">gcc test.c</FONT></PRE>
+
+<P>To specify a name other than a.out for the executable file, you can use the -o compiler option. For example, to compile a C program file named count.c into an executable file named count, you would type the following command.
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">gcc -o count count.c</FONT></PRE>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>When you are using the -o option, the executable filename must occur directly after the -o on the command line.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>There are also compiler options that allow you to specify how far you want the compile to proceed. The -c option tells GCC to compile the code into object code and to skip the assembly and linking stages of the compile. This option is used quite often 
+because it makes the compilation of multifile C programs faster and easier to manage. Object code files that are created by GCC have a .o extension by default.
+
+<BR>
+
+<P>The -s compiler option tells GCC to stop the compile after it has generated the assembler files for the C code. Assembler files that are generated by GCC have a .s extension by default. The -E option instructs the compiler to perform only the 
+preprocessing compiler stage on the input files. When this option is used, the output from the preprocessor is sent to the standard output rather than being stored in a file.
+
+<BR>
+
+<P>The following file extensions are assumed to be used when using the language compilers, including gcc:
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Extension
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Type of File</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+.a
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Archive file</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+.c
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+C program file</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+.C, .cc, or .cxx
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+C++ program file</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+.h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+A preprocessor (include) file</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+.i
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+An already preprocessed C file only needing compiling and assembling</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+.ii
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+An already preprocessed C++ file only needing compiling and assembling</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+.m
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Objective-C program file</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+.o
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Compiled object file</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+.s
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Assembler source that had been preprocessed</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+.S
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Assembler source which requires preprocessing</FONT>
+
+</TABLE><BR>
+
+<A NAME="E69E334"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Optimization Options</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>When you compile C code with GCC, it tries to compile the code in the least amount of time and also tries to create compiled code that is easy to debug. Making the code easy to debug means that the sequence of the compiled code is the same as the 
+sequence of the source code, and no code gets optimized out of the compile. There are many options that you can use to tell GCC to create smaller, faster executable programs at the cost of compile time and ease of debugging. Of these options the two that 
+you will typically use are the -o and the -O2 options.
+
+<BR>
+
+<P>The -o option tells GCC to perform basic optimizations on the source code. These optimizations will in most cases make the code run faster. The -O2 option tells GCC to make the code as fast and small as it can. The -O2 option will cause the compilation 
+speed to be slower than it is when using the -o option, but will typically result in code that executes more quickly.
+
+<BR>
+
+<P>In addition to the -o and -O2 optimization options, there are a number of lower-level options that can be used to make the code faster. These options are very specific and should only be used if you fully understand the consequences that using these 
+options will have on the compiled code. For a detailed description of these options, refer to the GCC manual page by typing man gcc on the command line.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E335"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Debugging and Profiling Options</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>GCC supports several debugging and profiling options. Of these options, the two that you are most likely to use are the -g option and the -pg option.
+
+<BR>
+
+<P>The -g option tells GCC to produce debugging information that the GNU debugger (gdb) can use to help you to debug your program. GCC provides a feature that many other C compilers do not have. With GCC you can use the -g option in conjunction with the -o 
+option (which generates optimized code). This can be very useful if you are trying to debug code that is as close as possible to what will exist in the final product. When you are using these two options together you should be aware that some of the code 
+that you have written will probably be changed by GCC when it optimizes it. For more information on debugging your C programs, refer to the &quot;Debugging GCC Programs with gdb&quot; section in this chapter.
+
+<BR>
+
+<P>The -pg option tells GCC to add extra code to your program that will, when executed, generate profile information that can be used by the gprof program to display timing information about your program. For more information on gprof, refer to the 
+&quot;gprof&quot; section in this chapter.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E223"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Debugging GCC Programs with </B><B>gdb</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Linux includes the GNU debugging program called gdb. gdb is a very powerful debugger that can be used to debug C and C++ programs. It enables you to see the internal structure or the memory that is being used by a program while it is executing. Some of 
+the functions that gdb provides for you are these:
+
+<BR>
+
+<UL>
+
+<LI>It enables you to monitor the value of variables that are contained in your program.
+
+<BR>
+
+<BR>
+
+<LI>It enables you to set breakpoints that will stop the program at a specific line of code.
+
+<BR>
+
+<BR>
+
+<LI>It enables you to step through the code, line by line.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>You can run gdb by typing gdb on the command line and pressing Enter. If your system is configured properly, gdb should start and you will see a screen that resembles the following:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">GDB is free software and you are welcome to distribute copies of it
+
+under certain conditions; type &quot;show copying&quot; to see the conditions.
+
+There is absolutely no warranty for GDB; type &quot;show warranty&quot; for details.
+
+GDB 4.15 (i586-unknown-linux), Copyright 1995 Free Software Foundation, Inc.
+
+ (gdb)</FONT></PRE>
+
+<P>When you start gdb, there are a number of options that you can specify on the command line. You will probably run gdb in the following way:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">gdb &lt;fname&gt;</FONT></PRE>
+
+<P>When you invoke gdb in this way, you are specifying the executable file that you want to debug. This tells gdb to load the executable file with the name fname. There are also ways of starting gdb that tell it to inspect a core file that was created by 
+the executable file being examined, or to attach gdb to a currently running process. To get a listing and brief description of each of these other options, you can refer to the gdb man page or type gdb -h at the command line.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E336"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Compiling Code for Debugging</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>To get gdb to work properly, you must compile your programs so that debugging information will be generated by the compiler. The debugging information that is generated contains the types for each of the variables in your program as well as the mapping 
+between the addresses in the executable program and the line numbers in the source code. gdb uses this information to relate the executable code to the source code.
+
+<BR>
+
+<P>To compile a program with the debugging information turned on, use the -g compiler option.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E337"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>gdb</B><B> Basic Commands</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The gdb supports many commands that enable you to perform different debugging operations. These commands range in complexity from very simple file-loading commands to complicated commands that allow you to examine the contents of the call stack. Table 
+27.1 describes the commands that you will need to get up and debugging with gdb. To get a description of all of the gdb commands, refer to the gdb manual page.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 27.1. Basic </B><B>gdb</B><B> commands.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Command</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Description</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+file
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Loads the executable file that is to be debugged</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+kill
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Terminates the program that you are currently debugging</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+list
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Lists sections of the source code that was used to generate the executable file</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+next
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Advances one line of source code in the current function, without stepping into other functions</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+step
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Advances one line of source code in the current function, and does step into other functions</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+run
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Executes the program that is currently being debugged</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+quit
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Terminates gdb</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+watch
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Enables you to examine the value of a program variable whenever the value changes</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+break
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Sets a breakpoint in the code; this causes the execution of the program to be suspended whenever this point is reached</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+make
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Enables you to remake the executable program without quitting out of gdb or using another window</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+shell
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Enables you to execute UNIX shell commands without leaving gdb</FONT>
+
+</TABLE><P>The gdb environment supports many of the same command-editing features as do the UNIX shell programs. You can tell gdb to complete unique commands by pressing the Tab key just as you do when you are using bash or tcsh. If what you have typed in 
+is not unique, you can make gdb print a list of all the commands that match what you have typed in so far by pressing the Tab key again. You can also scroll up and down through the commands that you have entered previously by pressing the up and down arrow 
+keys.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E338"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Sample </B><B>gdb</B><B> Session</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>This section takes you step by step through a sample gdb session. The sample program that is being debugged is quite simple, but it is sufficient to illustrate how gdb is typically used.
+
+<BR>
+
+<P>We will start by showing a listing of the program that is to be debugged. The program is called greeting and is supposed to display a simple greeting followed by the greeting printed in reverse order.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">#include &lt;stdio.h&gt;
+
+main ()
+
+{
+
+void my_print(char *);
+
+void my_print2(char *);
+
+char my_string[] = &quot;hello there&quot;;
+
+my_print (my_string);
+
+my_print2 (my_string);
+
+}
+
+void my_print (char *string)
+
+{
+
+printf (&quot;The string is %s\n&quot;, string);
+
+}
+
+void my_print2 (char *string)
+
+{
+
+char *string2;
+
+int size, i;
+
+size = strlen (string);
+
+string2 = (char *) malloc (size + 1);
+
+for (i = 0; i &lt; size; i++)
+
+string2[size - i] = string[i];
+
+string2[size+1] = '\0';
+
+printf (&quot;The string printed backward is %s\n&quot;, string2);
+
+}</FONT></PRE>
+
+<P>You should compile the preceding program using the gcc command followed by the filename. To rename the generated binary (instead of using the default a.out filename), use the -o option followed by the binary name:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">gcc -o greeting greeting.c</FONT></PRE>
+
+<P>The program, when executed, displays the following output:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">The string is hello there
+
+The string printed backward is</FONT></PRE>
+
+<P>The first line of output comes out correctly, but the second line prints something that was unexpected. We intended the second line of output to be
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">The string printed backward is ereht olleh</FONT></PRE>
+
+<P>For some reason the my_print2 function is not working properly. Let's take a look at the problem using gdb. First you need to start gdb, specifying the greeting program as the one to debug. You do this by typing the following command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">gdb greeting</FONT></PRE>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Remember that you must compile the greeting program with the compiler debug options turned on, by typing gcc -q -o greeting greeting.c.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>If you forget to pass the program to debug as a parameter to gdb, you can load it in after gdb is started by using the file command at the gdb prompt:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"> (gdb) file greeting</FONT></PRE>
+
+<P>This command will load the greeting executable just as if you had told gdb to load it on the command line.
+
+<BR>
+
+<P>You can now run greeting by entering the run command from the gdb prompt. When the program is executed from within gdb, the result should resemble the following:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"> (gdb) run
+
+Starting program: /root/greeting
+
+The string is hello there
+
+The string printed backward is
+
+Program exited with code 040</FONT></PRE>
+
+<P>The output of the greeting program is the same as when we executed the program outside of gdb. The question is, why is the backward print not working? To find the problem we can set a breakpoint at the line after the for statement in the my_print2 
+function. To do this, list the source file by entering the list command at the gdb prompt:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"> (gdb) list</FONT></PRE>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Pressing Enter by itself at the gdb prompt will repeat the last command that was entered.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>The first time you enter the list command, you get output that resembles the following:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">1 #include &lt;stdio.h&gt;
+
+2
+
+3 void main ()
+
+4 {
+
+5 void my_print(char *);
+
+6 void my_print2(char *);
+
+7
+
+8 char my_string[] = &quot;hello there&quot;;
+
+9
+
+10 my_print (my string)</FONT></PRE>
+
+<P>If you press Enter, gdb will execute the list command again, giving you the following output:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">11 my_print2 (my string);
+
+12 {
+
+13
+
+14 void my_print (char *string)
+
+15 {
+
+16 printf (&quot;The string is %s\n&quot;, string);
+
+17 }
+
+18
+
+19 void my_print2 (char *string)
+
+20 {</FONT></PRE>
+
+<P>Pressing Enter one more time will list the rest of the greeting program:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">21 char *string2;
+
+22 int size, i;
+
+23
+
+24 size = strlen (string);
+
+25 string2 = (char *) malloc (size + 1);
+
+26 for (i = 0; i &lt; size; i++)
+
+27 string2[size - i] = string[i];
+
+28 string2[size+1] = '\0';
+
+29 printf (&quot;The string printed backward is %s\n&quot;, string2);
+
+30 }</FONT></PRE>
+
+<P>By listing the file you can see that the place where you want to set the breakpoint is line 27. Now, to set the breakpoint, type the following command at the gdb command prompt:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"> (gdb) break 27</FONT></PRE>
+
+<P>gdb should now print a response resembling the following:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Breakpoint 1 at 0x8000570: file greeting.c, line 27
+
+ (gdb)</FONT></PRE>
+
+<P>Now you can run the program again by typing the run command. This command will generate the following output:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Starting program: /root/greeting
+
+The string is hello there
+
+Breakpoint 1, my_print2 (string = 0xbffffe14 &quot;hello there&quot;) at greeting.c:27
+
+27 string2[size - i]=string[i]</FONT></PRE>
+
+<P>You can see what is actually going wrong with your program by setting a watch to tell you the value of the string2[size - i] variable expression.
+
+<BR>
+
+<P>To do this, type
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"> (gdb) watch string2[size - i]</FONT></PRE>
+
+<P>gdb will return the following acknowledgment:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Hardware watchpoint 2: string2[size - i]</FONT></PRE>
+
+<P>Now that a watch has been set, gdb will halt the program and display the new value of variable string2[size - i] each time it changes. But because we already have a breakpoint established at the line where string2[size - i] will be updated, two breaks 
+for each pass through the loop will actually be generated: once for the breakpoint and again for the watch. To eliminate this redundancy, eliminate the breakpoint by typing disable 1 at the gdb prompt.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Breakpoints are reset by disabling the number of the breakpoint assigned to the code line. For example, when we previously typed break 27, breakpoint 1 was assigned to that line of code. So to clear the breakpoint, we disable breakpoint number 1 by 
+typing disable 1.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>Now you can step through the execution of the for loop using the cont (short for &quot;continue&quot;) command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"> (gdb) cont</FONT></PRE>
+
+<P>After the first time through the loop, gdb tells us that string2[size - i] is 'h'. gdb informs you of this by writing the following message on the screen:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Hardware watchpoint 2, string2[size - i]
+
+Old value = 0 '\000'
+
+New value = 104 'h'
+
+my_print2(string = 0xbffffe14 &quot;hello there&quot;) at greeting.c:26
+
+26 for (i=0; i&lt;size; i++)</FONT></PRE>
+
+<P>This is the value that you expected. Continuing through the loop several more times reveals similar results. Everything appears to be functioning normally. When you get to the point where i=10, the value of the string2[size - i] expression is equal to 
+'e', the value of the size - i expression is equal to 1, and the program is at the last character that is to be copied over into the new string.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>You can see the current value of a variable or expression at any time from the gdb prompt by using the print EXP command. For example, try print i or print (size - i) while continuing through the loop.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>If you continue through the loop one more time, you see that there was not a value assigned to string2[0], which is the first character of the string. Because the malloc function initializes the memory it assigns to null, the first character in string2 
+is the null character. This explains why nothing was being printed when you tried to print string2.
+
+<BR>
+
+<P>Now that you have found the problem, it should be quite easy to fix. You must write the code so that the first character going into string2 is being put into string2 at offset size - 1 instead of string2 at offset size. This is because the size of 
+string2 is 12, but it starts numbering at offset zero. The characters in the string should start at offset 0 and go to offset 10, with offset 11 being reserved for the null character.
+
+<BR>
+
+<P>There are many ways to modify this code so that it will work. One way is to keep a separate size variable that is one smaller than the real size of the original string. This solution is shown in the following code:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">#include &lt;stdio.h&gt;
+
+void main ()
+
+{
+
+void my_print(char *);
+
+void my_print2(char *);
+
+ char my_string[] = &quot;hello there&quot;;
+
+my_print (my_string);
+
+my_print2 (my_string);
+
+}
+
+void my_print (char *string)
+
+{
+
+printf (&quot;The string is %s\n&quot;, string);
+
+}
+
+void my_print2 (char *string)
+
+{
+
+char *string2;
+
+int size, size2, i;
+
+size = strlen (string);
+
+size2 = size -1;
+
+string2 = (char *) malloc (size + 1);
+
+for (i = 0; i &lt; size; i++)
+
+string2[size2 - i] = string[i];
+
+string2[size] = '\0';
+
+printf (&quot;The string printed backward is %s\n&quot;, string2);
+
+}</FONT></PRE>
+
+<BR>
+
+<A NAME="E68E224"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Additional C Programming Tools</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The Red Hat Linux distribution includes a number of C development tools that have not yet been described. This section describes many of these additional tools and their typical uses.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E339"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>xxgdb</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>xxgdb is an X Window system&#151;based graphical user interface to gdb. All of the features that exist in the command-line version of gdb are present in xxgdb. xxgdb enables you to perform many of the most commonly used gdb commands by pressing buttons 
+instead of typing in commands. It also graphically represents where you have placed breakpoints.
+
+<BR>
+
+<P>You can start xxgdb by typing the following into an Xterm window.
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">xxgdb</FONT></PRE>
+
+<P>When you initiate xxgdb you can specify any of the command-line options that were available with gdb. xxgdb also has some of its own command-line options. These are described in Table 27.2.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 27.2. The </B><B>xxgdb</B><B> command-line options.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Option</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Description</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+=db_name
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Specifies the name of the debugger to be used. The default is gdb.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+=db_prompt
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Specifies the debugger prompt. The default is gdb.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+=gdbinit
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Specifies the filename of the initial gdb command file. The default is .gdbinit.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+=nx
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Tells xxgdb not to execute the .gdbinit file.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+=bigicon
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Uses a large icon size for the xxgdb icon.</FONT>
+
+</TABLE><P>When you start xxgdb, a window, depicted in Figure 27.1, opens on your screen.
+
+<BR>
+
+<P><B> <A HREF="27rhl01.gif">Figure 27.1. The </B><B>xxgdb</B><B> debugging window.</A></B>
+
+<BR>
+
+<P>The bottom pane of the window contains a message that is similar to the one displayed on the screen when you started the command-line version of gdb. Use this pane to enter commands to the xxgdb debugger just as you would in gdb. To give the pane focus, 
+left-click anywhere in its region and type:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">file greeting</FONT></PRE>
+
+<P>This should open the file for debugging and display its source code in the upper pane of the window, as shown in Figure 27.2.
+
+<BR>
+
+<P><B> <A HREF="27rhl02.gif">Figure 27.2. The </B><B>xxgdb</B><B> window with debug source </B><B>open.</A></B>
+
+<BR>
+
+<P>You could have accomplished the same thing by using the File button shown in the center of the window. In addition, you can use the run, break, and cont buttons much in the same way that we have used them before in gdb, only now graphically. To watch a 
+variable (as long as it is within context) you can use the display button.
+
+<BR>
+
+<P>Try experimenting with the different features that this program provides and refer to the xxgdb and gdb manual pages for information on additional capabilities these tools provide.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E340"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>calls</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>calls is a program that is not included on the Linux CD-ROM accompanying this book, but you can obtain a copy from the sunsite FTP site under the directory /pub/Linux/devel/lang/c/calls.tar.Z. Some older CD-ROM distributions of Linux include this file. 
+Because it is a useful tool, we will cover it here. If you think it will be of use to you, obtain a copy from an FTP or BBS site or another CD-ROM. calls runs the GCC preprocessor on the files that are passed to it on the command line, and displays a 
+function call tree for the functions that are in those files.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>To install calls on your system, perform the following steps while you are logged in as root:</NOTE>
+
+<BR>
+
+<OL>
+
+<LI>FTP the file <A HREF="ftp://sunsite.unc.edu/pub/Linux/devel/lang/c/calls.tar.z">sunsite.unc.edu/pub/Linux/devel/lang/c/calls.tar.z</A>.
+
+<BR>
+
+<LI>Uncompress and untar the file.
+
+<BR>
+
+<LI>cd into the calls subdirectory that was created by untarring the file.
+
+<BR>
+
+<LI>Move the file named calls to the /usr/bin directory.
+
+<BR>
+
+<LI>Move the file named calls.1 to the /usr/man/man1 directory.
+
+<BR>
+
+</OL>
+
+<BR>
+
+<NOTE>This will install the calls program and man page on your system.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>When calls prints out the call trace, it includes the filename in which the function was found in brackets after the function name:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">main [program.c]</FONT></PRE>
+
+<P>If the function was not in one of the files that was passed to calls, it does not know where that function lives and prints only the function name:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">printf</FONT></PRE>
+
+<P>calls also makes note of recursive and static functions in its output. Recursive functions are represented in the following way:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">fact &lt;&lt;&lt; recursive in factorial.c &gt;&gt;&gt;</FONT></PRE>
+
+<P>Static functions are represented as follows:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">total [static in calculate.c]</FONT></PRE>
+
+<P>As an example, assume that you executed calls with the following program as input:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">##include &lt;stdio.h&gt;
+
+void main ()
+
+{
+
+void my_print(char *);
+
+void my_print2(char *);
+
+char my_string[] = &quot;hello there&quot;;
+
+my_print (my_string);
+
+my_print2(my_string);
+
+}
+
+void my_print (char *string)
+
+{
+
+printf (&quot;The string is %s\n&quot;, string);
+
+}
+
+void my_print2 (char *string)
+
+{
+
+char *string2;
+
+int size, size2, i;
+
+size = strlen (string);
+
+size2 = size -1;
+
+string2 = (char *) malloc (size + 1);
+
+for (i = 0; i &lt; size; i++)
+
+string2[size2 - i] = string[i];
+
+string2[size] = '\0';
+
+printf (&quot;The string printed backward is %s\n&quot;, string2);
+
+}</FONT></PRE>
+
+<P>This would generate the following output:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">1 main [greeting.c]
+
+2 my_print [greeting.c]
+
+3 printf
+
+4 my_print2 [greeting.c]
+
+5 strlen
+
+6 malloc
+
+7 printf</FONT></PRE>
+
+<P>calls recognizes a number of command-line options that enable you to specify the appearance of the output and what function calls get displayed. For more information on these command-line options, refer to the calls manual page or type calls -h at the 
+command line.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E341"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>cproto</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>cproto is a program included on this book's CD-ROM. cproto reads in C source files and automatically generates function prototypes for all of the functions. Using cproto saves you from having to type in a function definition for all of the functions 
+that you have written in your programs.
+
+<BR>
+
+<P>If you ran the following code through the cproto program
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">#include &lt;stdio.h&gt;
+
+void main ()
+
+{
+
+char my_string[] = &quot;hello there&quot;;
+
+my_print (my_string);
+
+my_print2(my_string);
+
+}
+
+void my_print (char *string)
+
+{
+
+printf (&quot;The string is %s\n&quot;, *string);
+
+}
+
+void my_print2 (char *string)
+
+{
+
+char *string2;
+
+int size, size2, i;
+
+size = strlen (string);
+
+size2 = size -1;
+
+string2 = (char *) malloc (size + 1);
+
+for (i = 0; i &lt; size; i++)
+
+string2[size2 - i] = string[i];
+
+string2[size] = '\0';
+
+printf (&quot;The string printed backward is %s\n&quot;, string2);
+
+}</FONT></PRE>
+
+<P>you would get the following output:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">/* greeting.c */
+
+void main(void);
+
+void my_print(char *string);
+
+void my_print2(char *string);</FONT></PRE>
+
+<P>This output could be redirected to an include file and used to define the prototypes for all of the functions.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E342"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>indent</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The indent utility is another programming utility that is included with Linux. This program, in its simplest form, reformats or pretty prints your C code so that it is consistently indented and all opening and closing braces are represented 
+consistently. There are numerous options that enable you to specify how you want indent to format your code. For information on these options, refer to the indent manual page or type indent -h at the command line.
+
+<BR>
+
+<P>The following example shows the default output of the indent program.
+
+<BR>
+
+<P>C code before running indent:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">#include &lt;stdio.h&gt;
+
+void main () {
+
+void my_print(char *);
+
+void my_print2(char *);
+
+char my_string[] = &quot;hello there&quot;;
+
+my_print (my_string);
+
+my_print2(my_string); }
+
+void my_print (char *string)
+
+{
+
+printf (&quot;The string is %s\n&quot;, *string);
+
+}
+
+void my_print2 (char *string) {
+
+char *string2;
+
+int size, size2, i;
+
+size = strlen (string);
+
+size2 = size -1;
+
+string2 = (char *) malloc (size + 1);
+
+for (i = 0; i &lt; size; i++)
+
+string2[size2 - i] = string[i];
+
+string2[size] = '\0';
+
+printf (&quot;The string printed backward is %s\n&quot;, string2);
+
+}</FONT></PRE>
+
+<P>C code after running indent:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">#include &lt;stdio.h&gt;
+
+void main ()
+
+{
+
+void my_print(char *);
+
+void my_print2(char *);
+
+char my_string[] = &quot;hello there&quot;;
+
+my_print (my_string);
+
+my_print2 (my_string);
+
+}
+
+void my_print (char *string)
+
+{
+
+printf (&quot;The string is %s\n&quot;, *string);
+
+}
+
+void my_print2 (char *string)
+
+{
+
+char *string2;
+
+int size, size2, i;
+
+size = strlen (string);
+
+size2 = size -1;
+
+string2 = (char *) malloc (size + 1);
+
+for (i = 0; i &lt; size; i++)
+
+string2[size2 - i] = string[i];
+
+string2[size] = '\0';
+
+printf (&quot;The string printed backward is %s\n&quot;, string2);
+
+}</FONT></PRE>
+
+<P>Indent does not change how the code compiles; it just changes how the source code looks. It makes the code more readable, which is always a good thing.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E343"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>gprof</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>gprof is a program that is installed in the /usr/bin directory on your Linux system. It allows you to profile C, Pascal, or Fortran programs to determine where most of the execution time is being spent.
+
+<BR>
+
+<P>gprof will tell you how many times each function used by your program is called, and also the percentage of the total execution time the program spent on each function. This information can be very useful if you are trying to improve the performance of 
+a program.
+
+<BR>
+
+<P>To use gprof on one of your C programs, you must compile the program using gcc's -pg option. This causes the program to create a file called gmon.out each time it is executed. gprof uses the gmon.out file to generate the profile information.
+
+<BR>
+
+<P>After you run your program and it has created the gmon.out file, you can get its profile by entering the following command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">gprof &lt;program_name&gt;</FONT></PRE>
+
+<P>The program_name parameter is the name of the program that created the gmon.out file.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>The profile data that gprof displays to the screen is quite large. If you want to examine this data, you should either redirect gprof's output to a file or use the more or less pipes.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E69E344"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>f2c and p2c</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>f2c and p2c are two source code conversion programs. f2c converts FORTRAN77 code into either C or C++ code, and p2c converts Pascal code into C code. Both are included in the Linux installation when you install GCC.
+
+<BR>
+
+<P>If you have some code that has been written using either FORTRAN77 or Pascal that you want to rewrite in C, f2c and p2c can prove to be very useful programs. Both programs produce C code that can typically be compiled directly by gcc without any human 
+intervention.
+
+<BR>
+
+<P>If you are converting small, straightforward FORTRAN77 or Pascal programs, you should be able to get away with using f2c or p2c without any options. If you are converting very large programs consisting of many files, you will probably have to use some 
+of the command-line options that are provided by the conversion program that you are using.
+
+<BR>
+
+<P>To invoke f2c on a FORTRAN program, enter the following command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">f2c my_fortranprog.f</FONT></PRE>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>f2c requires that the program being converted has either a .f or a .F extension.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>To convert a Pascal program to C, enter the following command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">p2c my_pascalprogram.pas</FONT></PRE>
+
+<P>Both of these commands create C source code files that have the same name as the original file, except with a .c extension instead of .f or .pas.
+
+<BR>
+
+<P>For more information on the specific conversion options that are available with f2c or p2c, refer to their respective man pages.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E225"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Summary</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>This chapter introduced the GNU C compiler and many of the options that you will typically use when you compile C code. It also introduced the concepts behind debugging code with the GNU debugger, and illustrated the usefulness of some of the other C 
+utility programs that are either included on the Linux CD-ROM, or available via FTP from sunsite.unc.edu.
+
+<BR>
+
+<P>If you will be writing C code, the time that you spend learning how to use gdb and some of the other tools mentioned in this chapter will be more than worth the eventual time-saving that you will gain.
+
+<BR>
+
+<P>The next chapter will discuss many of the same topics, but with a focus on C++ development rather than C development.
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl26.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="#I0" TARGET="_self"><IMG SRC="purtop.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Page Top"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl28.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+</BODY></HTML>
+
+
+

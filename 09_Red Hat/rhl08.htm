@@ -1,0 +1,2354 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Red Hat Linux Unleashed rhl08.htm </TITLE>
+
+<LINK REL="ToC" HREF="index.htm">
+
+<LINK REL="Index" HREF="htindex.htm">
+
+<LINK REL="Next" HREF="rhl09.htm">
+
+<LINK REL="Previous" HREF="rhl07.htm"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+
+<A NAME="I0"></A>
+
+<H2>Red Hat Linux Unleashed rhl08.htm</H2>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl07.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl09.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+<HR ALIGN=CENTER>
+
+<P>
+
+<UL>
+
+<UL>
+
+<UL>
+
+<LI>
+
+<A HREF="#E68E52" >Files An Overview</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E47" >Common Types of Files</A>
+
+<LI>
+
+<A HREF="#E69E48" >Filenames</A></UL>
+
+<LI>
+
+<A HREF="#E68E53" >Directories An Overview</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E49" >Parent Directories and Subdirectories</A>
+
+<LI>
+
+<A HREF="#E69E50" >The Root Directory</A>
+
+<LI>
+
+<A HREF="#E69E51" >How Directories Are Named</A>
+
+<LI>
+
+<A HREF="#E69E52" >The Home Directory</A></UL>
+
+<LI>
+
+<A HREF="#E68E54" >Navigating the Linux File System</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E53" >The pwd Command Where Am I?</A>
+
+<LI>
+
+<A HREF="#E69E54" >Absolute and Relative Filenames</A>
+
+<LI>
+
+<A HREF="#E69E55" >Going Places The cd Command</A>
+
+<LI>
+
+<A HREF="#E69E56" >There's No Place Like Home</A></UL>
+
+<LI>
+
+<A HREF="#E68E55" >Creating and Deleting Files</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E57" >cat That Useful Feline</A>
+
+<LI>
+
+<A HREF="#E69E58" >Creating Directories</A>
+
+<LI>
+
+<A HREF="#E69E59" >Moving and Copying Files</A>
+
+<LI>
+
+<A HREF="#E69E60" >Moving and Copying with Wildcards</A>
+
+<LI>
+
+<A HREF="#E69E61" >Moving Directories</A></UL>
+
+<LI>
+
+<A HREF="#E68E56" >Removing Files and Directories</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E62" >Removing Directories</A></UL>
+
+<LI>
+
+<A HREF="#E68E57" >File Permissions and Ownership</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E63" >File and Directory Ownership</A>
+
+<LI>
+
+<A HREF="#E69E64" >File Permissions</A>
+
+<LI>
+
+<A HREF="#E69E65" >Changing File Permissions</A>
+
+<LI>
+
+<A HREF="#E69E66" >Changing Directory Permissions</A></UL>
+
+<LI>
+
+<A HREF="#E68E58" >Miscellaneous File Commands</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E67" >Fear of Compression The Zipless File</A>
+
+<LI>
+
+<A HREF="#E69E68" >How to tar Without Feathering</A></UL>
+
+<LI>
+
+<A HREF="#E68E59" >Important Directories in the Linux File System</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E69" >/</A>
+
+<LI>
+
+<A HREF="#E69E70" >/home</A>
+
+<LI>
+
+<A HREF="#E69E71" >/bin</A>
+
+<LI>
+
+<A HREF="#E69E72" >/usr</A>
+
+<LI>
+
+<A HREF="#E69E73" >/usr/bin</A>
+
+<LI>
+
+<A HREF="#E69E74" >/var/spool</A>
+
+<LI>
+
+<A HREF="#E69E75" >/dev</A>
+
+<LI>
+
+<A HREF="#E69E76" >/usr/sbin</A>
+
+<LI>
+
+<A HREF="#E69E77" >/sbin</A>
+
+<LI>
+
+<A HREF="#E69E78" >/etc</A></UL>
+
+<LI>
+
+<A HREF="#E68E60" >Summary</A></UL></UL></UL>
+
+<HR ALIGN=CENTER>
+
+<A NAME="E66E8"></A>
+
+<H1 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>8</B></FONT></CENTER></H1>
+
+<BR>
+
+<A NAME="E67E8"></A>
+
+<H2 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>The Linux File System</B></FONT></CENTER></H2>
+
+<BR>
+
+<P>In this chapter, you learn about:
+
+<BR>
+
+<UL>
+
+<LI>Files: what they are, types of files, filenames
+
+<BR>
+
+<BR>
+
+<LI>Directories: what they are, parent directories and subdirectories, directory names, your home directory
+
+<BR>
+
+<BR>
+
+<LI>Absolute and relative file and directory names
+
+<BR>
+
+<BR>
+
+<LI>Moving between directories using the cd command
+
+<BR>
+
+<BR>
+
+<LI>Using the cat command to create a new file
+
+<BR>
+
+<BR>
+
+<LI>Creating directories
+
+<BR>
+
+<BR>
+
+<LI>Moving and copying files
+
+<BR>
+
+<BR>
+
+<LI>Removing files and directories
+
+<BR>
+
+<BR>
+
+<LI>File and directory ownership, using chown and chgrp to change ownership
+
+<BR>
+
+<BR>
+
+<LI>File and directory permissions, using chmod to change permissions
+
+<BR>
+
+<BR>
+
+<LI>Using the gunzip command to uncompress .gz files compressed by gzip
+
+<BR>
+
+<BR>
+
+<LI>The tar command
+
+<BR>
+
+<BR>
+
+<LI>The standard Linux directories and directory structure
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>To understand how Linux works, and to use the system beyond a superficial level, you must be familiar with the Linux notion of files and the file system into which they are organized.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E52"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Files An Overview</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The most basic concept of a file, and one you may already be familiar with from other computer systems, defines a file as a distinct chunk of information that is found on your hard drive. Distinct means that there can be many different files, each with 
+its own particular contents. To keep files from getting confused with each other, every file must have a unique identity. In Linux, you identify each file by its name and location. In each location or directory, there can be only one file by a particular 
+name. So, for instance, if you create a file called novel, and you get a second great idea, you will either have to call it something different, such as novel2, or put it in a different place, to keep from overwriting the contents already in your original 
+novel.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E47"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Common Types of Files</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Files can contain various types of information. The following three types will become the most familiar to you:
+
+<BR>
+
+<UL>
+
+<LI>User data: Information that you create and update. The very simplest user data is plain text or numbers. You learn to create these simple files later in this chapter. More complicated user data files might have to be interpreted by another program to 
+make sense. For instance, a spreadsheet file looks like gibberish if you look at it directly. To work with a spreadsheet, you have to start up the spreadsheet program and read in the spreadsheet file.
+
+<BR>
+
+<BR>
+
+<LI>System data: Information, often in plain text form, that is read and used by the Linux system&#151;to keep track of which users are allowed on the system, for instance. As a system administrator, you are responsible for changing system data files. For 
+instance, when you create a new user, you modify the file /etc/passwd, which contains the user information. Ordinary users of the system are usually not concerned with system data files, except for their private startup files.
+
+<BR>
+
+<BR>
+
+<LI>Executable files: These files contain instructions that your computer can perform. This set of instructions is often called a program. When you tell the computer to perform them, you're telling it to execute the instructions given to it. To human eyes, 
+executable files contain meaningless gibberish&#151;obviously your computer doesn't think the way you do! Creating or modifying executable files takes special tools. You learn how to use these programming tools in Part V, &quot;Linux for Programmers.&quot;
+
+
+<BR>
+
+<BR>
+
+</UL>
+
+<BR>
+
+<A NAME="E69E48"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Filenames</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Linux allows filenames to be up to 256 characters long. These characters can be lower- and uppercase letters, numbers, and other characters, usually the dash (-), the underscore (_), and the dot (.).
+
+<BR>
+
+<P>They can't include reserved metacharacters such as the asterisk, question mark, backslash, and space, because these all have meaning to the shell. We met some metacharacters when we discussed wildcards in the previous chapter. Other metacharacters will 
+be introduced in the Linux shell chapters.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E53"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Directories An Overview</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Linux, like many other computer systems, organizes files in directories. You can think of directories as file folders and their contents as the files. However, there is one absolutely crucial difference between the Linux file system and an office filing 
+system. In the office, file folders usually don't contain other file folders. In Linux, file folders can contain other file folders. In fact, there is no Linux &quot;filing cabinet&quot;&#151;just a huge file folder that holds some files and other folders. 
+These folders contain files and possibly other folders in turn, and so on.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E49"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Parent Directories and Subdirectories</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Imagine a scenario in which you have a directory, A, that contains another directory, B. Directory B is then a subdirectory of directory A, and directory A is the parent directory of directory B. You will see these terms often, both in this book and 
+elsewhere.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E50"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>The Root Directory</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>In Linux, the directory that holds all the other directories is called the root directory. This is the ultimate parent directory; every other directory is some level of subdirectory.
+
+<BR>
+
+<P>From the root directory, the whole structure of directory upon directory springs and grows like some electronic elm. This is called a tree structure because, from the single root directory, directories and subdirectories branch off like tree limbs.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E51"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>How Directories Are Named</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Directories are named just like files, and they can contain upper- and lowercase letters, numbers, and characters such as -, ., and _.
+
+<BR>
+
+<P>The slash (/) character is used to show files or directories within other directories. For instance, usr/bin means that bin is found in the usr directory. Note that you can't tell, from this example, whether bin is a file or a directory, although you 
+know that usr must be a directory because it holds another item&#151;namely, bin. When you see usr/bin/grep, you know that both usr and bin must be directories, but again, you can't be sure about grep. The ls program shows directories with a following 
+/&#151;for example, fido/. This notation implies that you could have, for instance, fido/file; therefore, fido must be a directory.
+
+<BR>
+
+<P>The root directory is shown simply by the symbol / rather than mentioned by name. It's very easy to tell when / is used to separate directories and when it's used to signify the root directory. If / has no name before it, it stands for the root 
+directory. For example, /usr means that the usr subdirectory is found in the root directory, and /usr/bin means that bin is found in the usr directory and that usr is a subdirectory of the root directory. Remember, by definition the root directory can't be 
+a subdirectory.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E52"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>The Home Directory</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Linux provides each user with his or her own directory, called the home directory. Within this home directory, users can store their own files and create subdirectories. Users generally have complete control over what's found in their home directories. 
+Because there are usually no Linux system files or files belonging to other users in your home directory, you can create, name, move, and delete files and directories as you see fit.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Your home directory does not provide privacy! Normally, any user can go into another's home directory and read (and copy!) the files stored there (although he can't delete or change the files). When Linux creates your home directory, it in effect 
+provides you with an open office cubicle whose desk and filing cabinet drawers are unlocked.
+
+<BR>You must lock up everything you want to keep private. (This topic is covered in the section &quot;File Permissions and Ownership.&quot;) It is generally considered rude or nosy to poke around in someone else's home directory, just as it's rude or nosy 
+to poke around in someone's office while they're away from their desk, but the world is full of nosy and rude people, so you must take precautions!
+
+<BR>Note that anyone logged in as root can read and manipulate all the files on the system, including files that users have locked up. If you can't trust the system administrator (who usually has the root password), don't use the system!</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>The location of a user's home directory is specified by Linux and can't be changed by the user. This is both to keep things tidy and to preserve system security.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E54"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Navigating the Linux File System</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Fortunately, navigating the Linux file system is simple. There are only two commands to be learned, and one of them has absolutely no options or parameters!
+
+<BR>
+
+<BR>
+
+<A NAME="E69E53"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>The pwd Command Where Am I?</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Type pwd at the Linux command prompt. You see
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">darkstar:~$ pwd
+
+/home/fido
+
+darkstar:~$</FONT></PRE>
+
+<P>This tells you that you're currently in the directory /home/fido. (If you are logged in under a different user name, you will see that name in place of fido.) This is your home directory. When you log in, Linux always places you in your home directory.
+
+<BR>
+
+<P>The letters &quot;pwd&quot; stand for &quot;print working directory.&quot; Again, a command's name or function has been cut down to a few easy-to-type characters. (You will often see the term current directory used in place of working directory.)
+
+<BR>
+
+<P>You might be wondering what &quot;working directory&quot; or &quot;being in a directory&quot; really means. It simply means that Linux commands, by default, perform their actions in your working directory. For instance, when you run ls, you are shown 
+only the files in your working directory. If you want to create or remove files, they will be created or removed in your working directory.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E54"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Absolute and Relative Filenames</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>If you specify only the name of a file, Linux looks for that file in your working directory. For example, more myfile lets you read the contents of the file myfile. But myfile must be in your current working directory, or the more command won't find it.
+
+
+<BR>
+
+<P>Sometimes you want to specify a file that isn't in your current directory. You would then specify the name of the directory the file is in, as well as the name of the file itself.
+
+<BR>
+
+<P>If, for instance, your current directory has a subdirectory called novel, which contains a file called chapter_1, you could type more novel/chapter_1, which tells more that it should look in the subdirectory novel for the file chapter_1. This is called 
+a relative filename. You are specifying the location of chapter_1 relative to where you are now, in the subdirectory novel, which is found in your current directory. If you changed your working directory, the relative filename would no longer work.
+
+<BR>
+
+<P>Two special directory specifications are &quot;.&quot; and &quot;..&quot;.The specification &quot;.&quot; always stands for the directory you are currently in, and &quot;..&quot; stands for the parent directory of your current directory. (You see how 
+&quot;.&quot; and &quot;..&quot; are used later in this chapter.) Any filename that includes &quot;.&quot; or &quot;..&quot; is, by definition, a relative filename.
+
+<BR>
+
+<P>A filename that is valid from any location is called an absolute filename. Absolute filenames always begin with /, signifying root. So if you specify a filename as /home/fido/novel/chapter_1, there is no doubt as to where the file is located. Every file 
+on your system has a unique absolute filename.
+
+<BR>
+
+<P>Someone else on the system might also have a directory called novel in his or her home directory. Perhaps it even contains a file called chapter_1. In this case, you can't distinguish the two files by using the relative filename novel/chapter_1. 
+However, the absolute filenames will be different&#151;for instance, /home/fido/novel/chapter_1 as opposed to /home/mary/novel/chapter_1. The novel subdirectory in /home/fido is not the same directory as the novel directory in /home/mary! The two are in 
+quite separate locations, and only coincidentally do they share the same name.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E55"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Going Places The cd Command</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The cd (change directory) command lets you change your working directory. You can think of it as moving to another directory.
+
+<BR>
+
+<P>The syntax of the cd command is
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">cd &lt;directory specification&gt;</FONT></PRE>
+
+<P>There must be a space between cd and the directory specification.
+
+<BR>
+
+<P>The directory specification can be an absolute or relative one. For instance, type cd .. followed by pwd:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">darkstar:~$ cd ..
+
+darkstar:/home$ pwd
+
+/home
+
+darkstar:/home$ cd ..
+
+darkstar:/$ pwd
+
+/
+
+darkstar:/$ cd ..
+
+darkstar:/$ pwd
+
+/</FONT></PRE>
+
+<P>There is no parent directory for the root directory, so typing cd .. when in the root directory simply leaves you in the root directory.
+
+<BR>
+
+<P>Note that the Linux command prompt shows you which directory you are currently in, so you don't have to type pwd all the time. (I will continue to use pwd for clarity.)
+
+<BR>
+
+<P>You can also use absolute directory names.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">darkstar:/$ cd /usr/bin
+
+darkstar:/usr/bin$ pwd
+
+/usr/bin</FONT></PRE>
+
+<P>When you type an absolute directory name, you go to that directory, no matter where you started from. When you type cd .., where you end up depends on where you started.
+
+<BR>
+
+<P>To see the effect of changing your working directory, type ls. The list of files is so long that the first part scrolls off your screen. The ls command shows you the contents of your current directory (as always), but now your current directory is 
+/usr/bin, which contains many more files than your home directory.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E56"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>There's No Place Like Home</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Type cd without any directory specification:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">darkstar:/usr/bin$ cd
+
+darkstar:~$ pwd
+
+/home/fido</FONT></PRE>
+
+<P>Typing cd by itself always returns you to your home directory. When exploring the file system, you sometimes wind up deep in a blind alley of subdirectories. Type cd to quickly return home, or type cd / to return to the root directory.
+
+<BR>
+
+<P>The ~ in your prompt is another special character. It stands for your home directory. There's no reason to type cd ~ when cd works just as well, and is much easier to type! However, try this:
+
+<BR>
+
+<P>When you type cd ~&lt;user&gt;, you move to that user's home directory. This is a very useful trick, especially on large systems with many users and more complicated directory structures than the simple /home/&lt;user&gt; on your Linux system.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>When you're changing to a distant directory, it's often a good idea to take several steps. If you mistype a very long directory specification, you will have to retype the entire specification. Sometimes it might not even be clear why cd gave you an 
+error! Taking a number of shorter steps means less retyping in case of an error. Consider this example:
+
+<BR>darkstar:~$ cd /usr/docs/faq/unix
+
+<BR>bash: /usr/docs/faq/unix: No such file or directory
+
+<BR>You're pretty sure that this path is correct. Let's change directories one step at a time:
+
+<BR>darkstar:~$ cd /usr
+
+<BR>darkstar:/usr$ cd docs
+
+<BR>bash: docs: No such file or directory
+
+<BR>Aha! There's a problem with docs. The directory is actually named doc:
+
+<BR>darkstar:/usr$ ls
+
+<BR>bin/ doc/ games/ info/ man/ sbin/ spool/
+
+<BR>darkstar:/usr$ cd doc
+
+<BR>darkstar:/usr/doc$ cd faq/unix
+
+<BR>darkstar:/usr/doc/faq/unix$ pwd
+
+<BR>/usr/doc/faq/unix</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E68E55"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Creating and Deleting Files</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Linux has many ways to create and delete files. In fact, some of the ways are so easy to perform that you have to be careful not to accidentally overwrite or erase files!
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Go through the following sections very carefully. You should be logged in as your &quot;ordinary&quot; username, not as root! Only when you're sure you understand these sections thoroughly should you use these commands while logged in as root.
+
+<BR>There is no &quot;unerase&quot; command in Linux! Be sure you know what you're doing!</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>Return to your home directory by typing cd. Make sure you're in your /home/&lt;user&gt; directory by running pwd.
+
+<BR>
+
+<P>In the previous chapter, you created a file by typing ls -l /bin &gt; test. Remember, the &gt; symbol means &quot;redirect all output to the following filename.&quot; Note that the file test didn't exist before you typed this command. When you redirect 
+to a file, Linux automatically creates the file if it doesn't already exist.
+
+<BR>
+
+<P>What if you want to type text into a file, rather than some command's output? The quick and dirty way is to use the command cat.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E57"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>cat That Useful Feline</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The cat command is one of the simplest, yet most useful, commands in Linux. It certainly does more than any living feline!
+
+<BR>
+
+<P>The cat command basically takes all its input and outputs it. By default, cat takes its input from the keyboard and outputs it to the screen. Type cat at the command line:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">darkstar:~$ cat</FONT></PRE>
+
+<P>The cursor moves down to the next line, but nothing else seems to happen. Now cat is waiting for some input:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">hello
+
+hello
+
+what
+
+what
+
+asdf
+
+asdf</FONT></PRE>
+
+<P>Everything you type is repeated on-screen as soon as you press Enter!
+
+<BR>
+
+<P>How do you get out of this? At the start of a line, type ^D (Ctrl-D). (In other words, hold down the Ctrl key and press D.) If you're not at the beginning of a line, you have to type ^D twice. ^D is the Linux &quot;end of file&quot; character. When a 
+program such as cat encounters a ^D, it assumes that it has finished with the current file, and it goes on to the next one. In this case, if you type ^D by itself on an empty line, there is no next file to go on to, and cat exits.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>When you say that a program exits, you mean that it has finished running and that you are back at the Linux command prompt. It might seem odd to talk about the program exiting when, from your point of view as a user, you have exited the program. This 
+turn of phrase goes back to the early days of UNIX, when it was coined by the people who were programming the system. They looked at things from the program's point of view, not the user's!</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>So how do you use cat to create a file? Simple! You redirect the output from cat to the desired filename:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">darkstar:~$ cat &gt; newfile
+
+Hello world
+
+Here's some text</FONT></PRE>
+
+<P>You can type as much as you want. When you are finished, press ^D by itself on a line; you will be back at the Linux prompt.
+
+<BR>
+
+<P>Now you want to look at the contents of newfile. You could use the more or less commands, but instead, let's use cat. Yes, you can use cat to look at files simply by providing it with a filename:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">darkstar:~$ cat newfile
+
+Hello world
+
+Here's some text
+
+darkstar:~$</FONT></PRE>
+
+<P>Neat! You can also add to the end of the file by using &gt;&gt;. Whenever you use &gt;&gt;, whether with cat or any other command, the output is always appended to the specified file. (Note that the ^D character does not appear on-screen. I show it in 
+the examples for clarity.)
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">darkstar:~$ cat &gt;&gt; newfile
+
+Some more lines
+
+^D
+
+darkstar:~$ cat newfile
+
+Hello world
+
+Here's some text
+
+Some more lines
+
+darkstar:~$</FONT></PRE>
+
+<P>To discover what cat actually stands for, let's first create another file.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">darkstar:~$ cat &gt; anotherfile
+
+Different text
+
+^D
+
+darkstar:~$</FONT></PRE>
+
+<P>Now, try this:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">darkstar:~$ cat newfile anotherfile&gt; thirdfile
+
+darkstar:~$ cat thirdfile
+
+Hello world
+
+Here's some text
+
+Some more lines
+
+Different text
+
+darkstar:~$</FONT></PRE>
+
+<P>cat stands for concatenate; cat takes all the specified inputs and regurgitates them in a single lump. This by itself would not be very interesting, but combine it with the forms of input and output redirection available in Linux and you have a powerful 
+and useful tool.
+
+<BR>
+
+<P>Sometimes you want to change just one line of a file, or perhaps you are creating a large and complicated file. For this you should use one of the editing programs available in Linux. They are discussed in <A HREF="rhl16.htm">Chapter 16</A>, &quot;Text 
+Editors.&quot;
+
+<BR>
+
+<BR>
+
+<A NAME="E69E58"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Creating Directories</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>To create a new directory, use the mkdir command. The syntax is mkdir &lt;name&gt;, where &lt;name&gt; is replaced by whatever you want the directory to be called. This creates a subdirectory with the specified name in your current directory:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">darkstar:~$ ls
+
+anotherfile newfile thirdfile
+
+darkstar:~$ mkdir newdir
+
+darkstar:~$ ls
+
+anotherfile newdir/ newfile thirdfile</FONT></PRE>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>The mkdir command is already familiar to you if you have used MS-DOS systems. In MS-DOS, you can abbreviate mkdir as md. You might think that md would work in Linux, because, after all, most of the commands we've seen have extremely concise names. 
+However, Linux doesn't recognize md; it insists on the full mkdir.
+
+<BR>If you frequently switch between Linux and MS-DOS, you might want to use mkdir for both systems. However, be warned that you might start typing other Linux commands in MS-DOS&#151;for example, typing ls instead of dir!</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E69E59"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Moving and Copying Files</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>You often need to move or copy files. The mv command moves files, and the cp command copies files. The syntax for the two commands is similar:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">mv &lt;source&gt; &lt;destination&gt;
+
+cp &lt;source&gt; &lt;destination&gt;</FONT></PRE>
+
+<P>As you can see, mv and cp are very simple commands. Here's an example:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">darkstar:~$ ls
+
+anotherfile newdir/ newfile thirdfile
+
+darkstar:~$ mv anotherfile movedfile
+
+darkstar:~$ ls
+
+movedfile newdir/ newfile thirdfile
+
+darkstar:~$ cp thirdfile xyz
+
+darkstar:~$ ls
+
+anotherfile newdir/ newfile thirdfile xyz</FONT></PRE>
+
+<P>You can use cat (or more or less) at any time to verify that anotherfile became movedfile, and that the contents of file xyz are identical to the contents of thirdfile.
+
+<BR>
+
+<P>It can get more confusing if you're moving or copying files from one directory to another. This is because a file's real name includes its absolute path&#151;for instance, /home/fido/newfile. However, Linux lets you leave off parts of the file's name, 
+because it's more convenient to refer to newfile rather than /home/fido/newfile.
+
+<BR>
+
+<P>For instance, suppose you want to move newfile into the newdir subdirectory. If you want the file to keep the same name, you type
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">darkstar:~$ mv newfile newdir/newfile</FONT></PRE>
+
+<P>However, it's much more common to type
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">darkstar:~$ mv newfile newdir</FONT></PRE>
+
+<P>Here, because you have typed a directory name for the destination, Linux assumes that you want the file to be placed in the specified directory.
+
+<BR>
+
+<P>You could also use cd to change to the directory you want to move the file to:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">darkstar:~$ cd newdir
+
+darkstar:~newdir$ copy ../newfile .</FONT></PRE>
+
+<P>This example is a bit less intuitive than the first two! You specify that the source is ../newfile, which means &quot;the file newfile in the current directory's parent directory.&quot; The destination you simply specify as &quot;.&quot;, which is short 
+for &quot;the current directory.&quot; In other words, you're telling mv to &quot;go up one level, grab newfile, and move it to right here.&quot; Because this is less intuitive, you might find yourself automatically pushing a file from your current 
+directory to another directory rather than pulling a file from another directory into your current directory.
+
+<BR>
+
+<P>You can also change the name of the file while moving or copying it to another directory. The following is just one possible way:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">darkstar:~$ cp newfile newdir/anothername</FONT></PRE>
+
+<P>This would create a copy of newfile in the directory newdir and name the copied file anothername.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>When moving or copying files between directories, you should always double-check that the file's destination directory exists and verify the directory's name. Otherwise, the results of your command can be unexpected, as the following two examples 
+show.
+
+<BR>If in the example just shown you mistyped newdir&#151;for instance, as mv newfile mewdir&#151;you would wind up with a file called mewdir in your current directory and no file newfile in the newdir subdirectory!
+
+<BR>Another way you would get an unexpected result would be to type cp newfile newdir if you didn't realize that the directory newdir existed. In this case, you would be expecting to create an identical file called newdir in your current directory. What 
+you would actually do is create a copy of newfile, called newfile, in the subdirectory newdir.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>The mv command is much more efficient than the cp command. When you use mv, the file's contents are not moved at all; rather, Linux makes a note that the file is to be found elsewhere within the file system's structure of directories.
+
+<BR>
+
+<P>When you use cp, you are actually making a second physical copy of your file and placing it on your disk. This can be slower (although for small files, you won't notice any difference), and it causes a bit more wear and tear on your computer. Don't make 
+copies of files when all you really want to do is move them!
+
+<BR>
+
+<BR>
+
+<A NAME="E69E60"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Moving and Copying with Wildcards</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>If you have 20 files in a directory, and you want to copy them to another directory, it would be very tedious to use the cp command on each one. Fortunately, you can use the wildcards * and ? to copy more than one file at a time.
+
+<BR>
+
+<P>If you want to move or copy all files in a directory, use the wildcard *:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">darkstar:~$ cp * /tmp</FONT></PRE>
+
+<P>This command copies every file in your current directory to the directory /tmp.
+
+<BR>
+
+<P>You can use *, along with other characters, to match only certain files. For instance, suppose you have a directory that contains the files book1, book_idea, book-chapter-1, and poem.book. To copy just the first three files, you could type cp book* 
+/tmp. When you type book*, you are asking Linux to match all files whose names start with book. In this case, poem.book does not start with book, so there is no way book* can match it. (Note that if your filename were book.poem, book* would match it.)
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>As you saw at the outset, mv and cp are very simple commands. It's specifying the files that's the complicated part! If things still seem confusing, don't worry. Even experts sometimes mess up &quot;simple&quot; moves and copies. Follow the examples 
+and try any different ways you think of. There is a definite logic as to how the files to be moved and copied should be specified. It takes a while to become familiar with this logic, and you will have to practice a while before these things become 
+intuitive.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E69E61"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Moving Directories</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>To move a directory, use the mv command. The syntax is mv &lt;directory&gt; &lt;destination&gt;. In the following example, you would move the newdir subdirectory found in your current directory to the /tmp directory:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">darkstar:~$ mv newdir /tmp
+
+darkstar:~$ cd /tmp
+
+darkstar:/tmp$ ls
+
+/newdir</FONT></PRE>
+
+<P>The directory newdir is now a subdirectory of /tmp.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>When you move a directory, all its files and subdirectories go with it.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E68E56"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Removing Files and Directories</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Now that you know how to create files and directories, it's time to learn how to undo your handiwork.
+
+<BR>
+
+<P>To remove (or delete) a file, use the rm command (rm is a very terse spelling of remove). The syntax is rm &lt;filename&gt;. For instance:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">darkstar:~$ rm dead_duck</FONT></PRE>
+
+<P>removes the file dead_duck from your current directory.
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">darkstar:~$ rm /tmp/dead_duck</FONT></PRE>
+
+<P>removes the file dead_duck from the /tmp directory.
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">darkstar:~$ rm *</FONT></PRE>
+
+<P>removes all files from your current directory. (Be careful when using wildcards!)
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">darkstar:~$ rm /tmp/*duck</FONT></PRE>
+
+<P>removes all files ending in duck from the /tmp directory.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE><A NAME="I2"></A>As soon as a file is removed, it is gone! Always think about what you're doing before you remove a file. You can use one of the following techniques to keep out of trouble when using wildcards.</NOTE>
+
+<BR>
+
+<OL>
+
+<LI>Run ls using the same file specification you use with the rm command. For instance:
+
+<BR>
+
+<BR>
+
+<UL>
+
+<UL>
+
+<PRE>
+
+<FONT COLOR="#000080"> darkstar:~$ ls *duck
+
+ dead_duck guiduck lame-duck
+
+ :~$ rm *duck</FONT></PRE></UL></UL>
+
+<BR>
+
+<NOTE>In this case, you thought you wanted to remove all files that matched *duck. To verify that this indeed was the case, you listed all the *duck files (wildcards work the same way with all commands). The listing looked okay, so you went ahead and 
+removed the files.</NOTE>
+
+<BR>
+
+<LI>Use the i (interactive) option with rm:
+
+<BR>
+
+</OL>
+
+<HR ALIGN=CENTER></BLOCKQUOTE></BLOCKQUOTE>
+
+<UL>
+
+<UL>
+
+<PRE>
+
+<FONT COLOR="#000080"> darkstar:~$ rm -i *duck
+
+ rm: remove 'dead_duck'? y
+
+ rm: remove 'guiduck'? n
+
+ rm: remove 'lame-duck'? y
+
+ darkstar:~$</FONT></PRE></UL></UL>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>When you use rm -i, the command goes through the list of files to be deleted one by one, prompting you for the OK to remove the file. If you type y or Y, rm removes the file. If you type any other character, rm does not remove it. The only 
+disadvantage of using this interactive mode is that it can be very tedious when the list of files to be removed is long.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E69E62"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Removing Directories</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The command normally used to remove (delete) directories is rmdir. The syntax is rmdir &lt;directory&gt;.
+
+<BR>
+
+<P>Before you can remove a directory, it must be empty (the directory can't hold any files or subdirectories). Otherwise, you see
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">rmdir: &lt;directory&gt;: Directory not empty</FONT></PRE>
+
+<P>This is as close to a safety feature as you will see in Linux!
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>This one might mystify you:
+
+<BR>darkstar:/home$ ls
+
+<BR>fido/ root/ zippy/
+
+<BR>darkstar:/home$ ls zippy
+
+<BR>core kazoo stuff
+
+<BR>darkstar:/home$ rm zippy/*
+
+<BR>darkstar:/home/zippy$ ls zippy
+
+<BR>darkstar:/home$ rmdir zippy
+
+<BR>rmdir: zippy: Directory not empty
+
+<BR>darkstar:~$
+
+<BR>The reason for the Directory not empty message is that files starting with . usually are special system files and are usually hidden from the user. To list files whose names start with ., you have to use ls -a. To delete these files, use rm .*:
+
+<BR>darkstar:/home$ ls -a zippy
+
+<BR>./ ../ .bashrc .profile
+
+<BR>darkstar:/home$ rm zippy/.*
+
+<BR>rm: cannot remove '.' or '..'
+
+<BR>darkstar:/home$ ls -a zippy
+
+<BR>./ ../
+
+<BR>darkstar:/home$ rmdir zippy
+
+<BR>darkstar:/home$ ls
+
+<BR>fido/ root/
+
+<BR>darkstar:~$
+
+<BR>You will most often come across this situation in a system administrator role.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>Sometimes you want to remove a directory with many layers of subdirectories. Emptying and then deleting all the subdirectories one by one would be very tedious. Linux offers a way to remove a directory and all the files and subdirectories it contains in 
+one easy step. This is the r (recursive) option of the rm command. The syntax is rm -r &lt;directory&gt;. The directory and all its contents are removed.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>You should use rm -r only when you really have to. To paraphrase an old saying, &quot;It's only a shortcut until you make a mistake.&quot; For instance, if you're logged in as root, the following command removes all files from your hard disk, and 
+then it's &quot;Hello, installation procedure&quot; time (do not type the following command!):
+
+<BR>rm -rf /
+
+<BR>Believe it or not, people do this all too often. Don't join the club!</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E68E57"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>File Permissions and Ownership</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>All Linux files and directories have ownership and permissions. You can change permissions, and sometimes ownership, to provide greater or lesser access to your files and directories. File permissions also determine whether a file can be executed as a 
+command.
+
+<BR>
+
+<P>If you type ls -l or dir, you see entries that look like this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">-rw-r&#151;r&#151; 1 fido users 163 Dec 7 14:31 myfile</FONT></PRE>
+
+<P>The -rw-r&#151;r&#151; represents the permissions for the file myfile. The file's ownership includes fido as the owner and users as the group.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E63"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>File and Directory Ownership</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>When you create a file, you are that file's owner. Being the file's owner gives you the privilege of changing the file's permissions or ownership. Of course, once you change the ownership to another user, you can't change the ownership or permissions 
+anymore!
+
+<BR>
+
+<P>File owners are set up by the system during installation. Linux system files are owned by IDs such as root, uucp, and bin. Do not change the ownership of these files.
+
+<BR>
+
+<P>Use the chown (change ownership) command to change ownership of a file. The syntax is chown &lt;owner&gt; &lt;filename&gt;. In the following example, you change the ownership of the file myfile to root:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">darkstar:~$ ls -l myfile
+
+-rw-r&#151;r&#151; 1 fido users 114 Dec 7 14:31 myfile
+
+darkstar:~$ chown root myfile
+
+darkstar:~$ ls -l myfile
+
+-rw-r&#151;r&#151; 1 root users 114 Dec 7 14:31 myfile</FONT></PRE>
+
+<P>To make any further changes to the file myfile, or to chown it back to fido, you must use su or log in as root.
+
+<BR>
+
+<P>Files (and users) also belong to groups. Groups are a convenient way of providing access to files for more than one user but not to every user on the system. For instance, users working on a special project could all belong to the group project. Files 
+used by the whole group would also belong to the group project, giving those users special access. Groups normally are used in larger installations. You may never need to worry about groups.
+
+<BR>
+
+<P>The chgrp command is used to change the group the file belongs to. It works just like chown.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E64"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>File Permissions</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Linux lets you specify read, write, and execute permissions for each of the following: the owner, the group, and &quot;others&quot; (everyone else).
+
+<BR>
+
+<P>read permission enables you to look at the file. In the case of a directory, it lets you list the directory's contents using ls.
+
+<BR>
+
+<P>write permission enables you to modify (or delete!) the file. In the case of a directory, you must have write permission in order to create, move, or delete files in that directory.
+
+<BR>
+
+<P>execute permission enables you to execute the file by typing its name. With directories, execute permission enables you to cd into them.
+
+<BR>
+
+<P>For a concrete example, let's look at myfile again:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">-rw-r&#151;r&#151; 1 fido users 163 Dec 7 14:31 myfile</FONT></PRE>
+
+<P>The first character of the permissions is -, which indicates that it's an ordinary file. If this were a directory, the first character would be d. There are also some other, more exotic classes. These are beyond the scope of this chapter.
+
+<BR>
+
+<P>The next nine characters are broken into three groups of three, giving permissions for owner, group, and other. Each triplet gives read, write, and execute permissions, always in that order. Permission to read is signified by an r in the first position, 
+permission to write is shown by a w in the second position, and permission to execute is shown by an x in the third position. If the particular permission is absent, its space is filled by -.
+
+<BR>
+
+<P>In the case of myfile, the owner has rw-, which means read and write permissions. This file can't be executed by typing myfile at the Linux prompt.
+
+<BR>
+
+<P>The group permissions are r&#151;, which means that members of the group &quot;users&quot; (by default, all ordinary users on the system) can read the file but not change it or execute it.
+
+<BR>
+
+<P>Likewise, the permissions for all others are r&#151;: read-only.
+
+<BR>
+
+<P>File permissions are often given as a three-digit number&#151;for instance, 751. It's important to understand how the numbering system works, because these numbers are used to change a file's permissions. Also, error messages that involve permissions 
+use these numbers.
+
+<BR>
+
+<P>The first digit codes permissions for the owner, the second digit codes permissions for the group, and the third digit codes permissions for other (everyone else).
+
+<BR>
+
+<P>The individual digits are encoded by summing up all the &quot;allowed&quot; permissions for that particular user as follows:
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+read permission
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+4</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+write permission
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+2</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+execute permission
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+1</FONT>
+
+</TABLE><P>Therefore, a file permission of 751 means that the owner has read, write, and execute permission (4+2+1=7), the group has read and execute permission (4+1=5), and others have execute permission (1).
+
+<BR>
+
+<P>If you play with the numbers, you quickly see that the permission digits can range between 0 and 7, and that for each digit in that range there's only one possible combination of read, write, and execute permissions.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>If you're familiar with the binary system, think of rwx as a three-digit binary number. If permission is allowed, the corresponding digit is 1. If permission is denied, the digit is 0. So r-x would be the binary number 101, which is 4+0+1, or 5. 
+&#151;x would be 001, which is 0+0+1, which is 1, and so on.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>The following combinations are possible:
+
+<BR>
+
+<UL>
+
+<UL>
+
+<P>0 or &#151;-: No permissions at all
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>4 or r&#151;: read-only
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>2 or -w-: write-only (rare)
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>1 or &#151;x: execute
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>6 or rw-: read and write
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>5 or r-x: read and execute
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>3 or -wx: write and execute (rare)
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>7 or rwx: read, write, and execute
+
+<BR>
+
+</UL></UL>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Anyone who has permission to read a file can then copy that file. When a file is copied, the copy is owned by the person doing the copying. He or she can then change ownership and permissions, edit the file, and so on.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Removing write permission from a file doesn't prevent the file from being deleted! It does prevent it from being deleted accidentally, since Linux asks you whether you want to override the file permissions. You have to answer y, or the file will not 
+be deleted.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E69E65"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Changing File Permissions</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>To change file permissions, use the chmod (change [file] mode) command. The syntax is chmod &lt;specification&gt; file.
+
+<BR>
+
+<P>There are two ways to write the permission specification. One is by using the numeric coding system for permissions:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">darkstar:~$ ls -l myfile
+
+-rw-r&#151;r&#151; 1 fido users 114 Dec 7 14:31 myfile
+
+darkstar:~$ chmod 345 myfile
+
+darkstar:~$ ls -l myfile
+
+&#151;wxr&#151;r-x 1 fido users 114 Dec 7 14:31 myfile
+
+darkstar:~$ chmod 701 myfile
+
+darkstar:~$ ls -l myfile
+
+-rwx&#151;&#151;x 1 root users 114 Dec 7 14:31 myfile</FONT></PRE>
+
+<P>This method has the advantage of specifying the permissions in an absolute, rather than relative, fashion. Also, it's easier to tell someone &quot;Change permissions on the file to seven-five-five&quot; than to say &quot;Change permissions on the file 
+to read-write-execute, read-execute, read-execute.&quot;
+
+<BR>
+
+<P>You can also use letter codes to change the existing permissions. To specify which of the permissions to change, type u (user), g (group), o (other), or a (all). This is followed by a + to add permissions or a - to remove them. This in turn is followed 
+by the permissions to be added or removed. For example, to add execute permissions for the group and others, you would type
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">darkstar:~$ chmod go+r myfile</FONT></PRE>
+
+<P>Other ways of using the symbolic file permissions are described in the chmod man page.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E66"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Changing Directory Permissions</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>You change directory permissions with chmod, exactly the same way as with files. Remember that if a directory doesn't have execute permissions, you can't cd to it.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Any user who has write permission in a directory can delete files in that directory, whether or not that user owns or has write privileges to those files.
+
+<BR>Most directories, therefore, have permissions set to drwxr-xr-x. This ensures that only the directory's owner can create or delete files in that directory.
+
+<BR>It is especially dangerous to give write permission to all users for directories!</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E68E58"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Miscellaneous File Commands</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>There are many Linux commands to manipulate files, directories, and the entire file system. Many of these commands are used only by system administrators. You will touch on a few that are also used by ordinary users. These and other important system 
+administrator commands are further detailed in <A HREF="rhl37.htm">Chapter 37</A>, &quot;System Administration Basics.&quot;
+
+<BR>
+
+<BR>
+
+<A NAME="E69E67"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Fear of Compression The Zipless File</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Most Linux files are stored on the installation CD-ROM in compressed form. This allows more information to be stored.
+
+<BR>
+
+<P>When you installed Linux, the installation program uncompressed many of the files it transferred to your hard drive. However, if you look, you will be able to find compressed files!
+
+<BR>
+
+<P>Any file ending in .gz&#151;for example, squashed.gz&#151;is a compressed file. To uncompress this particular type of file, type gunzip &lt;file&gt;. For this example, you would type gunzip squashed.gz. The gunzip program creates an uncompressed file 
+and removes the .gz extension. Therefore, you would wind up with a normal file called squashed.
+
+<BR>
+
+<P>To compress a file, use the gzip command. Typing gzip squashed would compress squashed and rename it squashed.gz.
+
+<BR>
+
+<P>Another type of compressed file you might see ends with the extension .zip. Use unzip to uncompress these files. To create files of this type, use zip.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E68"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>How to tar Without Feathering</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>In almost any location with several Linux or UNIX systems, sooner or later you will hear someone say, &quot;Put that in a tar file and send it over.&quot;
+
+<BR>
+
+<P>They are referring to the output created by the tar program. Although tar stands for tape archive, it can copy files to floppy disk or to any filename you specify in the Linux file system. The tar command is used because it can archive files and 
+directories into a single file and then recreate the files and even the directory structures later. It's also the easiest way to place Linux files on a floppy disk.
+
+<BR>
+
+<P>To create a tar file, you typically type tar cvf &lt;destination&gt; &lt;files/directories&gt;, where files/directories specifies the files and directories to be archived, and destination is where you want the tar file to be created. If you want the 
+destination to be a floppy disk, you usually type /dev/fd0 as the destination. This specifies your primary floppy drive (A: in MS-DOS). You can use a floppy disk that's been formatted under MS-DOS.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>When tar archives to a floppy disk, all the data already on the disk is destroyed. You have to reformat it to use it with MS-DOS again.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>To extract a tar file, you typically type tar xvf &lt;tar file&gt;. For instance, to pull files from a floppy disk, you would type tar xvf /dev/fd0.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Unlike gzip, tar doesn't remove, delete, or rename files it puts into the archive. However, when tar extracts archived files, it overwrites existing files with files of the same name from the archive.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E68E59"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Important Directories in the Linux File System</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Most of the directories that hold Linux system files are &quot;standard.&quot; Other UNIX systems will have identical directories with similar contents. This section summarizes some of the more important directories on your Linux system.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E69"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>/</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>This is the root directory. It holds the actual Linux program, as well as subdirectories. Do not clutter this directory with your files!
+
+<BR>
+
+<BR>
+
+<A NAME="E69E70"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>/home</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>This directory holds users' home directories. In other UNIX systems, this can be the /usr or /u directory.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E71"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>/bin</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>This directory holds many of the basic Linux programs. bin stands for binaries, files that are executable and that hold text only computers could understand.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E72"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>/usr</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>This directory holds many other user-oriented directories. Some of the most important are described in the following sections. Other directories found in /usr include
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+docs
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Various documents, including useful Linux information</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+man
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The man pages accessed by typing man &lt;command&gt;</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+games
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The fun stuff!</FONT>
+
+</TABLE><BR>
+
+<A NAME="E69E73"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>/usr/bin</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>This directory holds user-oriented Linux programs.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E74"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>/var/spool</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>This directory has several subdirectories. mail holds mail files, spool holds files to be printed, and uucp holds files copied between Linux machines.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E75"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>/dev</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Linux treats everything as a file! The /dev directory holds devices. These are special files that serve as gateways to physical computer components. For instance, if you copy to /dev/fd0, you're actually sending data to the system's floppy disk. Your 
+terminal is one of the /dev/tty files. Partitions on the hard drive are of the form /dev/hd0. Even the system's memory is a device!
+
+<BR>
+
+<P>A famous device is /dev/null. This is sometimes called the bit bucket. All information sent to /dev/null vanishes&#151;it's thrown into the trash.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E76"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>/usr/sbin</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>This directory holds system administration files. If you do an ls -l, you see that you must be the owner, root, to run these commands.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E77"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>/sbin</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>This directory holds system files that are usually run automatically by the Linux system.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E78"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>/etc</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>This directory and its subdirectories hold many of the Linux configuration files. These files are usually text, and they can be edited to change the system's configuration (if you know what you're doing!).
+
+<BR>
+
+<BR>
+
+<A NAME="E68E60"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Summary</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>You should now feel more comfortable working in Linux. Understanding and being able to navigate the Linux file system is very important, since Linux really does consist simply of some files organized in a fairly standard way.
+
+<BR>
+
+<P>You still might find yourself stumped by certain file or directory problems. Remember that the online man pages can assist you. Linux gives you a lot of flexibility in creating files, specifying absolute or relative names, and setting permissions. Don't 
+be afraid to experiment (as an ordinary user, in your home directory). There are too many different ways to perform tasks to list or exhaustively describe here. Don't cling to rigid recipes written on a piece of paper. You learn by trying!
+
+<BR>
+
+<P>You should go on to Chapters 9, &quot;Introduction to the GNU Project Utilities,&quot; through 12, &quot;Using tcsh,&quot; especially if you want to create programs or macros from system command files or learn more about the built-in user interface 
+features in Linux shells. <A HREF="rhl16.htm">Chapter 16</A> has some very useful information about editing text files.
+
+<BR>
+
+<P>Once you are familiar with shells and have had some practice manipulating files and directories, you can move on to the advanced topics in Part III, &quot;Editing, Typesetting, and More,&quot; through Part VIII, &quot;Advanced Programming Topics,&quot; 
+of this book.
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl07.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="#I0" TARGET="_self"><IMG SRC="purtop.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Page Top"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl09.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+</BODY></HTML>
+
+
+

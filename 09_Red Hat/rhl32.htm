@@ -1,0 +1,8407 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Red Hat Linux Unleashed rhl32.htm </TITLE>
+
+<LINK REL="ToC" HREF="index.htm">
+
+<LINK REL="Index" HREF="htindex.htm">
+
+<LINK REL="Next" HREF="rhl33.htm">
+
+<LINK REL="Previous" HREF="rhl31.htm"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+
+<A NAME="I0"></A>
+
+<H2>Red Hat Linux Unleashed rhl32.htm</H2>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl31.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl33.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+<HR ALIGN=CENTER>
+
+<P>
+
+<UL>
+
+<UL>
+
+<UL>
+
+<LI>
+
+<A HREF="#E68E253" >Writing Motif Applications</A>
+
+<LI>
+
+<A HREF="#E68E254" >Naming Conventions</A>
+
+<LI>
+
+<A HREF="#E68E255" >Writing Your First Motif Application</A>
+
+<LI>
+
+<A HREF="#E68E256" >Compiling This Application</A>
+
+<LI>
+
+<A HREF="#E68E257" >The Widget Hierarchy</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E377" >Core</A>
+
+<LI>
+
+<A HREF="#E69E378" >XmPrimitive</A>
+
+<LI>
+
+<A HREF="#E69E379" >XmManager</A></UL>
+
+<LI>
+
+<A HREF="#E68E258" >The Label Widget</A>
+
+<LI>
+
+<A HREF="#E68E259" >Strings in Motif Compound Strings</A>
+
+<LI>
+
+<A HREF="#E68E260" >The XmPushButton Widget Class</A>
+
+<LI>
+
+<A HREF="#E68E261" >The XmToggleButton Widget Class</A>
+
+<LI>
+
+<A HREF="#E68E262" >Convenience Functions</A>
+
+<LI>
+
+<A HREF="#E68E263" >The List Widget</A>
+
+<LI>
+
+<A HREF="#E68E264" >XmScrollBar</A>
+
+<LI>
+
+<A HREF="#E68E265" >Text Widgets</A>
+
+<LI>
+
+<A HREF="#E68E266" >XmBulletinBoard Widgets</A>
+
+<LI>
+
+<A HREF="#E68E267" >XmRowColumn Widgets</A>
+
+<LI>
+
+<A HREF="#E68E268" >XmForm Widgets</A>
+
+<LI>
+
+<A HREF="#E68E269" >Designing Layouts</A>
+
+<LI>
+
+<A HREF="#E68E270" >Menus</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E380" >Pop-Up Menus</A>
+
+<LI>
+
+<A HREF="#E69E381" >The Menu Bar</A>
+
+<LI>
+
+<A HREF="#E69E382" >The Options Menu</A>
+
+<LI>
+
+<A HREF="#E69E383" >Accelerators and Mnemonics</A></UL>
+
+<LI>
+
+<A HREF="#E68E271" >Dialog Boxes</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E384" >Modes of a Dialog Box</A></UL>
+
+<LI>
+
+<A HREF="#E68E272" >Events</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E385" >Expose Events</A>
+
+<LI>
+
+<A HREF="#E69E386" >Pointer Events</A>
+
+<LI>
+
+<A HREF="#E69E387" >Keyboard Events</A>
+
+<LI>
+
+<A HREF="#E69E388" >Window Crossing Events</A>
+
+<LI>
+
+<A HREF="#E69E389" >Event Masks</A></UL>
+
+<LI>
+
+<A HREF="#E68E273" >Managing the Queue</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E390" >Work Procedures</A>
+
+<LI>
+
+<A HREF="#E69E391" >Using Timeouts</A>
+
+<LI>
+
+<A HREF="#E69E392" >Handling Other Sources</A></UL>
+
+<LI>
+
+<A HREF="#E68E274" >The Graphics Context</A>
+
+<LI>
+
+<A HREF="#E68E275" >Drawing Lines, Points, Arcs, and Polygons</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E393" >Drawing a Line</A>
+
+<LI>
+
+<A HREF="#E69E394" >Drawing a Point</A>
+
+<LI>
+
+<A HREF="#E69E395" >Drawing an Arc</A></UL>
+
+<LI>
+
+<A HREF="#E68E276" >Using Fonts and FontLists</A>
+
+<LI>
+
+<A HREF="#E68E277" >The X Color Model</A>
+
+<LI>
+
+<A HREF="#E68E278" >Pixmaps, Bitmaps, and Images</A>
+
+<LI>
+
+<A HREF="#E68E279" >Summary</A></UL></UL></UL>
+
+<HR ALIGN=CENTER>
+
+<A NAME="E66E32"></A>
+
+<H1 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>32</B></FONT></CENTER></H1>
+
+<BR>
+
+<A NAME="E67E32"></A>
+
+<H2 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>Motif for Programmers</B></FONT></CENTER></H2>
+
+<BR>
+
+<P>This chapter will cover the following topics:
+
+<BR>
+
+<UL>
+
+<LI>The basics of writing Motif applications for Linux
+
+<BR>
+
+<BR>
+
+<LI>Special naming conventions in Motif and X
+
+<BR>
+
+<BR>
+
+<LI>Writing and compiling your first Motif application
+
+<BR>
+
+<BR>
+
+<LI>Revisiting the widget hierarchy
+
+<BR>
+
+<BR>
+
+<LI>Using labels and strings in Motif
+
+<BR>
+
+<BR>
+
+<LI>Using various common widgets
+
+<BR>
+
+<BR>
+
+<LI>Designing layout
+
+<BR>
+
+<BR>
+
+<LI>Using menus
+
+<BR>
+
+<BR>
+
+<LI>Dialog boxes
+
+<BR>
+
+<BR>
+
+<LI>Event handling and other sources of input
+
+<BR>
+
+<BR>
+
+<LI>Colors in X
+
+<BR>
+
+<BR>
+
+<LI>Drawing lines, points, arcs, and polygons
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>A question you might be asking is &quot;Why include a topic on a development system that you have to pay for when just about everything for Linux is free?&quot; Well, if you want to develop any applications for the Common Desktop Environment (CDE), you 
+should know how to program Motif applications. Linux is a mature enough system to enable you this luxury of building portable applications. (Plus, the $150 or so (U.S.) you pay for the Motif license will well pay for itself if you can do the work at home 
+on your Linux system rather than commuting!)
+
+<BR>
+
+<BR>
+
+<A NAME="E68E253"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Writing Motif Applications</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>This chapter introduces you to writing Motif applications. The information here will not be limited to writing applications for Linux alone, because the concepts in this chapter can be applied to other UNIX systems as well.
+
+<BR>
+
+<P>In programming Motif applications, you have to get used to programming in an event-driven environment. A typical C application runs from start to finish at its own pace. When it needs information, the application looks for this information from a source 
+such as a file or the keyboard and (almost always) gets the information as soon as it asks for it. If the information is not available when the application asks for it, the application either waits for it or displays an error message. Also, the order of 
+the incoming data is important for such applications; pieces of data that are out of sequence may cause the application to behave strangely.
+
+<BR>
+
+<P>In the case of event-driven programming, an application must wait for events on an input queue. The queue orders all incoming events in the order they are received. The first message to come in from one end of a queue is the first one to leave the 
+queue. (Such queues are often called FIFOs, for First In, First Out.) An event can be anything from a mouse click, key button, or other event such as a timeout notification.
+
+<BR>
+
+<P>Because events can come in at any time, and in no predefined order, they are referred to as asynchronous events. That is, the order and time of arrival of each event is not deterministic. The application must wait for an event to occur and then proceed 
+based on that event. Thus the term event-driven programming.
+
+<BR>
+
+<P>In the case of X Window, each X Window application has one input queue for all of its incoming events. The application must wait for events on this input queue. Similarly, a server waits for an event from a client and then responds based on the type of 
+event received. This event handling and other aspects of X programming are handled by a toolkit called XtIntrinsics, or Xt for short.
+
+<BR>
+
+<P>In Xt, an application will typically run in a loop forever. This loop is called an event loop. An application enters the loop by calling a function XtAppMainLoop(). While in this event loop, an application will always wait for an event, When the 
+application receives an event, the application handles the event itself or almost always &quot;dispatches&quot; the event to a window or Widget.
+
+<BR>
+
+<P>A Widget registers functions that it wants called when a type of event is received. This function is called a callback function. In most cases, a callback function is independent of the entire application. For example, some Widgets will redraw 
+themselves when a pointer button is clicked in their display area. In this case, they would register a redraw callback function on a button click.
+
+<BR>
+
+<P>Xt also supports actions, which enable applications to register a function with Xt. An action is called when one or more sequences of specific event types are received. For example, pressing Ctrl-X would call the exit function. The mapping of the action 
+to an event is handled via a translation table within Xt. Functions that handle specific events are referred to as event handlers.
+
+<BR>
+
+<P>Look at Figure 32.1 to see how the toolkit exists with Motif. As you can see from the connections in the figure, an application can get to the core Xlib functions through three means: via Motif, via the Xt library, or directly. This flexible hierarchy 
+gives you many options when developing Motif applications because you are at liberty to take full advantage of all functions in all three libraries.
+
+<BR>
+
+<P><B> <A HREF="32rhl01.gif">Figure 32.1. The toolkit hierarchy for X, </B><B>Xt</B><B>, </B><B>Motif.</A></B>
+
+<BR>
+
+<BR>
+
+<A NAME="E68E254"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Naming Conventions</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>By default, most Xlib functions begin with the letter X, but you should not always rely on this being true for all functions. Several macros and functions in the X Window system do not begin with X. For example, BlackColor and WhiteColor are not macros. 
+In general, though, if a name in Xlib begins with X, it's probably a function. If a name begins with a capital letter (A through Z), it's a macro.
+
+<BR>
+
+<P>With Xt, the naming conventions get better, but only slightly. In Xt, macros are not differentiated from functions in any way.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Do not rely on the name of a toolkit function to give you information about whether it's a macro. Read the manual to be absolutely sure.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>In Motif, almost all declarations begin with Xm. Therefore, XmC refers to a class, XmR refers to a resource, XmN refers to a name, and XtN refers to Xt resources used by Motif. Declarations ending with the words WidgetClass define the base class for a 
+type of Widget. A few conventions to remember about parameters for most Xlib functions are
+
+<BR>
+
+<UL>
+
+<LI>Width always to the left of height
+
+<BR>
+
+<BR>
+
+<LI>X always to the left of y
+
+<BR>
+
+<BR>
+
+<LI>Source always to the left of destination
+
+<BR>
+
+<BR>
+
+<LI>Display usually is the first parameter
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>With practice, you will be able to identify the type of parameters to pass and which toolkit a function belongs to, and be able to make some educated guesses as to what parameters an unknown function might expect.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E255"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Writing Your First Motif Application</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Let's look at the basic format for a Motif application, shown in Listing 32.1. (I added line numbers for your benefit.) I will discuss this application in detail. You will build other Motif applications based on the structure in this particular 
+application as you progress through this chapter.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>The line numbers are for reference only.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 32.1. A sample Motif application.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">1 /*
+
+2 ** This is a typical Motif application with one button that
+
+3 ** exits it.
+
+4 */
+
+5 #include &lt;X11/Intrinsic.h&gt;
+
+6 #include &lt;Xm/Xm.h&gt;
+
+7 #include &lt;Xm/Form.h&gt;
+
+8 #include &lt;Xm/PushB.h&gt;
+
+9 void bye(Widget w, XtPointer clientdata, XtPointer calldata);
+
+10 int main(int argc, char **argv)
+
+11 {
+
+12 Widget top;
+
+13 XtAppContext app;
+
+14 Widget aForm;
+
+15 Widget aButton;
+
+16 Arg args[5];
+
+17 /**
+
+18 *** Initialize the toolkit.
+
+19 **/
+
+20 top = XtAppInitialize(&amp;app, &quot;KBH&quot;, NULL, 0, (Cardinal *)&amp;argc,
+
+21 argv, NULL, args, 0);
+
+22 /**
+
+23 *** Create a Form on this top level Widget. This is a nice Widget
+
+24 *** to place other Widgets on top of.
+
+25 **/
+
+26 aForm = XtVaCreateManagedWidget(&quot;Form1&quot;,
+
+27 xmFormWidgetClass, top,
+
+28 XmNheight,90,
+
+29 XmNwidth,200,
+
+30 NULL);
+
+31 /**
+
+32 *** Add a button on the form you just created. Note how this Button
+
+33 *** Widget is connected to the form that it resides on. Only
+
+34 *** left, right, and bottom edges are attached to the form. The
+
+35 *** top edge of the button is not connected to the form.
+
+36 **/
+
+37 aButton = XtVaCreateManagedWidget(&quot;Push to Exit&quot;,
+
+38 xmPushButtonWidgetClass, aForm,
+
+39 XmNheight,20,
+
+40 XmNleftAttachment,XmATTACH_FORM,
+
+41 XmNrightAttachment,XmATTACH_FORM,
+
+42 XmNbottomAttachment,XmATTACH_FORM,
+
+43 NULL);
+
+44 /**
+
+45 *** Call the function &quot;bye&quot; when the PushButton receives
+
+46 *** an activate message; i.e. when the pointer is moved to
+
+47 *** the button and Button1 is pressed and released.
+
+48 **/
+
+49 XtAddCallback( aButton, XmNactivateCallback,
+
+50 bye, (XtPointer) NULL);
+
+51 XtRealizeWidget(top);
+
+52 XtAppMainLoop(app);
+
+53 return(0);
+
+54 }
+
+55 void bye(Widget w, XtPointer clientdata, XtPointer calldata)
+
+56 {
+
+57 exit(0);
+
+58 }</FONT></PRE>
+
+<P>The listing shows an application in which a button attaches itself to the bottom of a form. See Figure 32.2.
+
+<BR>
+
+<P><B> <A HREF="32rhl02.gif">Figure 32.2. The output of </B><B>l32_1.c</B><B>.</A></B>
+
+<BR>
+
+<P>No matter how you resize the window, the button will always be on the bottom. The application does the following things in the order listed:
+
+<BR>
+
+<OL>
+
+<LI>Initializes the toolkit to get a shel<A NAME="I2"></A>l Widget.
+
+<BR>
+
+<BR>
+
+<LI>Makes a Form Widget.
+
+<BR>
+
+<BR>
+
+<LI>Manages all Widgets as they are created.
+
+<BR>
+
+<BR>
+
+<LI>Makes the Button Widget on top of the Form Widget.
+
+<BR>
+
+<BR>
+
+<LI>Attaches a callback function to the button.
+
+<BR>
+
+<BR>
+
+<LI>Realizes the Widget (that is, makes the hierarchy visible).
+
+<BR>
+
+<BR>
+
+<LI>Goes into its event loop.
+
+<BR>
+
+<BR>
+
+</OL>
+
+<P>Let's look at the application in more detail. The include files in the beginning of the listing are required for most applications. Notably, the two files shown in lines 5 and 6 are required for just about any Motif application you'll ever write.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">#include &lt;X11/Intrinsic.h&gt;
+
+#include &lt;Xm/Xm.h&gt;</FONT></PRE>
+
+<P>These two lines declare the definitions for XtIntrinsics and Motif, respectively. In some systems, you may not require the first inclusion, but it's harmless to put it in there because multiple inclusions of Intrinsic.h are permitted. In addition, each 
+Motif Widget requires its own header file. In Listing 32.1, the Widgets Form and PushButton are included via statements in lines 7 and 8:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">#include &lt;Xm/Form.h&gt;
+
+#include &lt;Xm/PushB.h&gt;</FONT></PRE>
+
+<P>The variables in the program are declared in lines 12 through 16:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Widget top;
+
+XtAppContext app;
+
+Widget aForm;
+
+Widget aButton;
+
+int n;</FONT></PRE>
+
+<P>The top, aForm, and aButton represent Widgets. Even though their functions are different, they can all be referred to as Widgets.
+
+<BR>
+
+<P>The XtAppContext type is an opaque type, which means that a Motif programmer does not have to be concerned about how the type is set up. Widgets are opaque types as well; only the items that are required for the programmer are visible.
+
+<BR>
+
+<P>The first executable line of the program calls the XtAppInitialize() function (in line 20) to initialize the Xt toolkit and create an application shell and context for the rest of the application. This value is returned to the Widget top (for top-level 
+shell). This Widget will provide the interface between the window manager and the rest of the Widgets in this application.
+
+<BR>
+
+<P>The application then creates a Form Widget on this top-level Widget. A form widget is used to place other Widgets on top of itself. It is a manager widget because it &quot;manages&quot; other Widgets.
+
+<BR>
+
+<P>There are two steps required for displaying a Widget: First you have to manage (with XtVaCreateManagedWidget) it and then you have to realize (with RealizeWidget) it.
+
+<BR>
+
+<P>Managing a Widget enables it to be visible. If a Widget is unmanaged, it will never be visible. By managing a Widget, the program gives the viewing control over to the windowing system to enable it to display it. Any child Widgets remain invisible, even 
+if they are managed, if the parent Widget is unmanaged.
+
+<BR>
+
+<P>Realizing a Widget actually creates all the subwindows under an application and displays them. Normally only the top-level Widget is realized after all the Widgets are managed. This call will realize all the children of this Widget.
+
+<BR>
+
+<P>Note that realizing a Widget takes time. A typical program will manage all the Widgets except the topmost one. This way the application will only have to realize the topmost Widget when the entire tree has to display only the topmost parent. You have to 
+realize a Widget at least once, but you can manage and &quot;unmanage&quot; Widgets as you want to display or hide them.
+
+<BR>
+
+<P>You can always create and manage a Widget to call XtCreate and XtManageChild in two separate calls. However, the samples in this chapter will use a single call to create and manage a Widget: XtVaCreateManagedWidget.
+
+<BR>
+
+<P>Note the parameters in this call to create the Form Widget shown in lines 26 through 30:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">aForm = XtVaCreateManagedWidget(&quot;Form1&quot;,
+
+xmFormWidgetClass, top,
+
+XmNheight,90,
+
+XmNwidth,200,
+
+NULL);</FONT></PRE>
+
+<P>The first parameter is the name of the new Widget. The second parameter describes the class of the Widget being created. Recall that this is simply the Widget name sandwiched between xm and WidgetClass. So, in this case, it is xmFormWidgetClass. Note 
+the lowercase x for the class pointer. This class pointer is declared in the header files included at the beginning of the file, Form.h.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>As another example, the class pointer for a Label would be called xmLabelWidgetClass and would require the Label.h file. Motif programmers have to be especially wary of the case of all variables.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>The next argument is the parent Widget of this new Widget. In this case, top is the parent of Form1. The top Widget is returned from the call to XtAppInitialize.
+
+<BR>
+
+<P>The remaining arguments specify the parameters of this Widget. In this case you are setting the width and height of the Widget. This list is terminated by a NULL parameter.
+
+<BR>
+
+<P>After the form is created, a button is placed on top of it. A Form Widget facilitates placement of other Widgets on top of it. In this application you will cause the button to &quot;attach&quot; itself to the bottom of the form. The following three 
+lines (40&#151;42) attach themselves to the form:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">XmNleftAttachment,XmATTACH_FORM,
+
+XmNrightAttachment,XmATTACH_FORM,
+
+XmNbottomAttachment,XmATTACH_FORM,</FONT></PRE>
+
+<P>The class of this button is included in the PushB.h file and is called xmPushButtonWidgetClass. The name of this Widget is also the string that is displayed on the face of the button. Note that the parent of this button is the aForm Widget. The 
+hierarchy is as follows:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">top -&gt; is the parent of aForm -&gt; is the parent of -&gt; aButton.</FONT></PRE>
+
+<P>The next step is to add a callback function when the button is pressed. This is done with the call to XtAddCallback, as shown in the following:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">XtAddCallback( aButton, XmNactivateCallback, bye, (XtPointer) NULL);</FONT></PRE>
+
+<P>Here are the parameters for this call:
+
+<BR>
+
+<UL>
+
+<LI>aButton is the PushButton Widget.
+
+<BR>
+
+<BR>
+
+<LI>XmNactivateCallback is the action that will trigger a call to this function.
+
+<BR>
+
+<BR>
+
+<LI>bye is the name of the function that will be called when the action is triggered. (You should declare this function before making this function call, or you will get a compiler error.)
+
+<BR>
+
+<BR>
+
+<LI>NULL is a pointer. This pointer could point to some structure meaningful to function bye.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>This will register the callback function bye for the Widget. Now the topmost Widget, top, is realized. This causes all managed Widgets below top to be realized. The application then goes into a loop that processes all incoming events.
+
+<BR>
+
+<P>The bye function of this program simply exits the application.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E256"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Compiling This Application</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Now comes the tough part of compiling this application into a working application. You will use the gcc compiler that comes with Linux for this purpose.
+
+<BR>
+
+<P>First, check the location of the libraries in your system. Check the /usr/lib/X11 directory for the following libraries: libXm.a, libXt.a, and libX11.a. If possible, use the shared library versions of these libraries with .so extensions followed by some 
+numbers. The advantage of using shared libraries is a smaller Motif application; a typical application like the one you've been working on can be up to 1MB in size because of Motif's overhead.
+
+<BR>
+
+<P>The disadvantage of shared libraries is that your end user may not have the correct version of the library in his path. This does annoy some end users, especially if no fast method of acquiring this resource is available. Also, shipping a shared library 
+with your application may cause you to pay some licensing fees to the original library vendor. From a programmer's perspective, shared libraries are sometimes impossible to use with your debugger. Of course, if your debugger supports them, use it. Check 
+your compiler documentation. In most cases, if you intend to use shared libraries, use the static versions to do your debugging and testing, and then compile the shared version. Always check your vendor's licensing agreement for details on how to ship 
+shared libraries.
+
+<BR>
+
+<P>The application can be compiled with this command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">gcc l32_1.c -o list1 -lXm -lXt -lX11 -I/usr/x11/include -L/usr/x11/lib</FONT></PRE>
+
+<P>The program can be run from a command line if you create a script file:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ cat mk
+
+gcc $1.c -o $1 -lXm -lXt -lX11 -I/usr/x11/include -L/usr/x11/lib</FONT></PRE>
+
+<P>and pass it just the filename without the extension. The best way is to create a makefile, but this script file will work with the examples in this text. So, to compile l32_1.c, you would use the script as follows:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ mk l32_1</FONT></PRE>
+
+<P>You should see the output in Figure 32.2 on your screen. Your application is the one with l32_1 in its frame.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E257"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>The Widget Hierarchy</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The Motif Widget set is a hierarchy of Widget types. (See Figure 32.3.) Any resources provided by a Widget are inherited by all its derived classes. Consider the three most important base classes: Core, XmPrimitive, and XmManager.
+
+<BR>
+
+<P><B> <A HREF="32rhl03.gif">Figure 32.3. The partial Motif hierarchy.</A></B>
+
+<BR>
+
+<BR>
+
+<A NAME="E69E377"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Core</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The Core Widget class provides the basis for all classes. It provides at least the following resources for all Widgets:
+
+<BR>
+
+<UL>
+
+<UL>
+
+<P>XmNx,XmNy: A Widget's position on the display.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNheight, XmNwidth: A Widget's size.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNborderWidth: Set to 1 by default.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNsensitive: A Boolean resource that specifies whether this Widget can receive input.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNcolorMap: The default color map.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNbackground: The background color.
+
+<BR>
+
+</UL></UL>
+
+<P>Check the Motif Programmer's reference manual for a complete listing.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E378"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>XmPrimitive</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The XmPrimitive Widget class inherits all the resources from Core and adds more functionality.
+
+<BR>
+
+<UL>
+
+<UL>
+
+<P>XmNforeground: The foreground color.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNhighlightOnEnter: Changes color when the pointer is within a displayed area of Widget.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNhighlightThickness: If XmNhighlightOnEnter is TRUE, changes the border to this thickness.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNhighlightColor: The color it changes to when highlighted.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNshadowThickness: This is the thickness to show the pseudo-three-dimensional look for which Motif is famous. The default value is 2.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNtopShadowColor and XmNbottomShadowColor: Sets the color for top and bottom lines around a Widget.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNuserData: A pointer available for the programmer's use.
+
+<BR>
+
+</UL></UL>
+
+<P>The XmPrimitive Widget also provides the XmNdestroyCallback resource. This can be set to a function that would do clean-up when a Widget is destroyed. In Motif 1.2.x or later, the XmPrimitive class also provides a XmNhelpCallback that is called when the 
+F1 key is pressed in the Widget's window. This is to allow specific help information for a button, for example.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E379"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>XmManager</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The XmManager class provides support for all Motif Widgets that contain other Widgets. This is never used directly in an application, and it works in a manner similar to the XmPrimitive class. It provides the following resources:
+
+<BR>
+
+<UL>
+
+<UL>
+
+<P>XmNforeground: The color of the pixels in the foreground.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNshadowThickness: For the three-dimensional effect.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNtopShadowColor: For the three-dimensional effect. This is automatically defaulted to a color derived from the background color. This color is used on the left and top borders of a Widget.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNbottomShadowColor: For the three-dimensional effect. This is automatically defaulted to a color derived from the background color. This color is used on the right and bottom borders of a Widget.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNuserData: For storing user data. Could be used as a void pointer.
+
+<BR>
+
+</UL></UL>
+
+<BR>
+
+<A NAME="E68E258"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>The Label Widget</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The Label Widget is used to display strings or pixmaps. Include the Xm/Label.h file in your source file before using this Widget. Some of the resources for this Widget include the following:
+
+<BR>
+
+<UL>
+
+<UL>
+
+<P>XmNalignment: Determines the alignment of the text in this Widget. The acceptable values are XmALIGNNMENT_END, XmALIGNMENT_CENTER, and XmALIGNEMENT_BEGIN for right, center, and left justification, respectively.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNrecomputeSize: A Boolean resource. If set to TRUE, the Widget will resize should the size of the string or pixmap change dynamically. This is the default. If set to FALSE, the Widget will not attempt to resize itself.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNlabelType: The default value of this type is XmSTRING to show strings. However, it can also be set to XmPIXMAP when displaying a pixmap specified in the XmNpixmap resource.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNlabelPixmap: This is used to specify which pixmap to use when the XmNlabelType is set to XmPIXMAP.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNlabelString: This is used to specify which XmString compound string to use for the label. This defaults to the name of the label. See the section, &quot;Strings in Motif: Compound Strings.&quot;
+
+<BR>
+
+</UL></UL>
+
+<P>To get acquainted with left and right justification on a label, see Listing 32.2. The listing also shows how the resources can be set to change Widget parameters programmatically and via the .Xresource files.
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 32.2. How to use a Label Widget.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">/*
+
+** This application shows how to use a Label Widget.
+
+*/
+
+#include &lt;X11/Intrinsic.h&gt;
+
+#include &lt;Xm/Xm.h&gt;
+
+#include &lt;Xm/Form.h&gt;
+
+#include &lt;Xm/PushB.h&gt;
+
+#include &lt;Xm/Label.h&gt; /** &lt;---- for the label **/
+
+void bye(Widget w, XtPointer clientdata, XtPointer calldata);
+
+int main(int argc, char **argv)
+
+{
+
+Widget top;
+
+XtAppContext app;
+
+Widget aForm;
+
+Widget aLabel; /** &lt;---- for the label ***/
+
+Widget aButton;
+
+Arg args[5];
+
+/**
+
+*** Initialize the toolkit.
+
+**/
+
+top = XtAppInitialize(&amp;app, &quot;KBH&quot;, NULL, 0, (Cardinal *)&amp;argc,
+
+argv, NULL, args, 0);
+
+/**
+
+*** Create a Form on this top-level Widget. This is a nice Widget
+
+*** to place other Widgets on top of.
+
+**/
+
+aForm = XtVaCreateManagedWidget(&quot;Form1&quot;,
+
+xmFormWidgetClass, top,
+
+XmNheight,90,
+
+XmNwidth,200,
+
+NULL);
+
+/**
+
+*** Add a button on the form you just created. Note how this Button
+
+*** Widget is connected to the form that it resides on. Only
+
+*** left, right, and bottom edges are attached to the form. The
+
+*** top edge of the button is not connected to the form.
+
+**/
+
+aButton = XtVaCreateManagedWidget(&quot;Push to Exit&quot;,
+
+xmPushButtonWidgetClass, aForm,
+
+XmNheight,20,
+
+XmNleftAttachment,XmATTACH_FORM,
+
+XmNrightAttachment,XmATTACH_FORM,
+
+XmNbottomAttachment,XmATTACH_FORM,
+
+NULL);
+
+/**
+
+*** Now let's create the label for us.
+
+*** The alignment is set to right-justify the label.
+
+*** Note how the label is attached to the parent form.
+
+**/
+
+aLabel = XtVaCreateManagedWidget(&quot;This is a right justified Label&quot;,
+
+xmLabelWidgetClass, aForm,
+
+XmNalignment, XmALIGNMENT_END,
+
+XmNleftAttachment,XmATTACH_FORM,
+
+XmNrightAttachment,XmATTACH_FORM,
+
+XmNtopAttachment,XmATTACH_FORM,
+
+NULL);
+
+/**
+
+*** Call the function &quot;bye&quot; when the PushButton receives
+
+*** an activate message; i.e. when the pointer is moved to
+
+*** the button and Button1 is pressed and released.
+
+**/
+
+XtAddCallback( aButton, XmNactivateCallback, bye, (XtPointer) NULL);
+
+XtRealizeWidget(top);
+
+XtAppMainLoop(app);
+
+return(0);
+
+}
+
+void bye(Widget w, XtPointer clientdata, XtPointer calldata)
+
+{
+
+exit(0);
+
+}</FONT></PRE>
+
+<P>Output is shown in Figure 32.4.
+
+<BR>
+
+<P><B> <A HREF="32rhl04.gif">Figure 32.4. Using the Label Widget.</A></B>
+
+<BR>
+
+<P>Avoid using the \n in the label name. If you have to create a multistring Widget, use the XmStringCreate calls to create a compound string (see the next section). Another way to set the string is by specifying it in the resource file and then merging 
+the resources.
+
+<BR>
+
+<P>The listing shows the Label to be right-justified. You could easily center the string horizontally by not specifying the alignment at all and letting it default to the center value. Alternatively, try setting the alignment parameter to 
+XmALIGNMENT_BEGINNING for a left-justified label.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E259"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Strings in Motif Compound Strings</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>A compound string is Motif's way of representing a string. In a typical C program, a NULL-terminated string is enough to specify a string. In Motif, a string is also defined by the character set it uses. Strings in Motif are referred to as compound 
+strings and are kept in opaque data structures called XmString.
+
+<BR>
+
+<P>In order to get a compound string from a regular C string, use this function call:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">XmString XmStringCreate( char *text, char *tag);</FONT></PRE>
+
+<P>This function will return an equivalent compound string given a pointer to a NULL-terminated C string and a tag. The tag specifies which fontlist to use and is defaulted to XmFONTLIST_DEFAULT_TAG.
+
+<BR>
+
+<P>New lines in C strings have to be handled by special separators in Motif. So to create a string and preserve the newlines, use the call
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">XmString XmStringCreateLtoR( char *text, char *tag);</FONT></PRE>
+
+<P>The compound strings have to be created and destroyed just like any other object. They persist long after that function call that created them returns. Therefore, it's a good idea to free all locally used XmStrings in a function before returning, or 
+else all references to the strings will be lost. The definition of a call to free XmString resources is
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">XmStringFree( XmString s);</FONT></PRE>
+
+<P>You can run similar operations on strings as you would in a C program, except that these string operations are called by different names. Use the function
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Boolean XmStringByteCompare( XmString s1, XmString s2);</FONT></PRE>
+
+<P>for a strict byte-for-byte comparison, and for a just the text comparison, use
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Boolean XmStringCompare( XmString s1, XmString s2);</FONT></PRE>
+
+<P>To check if a string is empty, use
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Boolean XmStringEmpty( XmString s1);</FONT></PRE>
+
+<P>To string two strings together, use
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">XmString XmStringConcat( XmString s1, XmString s2);</FONT></PRE>
+
+<P>XmString Concat() creates a new string by concatenating s2 to s1 and returns it. This returned string has to be freed just like s1 and s2.
+
+<BR>
+
+<P>If you want to use sprintf, use it on a temporary buffer and then create a new string. For example:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">char str[32];
+
+XmString xms;
+
+......
+
+sprintf(str,&quot; pi = %lf, Area = %lf&quot;, PI, TWOPI*r);
+
+xms = XmStringCreateLtoR( str, XmFONTLIST_DEFAULT_TAG);
+
+......
+
+n = 0;
+
+XtSetArg(arg[n],XmNlabelString,xms); n++;
+
+XtSetValues(someLabel, arg, n);
+
+XmStringFree(xms);</FONT></PRE>
+
+<P>If a string value becomes corrupted without your performing any direct actions on it, check to see whether the Widget is not making a copy for its use of the passed XmString. Sometimes a Widget might be keeping only a pointer to the XmString. If that 
+string were freed, the Widget might wind up pointing to bad data.
+
+<BR>
+
+<P>One good way to check is to set an XmString resource, then use the XtGetValues function to get the same resource from the Widget. If the values of the XmStrings are the same, the Widget is not making a copy for itself. If they are not the same, it is 
+safe to free the original because the Widget is making a local copy. The default course of action is to assume that a Widget makes a copy of such resources for itself.
+
+<BR>
+
+<P>A similar test could be used to determine whether a Widget returns a copy of its resource or to a pointer to it. Use the same listing shown previously, but this time use a getValue to get the same resource twice. Then do the comparison to see whether 
+the address for the original string matches the address of the returned value from getValue(): If the values match, the Widget keeps a pointer. If the values do not match, the Widget keeps an internal copy.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">/**
+
+*** This is a sample partial listing of how to check if the
+
+*** data returned on an XtGetValues and an XtSetValues
+
+*** call is a copy or a reference.
+
+***/
+
+#include &quot;Xm/Text.h&quot;
+
+..
+
+Widget w;
+
+XmString x1, x2, x3;
+
+x3 = XmStringCreateLtoR(&quot;test&quot;, XmFONTLIST_DEFAULT_TAG);
+
+XmTextSetString(w,x3);
+
+...
+
+x1 = XmTextGetString(w);
+
+x2 = XmTextGetString(w);
+
+XtWarning(&quot; Checking SetValues&quot;);
+
+if (x1 != x3)
+
+XtWarning(&quot;Widget keeps a copy ! Free original!&quot;);
+
+else
+
+XtWarning(&quot;Widget does not keep a copy! Do NOT free original&quot;);
+
+XtWarning(&quot; Checking GetValues&quot;);
+
+if (x1 == x2)
+
+XtWarning(&quot;Widget returns a copy! Do NOT free&quot;);
+
+else
+
+XtWarning(&quot;Widget does not return a copy! You should free it &quot;);</FONT></PRE>
+
+<P>The XtWarning() message is especially useful for debugging the progress of programs. The message is relayed to the stderr of the invoking application. If this is an xterm, you will see an error message on that terminal window. If no stderr is available 
+for the invoke mechanism, the message is lost.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>The XtSetArg macro is defined as
+
+<BR>&lt;LC2&gt;#define XtSetArg(arg,n,d) \
+
+<BR>((void)((arg).name = (n).(arg).value = (XtArgVal)))
+
+<BR>Do not use XtSetArg(arg[n++]_ as this will increment n twice.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E68E260"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>The XmPushButton Widget Class</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The XmPushButton is perhaps the most heavily used Widget in Motif. Listings 32.1 and 32.2 show the basic usage for PushButton. When a button is pressed in the PushButton area, the button goes into an armed state (a state between not pressed and going to 
+pressed). The color of the button changes to reflect this state, and you can set this color by using XmNarmColor. This color is shown when the XmNfillOnArm resource is set to TRUE.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>If the armColor for a PushButton does not seem to be working, try setting the XmNfillOnArm resource to TRUE.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>The callback functions for a PushButton are the following:
+
+<BR>
+
+<UL>
+
+<UL>
+
+<P>XmNarmCallback: Called when a PushButton is armed.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNactivateCallback: Called when a button is released in the Widgets area while the Widget is armed. This is not invoked if the pointer is outside the Widget when the button is released.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNdisarmCallback: Called when a button is released with the pointer outside the Widget area while the Widget was armed.
+
+<BR>
+
+</UL></UL>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>If a callback has more than one function registered for a Widget, all of the functions will be called, but not necessarily in the order they were registered. Also, do not rely on the same order being preserved on other systems. If you want more than 
+one function performed during a callback, sandwich them in one function call.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>In Listing 32.2, you saw how a callback function was added to a PushButton with the XtAddCallback function. The same method can be used to call other functions for other actions such as the XmNdisarmCallback.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E261"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>The </B><B>XmToggleButton</B><B> Widget Class</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>This class is a subclass of the XmLabel Widget class. You can have two types of buttons: one of many or n of many. When using one of many, the user can make only one selection from many items. (See Figure 32.5.) When using n of many, the user can select 
+many options. (See Figure 32.6.) Note the way the buttons are drawn, with one of many shown as diamonds and n of many shown as boxes.
+
+<BR>
+
+<P><B> <A HREF="32rhl05.gif">Figure 32.5. One of many toggle buttons.</A></B>
+
+<BR>
+
+<P><B> <A HREF="32rhl06.gif">Figure 32.6. Using </B><B>n</B><B> of many toggle buttons.</A></B>
+
+<BR>
+
+<P>The resources for this Widget include the following:
+
+<BR>
+
+<UL>
+
+<UL>
+
+<P>XmNindicatorType: Determines the style. Can be set to XmN_OF_MANY or XmONE_OF_MANY (the default).
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNspacing: The number of pixels between the button and its label.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNfillOnSelect: The color of the button changes to reflect a set when the XmNfillOnArm resource is set to TRUE.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNfillColor: The color to show when set.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNset: A Boolean resource indicating whether the button is set or not. If this resource is set from a program, the button will automatically reflect the change.
+
+<BR>
+
+</UL></UL>
+
+<P>It's easier to use the convenience functions:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">XmToggleButtonGetState(Widget w)</FONT></PRE>
+
+<P>to get the Boolean state for a Widget, and to use
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">XmToggleButtonSetState(Widget w, Boolean b)</FONT></PRE>
+
+<P>to set the value for a ToggleButton Widget.
+
+<BR>
+
+<P>Similar to the PushButton class, the ToggleButton class has three callbacks:
+
+<BR>
+
+<UL>
+
+<UL>
+
+<P>XmNarmCallback: Called when the ToggleButton is armed.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNvalueChangedCallback: Called when a button is released in the Widgets area while the Widget is armed. This is not invoked if the pointer is outside the Widget when the button is released.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNdisarmCallback: Called when a button is released with the pointer outside the Widget area while the Widget was armed.
+
+<BR>
+
+</UL></UL>
+
+<P>For the callbacks, the data passed into the Callback function is a structure of type:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">typedef struct {
+
+int reason;
+
+Xevent *event;
+
+int set;
+
+} XmToggleButtonCallbackStruct;</FONT></PRE>
+
+<P>The reason for the callback is one of the following events: XmCR_ARM, XmCR_DISARM, or XmCR_ACTIVATE. The event is a pointer to XEvent, which caused this callback. The set value is 0 if the item is not set, or nonzero if set. Look at Listing 32.3, which 
+shows the use of ToggleButton. The ToggleButtons are arranged in one column via the RowColumn Widget, discussed later in this chapter.
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 32.3. Using ToggleButton in Motif.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">/*
+
+** This is a typical Motif application that demonstrates the use of
+
+** a ToggleButton Widget(s) stored on a RowColumn Widget.
+
+*/
+
+#include &lt;X11/Intrinsic.h&gt;
+
+#include &lt;Xm/Xm.h&gt;
+
+#include &lt;Xm/Form.h&gt;
+
+#include &lt;Xm/ToggleB.h&gt;
+
+#include &lt;Xm/RowColumn.h&gt;
+
+#include &lt;Xm/PushB.h&gt;
+
+void bye(Widget w, XtPointer clientdata, XtPointer calldata);
+
+#define MAX_BTNS 4
+
+int main(int argc, char **argv)
+
+{
+
+Widget top;
+
+XtAppContext app;
+
+Widget aForm;
+
+Widget aButton;
+
+Widget aRowCol;
+
+char str[32];
+
+Widget aToggle[MAX_BTNS];
+
+Arg args[5];
+
+int i;
+
+/**
+
+*** Initialize the toolkit.
+
+**/
+
+top = XtAppInitialize(&amp;app, &quot;KBH&quot;, NULL, 0, (Cardinal *)&amp;argc,
+
+argv, NULL, args, 0);
+
+/**
+
+*** Create a Form on this top-level Widget. This is a nice Widget
+
+*** to place other Widgets on top of.
+
+**/
+
+aForm = XtVaCreateManagedWidget(&quot;Form1&quot;,
+
+xmFormWidgetClass, top,
+
+XmNheight,150,
+
+XmNwidth,100,
+
+NULL);
+
+/**
+
+*** Add a button on the form you just created. Note how this Button
+
+*** Widget is connected to the form that it resides on. Only
+
+*** left, right, and bottom edges are attached to the form. The
+
+*** top edge of the button is not connected to the form.
+
+**/
+
+aButton = XtVaCreateManagedWidget(&quot;Push to Exit&quot;,
+
+xmPushButtonWidgetClass, aForm,
+
+XmNheight,20,
+
+XmNleftAttachment,XmATTACH_FORM,
+
+XmNrightAttachment,XmATTACH_FORM,
+
+XmNbottomAttachment,XmATTACH_FORM,
+
+NULL);
+
+#define DO_RADIO
+
+/**
+
+*** A quick intro to the hierarchy in Motif.
+
+*** Let's create a RowColumn Widget to place all ToggleButtons.
+
+*** Note how the RowColumn button attaches itself to
+
+*** the top of the button.
+
+**/
+
+aRowCol = XtVaCreateManagedWidget(&quot;rowcol&quot;,
+
+xmRowColumnWidgetClass, aForm,
+
+#ifdef DO_RADIO
+
+XmNradioBehavior, TRUE,
+
+XmNradioAlwaysOne, TRUE,
+
+#endif
+
+XmNleftAttachment,XmATTACH_FORM,
+
+XmNrightAttachment,XmATTACH_FORM,
+
+XmNtopAttachment,XmATTACH_FORM,
+
+XmNbottomAttachment,XmATTACH_WIDGET,
+
+NULL);
+
+/**
+
+*** Make ToggleButtons on this form called RowCol. Attach them all to the
+
+*** RowColumn Widget on top of the form.
+
+***
+
+*** Note the radioBehavior setting
+
+**/
+
+for (i=0; i&lt; MAX_BTNS; i++)
+
+{
+
+sprintf(str,&quot;Button %d&quot;,i);
+
+aToggle[i] = XtVaCreateManagedWidget(str,
+
+xmToggleButtonWidgetClass, aRowCol,
+
+XmNradioBehavior, TRUE,
+
+NULL);
+
+}
+
+XmToggleButtonSetState(aToggle[0],TRUE, FALSE);
+
+/**
+
+*** Call the function &quot;bye&quot; when the PushButton receives
+
+*** an activate message; i.e. when the pointer is moved to
+
+*** the button and Button1 is pressed and released.
+
+**/
+
+XtAddCallback( aButton, XmNactivateCallback, bye, (XtPointer) NULL);
+
+XtRealizeWidget(top);
+
+XtAppMainLoop(app);
+
+return(0);
+
+}
+
+void bye(Widget w, XtPointer clientdata, XtPointer calldata)
+
+{
+
+exit(0);
+
+}</FONT></PRE>
+
+<P>See Figure 32.6, shown previously, for the output of this listing with the #define DO_RADIO line commented out. By defining the DO_RADIO label, you can make this into a Radio Button application. That is, only one of the buttons can be selected at one 
+time. See Figure 32.5, shown previously, for the radio behavior of these buttons.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E262"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Convenience Functions</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Usually the way to set resources for a Widget is at the time of the Widget's creation. This is done either with the XtVaCreateManagedWidget call or with the XmCreateYYY call, where YYY is the name of the Widget you are creating.
+
+<BR>
+
+<P>This test uses the variable argument call to create and manage Widgets. I do it simply because it's easier for me to see what resources I am setting and create them all in one function call. You might have a personal preference to do it in two steps. 
+Either way is fine. Keep in mind, though, that if you do use the XmCreateYYY call, you have to set the resource settings in a list of resource sets. Listing 32.4 is an example of creating a Label Widget. This is a function that creates a Label Widget on a 
+Widget given the string x.
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 32.4. Sample convenience function for creating a Label on a </B><B>form.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">/**
+
+*** This is a sample convenience function to create a label
+
+*** Widget on a parent. The string must be a compound string.
+
+**/
+
+Widget makeLabel( Widget onThis, XmString x)
+
+{
+
+Widget lbl;
+
+Cardinal n;
+
+Arg arg[5];
+
+n = 0;
+
+XtSetArg(arg[n], XmNalignment, XmALIGNMENT_BEGIN); n++;
+
+XtSetArg(arg[n], XmNlabelString, x); n++;
+
+lbl = XmCreateLabel(&quot;A Label&quot;, onThis, arg, n);
+
+XtManageChild(lbl);
+
+return(lbl);
+
+}</FONT></PRE>
+
+<P>Or you could use the variable argument lists in creating this Label, as shown in Listing 32.5.
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 32.5. Creating a label.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">/**
+
+*** Another way of making a label on a parent.
+
+**/
+
+Widget makeLabel( Widget onThis, XmString x)
+
+{
+
+Widget lbl;
+
+lbl = XmCreateManagedWidget(&quot;A Label&quot;,
+
+xmLabelWidgetClass, onThis,
+
+XmNalignment, XmALIGNMENT_BEGIN,
+
+XmNlabelString, x,
+
+NULL);
+
+return(lbl);
+
+}</FONT></PRE>
+
+<P>In either case, it's your judgment call as to which one to use. The variable list method of creating is a bit easier to read and maintain. But what about setting values after a Widget has been created? This would be done via a call to XtSetValue with a 
+list and count of resource settings. For example, to change the alignment and text of a Label, you would use
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">n = 0;
+
+XtSetArg(arg[n], XmNalignment, XmALIGNMENT_BEGIN); n++;
+
+XtSetArg(arg[n], XmNlabelString, x); n++;
+
+XtSetValues(lbl,arg,n);</FONT></PRE>
+
+<P>Similarly, to get the values for a Widget, you would use XtGetValues:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Cardinal n; /* usually an integer or short... use Cardinal to be safe */
+
+int align;
+
+XmString x;
+
+...
+
+n = 0;
+
+XtSetArg(arg[n], XmNalignment, &amp;align); n++;
+
+XtSetArg(arg[n], XmNlabelString, &amp;x); n++;
+
+XtGetValues(lbl,arg,n);</FONT></PRE>
+
+<P>In the case of other Widgets, let's use the Text Widget. This setting scheme is hard to read, quite clumsy, and prone to typos. For example, when you get a string for a Text Widget, should you use x or address of x?
+
+<BR>
+
+<P>For this reason, Motif provides convenience functions. For example, in the ToggleButton Widget class, rather than using the combination of XtSetValue and XtSetArg calls to get the state, you would use one call, XmToggleButtonGetState(Widget w), to get 
+the state. These functions are valuable code savers when writing complex applications. In fact, you should write similar convenience functions whenever you can't find one that suits your needs.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E263"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>The List Widget</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>This displays a list of items from which the user selects. The list is created from a list of compound strings. Users can select either one or many items from this list. The resources for this Widget include the following:
+
+<BR>
+
+<UL>
+
+<UL>
+
+<P>XmNitemCount: Determines the number of items in the list.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNitems: An array of compound strings. Each entry corresponds to an item in the list. Note that a List Widget makes a copy for all items in its list when using XtSetValues; however, it returns a pointer to its internal structure when returning values 
+to a XtGetValues call. Therefore, do not free this pointer from XtGetValues.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNselectedItemCount: The number of items currently selected.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNselectedItems: The list of selected items.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNvisibleItemCount: The number of items to display at one time.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNselectionPolicy: Used to set single or multiple selection capability. If set to XmSINGLE_SELECT, the user will be able to only select one item. Each selection will invoke the XmNsingleSelectionCallback. Selecting one item will deselect a previously 
+selected item. If set to XmEXTENDED_SELECT, the user will be able to select a block of contiguous items in a list. Selecting a new item or more will deselect another previously selected item and will invoke the XmNmultipleSelection callback. If set to 
+XmMULTIPLE_SELECT, the user will be able to select multiple items in any order. Selecting one item will not deselect another previously selected item but will invoke the XmNmultipleSelection callback. If set to XmBROWSE_SELECT, the user can move the 
+pointer (with the button pressed) across all the selections, but only one item will be selected. Unlike the XmSINGLE_SELECT setting, the user does not have to press and release the button on an item to select it. The XmbrowseSelectionCallback will be 
+invoked when the button is finally released on the last item browsed.
+
+<BR>
+
+</UL></UL>
+
+<P>It is easier to create the List Widget with a call to XmCreateScrolledList() because this will automatically create a scrolled window for you. However, scrolled windows may prove to be slow when compared to XtSetValues() calls. If you feel that speed is 
+important, consider using XtSetValues(). You should create the list for the first time by using XtSetValues.
+
+<BR>
+
+<P>The following convenience functions will make working with List Widgets easier.
+
+<BR>
+
+<UL>
+
+<UL>
+
+<P>XmListAddItem(Widget w, XmString x, int pos)
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>This will add the compound string x to the List Widget w at the one relative position pos. If pos is 0, the item is added to the back of the list. This function is very slow, so do not use it to create a newlist, because it rearranges the entire list 
+before returning.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmListAddItems(Widget w, XmString *x, int count, int pos);
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>This will add the array of compound strings x of size count to the List Widget w from the position pos. If pos is 0, the item is added to the back of the list. This function is slow, too, so do not use it to create a newlist.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmDeleteAllItems(Widget w)
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>This will delete all the items in a list. It's better to write a convenience function to do
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>n = 0; XtSetArg(arg[n], XmNitems, NULL); n++; XtSetArg(arg[n], XmNitemCount, 0); n++; XtSetValues(mylist,arg,n);
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmDeleteItem(Widget w, XmString x)
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Deletes the item x from the list. This is a slow function.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmDeleteItems(Widget w, XmString *x, int count)
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Deletes all the count items in x from the list. This is an even slower function. You might be better off installing a new list.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmListSelectItem(Widget w, XmString x, Boolean Notify)
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Programmatically selects x in the list. If Notify is True, the appropriate callback function is also invoked.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmListDeselectItem(Widget w, XmString x)
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Programmatically deselects x in the list.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmListPos( Widget w, XmString x)
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Returns the position of x in the list. Returns 0 if not found.
+
+<BR>
+
+</UL></UL>
+
+<P>Let's use the List Widget for a sample application. See Listing 32.6.
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 32.6. Using List Widgets.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">/*
+
+** This is a typical Motif application for using a list Widget
+
+*/
+
+#include &lt;X11/Intrinsic.h&gt;
+
+#include &lt;Xm/Xm.h&gt;
+
+#include &lt;Xm/Form.h&gt;
+
+#include &lt;Xm/PushB.h&gt;
+
+#include &lt;Xm/List.h&gt; /*** for the list Widget ***/
+
+#include &lt;Xm/ScrolledW.h&gt; /*** for the scrolled window Widget ***/
+
+/*** Some items for the list ***/
+
+#define NUMITEMS 8
+
+char *groceries[NUMITEMS] = {
+
+&quot;milk&quot;,
+
+&quot;eggs&quot;,
+
+&quot;bread&quot;,
+
+&quot;pasta&quot;,
+
+&quot;cd-rom&quot;, /** I don't go out often!**/
+
+&quot;bananas&quot;,
+
+&quot;yogurt&quot;,
+
+&quot;oranges&quot;,
+
+};
+
+/* For the list Widget, we need compound strings */
+
+XmString xarray[NUMITEMS];
+
+#define USE_SCROLL
+
+void bye(Widget w, XtPointer clientdata, XtPointer calldata);
+
+int main(int argc, char **argv)
+
+{
+
+Widget top;
+
+XtAppContext app;
+
+Widget aForm;
+
+Widget aList;
+
+Widget aButton;
+
+Arg args[15];
+
+int i;
+
+/**
+
+*** Initialize the toolkit.
+
+**/
+
+top = XtAppInitialize(&amp;app, &quot;KBH&quot;, NULL, 0, (Cardinal *)&amp;argc,
+
+argv, NULL, args, 0);
+
+/**
+
+*** Create a Form on this top-level Widget. This is a nice Widget
+
+*** to place other Widgets on top of.
+
+**/
+
+aForm = XtVaCreateManagedWidget(&quot;Form1&quot;,
+
+xmFormWidgetClass, top,
+
+XmNheight,90,
+
+XmNwidth,200,
+
+NULL);
+
+/**
+
+*** Add a button on the form you just created. Note how this Button
+
+*** Widget is connected to the form that it resides on. Only
+
+*** left, right, and bottom edges are attached to the form. The
+
+*** top edge of the button is not connected to the form.
+
+**/
+
+aButton = XtVaCreateManagedWidget(&quot;Push to Exit&quot;,
+
+xmPushButtonWidgetClass, aForm,
+
+XmNheight,20,
+
+XmNleftAttachment,XmATTACH_FORM,
+
+XmNrightAttachment,XmATTACH_FORM,
+
+XmNbottomAttachment,XmATTACH_FORM,
+
+NULL);
+
+/**
+
+*** Now create a list of items for this Widget.
+
+**/
+
+for (i=0; i &lt; NUMITEMS; i++)
+
+xarray[i] = XmStringCreateLtoR(groceries[i],
+
+XmSTRING_DEFAULT_CHARSET);
+
+#ifndef USE_SCROLL
+
+/**
+
+*** Then create the list Widget itself. Note this will not
+
+*** put up a scroll bar for you.
+
+**/
+
+aList = XtVaCreateManagedWidget(&quot;Push to Exit&quot;,
+
+xmListWidgetClass, aForm,
+
+XmNitemCount, NUMITEMS,
+
+XmNitems, xarray,
+
+XmNvisibleItemCount, 4,
+
+XmNscrollBarDisplayPolicy, XmAS_NEEDED,
+
+XmNleftAttachment,XmATTACH_FORM,
+
+XmNrightAttachment,XmATTACH_FORM,
+
+XmNtopAttachment,XmATTACH_FORM,
+
+XmNbottomAttachment,XmATTACH_WIDGET,
+
+XmNbottomWidget,aButton,
+
+NULL);
+
+#else
+
+/**
+
+*** Alternatively, use the scrolled window with the following code:
+
+**/
+
+i = 0;
+
+XtSetArg(args[i], XmNitemCount, NUMITEMS); i++;
+
+XtSetArg(args[i], XmNitems, xarray); i++;
+
+XtSetArg(args[i], XmNvisibleItemCount, 4); i++;
+
+XtSetArg(args[i], XmNscrollBarDisplayPolicy, XmAS_NEEDED); i++;
+
+XtSetArg(args[i], XmNleftAttachment,XmATTACH_FORM); i++;
+
+XtSetArg(args[i], XmNrightAttachment,XmATTACH_FORM); i++;
+
+XtSetArg(args[i], XmNtopAttachment,XmATTACH_FORM); i++;
+
+XtSetArg(args[i], XmNbottomAttachment,XmATTACH_WIDGET); i++;
+
+XtSetArg(args[i], XmNbottomWidget,aButton); i++;
+
+aList = XmCreateScrolledList(aForm,&quot;groceryList&quot;,args,i);
+
+XtManageChild(aList);
+
+#endif
+
+/**
+
+*** Call the function &quot;bye&quot; when the PushButton receives
+
+*** an activate message; i.e. when the pointer is moved to
+
+*** the button and Button1 is pressed and released.
+
+**/
+
+XtAddCallback( aButton, XmNactivateCallback, bye, (XtPointer) NULL);
+
+XtRealizeWidget(top);
+
+XtAppMainLoop(app);
+
+return(0);
+
+}
+
+void bye(Widget w, XtPointer clientdata, XtPointer calldata)
+
+{
+
+exit(0);
+
+}</FONT></PRE>
+
+<P>The output is shown in Figure 32.7.
+
+<BR>
+
+<P><B> <A HREF="32rhl07.gif">Figure 32.7. Using the List Widget.</A></B>
+
+<BR>
+
+<BR>
+
+<A NAME="E68E264"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>XmScrollBar</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The ScrollBar Widget enables the user to select a value from a range. Its resources include the following:
+
+<BR>
+
+<UL>
+
+<UL>
+
+<P>XmNvalue: The value representing the location of the slider.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNminimum and XmNmaximum: The range of values for the slider.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNshowArrows: Boolean value if set shows arrows at either end.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNorientation: Set to XmHORIZONTAL for a horizontal bar or XmVERTICAL (default) for a vertical bar.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNprocessingDirection: Set to either XmMAX_ON_LEFT or XmMAX_ON_RIGHT for XmHORIZONTAL orientation, or XmMAX_ON_TOP or XmMAX_ON_BOTTOM for XmVERTICAL
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNincrement: The increment per move.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNpageIncrement: The increment if a button is pressed in the arrows or the box. This is defaulted to 10.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNdecimalPoint: Shows the decimal point from the right.
+
+<BR>
+
+</UL></UL>
+
+<P>Note that all values in the ScrollBar Widget's values are given as integers. Look at the radio station selection example in Listing 32.7. A point to note in this listing is that the exit button for the application is offset on the left and right by 20 
+pixels. This is done via the XmATTACH_FORM value for each side (left or right) being offset by the value in XmNleftOffset and XmNrightOffset, respectively. See Listing 32.3 on how to attach items to a Form.
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 32.7. Using the Scale Widget.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">/*
+
+** An application to show the radio station selection via a scale.
+
+*/
+
+#include &lt;X11/Intrinsic.h&gt;
+
+#include &lt;Xm/Xm.h&gt;
+
+#include &lt;Xm/Form.h&gt;
+
+#include &lt;Xm/PushB.h&gt;
+
+#include &lt;Xm/Scale.h&gt;
+
+#define MAX_SCALE 1080
+
+#define MIN_SCALE 800
+
+void bye(Widget w, XtPointer clientdata, XtPointer calldata);
+
+void myfunction(Widget w, XtPointer dclient, XmScaleCallbackStruct *p);
+
+int main(int argc, char **argv)
+
+{
+
+Widget top;
+
+XtAppContext app;
+
+Widget aForm;
+
+Widget aScale;
+
+Widget aButton;
+
+XmString xstr; /* for the scale title */
+
+Arg args[5];
+
+/**
+
+*** Initialize the toolkit.
+
+**/
+
+top = XtAppInitialize(&amp;app, &quot;ScaleMe&quot;, NULL, 0, (Cardinal *)&amp;argc,
+
+argv, NULL, args, 0);
+
+/**
+
+*** Create a Form on this top-level Widget. This is a nice Widget
+
+*** to place other Widgets on top of.
+
+**/
+
+aForm = XtVaCreateManagedWidget(&quot;Form1&quot;,
+
+xmFormWidgetClass, top,
+
+XmNheight,90,
+
+XmNwidth,240,
+
+NULL);
+
+/**
+
+*** Add a button on the form you just created. Note how this Button
+
+*** Widget is connected to the form that it resides on. Only
+
+*** left, right, and bottom edges are attached to the form. The
+
+*** top edge of the button is not connected to the form.
+
+**/
+
+aButton = XtVaCreateManagedWidget(&quot;Push to Exit&quot;,
+
+xmPushButtonWidgetClass, aForm,
+
+XmNheight,20,
+
+XmNleftAttachment,XmATTACH_FORM,
+
+XmNleftOffset,20,
+
+XmNrightAttachment,XmATTACH_FORM,
+
+XmNrightOffset,20,
+
+XmNbottomAttachment,XmATTACH_FORM,
+
+NULL);
+
+/**
+
+*** Create the radio FM selection scale here.
+
+*** Note that since we have to work with integers,
+
+*** we have to set the frequency scale to 10x actual
+
+*** value and then set the decimal point explicitly
+
+*** for the display. No provision is made for selecting
+
+*** odd frequencies.
+
+**/
+
+xstr = XmStringCreateLtoR(&quot;Radio Stations&quot;, XmSTRING_DEFAULT_CHARSET);
+
+aScale = XtVaCreateManagedWidget(&quot;sample it&quot;,
+
+xmScaleWidgetClass, aForm,
+
+XmNheight,40,
+
+XmNminimum, 800,
+
+XmNvalue, 1011,
+
+XmNmaximum, 1080,
+
+XmNdecimalPoints,1,
+
+XmNtitleString,xstr,
+
+XmNshowValue,TRUE,
+
+XmNorientation,XmHORIZONTAL,
+
+XmNprocessingDirection,XmMAX_ON_RIGHT,
+
+XmNleftAttachment,XmATTACH_FORM,
+
+XmNrightAttachment,XmATTACH_FORM,
+
+XmNtopAttachment,XmATTACH_FORM,
+
+XmNbottomAttachment,XmATTACH_WIDGET,
+
+XmNbottomAttachment,aButton,
+
+NULL);
+
+XmStringFree(xstr);
+
+/**
+
+*** Call the function &quot;bye&quot; when the PushButton receives
+
+*** an activate message; i.e. when the pointer is moved to
+
+*** the button and Button1 is pressed and released.
+
+**/
+
+XtAddCallback( aButton, XmNactivateCallback, bye, (XtPointer) NULL);
+
+XtAddCallback( aScale, XmNvalueChangedCallback, myfunction, (XtPointer) NULL);
+
+XtRealizeWidget(top);
+
+XtAppMainLoop(app);
+
+return(0);
+
+}
+
+void bye(Widget w, XtPointer clientdata, XtPointer calldata)
+
+{
+
+exit(0);
+
+}
+
+void myfunction(Widget w, XtPointer dclient, XmScaleCallbackStruct *p)
+
+{
+
+int k;
+
+k = p-&gt;value;
+
+if ((k &amp; 0x1) == 0) /** % 2 is zero ** check limits and increase **/
+
+{
+
+k++;
+
+if (k &gt;= MAX_SCALE) k = MIN_SCALE + 1;
+
+if (k &lt;= MIN_SCALE) k = MAX_SCALE - 1;
+
+XmScaleSetValue(w,k); /** this will redisplay it too **/
+
+}
+
+}</FONT></PRE>
+
+<P>In the case of FM selections, you would want the bar to show odd numbers. A good exercise for you would be to allow only odd numbers in the selection. Hint: Use XmNvalueChangedCallback as follows:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">XtAddCallback(aScale, XmNvalueChangedCallback, myfunction);</FONT></PRE>
+
+<P>Output is shown in Figure 32.8.
+
+<BR>
+
+<P><B> <A HREF="32rhl08.gif">Figure 32.8. Using the Scale Widget.</A></B>
+
+<BR>
+
+<P>The callback sends a pointer to the structure of type XmScaleCallbackStruct to a function called myfunction. A sample function, myfunction(), follows:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">/**
+
+*** Partial listing for not allowing even numbers for FM selection.
+
+**/
+
+#define MAX_SCALE 1080
+
+#define MIN_SCALE 800
+
+static void myfunction(Widget w, XtPointer dclient, XmScaleCallbackStruct *p)
+
+{
+
+int k;
+
+k = p-&gt;value;
+
+if ((k &amp; 0x1) == 0) /** % 2 is zero ** check limits and increase **/
+
+{
+
+k++;
+
+if (k &gt;= MAX_SCALE) k = MIN_SCALE + 1;
+
+if (k &lt;= MIN_SCALE) k = MAX_SCALE - 1;
+
+XmScaleSetValue(w,k); /** this will redisplay it too **/
+
+}
+
+}</FONT></PRE>
+
+<BR>
+
+<A NAME="E68E265"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Text Widgets</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>This Widget enables the user to type in text and provides full text-editing capabilities. This text could be multiline or single-line. If you are sure you want only single-line input from the user, you can specify the TextField Widget. This is simply a 
+scaled-down version of the Text Widget. The resources for both are the same unless explicitly stated. They include the following:
+
+<BR>
+
+<UL>
+
+<UL>
+
+<P>XmNvalue: A character string, just like in C. This is different from Motif 1.1 or older, in which this value used to be a compound string. If you have Motif 1.2 or later, this will be C string.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNmarginHeight and XmNmarginWidth: The number of pixels on either side of the Widget. The default is five pixels.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNmaxLength: Sets the limit on the number of characters in the XmNvalue resource.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNcolumns: The number of characters per line.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNcursorPosition: The number of characters at the cursor position from the beginning of the text file.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNeditable: Boolean value. If set to TRUE, enables the user to insert text.
+
+<BR>
+
+</UL></UL>
+
+<P>The callbacks for this Widget are
+
+<BR>
+
+<UL>
+
+<UL>
+
+<P>XmNactivateCallback: Called when the user presses the Enter key.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNfocusCallback: Called when the Widget receives focus from the pointer.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNlosingFocusCallback: Called when the Widget loses focus from the pointer.
+
+<BR>
+
+</UL></UL>
+
+<P>This Widget has several convenience functions:
+
+<BR>
+
+<UL>
+
+<UL>
+
+<P>XmTextGetString(Widget w) returns a C string (char *).
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmTextSetString(Widget w, char *s) sets a string for a Widget.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmTextSetEditable(Widget w, Boolean TRUEOrFALSE) sets the Widget's editable string.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmTextInsert(Widget w, XmTextPosition pos, char *s) sets the text at the position defined by pos. This XmTextPosition is an opaque item defining the index in the text array.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmTextShowPosition(Widget w, XmTextPosition p) scrolls to show the rest of the string at position p.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmTextReplace(Widget w, XmTextPosition from, XmTextPosition to, char *s) replaces the string starting from the location from inclusive to the position to, inclusive with the characters in string s.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmTextRemove(Widget w) clears the text in a string.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmTextCopy(Widget w, Time t) copies the currently selected text to the Motif clipboard. The Time t value is derived from the most recent XEvent (usually in a callback), which is used by the clipboard to take the most recent entry.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmTextCut(Widget w, Time t) is similar to XmTextCopy but removes the selected text from the text's buffer.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmTextPaste(Widget w) pastes the contents of the Motif clipboard onto the text area at the current cursor (insertion) position.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmTextClearSelection(Widget w, XmTextPosition p, XmTextPosition q, Time t) selects the text from location p to location q.
+
+<BR>
+
+</UL></UL>
+
+<P>In the following example, you could construct a sample editor application using the Text Widget. For the layout of the buttons, you would want to use Widgets of the XmManager class to manage the layout for you rather than having to do it in your own 
+application. These Manager Widgets are
+
+<BR>
+
+<UL>
+
+<UL>
+
+<P>XmBulletinBoard
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmRowColumn
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmForm
+
+<BR>
+
+</UL></UL>
+
+<BR>
+
+<A NAME="E68E266"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>XmBulletinBoard Widgets</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The BulletinBoard class enables the programmer to lay out Widgets by specifying their XmNx and XmNy resources. These values are relative to the top-left corner of the BulletinBoard Widget. The BulletinBoard will not move its child Widgets around by 
+itself. If a Widget resizes, it's the application's responsibility to resize and restructure its Widgets on the bulletin board.
+
+<BR>
+
+<P>The resources for the Widget are as follows:
+
+<BR>
+
+<UL>
+
+<UL>
+
+<P>XmNshadowType: Specifies the type of shadow for this Widget. It can be set to XmSHADOW_OUT (the default), XmSHADOW_ETCHED_IN, XmSHADOW_ETCHED_OUT, or XmSHADOW_IN.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNshadowThickness: The number of pixels for the shadow. This is defaulted to 0 to not see a shadow.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNallowOverlap: Enables the children to be overlapped as they are laid on the Widget. This is a Boolean resource and is defaulted to TRUE.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNresizePolicy: Specifies the resize policy for managing itself. If set to XmRESIZE_NONE, it will not change its size. If set to XmRESIZE_ANY, the default, it will grow or shrink to attempt to accommodate all of its children automatically. If set to 
+XmRESIZE_GROW, it will grow only, never shrink, automatically.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNbuttonFontList: Specifies the font for all XmPushButton children.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNlabelFontList: Specifies the default font for all Widgets derived from XmLabel.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNtextFontList: Specifies the default font for all Text, TextField, and XmList children.
+
+<BR>
+
+</UL></UL>
+
+<P>It also provides the callback XmNfocusCallback, which is called when any children of the BulletinBoard receive focus.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E267"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>XmRowColumn Widgets</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The XmRowColumn Widget class orders its children in a row-and-column (or row major) fashion. This is used to set up menus, menu bars, and radio buttons. The resources provided by this Widget include the following:
+
+<BR>
+
+<UL>
+
+<UL>
+
+<P>XmNorientation: XmHORIZONTAL for a row major layout of its children; XmVERTICAL for a column major layout.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNnumColumns: Specifies the number of rows for a vertical Widget and the number of columns for a horizontal Widget.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNpacking: Determines how the children are packed. XmPACK_TIGHT enables the children to specify their own size. It fits children in a row (or column if XmHORIZONTAL) and then starts a new row if no space is available. XmPACK_NONE forces 
+BulletinBoard-like behavior. XmPACK_COLUMN forces all children to be the size of the largest child Widget. This uses the XmNnumColumns resource and places all of its children in an organized manner.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNentryAlignment: Specifies which part of the children to use in its layout alignment. Its default is XmALIGNMENT_CENTER, but it can be set to XmALIGNMENT_BEGINNING for left or XmALIGNMENT_END for right side. This is on a per-column basis.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNverticalEntryAlignment: Specifies the alignment on a per-row basis. It can be assigned a value of XmALIGNMENT_BASELINE_BOTTOM, XmALIGNMENT_BASELINE_TOP, XmALIGNMENT_CONTENTS_BOTTOM, XmALIGNMENT_CONTENTS_TOP, or XmALIGNMENT_CENTER.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNentryBorder: The thickness of a border drawn around all children. Defaulted to 0.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNresizeWidth: A Boolean variable. If set to TRUE, will enable the RowColumn Widget to resize its width when necessary.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNresizeHeight: A Boolean variable. If set to TRUE, will enable the RowColumn Widget to resize its height when necessary.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNradioBehaviour: Works with ToggleButtons only. It enables only one ToggleButton of a group of buttons to be active at time. The default is FALSE.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNisHomogeneous: If set to TRUE, specifies that only children of the type of class in XmNentryClass can be children of this Widget. The default is FALSE.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmNentryClass: Specifies the class of children allowed in this Widget if XmNisHomogeneous is TRUE.
+
+<BR>
+
+</UL></UL>
+
+<P>A sample radio button application was shown in Listing 32.5. To see another example of the same listing but with two columns, see Listing 32.8.
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 32.8. Using RowColumn Widgets.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">/*
+
+** This is another Motif application that demonstrates the use of
+
+** a ToggleButton Widget(s) stored on a multicolumn RowColumn Widget.
+
+*/
+
+#include &lt;X11/Intrinsic.h&gt;
+
+#include &lt;Xm/Xm.h&gt;
+
+#include &lt;Xm/Form.h&gt;
+
+#include &lt;Xm/ToggleB.h&gt;
+
+#include &lt;Xm/RowColumn.h&gt;
+
+#include &lt;Xm/PushB.h&gt;
+
+void bye(Widget w, XtPointer clientdata, XtPointer calldata);
+
+#define MAX_BTNS 8
+
+#define NUM_COL 2
+
+int main(int argc, char **argv)
+
+{
+
+Widget top;
+
+XtAppContext app;
+
+Widget aForm;
+
+Widget aButton;
+
+Widget aRowCol;
+
+char str[32];
+
+Widget aToggle[MAX_BTNS];
+
+Arg args[5];
+
+int i;
+
+/**
+
+*** Initialize the toolkit.
+
+**/
+
+top = XtAppInitialize(&amp;app, &quot;KBH&quot;, NULL, 0, (Cardinal *)&amp;argc,
+
+argv, NULL, args, 0);
+
+/**
+
+*** Create a Form on this top-level Widget. This is a nice Widget
+
+*** to place other Widgets on top of.
+
+**/
+
+aForm = XtVaCreateManagedWidget(&quot;Form1&quot;,
+
+xmFormWidgetClass, top,
+
+XmNheight,150,
+
+XmNwidth,200,
+
+NULL);
+
+/**
+
+*** Add a button on the form you just created. Note how this Button
+
+*** Widget is connected to the form that it resides on. Only
+
+*** left, right, and bottom edges are attached to the form. The
+
+*** top edge of the button is not connected to the form.
+
+**/
+
+aButton = XtVaCreateManagedWidget(&quot;Push to Exit&quot;,
+
+xmPushButtonWidgetClass, aForm,
+
+XmNheight,20,
+
+XmNleftAttachment,XmATTACH_FORM,
+
+XmNrightAttachment,XmATTACH_FORM,
+
+XmNbottomAttachment,XmATTACH_FORM,
+
+NULL);
+
+#define DO_RADIO
+
+/**
+
+*** A quick intro to the hierarchy in Motif.
+
+*** Let's create a RowColumn Widget to place all Toggle
+
+*** Buttons.
+
+*** Note how the RowColumn button attaches itself to
+
+*** the top of the button.
+
+**/
+
+aRowCol = XtVaCreateManagedWidget(&quot;rowcol&quot;,
+
+xmRowColumnWidgetClass, aForm,
+
+#ifdef DO_RADIO
+
+XmNradioBehavior, TRUE,
+
+XmNradioAlwaysOne, TRUE,
+
+#endif
+
+XmNnumColumns,NUM_COL,
+
+XmNleftAttachment,XmATTACH_FORM,
+
+XmNrightAttachment,XmATTACH_FORM,
+
+XmNtopAttachment,XmATTACH_FORM,
+
+XmNbottomAttachment,XmATTACH_WIDGET,
+
+NULL);
+
+/**
+
+*** Make ToggleButtons on this form called RowCol. Attach them all
+
+*** RowColumn Widget on top of the form.
+
+***
+
+*** Note the radioBehavior setting
+
+**/
+
+for (i=0; i&lt; MAX_BTNS; i++)
+
+{
+
+sprintf(str,&quot;Button %d&quot;,i);
+
+aToggle[i] = XtVaCreateManagedWidget(str,
+
+xmToggleButtonWidgetClass, aRowCol,
+
+XmNradioBehavior, TRUE,
+
+NULL);
+
+}
+
+XmToggleButtonSetState(aToggle[0],True, False);
+
+/**
+
+*** Call the function &quot;bye&quot; when the PushButton receives
+
+*** an activate message; i.e. when the pointer is moved to
+
+*** the button and Button1 is pressed and released.
+
+**/
+
+XtAddCallback( aButton, XmNactivateCallback, bye, (XtPointer) NULL);
+
+XtRealizeWidget(top);
+
+XtAppMainLoop(app);
+
+return(0);
+
+}
+
+void bye(Widget w, XtPointer clientdata, XtPointer calldata)
+
+{
+
+exit(0);
+
+}</FONT></PRE>
+
+<P>See Figure 32.9.
+
+<BR>
+
+<P><B> <A HREF="32rhl09.gif">Figure 32.9. Using the RowColumn Widget.</A></B>
+
+<BR>
+
+<BR>
+
+<A NAME="E68E268"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>XmForm</B><B> Widgets</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The beginning of this chapter introduced you to the workings of a Form Widget. This is the most flexible, but complex, Widget in Motif.
+
+<BR>
+
+<P>Its resources include
+
+<BR>
+
+<UL>
+
+<LI>XmNtopAttachment
+
+<BR>
+
+<BR>
+
+<LI>XmNleftAttachment
+
+<BR>
+
+<BR>
+
+<LI>XmNrightAttachment
+
+<BR>
+
+<BR>
+
+<LI>XmNbottomAttachment
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>These values specify how a child is assigned in position. The following values correspond to each of the sides of the Widget:
+
+<BR>
+
+<UL>
+
+<UL>
+
+<P>XmATTACH_NONE: Does not attach this side to Form.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmATTACH_FORM: Attaches to the corresponding side on Form.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmATTACH_WIDGET: Attaches this side to the opposite side of a reference Widget&#151;for example, the right side of this Widget to the left side of the reference Widget. A reference Widget is another child on the same form.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmATTACH_OPPOSITE_WIDGET: Attaches this side to the same side of a reference Widget. This is rarely used.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmATTACH_POSITION: Attaches a side by the number of pixels shown in XmNtopPosition, XmNleftPosition, XmNrightPosition, and XmNbottomPosition resources, respectively.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>XmATTACH_SELF: Uses the XmNx,XmNy,XmNheight, and XmNwidth.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<LI>XmNtopWidget
+
+<BR>
+
+<BR>
+
+<LI>XmNleftWidget
+
+<BR>
+
+<BR>
+
+<LI>XmNrightWidget
+
+<BR>
+
+<BR>
+
+<LI>XmNbottomWidget
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>These resources are set to the corresponding Widgets for each side for the XmATTACH_WIDGET setting in an attachment.
+
+<BR>
+
+<UL>
+
+<LI>XmNtopOffset
+
+<BR>
+
+<BR>
+
+<LI>XmNleftOffset
+
+<BR>
+
+<BR>
+
+<LI>XmNrightOffset
+
+<BR>
+
+<BR>
+
+<LI>XmNbottomOffset
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>These resources are the number of pixels a side of a child is offset from the corresponding Form side. The offset is used when the attachment is XmATTACH_FORM.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Sometimes it's hard to get the settings for a Form Widget just right, or the Form Widget doesn't lay out the Widgets in what seems to be the proper setting for a child Widget. In these cases, try to manage and lay out the children in ascending or 
+descending order from the origin of the Form Widget. That is, create the top-left Widget first and use it as an anchor to create the next child, then the next one to its right, and so on. There is no guarantee that this will work, so try from the bottom 
+right, bottom left, or top right for your anchor positions.
+
+<BR>If this technique doesn't work, try using two forms on top of the form with which you are working. Forms are cheap; your time is not. It's better to just make a form when two or more Widgets have to reside in a specific layout.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>While trying a new layout on a Form Widget, if you get error messages about failing after 10,000 iterations, you have conflicting layout requests to a child or children Widgets. Check the attachments very carefully before proceeding. This error message 
+results from the Form Widget trying different layout schemes to accommodate your request.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>At times, conflicting requests to a Form will cause your application to slow down while it's trying to accommodate your request, not show the form, or both. At this time, try to remove your Form settings one at a time until the errors disappear. You 
+should then be able to weed out the offending resource setting for that Form.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E68E269"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Designing Layouts</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>When designing layouts, think about the layout before you start writing code. Let's try an order entry example. See Listing 32.9.
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 32.9. Setting up a simple hierarchy.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">/*
+
+** This listing shows how to set up a hierarchy.
+
+*/
+
+#include &lt;X11/Intrinsic.h&gt;
+
+#include &lt;Xm/Xm.h&gt;
+
+#include &lt;Xm/Form.h&gt;
+
+#include &lt;Xm/PushB.h&gt;
+
+#include &lt;Xm/Label.h&gt;
+
+#include &lt;Xm/Text.h&gt;
+
+#include &lt;Xm/RowColumn.h&gt;
+
+/*** Some items for the list ***/
+
+#define NUMITEMS 4
+
+char *thisLabel[NUMITEMS] = { &quot;Name&quot;, &quot;User Id&quot;, &quot;Home&quot;, &quot;Usage&quot; };
+
+/* For the list Widget, we need compound strings */
+
+XmString xarray[NUMITEMS];
+
+#define USE_SCROLL
+
+void bye(Widget w, XtPointer clientdata, XtPointer calldata);
+
+int main(int argc, char **argv)
+
+{
+
+Widget top;
+
+XtAppContext app;
+
+Widget masterForm;
+
+Widget buttonForm;
+
+Widget labelForm;
+
+Widget inputForm;
+
+Widget labelRC;
+
+Widget textRC;
+
+Widget buttonRC;
+
+Widget inputText[NUMITEMS];
+
+Widget inputLabel[NUMITEMS];
+
+Widget searchBtn;
+
+Widget cancelBtn;
+
+Arg args[15];
+
+int i;
+
+/**
+
+*** Initialize the toolkit.
+
+**/
+
+top = XtAppInitialize(&amp;app, &quot;KBH&quot;, NULL, 0, (Cardinal *)&amp;argc,
+
+argv, NULL, args, 0);
+
+/**
+
+*** Create a Form on this top-level Widget. This is a nice Widget
+
+*** to place other Widgets on top of.
+
+**/
+
+masterForm = XtVaCreateManagedWidget(&quot;MasterForm&quot;,
+
+xmFormWidgetClass, top,
+
+XmNheight,150,
+
+XmNwidth,200,
+
+NULL);
+
+buttonForm = XtVaCreateManagedWidget(&quot;ButtonForm&quot;,
+
+xmFormWidgetClass, masterForm,
+
+XmNtopAttachment,XmATTACH_POSITION,
+
+XmNtopPosition, 75,
+
+XmNheight,30,
+
+XmNbottomAttachment,XmATTACH_FORM,
+
+XmNleftAttachment,XmATTACH_FORM,
+
+XmNrightAttachment,XmATTACH_FORM,
+
+NULL);
+
+labelForm = XtVaCreateManagedWidget(&quot;LabelForm&quot;,
+
+xmFormWidgetClass, masterForm,
+
+XmNtopAttachment,XmATTACH_FORM,
+
+XmNbottomAttachment,XmATTACH_POSITION,
+
+XmNbottomPosition, 75,
+
+XmNleftAttachment,XmATTACH_FORM,
+
+XmNrightAttachment,XmATTACH_POSITION,
+
+XmNrightPosition,50,
+
+NULL);
+
+inputForm = XtVaCreateManagedWidget(&quot;InputForm&quot;,
+
+xmFormWidgetClass, masterForm,
+
+XmNtopAttachment,XmATTACH_FORM,
+
+XmNbottomAttachment,XmATTACH_POSITION,
+
+XmNbottomPosition, 75,
+
+XmNrightAttachment,XmATTACH_FORM,
+
+XmNleftAttachment,XmATTACH_POSITION,
+
+XmNleftPosition,50,
+
+NULL);
+
+/**
+
+*** Now create the RowColumn manager Widgets
+
+**/
+
+buttonRC = XtVaCreateManagedWidget(&quot;buttonRC&quot;,
+
+xmRowColumnWidgetClass, buttonForm,
+
+XmNbottomAttachment,XmATTACH_FORM,
+
+XmNtopAttachment,XmATTACH_FORM,
+
+XmNleftAttachment,XmATTACH_FORM,
+
+XmNrightAttachment,XmATTACH_FORM,
+
+XmNorientation, XmHORIZONTAL,
+
+NULL);
+
+labelRC = XtVaCreateManagedWidget(&quot;buttonRC&quot;,
+
+xmRowColumnWidgetClass, labelForm,
+
+XmNbottomAttachment,XmATTACH_FORM,
+
+XmNtopAttachment,XmATTACH_FORM,
+
+XmNleftAttachment,XmATTACH_FORM,
+
+XmNrightAttachment,XmATTACH_FORM,
+
+XmNorientation, XmVERTICAL,
+
+NULL);
+
+textRC = XtVaCreateManagedWidget(&quot;buttonRC&quot;,
+
+xmRowColumnWidgetClass, inputForm,
+
+XmNbottomAttachment,XmATTACH_FORM,
+
+XmNtopAttachment,XmATTACH_FORM,
+
+XmNleftAttachment,XmATTACH_FORM,
+
+XmNrightAttachment,XmATTACH_FORM,
+
+XmNorientation, XmVERTICAL,
+
+NULL);
+
+for (i = 0; i &lt; NUMITEMS; i++)
+
+{
+
+inputLabel[i] = XtVaCreateManagedWidget(thisLabel[i],
+
+xmLabelWidgetClass, labelRC, NULL);
+
+inputText[i] = XtVaCreateManagedWidget(thisLabel[i],
+
+xmTextWidgetClass, textRC, NULL);
+
+}
+
+searchBtn = XtVaCreateManagedWidget(&quot;Search&quot;,
+
+xmPushButtonWidgetClass, buttonRC, NULL);
+
+cancelBtn = XtVaCreateManagedWidget(&quot;Cancel&quot;,
+
+xmPushButtonWidgetClass, buttonRC, NULL);
+
+XtAddCallback( cancelBtn, XmNactivateCallback, bye, (XtPointer) NULL);
+
+/** Add the handler to search here. **/
+
+XtRealizeWidget(top);
+
+XtAppMainLoop(app);
+
+return(0);
+
+}
+
+void bye(Widget w, XtPointer clientdata, XtPointer calldata)
+
+{
+
+exit(0);
+
+}</FONT></PRE>
+
+<P>The output of this application is shown in Figure 32.10. Notice how the labels do not line up with the Text Widget. There is a problem in the hierarchy of the setup. See the hierarchy of the application in Figure 32.11.
+
+<BR>
+
+<P><B> <A HREF="32rhl10.gif">Figure 32.10. The output of Listing 32.9.</A></B>
+
+<BR>
+
+<P><B> <A HREF="32rhl11.gif">Figure 32.11. The hierarchy of Listing 32.9.</A></B>
+
+<BR>
+
+<P>The Form Widgets are created to maintain the relative placements of all of the Widgets that correspond to a type of functionality. The RowColumn Widgets allow the placement of items on themselves. The best route to take in this example would be to lay 
+one text and one label on one RowColumn Widget and have three RowColumn Widgets in all, one for each instance up to NUM_ITEMS. This will ensure that each label lines up with its corresponding text Widget.
+
+<BR>
+
+<P>Here are a few points to note about laying out applications:
+
+<BR>
+
+<UL>
+
+<LI>Think about what the form or dialog is trying to achieve. Draw it on paper if you have to. Coding is the easy part; determining what to do is much harder.
+
+<BR>
+
+<BR>
+
+<LI>Be consistent. Users will love you for it. If Alt-X is a shortcut for Exit in one screen, do not make it a Cut operator in another. Keep controls on the same side of all dialogs and forms. Use separators to separate different functions on the same 
+window.
+
+<BR>
+
+<BR>
+
+<LI>Choose a color scheme for your end users. What may be cool to you may be grotesque to the end user. They may not even be using a color monitor in some rare cases. A combination of white, gray, and black may be your best bet in this case if you do not 
+want to deal with different color schemes in your code.
+
+<BR>
+
+<BR>
+
+<LI>Colors on your monitor may not be the same on the end user's monitor.
+
+<BR>
+
+<BR>
+
+<LI>Do not assume that the user has the same resolution monitor as yourself. Keep fonts clean, and buttons big enough for a large cursor. Allow windows to be resized as much as possible to enable users to customize their desktops.
+
+<BR>
+
+<BR>
+
+<LI>Assume nothing. If the user can size your window to an unworkable size, either limit the size in the resize callback to the lowest size or do not allow sizing at all.
+
+<BR>
+
+<BR>
+
+<LI>Offer some help for the user. In the future, Help will be required as a standard option on menu bars, so plan ahead.
+
+<BR>
+
+<BR>
+
+<LI>Avoid clutter. Too many options and entries on one huge form tend to confuse and baffle the user. Consider a two-or-more-tiered approach via dialogs. Default everything as much as possible.
+
+<BR>
+
+<BR>
+
+<LI>Allow the program to be more forgiving. Sometimes an &quot;Are you sure?&quot; dialog with an option to change a list of parameters can be endearing to the user. On the other hand, some users hate this type of checking.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<BR>
+
+<A NAME="E68E270"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Menus</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Designing a Widget hierarchy is especially important when working with Motif menus. Motif menus are a collection of Widgets, so there is no &quot;menu&quot; Widget for a menu. You create menus using a hierarchy of different types of Widgets: RowColumn, 
+PushButton, CascadeButton, ToggleButton, Label, and Separator.
+
+<BR>
+
+<P>There are three kinds of menus in Motif:
+
+<BR>
+
+<UL>
+
+<LI>Pop-up: This appears as a list of items when a pointer button is pressed on a Widget.
+
+<BR>
+
+<BR>
+
+<LI>Pull-down: This appears when a button on an existing menu is pressed.
+
+<BR>
+
+<BR>
+
+<LI>Option: This enables the user to select from a list of options with the current selection visible at all times.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>The procedure to create a menu is different for each type of menu.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E380"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Pop-Up Menus</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>To create a pop-up menu, follow these steps:
+
+<BR>
+
+<OL>
+
+<LI>Include the correct header files. You will need the header files for the menu:
+
+<BR>Label.h
+
+<BR>RowColumn.h
+
+<BR>PushB.h
+
+<BR>Separator.h
+
+<BR>BulletinB.h
+
+<BR>CascadeB.h
+
+<BR>
+
+<BR>
+
+<LI>Create the menu pane with a call to XmCreatePopupMenu. This is a convenience call to create RowColumn and MenuShell Widgets with the proper settings.
+
+<BR>
+
+<BR>
+
+<LI>Create the buttons on the menu pane. Use XmPushbuttons, XmToggleButtons, XmSeparator, and XmCascadeButtons.
+
+<BR>
+
+<BR>
+
+<LI>Attach callback functions to the Widgets.
+
+<BR>
+
+<BR>
+
+</OL>
+
+<P>Listing 32.10 shows how to set up a simple pop-up menu.
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 32.10. Using pop-up menus.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">/*
+
+** This listing shows how to set up a pop-up menu.
+
+** Use the left mouse button on the area below the label.
+
+*/
+
+#include &lt;X11/Intrinsic.h&gt;
+
+#include &lt;Xm/Xm.h&gt;
+
+#include &lt;Xm/BulletinB.h&gt;
+
+#include &lt;Xm/PushB.h&gt;
+
+#include &lt;Xm/Label.h&gt;
+
+#include &lt;Xm/Text.h&gt;
+
+#include &lt;Xm/RowColumn.h&gt;
+
+#include &lt;Xm/CascadeB.h&gt;
+
+#include &lt;Xm/Separator.h&gt;
+
+void showSelection(Widget w, XtPointer clientdata, XtPointer calldata);
+
+XtEventHandler showMenu(Widget w, XtPointer menu, XEvent *x, Boolean f);
+
+/*** Some items for the list ***/
+
+#define NUMITEMS 3
+
+char *thisLabel[NUMITEMS] = { &quot;CD&quot;, &quot;Developer&quot;, &quot;Release&quot; };
+
+/* For the list widget, we need compound strings */
+
+XmString xarray[NUMITEMS];
+
+Widget menu; /* &lt;-- for the menu */
+
+Widget menuBtn[NUMITEMS]; /* &lt;-- for the menu */
+
+#define USE_SCROLL
+
+void bye(Widget w, XtPointer clientdata, XtPointer calldata);
+
+int main(int argc, char **argv)
+
+{
+
+Widget top;
+
+XtAppContext app;
+
+Widget masterForm;
+
+Widget masterLabel;
+
+Arg args[15];
+
+Widget tmp;
+
+int i;
+
+/**
+
+*** Initialize the toolkit.
+
+**/
+
+top = XtAppInitialize(&amp;app, &quot;KBH&quot;, NULL, 0, (Cardinal *)&amp;argc,
+
+argv, NULL, args, 0);
+
+/**
+
+*** Create a Bulletin Board on this-top level widget. This is a nice widget
+
+*** to place other widgets on top of.
+
+**/
+
+masterForm = XtVaCreateManagedWidget(&quot;bb1&quot;,
+
+xmBulletinBoardWidgetClass, top,
+
+XmNheight,150,
+
+XmNwidth,200,
+
+NULL);
+
+masterLabel = XtVaCreateManagedWidget(&quot;Click Me&quot;,
+
+xmLabelWidgetClass, masterForm,
+
+XmNheight,50,
+
+XmNwidth,200,
+
+NULL);
+
+/* XtAddCallback( cancelBtn, XmNactivateCallback, bye, (XtPointer) NULL); */
+
+menu = XmCreatePopupMenu(masterLabel, &quot;menu&quot;, NULL, 0);
+
+XtRealizeWidget(menu);
+
+/** Add the event handler for managing the popup **/
+
+tmp = XtCreateManagedWidget(&quot;Sample&quot;, xmLabelWidgetClass, menu, NULL, 0);
+
+tmp = XtCreateManagedWidget(&quot;Swp1&quot;, xmSeparatorWidgetClass, menu, NULL, 0);
+
+tmp = XtCreateManagedWidget(&quot;Btn1&quot;, xmPushButtonWidgetClass, menu, NULL, 0);
+
+XtAddCallback(tmp,XmNactivateCallback, showSelection, NULL);
+
+tmp = XtCreateManagedWidget(&quot;Btn2&quot;, xmPushButtonWidgetClass, menu, NULL, 0);
+
+XtAddCallback(tmp,XmNactivateCallback, showSelection, NULL);
+
+tmp = XtCreateManagedWidget(&quot;Btn3&quot;, xmPushButtonWidgetClass, menu, NULL, 0);
+
+XtAddCallback(tmp,XmNactivateCallback, showSelection, NULL);
+
+XtAddEventHandler( masterForm, ButtonPressMask, True, (XtEventHandler)showMenu,
+
+menu);
+
+tmp = XtCreateManagedWidget(&quot;Quit&quot;, xmPushButtonWidgetClass, menu, NULL, 0);
+
+XtAddCallback(tmp,XmNactivateCallback, bye, NULL);
+
+/** Add the handler to search here. **/
+
+XtRealizeWidget(top);
+
+XtAppMainLoop(app);
+
+return(0);
+
+}
+
+/**
+
+*** This function will display the pop-up menu on the screen
+
+**/
+
+XtEventHandler showMenu(Widget w, XtPointer menu, XEvent *event, Boolean f)
+
+{
+
+printf (&quot;\n showing position &quot;);
+
+switch (event-&gt;xbutton.button)
+
+{
+
+case Button1: printf(&quot; button 1&quot;); break;
+
+case Button2: printf(&quot; button 2&quot;); break;
+
+case Button3: printf(&quot; button 3&quot;); break;
+
+default: printf(&quot; %d&quot;, event-&gt;xbutton.button); break;
+
+}
+
+if((event-&gt;xbutton.button == Button1)
+
+|| (event-&gt;xbutton.button == Button2))
+
+{
+
+XmMenuPosition(menu, (XButtonPressedEvent *)event);
+
+printf(&quot; Managing %ld&quot;, (long)menu);
+
+XtManageChild(menu);
+
+}
+
+}
+
+/**
+
+*** This echos the selection on the controlling terminal
+
+**/
+
+void showSelection(Widget w, XtPointer clientdata, XtPointer calldata)
+
+{
+
+printf(&quot;\n %s &quot;, XtName(w));
+
+}
+
+void bye(Widget w, XtPointer clientdata, XtPointer calldata)
+
+{
+
+exit(0);
+
+}</FONT></PRE>
+
+<P>Note three important items about this listing:
+
+<BR>
+
+<UL>
+
+<LI>You can use printf functions within Motif applications. The output goes to the controlling terminal by default. This is invaluable in debugging.
+
+<BR>
+
+<BR>
+
+<LI>The menu is not visible by itself. An event handler on the menu's parent is registered before the menu can be displayed. This enables the menu to be displayed whenever a button is pressed.
+
+<BR>
+
+<BR>
+
+<LI>The XmMenuPosition call sets the position of the pop-up menu. It is then managed (that is, after placement).
+
+<BR>
+
+<BR>
+
+</UL>
+
+<BR>
+
+<A NAME="E69E381"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>The Menu Bar</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>A menu bar is a horizontal bar that is always available to the user. Motif uses the RowColumn Widget as a bar with cascading buttons on it for each option.
+
+<BR>
+
+<P>The procedure for creating a menu bar is as follows:
+
+<BR>
+
+<OL>
+
+<LI>Include the correct header files. You will need the header files for the menu:
+
+<BR>Label.h
+
+<BR>RowColumn.h
+
+<BR>PushB.h
+
+<BR>Separator.h
+
+<BR>BulletinB.h
+
+<BR>CascadeB.h
+
+<BR>
+
+<BR>
+
+<LI>Create the menu bar with a call to XmCreateMenuBar().
+
+<BR>
+
+<BR>
+
+<LI>Create the pull-down menu panes with a call to XmCreatePulldownMenu().
+
+<BR>
+
+<BR>
+
+<LI>For each pull-down pane, create a cascade button on the menu bar. Use the menu bar as the parent. A cascade button is used to link the items in a menu with the menu bar itself.
+
+<BR>
+
+<BR>
+
+<LI>Attach the menu pane to its corresponding cascade button. Use the XmNsubMenuId resource of the cascade button to the appropriate menu pane.
+
+<BR>
+
+<BR>
+
+<LI>Create the menu entries in the menu panes.
+
+<BR>
+
+<BR>
+
+</OL>
+
+<P>Listing 32.11 shows you how to set up a simple menu application.
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 32.11. Creating a menu bar.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">/*
+
+** This listing shows how to set up a menu bar and pulldown menus
+
+*/
+
+#include &lt;X11/Intrinsic.h&gt;
+
+#include &lt;Xm/Xm.h&gt;
+
+#include &lt;Xm/Form.h&gt;
+
+#include &lt;Xm/PushB.h&gt;
+
+#include &lt;Xm/Label.h&gt;
+
+#include &lt;Xm/Text.h&gt;
+
+#include &lt;Xm/RowColumn.h&gt;
+
+#include &lt;Xm/CascadeB.h&gt;
+
+#include &lt;Xm/Separator.h&gt;
+
+void doBackup(Widget w, XtPointer x, XtPointer c)
+
+{
+
+printf(&quot;\n Start backup &quot;);
+
+}
+
+void doRestore(Widget w, XtPointer x, XtPointer c)
+
+{
+
+printf(&quot;\n Start restore &quot;);
+
+}
+
+void bye(Widget w, XtPointer x, XtPointer c)
+
+{
+
+exit(0);
+
+}
+
+void selectTape(Widget w, XtPointer x, XtPointer c)
+
+{
+
+printf(&quot;\n Select tape drive...&quot;);
+
+}
+
+void selectDisk(Widget w, XtPointer x, XtPointer c)
+
+{
+
+printf(&quot;\n Select Floppy disks...&quot;);
+
+}
+
+void helpBtn(Widget w, XtPointer x, XtPointer c)
+
+{
+
+printf(&quot;\n ... No help available &quot;);
+
+}
+
+int main (int argc, char*argv[])
+
+{
+
+Widget top;
+
+XtAppContext app;
+
+Widget masterForm;
+
+Widget menu; /* for the menu bar */
+
+Widget submenu; /* for pulldown menus */
+
+Widget cascade; /* for cascade button on the menu bar */
+
+Widget filler;
+
+Arg args[10];
+
+int n;
+
+/**
+
+*** Initialize the toolkit.
+
+**/
+
+top = XtAppInitialize(&amp;app, &quot;KBH&quot;, NULL, 0, (Cardinal *)&amp;argc,
+
+argv, NULL, args, 0);
+
+/**
+
+*** Create a Form on this top-level Widget. This is a nice Widget
+
+*** to place other Widgets on top of.
+
+**/
+
+masterForm = XtVaCreateManagedWidget(&quot;Form1&quot;,
+
+xmFormWidgetClass, top,
+
+XmNheight,150,
+
+XmNwidth,200,
+
+NULL);
+
+n = 0;
+
+XtSetArg(args[n],XmNheight, 50); n++;
+
+menu = XmCreateMenuBar(masterForm,&quot;mastermenu&quot;,
+
+args, n);
+
+submenu = XmCreatePulldownMenu(menu,&quot;submenupane1&quot;, NULL, 0);
+
+cascade = XtVaCreateManagedWidget(&quot;File&quot;,
+
+xmCascadeButtonWidgetClass, menu,
+
+XmNsubMenuId, submenu,
+
+NULL);
+
+filler = XtVaCreateManagedWidget(&quot;Backup&quot;,
+
+xmPushButtonWidgetClass, submenu, NULL);
+
+XtAddCallback( filler, XmNactivateCallback, doBackup, (XtPointer) NULL);
+
+filler = XtVaCreateManagedWidget(&quot;Restore&quot;,
+
+xmPushButtonWidgetClass, submenu, NULL);
+
+XtAddCallback( filler, XmNactivateCallback, doRestore, (XtPointer) NULL);
+
+filler = XtVaCreateManagedWidget(&quot;Quit&quot;,
+
+xmPushButtonWidgetClass, submenu, NULL);
+
+XtAddCallback( filler, XmNactivateCallback, bye, (XtPointer) NULL);
+
+submenu = XmCreatePulldownMenu(menu,&quot;submenupane2&quot;, NULL, 0);
+
+cascade = XtVaCreateManagedWidget(&quot;Options&quot;,
+
+xmCascadeButtonWidgetClass, menu,
+
+XmNsubMenuId, submenu,
+
+NULL);
+
+filler = XtVaCreateManagedWidget(&quot;Tape&quot;,
+
+xmPushButtonWidgetClass, submenu, NULL);
+
+XtAddCallback( filler, XmNactivateCallback, selectTape, (XtPointer) NULL);
+
+filler = XtVaCreateManagedWidget(&quot;Floppy&quot;,
+
+xmPushButtonWidgetClass, submenu, NULL);
+
+XtAddCallback( filler, XmNactivateCallback, selectDisk, (XtPointer) NULL);
+
+submenu = XmCreatePulldownMenu(menu,&quot;submenupane3&quot;, NULL, 0);
+
+cascade = XtVaCreateManagedWidget(&quot;Help&quot;,
+
+xmCascadeButtonWidgetClass, menu,
+
+XmNsubMenuId, submenu,
+
+NULL);
+
+filler = XtVaCreateManagedWidget(&quot;Floppy&quot;,
+
+xmPushButtonWidgetClass, submenu, NULL);
+
+XtAddCallback( filler, XmNactivateCallback, selectDisk, (XtPointer) NULL);
+
+XtVaSetValues( menu,
+
+XmNmenuHelpWidget, cascade,
+
+NULL);
+
+XtAddCallback( cascade, XmNactivateCallback, helpBtn ,NULL);
+
+XtManageChild(menu);
+
+/** Add the handler to search here. **/
+
+XtRealizeWidget(top);
+
+XtAppMainLoop(app);
+
+return(0);
+
+}</FONT></PRE>
+
+<P>Note that the Motif programming style requires you to provide the Help button (if you have any) to be right-justified on the menu bar. This Help Cascade button should then be set to the XmNmenuHelpWidget of a menu bar. The menu bar will automatically 
+position this Widget to the right-hand side of the visible bar. See Listing 32.12 on how to create pull-down menu items on a menu items on a menu bar.
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 32.12. Creating menu bars with pull-down menu items.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">/*
+
+** This listing shows how to set up a menu bar and pull-down menus
+
+*/
+
+#include &lt;X11/Intrinsic.h&gt;
+
+#include &lt;Xm/Xm.h&gt;
+
+#include &lt;Xm/Form.h&gt;
+
+#include &lt;Xm/PushB.h&gt;
+
+#include &lt;Xm/Label.h&gt;
+
+#include &lt;Xm/Text.h&gt;
+
+#include &lt;Xm/RowColumn.h&gt;
+
+#include &lt;Xm/CascadeB.h&gt;
+
+#include &lt;Xm/Separator.h&gt;
+
+void doBackup(Widget w, XtPointer x, XtPointer c)
+
+{
+
+printf(&quot;\n Start backup &quot;);
+
+}
+
+void doRestore(Widget w, XtPointer x, XtPointer c)
+
+{
+
+printf(&quot;\n Start restore &quot;);
+
+}
+
+void bye(Widget w, XtPointer x, XtPointer c)
+
+{
+
+exit(0);
+
+}
+
+void selectTape(Widget w, XtPointer x, XtPointer c)
+
+{
+
+printf(&quot;\n Select tape drive...&quot;);
+
+}
+
+void selectDisk(Widget w, XtPointer x, XtPointer c)
+
+{
+
+printf(&quot;\n Select Floppy disks...&quot;);
+
+}
+
+void helpBtn(Widget w, XtPointer x, XtPointer c)
+
+{
+
+printf(&quot;\n ... No help available &quot;);
+
+}
+
+int main (int argc, char*argv[])
+
+{
+
+Widget top;
+
+XtAppContext app;
+
+Widget masterForm;
+
+Widget menu; /* for the menu bar */
+
+Widget submenu; /* for pull-down menus */
+
+Widget cascade; /* for CascadeButton on the menu bar */
+
+Widget filler;
+
+Arg args[10];
+
+int n;
+
+/**
+
+*** Intialize the toolkit.
+
+**/
+
+top = XtAppInitialize(&amp;app, &quot;KBH&quot;, NULL, 0, (Cardinal *)&amp;argc,
+
+argv, NULL, args, 0);
+
+/**
+
+*** Create a Form on this top-level Widget. This is a nice Widget
+
+*** to place other Widgets on top of.
+
+**/
+
+masterForm = XtVaCreateManagedWidget(&quot;Form1&quot;,
+
+xmFormWidgetClass, top,
+
+XmNheight,150,
+
+XmNwidth,200,
+
+NULL);
+
+n = 0;
+
+XtSetArg(args[n],XmNheight, 50); n++;
+
+menu = XmCreateMenuBar(masterForm,&quot;mastermenu&quot;,
+
+args, n);
+
+/********************** The change is here ******************/
+
+n = 0;
+
+XtSetArg(args[n],XmNtearOffModel, XmTEAR_OFF_ENABLED); n++;
+
+submenu = XmCreatePulldownMenu(menu,&quot;submenupane1&quot;, args, n);
+
+/********************** The change is here ******************/
+
+cascade = XtVaCreateManagedWidget(&quot;File&quot;,
+
+xmCascadeButtonWidgetClass, menu,
+
+XmNsubMenuId, submenu,
+
+NULL);
+
+filler = XtVaCreateManagedWidget(&quot;Backup&quot;,
+
+xmPushButtonWidgetClass, submenu, NULL);
+
+XtAddCallback( filler, XmNactivateCallback, doBackup, (XtPointer) NULL);
+
+filler = XtVaCreateManagedWidget(&quot;Restore&quot;,
+
+xmPushButtonWidgetClass, submenu, NULL);
+
+XtAddCallback( filler, XmNactivateCallback, doRestore, (XtPointer) NULL);
+
+filler = XtVaCreateManagedWidget(&quot;Quit&quot;,
+
+xmPushButtonWidgetClass, submenu, NULL);
+
+XtAddCallback( filler, XmNactivateCallback, bye, (XtPointer) NULL);
+
+submenu = XmCreatePulldownMenu(menu,&quot;submenupane2&quot;, NULL, 0);
+
+cascade = XtVaCreateManagedWidget(&quot;Options&quot;,
+
+xmCascadeButtonWidgetClass, menu,
+
+XmNsubMenuId, submenu,
+
+NULL);
+
+filler = XtVaCreateManagedWidget(&quot;Tape&quot;,
+
+xmPushButtonWidgetClass, submenu, NULL);
+
+XtAddCallback( filler, XmNactivateCallback, selectTape, (XtPointer) NULL);
+
+filler = XtVaCreateManagedWidget(&quot;Floppy&quot;,
+
+xmPushButtonWidgetClass, submenu, NULL);
+
+XtAddCallback( filler, XmNactivateCallback, selectDisk, (XtPointer) NULL);
+
+submenu = XmCreatePulldownMenu(menu,&quot;submenupane3&quot;, NULL, 0);
+
+cascade = XtVaCreateManagedWidget(&quot;Help&quot;,
+
+xmCascadeButtonWidgetClass, menu,
+
+XmNsubMenuId, submenu,
+
+NULL);
+
+filler = XtVaCreateManagedWidget(&quot;Floppy&quot;,
+
+xmPushButtonWidgetClass, submenu, NULL);
+
+XtAddCallback( filler, XmNactivateCallback, selectDisk, (XtPointer) NULL);
+
+XtVaSetValues( menu,
+
+XmNmenuHelpWidget, cascade,
+
+NULL);
+
+XtAddCallback( cascade, XmNactivateCallback, helpBtn ,NULL);
+
+XtManageChild(menu);
+
+/** Add the handler to search here. **/
+
+XtRealizeWidget(top);
+
+XtAppMainLoop(app);
+
+return(0);
+
+}</FONT></PRE>
+
+<BR>
+
+<A NAME="E69E382"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>The Options Menu</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>An Options menu enables the user to select from a list of items while displaying the most recently selected item. The procedure for creating an Options menu is similar to creating menu bars:
+
+<BR>
+
+<OL>
+
+<LI>Include the correct header files. You will need the header files for the menu:
+
+<BR>Label.h
+
+<BR>RowColumn.h
+
+<BR>PushB.h
+
+<BR>Separator.h
+
+<BR>BulletinB.h
+
+<BR>CascadeB.h
+
+<BR>
+
+<BR>
+
+<LI>Create the menu bar with a call to XmCreateOptionMenu().
+
+<BR>
+
+<BR>
+
+<LI>Create the pull-down menu panes with a call to XmCreatePulldownMenu().
+
+<BR>
+
+<BR>
+
+<LI>For each pull-down pane, create a CascadeButton on the menu bar.
+
+<BR>
+
+<BR>
+
+<LI>Attach the menu pane to its corresponding CascadeButton. Use the XmNsubMenuId resource of the CascadeButton to the appropriate menu pane.
+
+<BR>
+
+<BR>
+
+<LI>Create the menu entries in the menu panes.
+
+<BR>
+
+<BR>
+
+</OL>
+
+<BR>
+
+<A NAME="E69E383"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Accelerators and Mnemonics</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>An accelerator for a command is the keystroke that invokes the callback for that particular menu item. For example, for opening a file, you could use Ctrl-O. The resource for this accelerator could be set in the resource file as
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">*Open*accelerator: Ctrl&lt;Key&gt;O</FONT></PRE>
+
+<P>The corresponding menu item should read &quot;Open Ctrl+O&quot; to let the user know about this shortcut. Note the + instead of -. You can also set this resource via the command in the .Xresources file:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">*Open*acceleratorText: &quot;Ctrl+O&quot;</FONT></PRE>
+
+<P>Using the .Xresource file is the preferred way of setting these resources.
+
+<BR>
+
+<P>Mnemonics are a short form for letting the user select menu items without using the mouse. For example, the user could press &lt;meta&gt;F to invoke the File menu. These are also usually set in the .Xresource file. The syntax for the File menu to use 
+the &lt;meta&gt;F key would be:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">*File*mnemonic:F</FONT></PRE>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>With Linux on your PC, meta means the Alt key.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E68E271"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Dialog Boxes</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>A dialog box is used to convey information about something to the user and requests a canned response in return. For example, a dialog box might say &quot;Go ahead and Print&quot; and present three buttons&#151;OK, Cancel, and Help. The user must then 
+select one of the three buttons to process the command.
+
+<BR>
+
+<P>A typical dialog box displays an icon, a message string, and usually three buttons (OK, Cancel, and Help). Motif provides predefined dialog boxes for the following categories:
+
+<BR>
+
+<UL>
+
+<LI>Errors
+
+<BR>
+
+<BR>
+
+<LI>Information
+
+<BR>
+
+<BR>
+
+<LI>Warnings
+
+<BR>
+
+<BR>
+
+<LI>Working
+
+<BR>
+
+<BR>
+
+<LI>Questions
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>Each of these dialog box types displays a different icon: a question mark for the Question dialog box, an exclamation mark for an Information dialog box, and so on. Convenience functions ease the creation of dialog boxes. These are
+
+<BR>
+
+<UL>
+
+<LI>XmCreateErrorsDialog
+
+<BR>
+
+<BR>
+
+<LI>XmCreateInformationDialog
+
+<BR>
+
+<BR>
+
+<LI>XmCreateWarningDialog
+
+<BR>
+
+<BR>
+
+<LI>XmCreateWorkingDialog
+
+<BR>
+
+<BR>
+
+<LI>XmCreateQuestionDialog
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>The infamous &quot;OK to quit?&quot; dialog box can be implemented as shown in Listing 32.13. There is another example in Listing 32.17.
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 32.13. Code fragment to confirm quit command.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">/*
+
+** Confirm quit one last time
+
+*/
+
+void reallyQuit(Widget w, XtPointer clientdata, XtPointer calldata)
+
+{
+
+exit(0);
+
+}
+
+void confirmQuit(Widget w, XtPointer clientdata, XtPointer calldata)
+
+{
+
+static Widget quitDlg = NULL;
+
+static char *msgstr = &quot;Really Quit?&quot;
+
+if (quitDlg != NULL)
+
+{
+
+/* first time called */
+
+quitDlg = XmCreateQuestionDialog(w,&quot;R U Sure&quot;,NULL,0);
+
+XtVaSetValues(quitDlg, XtVaTypedArg,
+
+XmNmessageString,
+
+XmRString,
+
+msgstr,
+
+strlen(msgstr),
+
+NULL);
+
+XtAddCallback(quitDlg, reallyQuit, NULL);
+
+}
+
+XtManageChild(quitDlg);
+
+}</FONT></PRE>
+
+<P>Append this code fragment to the end of any sample listings in this chapter to get instant checking before you actually quit the application. Note that the quitDlg dialog box is set to NULL when the function is first called. It does not have to be 
+re-created on every call after the first one; it is only managed for all subsequent calls to this function.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E384"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Modes of a Dialog Box</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>A dialog box can have four modes of operation, called modality. The mode is set in the XmNdialogStyle resource. The possible values are
+
+<BR>
+
+<UL>
+
+<LI>Nonmodal: The user can ignore the dialog box and work with any other window on the screen. Resource value is XmDIALOG_MODELESS.
+
+<BR>
+
+<BR>
+
+<LI>Primary Application Modal: All input to the window that invoked the dialog box is locked out. The user can use the rest of the windows in the application. Resource value is XmDIALOG_PRIMARY_APPLICATION_MODAL.
+
+<BR>
+
+<BR>
+
+<LI>Full Application Modal: All input to all the windows in the application that invoked the dialog box is locked out. The user cannot use the rest of the windows in the application. Resource value is XmDIALOG_FULL_APPLICATION_MODAL.
+
+<BR>
+
+<BR>
+
+<LI>System Modal: All input is directed to the dialog box. The user cannot interact with any other window in the system. Resource value is XmDIALOG_SYSTEM_MODAL.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>The dialog boxes provided by Motif are based on the XmMessageBox Widget. Sometimes it is necessary to get to the Widgets in a dialog box. This is done with a call to XmMessageBoxGetChild( Widget dialog, typeOfWidget); where typeOfWidget can be one of 
+the following:
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+XmDIALOG_HELP_BUTTON 
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+XmDIALOG_CANCEL_BUTTON</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+XmDIALOG_SEPARATOR 
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+XmDIALOG_MESSAGE_LABEL</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+XmDIALOG_OK_BUTTON 
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+XmDIALOG_SYMBOL_LABEL</FONT>
+
+</TABLE><P>The dialog box may have more Widgets that can be addressed. Check the man pages for the descriptions of these Widgets. For example, to hide the Help button on a dialog box, use the call
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">XtUnmanageChild(XmMessageBoxGetChild(dlg, XmDIALOG_HELP_BUTTON));</FONT></PRE>
+
+<P>or, in the case of adding a callback, use
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">XtAddCallback(XmMessageBoxGetChild(dlg, XmDIALOG_OK_BUTTON),
+
+XmNactivateCallback, yourFunction);</FONT></PRE>
+
+<P>A typical method of creating custom dialog boxes is to use existing ones. Then, using the XmMessageBoxGetChild function, you can add or remove any function you want. For example, by replacing the message string Widget with a Form Widget, you have a 
+place for laying out Widgets however you need to.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E272"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Events</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>An event is a message sent from the X server to the application that some condition in the system has changed. This could be a button press, a keystroke, requested information from the server, or a timeout. An event is always relative to a window and 
+starts from the bottom up. It propagates up the window hierarchy until it gets to the root window, where the root window application makes the decision to either use or discard it. If an application in the hierarchy does use the event or does not allow 
+upward propagation of events, the message is used at the window itself. Only device events are propagated upward (such as keyboard or mouse)&#151;not configuration events.
+
+<BR>
+
+<P>An application must request an event of a particular type before it can begin receiving events. Each Motif application calls XtAppInitialize to create this connection automatically.
+
+<BR>
+
+<P>Events contain at least the following information :
+
+<BR>
+
+<UL>
+
+<LI>The type of event
+
+<BR>
+
+<BR>
+
+<LI>The display where it happened
+
+<BR>
+
+<BR>
+
+<LI>The window of the event, called the event window
+
+<BR>
+
+<BR>
+
+<LI>The serial number of the last event processed by the server
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>Look in the file &lt;X11/Xlib.h&gt; for a description of the union called XEvent, which enables access to these values. The file &lt;X11/X.h&gt; contains the descriptions of constants for the types of events. All event types share the header:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">typedef struct {
+
+int type;
+
+unsigned long serial; /* # of last request processed by server */
+
+Bool send_event; /* true if this came from a SendEvent request */
+
+Display *display;/* display the event was read from */
+
+Window window; /* window on which event was requested in event mask */
+
+} XAnyEvent;</FONT></PRE>
+
+<BR>
+
+<A NAME="E69E385"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Expose Events</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The server generates an Expose when a window that was covered by another is brought to the top of the stack, or even partially exposed. The structure for this event type is
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">typedef struct {
+
+int type; /* type of event */
+
+unsigned long serial; /* # of last request processed by server */
+
+Bool send_event; /* true if this came from a SendEvent request */
+
+Display *display; /* display the event was read from */
+
+Window window;
+
+int x, y;
+
+int width, height;
+
+int count; /* if nonzero, at least this many more */
+
+} XExposeEvent;</FONT></PRE>
+
+<P>Note how the first five fields are shared between this event and XAnyEvent. Expose events are guaranteed to be in sequence. An application may get several Expose events from one condition. The count field keeps a count of the number of Expose events 
+still in the queue when the application receives this one. Thus, it can be up to the application to wait to redraw until the last Expose event is received (that is, count == 0).
+
+<BR>
+
+<BR>
+
+<A NAME="E69E386"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Pointer Events</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>A Pointer event is generated by a mouse press, release, or movement. The type of event is called XButtonEvent. Recall that the leftmost button is Button1, but it can be changed. The structure returned by this button press and release is
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">typedef struct {
+
+int type; /* of event */
+
+unsigned long serial; /* # of last request processed by server */
+
+Bool send_event; /* true if this came from a SendEvent request */
+
+Display *display; /* display the event was read from */
+
+Window window; /* &quot;event&quot; window it is reported relative to */
+
+Window root; /* root window that the event occured on */
+
+Window subwindow; /* child window */
+
+Time time; /* milliseconds */
+
+int x, y; /* pointer x, y coordinates in event window */
+
+int x_root, y_root; /* coordinates relative to root */
+
+unsigned int state; /* key or button mask */
+
+unsigned int button; /* detail */
+
+Bool same_screen; /* same screen flag */
+
+} XButtonEvent;
+
+typedef XButtonEvent XButtonPressedEvent;
+
+typedef XButtonEvent XButtonReleasedEvent;</FONT></PRE>
+
+<P>The event for a movement is called XMotionEvent, with the type field set to MotionNotify.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">typedef struct {
+
+int type; /* MotionNotify */
+
+unsigned long serial; /* # of last request processed by server */
+
+Bool send_event; /* true if this came from a SendEvent request */
+
+Display *display; /* display the event was read from */
+
+Window window; /* &quot;event&quot; window reported relative to */
+
+Window root; /* root window that the event occured on */
+
+Window subwindow; /* child window */
+
+Time time; /* milliseconds */
+
+int x, y; /* pointer x, y coordinates in event window */
+
+int x_root, y_root; /* coordinates relative to root */
+
+unsigned int state; /* key or button mask */
+
+char is_hint; /* detail */
+
+Bool same_screen; /* same screen flag */
+
+} XMotionEvent;
+
+typedef XMotionEvent XPointerMovedEvent;</FONT></PRE>
+
+<BR>
+
+<A NAME="E69E387"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Keyboard Events</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>A keyboard event is generated when the user presses or releases a key. Both types of events, KeyPress and KeyRelease, are returned in a XKeyEvent structure.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">typedef struct {
+
+int type; /* of event */
+
+unsigned long serial; /* # of last request processed by server */
+
+Bool send_event; /* true if this came from a SendEvent request */
+
+Display *display; /* display the event was read from */
+
+Window window; /* &quot;event&quot; window it is reported relative to */
+
+Window root; /* root window that the event occured on */
+
+Window subwindow; /* child window */
+
+Time time; /* milliseconds */
+
+int x, y; /* pointer x, y coordinates in event window */
+
+int x_root, y_root; /* coordinates relative to root */
+
+unsigned int state; /* key or button mask */
+
+unsigned int keycode; /* detail */
+
+Bool same_screen; /* same screen flag */
+
+} XKeyEvent;
+
+typedef XKeyEvent XKeyPressedEvent;
+
+typedef XKeyEvent XKeyReleasedEvent;</FONT></PRE>
+
+<P>The keycode field gives information on whether the key was pressed or released. These constants are defined in &lt;X11/keysymdef.h&gt; and are vendor-specific. These are called KeySym and are generic across all X servers. For example, the F1 key could 
+be described as XK_F1. The function XLookupString converts a KeyPress event into a string and a KeySym (a portable key symbol). The call is
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">int XLookupString(XKeyEvent *event,
+
+char *returnString,
+
+int max_length,
+
+KeySym *keysym,
+
+XComposeStatus *compose);</FONT></PRE>
+
+<P>The returned ASCII string is placed in returnString for up to max_length characters. The keysym contains the key symbol. Generally, the compose parameter is ignored.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E388"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Window Crossing Events</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The server generates crossing EnterNotify events when a pointer enters a window and LeaveNotify events when a pointer leaves a window. These are used to create special effects for notifying the user that the window has focus. The XCrossingEvent 
+structure looks like the following:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">typedef struct {
+
+int type; /* of event */
+
+unsigned long serial; /* # of last request processed by server */
+
+Bool send_event; /* true if this came from a SendEvent request */
+
+Display *display; /* display the event was read from */
+
+Window window; /* &quot;event&quot; window reported relative to */
+
+Window root; /* root window that the event occured on */
+
+Window subwindow; /* child window */
+
+Time time; /* milliseconds */
+
+int x, y; /* pointer x, y coordinates in event window */
+
+int x_root, y_root; /* coordinates relative to root */
+
+int mode; /* NotifyNormal, NotifyGrab, NotifyUngrab */
+
+int detail;
+
+/*
+
+* NotifyAncestor, NotifyVirtual, NotifyInferior,
+
+* NotifyNonlinear, NotifyNonlinearVirtual
+
+*/
+
+Bool same_screen; /* same screen flag */
+
+Bool focus; /* boolean focus */
+
+unsigned int state; /* key or button mask */
+
+} XCrossingEvent;
+
+typedef XCrossingEvent XEnterWindowEvent;
+
+typedef XCrossingEvent XLeaveWindowEvent;</FONT></PRE>
+
+<P>These are generally used to color a window on entry and exit to provide feedback to the user as he moves the pointer around.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E389"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Event Masks</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>An application requests events of a particular type by calling a function named XAddEventHandler(). The prototype for this function is
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">XAddEventHandler( Widget ,
+
+EventMask ,
+
+Boolean maskable,
+
+XtEventHandler handlerfunction,
+
+XtPointer clientData);</FONT></PRE>
+
+<P>The handler function is of the form
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">void handlerFunction( Widget w, XtPointer clientData,
+
+XEvent *ev, Boolean *continueToDispatch);</FONT></PRE>
+
+<P>The first two arguments are the clientdata and Widget passed in XtAddEventHandler. The ev argument is the event that triggered this call. The last argument enables this message to be passed to other message handlers for this type of event. This should 
+be defaulted to TRUE.
+
+<BR>
+
+<P>You would use the following call on a Widget w to be notified of all pointer events of the type ButtonMotion and PointerMotion on this Widget.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">extern void handlerFunction( Widget w, XtPointer clientData,
+
+XEvent *ev, Boolean *continueToDispatch);
+
+XAddEventHandler( w, ButtonMotionMask | PointerMotionMask, FALSE,
+
+handlerFunction, NULL );</FONT></PRE>
+
+<P>The possible event masks are
+
+<BR>
+
+<UL>
+
+<LI>NoEventMask
+
+<BR>
+
+<BR>
+
+<LI>KeyPressMask
+
+<BR>
+
+<BR>
+
+<LI>KeyReleaseMask
+
+<BR>
+
+<BR>
+
+<LI>ButtonPressMask
+
+<BR>
+
+<BR>
+
+<LI>ButtonReleaseMask
+
+<BR>
+
+<BR>
+
+<LI>EnterWindowMask
+
+<BR>
+
+<BR>
+
+<LI>LeaveWindowMask
+
+<BR>
+
+<BR>
+
+<LI>PointerMotionMask
+
+<BR>
+
+<BR>
+
+<LI>PointerMotionHintMask
+
+<BR>
+
+<BR>
+
+<LI>Button1MotionMask
+
+<BR>
+
+<BR>
+
+<LI>Button2MotionMask
+
+<BR>
+
+<BR>
+
+<LI>Button3MotionMask
+
+<BR>
+
+<BR>
+
+<LI>Button4MotionMask
+
+<BR>
+
+<BR>
+
+<LI>Button5MotionMask
+
+<BR>
+
+<BR>
+
+<LI>ButtonMotionMask
+
+<BR>
+
+<BR>
+
+<LI>KeymapStateMask
+
+<BR>
+
+<BR>
+
+<LI>ExposureMask
+
+<BR>
+
+<BR>
+
+<LI>VisibilityChangeMask
+
+<BR>
+
+<BR>
+
+<LI>StructureNotifyMask
+
+<BR>
+
+<BR>
+
+<LI>ResizeRedirectMask
+
+<BR>
+
+<BR>
+
+<LI>SubstructureNotifyMask
+
+<BR>
+
+<BR>
+
+<LI>SubstructureRedirectMask
+
+<BR>
+
+<BR>
+
+<LI>FocusChangeMask
+
+<BR>
+
+<BR>
+
+<LI>PropertyChangeMask
+
+<BR>
+
+<BR>
+
+<LI>ColormapChangeMask
+
+<BR>
+
+<BR>
+
+<LI>OwnerGrabButtonMask
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>Listing 32.14 is a sample application that shows how to track the mouse position.
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 32.14. Tracking a pointer.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">/*
+
+** This application shows how to track a pointer
+
+*/
+
+#include &lt;X11/Intrinsic.h&gt;
+
+#include &lt;Xm/Xm.h&gt;
+
+#include &lt;Xm/Form.h&gt;
+
+#include &lt;Xm/PushB.h&gt;
+
+#include &lt;Xm/Label.h&gt;
+
+static int track;
+
+void upMouse(Widget w, XtPointer clientdata, XEvent *x, Boolean *f)
+
+{
+
+track = 0;
+
+}
+
+void moveMouse(Widget w, XtPointer clientdata, XEvent *x, Boolean *f)
+
+{
+
+if (track == 1)
+
+{
+
+printf(&quot;\n x: %d, y: %d&quot;, x-&gt;xmotion.x, x-&gt;xmotion.y);
+
+}
+
+}
+
+void downMouse(Widget w, XtPointer clientdata, XEvent *x, Boolean *f)
+
+{
+
+track = 1;
+
+}
+
+void bye(Widget w, XtPointer clientdata, XtPointer calldata);
+
+int main(int argc, char **argv)
+
+{
+
+Widget top;
+
+XtAppContext app;
+
+Widget aForm;
+
+Widget aLabel;
+
+Widget aButton;
+
+Arg args[5];
+
+/**
+
+*** Initialize the toolkit.
+
+**/
+
+top = XtAppInitialize(&amp;app, &quot;KBH&quot;, NULL, 0, (Cardinal *)&amp;argc,
+
+argv, NULL, args, 0);
+
+/**
+
+*** Create a Form on this top-level Widget. This is a nice Widget
+
+*** to place other Widgets on top of.
+
+**/
+
+aForm = XtVaCreateManagedWidget(&quot;Form1&quot;,
+
+xmFormWidgetClass, top,
+
+XmNheight,90,
+
+XmNwidth,200,
+
+NULL);
+
+/**
+
+*** Add a button on the form you just created. Note how this Button
+
+*** Widget is connected to the form that it resides on. Only
+
+*** left, right, and bottom edges are attached to the form. The
+
+*** top edge of the button is not connected to the form.
+
+**/
+
+aButton = XtVaCreateManagedWidget(&quot;Push to Exit&quot;,
+
+xmPushButtonWidgetClass, aForm,
+
+XmNheight,20,
+
+XmNleftAttachment,XmATTACH_FORM,
+
+XmNleftOffset,20,
+
+XmNrightAttachment,XmATTACH_FORM,
+
+XmNrightOffset,20,
+
+XmNbottomAttachment,XmATTACH_FORM,
+
+NULL);
+
+/**
+
+*** Now let's create the label for us.
+
+*** The alignment is set to right-justify the label.
+
+*** Note how the label is attached to the parent form.
+
+**/
+
+aLabel = XtVaCreateManagedWidget(&quot;This is a Label&quot;,
+
+xmLabelWidgetClass, aForm,
+
+XmNalignment, XmALIGNMENT_END,
+
+XmNleftAttachment,XmATTACH_FORM,
+
+XmNrightAttachment,XmATTACH_FORM,
+
+XmNtopAttachment,XmATTACH_FORM,
+
+XmNbottomAttachment,XmATTACH_WIDGET,
+
+XmNbottomWidget,aButton,
+
+NULL);
+
+/**
+
+*** Now add the event handlers for tracking the mouse on the
+
+*** label. Note that the LeaveWindowMask is set to release
+
+*** the pointer for you should you keep the button pressed
+
+*** and leave the window.
+
+**/
+
+XtAddEventHandler( aLabel, ButtonPressMask, FALSE, downMouse, NULL);
+
+XtAddEventHandler( aLabel, ButtonMotionMask, FALSE, moveMouse, NULL);
+
+XtAddEventHandler( aLabel, ButtonReleaseMask | LeaveWindowMask,
+
+FALSE, upMouse, NULL);
+
+/**
+
+*** Call the function &quot;bye&quot; when the PushButton receives
+
+*** an activate message; i.e. when the pointer is moved to
+
+*** the button and Button1 is pressed and released.
+
+**/
+
+XtAddCallback( aButton, XmNactivateCallback, bye, (XtPointer) NULL);
+
+XtRealizeWidget(top);
+
+XtAppMainLoop(app);
+
+return(0);
+
+}
+
+void bye(Widget w, XtPointer clientdata, XtPointer calldata)
+
+{
+
+exit(0);
+
+}</FONT></PRE>
+
+<BR>
+
+<A NAME="E68E273"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Managing the Queue</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Managing the X server is critical if you have to handle lots of incoming events. The XtAppMainLoop() function handles all the incoming events via the following functions:
+
+<BR>
+
+<UL>
+
+<LI>XtAppPending checks the queue to see if any events are pending.
+
+<BR>
+
+<BR>
+
+<LI>XtAppNextEvent removes the next event from the queue.
+
+<BR>
+
+<BR>
+
+<LI>XtDispatchEvent passes the message to the appropriate window.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>The loop can do something else between checking and removing messages via the replacement code segment:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">while (!done)
+
+{
+
+while (XtAppPending( applicationContext))
+
+{
+
+XtAppNextEvent( applicationContext, &amp;ev));
+
+XtDispacthEvent( &amp;ev));
+
+}
+
+done = interEventFunction();
+
+}</FONT></PRE>
+
+<P>There are some caveats with this scheme:
+
+<BR>
+
+<UL>
+
+<LI>This is a nonblocking function. It must be fed at all times with events, or it will take over all other applications' time.
+
+<BR>
+
+<BR>
+
+<LI>There is no guarantee when your inter-event function will be run if the queue is flooded with events.
+
+<BR>
+
+<BR>
+
+<LI>Note the while loop for checking messages. It's more efficient to flush the queue first and then call your function rather than calling it once every time you check for messages.
+
+<BR>
+
+<BR>
+
+<LI>The inter-event function must be fast or you will see the user interface slow down. If you want to give some response back to your user about what's going on while in a long inter-event function, you can make a call to XmUpdateDisplay( Display *). This 
+will handle only the Expose events in the queue so that you can update some status display.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Consider using the select call to handle incoming events of file descriptors. This is a call that enables an application to wait for events from various file descriptors on read-ready, write-ready, or both. The file descriptors can be sockets, too!
+
+<BR>See the man page for more information on the select call.
+
+<BR>Open all the files with an open call.
+
+<BR>Get the file descriptor for the event queue.
+
+<BR>Use the Select macros to set up the parameters for select call ret = return from the select function:
+
+<BR>switch (ret)
+
+<BR>case 0:
+
+<BR>process the event queue
+
+<BR>case 1: ...
+
+<BR>process the file descriptor</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E69E390"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Work Procedures</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>These are functions called by the event-handler loop whenever no events are pending in the queue. The function is expected to return a Boolean value indicating whether it has to be removed from the loop after it is called. If TRUE, it wants to be 
+removed; if FALSE, it wants to be called again. For example, you could set up a disk file transfer to run in the background, which will keep returning FALSE until it is done, at which time it will return TRUE.
+
+<BR>
+
+<P>The work procedures are defined as
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Boolean yourFunction(XtPointer clientdata);</FONT></PRE>
+
+<P>The way to register a work procedure is to call
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">XtWorkProcId XtAppAddWorkProc ( XtAppContext app,
+
+XtWorkProc functionPointer,
+
+XtPointer clientData);</FONT></PRE>
+
+<P>The return ID from this call is the handle to the work procedure. It is used to remove the work procedure with a call to the function XtRemoveWorkProc( XtWorkProcId id);.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E391"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Using Timeouts</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>A timeout is used to perform some task at (almost) regular intervals. Applications set up a timer callback function that is called when a requested time interval has passed. This function is defined as
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">void thyTimerCallback( XtPointer clientdata, XtInterval *tid);</FONT></PRE>
+
+<P>where clientdata is a pointer to client-specific data. The setup function for the timeout returns the timer ID and is defined as
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">XtIntervalId XtAddTimeOut ( XtAppContext app,
+
+int milliseconds,
+
+XtTimerCallback TimerProcedure,
+
+XtPointer clientdata);</FONT></PRE>
+
+<P>This call sets up a timer to call the TimerProcedure function when the requested milliseconds have passed. It will do this only once. If you want cyclic timeouts&#151;for example, in a clock application&#151;you have to explicitly set up the next 
+function call in the timer handler function itself. So generally, the last line in a timer handler is a call to set a timeout for the next time the function wants to be called.
+
+<BR>
+
+<P>Linux is not designed for real-time applications, and you can't expect a deterministic time interval between successive timer calls. Some heavy graphics updates can cause delays in the timer loop. For user-interface applications, the delays are probably 
+not a big drawback; however, consult your vendor before you attempt to write a time-critical control application. Depending on your application, your mileage may vary. See Listing 32.15 for an example of setting up cyclic timers.
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 32.15. Setting up cyclic timers.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">/*
+
+** This application shows how to set a cyclic timer
+
+*/
+
+#include &lt;X11/Intrinsic.h&gt;
+
+#include &lt;Xm/Xm.h&gt;
+
+#include &lt;Xm/Form.h&gt;
+
+#include &lt;Xm/PushB.h&gt;
+
+#include &lt;Xm/Text.h&gt;
+
+int counter;
+
+char buf[32];
+
+#define ONE_SECOND 1000L /* **APPROXIMATELY** 1000 milliseconds..*/
+
+/* Timing is *not* precise in Motif... so do not rely on this time
+
+** for a time-critical application. Use interrupt handlers instead.
+
+*/
+
+void makeTimer(Widget w, XtIntervalId id);
+
+void bye(Widget w, XtPointer clientdata, XtPointer calldata);
+
+int main(int argc, char **argv)
+
+{
+
+Widget top;
+
+XtAppContext app;
+
+Widget aForm;
+
+Widget aText;
+
+Widget aButton;
+
+Arg args[5];
+
+/**
+
+*** Initialize the toolkit.
+
+**/
+
+top = XtAppInitialize(&amp;app, &quot;KBH&quot;, NULL, 0, (Cardinal *)&amp;argc,
+
+argv, NULL, args, 0);
+
+/**
+
+*** Create a Form on this top-level Widget. This is a nice Widget
+
+*** to place other Widgets on top of.
+
+**/
+
+aForm = XtVaCreateManagedWidget(&quot;Form1&quot;,
+
+xmFormWidgetClass, top,
+
+XmNheight,90,
+
+XmNwidth,200,
+
+NULL);
+
+/**
+
+*** Add a button on the form you just created. Note how this Button
+
+*** Widget is connected to the form that it resides on. Only
+
+*** left, right, and bottom edges are attached to the form. The
+
+*** top edge of the button is not connected to the form.
+
+**/
+
+aButton = XtVaCreateManagedWidget(&quot;Push to Exit&quot;,
+
+xmPushButtonWidgetClass, aForm,
+
+XmNheight,20,
+
+XmNleftAttachment,XmATTACH_FORM,
+
+XmNleftOffset,20,
+
+XmNrightAttachment,XmATTACH_FORM,
+
+XmNrightOffset,20,
+
+XmNbottomAttachment,XmATTACH_FORM,
+
+NULL);
+
+/**
+
+*** Now let's create the label for us.
+
+*** The alignment is set to right-justify the label.
+
+*** Note how the label is attached to the parent form.
+
+**/
+
+aText = XtVaCreateManagedWidget(&quot;This is a Label&quot;,
+
+xmTextWidgetClass, aForm,
+
+XmNalignment, XmALIGNMENT_CENTER,
+
+XmNleftAttachment,XmATTACH_FORM,
+
+XmNrightAttachment,XmATTACH_FORM,
+
+XmNtopAttachment,XmATTACH_FORM,
+
+XmNbottomAttachment,XmATTACH_WIDGET,
+
+XmNbottomWidget,aButton,
+
+NULL);
+
+/**
+
+*** Now add the timer handler
+
+**/
+
+counter = 0;
+
+makeTimer(aText, (XtIntervalId )NULL);
+
+/**
+
+*** Call the function &quot;bye&quot; when the PushButton receives
+
+*** an activate message; i.e. when the pointer is moved to
+
+*** the button and Button1 is pressed and released.
+
+**/
+
+XtAddCallback( aButton, XmNactivateCallback, bye, (XtPointer) NULL);
+
+XtRealizeWidget(top);
+
+XtAppMainLoop(app);
+
+return(0);
+
+}
+
+void bye(Widget w, XtPointer clientdata, XtPointer calldata)
+
+{
+
+exit(0);
+
+}
+
+/** This function creates the timer code. **/
+
+void makeTimer(Widget w, XtIntervalId id)
+
+{
+
+Widget tmp;
+
+extern int counter;
+
+sprintf(buf,&quot;%4d&quot;,counter++);
+
+XmTextSetString(w,buf);
+
+if (counter &lt; 10) /** reinvoke yourself if &lt; 10 times **/
+
+XtAppAddTimeOut( XtWidgetToApplicationContext(w), ONE_SECOND,
+
+(XtTimerCallbackProc)makeTimer, (XtPointer)w);
+
+}</FONT></PRE>
+
+<BR>
+
+<A NAME="E69E392"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Handling Other Sources</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The XtAddInput function is used to handle inputs from sources other than the event queue. The definition is
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">XtInputId XtAddInput( XtAppContext app,
+
+int LinuxfileDescriptor,
+
+XtPointer condition,
+
+XtInputCallback inputHandler,
+
+XtPointer clientdata);</FONT></PRE>
+
+<P>The return value from this call is the handle to the inputHandler function. This is used to remove the call via the call
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">XtRemoveInput( XtInput Id);</FONT></PRE>
+
+<P>The inputHandler function itself is defined as
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">void InputHandler(XtPointer clientdata, int *fd, XtInputId *id);</FONT></PRE>
+
+<P>Unlike timers, you have to register this function only once. Note that a pointer to a file descriptor is passed in to the function. The file descriptor must be a Linux file descriptor. You do not have support for Linux IPC message queues or semaphores 
+through this scheme. The IPC mechanism is considered dated and is limited to one machine. Consider using sockets instead.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>AIX enables pending on message queues via the select call. Look at the AIX man pages for this call.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E68E274"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>The Graphics Context</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Each Widget draws itself on the screen using its set of drawing parameters called the graphics context (GC). For drawing on a Widget, you can use the X primitive functions if you have its window and its graphics context. It's easier to limit your 
+artwork to the DrawingArea Widget, which is designed for this purpose. You can think of the GC as your paintbrush and the Widget as the canvas. The color and thickness of the paintbrush are just some of the factors that determine how the paint is 
+transferred to the canvas.
+
+<BR>
+
+<P>The function call to create a GC is to use
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">GC XCreateGC (Display dp, Drawable d, unsigned long mask, XGCValue *values);</FONT></PRE>
+
+<P>For use with a Widget w, this call would look like this:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">GC gc;
+
+XGCVvalue gcv;
+
+unsigned long mask;
+
+gc = XCreate(XtDisplay(w), DefaultRootWindow(XtDisplay(w)),
+
+mask, gcv);</FONT></PRE>
+
+<P>Also, you can create a GC for a Widget directly with a call to XtGetGC(). The prototype for this function is
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">gc = XtGetGC (Widget w, unsigned long mask, XGCValue *values);</FONT></PRE>
+
+<P>The values for the mask parameter are defined as an ORed value of the following definitions:
+
+<BR>
+
+<UL>
+
+<LI>GCFunction
+
+<BR>
+
+<BR>
+
+<LI>GCPlaneMask
+
+<BR>
+
+<BR>
+
+<LI>GCForeground
+
+<BR>
+
+<BR>
+
+<LI>GCBackground
+
+<BR>
+
+<BR>
+
+<LI>GCLineWidth
+
+<BR>
+
+<BR>
+
+<LI>GCLineStyle
+
+<BR>
+
+<BR>
+
+<LI>GCCapStyle
+
+<BR>
+
+<BR>
+
+<LI>GCJoinStyle
+
+<BR>
+
+<BR>
+
+<LI>GCFillStyle
+
+<BR>
+
+<BR>
+
+<LI>GCFillRule
+
+<BR>
+
+<BR>
+
+<LI>GCTile
+
+<BR>
+
+<BR>
+
+<LI>GCStipple
+
+<BR>
+
+<BR>
+
+<LI>GCTileStipXOrigin
+
+<BR>
+
+<BR>
+
+<LI>GCTileStipYOrigin
+
+<BR>
+
+<BR>
+
+<LI>GCFont
+
+<BR>
+
+<BR>
+
+<LI>GCSubWindowMode
+
+<BR>
+
+<BR>
+
+<LI>GCGraphicsExposures
+
+<BR>
+
+<BR>
+
+<LI>GCClipXOrigin
+
+<BR>
+
+<BR>
+
+<LI>GCClipYOrigin
+
+<BR>
+
+<BR>
+
+<LI>GCClipMask
+
+<BR>
+
+<BR>
+
+<LI>GCDashOffset
+
+<BR>
+
+<BR>
+
+<LI>GCDashList
+
+<BR>
+
+<BR>
+
+<LI>GCArcMode
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>So, if a call is going to set the Font and Clipping mask, the value of the mask will be (GCFont | GCClipMask). The data structure for setting the graphics context is as follows:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">typedef struct {
+
+int function; /* logical operation */
+
+unsigned long plane_mask;/* plane mask */
+
+unsigned long foreground;/* foreground pixel */
+
+unsigned long background;/* background pixel */
+
+int line_width; /* line width */
+
+int line_style; /* LineSolid, LineOnOffDash, LineDoubleDash */
+
+int cap_style; /* CapNotLast, CapButt,
+
+CapRound, CapProjecting */
+
+int join_style; /* JoinMiter, JoinRound, JoinBevel */
+
+int fill_style; /* FillSolid, FillTiled,
+
+FillStippled, FillOpaeueStippled */
+
+int fill_rule; /* EvenOddRule, WindingRule */
+
+int arc_mode; /* ArcChord, ArcPieSlice */
+
+Pixmap tile; /* tile pixmap for tiling operations */
+
+Pixmap stipple; /* stipple 1 plane pixmap for stipping */
+
+int ts_x_origin; /* offset for tile or stipple operations */
+
+int ts_y_origin;
+
+Font font; /* default text font for text operations */
+
+int subwindow_mode; /* ClipByChildren, IncludeInferiors */
+
+Bool graphics_exposures;/* boolean, should exposures be generated */
+
+int clip_x_origin; /* origin for clipping */
+
+int clip_y_origin;
+
+Pixmap clip_mask; /* bitmap clipping; other calls for rects */
+
+int dash_offset; /* patterned/dashed line information */
+
+char dashes;
+
+} XGCValues;</FONT></PRE>
+
+<P>If you want to set a value in a GC, you have to take two steps before you create the GC:
+
+<BR>
+
+<OL>
+
+<LI>Set the value in the XGCValue structure.
+
+<BR>
+
+<BR>
+
+<LI>Set the mask for the call.
+
+<BR>
+
+<BR>
+
+</OL>
+
+<P>Let's look at the values of the functions in a bit more detail.
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">GCFunction</FONT></PRE>
+
+<P>This determines how the GC paints to the screen. The dst pixels are the pixels currently on the screen, and the src pixels are those that your application is writing using the GC.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">GXclear dst = 0
+
+GXset dst = 1
+
+GXand dst = src AND dst
+
+Gxor dst = src OR dst
+
+GXcopy dst = src
+
+GXnoop dst = dst
+
+Gxnor dst = NOT(src OR dst)
+
+Gxxor dst = src XOR dst
+
+GXinvert dst = NOT dst
+
+GxcopyInverted dst = NOT src</FONT></PRE>
+
+<P>The function for a GC is changed via a call to XSetFunction ( Display *dp, GC gc, int function), where function is set to one of the values just mentioned. The default value is GXcopy. There are several other masks that you can apply. They are listed in 
+the &lt;X11/X.h&gt; file.
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">GCPlaneMask</FONT></PRE>
+
+<P>The plane mask sets which planes of a drawable can be set by the GC. This is defaulted to AllPlanes, thereby enabling the GC to work with all planes on a Widget.
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">GCForeground &amp; GCBackground</FONT></PRE>
+
+<P>These are the values of the pixels to use for the foreground and background colors, respectively. The call to manipulate these is
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">XSetForeGround(Display *dp, GC gc, Pixel pixel);
+
+XSetBackGround(Display *dp, GC gc, Pixel pixel);
+
+<BR>
+
+GCLineWidth</FONT></PRE>
+
+<P>This is the number of pixels for the width of all lines drawn via the GC. It is defaulted to zero, which is the signal to the server to draw the thinnest line possible.
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">GCLineStyle GCDashOffset GCDashList</FONT></PRE>
+
+<P>This determines the style of the line drawn on-screen. LineSolid draws a solid line using the foreground color, LineOnOffDash draws an intermittent line with the foreground color, and LineDoubleDash draws a line that is composed of interlaced segments 
+of the foreground and background colors. The GCDashOffset and GCDashList values determine the position and length of these dashes.
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">GCCapStyle</FONT></PRE>
+
+<P>This determines how the server draws the ends of lines. CapNotLast draws up to, but does not include, the endpoint pixels of a line; CapButt draws up to the endpoints of a line (inclusive); CapRound tries to round off the edges of a thick line (three or 
+more pixels wide); and CapProjecting extends the endpoint a little.
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">GCJoinStyle</FONT></PRE>
+
+<P>This is used to draw the endpoints of a line. It can be set to JointMiter for a 90-degree joint, JoinBevel for a beveled joint, or JoinRound for a rounded joint.
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">GCFillStyle, GCTile, GCStipple</FONT></PRE>
+
+<P>The fill style can be set to FillSolid, which specifies the fill color to be the foreground color; FillTiled specifies a pattern of the same in the Tile attribute; and FillStipple specifies a pattern in the Stipple attribute. FillStipple uses the 
+foreground color where a bit is set to 1 and nothing when a bit is set to 0, whereas FillOpaqueStippled uses the foreground color when a bit is set to 1 and the background color when a bit is set to 0.
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">GCFont</FONT></PRE>
+
+<P>This specifies the fontlist to use. (See the section, &quot;Using Fonts and FontLists,&quot; later in this chapter.)
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">GCArcMode</FONT></PRE>
+
+<P>This defines the way an arc is drawn on-screen (see the next section).
+
+<BR>
+
+<BR>
+
+<A NAME="E68E275"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Drawing Lines, Points, Arcs, and Polygons</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Motif applications can access all the graphics primitives provided by Xlib. All Xlib functions must operate on a window or a pixmap; both are referred to as drawable. Widgets have a window after they are realized. You can access this window with a call 
+to XtWindow(). An application can crash if Xlib calls are made to a window that is not realized. The way to check is via a call to XtIsRealized() on the Widget, which will return TRUE if it is realized and FALSE if it is not. Use the XmDrawingArea Widget's 
+callbacks for rendering your graphics, because it is designed for this purpose. The callbacks available to you are
+
+<BR>
+
+<UL>
+
+<LI>XmNresizeCallback: Invoked when the Widget is resized.
+
+<BR>
+
+<BR>
+
+<LI>XmNexposeCallback: Invoked when the Widget receives an Expose event.
+
+<BR>
+
+<BR>
+
+<LI>XmNinputCallback: Invoked when a button or key is pressed on the Widget.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>All three functions pass a pointer to the XmDrawingAreaCallbackStruct.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E393"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Drawing a Line</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>To draw a line on-screen, use the XDrawLine or XDrawLines function call. Consider the example shown in Listing 32.16.
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 32.16. Drawing lines and points.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">/*
+
+** This application shows how to draw lines and points
+
+** by tracking the pointer
+
+*/
+
+#include &lt;X11/Intrinsic.h&gt;
+
+#include &lt;Xm/Xm.h&gt;
+
+#include &lt;Xm/Form.h&gt;
+
+#include &lt;Xm/PushB.h&gt;
+
+#include &lt;Xm/DrawingA.h&gt;
+
+/**
+
+*** used for tracking and drawing via the mouse
+
+**/
+
+static int track;
+
+static int lastx;
+
+static int lasty;
+
+static GC thisGC;
+
+XGCValues gcv;
+
+Widget aForm;
+
+Widget aDraw;
+
+Widget aButton;
+
+/**
+
+*** Connect the mouse down and up movements
+
+**/
+
+void upMouse(Widget w, XtPointer clientdata, XEvent *e, Boolean *f)
+
+{
+
+if (track == 1)
+
+{
+
+XDrawLine(XtDisplay(w),XtWindow(w),
+
+thisGC, lastx, lasty, e-&gt;xbutton.x, e-&gt;xbutton.y);
+
+}
+
+track = 0;
+
+}
+
+void lostMouse(Widget w, XtPointer clientdata, XEvent *x, Boolean *f)
+
+{
+
+track = 0;
+
+}
+
+/**
+
+*** This function tracks the movement of the mouse by
+
+*** drawing points on its location while a button is
+
+*** pressed.
+
+**/
+
+void moveMouse(Widget w, XtPointer clientdata, XEvent *e, Boolean *f)
+
+{
+
+if (track == 1)
+
+{
+
+printf(&quot;\n x: %d, y: %d&quot;, e-&gt;xmotion.x, e-&gt;xmotion.y);
+
+XDrawPoint(XtDisplay(w),XtWindow(w),
+
+thisGC, e-&gt;xmotion.x, e-&gt;xmotion.y);
+
+}
+
+}
+
+void downMouse(Widget w, XtPointer clientdata, XEvent *e, Boolean *f)
+
+{
+
+track = 1;
+
+lastx = e-&gt;xbutton.x;
+
+lasty = e-&gt;xbutton.y;
+
+}
+
+void bye(Widget w, XtPointer clientdata, XtPointer calldata);
+
+int main(int argc, char **argv)
+
+{
+
+Widget top;
+
+XtAppContext app;
+
+Arg args[5];
+
+/**
+
+*** Initialize the toolkit.
+
+**/
+
+top = XtAppInitialize(&amp;app, &quot;KBH&quot;, NULL, 0, (Cardinal *)&amp;argc,
+
+argv, NULL, args, 0);
+
+/**
+
+*** Create a Form on this top-level Widget. This is a nice Widget
+
+*** to place other Widgets on top of.
+
+**/
+
+aForm = XtVaCreateManagedWidget(&quot;Form1&quot;,
+
+xmFormWidgetClass, top,
+
+XmNheight,200,
+
+XmNwidth,200,
+
+NULL);
+
+/**
+
+*** Add a button on the form you just created. Note how this Button
+
+*** Widget is connected to the form that it resides on. Only
+
+*** left, right, and bottom edges are attached to the form. The
+
+*** top edge of the button is not connected to the form.
+
+**/
+
+aButton = XtVaCreateManagedWidget(&quot;Push to Exit&quot;,
+
+xmPushButtonWidgetClass, aForm,
+
+XmNheight,20,
+
+XmNleftAttachment,XmATTACH_FORM,
+
+XmNleftOffset,20,
+
+XmNrightAttachment,XmATTACH_FORM,
+
+XmNrightOffset,20,
+
+XmNbottomAttachment,XmATTACH_FORM,
+
+NULL);
+
+/**
+
+*** Now let's create the label for us.
+
+*** The alignment is set to right-justify the label.
+
+*** Note how the label is attached to the parent form.
+
+**/
+
+aDraw = XtVaCreateManagedWidget(&quot;paperusitto&quot;,
+
+xmDrawingAreaWidgetClass, aForm,
+
+XmNalignment, XmALIGNMENT_END,
+
+XmNleftAttachment,XmATTACH_FORM,
+
+XmNrightAttachment,XmATTACH_FORM,
+
+XmNtopAttachment,XmATTACH_FORM,
+
+XmNbottomAttachment,XmATTACH_WIDGET,
+
+XmNbottomWidget,aButton,
+
+NULL);
+
+gcv.foreground = BlackPixel(XtDisplay(aDraw), DefaultScreen(XtDisplay(aDraw)));
+
+gcv.background = WhitePixel(XtDisplay(aDraw), DefaultScreen(XtDisplay(aDraw)));
+
+gcv.line_width = 2;
+
+thisGC = XtGetGC( aDraw,
+
+GCForeground | GCBackground | GCLineWidth,
+
+(XGCValues *) &amp;gcv);
+
+/**
+
+*** Now add the event handlers for tracking the mouse on the
+
+*** label. Note that the LeaveWindowMask is set to release
+
+*** the pointer for you should you keep the button pressed
+
+*** and leave the window and disables tracking.
+
+**/
+
+XtAddEventHandler( aDraw, ButtonPressMask, FALSE, downMouse, NULL);
+
+XtAddEventHandler( aDraw, ButtonMotionMask, FALSE, moveMouse, NULL);
+
+XtAddEventHandler( aDraw, ButtonReleaseMask,FALSE, upMouse, NULL);
+
+XtAddEventHandler( aDraw, LeaveWindowMask, FALSE, lostMouse, NULL);
+
+/**
+
+*** Call the function &quot;bye&quot; when the PushButton receives
+
+*** an activate message; i.e. when the pointer is moved to
+
+*** the button and Button1 is pressed and released.
+
+**/
+
+XtAddCallback( aButton, XmNactivateCallback, bye, (XtPointer) NULL);
+
+XtRealizeWidget(top);
+
+XtAppMainLoop(app);
+
+return(0);
+
+}
+
+void reallyQuit(Widget w, XtPointer clientdata, XtPointer calldata)
+
+{
+
+exit(0);
+
+}
+
+/**
+
+*** pesky quit routine
+
+**/
+
+void bye(Widget w, XtPointer clientdata, XtPointer calldata)
+
+{
+
+static Widget quitDlg = NULL;
+
+static char *msgstr = &quot;Are you sure you want to Quit?&quot;;
+
+if (quitDlg != (Widget )NULL)
+
+{
+
+/* first time called */
+
+quitDlg = XmCreateQuestionDialog(w,&quot;R U Sure&quot;, (XtPointer *)NULL,0);
+
+XtVaSetValues(quitDlg,
+
+XmNdialogStyle, XmDIALOG_FULL_APPLICATION_MODAL,
+
+XtVaTypedArg, XmNmessageString, XmRString,
+
+msgstr,
+
+strlen(msgstr),
+
+NULL);
+
+XtAddCallback(quitDlg, XmNokCallback, reallyQuit, NULL);
+
+}
+
+XtManageChild(quitDlg);
+
+}</FONT></PRE>
+
+<P>The output from Listing 32.16 is shown in Figure 32.12.
+
+<BR>
+
+<P><B> <A HREF="32rhl12.gif">Figure 32.12. Drawing points and lines.</A></B>
+
+<BR>
+
+<P>This is an example of the primitives required to draw one line on the Widget. Note the number of GCValues that have to be set to achieve this purpose. The XDrawLine function definition is as follows:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">XDrawLine( Display *dpy,
+
+Drawable d,
+
+GC gc,
+
+int x1,
+
+int y1,
+
+int x2,
+
+int y2);</FONT></PRE>
+
+<P>It's more efficient to draw multiple lines in one call. Use the XDrawLines function with a pointer to an array of points and its size.
+
+<BR>
+
+<P>The mode parameter can be set to
+
+<BR>
+
+<UL>
+
+<LI>CoorModeOrigin to use the values relative to the drawables' origin.
+
+<BR>
+
+<BR>
+
+<LI>CoorModePrevious to use the values as deltas from the previous point. A delta is the change in x and y coordinates between this coordinate and the previous one.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>The first point is always relative to the drawables' origin. To draw boxes, use the XDrawRectangle function:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">XDrawRectangle( Display *display, Drawable dwindow,
+
+GC gc,int x,int y,
+
+unsigned int width, unsigned int height);</FONT></PRE>
+
+<P>will draw a rectangle at (x,y) of geometry (width, height). To draw more than one box at a time, use the XDrawRectangles() function. This function is declared as
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">XDrawRectangles( Display *display, Window dwindow,
+
+GC gc, XRectangle *xp, int number);</FONT></PRE>
+
+<P>where xp is a pointer to an array of number rectangle definition structures.
+
+<BR>
+
+<P>For filled rectangles, use the XFillRectangle and XFillRectangles calls, respectively.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E394"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Drawing a Point</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>To draw a point on-screen, use the XDrawPoint or XDrawPoints function call. This is similar to line-drawing functions. (Refer to Listing 32.16.)
+
+<BR>
+
+<BR>
+
+<A NAME="E69E395"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Drawing an Arc</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>To draw circles, arcs, and similar shapes, use the XDrawArc function:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">XDrawArc(Display *display, Window dwindow,
+
+GC gc, int x, int y,
+
+unsigned int width, unsigned int height,
+
+int a1, int a2);</FONT></PRE>
+
+<P>This function is very flexible. It draws an arc from an angle a1 starting from the 3 o'clock position to angle a2. The units for angles are in one sixty-fourths (1/64) of a degree. The arc is drawn counterclockwise. The largest value is (64&#180;360) 
+units because the angle arguments are truncated. The width and height define the bounding rectangle for the arc. The XDrawArcs() function is used to draw multiple arcs, given pointers to the array. The prototype for this function is
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">XDrawArcs (Display *display, Window dwindow,
+
+GC gc, XArc *arcptr, int number);</FONT></PRE>
+
+<P>To draw polygons, use the call
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">XDrawSegments( Display *display, Window dwindow, GC gc,
+
+XSegment *segments, int number);</FONT></PRE>
+
+<P>The XSegment structure includes four short members&#151;x1,y1,x2, and y2&#151;which define the starting and ending points of all segments. For connected lines, use the XDrawLines function shown earlier. For filled polygons, use the XFillPolygon() 
+function call.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E276"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Using Fonts and FontLists</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Fonts are perhaps the trickiest aspect of Motif to master. See the section on fonts in <A HREF="rhl23.htm">Chapter 23</A>, &quot;Using Motif,&quot; before reading this section to familiarize yourself with font definitions.
+
+<BR>
+
+<P>The function XLoadQueryFont(Display *dp, char *name) returns an XFontStruct structure. This structure defines the extents for the character set. This is used to set the values of the Font field in a GC.
+
+<BR>
+
+<P>To draw a string on the screen, use
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">XDrawString ( Display *dp, Drawable dw, GC gc,
+
+int x, int y, char *str, int len);</FONT></PRE>
+
+<P>which uses only the foreground color. To draw with the background and foreground colors, use
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">XDrawImageString ( Display *dp, Drawable dw, GC gc,
+
+int x, int y, char *str, int len);</FONT></PRE>
+
+<BR>
+
+<A NAME="E68E277"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>The X Color Model</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The X Color Model is based on an array of colors called a colormap. Applications refer to a color by its index into this colormap. The indices are placed in the application's frame buffer, which contains an entry for each pixel of the display. The 
+number of bits in the index defines the number of bitplanes. The number of bitplanes defines the number of colors that can be displayed on-screen at one time. For example, one bit per pixel gives two colors, four bits per pixel gives 16 colors, and eight 
+bits per pixel gives 256 colors.
+
+<BR>
+
+<P>Applications generally inherit the colormap of their parent. They can also create their own colormap using the XCreateColormap call. The call is defined as
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Colormap XCreateColormap( Display *display, Window dwindow,
+
+Visual *vp, int requested);</FONT></PRE>
+
+<P>This allocates the number of requested color entries in the colormap for a window. Generally, the visual parameter is derived from the macro
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">DefaultVisual (Display *display, int screenNumber);</FONT></PRE>
+
+<P>where screenNumber = 0 in almost all cases. Colormaps are a valuable resource in X and must be freed after use. This is done via the call XFreeColormap(Display *display, Colormap c);
+
+<BR>
+
+<P>Applications can get the standard colormap from the X server by using the XGetStandardColormap() call, and set it via the XSetStandardColormap() call. These are defined as
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">XGetStandardColormap( Display *display, Window dwindow,
+
+XStandardColormap *c, Atom property);</FONT></PRE>
+
+<P>and
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">XSetStandardColormap( Display *display, Window dwindow,
+
+XStandardColormap *c, Atom property);</FONT></PRE>
+
+<P>Once applications have a Colormap to work with, they have to follow two steps:
+
+<BR>
+
+<OL>
+
+<LI>Define the colormap entries.
+
+<BR>The property atom can take the values of RGB_BEST_MAP, RGB_GRAY_MAP, or 2RGB_DEFAULT_MAP. These are names of colormaps stored in the server. They are not colormaps in themselves.
+
+<BR>
+
+<BR>
+
+<LI>Set the colormap for a window via the call
+
+<BR>XSetWindowColormap ( Display *display, Window dwindow, Colormap c );
+
+<BR>
+
+<BR>
+
+</OL>
+
+<P>For setting or allocating a color in the Colormap, use the XColor structure defined in &lt;X/Xlib.h&gt;.
+
+<BR>
+
+<P>To see a bright blue color, use the segment
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">XColor color;
+
+color.red = 0;
+
+color.blue = 0xffff;
+
+color.green = 0;</FONT></PRE>
+
+<P>Then add the color to the Colormap using the call to the function:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">XAllocColor(Display *display,
+
+Window dwindow,
+
+XColor *color );</FONT></PRE>
+
+<P>See Listing 32.17 for a sample function to set the color of a Widget.
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 32.17. Convenience function for getting colors.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">/**
+
+*** Convenience function to get colors
+
+**/
+
+Pixel GetPixel( Widget w, int r, int g, int b)
+
+{
+
+Display *dpy;
+
+int scr;
+
+Colormap cmp;
+
+XColor clr;
+
+dpy = XtDisplay(w);
+
+scr = DefaultScreen(dpy);
+
+cmp = DefaultColormap(dpy);
+
+clr.red = (short)r;
+
+clr.green = (short)g;
+
+clr.blue = (short)b;
+
+clr.flags = DoRed | DoGreen | DoBlue;
+
+/**
+
+*** Note that the default black pixel of the display and screen
+
+*** is returned if the color could not be allocated.
+
+**/
+
+return(XAllocColor(dpy,cmp,&amp;clr) ? clr.pixel : BlackPixel(dpy,scr));
+
+}</FONT></PRE>
+
+<P>The default white and black pixels are defined as
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Pixel BlackPixel( Display *dpy, int screen);
+
+Pixel WhitePixel( Display *dpy, int screen);</FONT></PRE>
+
+<P>and will work with any screen as a fallback.
+
+<BR>
+
+<P>The index (Pixel) returned by this function is not guaranteed to be the same every time the application runs. This is because the colormap could be shared between applications requesting colors in different orders. Each entry is allocated on a 
+next-available-entry basis. Sometimes, if you overwrite an existing entry in a cell, you might actually see a change in a completely different application. So be careful.
+
+<BR>
+
+<P>Applications can query the RGB components of a color by calling the function
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">XQueryColor( Display *display, Colormap *cmp, Xcolor *clr);</FONT></PRE>
+
+<P>For many colors at one time, use
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">XQueryColors( Display *display, Colormap *cmp,
+
+Xcolor *clr, int number);</FONT></PRE>
+
+<P>At this time the application can modify the RGB components. Then you can store them in the colormap with the call
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">XStoreColor( Display *display, Colormap *cmp,XColor *clr);</FONT></PRE>
+
+<P>Recall that X11 has some strange names for colors in the /usr/lib/rgb.txt file. Applications can get the RGB components of these names with a call to
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">XLookupColor( Display *display, Colormap cmp,
+
+char *name,XColor *clr, XColor *exact);</FONT></PRE>
+
+<P>The name is the string to search for in the rgb.txt file. The returned value clr contains the next closest existing entry in the colormap. The exact color entry contains the exact RGB definition in the entry in rgb.txt. This function does not allocate 
+the color in the colormap. To do that, use the call
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">XAllocNamedColor( Display *display, Colormap cmp,
+
+char *name, Xcolor *clr, XColor *exact);</FONT></PRE>
+
+<BR>
+
+<A NAME="E68E278"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Pixmaps, Bitmaps, and Images</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>A Pixmap is like a window, but is off-screen and therefore invisible to the user. This is usually the same depth of the screen. You create a Pixmap with the call
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">XCreatePixmap (Display *dp,
+
+Drawable dw,
+
+unsigned int width,
+
+unsigned int height,
+
+unsigned int depth);</FONT></PRE>
+
+<P>A drawable can be either a Window (on-screen) or a Pixmap (off-screen). Bitmaps are Pixmaps of a depth of one pixel. Look in
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">/usr/include/X11/bitmaps</FONT></PRE>
+
+<P>for a listing of se of the standard bitmaps.
+
+<BR>
+
+<P>The way to copy Pixmaps from memory to the screen is via the call to XCopyArea. The prototype for this call is
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">XCopyArea( Display dp,
+
+Drawable Src, Drawable Dst,
+
+GC gc, int src_x, int src_y,
+
+unsigned int width, unsigned int height,
+
+int dst_x, int dst_y);</FONT></PRE>
+
+<P>The caveat with this XCopyArea is that the depth of the Src and Dst drawables have to be of the same depth. To show a bitmap on a screen with depth greater than 1 pixel, you have to copy the bitmap one plane at a time. This is done via the call
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">XCopyPlane( Display dp,
+
+Drawable Src, Drawable Dst,
+
+GC gc, int src_x, int src_y,
+
+unsigned int width, unsigned int height,
+
+int dst_x, int dst_y, unsigned long plane);</FONT></PRE>
+
+<P>where the plane specifies the bit plane to which this one-bit-deep bitmap must be copied. The actual operation is largely dependent on the modes set in the GC.
+
+<BR>
+
+<P>For example, to show the files in the /usr/include/bitmaps directory that have three defined values for a sample file called gumby.h:
+
+<BR>
+
+<UL>
+
+<LI>gumby_bits = pointer to an array of character bits.
+
+<BR>
+
+<BR>
+
+<LI>gumby_height and gumby_width = integer height and width.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>First, create the bitmap from the data using the XCreateBitmapFromData() call. To display this one-plane-thick image, copy the image from this plane to plane 1 of the display. You can actually copy to any plane in the window. A sample call could be set 
+for copying from your Pixmap to the Widget's plane 1 in the following manner:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">XCopyPlane( XtDisplay(w), yourPixmap, XtWindow(w), gc,
+
+0,0, your_height, your_width, 0,0,1);</FONT></PRE>
+
+<P>where it copies from the origin of the pixmap to the origin of plane 1 of the window.
+
+<BR>
+
+<P>There are other functions for working with images in X. These include the capability to store device-dependent images on disk and the Xpm format.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E279"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Summary</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>This chapter covered the following topics:
+
+<BR>
+
+<UL>
+
+<LI>The basics of writing Motif applications
+
+<BR>
+
+<BR>
+
+<LI>The special naming conventions in Motif and X
+
+<BR>
+
+<BR>
+
+<LI>Writing and compiling your first Motif application
+
+<BR>
+
+<BR>
+
+<LI>An overview of the Motif Widget hierarchy
+
+<BR>
+
+<BR>
+
+<LI>Working with various common Widgets
+
+<BR>
+
+<BR>
+
+<LI>Designing layouts
+
+<BR>
+
+<BR>
+
+<LI>Creating pop-up menus and menu bars
+
+<BR>
+
+<BR>
+
+<LI>Creating simple dialog boxes
+
+<BR>
+
+<BR>
+
+<LI>How to use the mouse in event handling
+
+<BR>
+
+<BR>
+
+<LI>How to use colors in X
+
+<BR>
+
+<BR>
+
+<LI>How to draw lines and points
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>This chapter could easily expand into a book. (Please do not tempt me!) I have only covered the basics of writing Motif applications. However, given the vast number of tools in Linux, you can see how you can port any existing Motif application code to 
+and from a Linux machine. Similarly, a Linux machine can also prove to be a good development platform for developing Motif applications.
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl31.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="#I0" TARGET="_self"><IMG SRC="purtop.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Page Top"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl33.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+</BODY></HTML>
+
+
+

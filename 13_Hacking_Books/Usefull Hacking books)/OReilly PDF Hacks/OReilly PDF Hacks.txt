@@ -1,0 +1,31 @@
+OReilly PDF Hacks
+
+Sid Steward
+
+O'Reilly 2004
+
+3.6 MB
+
+iSBN : 0596006551
+
+296 Pages
+
+
+PDF Hacks unveils the true promise of Portable Document Format, 
+going way beyond the usual PDF as paged output mechanism. PDF 
+expert Sid Steward draws from his years of analyzing, extending, 
+authoring, and embellishing PDF documents to present 100 clever 
+hacks--tools, techniques, quick-and-dirty or not-so-obvious 
+solutions to common problems. The little-known tips and tricks in 
+this book are ideal for anyone who works with PDF on a regular 
+basis, including web developers, pre-press users, forms creators, 
+and those who generate PDF for distribution. Learn how to create 
+PDF documents that are far more powerful than simple 
+representations of paper pages. The hacks in the book cover the 
+full range of PDF functionality, from the simple to the more 
+complex, including generating, manipulating, annotating, and 
+consuming PDF information. You'll learn how to manage content in 
+PDF, navigate it, and reuse it as necessary. Far more than another 
+guide to Adobe Acrobat, the book covers a variety of readily 
+available tools for generating, deploying, and editing PDF.
+

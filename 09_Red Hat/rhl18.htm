@@ -1,0 +1,1394 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Red Hat Linux Unleashed rhl18.htm </TITLE>
+
+<LINK REL="ToC" HREF="index.htm">
+
+<LINK REL="Index" HREF="htindex.htm">
+
+<LINK REL="Next" HREF="rhl19.htm">
+
+<LINK REL="Previous" HREF="rhl17.htm"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+
+<A NAME="I0"></A>
+
+<H2>Red Hat Linux Unleashed rhl18.htm</H2>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl17.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl19.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+<HR ALIGN=CENTER>
+
+<P>
+
+<UL>
+
+<UL>
+
+<UL>
+
+<LI>
+
+<A HREF="#E68E124" >geqn</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E242" >Executing geqn</A>
+
+<LI>
+
+<A HREF="#E69E243" >Equations</A>
+
+<LI>
+
+<A HREF="#E69E244" >Subscripts and Superscripts</A>
+
+<LI>
+
+<A HREF="#E69E245" >Fractions</A>
+
+<LI>
+
+<A HREF="#E69E246" >Square Roots</A>
+
+<LI>
+
+<A HREF="#E69E247" >Summations, Set Theory, and Integrals</A>
+
+<LI>
+
+<A HREF="#E69E248" >Brackets, Bars, and Piles</A>
+
+<LI>
+
+<A HREF="#E69E249" >Matrices</A>
+
+<LI>
+
+<A HREF="#E69E250" >Quoted Text</A>
+
+<LI>
+
+<A HREF="#E69E251" >Character Changes</A>
+
+<LI>
+
+<A HREF="#E69E252" >Using geqn</A></UL>
+
+<LI>
+
+<A HREF="#E68E125" >gtbl</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E253" >Executing gtbl</A>
+
+<LI>
+
+<A HREF="#E69E254" >Options</A>
+
+<LI>
+
+<A HREF="#E69E255" >Format</A>
+
+<LI>
+
+<A HREF="#E69E256" >Data</A>
+
+<LI>
+
+<A HREF="#E69E257" >Examples</A></UL>
+
+<LI>
+
+<A HREF="#E68E126" >Summary</A></UL></UL></UL>
+
+<HR ALIGN=CENTER>
+
+<A NAME="E66E18"></A>
+
+<H1 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>18</B></FONT></CENTER></H1>
+
+<BR>
+
+<A NAME="E67E18"></A>
+
+<H2 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>geqn</B><B> and </B><B>gtbl</B></FONT></CENTER></H2>
+
+<BR>
+
+<P>Now that you are comfortable with groff, you can look at two useful add-ons for groff: geqn and gtbl. In this chapter, you learn the following:
+
+<BR>
+
+<UL>
+
+<LI>What are geqn and gtbl?
+
+<BR>
+
+<BR>
+
+<LI>How to create complex equations easily
+
+<BR>
+
+<BR>
+
+<LI>How to format tables for groff documents
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>In the last chapter, you saw how groff can be used to produce formatted documents to both screen and printer. Unfortunately, groff is not the easiest package to work with for complex problems such as tables and equations, so a set of macros for these 
+tasks was developed.
+
+<BR>
+
+<P>The utilities gtbl and geqn are preprocessors, which means that you write the source code as usual, but then the gtbl and geqn programs scan through and replace their specific commands with groff commands. Except for the specific commands changed, no 
+other changes to the text or groff commands are performed.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E124"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>geqn</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The geqn preprocessor is designed for formatting complex equations and printing special symbols. You need only use geqn if you are using groff to create a document with these kinds of characters embedded within them.
+
+<BR>
+
+<P>Although groff has enough power to provide simple equations, it is not particularly friendly, or powerful enough for more than single-line material. On the other hand, geqn is quite easy to work with. Most aspects of geqn are designed to look like 
+equivalent English commands or words.
+
+<BR>
+
+<P>You can quickly move through a set of the important parts of geqn. As you will see, it is remarkably easy to work with.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E242"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Executing </B><B>geqn</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The geqn preprocessor is invoked before the groff formatter. Usually, this is accomplished with a simple pipe command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">geqn filename | groff</FONT></PRE>
+
+<P>This processes filename through geqn, which converts geqn commands to equivalent groff commands and then sends the result to groff for processing.
+
+<BR>
+
+<P>The command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">geqn file1 file2 file3 | groff</FONT></PRE>
+
+<P>processes three files and sends them all to groff.
+
+<BR>
+
+<P>Remember that many consoles can't display equations properly because they are not bitmapped and don't have the character set available. You may have to output the results to a printer to see any exercises you try.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E243"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Equations</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>You must tell geqn where equations begin and end by using the commands .EQ (equation start) and .EN (equation end). Within the two commands, anything typed is treated as an equation. For example, the command
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">.EQ
+
+b=c*(d+x)
+
+.EN</FONT></PRE>
+
+<P>is formatted to the equation
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">b=c*(d+x)</FONT></PRE>
+
+<P>If you try that line without the equation indicators, feeding it straight to groff, you don't receive the same output because groff can't interpret the characters properly.
+
+<BR>
+
+<P>You can number equations, as is often required in technical documents, by placing a number after the .EQ command. For example, the command
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">.EQ 15
+
+b=c*(d+x)
+
+.EN</FONT></PRE>
+
+<P>places the number 15 in the left margin next to the equation.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E244"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Subscripts and Superscripts</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>To place superscripts and subscripts in an equation, use the commands sup and sub. The words sup and sub must be surrounded by spaces. For example, the command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">E=mc sup 2</FONT></PRE>
+
+<P>produces Einstein's most famous equation.
+
+<BR>
+
+<P>To indicate the end of a subscript or superscript and continue with normal characters, use a space or a tilde (~) character. For example, the command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">x=(z sup 2)+1</FONT></PRE>
+
+<P>gives you the finished output
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">x=(z2)+1</FONT></PRE>
+
+<P>which is probably not what you wanted. Instead, use one of the following commands:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">x=(z sup 2 )+1
+
+x=(z sup 2~)+1</FONT></PRE>
+
+<P>In these commands, the space or the tilde indicates the end of the superscript. This gives you the following output:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">x=(z<SUP>2</SUP>)+1</FONT></PRE>
+
+<P>You can subscript subscripts, and superscript superscripts, simply by combining the formats:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">y sub x sub 3</FONT></PRE>
+
+<P>You can also produce both subscript and superscript on the same character using the two commands together:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">x sub y sup 3</FONT></PRE>
+
+<P>Because a space is used to indicate the end of a subscript or superscript, this can cause a problem when you want spaces either as part of the equation, or to separate words to be converted. To get around this problem, use braces to enclose the 
+subscript or superscript:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">w sup {x alpha y}</FONT></PRE>
+
+<P>This shows that the Greek letters are also available, as they are within groff. You can have braces within braces, as well:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">omega sub { 2 pi r sup { 2 + rho }}</FONT></PRE>
+
+<P>Try these commands for yourself, and experiment to see the output.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E245"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Fractions</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>To create a proper-looking fraction, use the keyword over. The geqn preprocessor automatically adjusts the length of the line separating the parts. For example, the command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">a = 2b over {3c alpha}</FONT></PRE>
+
+<P>produces an equation with a horizontal line separating the two components, just as if you were writing the equation out on paper.
+
+<BR>
+
+<P>You can, of course, combine all the other elements of geqn to create more complex-looking equations:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">{alpha + beta * gamma sup 3} over {3 sub {4 + alpha}}</FONT></PRE>
+
+<P>When you are combining sup and sub with over, geqn processes sup and sub first, and then it does over, much as you would when writing the equation.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E246"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Square Roots</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>To draw a square root symbol, use the keyword sqrt, and geqn ensures that the square root symbol is properly drawn to enclose all parts of the equation that are indicated as belonging to the square root. Very large square root signs that cover a lot of 
+material on many lines, for example, do not look particularly good when printed. You should consider using the superscript 0.5 instead.
+
+<BR>
+
+<P>You can use sqrt quite easily. For example, the command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">sqrt a+c - 1 over sqrt {alpha + beta}</FONT></PRE>
+
+<P>has the first square root sign over a+c, and the second over the part in braces.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E247"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Summations, Set Theory, and Integrals</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>To produce a summation, use the keyword sum and the keywords from and to to show the upper and lower parts of the command. For example, use the command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">sum from x=1 to x=100 x sup 2</FONT></PRE>
+
+<P>to create the formula for summing x squared over the range 1 to 100. If you want to use a special word, use braces:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">sum from x=1 to {x= inf} x sup 2</FONT></PRE>
+
+<P>This is the same command, except summing from 1 to infinity. The braces ensure that the to component is properly interpreted. If no from or to component is specified, they are not printed.
+
+<BR>
+
+<P>To use integrals, the keyword int is used, and can again take a from argument:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">lim from n=1 xy sup 3 = 9</FONT></PRE>
+
+<P>Other reserved words for geqn are used with set theory. You can use the keywords union and inter for the union and intersect of sets.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E248"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Brackets, Bars, and Piles</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>As equations get more complicated, you need to use more brackets and braces. You can generate brackets ([]), braces ({}), and parentheses (()) as needed using the left and right commands:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">left { b over d+1} = left ( alpha over {beta + gamma} )</FONT></PRE>
+
+<P>This produces large braces, and parentheses are required to surround the terms. You can nest these, of course, with geqn adjusting the sizes properly. Braces are usually bigger than brackets and parentheses.
+
+<BR>
+
+<P>For floor and ceiling characters, use the left floor, right floor, left ceiling, and right ceiling commands. For example:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">left ceiling x over alpha right ceiling &gt; left floor beta over 2 right floor</FONT></PRE>
+
+<P>draws the equation with the proper vertical bars and ceiling and floor markers.
+
+<BR>
+
+<P>To create a pile of elements, use the reserved word pile. The following example shows the usage best:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">X = left [ pile { a above b above c } right ]</FONT></PRE>
+
+<P>This produces output with the three elements a, b, and c stacked vertically within big braces.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E249"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Matrices</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>To make a matrix requires a little more work. You could probably make a matrix using the pile command, but if the elements are not of equal height, they will not line up. For that reason, use the keyword matrix. The general format is
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">matrix {
+
+ccol { elements }
+
+ccol { elements }</FONT></PRE>
+
+<P>in which ccol produces centered columns. For left-adjusted columns, use lcol; rcol produces right-adjusted columns. The elements are specified individually. For example, the command
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">matrix {
+
+ccol { x sub 1 above y sub 1 }
+
+ccol { x sub 2 above y sub 2 }</FONT></PRE>
+
+<P>produces the matrix
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">x1 x2
+
+y1 y2</FONT></PRE>
+
+<P>All matrices must have the same number of elements in each column or geqn can't process the matrix properly.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E250"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Quoted Text</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Any characters placed within quotation marks are not interpreted by geqn. This is useful for text strings that may contain reserved words, such as the following:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">italics &quot;beta&quot; = beta + gamma</FONT></PRE>
+
+<P>Here, the word beta will appear in italic without being converted to the beta character.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E251"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Character Changes</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>You can change font and point size with geqn in much the same way as with groff. The default setting is usually Roman 10 point. If you want to set bold characters, use the keyword bold; italic sets italic font.
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">x=y bold alpha</FONT></PRE>
+
+<P>You can also use the keyword fat, which widens the character (useful for things such as grad characters). These reserved words affect only what immediately follows, so you must use braces if the area to be changed is more than a single block of 
+characters.
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">x=y*2 bold {alpha + gamma}</FONT></PRE>
+
+<P>To change the size of characters, use the size keyword:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">size 16 {alpha + beta}</FONT></PRE>
+
+<P>This sets the enclosed text in 16-point size. Incremental changes are acceptable.
+
+<BR>
+
+<P>To affect the entire equation, you can use the gsize (global size) and gfont (global font) commands at the start of the geqn block:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">.EQ
+
+gsize 14
+
+gfont H
+
+....</FONT></PRE>
+
+<P>This makes it easy to format the equations however you wish.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E252"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Using </B><B>geqn</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>As you have seen, geqn is quite friendly and easy to use, especially if you are used to writing out equations longhand. You should play around with the system and learn the different features. There are more commands available within geqn, but the main 
+ones have been shown to you. For more information, check the man pages or a good troff book that includes eqn.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E125"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>gtbl</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The gtbl routine is designed to help in the preparation of charts, multicolumn lists, and any other material presented in a tabular format. The gtbl commands are not difficult to work with, but can be awkward to learn, so studying examples is the best 
+method.
+
+<BR>
+
+<P>To use gtbl, two special commands are used to indicate to groff that the area between the two commands is to be processed as gtbl instructions. These two key commands are .TS (table start) and .TE (table end). Commands between these two are processed by 
+gtbl first, which converts the gtbl commands to groff commands; then, the source is passed to groff.
+
+<BR>
+
+<P>Tables are independent of each other with gtbl, meaning that each must contain all the information for formatting the data within the table and can't rely on a previous format. Tables contain three types of information: text for the table itself, 
+options that control the behavior of gtbl, and formatting commands to lay out the table itself. The general format of a gtbl source code section is as follows:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">.TS
+
+options;
+
+format.
+
+data
+
+.TE</FONT></PRE>
+
+<P>Let's look at the important parts of the gtbl layout first, and then see how they are combined to produce finished tables.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E253"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Executing </B><B>gtbl</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Because gtbl is a preprocessor, it is invoked on the source file, and then the results are passed to groff. The simplest way to do this is with the command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">gtbl filename | groff</FONT></PRE>
+
+<P>in which the gtbl preprocessor runs against the source in filename and then sends the output to groff. If you are processing more than one file at a time, or you need to send the output of gtbl to another preprocessor, such as geqn, you use piping 
+slightly differently. The command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">gtbl filename | geqn | groff</FONT></PRE>
+
+<P>sends the output to geqn and then to groff.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E254"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Options</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>There can be a single line of options after a .TS command that affects the entire table. Any options must follow the .TS command. If more than one option is specified, they must be separated by spaces, commas, or tabs, and terminate in a semicolon. gtbl 
+accepts the following options:
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+center
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Centers the table (default is left-justified).</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+expand
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Makes tables as wide as current line length.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+box
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Encloses the table in a box.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+allbox
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Encloses each element of the table in a box.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+doublebox
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Encloses the table in two boxes.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+tab (n)
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Uses n instead of a tab to separate data.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+linesize (n)
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Uses point size n for lines or rules.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+delim (mn)
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Uses m and n as equation delimiters.</FONT>
+
+</TABLE><P>When gtbl tries to lay out a table, it tries to keep the entire table on one page if possible, even if it has to eject the previous page only partially completed. This can sometimes cause problems because gtbl can make mistakes estimating the 
+size of the table prior to generating it, especially if there are embedded line commands that affect spacing or point size. To avoid this problem, some users surround the entire table with the display macros .DS (display start) and .DE (display end). You 
+can ignore this for most tables, unless you start embedding commands within the data.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E255"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Format</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The format section of the table structure indicates how the columns are to be laid out. Each line in the format section corresponds to one line of data in the finished table. If not enough format lines are specified to match all the lines of data, the 
+last format line specified is used for the remainder of the table. This lets you use a specific format for headers and a single format line for the rest of the table. The format section ends with a period.
+
+<BR>
+
+<P>Each line in the format section contains a keyletter for each column in the table. Keyletters should be separated by spaces or tabs for each column to enhance readability. Keyletters are case-independent (so you can use upper- or lowercase for the 
+keyletters, or a mixture of the two, without affecting the layout). Supported gtbl keyletters are as follows:
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+l
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Left-justified entry</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+r
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Right-justified entry</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+c
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Centered entry</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+[lb]
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Numeric entries lined up by units</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+a
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Aligned on left so that widest entry is centered</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+s
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Previous column format applies across rest of column</FONT>
+
+</TABLE><P>A sample format section consists of a letter for each column, unless the entry is repeated across the page. A sample format section looks like this:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">c s s
+
+l n n .</FONT></PRE>
+
+<P>In this sample, the first line of the table is formatted with the first, second, and third columns centered (the s repeats the previous entry). The second and subsequent lines have the first entry left-justified, and the next two lined up as numbers. 
+The period ends the format section. If you like, you can put all these format keyletters on a single line, using a comma to separate the lines:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">c s s, l n n .</FONT></PRE>
+
+<P>A table formatted by this set of commands looks like this (with random numbers inserted to show the lineup):
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Centered_Title
+
+Entry1 12.23 231.23
+
+Entry2 3.23 45.2
+
+Entry3 45 123.2344
+
+Entry4 3.2 2.3</FONT></PRE>
+
+<P>Numeric data is usually aligned so that the decimal places are in a vertical column. However, sometimes you want to override this format by forcing a movement. The special character \&amp; is used to move the decimal point. The special characters 
+disappear when the table is printed. To show the effect of this special character, the following sample shows normal formatting and entries with the special character embedded (the first column is the source input, and the second is the generated output):
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">14.5 14.5
+
+13 13
+
+1.253 1.253
+
+3\&amp;1.21 31.21
+
+53.2 53.2
+
+6\&amp;2.23 62.23</FONT></PRE>
+
+<P>You can see that the numbers usually line up with the decimal point in a vertical row, except where moved over by the \&amp; characters. Even if a number has no decimal point specified (as in the second line of the example), it is lined up as though one 
+were present after the last digit.
+
+<BR>
+
+<P>The following are a few additional keyletters that can be used to create special formats and make the tables more attractive:
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+_
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Horizontal line in place of column entry.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+=
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Double horizontal line in place of column entry.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+|
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Between column entries, draws a vertical line between columns. Before the first keyletters, draws a line to the left of the table. After the last keyletters, draws a line to the right of the table.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+||
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Between column entries, draws a double vertical line.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+e/E
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Sets equal width columns. All columns that have a keyletter followed by e or E are set to the same width.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+f/F
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Followed by a font name or number, changes the entry to the font specified.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+N
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Any number following a keyletter. Indicates the amount of separation between columns.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+p/P
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Followed by a number, changes the point size of the entry to the specified number. Increments acceptable.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+t/T
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Vertically spanned items begin at the top line. Normally, vertically spanning items (more than one line in the table) are centered in the vertical range.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+v/V
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Followed by a number, gives vertical line spacing.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+w/W
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Followed by a number, sets the width.</FONT>
+
+</TABLE><P>The order of these characters on the format line is not important, although the spacing between each format identifier must still be respected. Multiple letters can be used. The entry
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">np14w(2.5i)fi</FONT></PRE>
+
+<P>sets the numeric entry (n) in italic (fi), with a point size of 14 (p14) and a minimum column width of 2.5 inches (w(2.5i)).
+
+<BR>
+
+<P>You may need to change the format of a table midway through&#151;for example, to present summaries. If you must change the format, use the .T&amp; (table continue) command.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E256"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Data</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Data for the table is entered after all the format specifications have been completed. Data for columns is separated by tabs or any other character indicated in the tabs option. Each line of data is one line of the table. Long lines of data can be 
+broken over several lines of source by using the backslash character as the last character in a line.
+
+<BR>
+
+<P>Any line starting with a period and followed by anything other than a number is assumed to be a groff command and is ignored by the preprocessor. If a single line of the data consists of only underscore or equal sign characters (single and double 
+lines), it is treated as extending the entire width of the table.
+
+<BR>
+
+<P>You can embed a block of text within a table by using the text commands of T{ (start of text) and }T (end of text). This lets you enter something that can't be easily entered as a string separated by tabs.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E257"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Examples</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The best way to understand how to use gtbl is to look at some simple examples. Here's a basic table command:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">.TS
+
+doublebox;
+
+c c c, l l n.
+
+Name Dept Phone
+
+Joe 8A 7263
+
+Mike 9F 2635
+
+Peter 2R 2152
+
+Yvonne 2B 2524
+
+.TE</FONT></PRE>
+
+<P>All of the entries in the data section are separated by tabs. This produces a table with three columns, the first line of which is centered text. The rest of the table has the first and second column left-justified, and the last column aligned by 
+decimal point (there are none in this case). The entire table is surrounded by two boxes.
+
+<BR>
+
+<P>A slightly more complex example uses a table title, followed by a row of column headings, and then the data. Separate each element in the table by a box in this case:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">.TS
+
+allbox;
+
+c s s
+
+c c c
+
+n n n .
+
+Division Results
+
+East West North
+
+15 12 14
+
+12 12 18
+
+36 15 24
+
+.TE</FONT></PRE>
+
+<P>Try typing in these examples, or create your own, to see what effect the different commands have. When you've started using gtbl, it isn't that difficult.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E126"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Summary</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Although word processors have made utilities such as geqn and gtbl less popular than they used to be, some diehard UNIX people still like to use them. There are times when you might not be able to produce an equation the way you want with your favorite 
+word processor, so you might have to return to the basics. Also, because word processors<A NAME="I2"></A> capable of fancy formulas tend to be expensive, utilities such as geqn and gtbl are ideal for the occasional user who doesn't want to spend a lot of 
+money on a seldom-used tool.
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl17.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="#I0" TARGET="_self"><IMG SRC="purtop.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Page Top"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl19.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+</BODY></HTML>
+
+
+

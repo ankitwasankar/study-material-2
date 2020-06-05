@@ -1,0 +1,1209 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Red Hat Linux Unleashed rhl47.htm </TITLE>
+
+<LINK REL="ToC" HREF="index.htm">
+
+<LINK REL="Index" HREF="htindex.htm">
+
+<LINK REL="Next" HREF="rhl48.htm">
+
+<LINK REL="Previous" HREF="rhl46.htm"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+
+<A NAME="I0"></A>
+
+<H2>Red Hat Linux Unleashed rhl47.htm</H2>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl46.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl48.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+<HR ALIGN=CENTER>
+
+<P>
+
+<UL>
+
+<UL>
+
+<UL>
+
+<LI>
+
+<A HREF="#E68E376" >What Is FTP?</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E497" >Using FTP</A>
+
+<LI>
+
+<A HREF="#E69E498" >How FTP Uses TCP</A></UL>
+
+<LI>
+
+<A HREF="#E68E377" >Configuring FTP</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E499" >Setting Up ftpd</A>
+
+<LI>
+
+<A HREF="#E69E500" >FTP Logins</A>
+
+<LI>
+
+<A HREF="#E69E501" >Setting Up the Directories</A>
+
+<LI>
+
+<A HREF="#E69E502" >Setting Permissions</A>
+
+<LI>
+
+<A HREF="#E69E503" >Test the System</A></UL>
+
+<LI>
+
+<A HREF="#E68E378" >A More Secure FTP</A>
+
+<LI>
+
+<A HREF="#E68E379" >Summary</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E504" >Checklist Protecting an Anonymous FTP System</A></UL></UL></UL></UL>
+
+<HR ALIGN=CENTER>
+
+<A NAME="E66E47"></A>
+
+<H1 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>47</B></FONT></CENTER></H1>
+
+<BR>
+
+<A NAME="E67E47"></A>
+
+<H2 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>Setting Up an FTP and Anonymous FTP Site</B></FONT></CENTER></H2>
+
+<BR>
+
+<P>Snap question: What is the most widely used TCP/IP and Internet service? If you answered FTP, you're right. (If you didn't choose FTP, this may come as a bit of a surprise. The fact is, FTP remains the most widely used service; although the World Wide 
+Web is quickly catching up.) FTP's popularity is easy to figure: The FTP software is supplied with every version of UNIX and Linux, it's easy to install, configure, and use, and it gives users access to a wealth of information with very little effort.
+
+<BR>
+
+<P>If all you want to use FTP for is connecting to another machine and transferring files, then you don't have to do much more than enable the FTP service on your system. Much more interesting to many users is turning your Linux machine into an FTP site, 
+where others can connect and obtain files you make available. That's the primary focus of this chapter&#151;setting up an FTP site on your Linux machine. We'll begin, though, with a quick look at using FTP and the way FTP runs on TCP. This information 
+should help you understand how FTP works and what it does with TCP/IP.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E376"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>What Is FTP?</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The File Transfer Protocol (FTP) is one protocol in the TCP/IP family used to transfer files between machines running TCP/IP. (FTP-like programs are also available for some other protocols.) The File Transfer Protocol allows you to transfer files back 
+and forth and manage directories. FTP is not designed to allow you access to another machine to execute programs, but it is the best utility for file manipulation. To use FTP, both ends of a connection must be running a program that provides FTP services. 
+The end that starts the connection (the client) calls the other end (the server) and establishes the FTP protocol through a set of handshaking instructions.
+
+<BR>
+
+<P>Usually, when you connect to a remote system via FTP, you must log in. This means you must be a valid user, with a user name and password for that remote machine. Because it is impossible to provide logins for everyone who wants to access a machine that 
+enables anyone to gain access, many systems use &quot;anonymous FTP&quot; instead. Anonymous FTP enables anyone to log in to the system with the login name of &quot;ftp&quot; or &quot;anonymous&quot; with either no password, or an e-mail address for their 
+local system.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E497"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Using FTP</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Using FTP to connect to a remote site is easy. You have access to the remote machine either through the Internet (directly or through a service provider) or through a local area network if the remote machine is directly reachable. To use FTP, you start 
+the FTP client software and provide the name of the remote system you want to connect to. For example, assuming you can get to the remote machine through a LAN or the Internet (which knows about the remote machine thanks to Domain Name Service), you issue 
+the following command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">ftp chatton.com</FONT></PRE>
+
+<P>This will instruct your FTP software to try to connect to the remote machine chatton.com and establish an FTP session.
+
+<BR>
+
+<P>When the connection is completed (and assuming the remote system allows FTP logins), the remote will prompt for a user ID. If anonymous FTP is supported on the system, a message will usually tell you exactly that. The following is for the Linux FTP 
+archive site sunsite.unc.edu:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">ftp sunsite.unc.edu
+
+331 Guest login ok, send your complete e-mail address as password.
+
+Enter username (default: anonymous): anonymous
+
+Enter password [tparker@tpci.com]:
+
+|FTP| Open
+
+230- WELCOME to UNC and SUN's anonymous ftp server
+
+230- University of North Carolina
+
+230- Office FOR Information Technology
+
+230- SunSITE.unc.edu
+
+230 Guest login ok, access restrictions apply.
+
+FTP&gt;</FONT></PRE>
+
+<P>After the login process is completed, you will see the prompt FTP&gt; indicating the remote system is ready to accept commands.
+
+<BR>
+
+<P>When you log on to some systems, you may see a short message that contains instructions for downloading files, any restrictions that are placed on you as an anonymous FTP user, or information about the location of useful files. For example, you may see 
+messages like these (taken from the Linux FTP site):
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">To get a binary file, type: BINARY and then: GET &quot;File.Name&quot; newfilename
+
+To get a text file, type: ASCII and then: GET &quot;File.Name&quot; newfilename
+
+Names MUST match upper, lower case exactly. Use the &quot;quotes&quot; as shown.
+
+To get a directory, type: DIR. To change directory, type: CD &quot;Dir.Name&quot;
+
+To read a short text file, type: GET &quot;File.Name&quot; TT
+
+For more, type HELP or see FAQ in gopher.
+
+To quit, type EXIT or Control-Z.
+
+230- If you email to info@sunsite.unc.edu you will be sent help information
+
+230- about how to use the different services sunsite provides.
+
+230- We use the Wuarchive experimental ftpd. if you &quot;get&quot; &lt;directory&gt;.tar.Z
+
+230- or &lt;file&gt;.Z it will compress and/or tar it on the fly. Using &quot;.gz&quot; instead
+
+230- of &quot;.Z&quot; will use the GNU zip (/pub/gnu/gzip*) instead, a superior
+
+230- compression method.</FONT></PRE>
+
+<P>Once you are logged on the remote system, you can use familiar Linux commands to display file contents and move around directories. To display the contents of a directory, for example, use the ls command (some systems support the DOS equivalent dir). To 
+change to a subdirectory, use the cd command. To return to the parent directory (the one above the current directory), use the command cd ... As you can see, these commands are the same as you would use on your local machine, except you are now navigating 
+on the remote system.
+
+<BR>
+
+<P>There are no keyboard shortcuts (such as pressing the Tab key to fill in names that match) available with FTP. This means you have to type in the name of files or directories in their entirety (and correctly). If you misspell a file or directory name, 
+you will get error messages and have to try again. Luckily, if you are performing the FTP session through X Window, you can cut and paste lines from earlier in your session.
+
+<BR>
+
+<P>Transferring files is the whole point of FTP, so you need to know how to retrieve a file from the remote system, as well as how to put a new file there. When you have moved through the remote system's directories and have found a file you want to 
+transfer back to your local system, use the get command. This is followed by the filename. For example:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">get &quot;soundcard_driver&quot;</FONT></PRE>
+
+<P>This will transfer the file soundcard_driver from the remote machine to the current directory on your local machine. When you issue a get command, the remote system will transfer data to your local machine and display a status message when it is 
+completed. There is no indication of progress when a large file is being transferred, so be patient. (Most versions of FTP allow you to use the hash option, which displays pound signs every time a kilobyte of information has been transferred. This can be 
+used to show that the transfer is underway, but it doesn't offer a time to completion.)
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">FTP&gt; get &quot;file1.txt&quot;
+
+200 PORT command successful.
+
+150 BINARY data connection for FILE1.TXT (27534 bytes)
+
+226 BINARY Transfer complete.
+
+27534 bytes received in 2.35 seconds (12 Kbytes/s).</FONT></PRE>
+
+<P>If you want to transfer a file the other way (from your machine to the remote, assuming you are allowed to write to the remote machine's file system), use the put command in the same way. The command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">put &quot;comments&quot;</FONT></PRE>
+
+<P>will transfer the file comments from your current directory on the local machine (you can specify full pathnames) to the current directory on the remote machine (unless you change the path).
+
+<BR>
+
+<P>The commands get (download) and put (upload) are always relative to your home machine. You are telling your system to get a file from the remote and put it on your local machine, or to put a file from your local machine onto the remote machine. (This is 
+the exact opposite of telnet, which has everything relative to the remote machine. It is important to remember which command moves in which direction, or you could overwrite files accidentally.)
+
+<BR>
+
+<P>The quotation marks around the filenames in the preceding examples are optional for most versions of FTP, but they do prevent shell expansion of characters, so it's best to use them. For most files, the quotation marks are not needed, but using them is 
+a good habit to get into.
+
+<BR>
+
+<P>Some FTP versions provide a wildcard capability using the commands mget and mput. Both the FTP get and put commands usually transfer only one file at a time, which must be completely specified (no wildcards). The mget and mput commands enable you to use 
+wildcards. For example, to transfer all the files with a .doc extension, you could issue the command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">mget *.doc</FONT></PRE>
+
+<P>You will have to try the mget and mput commands to see if they work on your FTP version. (Some FTP get and put commands allow wildcards, too, so you can try wildcards in a command line to see if they work, instead.)
+
+<BR>
+
+<P>FTP allows file transfers in several formats, which are usually system dependent. The majority of systems (including Linux systems) have only two modes: ASCII and binary. Some mainframe installations add support for EBCDIC, while many sites have a local 
+type that is designed for fast transfers between local network machines (the local type may use 32- or 64-bit words).
+
+<BR>
+
+<P>The difference between the binary and ASCII modes is simple. Text transfers use ASCII characters separated by carriage return and new-line characters. Binary mode allows transfer of characters with no conversion or formatting. Binary mode is faster than 
+text and also allows for the transfer of all ASCII values (necessary for non-text files). FTP cannot transfer file permissions because these are not specified as part of the protocol.
+
+<BR>
+
+<P>Linux' FTP provides two modes of file transfer: ASCII and Binary. Some systems automatically switch between the two when they recognize a file is binary format, but you shouldn't count on the switching unless you've tested it before and know it works. 
+To be sure, it is a good idea to manually set the mode. By default, most FTP versions start up in ASCII mode, although a few start in Binary.
+
+<BR>
+
+<P>To set FTP in binary transfer mode (for any executable file or file with special characters embedded for spreadsheets, word processors, graphics, and so on), type the command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">binary</FONT></PRE>
+
+<P>You can toggle back to ASCII mode with the command ascii. Since you will most likely be checking remote sites for new binaries or libraries of source code, it is a good idea to use binary mode for most transfers. If you transfer a binary file in ASCII 
+mode, it will not be usable on your system.
+
+<BR>
+
+<P>ASCII mode includes only the valid ASCII characters and not the 8-bit values stored in binaries. Transferring an ASCII file in Binary mode does not affect the contents except in very rare instances.
+
+<BR>
+
+<P>To quit FTP, type the command quit or exit. Both will close your session on the remote machine, and then terminate FTP on your local machine. Users have a number of commands available within most versions of FTP. The following list outlines the ones 
+most frequently used:
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+ascii
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Switches to ASCII transfer mode</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+binary
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Switches to binary transfer mode</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+cd
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Changes directory on the server</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+close
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Terminates the connection</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+del
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Deletes a file on the server</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+dir
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Displays the server directory</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+get
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Fetches a file from the server</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+hash
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Displays a pound character for each block transmitted</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+help
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Displays help</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+lcd
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Changes directory on the client</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+mget
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Fetches several files from the server</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+mput
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Sends several files to the server</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+open
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Connects to a server</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+put
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Sends a file to the server</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+pwd
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Displays the current server directory</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+quote
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Supplies an FTP command directly</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+quit
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Terminates the FTP session</FONT>
+
+</TABLE><P>For most versions, FTP commands are case sensitive, and using upper case will display error messages. Some versions perform a translation for you, so it doesn't matter which case you use. Since Linux uses lower case as its primary character set 
+for everything else, you should probably use lower case with all versions of FTP, too.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E498"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>How FTP Uses TCP</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The File Transfer Protocol uses two TCP channels: TCP port 20 is used for data, and port 21 is for commands. Both these channels must be enabled on your Linux system for FTP to function. The use of two channels makes FTP different from most other file 
+transfer programs. By using two channels, TCP allows simultaneous transfer of FTP commands and data. FTP works in the foreground and does not use spoolers or queues.
+
+<BR>
+
+<P>FTP uses a server daemon that runs continuously and a separate program that is executed on the client. On Linux systems, the server daemon is called ftpd. The client program is ftp.
+
+<BR>
+
+<P>During the establishment of a connection between a client and server, and whenever a user issues a command to FTP, the two machines transfer a series of commands. These commands are exclusive to FTP and are known as the internal protocol. FTP's internal 
+protocol commands are four-character ASCII sequences terminated by a new-line character, some of which require parameters. One primary advantage of using ASCII characters for commands is that users can observe the command flow and understand it easily. 
+This helps in a debugging process. Also, the ASCII commands can be used directly by a knowledgeable user to communicate with the FTP server component without invoking the client portion (in other words, communicating with ftpd without using ftp on a local 
+machine); this is seldom used except when debugging (or showing off).
+
+<BR>
+
+<P>After logging into a remote machine using FTP, you are not actually on the remote machine. You are still logically on the client, so all instructions for file transfers and directory movement must be with respect to your local machine and not the remote 
+one. The process followed by FTP when a connection is established is:
+
+<BR>
+
+<OL>
+
+<LI>Login&#151;Verify user ID and password
+
+<BR>
+
+<BR>
+
+<LI>Define directory&#151;Identify the starting directory
+
+<BR>
+
+<BR>
+
+<LI>Define file transfer mode&#151;Define the type of transfer
+
+<BR>
+
+<BR>
+
+<LI>Start data transfer&#151;Allow user commands
+
+<BR>
+
+<BR>
+
+<LI>Stop data transfer&#151;Close the connection
+
+<BR>
+
+<BR>
+
+</OL>
+
+<P>These steps are performed in sequence for each connection.
+
+<BR>
+
+<P>A debugging option is available from the FTP command line by adding -d to the command. This displays the command channel instructions. Instructions from the client are shown with an arrow as the first character, while instructions from the server have 
+three digits in front of them. A PORT in the command line indicates the address of the data channel on which the client is waiting for the server's reply. If no PORT is specified, channel 20 (the default value) is used. Unfortunately, the progress of data 
+transfers cannot be followed in the debugging mode. A sample session with the debug option enabled is shown here:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ ftp -d tpci_hpws4
+
+Connected to tpci_hpws4.
+
+220 tpci_hpws4 FTP server (Version 1.7.109.2
+
+_Tue Jul 28 23:32:34 GMT 1992) ready.
+
+Name (tpci_hpws4:tparker):
+
+&#151;&gt; USER tparker
+
+331 Password required for tparker.
+
+Password:
+
+&#151;&gt; PASS qwerty5
+
+230 User tparker logged in.
+
+&#151;&gt; SYST
+
+215 UNIX Type: L8
+
+Remote system type is UNIX.
+
+&#151;&gt; Type I
+
+200 Type set to I.
+
+Using binary mode to transfer files.
+
+ftp&gt; ls
+
+&#151;&gt; PORT 47,80,10,28,4,175
+
+200 PORT command successful.
+
+&#151;&gt; TYPE A
+
+200 Type set to A.
+
+&#151;&gt; LIST
+
+150 Opening ASCII mode data connection for /bin/ls.
+
+total 4
+
+-rw-r&#151;&#151; 1 tparker tpci 2803 Apr 29 10:46 file1
+
+-rw-rw-r&#151; 1 tparker tpci 1286 Apr 14 10:46 file5_draft
+
+-rwxr&#151;&#151; 2 tparker tpci 15635 Mar 14 23:23 test_comp_1
+
+-rw-r&#151;&#151; 1 tparker tpci 52 Apr 22 12:19 xyzzy
+
+Transfer complete.
+
+&#151;&gt; TYPE I
+
+200 Type set to I.
+
+ftp&gt; &lt;Ctrl-d&gt;
+
+$</FONT></PRE>
+
+<P>You may have noticed in the preceding listing how the mode changed from binary to ASCII to send the directory listing, and then back to binary (the system default value).
+
+<BR>
+
+<BR>
+
+<A NAME="E68E377"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Configuring FTP</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Whether you decide to provide an anonymous FTP site or a user-login FTP system, you need to perform some basic configuration steps to get the FTP daemon active and get the directory system and file permissions properly set to prevent users from 
+destroying or accessing files they shouldn't. The process can start with choosing an FTP site name. You don't really need a site name, although it can be easier for others to access your machine with one (especially anonymously). The FTP site name is of 
+the format:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">ftp.domain_name.domain_type</FONT></PRE>
+
+<P>where domain_name is the domain name (or an alias) of the FTP server's domain, and domain_type is the usual DNS extension. For example, you could have an FTP site name of
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">ftp.tpci.com</FONT></PRE>
+
+<P>showing that this is the anonymous FTP access for anyone accessing the tpci.com domain. It is usually a bad idea to name your FTP site with a specific machine name, such as:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">ftp.merlin.tpci.com</FONT></PRE>
+
+<P>because this makes it difficult to move the FTP server to another machine in the future. Instead, use an alias to point to the actual machine on which the FTP server sits. This is not a problem if you are a single machine connected to the Internet 
+through a service provider, for example, but it is often necessary with a larger network. The alias is easy to set up if you use DNS. Set the alias in the DNS databases with a line like this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">ftp IN CNAME merlin.tpci.com</FONT></PRE>
+
+<P>This line points anyone accessing the machine ftp.tpci.com to the real machine merlin.tpci.com. If the machine merlin has to be taken out of its FTP server role for any reason, a change in the machine name on this line will point the ftp.tpci.com access 
+to the new server. (A change in the alias performed over DNS can take a while to become active because the change must be propagated through all the DNS databases.)
+
+<BR>
+
+<BR>
+
+<A NAME="E69E499"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Setting Up </B><B>ftpd</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The FTP daemon, ftpd, must be started on the FTP server. The daemon is usually handled by inetd instead of the rc startup files, so ftpd is only active when someone needs it. This is the best approach for all but the most heavily loaded FTP sites. When 
+started using inetd, the inetd daemon watches the TCP command port (channel 21) for an arriving data packet requesting a connection, and then spawns ftpd.
+
+<BR>
+
+<P>Make sure the ftpd daemon can be started by inetd by checking the inetd configuration file (usually /etc/inetd.config or /etc/inetd.conf) for a line that looks like this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">ftp stream tcp nowait root /usr/etc/ftpd ftpd -l</FONT></PRE>
+
+<P>If the line doesn't exist, add it to the file. With most Linux systems, the line is already in the file, although it may be commented out. Remove the comment symbol if this is the case. The FTP entry essentially specifies to inetd that FTP is to use 
+TCP, and that it should spawn ftpd every time a new connection is made to the FTP port. In the preceding example, the ftpd daemon is started with the -l option, which enables logging. You can ignore this option if you want. You should replace the pathname 
+/usr/etc/ftpd with the location of your FTP daemon.
+
+<BR>
+
+<P>There are several ftpd daemon options that you can add to the /etc/inetd.config line to control ftpd's behavior. The following list contains the most commonly used options:
+
+<BR>
+
+<UL>
+
+<LI>-d Adds debugging information to the syslog.
+
+<BR>
+
+<BR>
+
+<LI>-l Activates a logging of sessions (only failed and successful logins, not debug information). If the -l option is specified twice, all commands are logged, too. If specified three times, the size of all get and put file transfers are added as well.
+
+<BR>
+
+<BR>
+
+<LI>-t Sets the timeout period before ftpd terminates after a session is concluded (default is 15 minutes). The value is specified in seconds after the -t option.
+
+<BR>
+
+<BR>
+
+<LI>-T Sets the maximum timeout period (in seconds) that a client can request. The default is two hours. This lets a client alter the normal default timeout for some reason.
+
+<BR>
+
+<BR>
+
+<LI>-u Sets the umask value for files uploaded to the local system. The default umask is 022. Clients can request a different umask value.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<BR>
+
+<A NAME="E69E500"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>FTP Logins</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>If you are going to set up a user-based FTP service where each person accessing your system has a valid login name and password, then you must create an account for each user in the /etc/passwd file. If you are not allowing anonymous FTP access, do not 
+create a generic login that anyone can use.
+
+<BR>
+
+<P>To set up an anonymous FTP server, you must create a login for the anonymous user ID (if one doesn't already exist; many versions of Linux have the entry already completed upon installation). This is done in the normal process of adding a user to the 
+/etc/passwd file. The login name is whatever you want people to use when they access your system, such as anonymous or ftp. You need to select a login directory for the anonymous users that can be protected from the rest of the file system. A typical 
+/etc/passwd entry looks like this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">ftp:*:400:51:Anonymous FTP access:/usr/ftp:/bin/false</FONT></PRE>
+
+<P>This sets up the anonymous user with a login of ftp. The asterisk password prevents anyone gaining access to the account. The user ID number (400) is, of course, unique to the entire system. For better security, it is a good idea to create a separate 
+group just for the anonymous FTP access (edit the /etc/group file to add a new group), then set the ftp user to that group. Only the anonymous FTP user should belong to that group because it can be used to set file permissions to restrict access and make 
+your system more secure. The login directory in the preceding example is /usr/ftp, although you could choose any directory as long as it belongs to root (for security reasons, again). The startup program shown in the preceding example is /bin/false, which 
+helps protect your system from access to accounts and utilities that do not have a strong password protection.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E501"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Setting Up the Directories</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>As you will see in the next section, &quot;Setting Permissions,&quot; you can try to make the entire anonymous FTP subdirectory structure a file system unto itself, with no allowance for the anonymous user to get anywhere other than /usr/ftp (or 
+whatever directory you use for anonymous access). For this reason, you need to create a mini-file system just for the anonymous FTP access which holds the usual directory names and basic files that anyone logging in will need.
+
+<BR>
+
+<P>The process for setting up the directories that your anonymous FTP login will need is simple, requiring you to create a number of directories and copy files into them. Here's the basic procedure:
+
+<BR>
+
+<OL>
+
+<LI>Create the bin directory (/usr/ftp/bin, for example) and copy the directory listing command ls that users will need to view directory and file details.
+
+<BR>
+
+<BR>
+
+<LI>Create the etc directory (usr/ftp/etc, for example) and copy your passwd file (/etc/passwd) and group file (/etc/group) into it. We'll edit these files in a moment.
+
+<BR>
+
+<BR>
+
+<LI>Create the lib directory (/usr/ftp/lib, for example) and copy the files /lib/ld.so and /lib/libc.so.X (where X is the version number of the libc file) into it. These files are used by ls. Do this step only if your ls command requires these files; most 
+versions of Linux do not have this dependency.
+
+<BR>
+
+<BR>
+
+<LI>Create the pub directory (/usr/ftp/pub, for example) to hold your accessible files. We'll look at this directory in more detail in a moment.
+
+<BR>
+
+<BR>
+
+<LI>Create the dev directory (/usr/ftp/dev, for example) and use the mknod command to copy the /dev/zero file. You need to retain the same major and minor device numbers as the /dev/zero file in /dev. This device file is used by ld.so (and hence ls). Do 
+this step only if ls requires the /lib directory files mentioned earlier.
+
+<BR>
+
+<BR>
+
+</OL>
+
+<P>The copies of the /etc/passwd and /etc/group files are copied into the ~ftp/etc directory. You should edit these files to remove all passwords and replace them with an asterisk. Remove all entries in both /etc/passwd and /etc/group, except those used by 
+the anonymous FTP login (usually just anonymous and bin).
+
+<BR>
+
+<P>The ~ftp/pub directory structure can be used to store the files you want to allow anonymous users to access. Copy them into this directory. You can create subdirectories as you need them for organizational purposes. It may be useful to create an upload 
+directory somewhere in the ~ftp/pub directory structure which has write permission, so that users can upload files to you only into this upload area.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E502"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Setting Permissions</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>You can use the chroot command to help protect your system. The chroot command makes the root directory appear to be something other than / on a file system. For example, since chroot is always set for the anonymous FTP login, any time anonymous users 
+type a cd command, it can always be relative to their home directory. In other words, when they type cd /bin they will really be changing to /usr/ftp/bin if the root has been set to /usr/ftp. This helps prevent access to any other areas of the file system 
+than the FTP directory structure.
+
+<BR>
+
+<P>If you do create an upload area, you may want to set the permissions to allow execute and write, but not read (to prevent another user downloading the files someone else has uploaded).
+
+<BR>
+
+<P>Set all permissions for directories under ~ftp/ to prevent write access by user, group, or other. Make sure the directories and files under ~ftp are set to allow the anonymous login to read them (set their ownership and group permissions to the root 
+login and group ID), and set only read permission. The directories will need execute and read permission to enable the anonymous users to enter them and obtain directory listings. This provides pretty good security. All directories in the ~ftp directory 
+structure should have the permissions set with the command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">chmod 555 dir_name</FONT></PRE>
+
+<P>which sets read-execute permission only. The exception is the upload directory, which can have write permission as noted earlier.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E503"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Test the System</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Before you let anyone else onto your Linux FTP system, log into it yourself and try to access files you shouldn't be able to access, move into directories out of the ~ftp structure, and write files where you shouldn't be able to. This will provide a 
+useful test of the permissions and directory structure. Spend a few minutes trying to read and write files. Make sure your system is buttoned up: If you don't, someone else will find the holes and exploit them.
+
+<BR>
+
+<P>It is a useful idea to set up a mailbox for the FTP administrator so users on other systems who need help or information can send mail to you. Create a mail alias such as ftp-admin in the file /etc/aliases (and run newaliases to make it effective).
+
+<BR>
+
+<P>Since this is a system administration book, we won't go into much detail about how to organize your directory structure, but a few useful tips may help you. To begin, decide what you want to store in your FTP directories and organize the structure 
+logically. For example, if you are making available programs you have written, set up separate directories for each. A README file in each directory will help show browsers what it contains. A master README or INSTRUCTIONS file in the ~ftp directory can 
+help explain how your site is set up and what its contents are.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E378"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>A More Secure FTP</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The FTP system discussed in the preceding sections, which is the basic one supplied with practically every Linux distribution, requires a bit of work to make it secure. However, it is still vulnerable to very experienced crackers. There's a better 
+alternative if you are paranoid about your system's security: WU FTP. Developed at Washington University, WU FTP adds some extra features to the standard FTP system:
+
+<BR>
+
+<UL>
+
+<LI>Better control of user and group IDs
+
+<BR>
+
+<BR>
+
+<LI>Better tracking of uploads and downloads
+
+<BR>
+
+<BR>
+
+<LI>Automatic shutdown
+
+<BR>
+
+<BR>
+
+<LI>Automatic compression and decompression of files
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>If these features sound useful, you can obtain a copy of the source code of WU FTP from several sites, although the primary site is wuarchive.wustl.edu. Check for the file /packages/wuarchive-ftpd/wu-ftpd-2.4.tar.Z. You will get the source code which 
+needs to be compiled on your Linux system.
+
+<BR>
+
+<P>WU FTP uses a number of environment variables to control the service, and the accompanying documentation helps you set it up properly. Setting up WU FTP is much more complex than standard FTP, and the extra security, while useful, may be unnecessary for 
+many FTP site machines that you may set up at home or work (unless you have sensitive information).
+
+<BR>
+
+<BR>
+
+<A NAME="E68E379"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Summary</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The information in this chapter enables you to set up your system as a full anonymous FTP site or just a site for the users you want to gain access. Although the process is simple, you have to take care to ensure the file permissions are properly set. 
+Once your FTP site is up, you can let others on the Internet or your local area network know that you are running, as well as the type of material you store on your system. Then sit back and share!
+
+<BR>
+
+<BR>
+
+<A NAME="E69E504"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Checklist Protecting an Anonymous FTP System</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Anonymous FTP is fast, relatively easy to use, and a huge security problem if you don't carefully set up your system. The following list summarizes a few simple steps to setting up a better anonymous FTP site:
+
+<BR>
+
+<OL>
+
+<LI>Create a user account called ftp. Edit the /etc/passwd file manually and replace the password with an asterisk in the second field. This prevents anyone from gaining access through the ftp account.
+
+<BR>
+
+<BR>
+
+<LI><A NAME="I2"></A>If a home directory wasn't created for the ftp user when you created the account, set up a home directory for the ftp user's sole use (such as /home/ftp).
+
+<BR>
+
+<BR>
+
+<LI>Set the ftp home directory so that the root user is the owner:
+
+<BR>chown root /usr/ftp
+
+<BR>
+
+<LI>Make the ftp home directory unwritable to anyone with the command:
+
+<BR>chmod ugo-w /usr/ftp
+
+<BR>
+
+<LI>Create a bin directory under the ftp home directory:
+
+<BR>mkdir ~ftp/bin
+
+<BR>
+
+<LI>Make the ~ftp/bin directory owned by root and unwritable to anyone else:
+
+<BR>chown root ~ftp/bin
+
+<BR>chmod ugo-w ~ftp/bin
+
+<BR>
+
+<LI>Place a copy of the listing commands (and any others that you want anonymous FTP users to use) in the bin directory:
+
+<BR>cp /bin/ls ~ftp/bin
+
+<BR>
+
+<LI>Create an etc directory under the ftp home directory and make it owned by root and unwritable:
+
+<BR>mkdir ~ftp/etc
+
+<BR>chown root ~ftp/etc
+
+<BR>chmod ugo-w ~ftp/etc
+
+<BR>
+
+<LI>Copy the /etc/passwd and /etc/group files into the ~ftp/etc directory. Edit both files to remove all user accounts except ftp (and ftp's group). (At the very least, remove all passwords for other accounts by placing asterisks in the password field.)
+
+<BR>
+
+<BR>
+
+<LI>Create the directory ~ftp/pub/incoming, and make it owned by root. Then, make the directory writable by anyone:
+
+<BR>mkdir ~ftp/pub/incoming
+
+<BR>chown root ~ftp/pub/incoming
+
+<BR>chmod ugo+w ~ftp/pub/incoming
+
+<BR>
+
+<LI>Place any files you want accessible by anonymous FTP into the ~ftp/pub directory. Users logging in through anonymous FTP will be able to transfer the files out. Allowing users to write files into the directory may not be desirable, so change the 
+permissions or check the files frequently.
+
+<BR>
+
+<BR>
+
+</OL>
+
+<P>By following these steps (modified for your own particular needs), you can create a secure site that lets you breathe a little easier.
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl46.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="#I0" TARGET="_self"><IMG SRC="purtop.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Page Top"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl48.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+</BODY></HTML>
+
+
+

@@ -1,0 +1,3042 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Red Hat Linux Unleashed rhl14.htm </TITLE>
+
+<LINK REL="ToC" HREF="index.htm">
+
+<LINK REL="Index" HREF="htindex.htm">
+
+<LINK REL="Next" HREF="rhl15.htm">
+
+<LINK REL="Previous" HREF="rhl13.htm"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+
+<A NAME="I0"></A>
+
+<H2>Red Hat Linux Unleashed rhl14.htm</H2>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl13.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl15.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+<HR ALIGN=CENTER>
+
+<P>
+
+<UL>
+
+<UL>
+
+<UL>
+
+<LI>
+
+<A HREF="#E68E100" >Using the write Command</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E198" >A Description of the write Command</A>
+
+<LI>
+
+<A HREF="#E69E199" >A Sample write Session</A>
+
+<LI>
+
+<A HREF="#E69E200" >write Etiquette</A></UL>
+
+<LI>
+
+<A HREF="#E68E101" >The talk Communication Tool</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E201" >A Sample talk Session</A>
+
+<LI>
+
+<A HREF="#E69E202" >talk Etiquette</A></UL>
+
+<LI>
+
+<A HREF="#E68E102" >Electronic Mail</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E203" >Mailboxes and Agents</A>
+
+<LI>
+
+<A HREF="#E69E204" >Understanding the Mail Message</A>
+
+<LI>
+
+<A HREF="#E69E205" >Types of Mail User Agents</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E70E1" >Using elm</A>
+
+<LI>
+
+<A HREF="#E70E2" >Using Pine</A>
+
+<LI>
+
+<A HREF="#E70E3" >Using mailx (Berkeley Mail)</A></UL></UL>
+
+<LI>
+
+<A HREF="#E68E103" >Using news</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E206" >nn</A>
+
+<LI>
+
+<A HREF="#E69E207" >tin</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E70E4" >Command-Line Options</A></UL></UL>
+
+<LI>
+
+<A HREF="#E68E104" >Using FTP</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E208" >Anonymous FTP</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E70E5" >ftp Commands</A></UL></UL>
+
+<LI>
+
+<A HREF="#E68E105" >telnet</A>
+
+<LI>
+
+<A HREF="#E68E106" >Summary</A></UL></UL></UL>
+
+<HR ALIGN=CENTER>
+
+<A NAME="E66E14"></A>
+
+<H1 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>14</B></FONT></CENTER></H1>
+
+<BR>
+
+<A NAME="E67E14"></A>
+
+<H2 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>Using Communication Tools Under Linux</B></FONT></CENTER></H2>
+
+<BR>
+
+<P>The communication tools discussed in this chapter include the following:
+
+<BR>
+
+<UL>
+
+<LI>write: For one-way communication with other users
+
+<BR>
+
+<BR>
+
+<LI>mesg: For controlling message reception from other users
+
+<BR>
+
+<BR>
+
+<LI>talk: For an interactive connection with other users
+
+<BR>
+
+<BR>
+
+<LI>e-mail: For sending and receiving messages
+
+<BR>
+
+<BR>
+
+<LI>telnet: For logging into remote sites
+
+<BR>
+
+<BR>
+
+<LI>ftp: For remote file transfers
+
+<BR>
+
+<BR>
+
+<LI>news: For reading news via nn and tin
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>This chapter discusses all of these communications tools in detail and gives you the basics of how to use them in Linux. With practice, you will soon begin to use these tools effectively.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E100"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Using the </B><B>write</B><B> Command</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The write command is a communication tool that enables a user to interact directly with other users. If you want to ask your friend a simple question or ask her out to lunch, and you know that she is logged in, write is the tool to use. Unlike e-mail, 
+which is discussed later, write pastes your message directly on the recipient's terminal. The recipient does not have to take any steps to receive it.
+
+<BR>
+
+<P>To use the write command, your terminal and that of the other user should have write permission. Having these permissions enables you to write messages on each other's terminals. To look at the terminal settings, you need to know which terminal you are 
+on. To find your terminal number, use the tty command as shown here:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">mpsi:~$ tty
+
+/dev/tty2
+
+mpsi:~$ ls -al /dev/tty2
+
+crw&#151;w&#151;w- 1 calvin users 4, 2 Jan 15 05:49 /dev/tty2</FONT></PRE>
+
+<P>The preceding code sample shows that I am on /dev/tty2. Your output may be different, depending on which terminal you happen to be on. The output of the ls command shows that others have write permission available on your terminal. You can confirm this 
+by using the mesg command as shown here:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">mpsi:~$
+
+mpsi:~$ mesg
+
+Is y</FONT></PRE>
+
+<P>The outcome of the mesg command shows that the terminal enables messages to be written to it. You can toggle the terminal settings on and off with the following command:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">mpsi:~$ mesg n
+
+mpsi:~$ mesg
+
+Is n</FONT></PRE>
+
+<P>The preceding segment turned the mesg off. Now you can't be disturbed by any other user. (You may miss out on lunch dates, though.)
+
+<BR>
+
+<BR>
+
+<A NAME="E69E198"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>A Description of the </B><B>write</B><B> Command</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The write command enables you to write an actual message on the other terminal online. You have to issue the write command with the login ID of the user with whom you want to communicate. The write command informs the user at the other end that there is 
+a message from another user. write pastes that message onto the other user's terminal if their terminal's write permissions are set. Even if they are in the middle of an edit session, write overwrites whatever is on the screen. The edit session contents 
+are not corrupted; you can restore the original screen on most editors with Ctrl-L. write is mostly used for one-way communication, but you can have an actual conversation as well.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>For the write command to work, mesg has to be turned on, so turn it back on.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E69E199"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>A Sample </B><B>write</B><B> Session</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Because you want your friend to be able to write to your tty as well, always begin by checking the status of the mesg command:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">mpsi:~$
+
+mpsi:~$ mesg
+
+Is y</FONT></PRE>
+
+<P>Let's see whether your friend Calvin is logged in. You can do this by using the who command and piping it to the grep program to search for Calvin, because you don't want the entire list of users to scroll down your terminal.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">mpsi:~$ who | grep calvin
+
+calvin tty2 Jan 15 15:26</FONT></PRE>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Don't forget to type /dev before the terminal name. Look at what happens when you don't type the /dev string:
+
+<BR>mpsi:~$ ls -l tty2
+
+<BR>ls: tty2: No such file or directory
+
+<BR>Oops! All the ttys are in /dev, so add /dev to tty2.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>Now let's see whether he wants to be disturbed:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">mpsi:~$ ls -al /dev/tty2
+
+crw&#151;w&#151;w- 1 calvin users 4, 2 Jan 15 15:28 /dev/tty2
+
+mpsi:~$</FONT></PRE>
+
+<P>This excerpt shows you that Calvin is indeed logged in. Now let's see whether he is interested in communicating with a write session:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">mpsi:~$ write calvin</FONT></PRE>
+
+<P>Calvin sees the following on his screen:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">mpsi:~$
+
+Message from laurel@mpsi on tty1 at 15:36 ...</FONT></PRE>
+
+<P>Now you have to wait for Calvin's response to the request. He responds by typing the following on his terminal if he is interested in communicating with you:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">mpsi:~$ write laurel
+
+How are you?
+
+Lunch tomorrow?</FONT></PRE>
+
+<P>The following string appears on your terminal:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Message from calvin@mpsi on tty2 at 15:36 ...
+
+How are you?
+
+Lunch tomorrow?</FONT></PRE>
+
+<P>You can answer Calvin by initiating another write session from your end and typing your message. You have to press Enter at the end of each line for it to be displayed at the other terminal. To simplify communications, you can type over at the logical 
+end of your sentence. Calvin should do likewise.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E200"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>write</B><B> Etiquette</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>If you are waiting for the other party to respond to your write request, it is polite to let him reply while you wait. Only after he has accepted your invitation should the conversation begin. Also, let the called party have the first chance to reply by 
+typing hello or any other salutation. Avoid typing until the other party stops or signals you to begin with an end-of-message word, such as over. Remember, only one person can speak at a time on this channel.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E101"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>The </B><B>talk</B><B> Communication Tool</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The write tool was nice for communicating one at a time. However, Linux enables you to type simultaneously with the talk tool.
+
+<BR>
+
+<P>talk is an interactive communication tool that enables you to have an actual conversation in real-time mode with another user. You can actually see the conversation being typed as the other user is typing it. For talk to work, the other user has to be 
+logged in, just as in write.
+
+<BR>
+
+<P>talk can be very annoying and disturbing if someone wants to be pesky. If you don't want to be disturbed, just turn talk off by entering mesg n at the prompt.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E201"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>A Sample </B><B>talk</B><B> Session</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>You can talk to somebody by typing talk followed by the user's login ID. To see if the user is logged in, you can use the who command just like you did for write. Let's try to talk to Calvin:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ talk calvin</FONT></PRE>
+
+<P>The computer responds with
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"> [Waiting for your party to respond]</FONT></PRE>
+
+<P>The user on the other end sees the following message even if he is in the middle of an edit session. The system beeps and displays the following message on the terminal:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Message from Talk_Daemon@mpsi at 13:08 ...
+
+talk: connection requested by laurel@hobbes.com.
+
+talk: respond with: talk laurel@hobbes.com</FONT></PRE>
+
+<P>To respond to this, type the command shown in the respond with message shown here. If your friend does not respond, the talk daemon persistently bothers him with the preceding message every 30 seconds.
+
+<BR>
+
+<P>At your terminal, you see the following messages:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"> [Ringing your party again]
+
+ [Ringing your party again]
+
+ [Ringing your party again]
+
+ [Ringing your party again]</FONT></PRE>
+
+<P>Occasionally you will see the following message:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"> [Your party is refusing messages]</FONT></PRE>
+
+<P>What happened? Your friend at the other end does not want to talk or be disturbed. After several of your interruptions, he has decided to turn his mesg off. That is why you got the message that your party is refusing messages.
+
+<BR>
+
+<P>Now let's look at a nicer scenario, when someone wants to talk to you. He has to respond with the following command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">talk laurel.</FONT></PRE>
+
+<P>Then your terminal displays the following screen:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">[Connection Established]
+
+&#151;&#151;&#151;&#151;&#151;&#151;&#151;&#151;&#151;&#151;&#151;&#151;&#151;&#151;&#151;&#151;&#151;&#151;&#151;&#151;&#151;&#151;&#151;&#151;&#151;&#151;&#151;&#151;&#151;&#151;&#151;&#151;&#151;&#151;&#151;&#151;&#151;&#151;&#151;&#151;</FONT></PRE>
+
+<P>The screen is divided horizontally with a dotted line, and you can type your message on the top half of the screen. This appears verbatim on the other terminal at the bottom half of the screen. You can type your messages, and the other user can type 
+his, simultaneously.
+
+<BR>
+
+<P>The connection can be closed by entering Ctrl-C. The following line appears on the screen:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">[Connection closing.Exiting]</FONT></PRE>
+
+<P>You should now be back at your shell's command prompt.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E202"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>talk </B><B>Etiquette</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The same etiquette applies to talk as in write. Always use lowercase letters, because CAPS LOCK conversations are considered loud and rude. Always finish your sentence by typing over. If you initiated the talk session, wait for the other party to 
+respond with the hello first. To prevent both of you from typing at the same time, always read your message, wait for the over, type your own message, and then terminate it with over.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E102"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Electronic Mail</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Electronic mail has taken the world by storm. E-mail, short for electronic mail, is a method of sending a message from a user on one computer to one or several recipients on another computer. E-mail provides fast and efficient transportation of data and 
+documents. This mode of communication also eliminates the need to play telephone tag or to wait for a convenient or appropriate time to call someone. For someone with Internet access, e-mail provides the means to communicate with friends around the world.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E203"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Mailboxes and Agents</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>E-mail is stored in a file called the system mail in the mailbox. System mail has the same name as that of the user. For example, a user named Calvin will have a mailbox under Linux in /var/spool/mail/calvin.
+
+<BR>
+
+<P>E-mail originates in the form of a file on your computer created by a Mail User Agent (MUA). E-mail is then submitted to a mail router such as sendmail, after which it is handed over to a Mail Transporter Agent (MTA). E-mail is then appended to a 
+mailbox. The MTA delivers it to the final delivery agent by traversing one or more hosts.
+
+<BR>
+
+<P>The MUA is used to read and send mail. The MUA is the user interface for the mail system. Mail can be composed by using simple MUAs such as mail or mailx, or sophisticated mail user agents such as elm or pine.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E204"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Understanding the Mail Message</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>A mail message includes two parts: a mail header and the text body.
+
+<BR>
+
+<P>The mail header is generated by the mail program automatically. A typical header in a mail message looks like this:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Date: Fri, 6 Jan 1995 13:27:00 -0600
+
+From: &quot;Calvin N. Hobbes&quot; &lt;calvin@hobbes.com&gt;
+
+To: laurel@hady.com
+
+Subject: Format for a mail header
+
+Hi, just checking the different parts in a mail message</FONT></PRE>
+
+<P>Date specifies the date and time the message is sent.
+
+<BR>
+
+<P>From specifies both the sender's name in quotes and the address, which includes the login ID and the address of their machine, hobbes.com.
+
+<BR>
+
+<P>To is the recipient's mail address.
+
+<BR>
+
+<P>Subject is a one-line description of the mail message.
+
+<BR>
+
+<P>The mail header is followed by the body of the mail message. Here you type the message as text. The mail message is terminated by typing a period (.) as the first character on the last line. The mail handler responds with EOT, for End Of Text. This is 
+the standard procedure for Berkeley mail; other mail handlers have their own way of ending message text entry.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E205"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Types of Mail User Agents</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>There are several types of mail user agents, some of which are listed here. A variety of different programs can be used for reading the mail. The two most common programs are mail and Mail (also called mailx). Because of the similarity of their names, 
+Mail is also called capmail or Berkeley Mail. Berkeley Mail is far superior to mail because it is much easier to use.
+
+<BR>
+
+<P>This section covers the following types of mail user agents:
+
+<BR>
+
+<UL>
+
+<LI>elm
+
+<BR>
+
+<BR>
+
+<LI>Pine
+
+<BR>
+
+<BR>
+
+<LI>mailx (Berkeley Mail)
+
+<BR>
+
+<BR>
+
+</UL>
+
+<BR>
+
+<A NAME="E70E1"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Using </B><B>elm</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>elm stands for electronic mail and provides a full-screen interface mail program with a good help feature. elm is a pleasure to use when compared with Berkeley Mail because of its simplicity of use and functionality.
+
+<BR>
+
+<P>Start the elm system by typing elm at the command prompt:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ elm</FONT></PRE>
+
+<P>The screen is cleared, and the code shown in the following screen is displayed.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ elm
+
+Mailbox is '/var/spool/mail/calvin' with 5 messages [ELM 2.4 PL25]
+
+N 1 Jan 12 Laurel N. Hardy (15) using el
+
+N 2 Jan 12 Laurel N. Hardy (15) 2nd elm message
+
+N 3 Jan 12 Laurel N. Hardy (16) Using elm
+
+N 4 Jan 11 Laurel N. Hardy (11) Re: Format for a mail header
+
+N 5 Jan 11 Laurel N. Hardy (11) message # 1
+
+You can use any of the following commands by pressing the first character;
+
+d)elete or u)ndelete mail, m)ail a message, r)eply or f)orward mail, q)uit
+
+To read a message, press &lt;return&gt;. j = move down, k = move up, ? = help
+
+&lt;M1&gt;
+
+Command:</FONT></PRE>
+
+<P>The top line on the screen is the mailbox and the number of messages it has in it. You may also see elm's version number. This is followed by a list of all the messages in the mailbox, the date the messages were sent, the sender's name, and the subject 
+of the message.
+
+<BR>
+
+<P>The current message is indicated by an arrow or inverse video.
+
+<BR>
+
+<P>One nice feature of elm is that it displays the sender's name instead of the login ID as Berkeley Mail does.
+
+<BR>
+
+<P>The bottom part of the screen lists the options available. At this point, you can reply to the message, delete or undelete a message, or forward the mail by entering the appropriate command. You can go up and down the message list by using k and j, just 
+as in the vi editor.
+
+<BR>
+
+<P>Some of the actions available in elm are listed in Table 14.1.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 14.1. </B><B>elm</B><B> actions.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Command</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>elm</I><I> 2.4 Action</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Enter, Spacebar
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Displays current message.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+|
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Pipes current message or tagged messages to a system command.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+!
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Shell escape.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+?
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+This screen of information.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+=
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Sets current message to first message.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+*
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Sets current message to last message.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+&lt;NUMBER&gt;, Enter
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Sets current message to &lt;NUMBER&gt;.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+/
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Searches From/Subjects for pattern.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+//
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Searches entire message texts for pattern.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+&gt;
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Saves current message or tagged messages to a folder.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+&lt;
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Scans current message for calendar entries.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+C
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Copies current message or tagged messages.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+c
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Changes to another folder.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+d
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Deletes current message.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Ctrl-D
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Deletes messages with a specified pattern.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+e
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Edits current folder.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+f
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Forwards current message.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+g
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Groups (all recipients') reply to current message.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Headers displayed with message.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+J
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Increments current message by one.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+j, &lt;DOWN&gt;
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Advances to next undeleted message.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+K
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Decrements current message by one.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+k, &lt;UP&gt;
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Advances to previous undeleted message.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+l
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Limits messages by specified criteria.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Ctrl-L
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Redraws screen.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+m
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Mails a message.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+[lb]
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Next message, displaying current, then increment.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+p
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Prints current message or tagged messages.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+q
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Quits, maybe prompting for deleting, storing, and keeping messages.</FONT>
+
+</TABLE><P>Let's try to send mail using elm.
+
+<BR>
+
+<P>To send mail, press m on the main screen. The header screen appears. elm prompts you to enter the name(s) of the recipient(s) of the mail. Enter calvin and root as recipients. Calvin is the primary recipient, and a copy of this message is sent to root 
+as well.
+
+<BR>
+
+<P>elm then prompts for a subject. After entering the subject heading, elm puts you in the vi editor to enter the body of the mail message. After you are finished typing, use the vi command :wq to save and quit the vi editor. You can now send the message 
+by pressing s.
+
+<BR>
+
+<P>You can also forward mail to others on the system with the f command or reply to a message with the r command.
+
+<BR>
+
+<P>To quit elm, type q at the main screen.
+
+<BR>
+
+<P>If elm is available on your system, try to use it. elm is very convenient and simple and can greatly improve your electronic mail interaction.
+
+<BR>
+
+<BR>
+
+<A NAME="E70E2"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Using Pine</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>Pine, a trademark of the University of Washington, stands for Program for Internet News and E-mail. Pine offers the capability to send local and remote messages using a simple user interface as well as the capability to send documents and graphics.
+
+<BR>
+
+<P>You invoke Pine by entering pine on the command line. The screen shown here should appear.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ pine
+
+ PINE 3.91 MAIN MENU Folder: INBOX 1 Message
+
+ ? HELP - Get help using Pine
+
+ C COMPOSE MESSAGE - Compose and send a message
+
+ I FOLDER INDEX - View messages in current folder
+
+ L FOLDER LIST - Select a folder to view
+
+ A ADDRESS BOOK - Update address book
+
+ S SETUP - Configure or update Pine
+
+ Q QUIT - Exit the Pine program
+
+ Copyright 1989-1994. PINE is a trademark of the University of Washington.
+
+ [Folder &quot;INBOX&quot; opened with 1 message]
+
+? Help P PrevCmd R RelNotes
+
+O OTHER CMDS L [ListFldrs] N NextCmd K KBLock</FONT></PRE>
+
+<P>Pine is very easy to use, because it provides a full-screen interface with the up and down cursor controls. Simply select the item you want by using the arrow keys and press Enter at the selected line.
+
+<BR>
+
+<P>Let's send a message using Pine. Take the cursor to the Compose Message line and press Enter. The screen shown here appears.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">PINE 3.91 COMPOSE MESSAGE Folder: INBOX 1 Message
+
+To : &quot;Laurel N. Hardy&quot; &lt;laurel@hobbes.com&gt;
+
+Cc :
+
+Attchmnt:
+
+Subject : using pine
+
+&#151;&#151; Message Text &#151;&#151;
+
+Hi, I can do everything on one screen
+
+.
+
+Send message? [y] :
+
+^G Get Help ^X Send ^R Rich Hdr ^Y PrvPg/Top ^K Cut Line ^O Postpone
+
+^C Cancel ^D Del Char ^J Attach ^V NxtPg/End ^U UnDel Line ^T To AddrBk</FONT></PRE>
+
+<P>Pine takes you line-by-line through the mail header and the mail message. Press Ctrl-X to end the message as well as send it to the recipient. Just walk through all the options to get a feel for this mail system.
+
+<BR>
+
+<P>The last two lines on the screen tell you what commands are available for the current situation. Usually there are more commands than can be shown on two lines, so use the O key to see what other commands are available. The O is optional; you don't have 
+to be able to see a command before you use it.
+
+<BR>
+
+<P>Pine creates a default configuration file, .pinerc, in your home directory. You can edit this file to select various options. Pine also creates a mail subdirectory for your saved-message folders. Type ? from the Main Menu for more help.
+
+<BR>
+
+<BR>
+
+<A NAME="E70E3"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Using </B><B>mailx</B><B> (Berkeley Mail)</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>This section is about mailx, another common mail program for Linux. This section covers the basics of mailx. mailx has many options and features, most of which are listed in its man pages. Discussing all these features would require a book in itself.
+
+<BR>
+
+<P>Let's see how to receive and send mail using mailx.
+
+<BR>
+
+<BR>
+
+<H6 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Receiving Mail</B></FONT></CENTER></H6>
+
+<BR>
+
+<P>Suppose someone has sent you a mail message. How would you know about it? The Mail system deals with this by displaying a message when you log in. A sample login session is shown in the following screen.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Welcome to Linux 1.2.13.
+
+mpsi login: laurel
+
+Last login: Fri Jan 6 13:28:06 on tty1
+
+Linux 1.2.13.
+
+You have new mail.</FONT></PRE>
+
+<P>To read the mail message, invoke the Mail handler by typing mail at the prompt. You will see the output shown in the following screen.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">mpsi:~$ mail
+
+Mail version 5.5-kw 5/30/95. Type ? for help.
+
+&quot;/var/spool/mail/calvin&quot;: 1 message 1 new
+
+&gt;N 1 laurel@hobbes.com Fri Jan 6 13:38 12/374 &quot;just checking&quot;
+
+&amp; 1
+
+Message 1:
+
+From laurel@hobbes.com Fri Jan 6 13:38:06 1995
+
+Date: Fri, 6 Jan 1995 13:38:06 -0600
+
+From: &quot;Laurel N. Hardy&quot; &lt;laurel@hobbes.com&gt;
+
+To: calvin@hobbes.com
+
+Subject: just checking
+
+the body of the message
+
+bye
+
+&amp; exit
+
+You have mail in /var/spool/mail/calvin</FONT></PRE>
+
+<P>In this example, the user Calvin has received a mail message from another user, Laurel. This message is the first message in the message queue and is declared as new, which means it has not been read yet. The message queue has an &gt;N, indicating that 
+it is a new message, followed by a message number (1), the sender's login ID (laurel@hobbes.com), the day of the week, the date and time the message was sent, and the subject of the message.
+
+<BR>
+
+<P>The ampersand (&amp;) is the mail system prompt. You can now read the message by typing the message number at this prompt.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">&amp; 1
+
+Message 1:
+
+From laurel@hobbes.com Fri Jan 6 13:38:06 1995
+
+Date: Fri, 6 Jan 1995 13:38:06 -0600
+
+From: &quot;Laurel N. Hardy&quot; &lt;laurel@hobbes.com&gt;
+
+To: calvin@hobbes.com
+
+Subject: just checking
+
+the body of the message
+
+bye
+
+&amp;</FONT></PRE>
+
+<BR>
+
+<H6 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Mail</B><B> Options</B></FONT></CENTER></H6>
+
+<BR>
+
+<P>All the available options in the Mail system can be listed by typing a ? after the &amp;. The listed options are shown in Listing 14.1.
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 14.1. </B><B>Mail</B><B> options.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">&amp; ?
+
+Mail Commands
+
+t &lt;message list&gt; type messages
+
+n goto and type next message
+
+e &lt;message list&gt; edit messages
+
+f &lt;message list&gt; give head lines of messages
+
+d &lt;message list&gt; delete messages
+
+s &lt;message list&gt; file append messages to file
+
+u &lt;message list&gt; undelete messages
+
+R &lt;message list&gt; reply to message senders
+
+r &lt;message list&gt; reply to message senders and all recipients
+
+pre &lt;message list&gt; make messages go back to /usr/spool/mail
+
+m &lt;user list&gt; mail to specific users
+
+q quit, saving unresolved messages in mbox
+
+x quit, do not remove system mailbox
+
+h print out active message headers
+
+! shell escape
+
+cd [directory] chdir to directory or home if none given
+
+A &lt;message list&gt; consists of integers, ranges of same, or user names separated
+
+by spaces. If omitted, Mail uses the last message typed.
+
+A &lt;user list&gt; consists of user names or aliases separated by spaces.
+
+Aliases are defined in .mailrc in your home directory.
+
+&amp;</FONT></PRE>
+
+<BR>
+
+<H6 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Replying to a Message</B></FONT></CENTER></H6>
+
+<BR>
+
+<P>Suppose you have three mail messages from different users and you want to reply to the one sent by Jeremy. Just invoke mail as before, as shown in Listing 14.2.
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 14.2. Three received messages.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">mpsi:~$ mail
+
+Mail version 5.5-kw 5/30/95. Type ? for help.
+
+&quot;/var/spool/mail/laurel&quot;: 3 messages 3 unread
+
+&gt;U 1 calvin@hobbes.com Fri Jan 6 13:27 12/429 &quot;Format for a mail hea&quot;
+
+U 2 jeremy@hobbes.com Sat Jan 7 15:25 72/23291 &quot; Please reply soon&quot;
+
+U 3 calvin@hobbes.com Wed Jan 11 12:29 12/373 &quot;message # 3&quot;</FONT></PRE>
+
+<P>The U in front of the second message specifies that the message is still unread. You can read the message by typing the message number.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">&amp; 2
+
+Message 2:
+
+From jeremy@hobbes.com Sat Jan 7 15:25:00 1995
+
+Date: Sat, 7 Jan 1995 15:25:00 -0600
+
+From: &quot;friend22&quot; &lt;jeremy@hobbes.com&gt;
+
+To: laurel@hobbes.com
+
+Subject: Please reply soon
+
+What's up?</FONT></PRE>
+
+<P>You can reply to the message by typing r.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">&amp; r
+
+To: jeremy@hobbes.com
+
+Subject: Re: Please reply soon
+
+Replying to your mail message # 2
+
+I am too busy to reply to you now. Go away.
+
+.
+
+EOT</FONT></PRE>
+
+<P>The Mail daemon automatically sets up the header in the reply mode, so all you have to do is type the text.
+
+<BR>
+
+<BR>
+
+<H6 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Sending and Forwarding Mail</B></FONT></CENTER></H6>
+
+<BR>
+
+<P>Sending and forwarding mail can be done with the s and f commands, respectively. The procedures for creating the header and text of the message are similar to that of replying to a message.
+
+<BR>
+
+<P>The ~/signature file is appended to every mail message you send. You should place text in here that you want to send with every message. Some examples are your phone number or an alternative e-mail address (your recipient might not be able to reply to 
+certain hosts). Mail etiquette requires that you keep you signature files short&#151;four lines or less. Most recipients do not like to see pages of information about you in every mail message.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E103"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Using </B><B>news</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Using news is perhaps the best way of getting into what is probably the world's best online forum: the Usenet news service. There are literally thousands of giant bulletin boards for you to select topics from and post messages to. The number of subjects 
+available can be quite overwhelming at times, since there are more than 13,000 newsgroup topics to choose from. (A newsgroup is one of the bulletin boards.) Newsgroups offer the best example of free speech and a forum for discussing just about any topic 
+imaginable.
+
+<BR>
+
+<P>Topics range from the serious to the absurd. In the serious category you can talk about computer communications (comp.dcom.telecom), astronomy (sci.astro), and so forth. In the absurd corner you have alt.tasteless, alt.barney.dinosaur.die.die.die, and 
+alt.fan.oj-simpson.drive.faster.
+
+<BR>
+
+<P>Usenet was started at Duke University in 1979 by two students, Tom Truscott and Jim Ellis, as an experiment to connect two computers between Duke and the University of North Carolina. From these two news sites in 1980, the number of news sites has grown 
+to hundreds of thousands of sites in the 1990s, with millions of subscribers worldwide.
+
+<BR>
+
+<P>There are several news readers for Linux. I will cover two: nn and tin.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E206"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>nn</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The nn news reader stands for Net News. When you use nn, you decide which of the many news groups you are interested in. You unsubscribe those that do not interest you any more. nn lets you read all articles in each of the groups you subscribe to, using 
+a menu-based article selection prior to reading the articles in the newsgroup.
+
+<BR>
+
+<P>When you enter a newsgroup in nn, you are presented with a screen that lists the most recent unread articles. Each item on this list contains at least the sender and subject. You are now in selection mode. You can select using the A through Z and 0 
+through 9 keys. When you select an article, it is displayed in a highlight color. If you press the spacebar, you go into read mode.
+
+<BR>
+
+<P>In read mode, nn presents you with each article. Press the spacebar to get to the next page of each article. If you are at the end of an article, the spacebar takes you to the next article.
+
+<BR>
+
+<P>When you have read all the selected articles in the current group, pressing the spacebar takes you to the next group.
+
+<BR>
+
+<P>Here are some of the other commands in nn:
+
+<BR>
+
+<UL>
+
+<LI>? or help gives a one-page overview of the commands available in the current mode. This is perhaps the most used command for beginners. The best way to learn about nn is by using this command.
+
+<BR>
+
+<BR>
+
+<LI>Ctrl-L or Ctrl-R redraws the screen.
+
+<BR>
+
+<BR>
+
+<LI>Ctrl-P shows the previous message.
+
+<BR>
+
+<BR>
+
+<LI>! is the shell escape command. You are prompted for a command if you do not type one after the !.
+
+<BR>
+
+<BR>
+
+<LI>Q quits nn.
+
+<BR>
+
+<BR>
+
+<LI>V prints release and version information (for debug).
+
+<BR>
+
+<BR>
+
+<LI>:command executes the command by name. This is used to invoke any of nn's commands, including those that cannot be bound to a key.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>The nn man pages provide about 600 lines of very detailed information about all the options and commands available to you. You do not have to use all of them&#151;just use as many as necessary to customize your own environment.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E207"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>tin</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>tin is a screen-oriented Net News reader. It can read news locally (/var/spool/news) or remotely (rtin or tin -r option) via an NNTP (Network News Transport Protocol) server. tin is based on the tass newsreader, which was developed by Rich Skrenta in 
+March 1991. tass was itself heavily influenced by NOTES, which was developed at the University of Illinois by Ray Essick and Rob Kolstad in 1982. The most relevant author to date is Iain Lea (iain.lea@erlm.siemens.de). Check the long list of contributors 
+in the man pages.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Use the h (help) command to view a list of the commands available at any level.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>On startup, tin shows a list of the newsgroups found in $HOME/.newsrc. An arrow (-&gt;) or highlighted bar points to the first newsgroup. Move to a group by using the terminal arrow keys or j and k. Use Page Up and Page Down or Ctrl-U and Ctrl-D to page 
+up and down. Select a newsgroup to read from by pressing Enter.
+
+<BR>
+
+<P>The Tab key advances to the next newsgroup that has unread articles and enters it.
+
+<BR>
+
+<P>To start and run tin, export NNTPSERVER to the address of your remote news server. Use the command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ export NNTPSERVER=news.your.provider.com</FONT></PRE>
+
+<P>Then run tin with the -r option to connect to this remote server.
+
+<BR>
+
+<P>A sample tin session is shown in Listing 14.3. It shows two newsgroups that I have subscribed to: alt.humor and tx.jobs.
+
+<BR>
+
+<P>When you select a message to read from and press either the right arrow or Enter key, you are shown the message itself, as shown in Listing 14.4.
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 14.3. A sample </B><B>tin</B><B> session.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"> Group Selection (news.neosoft.com 2) h=help
+
+ 1 571 alt.humor
+
+ u 2 398 tx.jobs
+
+ =set current to n, TAB=next unread, /=search pattern, c)atchup,
+
+ g)oto, j=line down, k=line up, h)elp, m)ove, q)uit, r=toggle all/unread,
+
+ s)ubscribe, S)ub pattern, u)nsubscribe, U)nsub pattern, y)ank in/out
+
+Group tx.jobs ('q' to quit)...</FONT></PRE>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 14.4. Another sample </B><B>tin</B><B> session.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"> tx.jobs (368T 401A 0K 0H R) h=help
+
+ 171 + US-TX-Dallas MicroFocus Cobol Contract Mark Allen
+
+ 172 + CA-CLARIS HR, WINDOWS DEVELOPMENT POSITIONS A CLARIS HR
+
+ 173 + CA-CLARIS HR, DIRECTOR OF WORLDWIDE PRODUCT D CLARIS HR
+
+ 174 + CA-CLARIS HR, INTERNATIONAL WINDOWS ENGINEER CLARIS HR
+
+ 175 + CA, CLARIS CORP - TELECOMMUNICATIONS ANALYST CLARIS HR
+
+ 176 + CA- CLARIS HR, SYBASE PROGRAMMER/ANALYST AT C CLARIS HR
+
+ 177 + CA-CLARIS HR, DOCUMENTATION CONTROL SPECIALIST CLARIS HR
+
+ 178 + CA-CLARIS, SUPERVISOR, DIRECT ACCOUNT SERVICE CLARIS HR
+
+ 179 + CA-DEVELOPERS &amp; TEST ENGINEERS - JAPANESE PRO CLARIS HR
+
+ 180 + CA-CLARIS HR, DATABASE INTERNALS ENGINEER POS CLARIS HR
+
+ 181 + CA, CLARIS CORPORATION - PRICING ANALYST CLARIS HR
+
+ 182 + WA-CLARIS HR, MAC &amp; WINDOWS DEV'RS/ INTERFACE CLARIS HR
+
+ 183 + USA-TX-DALLAS - Informix 4GL/ESQL imi
+
+ 184 + USA-TX-DALLAS - SONET Telephany Engineers imi
+
+ 185 + USA-TX-DALLAS - PowerBuilder imi
+
+ 186 + USA-TX-DALLAS - Oracle DBAs imi
+
+ 187 + USA-TX-DALLAS - CICS, Cobol, JCL, VSAM (ALC + imi
+
+ =set current to n, TAB=next unread, /=search pattern, ^K)ill/select,
+
+ a)uthor search, c)atchup, j=line down, k=line up, K=mark read, l)ist thread,
+
+|=pipe, m)ail, o=print, q)uit, r=toggle all/unread, s)ave, t)ag, w=post</FONT></PRE>
+
+<P>In Listing 14.4, you see a list of subject headers and their index numbers. The + sign indicates that you have not read this message. For example, the SONET job for Dallas, Texas, has an index of 184 and is unread. To read this message, use the arrow 
+keys to move to it, and then press Enter.
+
+<BR>
+
+<BR>
+
+<A NAME="E70E4"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Command-Line Options</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>tin has several command-line options, some of which are listed in Table 14.2.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 14.2. </B><B>tin'</B><B>s command-line options.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Option</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Description</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-c
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Creates or updates index files for every group in $HOME/.newsrc or every file specified by the -f option and marks all articles as read.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-f file
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Uses the specified file of subscribed newsgroups instead of $HOME/.newsrc.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+A help listing of all command-line options.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-m dir
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The mailbox directory to use. The default is $HOME/Mail.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-n
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Loads only groups from the active file that are also subscribed to in the user's .newsrc. This enables a noticeable speedup when connecting via a slow line.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-p program
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Prints program with options.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-q quick
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Starts without checking for new newsgroups.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-r read
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+News specified in the environment variable NNTPSERVER or contained in the file /etc/nntpserver.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-R read
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+News saved by -S option (not yet implemented remotely from the default NNTP server).</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-s dir
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Saves articles to a directory. The default is $HOME/News.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-v
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Verbose mode for the -c, -M, -S, -u, and -Z options.</FONT>
+
+</TABLE><P>To add a new group, type ggroupname. For example, gmisc.invest adds the newsgroup misc.invest.
+
+<BR>
+
+<P>tin offers an emacs-style editing facility for entering messages. The command strings include a history of commands to enable reuse of previous commands. The man pages for tin list all the commands available to you for editing, deleting, and removing 
+messages.
+
+<BR>
+
+<P>tin uses the following important environment variables:
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+NNTPSERVER
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The default NNTP server to remotely read news from. This variable needs to be set only if the -r command-line option is specified and the file /etc/nntpserver does not exist.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+VISUAL
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+This variable overrides the default editor that is used in all editing operations within tin.</FONT>
+
+</TABLE><P>tin can pretty much be navigated by using the four arrow keys. The left arrow key goes up a level; the right arrow key goes down a level; the up arrow key goes up a line or page; and the down arrow key goes down a line or page. Most prompts 
+within tin can be aborted by pressing Esc.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E104"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Using FTP</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>File transfer protocol (FTP) is a method of transferring files from one computer to another. FTP provides the capability of transferring files to and from a remote network site as well as means for sharing public files. In this section you go through a 
+sample FTP session and follow the steps for finding and getting software from a remote site.
+
+<BR>
+
+<P>ftp is the user interface to the ARPANET standard FTP. The ftp service is the interface to the file transfer protocol. It lets a user connect to another site and send and receive files.
+
+<BR>
+
+<P>In this section you will try to get a file from the address tsx-11.mit.edu by logging in as anonymous. This anonymous use of FTP is very convenient and provides access to innumerable servers, providing a wealth of information. Publicly accessible FTP 
+servers are called anonymous FTP servers.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E208"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Anonymous FTP</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Anonymous FTP enables users to access remote sites without having an authorized user ID and password. Generally the login ID is anonymous and the password is guest. Most current systems require your e-mail address as the password instead of guest.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>FTP stands for File Transfer Protocol; ftp is the program you run on Linux.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>The client host with which ftp is to communicate may be specified on the command line. If this is done, ftp immediately attempts to establish a connection to an FTP server on that host. Otherwise, ftp enters its command interpreter and awaits 
+instructions from the user. When ftp is awaiting commands from the user, the prompt ftp&gt; is provided to the user. Enter ftp at the prompt, along with the site address:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ ftp hostname</FONT></PRE>
+
+<P>A hostname can be either a hostname or an Internet address. For example, you can use the following Internet address:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">mpsi$ ftp tsx-11.mit.edu</FONT></PRE>
+
+<P>If your system connects to the MIT server, the text shown in Listing 14.5 appears.
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 14.5. An </B><B>ftp</B><B> session.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">220 tsx-11 FTP server (Version wu-2.4(3) Mon Jun 5 16:40:22 EDT 1995) ready.
+
+Name (tsx-11.mit.edu:uzma): anonymous
+
+331 Guest login ok, send your complete e-mail address as password.
+
+Password:
+
+230-Welcome, archive user! This is an experimental FTP server. If have any
+
+230-unusual problems, please report them via e-mail to ftp-bugs@tsx-11.mit.edu.
+
+230-If you do have problems, please try using a dash (-) as the first character
+
+230-of your password &#151; this will turn off the continuation messages that may
+
+230-be confusing your ftp client.
+
+230-
+
+230-The Linux archives are in /pub/linux/
+
+230-
+
+230-In most places, 'get &lt;directory&gt;.tar' will retrieve a tar file containing
+
+230-that directory. 'get &lt;file&gt;.gz' gets a gzipped version of a files, and
+
+230-'get &lt;file&gt;.Z' gets a compressed version of the file. 'get &lt;dir&gt;.tar.gz'
+
+230-is possible, but not recommended. 'get &lt;dir&gt;.zip' will get a zip archive
+
+230-with *NO* compression of the directory &lt;dir&gt;.
+
+230-
+
+230-If you find something on TSX-11 which doesn't work, or which you
+
+230-believe is obselete, please send mail to ftp-linux@TSX-11.MIT.EDU.
+
+230-INCLUDE THE FULL PATHNAME OF THE FILE AND WHY YOU THINK IT IS OBSOLETE.
+
+230-
+
+230- - Ted and Michael
+
+230-
+
+230 Guest login ok, access restrictions apply.
+
+Remote system type is UNIX.
+
+Using binary mode to transfer files.
+
+ftp&gt;</FONT></PRE>
+
+<P>The first line confirms that the connection is established. Line 220 indicates that the FTP server is ready. The system then prompts for a name, which is anonymous in this case, and a password. The password is not echoed, so any typing mistakes you make 
+are not apparent. You are then connected to the remote FTP server, which awaits your commands.
+
+<BR>
+
+<BR>
+
+<A NAME="E70E5"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>ftp</B><B> Commands</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>The ftp service enables the user to execute several commands. Some of the local commands are listed in Table 14.3.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 14.3. Some </B><B>ftp</B><B> commands.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Command</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Description</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+ [account [passwd]]
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Supplies a supplemental password required by a remote system for access to resources once a login has been successfully completed. If no argument is included, the user is prompted for an account password in a non-echoing input mode.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+ascii
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Sets the file transfer type to network ASCII. This is the default type.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+bell
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Sounds a bell after each file transfer.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+binary
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Sets the file transfer type to binary mode.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+bye
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Terminates the FTP session with the remote server and then exits.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+cd remote-directory
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Changes the working directory on the remote machine to the remote directory.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+cdup
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Goes to the parent of the current remote machine's working directory.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+chmod mode file-name
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Changes the permission modes of the file.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+close
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Terminates the FTP session with the remote server.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+delete remote-file
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Deletes the remote file on the remote machine.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+dir [remote-directory]
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Prints a listing of the remote directory to the terminal.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+disconnect
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Same as close.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+get remote-file
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Retrieves the remote file and stores it on the local machine. [local-file]</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+If the local filename is not specified, it is given the same
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+name it has on the remote machine.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+hash
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+While a file is being transferred, the hash sign (#) is printed for each data block transferred.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+help [command]
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Prints an informative message about the meaning of the command. If no argument is given, ftp prints a list of the known commands.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+lcd [directory]
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Changes the working directory on the local machine. If no directory is specified, the user's home directory is used.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+ls [remote-directory]
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Lists the contents of the remote directory.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+mdelete [remote-files]
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Deletes the remote files on the remote machine.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+mdir remote-files
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Like dir, except multiple remote files may be specified.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+mget remote-files
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Expands the remote files on the remote machine and does a getfiles based on regular expressions. For example, mget f*.tar will get all the files starting with the letter f.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+open host [port]
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Establishes a connection to the specified host FTP server on the optional port number.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+put local-file
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Stores a local file on the remote machine.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+pwd
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Prints the name of the current working directory on the remote machine.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+quit
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Same as bye.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+remotehelp [command-name]
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Requests help from the remote FTP server. If a command name is specified, it is supplied to the server as well.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+reset
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Resets the communications connection.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+rmdir directory-name
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Deletes a directory on the remote machine.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+size file-name
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns the size of the file on the remote machine.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+status
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Shows the current status of ftp.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+verbose
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Displays all responses to the user.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+? [command]
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Same as help.</FONT>
+
+</TABLE><P>Some of the options that may be specified at the command line are listed as follows:
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-v
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The verbose option. Gives a report on the transfer statistics and forces ftp to show all responses from the remote server.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-n
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Restrains ftp from attempting auto-login upon initial connection. In auto-login, ftp checks for the user's account on the remote machine.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-I
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Turns off interactive prompting during multiple file transfers.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-d
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Enables debugging.</FONT>
+
+</TABLE><P>Some ftp commands share the same name as Linux commands but perform a different function. For example, the ls command in ftp behaves like the ls-al command in Linux. To illustrate how this works, let's look at the directory listing command on a 
+remote server:
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>On some systems, ls at the ftp prompt will behave like the ls-F command.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<PRE>
+
+<FONT COLOR="#000080">ftp&gt;
+
+ftp&gt; ls
+
+200 PORT command successful.
+
+150 Opening ASCII mode data connection for /bin/ls.
+
+total 6
+
+drwxrwxr-x 2 root ftp-linu 512 Feb 8 1995 bin
+
+drwxrwxr-x 2 root wheel 512 Nov 5 1994 dev
+
+drwxrwxr-x 3 root wheel 512 Nov 9 17:22 etc
+
+lrwxr-xr-x 1 tytso wheel 1 Nov 5 02:17 ftp -&gt; .
+
+drwxrwx-wx 4 tytso ftp-linu 512 Dec 8 07:44 incoming
+
+drwxrwxr-x 9 tytso ftp 512 Dec 1 22:35 pub
+
+226 Transfer complete.
+
+ftp&gt;</FONT></PRE>
+
+<P>As you can see, you did not have to type -al. You get the long listing from the ls command.
+
+<BR>
+
+<P>To abort a file transfer, use the terminal interrupt key (usually Ctrl-C). Sending transfers are immediately halted. Receiving transfers are halted by sending an ftp ABOR command to the remote server and discarding any further data received.
+
+<BR>
+
+<P>The ftp specification specifies many parameters that may affect a file transfer. The type may be ascii, image (binary), or ebcdic.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E105"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>telnet</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The telnet command is used to communicate with another host using the TELNET protocol. If telnet is invoked without the host argument, it enters command mode, indicated by its prompt, telnet&gt;. Normally you would use
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ telnet hostname [port]</FONT></PRE>
+
+<P>where hostname is the host you want to connect to and port indicates a port number (an application's address). If a number is not specified, the default telnet port is used.
+
+<BR>
+
+<P>telnet can log you in either one of two modes: character-by-character or line-by-line. In character-by-character mode, most text typed is immediately sent to the remote host for processing. In line-by-line mode, all text is echoed locally, and only 
+completed lines are sent to the remote host.
+
+<BR>
+
+<P>While connected to a remote host, you can enter the telnet command mode by typing the telnet escape character, Ctrl-]. When in command mode, the normal terminal editing conventions are available.
+
+<BR>
+
+<P>The following commands are available under the command mode:
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+close
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Closes a telnet session and returns to command mode.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+open host 
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Opens a connection to the named host. If no port number [[-l] user][-port]is specified, telnet attempts to use the default port. The [-l] option may be used to specify the user name.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+quit
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Closes any open telnet session and exits telnet. An end-of-file (in command mode) will also close a session and exit.</FONT>
+
+</TABLE><P>Check the man pages for a list of long, detailed options for telnet.
+
+<BR>
+
+<P><A NAME="I2"></A>Let's use telnet to do an Archie session. An Archie server is helpful for searching for files by giving a keyword in a title. See Listing 14.6.
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 14.6. Logging in via </B><B>telnet</B><B>.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ telnet archie.internic.net
+
+.
+
+.
+
+.
+
+SunOS UNIX 4.1 (ds) (ttypa)
+
+login: archie
+
+********************************************************************
+
+Welcome to the InterNIC Directory and Database Server.
+
+********************************************************************************
+
+# Bunyip Information Systems, 1993, 1994
+
+# Terminal type set to 'vt100 24 80'
+
+# 'erase' character is '^?'.
+
+# 'search' (type string) has the value 'sub'.
+
+archie&gt;</FONT></PRE>
+
+<P>The archie&gt; prompt is asking you for input. Let's look at some of the help information available for Archie. Type help at the archie&gt; prompt. See Listing 14.7 for a sample output.
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 14.7. Help for Archie.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">archie &gt;help
+
+These are the commands you can use in help:
+
+. go up one level in the hierarchy
+
+? display a list of valid subtopics at the current level
+
+&lt;newline&gt;
+
+done, ^D, ^C quit from help entirely
+
+&lt;string&gt; help on a topic or subtopic
+
+Eg.
+
+&quot;help show&quot;
+
+will give you the help screen for the &quot;show&quot; command
+
+&quot;help set search&quot;
+
+Will give you the help information for the &quot;search&quot; variable.
+
+The command &quot;manpage&quot; will give you a complete copy of the archie manual page.
+
+~
+
+~
+
+ (END)</FONT></PRE>
+
+<P>Now let's try to find a file on HylaFAX. Use the command find, as shown in Listing 14.8. The sub string indicates that you are searching for the word in the entire filename and are not looking for an exact match.
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 14.8. Finding by keyword.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">archie&gt; find hylafax
+
+# Search type: sub.
+
+# Your queue position: 1
+
+# Estimated time for completion: 00:33
+
+working... \</FONT></PRE>
+
+<P>The results of the match are shown in Listing 14.9. You can scroll up and down with the k and j keys. The spacebar scrolls one page. The Enter key scrolls down one line at a time. You can stop the listing with the q key.
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 14.9. The output of the Archie command.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Host freebsd.cdrom.com (192.153.46.2)
+
+Last updated 11:06 30 Jan 1994
+
+Location: /.1/FreeBSD/FreeBSD-current/ports
+
+DIRECTORY drwxr-xr-x 1024 bytes 01:17 4 Dec 1993 flexfax
+
+Location: /.1/FreeBSD/FreeBSD-current/ports/hylafax/man
+
+FILE -rw-rw-r&#151; 15254 bytes 15:45 31 Aug 1993 flexfax.1
+
+Location: /.1/FreeBSD/FreeBSD-current/ports/hylafax/dist
+
+FILE -rw-rw-r&#151; 17 bytes 15:40 31 Aug 1993 flexfax.alpha
+
+FILE -rw-rw-r&#151; 2671 bytes 15:40 31 Aug 1993 flexfax.spec
+
+Location: /.1/FreeBSD/FreeBSD-current/ports/hylafax/port/386bsd
+
+FILE -rw-rw-r&#151; 2828 bytes 15:45 31 Aug 1993 Makefile.flexfax
+
+Location: /.1/FreeBSD/FreeBSD-current/ports/hylafax/port/4.4bsd
+
+FILE -rw-rw-r&#151; 2839 bytes 15:45 31 Aug 1993 Makefile.flexfax
+
+Location: /.1/FreeBSD/FreeBSD-current/ports/hylafax/port/bsdi
+
+FILE -rw-rw-r&#151; 2837 bytes 15:46 31 Aug 1993 Makefile.flexfax
+
+db/tmp/AAAa26919</FONT></PRE>
+
+<P>After you are finished with Archie, you can log off the server. This closes the telnet connection. You can get your HylaFAX files via FTP from these sites.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E106"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Summary</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The communication tools discussed in this chapter were write, talk, mesg, and mail. You also learned about nn and tin for reading news from the Internet. For getting files from remote sites, you learned how to use FTP. With the telnet session, you also 
+learned a bit about Archie, an archival search utility.
+
+<BR>
+
+<P>As you can see, Linux offers a wide variety of communication tools. This chapter has merely introduced you to these tools. You have to work with each tool to learn its intricacies. Happy communicating.
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl13.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="#I0" TARGET="_self"><IMG SRC="purtop.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Page Top"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl15.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+</BODY></HTML>
+
+
+

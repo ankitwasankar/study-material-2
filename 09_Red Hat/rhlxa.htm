@@ -1,0 +1,3134 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Red Hat Linux Unleashed rhlxa.htm </TITLE>
+
+<LINK REL="ToC" HREF="index.htm">
+
+<LINK REL="Index" HREF="htindex.htm">
+
+<LINK REL="Next" HREF="rhlxb.htm">
+
+<LINK REL="Previous" HREF="rhl60.htm"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+
+<A NAME="I0"></A>
+
+<H2>Red Hat Linux Unleashed rhlxa.htm</H2>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl60.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhlxb.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+<HR ALIGN=CENTER>
+
+<P>
+
+<UL>
+
+<UL>
+
+<UL>
+
+<LI>
+
+<A HREF="#E68E466" >FTP Sites</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E624" >What Is FTP?</A>
+
+<LI>
+
+<A HREF="#E69E625" >Connecting and Downloading Files with FTP</A>
+
+<LI>
+
+<A HREF="#E69E626" >Using ftpmail</A>
+
+<LI>
+
+<A HREF="#E69E627" >Linux FTP Archive Sites</A></UL>
+
+<LI>
+
+<A HREF="#E68E467" >Bulletin Boards</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E628" >LINUX-related BBSes</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E70E68" >United States BBSes</A>
+
+<LI>
+
+<A HREF="#E70E69" >Outside of the United States</A></UL></UL>
+
+<LI>
+
+<A HREF="#E68E468" >Usenet Newsgroups</A></UL></UL></UL>
+
+<HR ALIGN=CENTER>
+
+<A NAME="E66E61"></A>
+
+<H1 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>A</B></FONT></CENTER></H1>
+
+<BR>
+
+<A NAME="E67E61"></A>
+
+<H2 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>Linux FTP Sites and Newsgroups</B></FONT></CENTER></H2>
+
+<BR>
+
+<P>If you have access to the Internet, either directly or through an online service provider such as CompuServe, Delphi, or America Online, you can access additional sources of Linux software and information. There are two popular sources of Linux software 
+and help available, one through FTP and the other through Linux-specific Usenet newsgroups.
+
+<BR>
+
+<P>If you don't have access to the Internet, you may still be able to get some of the information available through other sources, such as Bulletin Board Systems (BBSes) and CD-ROMs published by companies specializing in redistributing public domain 
+material.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E466"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>FTP Sites</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>FTP is a method of accessing remote systems and downloading files. It is quite easy to use and provides users with Internet access and a fast method for updating their list of binaries.
+
+<BR>
+
+<P>For those without FTP access, but who can use electronic mail through the Internet, the utility ftpmail can provide access to these FTP sites.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E624"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>What Is FTP?</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>File Transfer Protocol (FTP) is one protocol in the TCP/IP family of protocols. TCP/IP is used extensively as the communications protocol of the Internet, as well as in many Local Area Networks (LANs). UNIX systems almost always use TCP/IP as their 
+protocol.
+
+<BR>
+
+<P>FTP is used to transfer files between machines running TCP/IP. FTP-like programs are also available for some other protocols.
+
+<BR>
+
+<P>To use FTP, both ends of a connection must be running a program that provides FTP services. To download a file from a remote system, you must start your FTP software and instruct it to connect to the FTP software running on the remote machine.
+
+<BR>
+
+<P>The Internet has many FTP archive sites. These are machines that are set up to allow anyone to connect to them and download software. In some cases, there are FTP archive sites that mirror each other. A mirror site is one that maintains exactly the same 
+software as another site, so you simply connect to the one that is easiest for you to access, and you have the same software available for downloading as if you had connected to the other site.
+
+<BR>
+
+<P>Usually, when you connect to a remote system, you must log in. This means you must be a valid user, with a username and password for that remote machine. Because it is impossible to provide logins for everyone who wants to access a public archive, many 
+systems use anonymous FTP. Anonymous FTP enables anyone to log into the system with the login name of guest or anonymous and either no password or the login name for the user's local system (used for auditing purposes only).
+
+<BR>
+
+<BR>
+
+<A NAME="E69E625"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Connecting and Downloading Files with FTP</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Using FTP to connect to a remote site is quite easy. Assuming you have access to the Internet either directly or through a service provider, you must start FTP and provide the name of the remote system to which you want to connect. If you are directly 
+connected to the Internet, the process is simple: you enter the ftp command with the name of the remote site:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">ftp sunsite.unc.edu</FONT></PRE>
+
+<P>If you are using an online service, such as Delphi, you must access its Internet services menus and invoke FTP from that. Some online services allow you to enter the name of any FTP site at a prompt, whereas others have some menus that list all 
+available sites. You may have to hunt through the online documentation for your service provider to find the correct procedure.
+
+<BR>
+
+<P>After you issue the FTP command, your system will attempt to connect to the remote machine. When it does (and assuming the remote system allows FTP logins), the remote will prompt you for a user ID. If anonymous FTP is supported on the system, a message 
+will usually tell you that. The login below is shown for the Linux FTP archive site <A HREF="ftp://sunsite.unc.edu">sunsite.unc.edu</A>:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ ftp sunsite.unc.edu
+
+Connected to fddisunsite.oit.unc.edu.
+
+220 helios FTP server (Version wu-2.4(39) Tue May 16 01:34:21 EDT 1995) ready.
+
+Name (sunsite.unc.edu:username): anonymous
+
+331 Guest login ok, send your complete e-mail address as password.
+
+Password:
+
+230 Guest login ok, access restrictions apply.
+
+Remote system type is UNIX.
+
+Using binary mode to transfer files.
+
+ftp&gt;</FONT></PRE>
+
+<P>After the login process is completed, you will see the prompt ftp&gt;, indicating the system is ready to accept commands. When you log into some systems, you will see a short message that might contain instructions for downloading files, any 
+restrictions that are placed on you as an anonymous FTP user, or information about the location of useful files. For example, you might see messages like this:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">To get a binary file, type: BINARY and then: GET &quot;File.Name&quot; newfilename
+
+To get a text file, type: ASCII and then: GET &quot;File.Name&quot; newfilename
+
+Names MUST match upper, lower case exactly. Use the &quot;quotes&quot; as shown.
+
+To get a directory, type: DIR. To change directory, type: CD &quot;Dir.Name&quot;
+
+To read a short text file, type: GET &quot;File.Name&quot; TT
+
+For more, type HELP or see FAQ in gopher.
+
+To quit, type EXIT or Control-Z.
+
+230- If you email to info@sunsite.unc.edu you will be sent help information
+
+230- about how to use the different services sunsite provides.
+
+230- We use the Wuarchive experimental ftpd. if you &quot;get&quot; &lt;directory&gt;.tar.Z
+
+230- or &lt;file&gt;.Z it will compress and/or tar it on the fly. Using &quot;.gz&quot; instead
+
+230- of &quot;.Z&quot; will use the GNU zip (/pub/gnu/gzip*) instead, a superior
+
+230- compression method.</FONT></PRE>
+
+<P>After you are connected to the remote system, you can use familiar Linux commands to display file contents and move around the directories. To display the contents of a directory, for example, use the command ls or the DOS equivalent dir. To change to a 
+subdirectory, use the cd command. To return to the parent directory (the one above the current directory), use the command cdup or cd ... There are no keyboard shortcuts available with FTP, so you have to type in the name of files or directories in their 
+entirety.
+
+<BR>
+
+<P>When you have moved through the directories and have found a file you want to move back to your home system, use the get command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">get &quot;file1.txt&quot;</FONT></PRE>
+
+<P>The commands get (download) and put (upload) are relative to your home machine. You are telling your system to get a file from the remote location and put it on your local machine, or to put a file from your local machine onto the remote machine. This 
+is the exact opposite of another commonly used TCP/IP protocol, telnet, which has everything relative to the remote machine. It is important to remember which command moves in which direction, or you could overwrite files accidentally.
+
+<BR>
+
+<P>The quotation marks around the filename are optional for most versions of FTP, but they do provide specific characters to the remote version (preventing shell expansion), so the quotation marks should be used to avoid mistakes. FTP provides two modes of 
+file transfer: ASCII and binary. Some systems will automatically switch between the two, but it is a good idea to manually set the mode to ensure you don't waste time. To set FTP in binary transfer mode (for any executable file), type the command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">binary</FONT></PRE>
+
+<P>You can toggle back to ASCII mode with the command ASCII. As you will most likely be checking remote sites for new binaries or libraries of source code, it is a good idea to use binary mode for most transfers. If you transfer a binary file in ASCII 
+mode, it will not be executable (or understandable) on your system. ASCII mode includes only the valid ASCII characters and not the Ctrl-key sequences used within binaries. Transferring an ASCII file in binary mode does not affect the contents, although 
+spurious noise may cause a problem in rare instances.
+
+<BR>
+
+<P>When you issue a get command, the remote system will transfer data to your local machine and display a status message when it is finished. There is no indication of progress when a large file is being transferred, so be patient.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">ftp&gt; get file1.txt
+
+200 PORT command successful.
+
+150 BINARY data connection for FILE1.TXT (27534 bytes)
+
+226 BINARY Transfer complete.
+
+27534 bytes received in 2.35 seconds (12 Kbytes/s).</FONT></PRE>
+
+<P>To quit FTP, type the command quit, which will close your session on the remote machine and then terminate FTP on your local machine.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E626"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Using ftpmail</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>If you don't have access to a remote site through FTP, all is not lost. If you have electronic mail, you can still get files transferred to you. Some online systems allow Internet mail to be sent and received, but do not allow direct access to FTP. 
+Similarly, some Internet service providers offer UUCP accounts that do not allow direct connection but do provide e-mail. To get to FTP sites and transfer files, you use the ftpmail utility.
+
+<BR>
+
+<P>The site mentioned previously, sunsite.unc.edu, is a major Linux archive site that supports ftpmail. All of the sites listed in this appendix as Linux FTP sites also support ftpmail. To find out how to use ftpmail, send an e-mail message to the login 
+ftpmail at one of the sites, such as ftpmail@sunsite.unc.edu, and have the body of the message contain only one word: help.
+
+<BR>
+
+<P>By return mail, the ftpmail utility will send instructions for using the service. Essentially, you send the body of the FTP commands you want executed in a mail message, so you could get back a directory listing of the Linux directory in a mail message 
+with this text:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">open sunsite.unc.edu
+
+cd /pub/Linux
+
+ls
+
+quit</FONT></PRE>
+
+<P>You could transfer a file back through e-mail with a similar mail message:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">open sunsite.unc.edu
+
+cd /pub/Linux
+
+binary
+
+get README
+
+quit</FONT></PRE>
+
+<P>The ftpmail system is relatively slow, as you must wait for the e-mail to make its way to the target machine and be processed by the remote, then for the return message to make its way back to you. It does provide a useful access method for those 
+without FTP connections, though, and a relatively easy way to check the contents of the Linux directories on several machines.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E627"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Linux FTP Archive Sites</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The list of Linux FTP archive sites changes slowly, but the sites listed in Table A.1 were all valid and reachable when this book was written. Many of these sites are mirror sites, providing exactly the same contents.
+
+<BR>
+
+<P>To find the site nearest you, use the country identifier at the end of the site name (fi=Finland, fr=France, and so on). Most versions of FTP allow either the machine name or the IP address to be used, but if the name cannot be resolved by the local 
+Internet gateway, the IP address is the best addressing method.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table A.1. Linux FTP archive sites.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Site Name</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>IP Address</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Directory</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="http://tsx-11.mit.edu">tsx-11.mit.edu</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+18.86.0.44
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+/pub/linux</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="ftp://sunsite.unc.edu">sunsite.unc.edu</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+152.2.254.81
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+/pub/Linux</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="ftp://nic.funet.fi">nic.funet.fi</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+128.214.248.6
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+/pub/Linux</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="ftp://ftp.dfv.rwth-aachen.de">ftp.dfv.rwth-aachen.de</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+137.226.4.111
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+/pub/linux</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="ftp://ftp.ibp.fr">ftp.ibp.fr</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+132.227.77.2
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+/pub2/linux</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="ftp://ftp.uu.net">ftp.uu.net</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+192.48.96.9
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+/</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="ftp://wuarchive.wustl.edu">wuarchive.wustl.edu</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+128.252.135.4
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+/systems/linux</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="ftp://ftp.win.tue.nl">ftp.win.tue.nl</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+131.155.70.19
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+/pub/linux</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="ftp://ftp.ibr.cs.tu-bs.de">ftp.ibr.cs.tu-bs.de</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+134.169.34.15
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+/pub/linux</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="ftp://ftp.denet.dk">ftp.denet.dk</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+129.142.6.74
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+/pub/OS/Linux</FONT>
+
+</TABLE><P>The primary home sites for the Linux archives are tsx-11.mit.edu, sunsite.unc.edu, and nic.funet.fi. Home sites are where most of the new software loads begin. The majority of sites in Table A.1 mirror one of these three sites.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E467"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Bulletin Boards</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>There are literally hundreds of Bulletin Board Systems (BBSes) across the world that offer Linux software. Some download new releases on a regular basis from the FTP home sites, whereas others rely on the users of the BBS to update the software.
+
+<BR>
+
+<P>A complete list of BBSes with Linux software available would be too lengthy (as well as out-of-date almost immediately) to include here. Zane Healy maintains a complete list of BBSes offering Linux material. To obtain the list, send e-mail requesting 
+the Linux list to <A HREF="mailto:healyzh@holonet.net">healyzh@holonet.net</A>.
+
+<BR>
+
+<P>If you don't have access to e-mail, try posting messages on a few local bulletin board systems asking for local sites that offer Linux software, or ask someone with Internet access to post e-mail for you.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E628"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>LINUX-related BBSes</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Zane Healy (<A HREF="mailto:healyzh@holonet.net">healyzh@holonet.net</A>) maintains this list. If you know of or run a BBS that provides Linux software but isn't on this list, you should get in touch with him.
+
+<BR>
+
+<P>You can also get an up-to-date list on BBSes from <A HREF="ftp://tsx-11.mit.edu">tsx-11.mit.edu</A> in the /pub/linux/docs/bbs.list file. The lists shown below were up-to-date at the time we went to print.
+
+<BR>
+
+<BR>
+
+<A NAME="E70E68"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>United States BBSes</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>Here is a list of some of the BBSes in the United States that carry Linux or information about Linux:
+
+<BR>
+
+<UL>
+
+<UL>
+
+<P>1 Zero Cybernet BBS, (301) 589-4064. MD.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>AVSync, (404) 320-6202. Atlanta, GA.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Allentown Technical, (215) 432-5699. 9600 v.32/v.42bis Allentown, PA. WWIVNet 2578
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Acquired Knowledge, (305) 720-3669. 14.4k v.32bis Ft. Lauderdale, FL. Internet, UUCP
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Atlanta Radio Club, (404) 850-0546. 9600 Atlanta, GA.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Brodmann's Place, (301) 843-5732. 14.4k Waldorf, MD. RIME -&gt;BRODMANN, Fidonet
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Centre Programmers Unit, (814) 353-0566. 14.4k V.32bis/HST Bellefonte, PA.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Channel One, (617) 354-8873. Boston, MA. RIME -&gt;CHANNEL
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Citrus Grove Public Access, (916) 381-5822. ZyXEL 16.8/14.4 Sacramento, CA.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>CyberVille, (817) 249-6261. 9600 TX. FidoNet 1:130/78
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Digital Designs, (919) 423-4216. 14.4k, 2400 Hope Mills, NC.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Digital Underground, (812) 941-9427. 14.4k v.32bis IN. Usenet
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Dwight-Englewood BBS, (201) 569-3543. 9600 v.42 Englewood, NJ. Usenet
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>EchoMania, (618) 233-1659. 14.4k HST Belleville, IL. Fidonet 1:2250/1
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Enlightend, (703) 370-9528. 14.4k Alexandria, VA. Fidonet 1:109/615
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Flite Line, (402) 421-2434. Lincoln, NE. RIME -&gt;FLITE, DS modem
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Georgia Peach BBS, (804) 727-0399. 14.4k Newport News, VA.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Harbor Heights BBS, (207) 663-0391. 14.4k Boothbay Harbor, ME.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Horizon Systems, (216) 899-1293. 2400 Westlake, OH.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Information Overload, (404) 471-1549. 19.2k ZyXEL Atlanta, GA. Fidonet 1:133/308
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Intermittent Connection, (503) 344-9838. 14.4k HST v.32bis Eugene, OR. 1:152/35
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Horizon Systems, (216) 899-1086. USR v.32 Westlake, OH.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Legend, (402) 438-2433. Lincoln, NE. DS modem
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Lost City Atlantis, (904) 727-9334. 14.4k Jacksonville, FL. Fidonet
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>MAC's Place, (919) 891-1111. 16.8k, DS modem Dunn, NC. RIME -&gt;MAC
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>MBT, (703) 953-0640. Blacksburg, VA.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Main Frame, (301) 654-2554. 9600 Gaithersburg, MD. RIME -&gt;MAINFRAME
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>MegaByte Mansion, (402) 551-8681. 14.4 V,32bis Omaha, NE.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Micro Oasis, (510) 895-5985. 14.4k San Leandro, CA.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>My UnKnown BBS, (703) 690-0669. 14.4k V.32bis VA. Fidonet 1:109/370
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Mycroft QNX, (201) 858-3429. 14.4k NJ.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>NOVA, (703) 323-3321. 9600 Annandale, VA. Fidonet 1:109/305
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>North Shore BBS, (713) 251-9757. Houston, TX.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>PBS BBS, (309) 663-7675. 2400 Bloomington, IL.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Part-Time BBS, (612) 544-5552. 14.4k v.32bis Plymouth, MN.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Programmer's Center, (301) 596-1180. 9600 Columbia, MD. RIME
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Programmer's Exchange, (818) 444-3507. El Monte, CA. Fidonet
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Programmer's Exchange, (818) 579-9711. El Monte, CA.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Rebel BBS, (208) 887-3937. 9600 Boise, ID.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Rem-Jem, (703) 503-9410. 9600 Fairfax, VA.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Rocky Mountain HUB, (208) 232-3405. 38.4k Pocatello, ID. Fidonet, SLNet, CinemaNet
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Ronin BBS, (214) 938-2840. 14.4 HST/DS Waxahachie (Dallas), TX.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>S'Qually Holler, (206) 235-0270. 14.4k USR D/S Renton, WA.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Slut Club, (813) 975-2603. USR/DS 16.8k HST/14.4K Tampa, FL. Fidonet 1:377/42
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Steve Leon's, (201) 886-8041. 14.4k Cliffside Park, NJ.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Tactical-Operations, (814) 861-7637. 14.4k V32bis/V42bis State College, PA. Fidonet 1:129/226, tac_ops.UUCP
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Test Engineering, (916) 928-0504. Sacramento, CA.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>The Annex, (512) 575-0667. 2400 TX. Fidonet 1:3802/216
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>The Annex, (512) 575-1188. 9600 HST TX. Fidonet 1:3802/217
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>The Computer Mechanic, (813) 544-9345. 14.4k v.32bis
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>The Laboratory, (212) 927-4980. 16.8k HST, 14.4k v.32bis NY. Fidonet 1:278/707
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>The Mothership Connection, (908) 940-1012. 38.4k Franklin Park, NJ.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>The OA Southern Star, (504) 885-5928. New Orleans, LA. Fidonet 1:396/1
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>The Outer Rim, (805) 252-6342. Santa Clarita, CA.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>The Sole Survivor, (314) 846-2702. 14.4k v.32bis St. Louis, MO. WWIVnet, WWIVlink, and so on.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Third World, (217) 356-9512. 9600 v.32 IL.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Top Hat BBS, (206) 244-9661. 14.4k WA. Fidonet 1:343/40
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>UNIX USER, (708) 879-8633. 14.4k Batavia, IL. Usenet, Internet mail
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Unix Online, (707) 765-4631. 9600 Petaluma, CA. Usenet access
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>VTBBS, (703) 231-7498. Blacksburg, VA.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>VWIS Linux Support BBS, (508) 793-1570. 9600 Worcester, MA.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Valhalla, (516) 321-6819. 14.4k HST v.32 Babylon, NY. Fidonet (1:107/25 5), Usenet
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Walt Fairs, (713) 947-9866. Houston, TX. Fidonet 1:106/18
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>WaterDeep BBS, (410) 614-2190. 9600 v.32 Baltimore, MD.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>WayStar BBS, (508) 480-8371. 9600 V.32bis or 14.4k USR/HST Marlborough, MA. Fidonet 1:333/16
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>WayStar BBS, (508) 481-7147. 14.4k V.32bis USR/HST Marlborough, MA. Fidonet 1:333 /14
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>WayStar BBS, (508) 481-7293. 14.4k V.32bis USR/HST Marlborough, MA. Fidonet 1:333 /15
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>alaree, (512) 575-5554. 14.4k Victoria, TX.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>hip-hop, (408) 773-0768. 19.2k Sunnyvale, CA. Usenet access
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>hip-hop, (408) 773-0768. 38.4k Sunnyvale, CA.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>splat-ooh, (512) 578-2720. 14.4k Victoria, TX.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>splat-ooh, (512) 578-5436. 14.4k Victoria, TX.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>victrola.sea.wa.us, (206) 838-7456. 19.2k Federal Way, WA. Usenet
+
+<BR>
+
+</UL></UL>
+
+<BR>
+
+<A NAME="E70E69"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Outside of the United States</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>If you live outside the United States, you can get information about Linux from these BBSes:
+
+<BR>
+
+<UL>
+
+<UL>
+
+<P>500cc Formula 1 BBS, +61-2-550-4317. V.32bis Sydney, NSW, Australia.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>A6 BBS, +44-582-460273. 14.4k Herts, UK. Fidonet 2:440/111
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Advanced Systems, +64-9-379-3365. ZyXEL 16.8k Auckland, New Zealand.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>BOX/2, +49.89.601-96-77. 16.8 ZYX Muenchen, BAY, Germany.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Baboon BBS, +41-62-511726. 19.2k Switzerland.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Basil, +33-1-44670844. v.32bis Paris, Laurent Chemla, France.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>BigBrother / R. Gmelch, +49.30.335-63-28. 16.8 Z16 Berlin, BLN, Germany.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Bit-Company / J. Bartz, +49.5323.2539. 16.8 ZYX MO Clausthal-Zfd., NDS, Germany
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>CRYSTAL BBS, +49.7152.240-86. 14.4 HST Leonberg, BW, Germany.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>CS-Port / C. Schmidt, +49.30.491-34-18. 19.2 Z19 Berlin, BLN, Germany.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Cafard Naum, +33-51701632. v.32bis Nantes, Yann Dupont, France.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>DUBBS, +353-1-6789000. 19.2 ZyXEL Dublin, Ireland. Fidonet 2:263/167
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>DataComm1, +49.531.132-16. 14.4 HST Braunschweig, NDS, Germany. Fidonet 2:240/55
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>DataComm2, +49.531.132-17. 14.4 HST Braunschweig, NDS, Germany. Fidonet 2:240/55
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Die Box Passau 2+1, +49.851.555-96. 14.4 V32b Passau, BAY, Germany.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Die Box Passau ISDN, +49.851.950-464. 38.4/64k V.110/X.75 Passau, BAY, Germany.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Die Box Passau Line 1, +49.851.753-789. 16.8 ZYX Passau, BAY, Germany.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Die Box Passau Line 3, +49.851.732-73. 14.4 HST Passau, BAY, Germany.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>DownTown BBS Lelystad, +31-3200-48852. 14.4k Lelystad, Netherlands.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Echoblaster BBS #1, +49.7142.213-92. HST/V32b Bietigheim, BW, Germany.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Echoblaster BBS #2, +49.7142.212-35. V32b Bietigheim, BW, Germany.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>FORMEL-Box, +49.4191.2846. 16.8 ZYX Kaltenkirchen, SHL, Germany.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Fiffis Inn BBS, +49-89-5701353. 14.4-19.2 Munich, Germany.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Fractal Zone BBS /Maass, +49.721.863-066. 16.8 ZYX Karlsruhe, BW, Germany.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Galaktische Archive, 0043-2228303804. 16.8 ZYX Wien, Austria. Fidonet 2:310/77 (19:00-7:00)
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Galway Online, +353-91-27454. 14.4k v32b Galway, Ireland.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Gunship BBS, +46-31-693306. 14.4k HST DS Gothenburg, Sweden.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Hipposoft /M. Junius, +49.241.875-090. 14.4 HST Aachen, NRW, Germany.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Le Lien, +33-72089879. HST 14.4/V32bis Lyon, Pascal Valette, France.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Linux Server /Braukmann, +49.441.592-963. 16.8 ZYX Oldenburg, NDS, Germany.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Linux-Support-Oz, +61-2-418-8750. v.32bis 14.4k Sydney, NSW, Australia.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>LinuxServer / P. Berger, +49.711.756-275. 16.8 HST Stuttgart, BW, Germany.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Logical Solutions, 403 299-9900 through 9911. 2400 AB, Canada.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Logical Solutions, 403 299-9912, 299-9913. 14.4k AB, Canada.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Logical Solutions, 403 299-9914 through 9917. 16.8k v.32bis AB, Canada.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>MM's Spielebox, +49.5323.3515. 14.4 ZYX Clausthal-Zfd., NDS, Germany.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>MM's Spielebox, +49.5323.3516. 16.8 ZYX Clausthal-Zfd., NDS, Germany.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>MM's Spielebox, +49.5323.3540. 9600 Clausthal-Zfd., NDS, Germany.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>MUGNET Intl-Cistron BBS, +31-1720-42580. 38.4k Alphen a/d Rijn, Netherlands.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Magic BBS, 403-569-2882. 14.4k HST/Telebit/MNP Calgary, AB, Canada. Internet/Usenet
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Modula BBS, +33-1 4043 0124. HST 14.4 v.32bis Paris, France.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Modula BBS, +33-1 4530 1248. HST 14.4 V.32bis Paris, France.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Nemesis' Dungeon, +353-1-324755 or 326900. 14.4k v32bis Dublin, Ireland.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>On the Beach, +444-273-600996. 14.4k/16.8k Brighton, UK. Fidonet 2:441/122
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Pats System, +27-12-333-2049. 14.4k v.32bis/HST Pretoria, South Africa.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Public Domain Kiste, +49.30.686-62-50. 16.8 ZYX BLN, Germany. Fidonet 2:2403/17
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Radio Free Nyongwa, 514-524-0829. v.32bis ZyXEL Montreal, QC, Canada. Usenet, Fidonet
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Rising Sun BBS, +49.7147.3845. 16.8 ZYX Sachsenheim, BW, Germany. Fidonet 2:2407/4
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>STDIN BBS, +33-72375139. v.32bis Lyon, Laurent Cas, France.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Synapse, 819-246-2344. 819-561-5268 Gatineau, QC, Canada. RIME-&gt;SYNAPSE
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>The Controversy, (65)560-6040. 14.4k V.32bis/HST Singapore.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>The Field of Inverse Chaos, +358 0 506 1836. 14.4k v32bis/HST Helsinki, Finland.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>The Purple Tentacle, +44-734-590990. HST/V32bis Reading, UK. Fidonet 2:252/305
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>The Windsor Download, (519)-973-9330. v32bis 14.4 ON, Canada.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Thunderball Cave, 472567018. Norway.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>UB-HOFF /A. Hoffmann, +49.203.584-155. 19.2 ZYX+ Duisburg, Germany.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>V.A.L.I.S., 403-478-1281. 14.4k v.32bis Edmonton, AB, Canada. Usenet
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>bakunin.north.de, +49.421.870-532. 14.4 D 2800 Bremen, HB, Germany.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>nonsolosoftware, +39 51 432904. ZyXEL 19.2k Italy. Fidonet 2:332/417
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>nonsolosoftware, +39 51 6140772. v.32bis, v.42bis Italy. Fidonet 2:332/407
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>r-node, 416-249-5366. 2400 Toronto, ON, Canada. Usenet
+
+<BR>
+
+</UL></UL>
+
+<BR>
+
+<A NAME="E68E468"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Usenet Newsgroups</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Usenet is a collection of discussion groups (called newsgroups) that is available to Internet users. There are more than 14,000 newsgroups with over 2GB of traffic posted every single day. Of all of these newsgroups (which cover every conceivable 
+topic), several are dedicated to Linux.
+
+<BR>
+
+<P>You can access Usenet newsgroups through special software called a newsreader if you have access to a site that downloads the newsgroups on a regular basis. Alternatively, most online services such as CompuServe, America Online, and Delphi also offer 
+access to Usenet. Some BBSes also are providing limited access to newsgroups.
+
+<BR>
+
+<P>Usenet newsgroups fall into three categories: primary newsgroups, which are readily available to all Usenet users; local newsgroups with a limited distribution; and alternate newsgroups that may not be handled by all news servers. The primary newsgroups 
+of interest to Linux users are
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:alt.os.linux">alt.os.linux</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:alt.os.linux.caldera">alt.os.linux.caldera</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:alt.uu.comp.os.linux.questions">alt.uu.comp.os.linux.questions</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:at.fido.linux">at.fido.linux</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:comp.os.linux.advocacy">comp.os.linux.advocacy</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:comp.os.linux.announce">comp.os.linux.announce</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:comp.os.linux.answers">comp.os.linux.answers</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:comp.os.linux.development.apps">comp.os.linux.development.apps</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:comp.os.linux.development.system">comp.os.linux.development.system</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:comp.os.linux.hardware">comp.os.linux.hardware</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:comp.os.linux.m68k">comp.os.linux.m68k</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:comp.os.linux.misc">comp.os.linux.misc</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:comp.os.linux.networking">comp.os.linux.networking</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:comp.os.linux.setup">comp.os.linux.setup</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:comp.os.linux.x">comp.os.linux.x</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.680x0">linux.act.680x0</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.admin">linux.act.admin</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.apps">linux.act.apps</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.bbsdev">linux.act.bbsdev</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.chaos_digest">linux.act.chaos_digest</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.compression">linux.act.compression</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.configs">linux.act.configs</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.c-programming">linux.act.c-programming</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.debian">linux.act.debian</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.dec_alpha">linux.act.dec_alpha</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.doc">linux.act.doc</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.fido">linux.act.fido</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.fsf">linux.act.fsf</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.fsstnd">linux.act.fsstnd</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.ftp">linux.act.ftp</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.gcc">linux.act.gcc</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.hams">linux.act.hams</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.ibcs2">linux.act.ibcs2</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.ibsc2">linux.act.ibsc2</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.interviews">linux.act.interviews</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.japanese">linux.act.japanese</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.kernel">linux.act.kernel</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.laptops">linux.act.laptops</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.linux-bbs">linux.act.linux-bbs</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.linuxbsd">linux.act.linuxbsd</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.linuxnews">linux.act.linuxnews</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.linuxss">linux.act.linuxss</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.localbus">linux.act.localbus</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.lugnuts">linux.act.lugnuts</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.mca">linux.act.mca</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.mgr">linux.act.mgr</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.mips">linux.act.mips</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.msdos">linux.act.msdos</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.mumail">linux.act.mumail</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.net">linux.act.net</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.newbie">linux.act.newbie</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.new-channels">linux.act.new-channels</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.normal">linux.act.normal</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.nys">linux.act.nys</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.oasg-trust">linux.act.oasg-trust</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.oi">linux.act.oi</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.pkg">linux.act.pkg</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.postgres">linux.act.postgres</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.ppp">linux.act.ppp</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.promotion">linux.act.promotion</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.qag">linux.act.qag</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.scsi">linux.act.scsi</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.serial">linux.act.serial</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.seyon">linux.act.seyon</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.sound">linux.act.sound</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.svgalib">linux.act.svgalib</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.sysvpkg-project">linux.act.sysvpkg-project</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.tape">linux.act.tape</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.term">linux.act.term</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.tktools">linux.act.tktools</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.userfs">linux.act.userfs</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.uucp">linux.act.uucp</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.wabi">linux.act.wabi</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.word">linux.act.word</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.act.x11">linux.act.x11</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.admin.isp">linux.admin.isp</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.appletalk">linux.appletalk</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.apps.bbsdev">linux.apps.bbsdev</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.apps.flexfax">linux.apps.flexfax</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.apps.linux-bbs">linux.apps.linux-bbs</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.apps.seyon">linux.apps.seyon</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.apps.seyon.development">linux.apps.seyon.development</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.bbs.rocat">linux.bbs.rocat</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.debian">linux.debian</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.debian.announce">linux.debian.announce</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.debian.user">linux.debian.user</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.dev.680x0">linux.dev.680x0</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.dev.admin">linux.dev.admin</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.dev.apps">linux.dev.apps</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.dev.atm">linux.dev.atm</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.dev.bbs">linux.dev.bbs</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.dev.config">linux.dev.config</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.dev.c-programming">linux.dev.c-programming</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.dev.debian">linux.dev.debian</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.dev.diald">linux.dev.diald</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.dev.doc">linux.dev.doc</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.dev.fido">linux.dev.fido</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.dev.fsf">linux.dev.fsf</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.dev.fsstnd">linux.dev.fsstnd</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.dev.ftp">linux.dev.ftp</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.dev.gcc">linux.dev.gcc</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.dev.hams">linux.dev.hams</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.dev.ibcs2">linux.dev.ibcs2</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.dev.interviews">linux.dev.interviews</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.dev.ipx">linux.dev.ipx</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.dev.japanese">linux.dev.japanese</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.dev.kernel">linux.dev.kernel</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.dev.laptop">linux.dev.laptop</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.dev.linuxbsd">linux.dev.linuxbsd</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.dev.linuxnews">linux.dev.linuxnews</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.dev.linuxss">linux.dev.linuxss</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.dev.localbus">linux.dev.localbus</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.dev.lugnuts">linux.dev.lugnuts</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.dev.mca">linux.dev.mca</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.dev.mgr">linux.dev.mgr</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.dev.msdos">linux.dev.msdos</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.dev.net">linux.dev.net</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.dev.newbie">linux.dev.newbie</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.dev.new-lists">linux.dev.new-lists</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.dev.normal">linux.dev.normal</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.dev.nys">linux.dev.nys</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.dev.oasg">linux.dev.oasg</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.dev.oi">linux.dev.oi</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.dev.pkg">linux.dev.pkg</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.dev.ppp">linux.dev.ppp</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.dev.qag">linux.dev.qag</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.dev.scsi">linux.dev.scsi</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.dev.serial">linux.dev.serial</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.dev.seyon">linux.dev.seyon</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.dev.sound">linux.dev.sound</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.dev.standards">linux.dev.standards</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.dev.svgalib">linux.dev.svgalib</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.dev.tape">linux.dev.tape</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.dev.term">linux.dev.term</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.dev.uucp">linux.dev.uucp</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.dev.wabi">linux.dev.wabi</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.dev.word">linux.dev.word</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.dev.x11">linux.dev.x11</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.fido.ifmail">linux.fido.ifmail</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.free-widgets.announce">linux.free-widgets.announce</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.free-widgets.bugs">linux.free-widgets.bugs</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.free-widgets.development">linux.free-widgets.development</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.largesites">linux.largesites</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.local.chicago">linux.local.chicago</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.local.nova-scotia">linux.local.nova-scotia</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.local.silicon-valley">linux.local.silicon-valley</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.motif.clone">linux.motif.clone</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.news.groups">linux.news.groups</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.new-tty">linux.new-tty</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.ports.alpha">linux.ports.alpha</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.ports.hp-pa">linux.ports.hp-pa</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.ports.powerpc">linux.ports.powerpc</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.samba">linux.samba</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.samba.announce">linux.samba.announce</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.sdk">linux.sdk</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.sources.kernel">linux.sources.kernel</A></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.test">linux.test</A>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A HREF="news:linux.wine.users">linux.wine.users</A></FONT>
+
+</TABLE><P>Newsgroups specific to the X-windows environment installed with the Linux distribution include:
+
+<BR>
+
+<UL>
+
+<UL>
+
+<P><A HREF="news:comp.windows.x">comp.windows.x</A>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P><A HREF="news:comp.windows.x.announce">comp.windows.x.announce</A>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P><A HREF="news:comp.windows.x.apps">comp.windows.x.apps</A>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P><A HREF="news:comp.windows.x.i386unix">comp.windows.x.i386unix</A>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P><A HREF="news:comp.windows.x.intrinsics">comp.windows.x.intrinsics</A>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P><A HREF="news:comp.windows.x.motif">comp.windows.x.motif</A>
+
+<BR>
+
+</UL></UL>
+
+<P>These newsgroups should be available at all Usenet sites unless the system administrator filters them out for some reason.
+
+<BR>
+
+<P>There are also regional newsgroups that usually are not widely distributed, or that have specific issues which may be in a language other than English. Some sample regional newsgroups carried by Usenet are
+
+<BR>
+
+<UL>
+
+<UL>
+
+<P><A HREF="news:dc.org.linux-users">dc.org.linux-users</A>
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P><A HREF="news:de.comp.os.linux">de.comp.os.linux</A>
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P><A HREF="news:fr.comp.os.linux">fr.comp.os.linux</A>
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P><A HREF="news:tn.linux">tn.linux</A>
+
+<BR>
+
+</UL></UL>
+
+<P>If you do have access to Usenet newsgroups, it is advisable to regularly scan the newsgroup additions and deletions to check for new Linux newsgroups or existing groups that have folded. Most online services that provide access to Usenet maintain lists 
+of all active newsgroups, which can be searched quickly.
+
+<BR>
+
+<P>The traffic on most of these Linux newsgroups deals with problems and issues people have when installing, configuring, or using the operating system. Usually, there is a lot of valuable information passing through the newsgroups, so check them 
+regularly. The most interesting messages that deal with a specific subject (called threads) are collected and stored for access through an FTP site.
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl60.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="#I0" TARGET="_self"><IMG SRC="purtop.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Page Top"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhlxb.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+</BODY></HTML>
+
+
+

@@ -1,0 +1,1902 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Red Hat Linux Unleashed rhl58.htm </TITLE>
+
+<LINK REL="ToC" HREF="index.htm">
+
+<LINK REL="Index" HREF="htindex.htm">
+
+<LINK REL="Next" HREF="rhl59.htm">
+
+<LINK REL="Previous" HREF="rhl57.htm"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+
+<A NAME="I0"></A>
+
+<H2>Red Hat Linux Unleashed rhl58.htm</H2>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl57.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl59.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+<HR ALIGN=CENTER>
+
+<P>
+
+<UL>
+
+<UL>
+
+<UL>
+
+<LI>
+
+<A HREF="#E68E447" >Current Status of Wine</A>
+
+<LI>
+
+<A HREF="#E68E448" >Setting Up Wine</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E575" >System Requirements</A>
+
+<LI>
+
+<A HREF="#E69E576" >Where To Get the Wine Distribution</A>
+
+<LI>
+
+<A HREF="#E69E577" >How To Install Wine</A>
+
+<LI>
+
+<A HREF="#E69E578" >How To Configure Wine Before Building</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E70E37" >Initially Configuring Runtime Parameters with Configure</A>
+
+<LI>
+
+<A HREF="#E70E38" >Automatic System-Specific Configuration</A></UL>
+
+<LI>
+
+<A HREF="#E69E579" >How To Build Wine</A></UL>
+
+<LI>
+
+<A HREF="#E68E449" >Using Wine</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E580" >Specifying Configuration Parameters</A>
+
+<LI>
+
+<A HREF="#E69E581" >Using Command-Line Options</A>
+
+<LI>
+
+<A HREF="#E69E582" >The Wine Debugger</A></UL>
+
+<LI>
+
+<A HREF="#E68E450" >How Wine Works</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E583" >How Wine Loads Programs</A>
+
+<LI>
+
+<A HREF="#E69E584" >The Wine Library</A></UL>
+
+<LI>
+
+<A HREF="#E68E451" >Where Does Wine End and MS Windows Begin?</A>
+
+<LI>
+
+<A HREF="#E68E452" >Limitations of Wine</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E585" >Software That Works</A>
+
+<LI>
+
+<A HREF="#E69E586" >Using winestat To Analyze Windows Programs</A>
+
+<LI>
+
+<A HREF="#E69E587" >Major Pieces That Are Missing from Wine</A>
+
+<LI>
+
+<A HREF="#E69E588" >Software Unlikely to Ever Work</A></UL>
+
+<LI>
+
+<A HREF="#E68E453" >History of Wine</A></UL></UL></UL>
+
+<HR ALIGN=CENTER>
+
+<A NAME="E66E58"></A>
+
+<H1 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>58</B></FONT></CENTER></H1>
+
+<BR>
+
+<A NAME="E67E58"></A>
+
+<H2 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>The Wine Project</B></FONT></CENTER></H2>
+
+<BR>
+
+<P>Wine stands for Windows Emulator. It enables Microsoft Windows programs to run under a UNIX X Windows environment. Like DOSemu, Wine takes direct advantage of the Intel 386 architecture to actually run the MS Windows application. Wine simply translates 
+any MS Windows API calls into appropriate UNIX and X Windows calls. Like OS/2, MS Windows programs running under Wine get to take advantage of features of the underlying operating system. Wine is simply another user-mode Linux process that is protected 
+from corruption by other process. This is dubbed crash-protection under OS/2. Because Linux uses preemptive multitasking, Wine processes can coexist with other processes without some of the problems experienced by applications running under native MS 
+Windows.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E447"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Current Status of Wine</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>As with most of the Linux community, developers of Wine are volunteers. Wine is currently Alpha or pre-release code. Only a few of the simplest MS Windows applications run without incident. My favorite MS Windows Entertainment Pack game, Pipe Dream by 
+Lucas Arts, runs acceptably under Wine, as shown in Figure 58.1.
+
+<BR>
+
+<P><B> <A HREF="58rhl01.gif">Figure 58.1. Pipe Dream running under Wine.</A></B>
+
+<BR>
+
+<P>Although Pipe Dream and other simple games are certainly playable under Wine, everything is not perfect. Some speed degradation is noticeable, as is the occasional screen glitch.
+
+<BR>
+
+<P>Sun Soft has implemented a similar product, called WABI, for its UNIX-based workstations. WABI has been on the market for over a year and supports some of the more complex MS Windows applications such as Microsoft Excel and Lotus Smart Suite. Given 
+enough development time, it is reasonable to expect that Wine will be capable of running general MS Windows applications as well.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E448"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Setting Up Wine</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Wine is available only as source code. If you have the prerequisite software and a little patience, setting Wine up is not very difficult&#151;even if you are not a programmer.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E575"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>System Requirements</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Any Linux machine suitable for running X Window will run Wine applications at a reasonable speed. In theory, Wine should have some advantages running under Linux as opposed to under MS Windows, which is confined to the MS-DOS environment. Experiences 
+with current versions of Wine show that an application running under Wine is slower on the same machine running MS-DOS and MS Windows.
+
+<BR>
+
+<P>To make full use of Wine, you need MS Windows 3.1 installed on a disk partition that is accessible under Linux. It is also convenient to run existing MS Windows applications from the same directory in which they are installed under native MS-DOS and MS 
+Windows. The typical Linux user also has MS-DOS and MS Windows installed on a hard drive; thus it is only a matter of making the directories available under Linux. Linux kernels as of Version 1.1.83 do not support compressed MS-DOS file systems made by 
+MS-DOS utilities such as stacker and drvspace.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Some Linux installation programs will prompt you through setting up an MS-DOS partition as a Linux subdirectory. If you did not set up such a partition, add the following line to your /etc/fstab,
+
+<BR>/dev/hda1 /c MSDOS defaults
+
+<BR>where hda1 is the partition that contains MS-DOS, and /c is the Linux subdirectory to use. In this example it is assumed that the /c subdirectory exists. Otherwise, use mkdir to create the subdirectory.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>Wine is distributed as source code, and must be compiled before use. It requires approximately 10MB of disk space. 3.5MB of that disk space is the source code alone. To build Wine, you need to have the following:
+
+<BR>
+
+<UL>
+
+<LI>GCC
+
+<BR>
+
+<BR>
+
+<LI>LibC
+
+<BR>
+
+<BR>
+
+<LI>XFree with development parts loaded
+
+<BR>
+
+<BR>
+
+<LI>Linux kernel newer than 99.13
+
+<BR>
+
+<BR>
+
+</UL>
+
+<BR>
+
+<A NAME="E69E576"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Where To Get the Wine Distribution</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>A new version of Wine is released approximately once a week. Major Linux FTP sites on the Internet contain the most recent release. On <A HREF="ftp://sunsite.unc.edu">sunsite.unc.edu</A>, look in the /pub/Linux/ALPHA/wine/development directory. Wine 
+releases are named after the date they are released. Wine-950727.tar.gz was released on 7/27/95. The most current release is the one with the latest date. For more information, check out the Web page at <A 
+HREF="http://daedalus.dra.hmg.gb/gale/wine/wine.html">http://daedalus.dra.hmg.gb/gale/wine/wine.html</A>.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E577"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>How To Install Wine</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Unlike DOSemu, the Wine distribution is not sensitive to where it is installed. For brevity, make a symbolic link from the actual directory (say /usr/src/Wine950122) to /usr/wine using the ln command as follows:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"># ln -s /usr/src/Wine950122 /usr/wine</FONT></PRE>
+
+<P>A Wine distribution consists of a compressed tar file. To unpack the distribution, use a shell command such as
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"># tar -zxvf filename.tar.gz</FONT></PRE>
+
+<BR>
+
+<A NAME="E69E578"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>How To Configure Wine Before Building</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Wine must be configured before being built. The Configure utility prompts the user for the necessary information, and automatically builds the appropriate configuration files. There are three major steps to configuring Wine:
+
+<BR>
+
+<OL>
+
+<LI>Compilation configuration
+
+<BR>
+
+<BR>
+
+<LI>Run-time parameters
+
+<BR>
+
+<BR>
+
+<LI>Automatic system specific configuration
+
+<BR>
+
+<BR>
+
+</OL>
+
+<P>The configure script begins with the following questions.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Build Wine as emulator or library (E/L) [E]?
+
+Short filenames (Y/N) [N]?
+
+Use the XPM library (Y/N) [N]?
+
+Language [En/De/No] ?
+
+Global configfile name /usr/local/etc/wine.conf</FONT></PRE>
+
+<P>It is safe to press Enter and accept the defaults for these questions. These parameters are added to a global configuration file, autoconf.h. If parameter changes are necessary, re-run Configure. To avoid errors, do not attempt to edit this file.
+
+<BR>
+
+<BR>
+
+<A NAME="E70E37"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Initially Configuring Runtime Parameters with </B><B>Configure</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>The questions in this section relate to lines in the global configuration file /usr/local/etc/wine.conf. Following each question is an explanation of its meaning.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Which directory do you want to use as A:
+
+Which directory do you want to use as C:</FONT></PRE>
+
+<P>Answer these questions with the Linux directory where the MS-DOS A: and C: drive are mounted. If your disk partition on which MS Windows is mounted is /c, then use /c. If you do not plan on using a floppy disk, do not worry if A: does not point to a 
+valid directory.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Where is the Windows directory 'c:\windows\'
+
+Where is the System directory 'c:\windows\system'
+
+Where should Windows apps store temp files 'c:\windows\temp'
+
+Which path should be used to find progs/DLL's 'c:\windows;c:\windows\system'</FONT></PRE>
+
+<P>These directories should match where MS Windows is installed on your MS-DOS partition. Because the default MS Windows installation is in c:\windows, the default answers are usually sufficient.
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Where is sysres.dll /usr/wine/sysres.dll'</FONT></PRE>
+
+<P>The sysres.dll is a DLL that contains Wine specific resources. These resources include bitmaps and dialog boxes for things like the About Wine menu item. The default value is sufficient here as well.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Where is COM1&quot; CF_Com1 '/dev/cua0'
+
+Where is COM2&quot; CF_Com2 '/dev/cua1'
+
+Where is LPT1&quot; CF_Lpt1 '/dev/lp0'</FONT></PRE>
+
+<P>As with DOSemu, the communication and printer ports under Wine can be configured as any similar port under Linux. For simplicity, it is best to map the COM and LPT ports to the same ones that would appear under native MS-DOS.
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Log messages to which file (CON = stdout) 'CON'</FONT></PRE>
+
+<P>This defines where the system messages generated by Wine will go. Sending messages to CON will send them to stdout. This is the most useful place, as these messages can easily be redirected elsewhere. By default, Wine generates a lot of informational 
+messages, which slows things down a bit. A casual user will likely want to redirect these messages to /dev/null. To make this be the default action, use /dev/null for the log file.
+
+<BR>
+
+<P>Configure displays a long list of message types and asks the following question:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Exclude which messages from the log 'WM_SIZE;WM_TIMER'</FONT></PRE>
+
+<P>If you don't care about any status messages from Wine, leave this as the default. Individual error messages can be turned on or off as well as redirected from the command line.
+
+<BR>
+
+<P>At this point, Configure will display the global configuration file based on your responses to the questions. You will be asked if you want to edit the file using your default editor:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Do you want to edit it using vi (Y/N) [N]?</FONT></PRE>
+
+<P>You can always edit this file later with your favorite text editor, so it is safe to answer no to this question.
+
+<BR>
+
+<BR>
+
+<A NAME="E70E38"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Automatic System-Specific Configuration</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>After the wine.conf file has been successfully built, the Configure utility proceeds to make changes to the source tree via the xmkmf. Xmkmf is a utility that creates makefiles for X Window and creates a Makefile from an Imakefile taking into account 
+the peculiarities of different X Window installations across UNIX-like platforms.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E579"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>How To Build Wine</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>To build Wine, simply type
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">make</FONT></PRE>
+
+<P>You're done with the hard part of configuring Wine. However, building Wine seems like the longest part. To build Wine from scratch takes approximately eight minutes on a 90MHz Pentium. You will also need the -lXext libraries for the final link to work, 
+so install it from your CD-ROM first.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E449"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Using Wine</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Using Wine can be as simple as typing wine filename. Wine can be configured and used with a number of different options&#151;including a debugger for tracking down internal errors in Wine itself.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E580"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Specifying Configuration Parameters</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Wine's global configuration file is typically /usr/local/etc/wine.conf. The configuration parameters match mostly with the above questions and are organized in the format of MS Windows .ini files. A sample file follows, with some comments on the usage 
+of each section.
+
+<BR>
+
+<P>The following statements map MS-DOS drive letters to the matching subdirectory under Linux:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"> [drives]
+
+A=/a
+
+C=/c</FONT></PRE>
+
+<P>These parameters tell Wine where to find Windows- and Wine-specific DLLs and directories:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"> [wine]
+
+Windows=c:\windows
+
+System=c:\windows\system
+
+Temp=c:\temp
+
+Path=c:\windows;c:\windows\system
+
+SystemResources=/users/wine/wine950122/sysres.dll</FONT></PRE>
+
+<P>The following section applies to the mapping of MS Windows fonts to X font (note that the * is used for wildcard matching of X fonts):
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"> [fonts]
+
+system=*-helvetica
+
+mssansserif=*-helvetica
+
+msserif=*-times
+
+fixedsys=*-fixed
+
+arial=*-helvetica
+
+helv=*-helvetica
+
+roman=*-times
+
+default=*-*</FONT></PRE>
+
+<P>The following section maps serial ports available under Wine with corresponding Linux serial port identifiers:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"> [serialports]
+
+Com1=/dev/cua0
+
+Com2=/dev/cua1</FONT></PRE>
+
+<P>The following section maps printer ports available under Wine with the corresponding printer port under Linux
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"> [parallelports]
+
+Lpt1=/dev/lp0</FONT></PRE>
+
+<P>These parameters determine the amount of logging and the destination:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"> [spy]
+
+File=CON
+
+Exclude=WM_SIZE;WM_TIMER</FONT></PRE>
+
+<BR>
+
+<A NAME="E69E581"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Using Command-Line Options</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The Wine command line has the following format: wine wine_options program program_options. For example:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">bash# /usr/wine/wine -debugmsg +all /c/windows/winmine.exe</FONT></PRE>
+
+<P>Table 58.1 shows command-line options available with Wine.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 58.1. Wine command-line options.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Option</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Meaning</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-depth n
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Change the depth to use for multiple-depth screens. This configures Wine to use other than the default number of colors. (8 bitplanes is 256 colors and usually the only acceptable answer.)</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-desktop geom
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Run an MS Windows application with a desktop of the size specified. For example, 850&#180;620 would create a window of 850 by 620. Running with a desktop also eliminates the modal, or stuck-on-top, behavior of Wine applications.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-display name
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Use an X display other than the default. This enables users to run an MS Windows application on another X device over an attached network.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-iconic
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Start application as an icon rather than full-screen. This is same functionality as run minimized from the Program Manager under native MS Windows.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-debug
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Enter debugger before starting application</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-name name
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Set the application name. This is useful for telling the X Window manager a meaningful name for the application. The default name is wine.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-privatemap
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Use a private color map. This is useful for applications that make extensive use of color. Running an application this way causes the colors of other X applications to look weird while the Wine session is the selected window.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-synchronous
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Turn on synchronous display mode. This can severely slow down applications, as it causes X Window to wait for the completion of each command before sending the next one. X applications can send commands to an X server that may or may not be on the same 
+machine. Under some applications, synchronization is necessary so that graphics operations do not get optimized away by the X server.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-backingstore
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+This is an optimization that enables an X server to handle expose events without interrupting the client program.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-spy file
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Turn on message spying to the specified file. This can also be done by output redirection.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-debugmsg name
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Turn specific debugging information on or off. To get a current list of debug message types, type the following command: wine -debugmsg help help.</FONT>
+
+</TABLE><BR>
+
+<A NAME="E69E582"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>The Wine Debugger</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Wine has a built-in debugger that is useful for uncovering problems within the program. When an MS Windows program exits due to a problem, the debugger starts in the xterm from which Wine was started. If you are not interested in troubleshooting Wine, 
+you need only type quit at the prompt and skip to the next section of this chapter.
+
+<BR>
+
+<P>The Wine debugger is similar to the GNU debugger gdb. Breakpoints can be set; examination and modification of registers as well as memory locations are possible. However, this is a minimal debugger that includes only the commands listed in Table 58.2.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 58.2. Wine debugger commands.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Command</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Meaning</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080><BR></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+break
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Set a breakpoint at a specified address or symbolic value. Wine will stop before executing instructions at this address. For example, break * GDI_Ordinal_24 sets a breakpoint at the start of Windows Ellipse function known internally as GDI.24.
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080><BR></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+bt
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Backtrace, or show the history of Wine calls leading to the current place. The addresses shown are the return addresses, not the calling addresses.
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080><BR></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+cont
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Continue program execution until a breakpoint or error condition is reached.
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080><BR></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+define
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Equates a symbol to a value. For example: define myproc 0x000001c6.
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080><BR></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+disable
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Disable a specific breakpoint. Breakpoints defined by the break command are stored by breakpoint numbers. To disable a breakpoint, you need to find the breakpoint number with the info command. To disable breakpoint number 1, simply type disable 1.
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080><BR></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+enable
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Enables a breakpoint number, the opposite of disable. To enable the previously disabled breakpoint number 1, simply type enable 1.
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080><BR></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+help
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Prints a help text of the available commands.
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080><BR></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+info
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Provides information on the following:
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080><BR></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080><BR></FONT>
+
+
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+reg registers information.
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080><BR></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080><BR></FONT>
+
+
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+stack dumps the current stack.
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080><BR></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080><BR></FONT>
+
+
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+break shows the current breakpoints and if they are enabled.
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080><BR></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080><BR></FONT>
+
+
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+segments shows information about memory segments in use.
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080><BR></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+mode
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Switches between 16- and 32-bit modes.
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080><BR></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+print
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Prints out values of expressions given.
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080><BR></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+quit
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Exits debugger and ends any MS Windows program in progress.
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080><BR></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+set
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Enables depositing of values in registers and memory.
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080><BR></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+symbolfile
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Loads a symbol file containing symbolic values. The file wine.sym is created as part of the Wine build.
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080><BR></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+x
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Examines memory values in several different formats. The format of x is x / format address, where format can be one of the following:
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080><BR></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080><BR></FONT>
+
+
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+x
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+longword hexadecimal (32-bit integer)</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080><BR></FONT>
+
+
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+d
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+longword decimal</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080><BR></FONT>
+
+
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+w
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+word hexadecimal</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080><BR></FONT>
+
+
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+b
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+byte</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080><BR></FONT>
+
+
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+c
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+single character</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080><BR></FONT>
+
+
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+s
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+null-terminated ASCII string</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080><BR></FONT>
+
+
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+I
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+i386 instruction</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080><BR></FONT>
+
+
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+A number can be specified before the format to indicate a repeating group. For example, listing 10 instructions after a given address would be x / 10 I 0x000001cd.
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080><BR></FONT>
+
+</TABLE><P>In order to benefit from using the Wine debugger, an understanding of debugging i386 assembly is essential. If you are serious about debugging Wine, an assembly language output from GCC is essential.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E450"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>How Wine Works</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Wine is composed of a MS Windows program loader and a library of MS Windows functions.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E583"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>How Wine Loads Programs</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Wine's first duty is to load an MS Windows executable image into memory. This also includes any DLL files and other resources that the application needs. MS Windows uses a different executable image type than does DOS that is called NE, or new 
+executable. DLLs and font files also use this NE format, which makes Wine's job easier.
+
+<BR>
+
+<P>Individual segments of the NE image must be load into memory, and references to other DLL and Windows calls need to be resolved. Calls to functions outside an image are referred to by the module name and function number. A call to Ellipse is actually 
+stored as GDI.24.
+
+<BR>
+
+<P>After an executable image is loaded into memory, Wine simply jumps to the WinMain() function defined in the image. A call to MS Windows graphics function Ellipse is stored as GDI.24. GDI is the name of the MS Windows graphics library, and 24 is the 
+position in that DLL where Ellipse starts. Wine does not need to do any instruction emulation because both Linux and MS Windows use the i386 instruction set. When an MS Windows primitive function is called, Wine intercepts that call and passes it to a 
+matching library routine.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E584"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>The Wine Library</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Wine converts the MS Windows API to the matching X or UNIX API calls. A call to the MS Windows Ellipse function to draw an ellipse in a window has the following format:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Ellipse (hdc, xLeft, yTop, xRight, yBottom);</FONT></PRE>
+
+<P>The definitions are of xLeft, yTop, xRight, and yBottom are a bounding box for an ellipse as shown in Figure 58.2.
+
+<BR>
+
+<P><B> <A HREF="58rhl02.gif">Figure 58.2. MS Windows ellipse coordinates.</A></B>
+
+<BR>
+
+<P>The same ellipse is drawn under the X API XDrawArc function:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">XDrawArc(display, d, gc, x, y, width, height, angle1, angle2);</FONT></PRE>
+
+<P>The definitions of x, y, width, height, angle1, and angle2 are shown in Figure 58.3.
+
+<BR>
+
+<P><B> <A HREF="58rhl03.gif">Figure 58.3. </B><B>XDrawArc</B><B> coordinates.</A></B>
+
+<BR>
+
+<P>Wine needs to do a little math to convert the coordinates from an Ellipse call to that of an XDrawArc call. Other parameters of the XDrawArc call are a bit easier to map. The d refers to a drawable area, which is typically a handle to a window. Under MS 
+Windows, this is contained in the hdc structure. The gc is a graphics context and is analogous in functionality to the hdc under MS Windows. As X is capable of displaying on different machines over a network, the display parameter describes which display 
+to use. The display parameter remains constant over the life of a Wine session. The last thing Wine has to consider is that an MS Windows Ellipse call can also specify a filled ellipse. Wine checks the hdc, and possibly uses XFillArc instead.
+
+<BR>
+
+<P>There are nearly 300 graphics primitives available under MS Windows that need to undergo similar translations. While this might seem to be a bit of work, the graphics conversions are among the simpler things to emulate under MS Windows.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E451"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Where Does Wine End and MS Windows Begin?</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>As Wine currently requires parts of MS Windows to operate, it is a bit confusing to know where Wine ends and MS Windows begins. Wine currently provides API calls for the following parts of a typical MS Windows installation:
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+commdlg
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Common Windows Dialogs</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+gdi
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Graphics Device Interface</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+kernel
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Kernel Interface</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+keyboard
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Keyboard Interface</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+mmsystem
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Multimedia System Interface</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+mouse
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Mouse Interface</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+shell
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Windows 3.1 Shell API Library</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+sound
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Windows sound system</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+toolhelp
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Debugging and tools helper calls</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+user
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Microsoft Windows User Interface</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+win87em
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Coprocessor/Emulator Library</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+winsock
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Windows Socket interface (TCP/IP)</FONT>
+
+</TABLE><P>Wine requires access to some parts of MS Windows to use features that are not implemented by Wine. One example is the MS Windows dynamic link library OLECLI, which implements the OLE client. The Wine team has made significant headway in reducing 
+the amount of files needed. The Wine project charter includes removing any dependency on MS Windows files. This includes utilities and file organizations to install MS Windows applications.
+
+<BR>
+
+<P>Some of the simplest MS Windows applications run today under Wine without need of any MS Windows code or access to any MS Windows directories. WINMINE.EXE and SOL.EXE are examples of such applications. Although no suggested directory organization exists 
+to support this, a quick example of doing this is the following:
+
+<BR>
+
+<OL>
+
+<LI>Copy winmine.exe and win.ini to a Linux directory such as /users/windows.
+
+<BR>
+
+<BR>
+
+<LI>Change the Windows path options in wine.conf, such as to /users/windows.
+
+<BR>
+
+<BR>
+
+<LI>Dismount your MS-DOS partition.
+
+<BR>
+
+<BR>
+
+<LI>Run Wine.
+
+<BR>
+
+<BR>
+
+</OL>
+
+<BR>
+
+<A NAME="E68E452"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Limitations of Wine</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Only a few MS Windows software packages run correctly under Wine. Luckily it is possible to estimate how likely a program is to run correctly without actually running it. Unfortunately there are some classes of applications that are unlikely to ever run 
+under Wine.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E585"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Software That Works</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The most recent versions of Wine support a good number of the MS Windows applets and games included with the stock MS Windows 3.1. There are considerable variations between each release of Wine. Changes that help some applications often break others. 
+But here are some of the accessories and games that work reasonably well under Wine:
+
+<BR>
+
+<UL>
+
+<LI>calc.exe
+
+<BR>
+
+<BR>
+
+<LI>clock.exe
+
+<BR>
+
+<BR>
+
+<LI>cruel.exe
+
+<BR>
+
+<BR>
+
+<LI>golf.exe
+
+<BR>
+
+<BR>
+
+<LI>notepad.exe
+
+<BR>
+
+<BR>
+
+<LI>pipe.exe
+
+<BR>
+
+<BR>
+
+<LI>pegged.exe
+
+<BR>
+
+<BR>
+
+<LI>reversi.exe
+
+<BR>
+
+<BR>
+
+<LI>winmine.exe
+
+<BR>
+
+<BR>
+
+</UL>
+
+<BR>
+
+<A NAME="E69E586"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Using </B><B>winestat</B><B> To Analyze Windows Programs</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Part of Wine is the winestat utility. This is actually the same program as Wine, but instead of running an MS Windows executable, winestat simply attempts to load a Windows executable and reports on how successful the load was. In loading an executable, 
+winestat also loads any DLLs necessary, and reports if any are missing. winestat looks for Windows API calls that are used by either the executable or any DLL, and verifies their existence. A sample winestat run on the MS Windows Paintbrush applet pbrush 
+yields the following:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">KERNEL.1 not implemented
+
+KERNEL.54 not implemented
+
+KERNEL.113 not implemented
+
+KERNEL.114 not implemented
+
+KERNEL.121 not implemented
+
+KERNEL.154 not implemented
+
+KERNEL.178 not implemented
+
+KERNEL.207 not implemented
+
+KERNEL: 52 of 60 (86.7 %)
+
+USER: 150 of 150 (100.0 %)
+
+GDI.151 not implemented
+
+GDI.307 not implemented
+
+GDI.366 not implemented
+
+GDI.439 not implemented
+
+GDI: 80 of 84 (95.2 %)
+
+SHELL: 9 of 9 (100.0 %)
+
+KEYBOARD: 2 of 2 (100.0 %)
+
+TOTAL: 293 of 305 winapi functions implemented (96.1 %)</FONT></PRE>
+
+<P>winestat calls out the individual functions by number and module that are not implemented by Wine. If you are curious as to the function name, rather than number, look at the Wine sources in the if1632 directory for the given module name's spec file. A 
+sample kernel.spec file is as follows:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">#1 FATALEXIT
+
+#2 EXITKERNEL
+
+3 pascal GetVersion() GetVersion()
+
+...
+
+...
+
+...
+
+#54 pascal16 GETINSTANCEDATA</FONT></PRE>
+
+<P>Any line in a .spec file that starts with a # is considered a comment, not an implemented function. In this example, both 1 and 54 are commented, with the respective names of FATALEXIT, and GETINSTANCEDATA. FATALEXIT is used for debugging MS Windows 
+programs under error conditions and is not important for most MS Windows users. GETINSTANCEDATA copies configuration data from a previous instance of an application. If you are running only one instance of an application, this does not apply.
+
+<BR>
+
+<P>The final percentage shows which MS Windows API calls are implemented. This is often a good measure of how much of an application could work under Wine. Unfortunately, if a single, unimplemented API call is needed to initialize your MS Windows 
+application, anything less than 100 percent is not good enough.
+
+<BR>
+
+<P>MS Windows applications to which winestat gives an overall implementation rating over 95 percent are worth a try. Unlike DOSemu, Wine is not as prone to leaving Linux in an unusable state. However it is not always a trivial matter to kill an errant Wine 
+session. The easiest thing to do is to start Wine with a separate desktop: wine -desktop 800&#180;600 filename. Normal methods of killing a Windows process from your window manager should work.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>When all else fails trying to stop an errant Wine session, switch to a free virtual console and kill the errant Wine process.
+
+<BR>For example, Alt-Ctrl and F2 would switch to virtual console number 2. You can log into a virtual console and use ps -ax | grep wine to find your Wine sessions. Use kill -15 pid where pid is the process id returned by ps to stop the process. You can 
+return to your X session by switching to the virtual console that is running X. If you don't know what console number that is, hold down the Alt and Ctrl keys, and press F1 through F8 until you find it.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E69E587"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Major Pieces That Are Missing from Wine</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Perhaps the most obvious omission from Wine is the lack of a printer interface. As this is a complex process, work on a printer interface is little more than a few ideas. It would be a huge task to support all of the types of printers supported under MS 
+Windows. Wine will likely implement only a PostScript driver. Existing Linux utilities such as GhostScript are already capable of converting PostScript to other types of printer types, such as HP laser and inkjet printers.
+
+<BR>
+
+<P>The 32-bit Windows API (win32) is mostly unsupported. This is the executable image format for Windows NT and Windows 95, and is known as PE (portable executable). Wine currently supports the loading of resource files, such as fonts, that are in PE 
+format, but is unable to handle executables or DLLs.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E588"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Software Unlikely to Ever Work</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The Wine project has no plans to support Windows Virtual Device Drivers. (VDDs). VDDs use a different image format, called LE for linear executable, that the Wine loader is unable to handle. Because VDDs do things like direct hardware manipulation, 
+coexistence of a VDD with Linux device drivers would be a tough problem indeed. One of the uses of VDDs in commercial MS Windows is for TCP/IP stacks. Wine supports TCP/IP through the winsock DLL, which uses the TCP/IP inherent in the Linux kernel.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E453"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>History of Wine</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The first parts of Wine were made available in July 1993. The first versions had problems running the MS Windows Solitaire game, and were quite limited. Notably missing was support for menus. Since then a huge number of changes have been made by many 
+dedicated people. It would be nearly impossible to mention everyone who contributed to Wine, or to parts of Linux that make Wine possible, but here is a list of people anyway:
+
+<BR>
+
+<P>Bob Amstadt, Dag Asheim, Martin Ayotte, Ross Biro, Uwe Bonnes, Erik Bos, Fons Botman, John Brezak, Andrew Bulhak, John Burton, Niels de Carpentier, Roman Dolejsi, Frans van Dorsselaer, Paul Falstad, Olaf Flebbe, Peter Galbavy, Ramon Garcia, Hans de 
+Graaff, Charles M. Hannum, John Harvey, Cameron Heide, Jochen Hoenicke, Onno Hovers, Jeffrey Hsu, Miguel de Icaza, Jukka Iivonen, Alexandre Julliard, Jochen Karrer, Andreas Kirschbaum, Albrecht Kleine, Jon Konrath, Alex Korobka, Greg Kreider, Anand Kumria, 
+Scott A. Laird, Martin von Loewis, Kenneth MacDonald, Peter MacDonald, William Magro, Juergen Marquardt, Marcus Meissner, Graham Menhennitt, David Metcalfe, Steffen Moeller, Philippe De Muyter, Itai Nahshon, Michael Patra, Jim Peterson, Robert Pouliot, 
+Keith Reynolds, John Richardson, Johannes Ruscheinski, Thomas Sandford, Constantine Sapuntzakis, Daniel Schepler, Ulrich Schmid, Bernd Schmidt, Yngvi Sigurjonsson, Rick Sladkey, William Smith, Erik Svendsen, Tristan Tarrant, Andrew Taylor, Duncan C. 
+Thomson, Goran Thyni, Jimmy Tirtawangsa, Jon Tombs, Linus Torvalds, Gregory Trubetskoy, Michael Veksler, Sven Verdoolaege, Eric Warnke, Manfred Weichel, Morten Welinder, Jan Willamowius, Carl Williams, Karl Guenter Wuensch, Eric Youngdale, and James 
+Youngman.
+
+<BR>
+
+<P>For more information about the Wine project, get the FAQ at <A HREF="http://www.asgardpro.com/dave/wine-faq.html">http://www.asgardpro.com/dave/wine-faq.html</A><A NAME="I2"></A> or visit the project's home page at <A 
+HREF="http://daedalus.dra.hmg.gb/gale/wine/wine.html">http://daedalus.dra.hmg.gb/gale/wine/wine.html</A>.
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl57.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="#I0" TARGET="_self"><IMG SRC="purtop.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Page Top"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl59.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+</BODY></HTML>
+
+
+

@@ -1,0 +1,945 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Red Hat Linux Unleashed rhl54.htm </TITLE>
+
+<LINK REL="ToC" HREF="index.htm">
+
+<LINK REL="Index" HREF="htindex.htm">
+
+<LINK REL="Next" HREF="rhl55.htm">
+
+<LINK REL="Previous" HREF="rhl53.htm"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+
+<A NAME="I0"></A>
+
+<H2>Red Hat Linux Unleashed rhl54.htm</H2>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl53.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl55.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+<HR ALIGN=CENTER>
+
+<P>
+
+<UL>
+
+<UL>
+
+<UL>
+
+<LI>
+
+<A HREF="#E68E415" >Ports and Sockets</A>
+
+<LI>
+
+<A HREF="#E68E416" >Socket Programming</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E535" >socket()</A>
+
+<LI>
+
+<A HREF="#E69E536" >The bind() System Call</A>
+
+<LI>
+
+<A HREF="#E69E537" >The listen() System Call</A>
+
+<LI>
+
+<A HREF="#E69E538" >The accept() System Call</A>
+
+<LI>
+
+<A HREF="#E69E539" >The connect() System Call</A>
+
+<LI>
+
+<A HREF="#E69E540" >Connectionless Socket Programming</A></UL>
+
+<LI>
+
+<A HREF="#E68E417" >Record and File Locking</A>
+
+<LI>
+
+<A HREF="#E68E418" >Interprocess Communications</A>
+
+<LI>
+
+<A HREF="#E68E419" >Summary</A></UL></UL></UL>
+
+<HR ALIGN=CENTER>
+
+<A NAME="E66E54"></A>
+
+<H1 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>54</B></FONT></CENTER></H1>
+
+<BR>
+
+<A NAME="E67E54"></A>
+
+<H2 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>Network Programming</B></FONT></CENTER></H2>
+
+<BR>
+
+<P>This chapter will look at the basic concepts you need for network programming:
+
+<BR>
+
+<UL>
+
+<LI>Ports and sockets
+
+<BR>
+
+<BR>
+
+<LI>Record and file locking
+
+<BR>
+
+<BR>
+
+<LI>Interprocess communications
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>It is impossible to tell you how to program applications for a network in just a few pages. Indeed, the best reference to network programming available takes almost 800 pages in the first volume alone! If you really want to do network programming, you 
+need a lot of experience with compilers, TCP/IP, network operating systems, and a great deal of patience.
+
+<BR>
+
+<P>For information on details of TCP/IP, check the book Teach Yourself TCP/IP in 14 Days by Tim Parker (Sams).
+
+<BR>
+
+<BR>
+
+<A NAME="E68E415"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Ports and Sockets</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Network programming relies on the use of sockets to accept and transmit information. Although there is a lot of mystique about sockets, the concept is actually very simple to understand.
+
+<BR>
+
+<P>Most applications that use the two primary network protocols, Transmission Control Protocol (TCP) or User Datagram Protocol (UDP) have a port number that identifies the application. A port number is used for each different application the machine is 
+handling, so it can keep track of them by numbers instead of names. The port number makes it easier for the operating system to know how many applications are using the system and which services are available.
+
+<BR>
+
+<P>In theory, port numbers can be assigned on individual machines by the system administrator, but some conventions have been adopted to allow better communications. This convention enables the port number to identify the type of service that one system is 
+requesting from another. For this reason, most systems maintain a file of port numbers and their corresponding services.
+
+<BR>
+
+<P>Port numbers are assigned starting from the number 1. Normally, port numbers above 255 are reserved for the private use of the local machine, but numbers between 1 and 255 are used for processes requested by remote applications or for networking 
+services.
+
+<BR>
+
+<P>Each network communications circuit that goes into and out of the host computer's TCP application layer is uniquely identified by a combination of two numbers, together called the socket. The socket is composed of the IP address of the machine and the 
+port number used by the TCP software.
+
+<BR>
+
+<P>Because there are at least two machines involved in network communications, there will be a socket on both the sending and receiving machine. The IP address of each machine is unique, and the port numbers are unique to each machine, so socket numbers 
+will also be unique across the network. This enables an application to talk to another application across the network based entirely on the socket number.
+
+<BR>
+
+<P>The sending and receiving machines maintain a port table that lists all active port numbers. The two machines involved have reversed entries for each session between the two, a process called binding. In other words, if one machine has the source port 
+number 23 and the destination port number set at 25, then the other machine will have its source port number set at 25 and the destination port number set at 23.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E416"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Socket Programming</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Linux supports BSD style socket programming. Both connection-oriented and connectionless types of sockets are supported. In connection-oriented communication, the server and client establish a connection before any data is exchanged. In connectionless 
+communication, data is exchanged as part of a message. In either case, the server always starts up first, binds itself to a socket, and listens to messages. How the server attempts to listen depends on the type of connection for which you have programmed 
+it.
+
+<BR>
+
+<P>You need to know about only a few system calls:
+
+<BR>
+
+<UL>
+
+<LI>socket()
+
+<BR>
+
+<BR>
+
+<LI>bind()
+
+<BR>
+
+<BR>
+
+<LI>accept()
+
+<BR>
+
+<BR>
+
+<LI>listen()
+
+<BR>
+
+<BR>
+
+<LI>connect()
+
+<BR>
+
+<BR>
+
+<LI>sendto()
+
+<BR>
+
+<BR>
+
+<LI>recvfrom()
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>We will cover these in the following examples.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E535"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>socket()</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The socket() system call creates a socket for the client or the server. The socket function is defined as follows:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">#include&lt;sys/types.h&gt;
+
+#include&lt;sys/socket.h&gt;
+
+int socket(int family, int type, int protocol)</FONT></PRE>
+
+<P>For Linux, you will have family = AF_UNIX. The type is either SOCK_STREAM for reliable, though slower communications or SOCK_DGRAM for faster, but less reliable communications. The protocol should be IPPROTO_TCP for SOCK_STREAM and IPPROTO_UDP for 
+SOCK_DGRAM.
+
+<BR>
+
+<P>The return value from this function is -1 if there was an error; otherwise, it's a socket descriptor. You will use this socket descriptor to refer to this socket in all subsequent calls in your program.
+
+<BR>
+
+<P>Sockets are created without a name. Clients use the name of the socket in order to read or write to it. This is where the bind function comes in.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E536"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>The </B><B>bind()</B><B> System Call</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The bind() system call assigns a name to an unnamed socket.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">#include&lt;sys/types.h&gt;
+
+#include&lt;sys/socket.h&gt;
+
+int bind(int sockfd, struct sockaddr *saddr, int addrlen)</FONT></PRE>
+
+<P>The first item is a socket descriptor. The second is a structure with the name to use, and the third item is the size of the structure.
+
+<BR>
+
+<P>Now that you have bound an address for your server or client, you can connect() to it or listen on it. If your program is a server, then it sets itself up to listen and accept connections. Let's look at the function available for such an endeavor.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E537"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>The </B><B>listen()</B><B> System Call</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The listen() system call is used by the server. It is defined as follows:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">#include&lt;sys/types.h&gt;
+
+#include&lt;sys/socket.h&gt;
+
+int listen(int sockfd, int backlog);</FONT></PRE>
+
+<P>The sockfd is the descriptor of the socket. The backlog is the number of waiting connections at one time before rejecting any. Use the standard value of 5 for backlog. A returned value of less than 1 indicates an error.
+
+<BR>
+
+<P>If this call is successful, you can accept connections.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E538"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>The </B><B>accept()</B><B> System Call</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The accept() system call is used by a server to accept any incoming messages from clients' connect() calls. Be aware that this function will not return if no connections are received.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">#include&lt;sys/types.h&gt;
+
+#include&lt;sys/socket.h&gt;
+
+int accept(int sockfd, struct sockaddr *peeraddr, int addrlen)</FONT></PRE>
+
+<P>The parameters are the same as that for the bind call, with the exception that the peeraddr points to information about the client that is making a connection request. Based on the incoming message, the fields in the structure pointed at by peeraddr are 
+filled out.
+
+<BR>
+
+<P>So how does a client connect to a server. Let's look at the connect() call.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E539"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>The </B><B>connect()</B><B> System Call</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The connect() system call is used by clients to connect to a server in a connection-oriented system. This connect() call should be made after the bind() call.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">#include&lt;sys/types.h&gt;
+
+#include&lt;sys/socket.h&gt;
+
+int connect(int sockfd, struct sockaddr *servsaddr, int addrlen)</FONT></PRE>
+
+<P>The parameters are the same as that for the bind call, with the exception that the servsaddr points to information about the server that the client is connecting to. The accept call creates a new socket for the server to work with the request. This way 
+the server can fork() off a new process and wait for more connections. On the server side of things, you would have code that looks like that shown in Listing 54.1.
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 54.1. Server side for socket-oriented protocol.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">#include &lt;sys/types.h&gt;
+
+#include &lt;sys/socket.h&gt;
+
+#include &lt;linux/in.h&gt;
+
+#include &lt;linux/net.h&gt;
+
+#define MY_PORT 6545
+
+main(int argc, char *argv[])
+
+{
+
+int sockfd, newfd;
+
+int cpid; /* child id */
+
+struct sockaddr_in servaddr;
+
+struct sockaddr_in clientInfo;
+
+if ((sockfd = socket(AF_INET, SOCK_STREAM, 0) &lt; 0)
+
+{
+
+myabort(&quot;Unable to create socket&quot;);
+
+}
+
+bzero((char *)&amp;servaddr, sizeof(servaddr));
+
+servaddr.sin_family = AF_INET;
+
+servaddr.sin_addr.s_addr = htonl(INADDR_ANY);
+
+servaddr.sin_family = htons(MY_PORT);
+
+/*
+
+* The htonl(for a long integer) and htons(for short integer) convert
+
+* a host oriented byte order * into a network order.
+
+*/
+
+if (bind(sockfd,(struct sockaddr *)&amp;servaddr,sizeof(struct sockaddr)) &lt; 0)
+
+{
+
+myabort(&quot;Unable to bind socket&quot;);
+
+}
+
+listen(sockfd,5);
+
+for (;;)
+
+{
+
+/* wait here */
+
+newfd=accept(sockfd,(struct sockaddr *)&amp;clientInfo,
+
+sizeof(struct sockaddr);
+
+if (newfd &lt; 0)
+
+{
+
+myabort(&quot;Unable to accept on socket&quot;);
+
+}
+
+if ((cpid = fork()) &lt; 0)
+
+{
+
+myabort(&quot;Unable to fork on accept&quot;);
+
+}
+
+else if (cpid == 0) { /* child */
+
+close(sockfd); /* no need for original */
+
+do_your_thing(newfd);
+
+exit(0);
+
+}
+
+close(newfd); /* in the parent */
+
+}
+
+}</FONT></PRE>
+
+<P>In the case of connection-oriented protocols, the server performs the following functions:
+
+<BR>
+
+<UL>
+
+<LI>Creates a socket with a call to the socket() function.
+
+<BR>
+
+<BR>
+
+<LI>Binds itself to an address with the bind() function call.
+
+<BR>
+
+<BR>
+
+<LI>Listens for connections with the listen() function call.
+
+<BR>
+
+<BR>
+
+<LI>Accepts any incoming requests with the accept() function call.
+
+<BR>
+
+<BR>
+
+<LI>Gets incoming messages with the read() function and replies back with the write() call.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>Now let's look at the client side of things in Listing 54.2.
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 54.2. Client side function.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">#include &lt;sys/types.h&gt;
+
+#include &lt;sys/socket.h&gt;
+
+#include &lt;linux/in.h&gt;
+
+#include &lt;linux/net.h&gt;
+
+#define MY_PORT 6545
+
+#define MY_HOST_ADDR &quot;204.25.13.1&quot;
+
+int getServerSocketId()
+
+{
+
+int fd, len;
+
+struct sockaddr_in unix_addr;
+
+/* create a Unix domain stream socket */
+
+if ( (fd = socket(AF_UNIX, SOCK_STREAM, 0)) &lt; 0)
+
+{
+
+return(-1);
+
+}
+
+/* fill socket address structure w/our address */
+
+memset(&amp;unix_addr, 0, sizeof(unix_addr));
+
+unix_addr.sin_family = AF_INET;
+
+/* convert internet address to binary value*/
+
+unix_addr.sin_addr.s_addr = inet_addr(MY_HOST_ADDR);
+
+unix_addr.sin_family = htons(MY_PORT);
+
+if (bind(fd, (struct sockaddr *) &amp;unix_addr, len) &lt; 0)
+
+return(-2);
+
+memset(&amp;unix_addr, 0, sizeof(unix_addr));
+
+if (connect(fd, (struct sockaddr *) &amp;unix_addr, len) &lt; 0)
+
+return(-3);
+
+return(fd);
+
+}</FONT></PRE>
+
+<P>The client for connection-oriented communication also takes the following steps:
+
+<BR>
+
+<UL>
+
+<LI>Creates a socket with a call to the socket() function.
+
+<BR>
+
+<BR>
+
+<LI>Attempts to connect to the server with a connect() call.
+
+<BR>
+
+<BR>
+
+<LI>If a connection is made, requests for data with the write() call, and reads incoming replies with the read() function.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<BR>
+
+<A NAME="E69E540"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Connectionless Socket Programming</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Now let's consider the case of a connectionless exchange of information. The principle on the server side is different from the connection-oriented server side in that the server calls recvfrom() instead of the listen and accept calls. Also, to reply to 
+messages, the server uses the sendto() function call. See Listing 54.3 for the server side.
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 54.3. The server side.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">#include &lt;sys/types.h&gt;
+
+#include &lt;sys/socket.h&gt;
+
+#include &lt;linux/in.h&gt;
+
+#include &lt;linux/net.h&gt;
+
+#define MY_PORT 6545
+
+#define MAXM 4096
+
+char mesg[MAXM];
+
+main(int argc, char *argv[])
+
+{
+
+int sockfd, newfd;
+
+int cpid; /* child id */
+
+struct sockaddr_in servaddr;
+
+struct sockaddr_in clientInfo;
+
+if ((sockfd = socket(AF_INET, SOCK_STREAM, 0) &lt; 0)
+
+{
+
+myabort(&quot;Unable to create socket&quot;);
+
+}
+
+bzero((char *)&amp;servaddr, sizeof(servaddr));
+
+servaddr.sin_family = AF_INET;
+
+servaddr.sin_addr.s_addr = htonl(INADDR_ANY);
+
+servaddr.sin_family = htons(MY_PORT);
+
+/*
+
+* The htonl(for a long integer) and htons(for short integer) convert
+
+* a host oriented byte order * into a network order.
+
+*/
+
+if (bind(sockfd,(struct sockaddr *)&amp;servaddr,sizeof(struct sockaddr)) &lt; 0)
+
+{
+
+myabort(&quot;Unable to bind socket&quot;);
+
+}
+
+for (;;)
+
+{
+
+/* wait here */
+
+n = recvfrom(sockfd, mesg, MAXM, 0,
+
+(struct sockaddr *)&amp;clientInfo,
+
+sizeof(struct sockaddr));
+
+doSomethingToIt(mesg);
+
+sendto(sockfd,mesg,n,0,
+
+(struct sockaddr *)&amp;clientInfo,
+
+sizeof(struct sockaddr));
+
+}
+
+}</FONT></PRE>
+
+<P>As you can see, the two function calls to process each message make this an easier implementation than a connection-oriented one. However, you have to process each message one at a time because messages from multiple clients can be multiplexed together. 
+In a connection-oriented scheme, the child process always knows where each message originated.
+
+<BR>
+
+<P>The client does not have to call the connect() system call either. Instead, the client can call the sendto() function directly. The client side is identical to the server side, with the exception that the sendto call is made before the recvfrom() call.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">#include &lt;sys/types.h&gt;
+
+#include &lt;sys/socket.h&gt;
+
+int sendto((int sockfd,
+
+const void *message__, /* the pointer to message */
+
+int length, /* of message */
+
+unsigned int type, /* of routing, leave 0 *
+
+const struct sockaddr * client, /* where to send it */
+
+int length ); /* of sockaddr);</FONT></PRE>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>If you are a BSD user, use the sendto() call, do not use sendmsg() call. The sendto() call is more efficient.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>Any errors are indicated by a return value of -1. Only local errors are detected.
+
+<BR>
+
+<P>The recvfrom() system call is defined as follows:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">#include &lt;sys/types.h&gt;
+
+#include &lt;sys/socket.h&gt;
+
+int recvfrom(int sockfd,
+
+const void *message__, /* the pointer to message */
+
+int length, /* of message */
+
+unsigned int flags, /* of routing, leave 0 *
+
+const struct sockaddr * client, /* where to send it */
+
+int length ); /* of sockaddr);</FONT></PRE>
+
+<P>If a message is too long to fit in the supplied buffer, the extra bytes are discarded. The call may return immediately or wait forever, depending on the type of the flag being set. You can even set time out values. Check the man pages for recvfrom for 
+more information.
+
+<BR>
+
+<P>There you have it: the very basics of how to program applications to take advantage of the networking capabilities under Linux. We have not even scratched the surface of all the intricacies of programming for networks. A good starting point for more 
+detailed information would be UNIX Network Programming by W. Richard Stevens, published in 1990 by Prentice Hall. This book is a classic used in universities and is, by far, the most detailed book to date.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E417"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Record and File Locking</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>When two processes want to share a file, the danger exists that one process might affect the contents of the file, and thereby affect the other process. For this reason, most operating systems use a mutually exclusive principle: When one process has a 
+file open, no other process can touch it. This is called file locking.
+
+<BR>
+
+<P>The technique is simple to implement. What usually happens is that a &quot;lock file&quot; is created with the same name as the original file but with the extension .lock, which tells other processes that the file is unavailable. This is how many Linux 
+spoolers, such as the print system and UUCP, implement file locking. It is a brute-force method, perhaps, but effective and easy to program.
+
+<BR>
+
+<P>Unfortunately, this technique is not good when you must have several processes access the same information quickly because the delays waiting for file opening and closing can grow to be appreciable. Also, if one process doesn't release the file 
+properly, other processes can hang there, waiting for access.
+
+<BR>
+
+<P>For this reason, record locking is sometimes implemented. With record locking, a single part of a larger file is locked to prevent two processes from changing its contents at the same time. Record locking enables many processes to access the same file 
+at the same time, each updating different records within the file, if necessary. The programming necessary to implement record locking is more complex than file locking, of course.
+
+<BR>
+
+<P>Normally, to implement record locking, you use a file offset, or the number of characters from the beginning of the file. In most cases, a range of characters are locked, so the program has to note the start of the locking region and the length of it, 
+and then store that information somewhere other processes can examine it.
+
+<BR>
+
+<P>Writing either file locking or record locking code requires a good understanding of the operating system, but is otherwise not difficult, especially because there are thousands of programs readily available from the Internet, in networking programming 
+books, and on BBSes to examine for example code.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E418"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Interprocess Communications</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Network programming always involves two or more processes talking to each other (interprocess communications), so the way in which processes communicate is vitally important to network programmers. Network programming differs from the usual method of 
+programming in a few important aspects. A traditional program can talk to different modules (or even other applications on the same machine) through global variables and function calls. That doesn't work across networks.
+
+<BR>
+
+<P>A key goal of network programming is to ensure that processes don't interfere with each other. Otherwise, systems can get bogged down or lock up. Therefore, processes must have a clean and efficient method of communicating. UNIX is particularly strong 
+in this regard, because many of the basic UNIX capabilities, such as pipes and queues, are used effectively across networks.
+
+<BR>
+
+<P>Writing code for interprocess communications is quite difficult compared to single application coding. If you want to write this type of routine, you should study sample programs from a network programming book or a BBS site to see how they accomplish 
+the task.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E419"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Summary</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Few people need to write network applications, so the details of the process are best left to those who want them. Experience and lots of examples are the best way to begin writing network code, and mastering the skills can take many years.
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl53.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="#I0" TARGET="_self"><IMG SRC="purtop.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Page Top"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl55.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+</BODY></HTML>
+
+
+

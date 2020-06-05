@@ -1,0 +1,2530 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Red Hat Linux Unleashed rhl13.htm </TITLE>
+
+<LINK REL="ToC" HREF="index.htm">
+
+<LINK REL="Index" HREF="htindex.htm">
+
+<LINK REL="Next" HREF="rhl14.htm">
+
+<LINK REL="Previous" HREF="rhl12.htm"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+
+<A NAME="I0"></A>
+
+<H2>Red Hat Linux Unleashed rhl13.htm</H2>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl12.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl14.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+<HR ALIGN=CENTER>
+
+<P>
+
+<UL>
+
+<UL>
+
+<UL>
+
+<LI>
+
+<A HREF="#E68E92" >Creating and Running Shell Programs</A>
+
+<LI>
+
+<A HREF="#E68E93" >Using Variables</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E186" >Assigning a Value to a Variable</A>
+
+<LI>
+
+<A HREF="#E69E187" >Accessing the Value of a Variable</A>
+
+<LI>
+
+<A HREF="#E69E188" >Positional Parameters and Other Built-In Shell Variables</A></UL>
+
+<LI>
+
+<A HREF="#E68E94" >The Importance of Quotation Marks</A>
+
+<LI>
+
+<A HREF="#E68E95" >The test Command</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E189" >The tcsh Equivalent of the test Command</A></UL>
+
+<LI>
+
+<A HREF="#E68E96" >Conditional Statements</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E190" >The if Statement</A>
+
+<LI>
+
+<A HREF="#E69E191" >The case Statement</A></UL>
+
+<LI>
+
+<A HREF="#E68E97" >Iteration Statements</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E192" >The for Statement</A>
+
+<LI>
+
+<A HREF="#E69E193" >The while Statement</A>
+
+<LI>
+
+<A HREF="#E69E194" >The until Statement</A>
+
+<LI>
+
+<A HREF="#E69E195" >The shift Command</A>
+
+<LI>
+
+<A HREF="#E69E196" >The select Statement</A>
+
+<LI>
+
+<A HREF="#E69E197" >The repeat Statement</A></UL>
+
+<LI>
+
+<A HREF="#E68E98" >Functions</A>
+
+<LI>
+
+<A HREF="#E68E99" >Summary</A></UL></UL></UL>
+
+<HR ALIGN=CENTER>
+
+<A NAME="E66E13"></A>
+
+<H1 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>13</B></FONT></CENTER></H1>
+
+<BR>
+
+<A NAME="E67E13"></A>
+
+<H2 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>Shell Programming</B></FONT></CENTER></H2>
+
+<BR>
+
+<P>The previous three chapters described how to use the most common Linux shell programs. I mentioned that these shell programs have powerful interpretive programming languages built into them. Now it's time to look at them in more detail.
+
+<BR>
+
+<P>This chapter describes the fundamentals of shell programming and compares the bash, pdksh, and tcsh programming languages. This chapter covers the following topics:
+
+<BR>
+
+<UL>
+
+<LI>Creating and running shell programs
+
+<BR>
+
+<BR>
+
+<LI>Using shell variables
+
+<BR>
+
+<BR>
+
+<LI>The importance of quotes
+
+<BR>
+
+<BR>
+
+<LI>The test command
+
+<BR>
+
+<BR>
+
+<LI>Conditional statements
+
+<BR>
+
+<BR>
+
+<LI>Iteration statements
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>This chapter contains several small examples of shell programs. Each new concept or command that is introduced has some example code that further helps to explain what is being presented.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E92"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Creating and Running Shell Programs</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>At the simplest level, shell programs are just files that contain one or more shell or Linux commands. These programs can be used to simplify repetitive tasks, to replace two or more commands that are always executed together with a single command, to 
+automate the installation of other programs, and to write simple interactive applications.
+
+<BR>
+
+<P>To create a shell program, you must create a file using a text editor and put the shell or Linux commands you want to be executed into that file. For example, assume you have a CD-ROM drive mounted on your Linux system. This CD-ROM device is mounted 
+when the system is first started. If you later change the CD in the drive, you must force Linux to read the new directory contents. One way of achieving this is to put the new CD into the drive, unmount the CD-ROM drive using the Linux umount command, and 
+then remount the drive using the Linux mount command. This sequence of steps is shown by the following commands:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">umount /dev/cdrom
+
+mount -t iso9660 /dev/cdrom /cdrom</FONT></PRE>
+
+<P>Instead of typing both of these commands each time you change the CD in your drive, you could create a shell program that would execute both of these commands for you. To do this, put the two commands into a file and call the file remount (or any other 
+name you want).
+
+<BR>
+
+<P>Several ways of executing the commands are contained in the remount file. One way to accomplish this is to make the file executable. This is done by entering the following command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">chmod +x remount</FONT></PRE>
+
+<P>This command changes the permissions of the file so that it is now executable. You can now run your new shell program by typing remount on the command line.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>The remount shell program must be in a directory that is in your search path, or the shell will not be able to find the program to execute. Also, if you are using tcsh to write programs, the first line of the shell program must start with a # for 
+tcsh to recognize it as a tcsh program file.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>Another way you can execute the shell program is to run the shell that the program was written for and pass the program in as a parameter to the shell. In a tcsh program, this is done by entering the following command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">tcsh remount</FONT></PRE>
+
+<P>This command starts up a new shell and tells it to execute the commands that are found in the remount file.
+
+<BR>
+
+<P>A third way of executing the commands in a shell program file is to use the . command (in pdksh and bash) and the source command in tcsh. This command tells the shell to execute all the commands in the file that is passed as an argument to the command. 
+For example, the following command can be used to tell bash or pdksh to execute the commands in the remount file:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">. remount</FONT></PRE>
+
+<P>To do the same thing in tcsh, you would type the following command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">source remount</FONT></PRE>
+
+<P>Another situation in which a simple shell program can save a lot of time is described in the following example. Assume you were working on three different files in a directory, and at the end of every day you wanted to back up those three files onto a 
+floppy disk. To do this you would type a series of commands similar to the following:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">mr dir /a
+
+mount -t msdos /dev/fd0 /a
+
+cp file1 /a
+
+cp file2 /a
+
+cp file3 /a
+
+umount /a</FONT></PRE>
+
+<P>As stated in the example, one way of doing this would be to mount the floppy drive and then type three copy commands, one for each file you wanted to copy. A simpler way would be to put the six commands into a text file called backup and then execute 
+the backup command when you wanted to copy the three files onto the floppy drive.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>You will still have to ensure that the backup shell program is executable and is in a directory that is in your path before you run the command.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E68E93"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Using Variables</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>As is the case with almost any language, the use of variables is very important in shell programs. You saw some of the ways in which shell variables can be used in the introductory shell chapters. Two of the variables that were introduced were the PATH 
+variable and the PS1 variable. These are examples of built-in shell variables, or variables that are defined by the shell program you are using. This section describes how you can create your own variables and use them in simple shell programs.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E186"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Assigning a Value to a Variable</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>In all three of the shells I have discussed, you can assign a value to a variable simply by typing the variable name followed by an equal sign and the value you want to assign to the variable. For example, if you wanted to assign a value of 5 to the 
+variable count, you would enter the following command in bash or pdksh:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">count=5</FONT></PRE>
+
+<P>With tcsh you would have to enter the following command to achieve the same results:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">set count = 5</FONT></PRE>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>With the bash and pdksh syntax for setting a variable, you must make sure that there are no spaces on either side of the equal sign. With tcsh, it doesn't matter if there are spaces or not.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>Notice that you do not have to declare the variable as you would if you were programming in C or Pascal. This is because the shell language is a non-typed interpretive language. This means that you can use the same variable to store character strings 
+that you use to store integers. You would store a character string into a variable in the same way that you stored the integer into a variable. For example:
+
+<BR>
+
+<UL>
+
+<UL>
+
+<P>name=Garry - (for pdksh and bash)
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>set name = Garry - (for tcsh)
+
+<BR>
+
+</UL></UL>
+
+<BR>
+
+<A NAME="E69E187"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Accessing the Value of a Variable</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Once you have stored a value into a variable, how do you get the value back out? You do this in the shell by preceding the variable name with a dollar sign ($). If you wanted to print the value stored in the count variable to the screen, you would do so 
+by entering the following command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">echo $count</FONT></PRE>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>If you omitted the $ from the preceding command, the echo command would display the word count on-screen.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E69E188"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Positional Parameters and Other Built-In Shell Variables</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The shell has knowledge of a special kind of variable called a positional parameter. Positional parameters are used to refer to the parameters that were passed to a shell program on the command line or a shell function by the shell script that invoked 
+the function. When you run a shell program that requires or supports a number of command-line options, each of these options is stored into a positional parameter. The first parameter is stored into a variable named 1, the second parameter is stored into a 
+variable named 2, and so forth. These variable names are reserved by the shell so that you can't use them as variables you define. To access the values stored in these variables, you must precede the variable name with a dollar sign ($) just as you do with 
+variables you define.
+
+<BR>
+
+<P>The following shell program expects to be invoked with two parameters. The program takes the two parameters and prints the second parameter that was typed on the command line first and the first parameter that was typed on the command line second.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">#program reverse, prints the command line parameters out in reverse #order
+
+echo &quot;$2&quot; &quot;$1&quot;</FONT></PRE>
+
+<P>If you invoked this program by entering
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">reverse hello there</FONT></PRE>
+
+<P>the program would return the following output:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">there hello</FONT></PRE>
+
+<P>Several other built-in shell variables are important to know about when you are doing a lot of shell programming. Table 13.1 lists these variables and gives a brief description of what each is used for.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 13.1. Built-in shell variables.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Variable</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Use</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+$#
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Stores the number of command-line arguments that were passed to the shell program.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+$?
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Stores the exit value of the last command that was executed.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+$0
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Stores the first word of the entered command (the name of the shell program).</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+$*
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Stores all the arguments that were entered on the command line ($1 $2 ...).</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+&quot;$@&quot;
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Stores all the arguments that were entered on the command line, individually quoted (&quot;$1&quot; &quot;$2&quot; ...).</FONT>
+
+</TABLE><BR>
+
+<A NAME="E68E94"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>The Importance of Quotation Marks</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The use of the different types of quotation marks is very important in shell programming. Both kinds of quotation marks and the backslash character are used by the shell to perform different functions. The double quotation marks (&quot;&quot;), the 
+single quotation marks (''), and the backslash (\) are all used to hide special characters from the shell. Each of these methods hides varying degrees of special characters from the shell.
+
+<BR>
+
+<P>The double quotation marks are the least powerful of the three methods. When you surround characters with double quotes, all the whitespace characters are hidden from the shell, but all other special characters are still interpreted by the shell. This 
+type of quoting is most useful when you are assigning strings that contain more than one word to a variable. For example, if you wanted to assign the string hello there to the variable greeting, you would type the following command:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">greeting=&quot;hello there&quot; (for bash and pdksh)
+
+set greeting = &quot;hello there&quot; (for tcsh)</FONT></PRE>
+
+<P>This command would store the hello there string into the greeting variable as one word. If you typed this command without using the quotes, you would not get the results you wanted. bash and pdksh would not understand the command and would return an 
+error message. tcsh would assign the value hello to the greeting variable and ignore the rest of the command line.
+
+<BR>
+
+<P>Single quotes are the most powerful form of quoting. They hide all special characters from the shell. This is useful if the command that you enter is intended for a program other than the shell.
+
+<BR>
+
+<P>Because the single quotes are the most powerful, you could have written the hello there variable assignment using single quotes. You might not always want to do this. If the string being assigned to the greeting variable contained another variable, you 
+would have to use the double quotes. For example, if you wanted to include the name of the user in your greeting, you would type the following command:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">greeting=&quot;hello there $LOGNAME&quot; (for bash and pdksh)
+
+set greeting=&quot;hello there $LOGNAME&quot; (for tcsh)</FONT></PRE>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Remember that the LOGNAME variable is a shell variable that contains the Linux username of the person who is logged in to the system.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>This would store the value hello there root into the greeting variable if you were logged in to Linux as root. If you tried to write this command using single quotes it wouldn't work, because the single quotes would hide the dollar sign from the shell 
+and the shell wouldn't know that it was supposed to perform a variable substitution. The greeting variable would be assigned the value hello there $LOGNAME if you wrote the command using single quotes.
+
+<BR>
+
+<P>Using the backslash is the third way of hiding special characters from the shell. Like the single quotation mark method, the backslash hides all special characters from the shell, but it can hide only one character at a time, as opposed to groups of 
+characters. You could rewrite the greeting example using the backslash instead of double quotation marks by using the following command:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">greeting=hello\ there (for bash and pdksh)
+
+set greeting=hello\ there (for tcsh)</FONT></PRE>
+
+<P>In this command, the backslash hides the space character from the shell, and the string hello there is assigned to the greeting variable.
+
+<BR>
+
+<P>Backslash quoting is used most often when you want to hide only a single character from the shell. This is usually done when you want to include a special character in a string. For example, if you wanted to store the price of a box of computer disks 
+into a variable named disk_price, you would use the following command:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">disk_price=\$5.00 (for bash and pdksh)
+
+set disk_price = \$5.00 (for tcsh)</FONT></PRE>
+
+<P>The backslash in this example would hide the dollar sign from the shell. If the backslash were not there, the shell would try to find a variable named 5 and perform a variable substitution on that variable. Assuming that no variable named 5 were 
+defined, the shell would assign a value of .00 to the disk_price variable. This is because the shell would substitute a value of null for the $5 variable.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>The disk_price example could also have used single quotes to hide the dollar sign from the shell.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>The back quote marks (&quot;) perform a different function. They are used when you want to use the results of a command in another command. For example, if you wanted to set the value of the variable contents equal to the list of files in the current 
+directory, you would type the following command:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">contents='ls' (for bash and pdksh)
+
+set contents = 'ls' (for tcsh)</FONT></PRE>
+
+<P>This command would execute the ls command and store the results of the command into the contents variable. As you will see in the section &quot;Iteration Statements,&quot; this feature can be very useful when you want to write a shell program that 
+performs some action on the results of another command.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E95"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>The </B><B>test</B><B> Command</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>In bash and pdksh, a command called test is used to evaluate conditional expressions. You would typically use the test command to evaluate a condition that is used in a conditional statement or to evaluate the entrance or exit criteria for an iteration 
+statement. The test command has the following syntax:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">test expression</FONT></PRE>
+
+<P>or
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"> [ expression ]</FONT></PRE>
+
+<P>Several built-in operators can be used with the test command. These operators can be classified into four groups: integer operators, string operators, file operators, and logical operators.
+
+<BR>
+
+<P>The shell integer operators perform similar functions to the string operators except that they act on integer arguments. Table 13.2 lists the test command's integer operators.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 13.2. The </B><B>test</B><B> command's integer operators.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Operator</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Meaning</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+int1 -eq int2
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns True if int1 is equal to int2.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+int1 -ge int2
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns True if int1 is greater than or equal to int2.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+int1 -gt int2
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns True if int1 is greater than int2.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+int1 -le int2
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns True if int1 is less than or equal to int2.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+int1 -lt int2
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns True if int1 is less than int2.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+int1 -ne int2
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns True if int1 is not equal to int2.</FONT>
+
+</TABLE><P>The string operators are used to evaluate string expressions. Table 13.3 lists the string operators that are supported by the three shell programming languages.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 13.3. The </B><B>test</B><B> command's string operators.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Operator</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Meaning</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+str1 = str2
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns True if str1 is identical to str2.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+str1 != str2
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns True if str1 is not identical to str2.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+str
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns True if str is not null.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-n str
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns True if the length of str is greater than zero.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-z str
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns True if the length of str is equal to zero.</FONT>
+
+</TABLE><P>The test command's file operators are used to perform functions such as checking to see if a file exists and checking to see what kind of file is passed as an argument to the test command. Table 13.4 lists the test command's file operators.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 13.4. The </B><B>test</B><B> command's file operators.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Operator</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Meaning</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-d filename
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns True if file, filename is a directory.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-f filename
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns True if file, filename is an ordinary file.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-r filename
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns True if file, filename can be read by the process.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-s filename
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns True if file, filename has a nonzero length.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-w filename
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns True if file, filename can be written by the process.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-x filename
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns True if file, filename is executable.</FONT>
+
+</TABLE><P>The test command's logical operators are used to combine two or more of the integer, string, or file operators or to negate a single integer, string, or file operator. Table 13.5 lists the test command's logical operators.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 13.5. The </B><B>test</B><B> command's logical operators.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Command</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Meaning</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+! expr
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns True if expr is not true.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+expr1 -a expr2
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns True if expr1 and expr2 are true.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+expr1 -o expr2
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns True if expr1 or expr2 is true.</FONT>
+
+</TABLE><BR>
+
+<A NAME="E69E189"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>The </B><B>tcsh</B><B> Equivalent of the </B><B>test</B><B> Command</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The tcsh does not have a test command, but it supports the same function using expressions. The expression operators that tcsh supports are almost identical to those supported by the C language. These expressions are used mostly in the if and while 
+commands, which are covered later in this chapter in the &quot;Conditional Statements&quot; and &quot;Iteration Statements&quot; sections.
+
+<BR>
+
+<P>The tcsh expressions support the same kind of operators as the bash and pdksh test command. These are integer, string, file, and logical expressions. The integer operators supported by tcsh expressions are listed in Table 13.6.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 13.6. The </B><B>tcsh</B><B> expression integer operators.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Operator</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Meaning</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+int1 &lt;= int2
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns True if int1 is less than or equal to int2.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+int1 &gt;= int2
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns True if int1 is greater than or equal to int2.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+int1 &lt; int2
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns True if int1 is less than int2.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+int1 &gt; int2
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns True if int1 is greater than int2.</FONT>
+
+</TABLE><P>The string operators that tcsh expressions support are listed in Table 13.7.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 13.7. The </B><B>tcsh</B><B> expression string operators.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Operator</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Meaning</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+str1 == str2
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns True if str1 is equal to str2.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+str1 != str2
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns True if str1 is not equal to str2.</FONT>
+
+</TABLE><P>The file operators that tcsh expressions support are listed in Table 13.8.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 13.8. The </B><B>tcsh</B><B> expression file operators.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Operator</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Meaning</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-r file
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns True if file is readable.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-w file
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns True if file is writable.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-x file
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns True if file is executable.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-e file
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns True if file exists.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-o file
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns True if file is owned by the current user.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-z file
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns True if file is of size 0.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-f file
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns True if file is a regular file.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-d file
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns True if file is a directory file.</FONT>
+
+</TABLE><P>The logical operators that tcsh expressions support are listed in Table 13.9.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 13.9. The </B><B>tcsh</B><B> expression logical operators.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Operator</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Meaning</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+exp1 || exp2
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns True if exp1 is true or if exp2 is true.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+exp1 &amp;&amp; exp2
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns True if exp1 is true and exp2 is true.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+! exp
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Returns True if exp is not true.</FONT>
+
+</TABLE><BR>
+
+<A NAME="E68E96"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Conditional Statements</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The bash, pdksh, and tcsh each have two <A NAME="I2"></A>forms of conditional statements. These are the if statement and the case statement. These statements are used to execute different parts of your shell program depending on whether certain 
+conditions are true. As with most statements, the syntax for these statements is slightly different between the different shells.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E190"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>The </B><B>if</B><B> Statement</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>All three shells support nested if...then...else statements. These statements provide you with a way of performing complicated conditional tests in your shell programs. The syntax of the if statement is the same for bash and pdksh and is shown here:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">if [ expression ]
+
+then
+
+commands
+
+elif [ expression2 ]
+
+then
+
+commands
+
+else
+
+commands
+
+fi</FONT></PRE>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>The elif and else clauses are both optional parts of the if statement. Also note that bash and pdksh use the reverse of the statement name in most of their complex statements to signal the end of the statement. In this statement the fi keyword is 
+used to signal the end of the if statement.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>The elif statement is an abbreviation of else if. This statement is executed only if none of the expressions associated with the if statement or any elif statements before it were true. The commands associated with the else statement are executed only 
+if none of the expressions associated with the if statement or any of the elif statements were true.
+
+<BR>
+
+<P>In tcsh, the if statement has two different forms. The first form provides the same function as the bash and pdksh if statement. This form of if statement has the following syntax:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">if (expression1) then
+
+commands
+
+else if (expression2) then
+
+commands
+
+else
+
+commands
+
+endif</FONT></PRE>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Once again, the else if and else parts of the if statement are optional.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>The second form of if statement provided by tcsh is a simple version of the first if statement. This form of if statement evaluates only a single expression. If the expression is true, it executes a single command; if the expression is false, nothing 
+happens. The syntax for this form of if statement is the following:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">if (expression) command</FONT></PRE>
+
+<P>This statement could be written using the first form of if statement by writing the if without any else or else if clauses. This form just saves a little typing.
+
+<BR>
+
+<P>The following is an example of a bash or pdksh if statement. This statement checks to see if there is a .profile file in the current directory:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">if [ -f .profile ]
+
+then
+
+echo &quot;There is a .profile file in the current directory.&quot;
+
+else
+
+echo &quot;Could not find the .profile file.&quot;
+
+fi</FONT></PRE>
+
+<P>The same statement written using the tcsh syntax is shown here:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">#
+
+if ( { -f .profile } ) then
+
+echo &quot;There is a .profile file in the current directory.&quot;
+
+else
+
+echo &quot;Could not find the .profile file.&quot;
+
+endif</FONT></PRE>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Notice that in the tcsh example the first line starts with a #. This is required for tcsh to recognize the file containing the commands as a tcsh script file.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E69E191"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>The </B><B>case</B><B> Statement</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The case statement enables you to compare a pattern with several other patterns and execute a block of code if a match is found. The shell case statement is quite a bit more powerful than the case statement in Pascal or the switch statement in C. This 
+is because in the shell case statement you can compare strings with wildcard characters in them, whereas with the Pascal and C equivalents you can compare only enumerated types or integer values.
+
+<BR>
+
+<P>Once again, the syntax for the case statement is identical for bash and pdksh and different for tcsh. The syntax for bash and pdksh is the following:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">case string1 in
+
+str1)
+
+commands;;
+
+str2)
+
+commands;;
+
+*)
+
+commands;;
+
+esac</FONT></PRE>
+
+<P>string1 is compared to str1 and str2. If one of these strings matches string1, the commands up until the double semicolon (;;) are executed. If neither str1 nor str2 matches string1, the commands associated with the asterisk are executed. This is the 
+default case condition because the asterisk matches all strings.
+
+<BR>
+
+<P>The tcsh equivalent of the bash and pdksh case statement is called the switch statement. This statement's syntax closely follows the C switch statement syntax. Here it is:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">switch (string1)
+
+case str1:
+
+statements
+
+breaksw
+
+case str2:
+
+statements
+
+breaksw
+
+default:
+
+statements
+
+breaksw
+
+endsw</FONT></PRE>
+
+<P>This behaves in the same manner as the bash and pdksh case statement. Each string following the keyword case is compared with string1. If any of these strings matches string1, the code following it up until the breaksw keyword is executed. If none of 
+the strings matches, the code following the default keyword up until the breaksw keyword is executed.
+
+<BR>
+
+<P>The following code is an example of a bash or pdksh case statement. This code checks to see if the first command-line option was -i or -e. If it was -i, the program counts the number of lines in the file specified by the second command-line option that 
+begins with the letter i. If the first option was -e, the program counts the number of lines in the file specified by the second command-line option that begins with the letter e. If the first command-line option was not -i or -e, the program prints a 
+brief error message to the screen.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">case $1 in
+
+-i)
+
+count='grep ^i $2 | wc -l'
+
+echo &quot;The number of lines in $2 that start with an i is $count&quot;
+
+;;
+
+-e)
+
+count='grep ^e $2 | wc -l'
+
+echo &quot;The number of lines in $2 that start with an e is $count&quot;
+
+;;
+
+* )
+
+echo &quot;That option is not recognized&quot;
+
+;;
+
+esac</FONT></PRE>
+
+<P>The same example written in tcsh syntax is shown here:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"># remember that the first line must start with a # when using tcsh
+
+switch ( $1 )
+
+case -i | i:
+
+set count = 'grep ^i $2 | wc -l'
+
+echo &quot;The number of lines in $2 that begin with i is $count&quot;
+
+breaksw
+
+case -e | e:
+
+set count = 'grep ^e $2 | wc -l'
+
+echo &quot;The number of lines in $2 that begin with e is $count&quot;
+
+breaksw
+
+default:
+
+echo &quot;That option is not recognized&quot;
+
+breaksw
+
+endsw</FONT></PRE>
+
+<BR>
+
+<A NAME="E68E97"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Iteration Statements</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The shell languages also provide several iteration or looping statements. The most commonly used of these is the for statement.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E192"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>The </B><B>for</B><B> Statement</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The for statement executes the commands that are contained within it a specified number of times. bash and pdksh have two variations of the for statement.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>The for statement syntax is the same in both bash and pdksh.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>The first form of the for statement that bash and pdksh support has the following syntax:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">for var1 in list
+
+do
+
+commands
+
+done</FONT></PRE>
+
+<P>In this form, the for statement executes once for each item in the list. This list can be a variable that contains several words separated by spaces, or it can be a list of values that is typed directly into the statement. Each time through the loop, 
+the variable var1 is assigned the current item in the list, until the last one is reached.
+
+<BR>
+
+<P>The second form of for statement has the following syntax:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">for var1
+
+do
+
+statements
+
+done</FONT></PRE>
+
+<P>In this form, the for statement executes once for each item in the variable var1. When this syntax of the for statement is used, the shell program assumes that the var1 variable contains all the positional parameters that were passed in to the shell 
+program on the command line.
+
+<BR>
+
+<P>Typically this form of for statement is the equivalent of writing the following for statement:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">for var1 in &quot;$@&quot;
+
+do
+
+statements
+
+done</FONT></PRE>
+
+<P>The equivalent of the for statement in tcsh is called the foreach statement. It behaves in the same manner as the bash and pdksh for statement. The syntax of the foreach statement is the following:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">foreach name (list)
+
+commands
+
+end</FONT></PRE>
+
+<P>The following is an example of the bash or pdksh style of for statement. This example takes as command-line options any number of text files. The program reads in each of these files, converts all the letters to uppercase, and then stores the results in 
+a file of the same name but with a .caps extension.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">for file
+
+do
+
+tr a-z A-Z &lt; $file &gt;$file.caps
+
+done</FONT></PRE>
+
+<P>The same example written in tcsh shell language is shown next:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">#
+
+foreach file ($*)
+
+tr a-z A-Z &lt; $file &gt;$file.caps
+
+end</FONT></PRE>
+
+<BR>
+
+<A NAME="E69E193"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>The while Statement</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Another iteration statement offered by the shell programming language is the while statement. This statement causes a block of code to be executed while a provided conditional expression is true. The syntax for the while statement in bash and pdksh is 
+the following:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">while expression
+
+do
+
+statements
+
+done</FONT></PRE>
+
+<P>The syntax for the while statement in tcsh is the following:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">while (expression)
+
+statements
+
+end</FONT></PRE>
+
+<P>The following is an example of the bash and pdksh style of while statement. This program lists the parameters that were passed to the program, along with the parameter number.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">count=1
+
+while [ -n &quot;$*&quot; ]
+
+do
+
+echo &quot;This is parameter number $count $1&quot;
+
+shift
+
+count='expr $count + 1'
+
+done</FONT></PRE>
+
+<P>As you will see in the section titled &quot;The shift Command,&quot; the shift command moves the command-line parameters over one to the left.
+
+<BR>
+
+<P>The same program written in the tcsh language is shown next:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">#
+
+set count = 1
+
+while ( &quot;$*&quot; != &quot;&quot; )
+
+echo &quot;This is parameter number $count $1&quot;
+
+shift
+
+set count = 'expr $count + 1'
+
+end</FONT></PRE>
+
+<BR>
+
+<A NAME="E69E194"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>The </B><B>until</B><B> Statement</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The until statement is very similar in syntax and function to the while statement. The only real difference between the two is that the until statement executes its code block while its conditional expression is false, and the while statement executes 
+its code block while its conditional expression is true. The syntax for the until statement in bash and pdksh is
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">until expression
+
+do
+
+commands
+
+done</FONT></PRE>
+
+<P>The same example that was used for the while statement can be used for the until statement. All you have to do to make it work is negate the condition. This is shown in the following code:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">count=1
+
+until [ -z &quot;$*&quot; ]
+
+do
+
+echo &quot;This is parameter number $count $1&quot;
+
+shift
+
+count='expr $count + 1'
+
+done</FONT></PRE>
+
+<P>The only difference between this example and the while statement example is that the -n test command option (which means that the string has nonzero length) was removed, and the -z test option (which means that the string has zero length) was put in its 
+place.
+
+<BR>
+
+<P>In practice the until statement is not very useful, because any until statement you write can also be written as a while statement.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>tcsh does not have an equivalent of the until statement other than rewriting it as a while loop.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E69E195"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>The </B><B>shift</B><B> Command</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>bash, pdksh, and tcsh all support a command called shift. The shift command moves the current values stored in the positional parameters to the left one position. For example, if the values of the current positional parameters are
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$1 = -r $2 = file1 $3 = file2</FONT></PRE>
+
+<P>and you executed the shift command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">shift</FONT></PRE>
+
+<P>the resulting positional parameters would be as follows:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$1 = file1 $2 = file2</FONT></PRE>
+
+<P>You can also move the positional parameters over more than one place by specifying a number with the shift command. The following command would shift the positional parameters two places:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">shift 2</FONT></PRE>
+
+<P>This is a very useful command when you have a shell program that needs to parse command-line options. This is true because options are typically preceded by a hyphen and a letter that indicates what the option is to be used for. Because options are 
+usually processed in a loop of some kind, you often want to skip to the next positional parameter once you have identified which option should be coming next. For example, the following shell program expects two command-line options&#151;one that specifies 
+an input file and one that specifies an output file. The program reads the input file, translates all the characters in the input file into uppercase, then stores the results in the specified output file.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>The following example was written using bash, pdksh syntax.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<PRE>
+
+<FONT COLOR="#000080">while [ &quot;$1&quot; ]
+
+do
+
+if [ &quot;$1&quot; = &quot;-i&quot; ] then
+
+infile=&quot;$2&quot;
+
+shift 2
+
+elif [ &quot;$1&quot; = &quot;-o&quot; ]
+
+then
+
+outfile=&quot;$2&quot;
+
+shift 2
+
+else
+
+echo &quot;Program $0 does not recognize option $1&quot;
+
+fi
+
+done
+
+tr a-z A-Z &lt;$infile &gt;$outfile</FONT></PRE>
+
+<BR>
+
+<A NAME="E69E196"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>The </B><B>select</B><B> Statement</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>pdksh offers one iteration statement that neither bash nor tcsh provides. This is the select statement. This is actually a very useful statement. It is quite a bit different from the other iteration statements because it actually does not execute a 
+block of shell code repeatedly while a condition is true or false. What the select statement does is enable you to automatically generate simple text menus. The syntax for the select statement is
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">select menuitem [in list_of_items]
+
+do
+
+commands
+
+done</FONT></PRE>
+
+<P>where square brackets are used to enclose the optional part of the statement.
+
+<BR>
+
+<P>When a select statement is executed, pdksh creates a numbered menu item for each element in the list_of_items. This list_of_items can be a variable that contains more than one item, such as choice1 choice2, or it can be a list of choices typed in the 
+command. For example:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">select menuitem in choice1 choice2 choice3</FONT></PRE>
+
+<P>If the list_of_items is not provided, the select statement uses the positional parameters just as with the for statement.
+
+<BR>
+
+<P>Once the user of the program containing a select statement picks one of the menu items by typing the number associated with it, the select statement stores the value of the selected item in the menuitem variable. The statements contained in the do block 
+can then perform actions on this menu item.
+
+<BR>
+
+<P>The following example illustrates a potential use for the select statement. This example displays three menu items, and when the user chooses one of them it asks whether that was the intended selection. If the user enters anything other than y or Y, the 
+menu is redisplayed.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">select menuitem in pick1 pick2 pick3
+
+do
+
+echo &quot;Are you sure you want to pick $menuitem&quot;
+
+read res
+
+if [ $res = &quot;y&quot; -o $res = &quot;Y&quot; ]
+
+then
+
+break
+
+fi
+
+done</FONT></PRE>
+
+<P>A few new commands are introduced in this example. The read command is used to get input from the user. It stores anything that the user types into the specified variable. The break command is used to exit a while, until, repeat, select, or for 
+statement.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E197"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>The </B><B>repeat</B><B> Statement</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>tcsh has an iteration statement that has no equivalent in pdksh or bash. This is the repeat statement. The repeat statement executes a single command a specified number of times. The syntax for the repeat statement is the following:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">repeat count command</FONT></PRE>
+
+<P>The following is an example of the repeat statement. It takes a set of numbers as command-line options and prints that number of periods to the screen. This program acts as a very primitive graphing program.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">#
+
+foreach num ($*)
+
+repeat $num echo -n &quot;.&quot;
+
+echo &quot;&quot;
+
+end</FONT></PRE>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Any repeat statement can be rewritten as a while or for statement. The repeat syntax is simply more convenient.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E68E98"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Functions</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The shell languages enable you to define your own functions. These functions behave in much the same way as functions you define in C or other programming languages. The main advantage of using functions as opposed to writing all of your shell code in 
+line is for organizational purposes. Code written using functions tends to be much easier to read and maintain and also tends to be smaller, because you can group common code into functions instead of putting it everywhere it is needed.
+
+<BR>
+
+<P>The syntax for creating a function in bash and pdksh is the following:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">fname () {
+
+shell commands
+
+}</FONT></PRE>
+
+<P>pdksh also allows the following syntax:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">function fname {
+
+shell commands
+
+}</FONT></PRE>
+
+<P>Both of these forms behave in the exact same way.
+
+<BR>
+
+<P>Once you have defined your function using one of these forms, you can invoke it by entering the following command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">fname [parm1 parm2 parm3 ...]</FONT></PRE>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>The tcsh shell does not support functions.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>Notice that you can pass any number of parameters to your function. When you do pass parameters to a function, it sees those parameters as positional parameters, just as a shell program does when you pass it parameters on the command line. For example, 
+the following shell program contains several functions, each of which is performing a task associated with one of the command-line options. This example illustrates many of the topics covered in this chapter. It reads all the files that are passed on the 
+command line and&#151;depending on the option that was used&#151;writes the files out in all uppercase letters, writes the files out in all lowercase letters, or prints the files.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">upper () {
+
+shift
+
+for i
+
+do
+
+tr a-z A-Z &lt;$1 &gt;$1.out
+
+rm $1
+
+mv $1.out $1
+
+shift
+
+done; }
+
+lower () {
+
+shift
+
+for i
+
+do
+
+tr A-Z a-z &lt;$1 &gt;$1.out
+
+rm $1
+
+mv $1.out $1
+
+shift
+
+done; }
+
+print () {
+
+shift
+
+for i
+
+do
+
+lpr $1
+
+shift
+
+done; }
+
+usage_error () {
+
+echo &quot;$1 syntax is $1 &lt;option&gt; &lt;input files&gt;&quot;
+
+echo &quot;&quot;
+
+echo &quot;where option is one of the following&quot;
+
+echo &quot;p &#151; to print frame files&quot;
+
+echo &quot;u &#151; to save as uppercase&quot;
+
+echo &quot;l &#151; to save as lowercase&quot;; }
+
+case $1
+
+in
+
+p | -p) print $@;;
+
+u | -u) upper $@;;
+
+l | -l) lower $@;;
+
+*) usage_error $0;;
+
+esac</FONT></PRE>
+
+<BR>
+
+<A NAME="E68E99"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Summary</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>This chapter introduced you to many of the features of the bash, pdksh, and tcsh programming languages. As you become familiar with using Linux, you will find that you use shell programming languages more and more often.
+
+<BR>
+
+<P>Even though the shell languages are very powerful and also quite easy to learn, you might run into some situations where shell programs are not suited to the problem you are solving. In these cases you may want to investigate the possibility of using 
+one of the other languages available under Linux. Some of your options are C and C++, which are described in Chapters 27, &quot;Programming in C&quot; and 28, &quot;Programming in C++;&quot; gawk, which is described in <A HREF="rhl26.htm">Chapter 26</A>, 
+&quot;gawk;&quot; and Perl, which is described in <A HREF="rhl29.htm">Chapter 29</A>, &quot;Perl.&quot;
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl12.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="#I0" TARGET="_self"><IMG SRC="purtop.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Page Top"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl14.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+</BODY></HTML>
+
+
+

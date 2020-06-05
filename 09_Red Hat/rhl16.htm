@@ -1,0 +1,2128 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Red Hat Linux Unleashed rhl16.htm </TITLE>
+
+<LINK REL="ToC" HREF="index.htm">
+
+<LINK REL="Index" HREF="htindex.htm">
+
+<LINK REL="Next" HREF="rhl17.htm">
+
+<LINK REL="Previous" HREF="rhl15.htm"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+
+<A NAME="I0"></A>
+
+<H2>Red Hat Linux Unleashed rhl16.htm</H2>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl15.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl17.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+<HR ALIGN=CENTER>
+
+<P>
+
+<UL>
+
+<UL>
+
+<UL>
+
+<LI>
+
+<A HREF="#E68E114" >What Are Editors and Why Do I Need One?</A>
+
+<LI>
+
+<A HREF="#E68E115" >The Editing Functions</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E209" >Inserting and Deleting Text</A>
+
+<LI>
+
+<A HREF="#E69E210" >Reading and Writing Files</A>
+
+<LI>
+
+<A HREF="#E69E211" >Searching Text</A>
+
+<LI>
+
+<A HREF="#E69E212" >Copying and Moving Text</A>
+
+<LI>
+
+<A HREF="#E69E213" >Editing Buffers</A></UL>
+
+<LI>
+
+<A HREF="#E68E116" >The vi Editor</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E214" >Starting vi</A>
+
+<LI>
+
+<A HREF="#E69E215" >vi modes</A>
+
+<LI>
+
+<A HREF="#E69E216" >Inserting Text</A>
+
+<LI>
+
+<A HREF="#E69E217" >Quitting vi</A>
+
+<LI>
+
+<A HREF="#E69E218" >Moving the Cursor</A>
+
+<LI>
+
+<A HREF="#E69E219" >Deleting Text</A>
+
+<LI>
+
+<A HREF="#E69E220" >Copying and Moving Text</A>
+
+<LI>
+
+<A HREF="#E69E221" >Searching and Replacing Text</A>
+
+<LI>
+
+<A HREF="#E69E222" >Setting Preferences</A>
+
+<LI>
+
+<A HREF="#E69E223" >A Summary of Commands</A></UL>
+
+<LI>
+
+<A HREF="#E68E117" >The emacs Editor</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E224" >Starting emacs</A>
+
+<LI>
+
+<A HREF="#E69E225" >Control and Meta Keys</A>
+
+<LI>
+
+<A HREF="#E69E226" >Moving the Cursor</A>
+
+<LI>
+
+<A HREF="#E69E227" >Quitting emacs</A>
+
+<LI>
+
+<A HREF="#E69E228" >Deleting Text</A>
+
+<LI>
+
+<A HREF="#E69E229" >Working with Multiple Files</A>
+
+<LI>
+
+<A HREF="#E69E230" >Copying and Moving Text</A>
+
+<LI>
+
+<A HREF="#E69E231" >Searching and Replacing Text</A>
+
+<LI>
+
+<A HREF="#E69E232" >Using Modes with Buffers</A>
+
+<LI>
+
+<A HREF="#E69E233" >Online Help in emacs</A>
+
+<LI>
+
+<A HREF="#E69E234" >A Summary of Commands</A></UL>
+
+<LI>
+
+<A HREF="#E68E118" >Summary</A></UL></UL></UL>
+
+<HR ALIGN=CENTER>
+
+<A NAME="E66E16"></A>
+
+<H1 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>16</B></FONT></CENTER></H1>
+
+<BR>
+
+<A NAME="E67E16"></A>
+
+<H2 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>Text Editors</B></FONT></CENTER></H2>
+
+<BR>
+
+<P>It's time to look at editors. This chapter will show you
+
+<BR>
+
+<UL>
+
+<LI>What editors are and why you need one
+
+<BR>
+
+<BR>
+
+<LI>The basic editing functions
+
+<BR>
+
+<BR>
+
+<LI>The vi editor in more detail
+
+<BR>
+
+<BR>
+
+<LI>The emacs editor in more detail
+
+<BR>
+
+<BR>
+
+</UL>
+
+<BR>
+
+<A NAME="E68E114"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>What Are Editors and Why Do I Need One?</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>A text editor is one of the most essential tools provided with the Linux (or virtually any) operating system. With an editor, you can create and modify text files that have a wide variety of applications:
+
+<BR>
+
+<UL>
+
+<LI>User files such as .login and .cshrc
+
+<BR>
+
+<BR>
+
+<LI>System files
+
+<BR>
+
+<BR>
+
+<LI>Shell programs
+
+<BR>
+
+<BR>
+
+<LI>Documents
+
+<BR>
+
+<BR>
+
+<LI>Mail messages
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>These are but a few of the many different types of text files that you will use when working with Linux. Basically, editors enable you to insert, delete, move, and search text ranging from individual characters to thousands of lines.
+
+<BR>
+
+<P>Two of the most popular editors for the Linux system are emacs and vi. These editors are both full-screen text editors: Put simply, they use every row and column of your terminal screen to display the textual contents of a file. Both of these editors 
+feature a rich set of commands. The essential commands for manipulating text can be learned reasonably quickly; the more sophisticated commands may take a little longer to master. However, you will likely appreciate this investment as you see how much time 
+these powerful tools can save you.
+
+<BR>
+
+<P>Choosing one editor over another can be a matter of taste. Both emacs and vi are efficient and can handle virtually any size of file. The emacs editor is better suited to complex editing tasks and comes with an online help facility, but, for simple 
+editing jobs, either editor is equally good. It really just comes down to whichever one you feel more comfortable using.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E115"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>The Editing Functions</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Although there are a variety of text editors for Linux that have different interfaces, they all basically do the same things. Any useful text editor should support the following features at a minimum.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E209"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Inserting and Deleting Text</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The most intrinsic function of a text editor is to enable you to enter and erase characters as you see fit. This also implies that you have complete control over the movement of the cursor and its placement in the text.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E210"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Reading and Writing Files</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Because you will want to save the text files that you create for future use and reuse, an editor can write your text to an external file. Whenever you need to make changes to your file, an editor can read the file from disk. A nice feature is that text 
+editors are designed to accommodate ASCII formatted files, so an editor (such as emacs) can read any file written by another editor (such as vi), and vice versa.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E211"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Searching Text</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Personally scanning line after line of a large file for instances of a particular word is either a great way to improve your powers of concentration or an exercise in self-torture. That is why text editors provide sophisticated search capabilities. 
+These include the use of regular expressions as well as fixed strings. Remember that regular expressions include metacharacters (such as ., ?, and *) that replace and expand unknown text patterns.
+
+<BR>
+
+<P>Editors also support search-and-replace functions that enable you to change multiple instances of a string pattern with a single command.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E212"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Copying and Moving Text</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Because there is no guarantee that the way text is initially typed into a file is the way it should forever remain, editors provide you with the means to copy, cut, and move (or paste) blocks of text. These blocks can range in size from several pages to 
+a single character. The distinction between copying and cutting text is that cutting deletes the selected block of text after it has been copied to a buffer, whereas copying does not.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Imagine having to retype Dickens's A Tale of Two Cities after realizing that you have somehow placed &quot;It was the best of times, it was the worst of times&quot; at the end of the file and not the start!</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E69E213"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Editing Buffers</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>What is a buffer, you ask? Buffers are places in the memory of the editing program where text can reside as you make changes to a file. For example, the first time you edit a file, the text you have entered actually exists in a buffer that is written to 
+an external file when you do a save. Buffers can also be used at other times in editing, particularly when it is necessary to temporarily move a block of text to memory as you make changes (in other words, cutting and pasting). Many editors enable you to 
+manage multiple buffers simultaneously.
+
+<BR>
+
+<P>These editors have many commands that will not be fully detailed in this chapter. Before engaging in any long and arduous editing task, consult the man page for the editor you are using. There may be an easier way of doing whatever it is that you want 
+to do. As you gain experience with an editor, you will discover convenient shortcuts and functions to perform your most tedious editing chores.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E116"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>The vi Editor</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The vi editor is installed with virtually every UNIX system in existence. Because of this, vi is considered by many to be the default text editor of the UNIX system (upon which Linux is based). vi has two modes of operation and terse commands, both of 
+which make it a somewhat more difficult editor to learn than emacs. However, it is a useful editor to learn if emacs has not been installed on your Linux system.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E214"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Starting vi</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>You invoke vi from the command line by typing
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">vi</FONT></PRE>
+
+<P>The screen will clear and a column of tildes (~) will appear in the leftmost column. You are now editing an empty, unnamed file. Whatever text you place in this file will exist in a buffer until you write the contents of the buffer to some named file. 
+The tilde is vi's way of telling you that the line where the tilde appears is empty of text.
+
+<BR>
+
+<P>vi can also be started with a file or a list of files to edit:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">vi filename1 filename2 filename3 ...</FONT></PRE>
+
+<P>Typically, you will probably edit only one file per vi session. If you are editing a list of files, vi will edit each one in the sequence that they appear on the command line.
+
+<BR>
+
+<P>Alternatively, vi can be invoked from the command line as
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">vi +n filename</FONT></PRE>
+
+<P>where n represents the line number where vi will place its cursor in filename. This is useful for programmers debugging large source code files who need to quickly jump to a known line containing an error.
+
+<BR>
+
+<P>Another example is useful in illustrating the vi editor. If you still have a vi session on your screen, exit it by pushing Esc, and then typing :q!. To start a new vi session, enter
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">vi asong</FONT></PRE>
+
+<P>at the command line.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E215"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>vi modes</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>At the bottom of the screen in the left corner, you will see
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">&quot;asong&quot; [NEW FILE] 1 line, 1 char</FONT></PRE>
+
+<P>The messages displayed on this status line tell you what vi is doing or has just done. In this case, vi is telling you that it has opened an empty buffer whose contents will be saved (whenever you do a save) to the file asong.
+
+<BR>
+
+<P>At this moment, you are in the command mode of vi. This is the major conceptual leap required in working with this editor. When editing text, you must remember if you are in command mode or text mode. In command mode, any character sequences that you 
+enter are interpreted as vi commands. In text mode, every character typed is placed in the buffer and displayed as text on-screen.
+
+<BR>
+
+<P>Four commands are echoed at the bottom of the screen on the status line:
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+/
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Searches forward.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+?
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Searches backward.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+:
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+An ex command (ex is a standalone line-based editor used within vi).</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+!
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Invokes a shell command.</FONT>
+
+</TABLE><P>Each of these types of status-line commands must be entered by pressing Return. This is not true for other types of vi commands, such as the ones that do insertions.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>To find out whether you are in command mode, use the set showmode preference described in the section entitled &quot;Setting Preferences&quot; later in this chapter.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E69E216"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Inserting Text</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>So, knowing that you are in command mode, let's insert some text. Basically, there are two commands for entering text on the current line: the letters i and a. These letters in lowercase insert (i) text to the left of the cursor or append text to the 
+right of the cursor. As with many vi commands, the uppercase versions of these letters have similar effects with subtle differences: uppercase I and A insert and append at the beginning and end of the current line, respectively.
+
+<BR>
+
+<P>After you type either of these letters, you will be placed in input mode. Any text entered after this point will be displayed on-screen.
+
+<BR>
+
+<P>Type an i and then type the following:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Down I walk&lt;Enter&gt;
+
+by the bay,&lt;Enter&gt;
+
+Where I can&lt;Enter&gt;
+
+hear the water.&lt;Enter&gt;
+
+Down we walk&lt;Enter&gt;
+
+by the bay,&lt;Enter&gt;
+
+My hand held&lt;Enter&gt;
+
+by my daughter.&lt;Enter&gt;</FONT></PRE>
+
+<P>To exit from input mode, press Esc. Notice that you did not see the letter i displayed before you entered the text, meaning that the i was correctly interpreted as a command. Also, it is important to note that it was not necessary to press Enter after 
+pressing i for input mode.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E217"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Quitting vi</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Now that you have some text for your file, let's quit the editor to see the results. The commands used for saving the file and exiting vi are slightly different from the i and d commands used in editing text: you must precede the command with a colon 
+(:).
+
+<BR>
+
+<P>In this case, you want to do a save and exit, which are actually combined in one command. Type a :. At the bottom left of your screen, you will notice that a colon has appeared. vi has recognized that you are about to enter an ex command, and it will 
+echo the remaining characters of the command after the colon. Type wq and press Return. vi quickly informs you that it has written the file to disk and tells you how many lines it contains. If the file is small and you have a fast system, this message may 
+appear and be erased so quickly you won't catch it. Don't worry&#151;the file has been saved if you issued the command properly. vi exits and you find yourself back at the shell prompt. Another way to save and exit is to type ZZ. The difference between 
+this method and using wq is that ZZ will write the file only if it has been modified since the last save.
+
+<BR>
+
+<P>You can quit vi by typing :q if no changes have been made to the file you opened. This will not work if the file has been modified. If you are sure that you don't want to save what you have done, enter :q!. This command forces vi to quit, regardless of 
+any edits.
+
+<BR>
+
+<P>To make sure that vi saved the file asong correctly, use the cat command to quickly view the file's contents:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ cat asong
+
+Down I walk
+
+by the bay,
+
+Where I can
+
+hear the water.
+
+Down we walk
+
+by the bay,
+
+My hand held
+
+by my daughter.
+
+$</FONT></PRE>
+
+<P>Everything is exactly as you typed it in the file, so no surprises here.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E218"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Moving the Cursor</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Moving the cursor around in vi essentially involves the following four keys:
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Moves the cursor one space to the left.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+j
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Moves the cursor down one line.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+k
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Moves the cursor up one line.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+l
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Moves the cursor one space to the right.</FONT>
+
+</TABLE><P>These keys can perform their operations only when vi is in command mode. For convenience, most implementations of vi map these keys to their directional counterparts on the keyboard arrow keys.
+
+<BR>
+
+<P>vi enables you to move through a file in bigger &quot;leaps&quot; as well. Following are some commands for scrolling more than one line at a time:
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Ctrl-U
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Scrolls up a half-screen.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Ctrl-D
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Scrolls down a half-screen.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Ctrl-F
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Scrolls down one full screen.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Ctrl-B
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Scrolls up one full screen.</FONT>
+
+</TABLE><P>The size of these movements largely depends on the terminal settings.
+
+<BR>
+
+<P>It is also possible to move the cursor to a specific line in a file. If you want to move to the tenth line, type 10G or :10 in command mode. G by itself will move the cursor to the end of the file. The cursor will not move if the number given is not 
+applicable (for example, typing :10 in a eight-line file will have no effect).
+
+<BR>
+
+<P>vi will also enable you to move the cursor a word at a time. A word is defined as any sequence of non-whitespace characters. To move to the beginning of the next word or punctuation mark on the current line, type w. Type b to move the cursor to the 
+beginning of the current or previous word or punctuation mark.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E219"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Deleting Text</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>vi has commands for deleting characters, lines, and words. Deletion means that the selected text is removed from the screen but is copied into an unnamed text buffer from which it can be retrieved.
+
+<BR>
+
+<P>To delete a word, use the dw command. If you want to delete the word to the right of the cursor, type dw. If you are in the middle of a word, it will delete from the cursor position to the end. You can also delete several words at a time. For example, 
+the command 4dw will delete the next four words on the current line.
+
+<BR>
+
+<P>Lines can be deleted individually or by specifying a range of lines to delete. To delete the current line, type dd. The command 4dd deletes four lines (the current line and three below it). dG will delete all lines from the current one to the end of the 
+file.
+
+<BR>
+
+<P>On the current line, you can delete in either direction: d^ will delete backward to the beginning of the line; d$ (or D) will delete forward to the end of the line.
+
+<BR>
+
+<P>To delete individual characters, x deletes the character underneath the cursor, and X deletes the character to the left of the cursor. Both of these commands will accept a number modifier: For example, 4x deletes the current character and the four 
+characters to the right.
+
+<BR>
+
+<P>Unwanted changes such as deletions can be immediately undone by the u command. This &quot;rolls back&quot; the last edit made.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Not sure what command you just typed? When in doubt, press Esc and then enter the command again.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E69E220"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Copying and Moving Text</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Moving sections of text around in a file basically requires three steps:
+
+<BR>
+
+<OL>
+
+<LI>Yank the text into a buffer.
+
+<BR>
+
+<BR>
+
+<LI>Move the cursor to where you want to insert the text.
+
+<BR>
+
+<BR>
+
+<LI>Place the text from the buffer at the new location.
+
+<BR>
+
+<BR>
+
+</OL>
+
+<P>Yanking text means to copy it into either a named or unnamed buffer. The unnamed buffer is a temporary storage space in memory that is continually overwritten by successive yanks. vi has 26 named buffers that correspond to each letter of the alphabet.
+
+<BR>
+
+<P>To yank the current line into the unnamed buffer, the command is yy or Y. These commands can be modified by a number indicating how many lines beneath the cursor are to be yanked. For example, the command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">3yy</FONT></PRE>
+
+<P>in your file asong (with the cursor on the top line) yanks the following text into the temporary buffer:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Down I walk
+
+by the bay,
+
+Where I can</FONT></PRE>
+
+<P>This text could also be yanked into the named buffer a by the following command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">&quot;a3yy</FONT></PRE>
+
+<P>The yank command to overwrite the contents of the named buffer a. If you had typed a capital A instead of a lowercase a, the three lines would have been appended to the end of the a buffer. This overwrite-versus-append concept works the same for all of 
+the named buffers.
+
+<BR>
+
+<P>If you move the cursor to the end of the file using the :$ command, you can then paste the contents of the unnamed buffer to the end of the file. This is done using the p command, which pastes the contents of a buffer to the right of the cursor (P 
+pastes to the left of the cursor). The paste command can also specify a named buffer in the same way as the yank command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">&quot;ap</FONT></PRE>
+
+<P>Yanks can also be performed on words using the command yw. This command can also use named buffers and accepts numeric modifiers.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E221"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Searching and Replacing Text</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Text searches in vi can be performed in either direction: forward or backward. Searches are always started from the current cursor location and continue from the top or bottom of the file depending on which direction you use. In other words, searches 
+&quot;wrap around&quot; the file.
+
+<BR>
+
+<P>You can use your file asong to illustrate searches. To search forward through asong for the word &quot;bay,&quot; you would type
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">/bay</FONT></PRE>
+
+<P>and press Return. Notice that this is a status-line command. The command /bay is echoed on the status line and the cursor is moved to the first occurrence it finds in the forward direction of the string &quot;bay.&quot; Interested in finding another 
+instance of &quot;bay&quot;? Enter a / character. This command continues the search for &quot;bay&quot; in the forward direction and places the cursor at the next instance of &quot;bay.&quot; Each time you enter the / key, vi will try to find an instance 
+of the previous string pattern. When it reaches the end of the file, vi will loop back and continue its search at the start of the file.
+
+<BR>
+
+<P>You can also search backward for strings in vi by using the ? command. It works in exactly the same manner as the / command, but in the opposite direction. Try it out by typing
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">?I</FONT></PRE>
+
+<P>in asong, instructing vi to search back for instances of &quot;I.&quot; This search can be repeated by typing ?, as you may have suspected. You can continue a search by pressing n, which always continues a search in the same direction as the previous 
+search. However, typing N will use the same search string but in the opposite direction.
+
+<BR>
+
+<P>As I mentioned earlier, searches can be made very powerful through the use of regular expressions. The search command is supplied in the same fashion as described before (/ or ?), but square brackets are added to instruct vi to do a regular expression 
+expansion of the enclosed characters. For example, search forward through asong from the first line for all strings containing the substring &quot;er&quot;. Type
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">/er</FONT></PRE>
+
+<P>vi's first matching string arrives at &quot;Where.&quot; If you type n, vi will move the cursor to &quot;where,&quot; and so on. You can also specify collections of characters or ranges of characters to match. Try typing the following:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">/[a-z]y</FONT></PRE>
+
+<P>This command used in asong will find the strings &quot;by&quot; and &quot;my,&quot; as well as any word with these strings inside them (such as &quot;bay&quot;). This works because the range of characters given are treated as an enumerated range of 
+ASCII values. Thus, you could also include a range of numbers (for example, 0-9). Now try the following command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">/[Mm]y</FONT></PRE>
+
+<P>This will locate the strings &quot;My&quot; and &quot;my.&quot;
+
+<BR>
+
+<P>In vi, searches without regular expressions will find only exact matches of the supplied pattern (including the case of the letters in the pattern). Clearly, regular expressions can be used to enhance many types of searches in which you may not know 
+exactly how a pattern appears in a file.
+
+<BR>
+
+<P>One of the more common applications of a search is to replace instances of one word (or pattern) with another. This is done with an ex command that starts with a colon. To search the entire asong file for the string &quot;Down&quot; and replace it with 
+the string &quot;Up,&quot; type
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">:%s/Down/Up/g</FONT></PRE>
+
+<P>The s indicates that this is a search operation, the % means that the entire file is to be searched, &quot;Down&quot; is the pattern to be found, &quot;Up&quot; is the new pattern, and the g tells vi that the search should continue until there are no 
+more pattern matches. Without the g, vi would perform the replacement on only the first match it finds. This command also works with regular expressions appearing in the search pattern and the replacement pattern.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E222"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Setting Preferences</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>vi is configurable, which means that you can set options to control your editing environment. These options are initialized with default values that you can modify in vi at any time. vi is configured using the set command. The set command must be 
+preceded by a colon and entered by pressing Return. For example, to display line numbers in the editor, you would issue
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">:set number</FONT></PRE>
+
+<P>The following table describes a few of the more common set commands.
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+all
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Displays a list of all available set options and their current status.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+errorbells
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Sounds the terminal bell when an error occurs.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+ignorecase
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Searches are case-insensitive.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+number
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Displays line numbers in the leftmost column of the screen (these are not written to the file).</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+showmode
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+An indication appears at the bottom right of the screen if you are in input mode, change mode, replace mode, and so on.</FONT>
+
+</TABLE><P>set commands that do not take a value can be switched off by inserting a &quot;no&quot; as a prefix to the set parameter. For example, the command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">:set nonumber</FONT></PRE>
+
+<P>switches line numbering off. The command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">:set</FONT></PRE>
+
+<P>shows only the options that you have changed.
+
+<BR>
+
+<P>The settings that you use in a vi session are (unfortunately) lost each time you exit vi. If you do not like the idea of resetting these options each time you use vi, there is an easier way to perform this initialization. Use the vi initialization file 
+called .exrc. vi searches for this file in your home directory each time it is invoked. If it can't find this file, it uses the defaults set within the vi program. As you will see in the following example, the .exrc file can also be used to define vi 
+macros.
+
+<BR>
+
+<P>A sample .exrc file would look something like this:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">set number
+
+set errorbells
+
+set showmode</FONT></PRE>
+
+<P>Note that the colon is not required before a set command in a .exrc file.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E223"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>A Summary of Commands</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The following is a summary of the more essential commands described in this chapter. You should consult the vi man page for more details on the many other vi commands.
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+i
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Starts inserting text at the cursor.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Moves the cursor one character to the left.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+j
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Moves the cursor down one line.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+k
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Moves the cursor up one line.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+l
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Moves the cursor one character to the right.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+C-f
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Scrolls forward one screen.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+C-b
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Scrolls backward one screen.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+ndd
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Deletes the next n lines.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+nyy
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Yanks the next n lines into the unnamed buffer.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+p
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Puts the contents of the unnamed buffer to the right of the cursor.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+u
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Undoes the last change.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+:wq
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Writes changes and exits vi.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+:q!
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Exits vi without saving changes.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+:set all
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Shows all set parameters and their values.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+/string
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Searches forward for string.</FONT>
+
+</TABLE><BR>
+
+<A NAME="E68E117"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>The emacs Editor</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>emacs has become the editor of choice for many users because of its online help facility and its extensive collection of editing commands. For programmers, emacs is especially attractive because it can be configured to format source code for a variety 
+of languages such as C, C++, and Lisp. emacs is somewhat easier to learn than vi, but it also features a much larger set of commands.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E224"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Starting emacs</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>emacs is invoked from the command line by entering
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">emacs</FONT></PRE>
+
+<P>To start emacs with a file to be edited, enter
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">emacs filename</FONT></PRE>
+
+<P>If you start emacs with a file, the screen will display the contents starting from the first line. Note the two lines at the bottom of the screen. The first of these lines, known as the mode line, displays the name of the file being edited and which 
+part of the file that you are looking at (for example, TOP, 20%, BOT). The last line on the screen is the echo line, which emacs uses to display system messages and as a prompt for more input.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E225"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Control and Meta Keys</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>You are quite free at this point to start entering text into the edit buffer at the cursor location. However, you're probably wondering, &quot;How do I move the cursor around?&quot; Before I fill you in on this little detail, there are two keys that you 
+should know about: the Control key (which I will refer to as C) and the Meta key (denoted by M). The Control key is used in most of the commands for emacs, but some use the Meta key instead. Commands in emacs consist of combinations of the Control or Meta 
+key followed by some other character. It is necessary to hold down the Control key when pressing the next character, whereas the Meta key can be pressed and released before you enter the next character. For the PC, the Meta key is usually the Alt key.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>You may see the Control key abbreviated as C and the Meta key denoted by M.
+
+<BR>On the PC, you should use the Alt key for the Meta key.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E69E226"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Moving the Cursor</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Now that you know about the Control key, we can talk about the cursor-movement commands. The basic ones that you need to remember are:
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+C-f
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Moves the cursor forward one character.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+C-b
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Moves the cursor back one character.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+C-p
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Moves the cursor to the previous line.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+C-n
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Moves the cursor to the next line.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+C-a
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Moves the cursor to the beginning of the line.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+C-e
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Moves the cursor to the end of the line.</FONT>
+
+</TABLE><BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>When I refer to a command such as C-b, I mean press and hold the Control key while you press the letter b. The same is true for Meta commands such as M-v.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>Most implementations of emacs conveniently map the first four movement commands to the arrow keys on the keyboard. Let's edit a new file called asong2. (If you are in the middle of a previous file, exit the editor by typing Ctrl-X, Ctrl-C.) Start up a 
+new copy of emacs by entering the following command from the shell:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">emacs asong2&lt;Enter&gt;</FONT></PRE>
+
+<P>Now enter the following text into the buffer:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">This is a file for edit
+
+And you have to give emacs some credit
+
+It's really quite swell
+
+And all you have to do is spell
+
+emacs works, if you let it!</FONT></PRE>
+
+<P>Now use the C-b command to move back through this horrendous piece of poetry. Notice how the cursor jumps up to the end of each line after the reaching the beginning of the previous line. This works the same way in the opposite direction using the C-f 
+command.
+
+<BR>
+
+<P>Another useful way of moving around is by scrolling through a file one screen at a time. The command C-v moves the cursor forward one screen at a time. The command M-v moves the cursor in the opposite direction.
+
+<BR>
+
+<P>Like vi, emacs treats a sequence of non-whitespace characters as a word. You can move the cursor forward one word at a time with the M-f command. The M-b command moves back one word.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E227"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Quitting emacs</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>At this time, you can stop editing to save the contents of the buffer to your file asong2. To do this, issue the command sequence C-x C-s. As you enter this command, notice how the command is displayed on the echo line as you type it. To quit emacs and 
+return to the shell, enter the command C-x C-c. If you have made changes that haven't been saved using C-x C-s, emacs will ask for confirmation before quitting.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E228"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Deleting Text</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>You can delete text in several ways. The Backspace (or Delete) key is used to erase the character immediately preceding the cursor. The command C-d deletes the character underneath the cursor, and C-k deletes or &quot;kills&quot; all characters from the 
+cursor to the end of the line. Words can be deleted also: M-d deletes the word the cursor is currently located over and M-Del (the Delete key) deletes the word previous to the current word.
+
+<BR>
+
+<P>If you ever find that you have committed an edit that you didn't really want, just type C-x u to undo the previous editing changes. You can repeat the undo command as many times as you want, rolling over all the changes you made. This is an advantage 
+over vi, which can only undo the last change.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Change your mind about a command? Type C-g to abort the current command operation.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E69E229"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Working with Multiple Files</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>emacs enables you to edit several files in one session, each contained within its own buffer. To copy an external file into a new buffer, use the C-x C-f command. After entering this command, you will see the following prompt on the echo line:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Find file: ~/</FONT></PRE>
+
+<P>emacs is smart when it looks for files. It supports filename completion, which means that you can simply type a few characters of a filename and emacs will attempt to match a file (or files) to what you have typed so far. To do this, type in the letters 
+&quot;.log&quot; and press the Tab key. emacs expands this to ~/.login (or any other filename that matches). If two or more files match the pattern supplied, pressing the Tab key will cycle through them.
+
+<BR>
+
+<P>After you have loaded a new file into emacs, you can switch between buffers by using the C-x b command followed by the name of the buffer that you want. The buffer's name is that of the file that was loaded into it. The C-x b command also uses filename 
+completion, so you can use the Tab key to cycle through your edit buffers after supplying a few relevant characters.
+
+<BR>
+
+<P>When you have finished editing a buffer, instead of saving the contents using the C-x C-s command, you may decide that you do not really want to keep the edits you have made. You can &quot;kill&quot; the current buffer by entering the command C-x k. 
+emacs will prompt you for the name of the buffer to kill, but you can kill the current buffer by simply pressing Return. emacs will ask for confirmation, to which you can respond by typing yes (if you're sure) and press Return.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Whenever you are working with just two buffers, you can simply press Return after entering the C-x b command to switch to the other buffer.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E69E230"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Copying and Moving Text</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>In order to copy and move blocks of text in emacs, you must define the region of text by marking the beginning and end points of the text block. This is done by moving the cursor to where you want the block to begin and marking it using the C-Space 
+command (in this case, Space means literally the spacebar). The end of the block is defined by wherever you place the cursor after that. To make a copy of the block, enter the command M-w. The text within the block is copied to emacs's internal clipboard, 
+from which it can be pasted at another location using the C-y command. Alternatively, you can cut the block into the clipboard using C-w instead of M-w. Cutting, of course, deletes the text from its current location.
+
+<BR>
+
+<P>Let's try out some of these techniques on your buffer asong2. Use the M-&lt; command to jump to the beginning of the buffer. Enter a C-Space to mark the start of the block and then use C-n to move down a line. Cut the block to the clipboard using C-w, 
+move the cursor to the end of the buffer using M-&gt;, and paste it using C-y. The result should look like this:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">It's really quite swell
+
+And all you have to do is spell
+
+emacs works, if you let it!
+
+This is a file for edit
+
+And you have to give emacs some credit</FONT></PRE>
+
+<BR>
+
+<A NAME="E69E231"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Searching and Replacing Text</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>You can search forward and backward through text using the C-s and C-r commands, respectively. These commands, like many in emacs, use command completion. This is the same concept as filename completion: you supply a few characters and emacs tries to 
+fill in the rest. In this case, however, emacs moves the cursor to each instance it finds of the string supplied.
+
+<BR>
+
+<P>As you enter more characters, emacs narrows its search further. When you have found a correct match, press Return or use any of the cursor-movement commands to halt the search.
+
+<BR>
+
+<P>As with vi, searching in either direction wraps around the beginning or end of the file, depending on in which direction you are searching. However, when emacs reaches the top or bottom of the file, it will tell you that the search failed. You can keep 
+searching by pressing C-s or C-r accordingly and emacs will continue using the current string.
+
+<BR>
+
+<P>To illustrate how searching in emacs works, let's search backward through your file asong2. Enter C-r and type an s. emacs moves the cursor to the &quot;s&quot; in &quot;works&quot;. Now type a w. emacs now tries to find a pattern that matches the 
+string sw. The cursor ends up on the &quot;w&quot; in &quot;swell&quot;. You can edit the search string using the Backspace or Delete key. Delete the w and type a p. What happens?
+
+<BR>
+
+<P>Search-and-replaces are done by entering the query-replace command. This is qualified by the M-x command, which tells emacs that the text to follow is a full command and not a key combination. After you have entered the query-replace command, you will 
+be prompted for the string to be found. Enter the string and press Return. emacs will then prompt you for the replacement string. Once you have entered the replacement string, emacs will search for every instance of the first string and, if it finds one, 
+asks you if it should be replaced with the second string.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>emacs is actually composed of a set of explicit command names that are bound to key combinations. The query-replace command is bound to M-% in some implementations of emacs.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E69E232"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Using Modes with Buffers</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>emacs is versatile enough to handle many different types of editing chores. It enables you to associate modes to buffers so that you can have text formatting specific to your editing application. If you enter the command C-x m, emacs enters mail mode, 
+which formats a buffer with To: and Subject: fields as well as a space for the body of the mail message. emacs can even send the mail message for you (by entering C-c C-c) after you have finished editing it.
+
+<BR>
+
+<P>emacs also supports modes for many different programming languages such as C. When a file with the extension .c (C source code) or .h (C header file) is loaded into emacs, the buffer is automatically set to C mode. This mode has knowledge of how C 
+programs are formatted, and pressing the Tab key will indent a line correctly based on its place in the program (a for loop within another for loop, as an example).
+
+<BR>
+
+<BR>
+
+<A NAME="E69E233"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Online Help in emacs</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>One of the best features of the emacs editor is that if you ever get stuck, or are just plain overwhelmed by it all, help is just a few keystrokes away&#151;and lots of it! If you need a short emacs tutorial, just enter C-h t. If you would like to find 
+out what function a particular key supports, type C-h k and then press the key. The help option has many different topics. Use C-h i to load the information documentation reader and read about all the types of help available.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E234"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>A Summary of Commands</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>emacs, like the vi editor, has such a rich command set that we can cover only a portion of it in this chapter. The following table is a summary of the strictly essential commands that you will need for basic editing in emacs. The emacs man page should 
+be consulted for a more comprehensive description of the full emacs command set.
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+C-b
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Moves back one character.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+C-d
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Deletes the current character.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+C-f
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Moves forward one character.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+C-g
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Cancels the current command.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+C-h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Enters emacs online help.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+C-n
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Moves forward to the next line.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+C-p
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Moves back to the previous line.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+C-s
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Searches forward for a string.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+C-v
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Scrolls forward one screen.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+M-v
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Scrolls backward one screen.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+C-x u
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Undoes the last edit.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+C-x C-c
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Exits emacs.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+C-x C-s
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Saves the buffer to a file.</FONT>
+
+</TABLE><BR>
+
+<A NAME="E68E118"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Summary</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>There are many text editors available for the Linux system. Two of the most popular are vi (which is actually an alias to the elvis editor) and emacs. Both provide basic editing functions such as inserting and deleting text, reading and writing of 
+external files, text searching, <A NAME="I2"></A>and copying and moving text. vi is a full-screen editor that has two modes: command mode and text mode. emacs is an extendible and powerful editor that is highly configurable to suit a variety of editing 
+tasks (such as programming, document writing, and changing user or system files).
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl15.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="#I0" TARGET="_self"><IMG SRC="purtop.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Page Top"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl17.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+</BODY></HTML>
+
+
+

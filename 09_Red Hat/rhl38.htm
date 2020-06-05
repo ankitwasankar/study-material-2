@@ -1,0 +1,2341 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Red Hat Linux Unleashed rhl38.htm </TITLE>
+
+<LINK REL="ToC" HREF="index.htm">
+
+<LINK REL="Index" HREF="htindex.htm">
+
+<LINK REL="Next" HREF="rhl39.htm">
+
+<LINK REL="Previous" HREF="rhl37.htm"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+
+<A NAME="I0"></A>
+
+<H2>Red Hat Linux Unleashed rhl38.htm</H2>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl37.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl39.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+<HR ALIGN=CENTER>
+
+<P>
+
+<UL>
+
+<UL>
+
+<UL>
+
+<LI>
+
+<A HREF="#E68E327" >Character and Block Mode Devices</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E425" >Major and Minor Device Numbers</A>
+
+<LI>
+
+<A HREF="#E69E426" >The mknod Command</A></UL>
+
+<LI>
+
+<A HREF="#E68E328" >Printer Administration</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E427" >The lpd Printing Daemon</A>
+
+<LI>
+
+<A HREF="#E69E428" >Following a Print Request</A>
+
+<LI>
+
+<A HREF="#E69E429" >The /etc/printcap File and Spooling Directories</A>
+
+<LI>
+
+<A HREF="#E69E430" >Adding Printer Devices with mknod</A>
+
+<LI>
+
+<A HREF="#E69E431" >Managing Printers with lpc</A>
+
+<LI>
+
+<A HREF="#E69E432" >Managing the Printer Queue with lpq and lprm</A></UL>
+
+<LI>
+
+<A HREF="#E68E329" >Terminals</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E433" >Using Multiport Cards</A>
+
+<LI>
+
+<A HREF="#E69E434" >Adding Serial Port Terminals</A>
+
+<LI>
+
+<A HREF="#E69E435" >The Login Process</A>
+
+<LI>
+
+<A HREF="#E69E436" >What Are /sbin/getty and /etc/gettydefs?</A>
+
+<LI>
+
+<A HREF="#E69E437" >Terminal Files /etc/ttys and /etc/inittab</A>
+
+<LI>
+
+<A HREF="#E69E438" >Terminal Definitions The /etc/termcap File</A>
+
+<LI>
+
+<A HREF="#E69E439" >Adding a Terminal</A>
+
+<LI>
+
+<A HREF="#E69E440" >Using stty and tset</A>
+
+<LI>
+
+<A HREF="#E69E441" >Resetting a Screwy Terminal</A></UL>
+
+<LI>
+
+<A HREF="#E68E330" >Adding a Modem</A>
+
+<LI>
+
+<A HREF="#E68E331" >Summary</A></UL></UL></UL>
+
+<HR ALIGN=CENTER>
+
+<A NAME="E66E38"></A>
+
+<H1 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>38</B></FONT></CENTER></H1>
+
+<BR>
+
+<A NAME="E67E38"></A>
+
+<H2 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>Devices and Device Administration</B></FONT></CENTER></H2>
+
+<BR>
+
+<P>This chapter is devoted to devices that might be attached to your Linux system, such as terminals, modems, and printers. It shows you how to add and manage the different devices, and it also looks at many of the Linux commands you will need to properly 
+administer your system.
+
+<BR>
+
+<P>In this chapter, you will learn the following:
+
+<BR>
+
+<UL>
+
+<LI>What a device driver is
+
+<BR>
+
+<BR>
+
+<LI>The difference between block mode and character mode devices
+
+<BR>
+
+<BR>
+
+<LI>Major and minor device numbers
+
+<BR>
+
+<BR>
+
+<LI>The mknod command
+
+<BR>
+
+<BR>
+
+<LI>How to manage printers and the print spooler
+
+<BR>
+
+<BR>
+
+<LI>How to add a printer
+
+<BR>
+
+<BR>
+
+<LI>How to add a terminal and modem
+
+<BR>
+
+<BR>
+
+<LI>The configuration files used by terminals
+
+<BR>
+
+<BR>
+
+<LI>The startup sequence used to permit logins
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>All of this information is necessary if you are to have a smoothly running system. Even if you don't intend to add terminals or modems, you should know about the startup process and how the configuration files are handled.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E327"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Character and Block Mode Devices</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Everything attached to the computer you are using to run Linux is treated as a device by the operating system. It doesn't matter whether the device is a terminal, a hard disk, a printer, a CD-ROM drive, or a modem. Everything that accepts or sends data 
+to the operating system is a device.
+
+<BR>
+
+<P>The concept of treating everything on the system as a device is one of the benefits of the UNIX architecture. Each device has a special section in the kernel, called a device driver, which includes all the instructions necessary for Linux to communicate 
+with the device. When a new device is developed, it can be used with Linux by writing a device driver, which is usually a set of instructions that explains how to send and receive data.
+
+<BR>
+
+<P>Device drivers allow the Linux kernel to include only the operating system and support software. By having the instructions for talking to devices within a set of files, they can be loaded as needed (in the case of rarely used devices), or kept in 
+memory all the time when the operating system boots. As refinements are made to a peripheral, small changes to the device driver file can be linked into the kernel to keep the operating system informed of the new features and capabilities.
+
+<BR>
+
+<P>When an application instructs a device to perform an action, the Linux kernel doesn't have to worry about the mechanism. It simply passes the request to the device driver and lets it handle the communications. Similarly, when you're typing at the 
+keyboard, your terminal's device driver accepts the keystrokes and passes them to the shell or application, filtering out any special codes that the kernel doesn't know how to handle by translating them into something the kernel can perform.
+
+<BR>
+
+<P>Linux keeps device files in the /dev directory by default and convention. It is permissible to keep device files anywhere on the file system, but keeping them all in /dev makes it obvious that they are device files.
+
+<BR>
+
+<P>Every type of device on the Linux system communicates in one of two ways: character by character or as a set of data in a predefined chunk or block. Terminals, printers, and asynchronous modems are character devices, using characters sent one at a time 
+and echoed by the other end. Hard drives and most tape drives, on the other hand, use blocks of data, because this is the fastest way to send large chunks of information. These peripherals are called either character mode or block mode devices, based on 
+the way they communicate.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Another way to differentiate between character and block mode devices is by how the buffering to the device is handled. Character mode devices want to do their own buffering. Block mode devices, which usually communicate in chunks of 512 or 1,024 
+bytes, have the kernel perform the buffering.
+
+<BR>Some devices can be both character and block mode devices. Some tape drives, for example, can handle both character and block modes, and therefore have two different device drivers. The device driver that is used depends on how the user wants to write 
+data to the device.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>The device file has all the details about whether the device is a character mode or block mode device. There is an easy way to tell which type of device a peripheral is: Look at the output of the listing command that shows file permissions (such as ls 
+-l). If the first character is a b, the device is a block mode device; a c indicates a character mode device.
+
+<BR>
+
+<P>Device files are usually named to indicate the type of device they are. Most terminals, for example, have a device driver with the name tty followed by two or more letters or numbers, such as tty1, tty1A, or tty04. The letters tty identify the file as a 
+terminal (tty stands for teletype), and the numbers or letters identify the specific terminal referred to. When coupled with the directory name /dev, the full device driver name becomes /dev/tty01.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E425"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Major and Minor Device Numbers</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>There might be more than one device of the same type on a system. For example, your Linux system might have a multiport card (multiple serial ports) with 10 Wyse 60 terminals hanging off it. Linux can use the same device driver for each of the terminals 
+because they are all the same type of device.
+
+<BR>
+
+<P>However, there must be a method for the operating system to differentiate which one of the 10 terminals you want to address. That's where device numbers are used. Each device is identified by two device numbers: The major number identifies the device 
+driver to be used, and the minor number identifies the device number. For example, the 10 Wyse 60 terminals on the multiport card can all use a device file with the same major number, but each will have a different minor number, thereby uniquely 
+identifying it to the operating system.
+
+<BR>
+
+<P>Every device on the system has both major and minor device numbers assigned in such a way as to ensure that they are unique. If two devices are assigned the same number, Linux can't properly communicate with them.
+
+<BR>
+
+<P>Some devices use the major and minor device numbers in a strange way. Some tape drives, for example, use the minor number to identify the density of the tape and adjust its output in that manner.
+
+<BR>
+
+<P>Device files are created with the command mknod (make node) and removed with the standard rm command.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E426"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>The </B><B>mknod</B><B> Command</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The mknod (make node) command is used for several different purposes in Linux. It can create a FIFO (first in first out) pipe or a character or block mode device file. The format of this com-mand is
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">mknod [options] device b|c|p|u major minor</FONT></PRE>
+
+<P>The options can be one of the following:
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+&#151;help
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+displays help information and then exits.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-m [mode]
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+sets the mode of the file to mode instead of the default 0666 (only symbolic notation is allowed).</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+&#151;version
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+displays version information, then exits.</FONT>
+
+</TABLE><P>The argument after the device or pathname specifies whether the file is a block mode device , character mode device , FIFO device (p), or unbuffered character mode device (u). One of these arguments must be present on the command line.
+
+<BR>
+
+<P>Following the type of file argument are two numbers for the major and minor device numbers assigned to the new file. Every device on a UNIX system has a unique number that identifies the type of device (the major number) and the specific device itself 
+(the minor number). Both a major and a minor number must be specified for any new block, character, or unbuffered mode device. Device numbers are not specified for a type p device.
+
+<BR>
+
+<P>Examples of using the mknod command are shown in several sections later in this chapter, when devices are added to the system.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E328"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Printer Administration</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Printers are commonly used devices that can cause a few problems for system administrators. They are quite easy to configure as long as you know something about the hardware. Managing printer queues is also quite easy, but like many things in Linux, you 
+must know the tricks to make the system work easily for you.
+
+<BR>
+
+<P>Linux is based on the BSD version of UNIX, which unfortunately is not the most talented UNIX version when it comes to printer administration. However, because it's unlikely that the Linux system will be used on very large networks with many printers, 
+administration tasks can be reduced to the basics. Be warned, though, that the BSD UNIX printer administration and maintenance commands have a reputation for quirky and inconsistent behavior!
+
+<BR>
+
+<BR>
+
+<A NAME="E69E427"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>The </B><B>lpd</B><B> Printing Daemon</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>All printing on the Linux system is handled by the lpd daemon, which is usually started when the system boots. During the startup process, the lpd daemon reads through the file /etc/printcap to identify the sections that apply to any of the printers 
+known to be attached to the system. The lpd daemon uses two other processes, called listen and accept, to handle incoming requests for printing and to copy them to a spooling area.
+
+<BR>
+
+<P>In most cases, you won't have to modify the lpd daemon. However, there might be times when you have to stop it manually and restart it. The command to load lpd is
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">lpd [-l] [port]</FONT></PRE>
+
+<P>The -l option invokes a logging system that notes each print request. This option can be useful when you're debugging the printer system. The port number allowed in the lpd command line is used to specify the Internet port number if the system 
+configuration information is to be overridden. You will probably never have to use it.
+
+<BR>
+
+<P>The size of the print spool area is set by an entry in the file minfree in each spool directory (each printer has its own spool directory). The contents of minfree show the number of disk blocks to keep reserved so that spooling large requests doesn't 
+fill up the hard drive. The contents of the file can be changed with any editor.
+
+<BR>
+
+<P>Access to the lpd daemon to allow printing of a user request must pass a quick validation routine. Two files are involved: /etc/hosts.equiv and /etc/hosts.lpd. If the machine name of the sending user is not in either file, the print requests are 
+refused. Because the local machine is always in hosts.equiv (as localhost), users on the Linux machine should always have their print requests granted.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E428"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Following a Print Request</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>To understand how the print daemon works, as well as how print requests are managed by Linux, it is instructive to follow a print request. When a user requests a print job with the lpr command, lpr assembles the data to be printed and copies it into the 
+spooling queue, where lpd can find it.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>The lpr program is the only one in the Linux system that can actually queue files for printing. Any other program that offers printing capabilities does so by calling lpr.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>As part of its spooling task, lpr also checks for instructions on how to print the file. It can get the information from three sources: the command line (supplied as arguments), environment variables (set by the shell or the user), or the system's 
+default values.
+
+<BR>
+
+<P>The lpr program knows which spool to put the print request in because of the destination printer designation. The printer destination can be specified on the lpr command line, or through an environment variable. When the destination printer name has 
+been determined, lpr checks the file /etc/printcap to look up the printer's information, including the spool directory. The spool directory is usually of the form /usr/spool/printer_name, such as /usr/spool/lp1.
+
+<BR>
+
+<P>Within the spool directory, lpr creates two files. The first has the letters cf (control file) followed by a print ID number. The cf file contains information about the print job, including the owner's name. The second file starts with df (data file) 
+and has the actual contents of the file to be printed with it. When lpr has finished creating the df file, it sends a signal to lpd that informs the daemon that a print job is waiting in the spool directory.
+
+<BR>
+
+<P>When lpd gets the signal from lpr, it checks the file /etc/printcap to see whether the printer is for a local or remote printer. If the print job is for a remote printer (one attached to another machine on the network), lpd opens a connection to the 
+remote machine, transfers both the control and data files, and deletes the local copies.
+
+<BR>
+
+<P>If the print job is for a local printer, lpd checks to make sure the printer exists and is active, and then sends the print request to the printing daemon running that queue.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E429"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>The </B><B>/etc/printcap</B><B> File and Spooling Directories</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The /etc/printcap file is consulted by both the user's print command lpr and the lpd print daemon. It contains information about every printer that is accessible from the Linux machine.
+
+<BR>
+
+<P>The format of /etc/printcap is straightforward (and similar to the /etc/termcap file for terminal descriptions). The following is an extract from /etc/printcap:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"># HP Laserjet
+
+lp|hplj|laserjet-acctng|HP LaserJet 4M in Room 425:\
+
+:lp=/dev/lp0:\
+
+:sd=/usr/spool/lp0:\
+
+:lf=/usr/spool/errorlog:\
+
+:mx#0:\
+
+:of=/usr/spool/lp0/hpjlp:\</FONT></PRE>
+
+<P>The first field in each entry is a list of all the allowable names for the printer. These can be used with the environment variables set by a user's shell or by the system, as well as with options on the lpr command line with a destination printer 
+specified. Valid names are separated by a vertical bar.
+
+<BR>
+
+<P>Usually, each entry includes at least three names: a short name that is four characters or less (such as hplj); a more complete name with an owner, if necessary (such as laserjet-acctng); and a full, descriptive name with any other information necessary 
+to identify the printer (such as HP LaserJet 4M in Room 425).
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>If a print job is submitted without a destination name, and one can't be determined from environment variable values, it is routed to the printer lp. Therefore, one of the printers (usually the system default printer) should also have the name lp as 
+part of its identifier.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>A comment in the file is shown with a pound symbol (sometimes called a hash mark) as the first character. Following the printer name is a set of two-character parameters and values used by the printer. The format of these entries is always one of the 
+following:
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+NN 
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+A Boolean value</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+NN=string
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Set equal to string</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+NN#number
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Set not equal to number</FONT>
+
+</TABLE><P>When a Boolean value is used (no assignment follows the two-character identifier), the value is set to True by default. If the value of False was required, the two-character identifier would not be included in the description.
+
+<BR>
+
+<P>Most assignments are shown with colons beginning and ending each definition to enhance readability and make the file easier for the print utilities to parse. Null values are valid assignments employed by putting two colons together.
+
+<BR>
+
+<P>A few of the parameters in the /etc/printcap file are worth highlighting because they are useful for administration purposes. Not all of these parameters might be present in every printer definition in the /etc/printcap file, but most appear:
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+sd
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The spool directory</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+lf
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The log directory for error messages</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+af
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Accounting log file</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+mx
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Determines the type of files that can be printed</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+of
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Output filter program to be used when printing</FONT>
+
+</TABLE><P>All printers should have their own spool directories, usually under the printer name in /usr/spool, such as /usr/spool/hplj. Spool directories are necessary for both remote and local printers. When a new printer is added to the system, the spool 
+directory might have to be created manually (using mkdir). The permissions for the spool directory should be set to 775. The directory must be owned by root or daemon. The group ID should be set to root or daemon, too. In both cases, daemon theoretically 
+is the better ID for user and group, although root will work also.
+
+<BR>
+
+<P>The error log file can be located anywhere on the system. It can be shared by all printers, if desired, because each log entry includes the name of the printer.
+
+<BR>
+
+<P>The accounting log file is used to record printouts for systems in which users are charged. If accounting records are not to be used on the system, ignore the entry entirely in the /etc/printcap file. The file can also be used for generating statistics, 
+however. Some heavily used systems might want to have the accounting file for those purposes even when charges are not incurred by the users. An entry is written to the accounting log file after a print job has completed. Account information can be 
+displayed with the Linux pac command. (Use the man pac command to display the man pages for more information about pac.)
+
+<BR>
+
+<P>The mx character enables you to identify the types of files to be printed. Usually this is set to mx#0, meaning that there are no restrictions on the types of files.
+
+<BR>
+
+<P>Output filters modify the format of the outgoing file to the printer to fit its requirements. For example, many laser printers can't handle 66 lines per page, so the output filter repaginates to 60 lines (or whatever the number of lines per page is set 
+to). Sometimes, special codes must be added to force line feeds, font changes, or paper bin selections. All these items are part of the output filter. Several other types of filters are available, but the output filter is the one most commonly encountered.
+
+
+<BR>
+
+<P>Within each spool directory, there may be two status files: status and lock. Each file is one line long and can be modified with an editor. These files contain a description of the current state of the printer. They are created and managed by the lpd 
+printer daemon and used by several printer commands for status information.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E430"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Adding Printer Devices with </B><B>mknod</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Linux supports both parallel and serial printer devices. Both parallel and serial printers are character mode devices. Unfortunately, most Linux distributions do not have an easy-to-use printer installation and configuration utilities like many UNIX 
+versions. Instead, the printer devices must be created and set up manually.
+
+<BR>
+
+<P>Parallel printers are referred to as devices lp0, lp1, or lp2, depending on the address of the parallel port they are used with. (The most common is the single parallel port on a PC, which is /dev/lp0.) Valid parallel port devices, their addresses, and 
+their usual equivalents under MS-DOS are as follows:
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+/dev/lp0
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+0x03bc
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+LPT1</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+/dev/lp1
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+0x0378
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+LPT2</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+/dev/lp2
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+0x0278
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+LPT3</FONT>
+
+</TABLE><BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>To determine the address of a parallel port, you can use a diagnostic utility (such as DOS's MSD.EXE). Some BIOS versions display port addresses when the system is booting. If you are unsure, try the ports starting with /dev/lp0, and wait to see 
+whether a printout is possible. The first parallel port on a PC is typically set to address 0x03bc.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>Linux uses the mknod (make node) command to create a parallel printer device file. After the device has been made, the ownership of the device driver file must be altered to root or daemon.
+
+<BR>
+
+<P>The following is a command to make a parallel printer device on the first parallel port (/dev/lp0):
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">mknod -m 620 /dev/lp0 c 6 0
+
+chown root.daemon /dev/lp0</FONT></PRE>
+
+<P>In this example, the file permissions are set to mode 620, the device /dev/lp0 is created, and it is set to be a character mode device with a major device number of 6 and a minor device number of 0. Usually, minor device numbers start at 0 and are 
+incremented upward; therefore, because this is the first printer added, the minor device number is set to 0.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>The ownership root.daemon is a special Linux convention for the daemons run by root. The entry root.daemon does not appear in the /etc/passwd file. This uses a convention that lets the first part of the entry (before the period) indicate the user and 
+the second part (after the period) represent the group.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>If a different device is configured, the device name itself must be changed to the device number. For each possible parallel port, the mknod commands are as follows:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">mknod -m 620 /dev/lp0 c 6 0
+
+mknod -m 620 /dev/lp1 c 6 1
+
+mknod -m 620 /dev/lp2 c 6 2</FONT></PRE>
+
+<P>In these examples, the minor device numbers have been incremented to correspond to the port number. This is not necessary, but it can help with identification.
+
+<BR>
+
+<P>After the mknod and chown commands have been issued, it is advisable to manually check to ensure that the ownerships are set properly and that a spool directory has been created. If the spool directory doesn't exist, you have to create it manually. The 
+permissions and ownership requirements of the spool directory were given earlier, in the section &quot;The /etc/printcap File and Spooling Directories.&quot;
+
+<BR>
+
+<BR>
+
+<A NAME="E69E431"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Managing Printers with </B><B>lpc</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Printers are controlled through a utility called lpc. The lpc program lets you perform several important functions pertaining to the printers used on your Linux system:
+
+<BR>
+
+<UL>
+
+<LI>Display printer status information
+
+<BR>
+
+<BR>
+
+<LI>Enable or disable the printer
+
+<BR>
+
+<BR>
+
+<LI>Enable or disable the printer queue
+
+<BR>
+
+<BR>
+
+<LI>Remove all print requests from a printer's queue
+
+<BR>
+
+<BR>
+
+<LI>Promote a particular print request to the top of the queue
+
+<BR>
+
+<BR>
+
+<LI>Make changes to the lpd printer daemon
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>The lpc program can't be used for remote printers. It affects only those directly attached and configured on the local machine.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Be warned that lpc is one of the most unpredictable and unreliable programs included with the Linux operating system! It can hang up for no obvious reason, and it can also display erroneous status messages. In some cases, the only way to fix a 
+severely screwed-up printer system is to reset the machine completely!</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>When used without any arguments, lpc prompts you for a command. The following are several valid lpc commands and their arguments (a vertical bar indicates a choice of arguments):
+
+<BR>
+
+<UL>
+
+<UL>
+
+<P>abort printer_name | all Is similar to the stop command, except it doesn't allow any print job that is currently being printed to finish before stopping the printer. When used with the all argument, all printers are stopped. Any job that is abnormally 
+terminated by the abort command is requeued when the printer is started again. See the stop command for more details about the printer daemon and lock files.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>clean printer_name | all Removes all print jobs that are queued, including any active print jobs. In many cases, the currently printing job proceeds normally because it has been passed to the printer daemon or the printer's buffer. All other jobs are 
+removed, though. If the all argument is used, all printers have their print queues cleaned.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>disable printer_name | all Disables the spooling of print requests to the printer (or all printers, depending on the argument). Any jobs that are already queued are unaffected. Any user trying to send a print job to the disabled printer receives a 
+message indicating that the printer is disabled, and the print job is refused. Printers are enabled and disabled through changes in the lock file in the spool directory.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>down printer_name message Is used to take a printer completely offline, usually for an extended period. If a message is included, it can be as long as you want. It is placed in the status file in the spool directory and displayed to users trying to 
+queue to the printer. The down command is usually used when a printer has serious problems and must be removed from the system for more than a day.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>enable printer_name | all Enables the spooling of print requests to the printer or all printers.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>exit Exits from lpc (the same as quit).
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>help or ? Shows a short list of all lpc commands. If an argument is supplied, it displays a one-line description of that command (such as help abort).
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>quit Exits from lpc (the same as exit).
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>restart printer_name | all Restarts the printer daemon, and is usually used after it has died for an inexplicable reason (which the BSD printer daemons tend to do). If the argument all is supplied, all printer daemons are restarted.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>start printer_name Starts the printer, allowing it to print requests. This command starts the printer queue daemon for that printer.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>status printer_name Displays the printer name, whether it has the spool queue enabled, whether printing is enabled, the number of entries in the print queue, and the status of the daemon for that printer. If there are no entries in the queue, no printer 
+daemon will be active. However, if there are entries in the queue and the printer daemon shows as no daemon present, the daemon has died and must be started again with the restart command.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>stop printer_name Stops the printer. Print requests can still be spooled, but they are not printed until the printer is started. If a job is being printed when the stop command is issued, the job completes the print process and then stops printing. The 
+start and stop commands alter the contents of the lock file in the print spool directories. The stop command also kills the daemon for spooling to that printer.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>topq printer_name print_ID Moves the print request with print_ID to the top of the print queue.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>topq printer_name username Moves all print requests owned by username to the top of the queue. (This is very handy for system administrators who don't want to wait!)
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>up printer_name Is used to reactivate a printer that was taken down. See the down command for more information.
+
+<BR>
+
+</UL></UL>
+
+<P>The lpc utility isn't very user-friendly, but it's the only way to handle printers and their queues in Linux. Several front-end menu-driven utilities are beginning to appear that simplify this task.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E432"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Managing the Printer Queue with </B><B>lpq</B><B> and </B><B>lprm</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Several commands help you administer the printer queue specifically, instead of relying on the lpc command. Two tasks are commonly required by a system administrator: displaying the current queue and removing print jobs in a queue.
+
+<BR>
+
+<P>To display the current print queue for any printer, use the lpq command. It has the following syntax:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">lpq [-l] [-Pprinter_name] [job_ID ...] [username ...]</FONT></PRE>
+
+<P>With no arguments at all, lpq displays information about the current printer queues. The lpq command normally displays information about who queued the print job, where it is in the queue, the files being printed, and the total size of the files. The -l 
+option displays more information about each entry in the printer queue. Usually, only one line of information is displayed.
+
+<BR>
+
+<P>A specific printer can be displayed with the -P option, followed by the printer's name. If no name is supplied, the default system printer is displayed. If one or more job_IDs or usernames are provided, only information about the job or jobs queued by 
+the user is shown.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Because users can't access the Linux printer spooling directories, they can remove queued print jobs only with the lprm command. If you are a system administrator, you might want to let all system users know how to use this command to keep unwanted 
+print jobs from printing.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>The lprm command is used to remove files from a printer queue. This command is often mistyped as lpr, which doesn't remove the file from the queue. To use lprm, you must know the print job ID; or, if you are logged in as root, you can remove all jobs 
+for a particular printer. The syntax of the lprm command is as follows:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">lprm [-Pprinter_name] [-] [job_ID ...] [username ...]</FONT></PRE>
+
+<P>If the single hyphen argument is used, lprm removes all jobs owned by the user who issues the command. If you are logged in as root, all print jobs are removed. A particular printer's jobs can be removed by using the -P option. For example, the command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">lprm -Phplj -</FONT></PRE>
+
+<P>removes all print jobs queued on the printer hplj by the user who issues the command, or all print jobs for that printer if issued by root.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>It is easy to accidentally remove all print jobs for a printer when you use the lprm command as root. Take care to use the proper syntax, or you may get frustrated at having to requeue all the jobs!</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>If a print job ID or a username is supplied as an argument, lprm removes that job or all jobs submitted by the user. If no arguments are supplied at all, the currently active job submitted by the user is deleted.
+
+<BR>
+
+<P>When lprm removes files from the queue, it echoes a message to the display. If there are no files to remove, nothing is echoed (and you will be left wondering what, if anything, happened).
+
+<BR>
+
+<P>If you try to use lprm on a job that is currently being printed, it might not be terminated properly because the file might already reside in the printer's buffer. In some cases, terminating a job that is currently printing can cause the printer to 
+lock, because some output format files can't handle the termination instructions and freeze when the lock file in the spool directory changes. In cases such as this, the ps command must be used to find the output filter process ID, and then it must be 
+killed.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>In cases of printer lockup that don't seem to solve themselves with the lpc utility, try killing the lpd daemon and restarting it. If that doesn't work, you will probably have to reboot the entire system.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E68E329"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Terminals</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Most Linux systems use only the system console that came with the PC (the PC's screen and keyboard act as the system console). You won't have to make any configuration changes to Linux to use the system console effectively.
+
+<BR>
+
+<P>Some system administrators want to add remote terminals to allow other users to work with Linux simultaneously (it is a multiuser system, after all). New terminals can be added to the system in one of two ways: through a serial port on the back of the 
+PC or through a multiport card with many serial ports on it.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E433"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Using Multiport Cards</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Multiport cards provide an easy and effective method of adding many serial ports to your system. Multiport cards are offered by dozens of vendors in different configurations. They provide from two to 32 additional serial ports per card (for terminals, 
+modems, or printers), and can use several different types of connectors (such as DB25 connectors, DB9 connectors, or RJ11 wide telephone-style jacks).
+
+<BR>
+
+<P>If you are going to use a multiport card, make sure you can find one with software device drivers that are designed to work with Linux. You can't use any multiport card designed for other versions of UNIX (or Xenix) without modification. Because 
+multiport card device drivers are complex binaries, modification is beyond the scope of most people's programming abilities.
+
+<BR>
+
+<P>Multiport cards come with complete instructions for installing the device drivers for the multiport card, as well as configuring the terminals. Because the details of the configurations change depending on the manufacturer of the multiport card, you 
+should consult the documentation accompanying the card for more information.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E434"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Adding Serial Port Terminals</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>You can use the serial ports on the PC to add remote terminals. The terminal can be a dedicated terminal or another PC running terminal emulation software. Linux doesn't really care about the identity of the remote machine, except when it comes to 
+sending instructions for screen displays.
+
+<BR>
+
+<P>The wiring of cables between the remote terminal and the PC hosting the Linux operating system depends on the type of connectors at both ends. In most cases, the cable is a DTE- (Data Terminal Equipment) to-DTE type, although some terminals and PC 
+serial ports require DCE (Data Communications Equipment) cabling. As a general rule, terminals and remote computers use DTE, and modems use DCE. The difference between DTE and DCE cabling is in the way the wires run from each end connector.
+
+<BR>
+
+<P>A typical DCE cable (such as for a modem) uses straight-through wiring, meaning that pin 1 on the PC end goes to pin 1 on the modem end, pin 2 goes through to pin 2, and so on. This is called a straight cable (also called a modem cable by some).
+
+<BR>
+
+<P>When connecting a terminal, however, some of the pins must be crossed to permit signals to pass properly. The wiring of such a cable (often called a null modem cable or hard-wired cable) requires several crosses or shorts to make the connection valid. 
+Serial port connectors on a PC are either a DB9 (9-pin) or a DB25 (25-pin) connector. Not all of the wires in the 25-pin (or the 9-pin, for that matter) are required for a terminal device. A complete terminal cable can be made of only three pins (send, 
+receive, and ground), although Linux also uses the Carrier Detect wire to tell when a terminal is attached and active.
+
+<BR>
+
+<P>The important pins and their meanings for DTE (computer to terminal) 25-pin cables are shown in Table 38.1. The cable numbers are changed for 9-pin connectors, but the crossings are the same.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 38.1. DTE cables for a 25-pin connector.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Terminal Pin</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Computer Pin</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Meaning</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+1
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+1
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Ground</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+2
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+3
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Transmit data / receive data</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+3
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+2
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Receive data / transmit data</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+4
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+4
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Ready to send</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+5
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+5
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Clear to send</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+6
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+20
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Data set ready / data terminal ready</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+7
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+7
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Ground</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+8
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+20
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Carrier detect / data terminal ready</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+20
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+6, 8
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Data terminal ready / data set ready, carrier detect</FONT>
+
+</TABLE><P>Because most users want to purchase premade cables to connect remote terminals, we won't deal with building your own cables. Instead, simply visit your local computer store and explain the equipment at both ends, as well as whether you have DB9 
+(9-pin) or DB25 (25-pin) connectors at each end. Also note whether the connectors at each end are male (pins sticking out) or female (no pins). Usually, the PC has male serial port connectors (requiring a female end on the cable), and a terminal has female 
+connectors (requiring a male connector on the cable); but, if you're connecting a remote PC, you need female connectors at both ends.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>If the wiring of a cable isn't clearly indicated and the vendor doesn't know whether it's a straight-through or null modem cable, you might need to purchase a null modem device. A null modem is a short connector that has the pin crossings within it, 
+effectively converting a straight-through cable to a null modem cable, and vice versa.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E69E435"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>The Login Process</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>To understand the files involved in a terminal configuration, it is useful to look at the process that occurs whenever a login occurs.
+
+<BR>
+
+<P>The process begins with the /etc/init daemon executing when the Linux system is booted. The init daemon is responsible for running the /etc/getty program for each terminal that is connected to the system. The init daemon knows whether a terminal is 
+connected because of entries in two files: /etc/ttys and /etc/inittab. The /etc/ttys file lists all ports on the system and the type of terminal that is connected. The /etc/inittab file has a compete list of all terminals and their parameters. We'll look 
+at both files in more detail later, in the section &quot;Terminal Files: /etc/ttys and /etc/inittab.&quot;
+
+<BR>
+
+<P>When the /etc/ttys and /etc/inittab files indicate that a terminal is connected and active, the init daemon runs the /etc/getty program for that terminal. The getty program sets the communications parameters for the terminal and displays the login 
+prompt on the screen.
+
+<BR>
+
+<P>When a user logs in on the terminal, the getty process executes the login program to request a password. The login program then validates the username and password against the entries in the /etc/passwd file. If the login is valid, the login program 
+displays the message of the day (stored in the file /etc/motd) and executes whatever shell the user is supposed to run (as specified in /etc/passwd). Finally, login sets the TERM environment variable and exits.
+
+<BR>
+
+<P>When the login process terminates, the shell continues to execute and reads the startup files; then, it generates the shell prompt and waits for the user to issue instructions.
+
+<BR>
+
+<P>As you have seen, many files are involved in the startup process, all in the /etc directory. We can look at the important files (at least for terminal characteristics) in more detail.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E436"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>What Are /sbin/getty and /etc/gettydefs?</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The /sbin/getty (/etc/getty on some systems) program is referred to quite a lot when dealing with terminals, but people often don't clearly understand what the program does. Quite simply, /sbin/getty is a binary program that sets the communications 
+parameters between Linux and a terminal, including the speed, protocol, and any special handling of the cable.
+
+<BR>
+
+<P>The /sbin/getty program is called by /etc/init when a user is logging in. When called, /sbin/getty then opens the serial port or other connection to the terminal and sets the communications parameters based on information in the file /etc/gettydefs 
+(getty definitions). The getty process then generates the login prompt on the remote terminal.
+
+<BR>
+
+<P>Many special handling and command options are available with the getty process, but most of them are of little interest to users and casual system administrators. If you want complete information on the getty command, consult the man pages that 
+accompany Linux.
+
+<BR>
+
+<P>The /etc/gettydefs file is used to supply the settings getty uses for communications. The format of each line in the gettydefs file is as follows:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">label:initial flags: final flags: login prompt: next label</FONT></PRE>
+
+<P>The label is used to identify each line, so that when /sbin/getty is started with an argument (as it usually is, transparent to the user), the argument is used to match the label and provide the configuration information. The initial and final flags are 
+used to set any behavior for the connection before and after the login program has executed.
+
+<BR>
+
+<P>The login prompt is the prompt to be displayed on the terminal. Usually it is just login:, but it can be any string. Finally, the next label is used to send getty to another line, in case it can't use the current one. This is typically used with modem 
+lines, which start at a high speed (such as 9600 baud) and go to 4800, 2400, and 1200 in sequence, trying to connect at each step. For terminals, the next label is usually a pointer back to the line's first label.
+
+<BR>
+
+<P>An extract from a sample /etc/gettydefs file looks like this:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">console# B19200 OPOST ONLCR TAB3 BRKINT IGNPAR ISTRIP IXON IXANY PARENB ECHO
+
+ECHOE ECHOK ICANON ISIG CS8 CREAD # B19200 OPOST ONLCR TAB3 BRKINT IGNPAR ISTRIP
+
+IXON IXANY PARENB ECHO ECHOE ECHOK ICANON ISIG CS8 CREAD #Console Login: #console
+
+9600H# B9600 # B9600 SANE IXANY PARENB TAB3 HUPCL #login: #4800H
+
+4800H# B4800 # B4800 SANE IXANY PARENB TAB3 HUPCL #login: #2400H
+
+2400H# B2400 # B2400 SANE IXANY PARENB TAB3 HUPCL #login: #1200H
+
+1200H# B1200 # B1200 SANE IXANY PARENB TAB3 HUPCL #login: #300H
+
+300H# B300 # B300 SANE IXANY PARENB TAB3 HUPCL #login: #9600H</FONT></PRE>
+
+<P>If you look at the file that accompanies your Linux system, you see that there are many more lines, but they all have the same format as the preceding samples. The easiest lines to look at are the shorter ones (the last five lines in the preceding 
+extract), but they all have the same format as the preceding samples.
+
+<BR>
+
+<P>These lines are for a modem, starting at 9600 baud. The initial flag is set to B9600, which sets the baud rate at 9600 baud. The final flags, used when a connection has been established, set the characteristics of the line (such as a TAB meaning three 
+spaces). Finally, the field at the end points to the next lower speed to provide checks for slower modems or poor lines that prevent fast logins.
+
+<BR>
+
+<P>The first line in the preceding extract is typical for a terminal. It sets many initial and final flags that control how the terminal behaves. The reference at the end of the line is back to the same definition, because the terminal is hardwired to the 
+system.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>You shouldn't have to change the entries in the gettydefs file, because the default file contains many different configurations. You should examine the file carefully to find an entry that will work with the terminal you are using. If you do make 
+changes to the gettydefs file, you should run the command getty -c gettydefs to make the changes effective.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E69E437"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Terminal Files /etc/ttys and /etc/inittab</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Terminal configuration information is stored in the files /etc/ttys and /etc/inittab. These files can be modified by any editor. Some menu-driven programs are now appearing that perform changes to the files for you.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Before making any changes to the terminal configuration files, make a safe copy in case the changes aren't effective and the file can't be returned to its original state easily. Simply copy the two files to new names such as /etc/tty.original and 
+/etc/inittab.original.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>The /etc/ttys file has two columns. The first shows the type of terminal, and the second shows the device name. A typical /etc/ttys file from a new installation of Linux looks like this:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">console tty1
+
+console tty2
+
+console tty3
+
+console tty4
+
+console tty5
+
+console tty6
+
+vt100 ttyp0
+
+vt100 ttyp1
+
+vt100 ttyp2
+
+vt100 ttyp3</FONT></PRE>
+
+<P>The terminal type in the first column is used to set the TERM environment variable when you log in, unless you override the value.
+
+<BR>
+
+<P>The /etc/inittab file is used to set the behavior of each terminal. The format of the /etc/inittab file follows this pattern:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">ID:runlevel:action:process</FONT></PRE>
+
+<P>The ID is a one- or two-character string that uniquely identifies the entry. In most cases, this corresponds to the device name, such as 1 for tty1.
+
+<BR>
+
+<P>The runlevel decides the capabilities of the terminal with the various states that the Linux operating system can be in (run levels vary from 0 to 6, and A, B, and C). If no entry is provided, all runlevels are supported. Multiple runlevels may be 
+mentioned in the field.
+
+<BR>
+
+<P>The action section shows how to handle the process field. The action field has several valid entries:
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+boot
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Runs when inittab is first read.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+bootwait
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Runs when inittab is first read.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+initdefault
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Sets initial run level.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+off
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Terminates the process if it is running.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+once
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Starts the process once.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+ondemand
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Always keeps the process running (the same as respawn).</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+powerfail
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Executes when init gets a power fail signal.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+powerwait
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Executes when init gets a power fail signal.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+sysinit
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Executes before accessing the console.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+respawn
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Always keeps the process running.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+wait
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Starts the process once.</FONT>
+
+</TABLE><P>The action indicates the behavior of the terminal device when the system starts and when a getty process is terminated on it.
+
+<BR>
+
+<P>A simple /etc/inittab file (taken from an earlier version of Linux for clarity's sake because the latest version complicates the lines a little) looks like this:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"># inittab for Linux
+
+id:1:initdefault:
+
+rc::bootwait:/etc/rc
+
+1:1:respawn:/etc/getty 9600 tty1
+
+2:1:respawn:/etc/getty 9600 tty2
+
+3:1:respawn:/etc/getty 9600 tty3
+
+4:1:respawn:/etc/getty 9600 tty4</FONT></PRE>
+
+<P>The first two lines (after the comment) are used when the system boots. The second line tells the system to run /etc/rc in order to boot. The rest of the lines indicate that a getty process should be started for tty1 through tty4 at 9600 baud.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E438"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Terminal Definitions The </B><B>/etc/termcap</B><B> File</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The /etc/termcap file holds the instructions for communicating with different terminals. Most terminals that are supported by the operating system have an entry inside this file. The termcap (terminal capabilities) file can be quite large. If you are 
+going to make changes, copy a version to a safe filename first.
+
+<BR>
+
+<P>The contents of the termcap file are similar to the printer definition file /etc/printcap. Each entry in the termcap file has a name with several variations, as well as a set of codes and values for different terminal characteristics. Because terminals 
+use many different codes for different actions, many codes can be used with some of the more talented terminals.
+
+<BR>
+
+<P>An extract from a termcap file shows the definitions for two fairly simple terminals, the Wyse 30 and Wyse 85:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">w0|wy30-vb|wyse30-vb|wyse 30 Visible bell:\
+
+:vb=\E'8\E'\072\E'9:\
+
+:tc=wy30:
+
+wc|wy85|wyse85|Wyse 85 in 80 column mode, vt100 emulation:\
+
+:is=\E[61&quot;p\E[13l\E&gt;\E[?1l\E[?3l\E[?7h\E[?16l\E[?5W:\
+
+:co#80:li#24:am:cl=\E[;H\E[2J:bs:cm=\E[%i%d;%dH:nd=2\E[C:up=2\E[A:\
+
+:ce=\E[0K:cd=\E[0J:so=2\E[7m:se=2\E[m:us=2\E[4m:ue=2\E[m:\
+
+:ku=\E[A:kd=\E[B:kr=\E[C:kl=\E[D:\
+
+:kh=\E[H:xn:\
+
+:im=:CO=\E[?25h:CF=\E[?25l:ic=\E[1@:dc=\E[1P:\
+
+:dl=\E[1M:al=\E[1L:GS=\EF:GE=\EG:pt:</FONT></PRE>
+
+<P>The meaning of each set of codes is not really of interest to most users and system administrators. You have to start changing or rewriting terminal entries only if you are adding a terminal type that doesn't exist in the termcap file already.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Most terminals offer multiple emulations. If you can't find the terminal type in the termcap file, look for an emulation that is supported. It's easier to emulate a different terminal than to write a termcap entry for a new type.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>The terminal characteristics in the /etc/termcap file are used by the /etc/ttys file. The first column of the ttys file gives the default terminal type used to set the TERM environment variable. Essentially, the startup routine uses a pattern-matching 
+utility to find a matching line in the termcap file, and then reads the codes that follow.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E439"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Adding a Terminal</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Terminals are added to Linux in much the same manner as printers: using the mknod command. To add a terminal, you must decide which port the terminal will be connected to. The serial ports on a PC are referred to by Linux as /dev/ttyS0 (for COM1 in DOS 
+terms), /dev/ttyS1 (for COM2), and so on.
+
+<BR>
+
+<P>Most PC systems have one or two serial ports, although up to four can be accommodated (ttyS0 to ttyS3). Linux uses the serial ports based on their addresses in the BIOS. The usual addresses for the serial ports are as follows:
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+ttyS0 (COM1)
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+0x03f8</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+ttyS1 (COM2)
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+0x02f8</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+ttyS2 (COM3)
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+0x03e8</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+ttyS3 (COM4)
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+0x02e8</FONT>
+
+</TABLE><P>If you're not sure which serial port is which, you might have to either use a DOS-based diagnostic utility (such as MS-DOS's MSD.EXE) or start at the lowest address and work up, testing the terminal each time. If the PC has only one port, it is 
+almost always configured as COM1.
+
+<BR>
+
+<P>To create a new terminal device, you must run the mknod (make node) command to create the new device driver file, and then change the permissions on the file to let it be run by root or daemon. Most Linux distributions include the terminal devices 
+already.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>The mknod command was covered in detail earlier in this chapter. Check out the section &quot;The mknod Command.&quot;</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>A typical command for creating a new terminal device is
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">mknod -m 660 /dev/ttyS0 c 4 64</FONT></PRE>
+
+<P>The -m 660 sets the permissions on the file. /dev/ttyS0 specifies the first serial port on the machine (COM1). The c indicates that the terminal is a character device (almost all terminals, except very high-speed high-end models, are character devices). 
+The major device number is set to 4, while the minor device number is set to 64. For the other serial ports on the PC (COM1 through COM4), the commands would be as follows:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">mknod -m 660 /dev/ttyS1 c 4 65
+
+mknod -m 660 /dev/ttyS2 c 4 66
+
+mknod -m 660 /dev/ttyS3 c 4 67</FONT></PRE>
+
+<P>The changes in the minor device number with the preceding different commands are not required, but there must be a unique minor device number for each terminal.
+
+<BR>
+
+<P>After the mknod command has been executed, the device driver must be set to the proper ownership. Issue the command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">chown root.tty /dev/ttyS0</FONT></PRE>
+
+<P>replacing the /dev/ttyS0 with whatever device the command applies to. The ownership is set to root.tty.
+
+<BR>
+
+<P>You also want to change the entry in the /etc/ttys file to include the terminal type and device that you have added so that the startup of the terminal can be performed properly. Because the /etc/inittab file already contains entries for the standard 
+serial ports, you can edit the entry for your new terminal's port (if necessary) to set the baud rate and other parameters that may be required.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E440"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Using </B><B>stty</B><B> and </B><B>tset</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The stty command enables you to change and query a terminal option. The stty command is very complex, with dozens of options that modify the behavior of the terminal device driver. Luckily, only the most intense system administrators have to use the 
+many options, so in this chapter we will ignore most of the details.
+
+<BR>
+
+<P>To see the current settings of a terminal, use the stty command without any arguments. It displays a set of parameters. You can use this to verify that the terminal has read the configuration information properly from the /etc/inittab and /etc/gettydefs 
+files.
+
+<BR>
+
+<P>Like stty, the tset command has many options, most of which are seldom used (especially if you are not dealing with strange terminals and weird connectors). The tset command is used to initialize the terminal driver. If the tset command is given with a 
+specific argument, it uses that. Otherwise, the value in the TERM environment variable is used.
+
+<BR>
+
+<P>You can use tset within the startup files of a user who always logs in from a remote terminal (through a modem). If you put the command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">tset -m dialup:vt100</FONT></PRE>
+
+<P>in the shell startup file (.profile, .cshrc, and so on), the terminal type will be set to vt100 every time a connection is made through the modem. Of course, this sets the terminal type even if someone isn't using a VT100 terminal, so you can use the 
+command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">tset -m dialup:?vt100</FONT></PRE>
+
+<P>to have the user connecting through the modem prompted for the terminal type. The prompt looks like this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">TERM=(vt100)?</FONT></PRE>
+
+<P>If the user presses Enter, the TERM variable is set to vt100. If the user doesn't want to use that value, she can enter the correct string at the prompt.
+
+<BR>
+
+<P>So far, tset seems to be quite simple, but in fact it has a very complex structure when dealing with hard wired terminals. To properly configure a terminal connected through a serial port, you need a command such as this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">eval 'tset -s -Q -m dialup:?vt100 -m switch:z29'</FONT></PRE>
+
+<P>The full details of this type of command are unimportant for most system administrators. If you want more information, check the man pages for tset and stty that came with your Linux system.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E441"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Resetting a Screwy Terminal</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Every now and then a terminal connected through a serial port starts acting screwy, either not showing a prompt or generating garbage. There are two quick ways to try to reset the terminal. If they don't work, the terminal should be shut down and 
+restarted. (You might have to kill the processes that were running on the terminal.)
+
+<BR>
+
+<P>The first approach is to issue a set of Ctrl-J characters on the screwy terminal, and then type stty sane followed by another Ctrl-J. The command stty sane should reset the terminal characteristics to normal. You probably won't see the letters you are 
+typing, so enter them carefully.
+
+<BR>
+
+<P>If the terminal isn't behaving at this point, try typing reset and pressing Enter or Ctrl-J. If this doesn't work, the terminal has hung and should be reset manually.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E330"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Adding a Modem</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The process for adding a modem is very similar to that for adding a terminal. In most cases, the procedure outlined earlier in &quot;Adding a Terminal&quot; can be followed.
+
+<BR>
+
+<P>Modems are used for several purposes on a Linux system, such as networking, connecting to remote systems, and accepting incoming calls. If the modem is to act as a conduit into the Linux system for remote terminals to connect, the procedure given in 
+&quot;Adding a Terminal&quot; is followed, except for the entries that will be selected in the /etc/inittab file. In the case of a modem, find a set of lines that move through the different baud rates the modem supports.
+
+<BR>
+
+<P>Modems that are to be used for networking through the UUCP utility are dealt with in <A HREF="rhl42.htm">Chapter 42</A>, &quot;Networking,&quot; and <A HREF="rhl43.htm">Chapter 43</A>, &quot;UUCP.&quot; It includes information on setting the different 
+configuration files properly.
+
+<BR>
+
+<P>For modems used to call out of the system, Linux has a menu-driven configuration utility as part of the setup command, which can set the proper configuration information automatically.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E331"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Summary</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>This chapter has shown you the basics of devices, device management, and how to add new devices to your Linux system. The information presented applies to most distributions of Linux, although there might be some slight changes in options and arguments 
+as the different utilities are enhanced or streamlined. If you want more information about any of the commands, refer to the man pages that came with Linux, or consult a comprehensive system administration book.
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl37.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="#I0" TARGET="_self"><IMG SRC="purtop.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Page Top"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl39.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+</BODY></HTML>
+
+
+

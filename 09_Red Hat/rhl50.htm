@@ -1,0 +1,1715 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Red Hat Linux Unleashed rhl50.htm </TITLE>
+
+<LINK REL="ToC" HREF="index.htm">
+
+<LINK REL="Index" HREF="htindex.htm">
+
+<LINK REL="Next" HREF="rhl51.htm">
+
+<LINK REL="Previous" HREF="rhl49.htm"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+
+<A NAME="I0"></A>
+
+<H2>Red Hat Linux Unleashed rhl50.htm</H2>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl49.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl51.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+<HR ALIGN=CENTER>
+
+<P>
+
+<UL>
+
+<UL>
+
+<UL>
+
+<LI>
+
+<A HREF="#E68E391" >Web Server Software</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E512" >Unpacking the Web Files</A>
+
+<LI>
+
+<A HREF="#E69E513" >Compiling the Web Software</A>
+
+<LI>
+
+<A HREF="#E69E514" >Configuring the Web Software</A>
+
+<LI>
+
+<A HREF="#E69E515" >Starting the Web Software</A></UL>
+
+<LI>
+
+<A HREF="#E68E392" >Setting Up Your Web Site</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E516" >HTML Authoring Tools</A>
+
+<LI>
+
+<A HREF="#E69E517" >Maintaining HTML</A></UL>
+
+<LI>
+
+<A HREF="#E68E393" >Summary</A></UL></UL></UL>
+
+<HR ALIGN=CENTER>
+
+<A NAME="E66E50"></A>
+
+<H1 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>50</B></FONT></CENTER></H1>
+
+<BR>
+
+<A NAME="E67E50"></A>
+
+<H2 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>Configuring a WWW Site</B></FONT></CENTER></H2>
+
+<BR>
+
+<P>Just about everyone on the planet knows about the World Wide Web. It's the most talked about aspect of the Internet. With the Web's popularity, more system users are getting into the game by setting up their own WWW servers and home pages. There are now 
+sophisticated packages that act as Web servers for many operating systems. Linux, based on UNIX, has the software necessary to provide a Web server.
+
+<BR>
+
+<P>You don't need fancy software to set up a Web site, only a little time and the correct configuration information. That's what this chapter is about. We look at how you can set up a World Wide Web server on your Linux system&#151;whether for friends, 
+your LAN, or the Internet as a whole.
+
+<BR>
+
+<P>The major aspect of the Web that attracts users and makes it so powerful, aside from its multimedia capabilities, is the use of hyperlinks. A hyperlink lets one mouse click move you from document to document, site to site, graphic to movie, and so on. 
+All the instructions of the move are built into the Web code.
+
+<BR>
+
+<P>There are two main aspects to the World Wide Web: server and client. Client software, such as Mosaic and Netscape, is probably the most familiar. However, many different Web client packages other than these two are also available, some specifically for 
+X or Linux.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>The Red Hat distribution that accompanies this book already includes the Apache Web server software that is preconfigured on your Linux system during the installation process. However, this chapter provides an overview on manually setting up server 
+software so that you can become more familiar with generic httpd server configurations.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E68E391"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Web Server Software</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>There are three primary versions of Web server software that will run under Linux. They are from NCSA, CERN, and Plexus. The most readily available system is from NCSA, which also produces Mosaic. NCSA's Web system is fast and quite small, can run under 
+inetd or as a stand-alone daemon, and provides pretty good security. For this chapter, we will use NCSA's Web software, although you can easily use either of the other two packages instead (although the configuration information will be different, of 
+course).
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>The Web server software for one of the three is available via anonymous FTP or WWW from one of the sites listed here, depending on the type of server software you want: 
+
+<BR>ERN: <A HREF="ftp://ftp.w3.org/pub/httpd">ftp://ftp.w3.org/pub/httpd</A> (FTP)
+
+<BR>NCSA: <A HREF="ftp://ftp.ncsa.uiuc.edu/web/httpd/unix/ncsa_httpd">ftp.ncsa.uiuc.edu/web/httpd/unix/ncsa_httpd</A> (FTP)
+
+<BR><A HREF="http://hoohoo.ncsa.uiuc.edu">http://hoohoo.ncsa.uiuc.edu</A> (WWW)
+
+<BR>Plexus: <A HREF="ftp://austin.bsdi.com/plexus/2.2.1/dist/Plexus-2.2.1.tar.Z">ftp://austin.bsdi.com/plexus/2.2.1/dist/Plexus-2.2.1.tar.Z</A> (WWW).</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>The NCSA Web software is available for Linux in both compiled and source code forms. Using the compiled version is much easier because you don't have to configure and compile the source code for the Linux platform. The binaries are often provided 
+compressed and tarred, so you will have to uncompress and then extract the tar library. Alternatively, many CD-ROMs provide the software ready to go. If you do obtain the compressed form of the Web server software, follow the installation or README files 
+to place the Web software in the proper location.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E512"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Unpacking the Web Files</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>If you have obtained a library of source code or binaries from an FTP or BBS site, you probably have to untar and uncompress them first. (Check with any README files, if there are any, before you do this; otherwise you may be doing this step for 
+nothing.) Usually, you will proceed by creating a directory for the Web software, and then changing into it and expanding the library with a command such as this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">zcat httpd_X.X_XXX.tar.Z | tar xvf -</FONT></PRE>
+
+<P>The software is often named by the release and target platform, such as httpd_1.5_linux.tar.Z. Use whatever name your tar file has in the preceding line. Installation instructions are sometimes in a separate tar file, such as Install.tar.z, which you 
+have to obtain and uncompress with the command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">zcat Install.tar.z</FONT></PRE>
+
+<P>Make sure you are in the target directory when you issue these commands, though, or you will have to move a lot of files. You can place the files anywhere; however, it is often a good idea to create a special area for the Web software that can have its 
+permissions controlled, such as /usr/web, var/web, or a similar name.
+
+<BR>
+
+<P>Once you have extracted the contents of the Web server distribution and the library files are in their proper directories, you can look at what has been created automatically. You should find the following subdirectories:
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+cgi-bin
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Common gateway interface binaries and scripts</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+conf
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Configuration files</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+icons
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Icons for home pages</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+src
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Source code and (sometimes) executables</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+support
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Support applications</FONT>
+
+</TABLE><BR>
+
+<A NAME="E69E513"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Compiling the Web Software</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>If you don't have to modify the source and recompile for Linux (because your software is the Linux version), you can skip the configuration details mentioned in the rest of this section. On the other hand, you may want to know what is happening in the 
+source code anyway, because you can better understand how Linux works with the Web server code. If you obtained a generic, untailored version of the NCSA Web server, you have to configure the software.
+
+<BR>
+
+<P>Begin by editing the src/Makefile file to specify your platform. There are several variables that you have to check for proper information:
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+AUX_CFLAGS
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Uncomment the entry for Linux (identified by comment lines and symbols, usually).</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+CC
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The name of the C compiler (usually cc or gcc).</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+EXTRA_LIBS
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Add any extra libraries that need to be linked in (none are required or Linux).</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+FLAGS
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Add any flags you need for linking (none are required for most Linux linkers).</FONT>
+
+</TABLE><P>Finally, look for the CFLAGS variable. Some of the values for CFLAGS may be set already. The following are valid values for CFLAGS:
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-DSECURE_LOGS
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Prevents CGI scripts from interfering with any log files written by the server software.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-DMAXIMUM_DNS
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Provides a more secure resolution system at the cost of performance.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-DMINIMAL_DNS
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Doesn't allow reverse name resolution, but speeds up performance.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-DNO_PASS
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Prevents multiple children from being spawned.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-DPEM_AUTH
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Enables PEM/PGP authentication schemes.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-DXBITHACK
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Provides a service check on the execute bit of an HTML file.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-O2
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Optimizing flag.</FONT>
+
+</TABLE><P>It is unlikely that you will need to change any of the flags in the CFLAGS section, but at least you now know what they do. Once you have checked the src/Makefile for its contents, you can compile the server software. Issue the command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">make linux</FONT></PRE>
+
+<P>If you see error messages, check the configuration file carefully. The most common problem is the wrong platform (or multiple platforms) selected in the file.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E514"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Configuring the Web Software</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Once the software is in the proper directories and compiled for your platform, it's time to configure the system. Begin with the httpd.conf-dist file. Copy it to the filename httpd.conf, which is what the server software looks for. This file handles the 
+httpd server daemon. Before you edit the file, you have to decide whether you will install the Web server software to run as a daemon, or whether it will be started by inetd. If you anticipate frequent use, run the software as a daemon. For occasional use, 
+either is acceptable.
+
+<BR>
+
+<P>There are several variables in httpd.conf that need to be checked or have values entered for them. All the variables in the configuration file follow the syntax:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">variable value</FONT></PRE>
+
+<P>with no equals sign or special symbol between the variable name and the value assigned to it. For example, a few lines would look like this:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">FancyIndexing on
+
+HeaderName Header
+
+ReadmeName README</FONT></PRE>
+
+<P>Where pathnames or filenames are supplied, they are usually relative to the Web server directory, unless explicitly declared as a full pathname. You need to supply the following variables in httpd.conf:
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+AccessConfig
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The location of the access.conf configuration file. The default value is conf/access.onf. You can use either absolute or relative pathnames.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+AgentLog
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The log file to record details of the type and version of browser used to access your server. The default value is logs/agent_log.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+ErrorLog
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The name of the file to record errors. The default is /logs/error_log.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Group
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The Group ID the server should run as (used only when server is running as a daemon). Can be either a group name or group ID number. If a number, it must be preceded by #. The default is #-1.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+MaxServers
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The maximum number of children allowed.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+PidFile
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The file where you want to record the process ID of each httpd copy. The default is/logs/httpd.pid. Used only when the server is in daemon mode.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Port
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Port number httpd should listen to for clients. Default port is 80. If you don't want the Web server generally available, choose another number.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+ResourceConfig
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The path to the srm.conf file, usually conf/srm.conf.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+ServerAdmin
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+E-mail address of the administrator.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+ServerName
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The fully qualified host name of the server.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+ServerRoot
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The path above which users cannot move (usually the Web server top directory or usr/local/etc/httpd).</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+ServerType
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Either stand-alone (daemon) or inetd.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+StartServers
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The number of server processes that are started when the daemon executes.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+TimeOut
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The amount of time in seconds to wait for a client request, after which it is disconnected (default is 1800, which should be reduced).</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+TransferLog
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The path to the location of the access log. Default is logs/access_log.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+TypesConfig
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The path to the location of the MIME configuration file. Default is conf/mime.conf.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+User
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Defines the user ID the server should run as (only valid if running as daemon). Can be name or number, but must be preceded by # if a number. Default is #-1.</FONT>
+
+</TABLE><P>The next configuration file to check is srm.conf, which is used to handle the server resources. The variables that have to be checked or set in the srm.conf file are as follows:
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+AccessFileName
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The file that gives access permissions (default is .htaccess).</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+AddDescription
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Provides a description of a type of file. For example, an entry could be AddDescription PostScript file *.ps. Multiple entries are allowed.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+AddEncoding
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Indicates that files with a particular extension are encoded somehow, such as AddEncoding compress Z. Multiple entries are allowed.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+AddIcon
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Gives the name of the icon to display for each type of file.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+AddIconType
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Uses MIME type to determine the icon to use.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+AddType
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Overrides MIME definitions for extensions.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Alias
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Substitutes one pathname for another, such as Alias data /usr/www/data.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+DefaultType
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The default MIME type, usually text/plain.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+DefaultIcon
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The default icon to use when FancyIndexing is on (default is /icons/unknown.xbm).</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+DirectoryIndex
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Filename to return when the URL is for your service only. Default value is index.html.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+DocumentRoot
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Absolute path to the HTML document directory. Default is /usr/local/etc/httpd/htdocs.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+FancyIndexing
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Adds icons and filename information to the file list for indexing. Default is on. (This option is for backward compatibility with the first release of HTTP.)</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+HeaderName
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The filename used at the top of a list of files being indexed. Default is Header.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+IndexOptions
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Indexing parameters (including FancyIndexing, IconsAreLinks, ScanHTMLTitles, SuppressLastModified, SuppressSize, and SuppressDescription).</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+ReadmeName
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The footer file is displayed with directory indexes. Default is README.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Redirect
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Maps a path to another URL.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+ScriptAlias
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Similar to Alias but for scripts.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+UserDir
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Directory users can use this for httpd access. Default is public_html. Usually set to a user's home page directory. Can be set to DISABLED.</FONT>
+
+</TABLE><P>The third file to examine and modify is access.conf-dist, which defines the services available to WWW browsers. Usually, everything is accessible to a browser, but you may want to modify the file to tighten security or disable some services not 
+supported on your Web site. The format of the conf-dist file is different than the two preceding configuration files. It uses a set of &quot;sectioning directives&quot; delineated by angle brackets. The general format of an entry is
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">&lt;Directory Dir_Name&gt;
+
+...
+
+&lt;/Directory&gt;</FONT></PRE>
+
+<P>and anything between the beginning and ending delimiters (&lt;Directory&gt; and &lt;/Directory&gt;, respectively) are directives. It's not quite that easy, because there are several variations that can exist in the file. The best way to customize the 
+access.conf-dist file is to follow these steps for a typical Web server installation:
+
+<BR>
+
+<OL>
+
+<LI> Locate the Options directive and remove the Indexes option. This prevents users from browsing the httpd directory. Valid Options entries are discussed shortly.
+
+<BR>
+
+<BR>
+
+<LI>Locate the first Directory directive and check the path to the cgi-bin directory. The default path is /usr/local/etc/httpd/cgi-bin.
+
+<BR>
+
+<BR>
+
+<LI>Find the AllowOverride variable and set it to None (this prevents others from changing the settings). The default is All. Valid values for the AllowOverride variable are discussed shortly.
+
+<BR>
+
+<BR>
+
+<LI>Find the Limit directive and set to whichever value you want.
+
+<BR>
+
+<BR>
+
+</OL>
+
+<P>The Limit directive controls access to your server. The following are valid values for the Limit directive:
+
+<BR>
+
+<UL>
+
+<UL>
+
+<P>allow Allows specific host names following the allow keyword to access the service.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>deny Denies specific host names following the deny keyword from accessing the service.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>order Specifies the order in which allow and deny directives are evaluated (usually set to deny,allow but can also be allow,deny).
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>require Requires authentication through a user file specified in the AuthUserFile entry.
+
+<BR>
+
+</UL></UL>
+
+<P>The Options directive can have several entries, all of which have a different purpose. The default entry for Options is
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Options Indexes FollowSymLinks</FONT></PRE>
+
+<P>You removed the Indexes entry from the Options directive in the first step of the preceding customization procedure. These entries all apply to the directory the Options field appears in. The valid entries for the Options directive are:
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+All
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+All features enabled.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+ExecCGI
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+cgi scripts can be executed from this directory.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+FollowSymLinks
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Allows httpd to follow symbolic links.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Includes
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Include files for the server are enabled.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+IncludesNoExec
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Include files for the server are enabled but the exec option is disabled.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Indexes
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Enables users to retrieve server-generated indexes (doesn't affect precompiled indexes).</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+None
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+No features enabled.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+SymLinksIfOwnerMatch
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Follows symbolic links only if the user ID of the symbolic link matches the user ID of the file.</FONT>
+
+</TABLE><P>The AllowOverride variable is set to All by default, and this should be changed. There are several valid values for AllowOverride, but the recommended setting for most Linux systems is None. The valid values for AllowOverride are as follows:
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+All
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Access controlled by a configuration file in each directory.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+AuthConfig
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Enables some authentication routines. Valid values: AuthName (sets authorization name of directory); AuthType (sets authorization type of the directory, although there is only one legal value: Basic); AuthUserFile (specifies a file containing user names 
+and passwords); and AuthGroupFile (specifies a file containing group names).</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+FileInfo
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Enables AddType and AddEncoding directives.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Limit
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Enables Limit directive.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+None
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+No access files allowed.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Options
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Enables Options directive.</FONT>
+
+</TABLE><P>After all that, the configuration files should be properly set. While the syntax is a little confusing, reading the default values shows you the proper format to use when changing entries. Next, you can start the Web server software.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E515"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Starting the Web Software</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>With the configuration complete, it's time to try out the Web server software. In the configuration files, you made a decision as to whether the Web software will run as a daemon (stand-alone) or will start from inetd. The startup procedure is a little 
+different for each method (as you would expect), but both startup procedures can use one of the following three options on the command line:
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-d
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The absolute path to the root directory of the server files (used only if the default location is not valid).</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-f
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The configuration file to read if not the default value of httpd.conf.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-v
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Displays the version number.</FONT>
+
+</TABLE><P>If you are using inetd to start your Web server software, you need to make a change to the etc/services file to permit the Web software. Add a line similar to this to the /etc/services file:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">http port/tcp</FONT></PRE>
+
+<P>where port is the port number used by your Web server software (usually 80).
+
+<BR>
+
+<P>Next, modify the /etc/inetd.conf file to include the startup commands for the Web server where the last entry is the path to the httpd binary:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">httpd stream tcp nowait nobody /usr/web/httpd</FONT></PRE>
+
+<P>Once this is done, restart inetd by killing and restarting the inetd process or by rebooting your system, and the service should be available through whatever port you specified in /etc/services.
+
+<BR>
+
+<P>If you are running the Web server software as a daemon, you can start it at any time from the command line with the command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">httpd &amp;</FONT></PRE>
+
+<P>Even better, add the startup commands to the proper rc startup files. The entry usually looks like this:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"># start httpd
+
+if [ -x /usr/web/httpd ]
+
+then
+
+/usr/web/httpd
+
+fi</FONT></PRE>
+
+<P>substituting the proper paths for the httpd binary, of course. Rebooting your machine should start the Web server software on the default port number.
+
+<BR>
+
+<P>To test the Web server software, use any Web browser and type in the URL field:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">http://machinename</FONT></PRE>
+
+<P>where machinename is the name of your Web server. If you see the contents of the root Web directory or the index.html file, all is well. Otherwise, check the log files and configuration files for clues as to the problem.
+
+<BR>
+
+<P>If you haven't installed a Web browser yet, you can still check to see if the Web server is running by using telnet. Issue a command like this, substituting the name of your server (and your Web port number if different than 80):
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">telnet www.wizard.tpci.com 80</FONT></PRE>
+
+<P>You should get a message similar to this if the Web server is responding properly:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Connected to wizard.tpci.com
+
+Escape character is '^]'.
+
+HEAD/HTTP/1.0
+
+HTTP/1.0 200 OK</FONT></PRE>
+
+<P>You'll also see some more lines showing details about the date and content. You may not be able to access anything, but this shows that the Web software is responding properly.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E392"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Setting Up Your Web Site</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Having a server with nothing for content is useless, so you need to set up the information you will share through your Web system. This begins with Uniform Resource Locators (URLs), which are an address to file locations. Anyone using your service only 
+has to know the URL. You don't need to have anything fancy. If you don't have a special home page, anyone connecting to your system will get the contents of the Web root directory's index.html file, or failing that, a directory listing of the Web root 
+directory. That's pretty boring, though, and most users want fancy home pages. To write a home page, you need to use HTML (HyperText Markup Language).
+
+<BR>
+
+<P>A home page is like a main menu. Many users may not ever see it because they can enter into any of the subdirectories on your system, or obtain files from another Web system through a hyperlink, without ever seeing your home page. However, many users 
+want to start at the top, and that's where your home page comes in. A home page file is usually called index.html. It is usually at the top of your Web source directories.
+
+<BR>
+
+<P>Writing an HTML document is not too difficult. The language uses a set of tags to indicate how the text is to be treated (such as headlines, body text, figures, and so on). The tricky part of HTML is getting the tags in the right place, without extra 
+material on a line. HTML is rather strict about its syntax, so errors must be avoided to prevent problems.
+
+<BR>
+
+<P>In the early days of the Web, all documents were written with simple text editors. As the Web expanded, dedicated Web editors that understand HTML and the use of tags began to appear. Their popularity has driven developers to produce dozens of editors, 
+filters, and utilities&#151;all aimed at making a Web documenter's life easier (as well as to ensure that the HTML language is properly used). There are HTML editors for many operating systems.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E516"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>HTML Authoring Tools</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>You can write HTML documents in many ways: You can use an ASCII editor, a word processor, or a dedicated HTML tool. The choice of which method you use depends on personal preference and your confidence in HTML coding, as well as which tools you can 
+easily obtain. Because many HTML-specific tools have checking routines or filters to verify that your documents are correctly laid out and formatted, they can be appealing. They also tend to be more friendly than non-HTML editors. On the other hand, if you 
+are a veteran programmer or writer, you may want to stick with your favorite editor and use a filter or syntax checker afterward.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>One of the best sites to look for new editors and filters is <A HREF="http://www.ncsaa.uiuc.edu/SDG/Software/Mosaic/Docs/FAQ-Software.html">http://www.ncsaa.uiuc.edu/SDG/Software/Mosaic/Docs/FAQ-Software.html</A> which contains an up-to-date list of 
+offerings.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>You can use any ASCII editor to write HTML pages, including simple screen-oriented editors based on vi or emacs. They all enable you to enter tags into a page of text, but the tags are treated as words with no special meaning. There is no validity 
+checking performed by simple editors, because they simply don't understand HTML. There are some extensions for emacs and similar full-screen editors that provide a simple template check, but they are not rigorous in enforcing HTML styles.
+
+<BR>
+
+<P>If you wish to use a plain editor, you should carefully check your document for the valid use of tags. One of the easiest methods of checking a document is to import it into an HTML editor that has strong HTML tag checking. Another easy method is to 
+simply call up the document on your Web browser and carefully study its appearance.
+
+<BR>
+
+<P>You can obtain a dedicated HTML authoring package from some sites, although they are not as common for Linux as for DOS and Windows. If you are running both operating systems, you can always develop your HTML documents in Windows, and then import them 
+to Linux. There are several popular HTML tools for Windows, such as HTML Assistant, HTMLed, and HoTMetaL. A few of the WYSIWYG editors are also available for X, and hence run under Linux, such as HoTMetaL. Some HTML authoring tools are fully WYSIWYG, while 
+others are character-based. Most offer strong verification systems for generated HTML code.
+
+<BR>
+
+<P>An alternative to using a dedicated editor for HTML documents is to enhance an existing WYSIWYG word processor to handle HTML properly. The most commonly targeted word processor for these extensions is Word for Windows, WordPerfect, and Word for DOS. 
+Several extension products are available in varying degrees of complexity. Most run under Windows; although a few have been ported to Linux.
+
+<BR>
+
+<P>The advantage to using one of these extensions is that you retain a familiar editor and make use of the near-WYSIWYG features it can provide for HTML documents. Although it can't show you the final document in Web format, it can be close enough to 
+prevent all but the most minor problems.
+
+<BR>
+
+<P>CU_HTML is a template for Microsoft's Word for Windows that gives a very-near-to WYSIWYG view of HTML documents. Graphically, CU_HTML looks much the same as Word, but with a new toolbar and pull-down menu item. CU_HTML provides a number of different 
+styles and a toolbar of oft-used tasks. Tasks such as linking documents are easy, as are most tasks that tend to worry new HTML document writers. Dialog boxes are used for many tasks, simplifying the interface considerably.
+
+<BR>
+
+<P>The only major disadvantage to CU_HTML is that it can't be used to edit existing HTML documents if they are not in Word format. When CU_HTML creates an HTML document, there are two versions produced, one in HTML and the other as a Word DOC file. Without 
+both, the document can't be edited. An existing document can be imported, but it loses all the tags.
+
+<BR>
+
+<P>Like CU_HTML, ANT_HTML is an extension to Word. There are some advantages and disadvantages of ANT_HTML over CU_HTML. The documentation and help is better with ANT_HTML, and the toolbar is much better. It also has automatic insertion of opening and 
+closing tags as needed.
+
+<BR>
+
+<P>One system that has gained popularity among Linux users is tkWWW. tkWWW is a tool for the Tcl language and its Tk extension for X. tkWWW is a combination of a Web browser and a near-WYSIWYG HTML editor. Although originally UNIX based, tkWWW has been 
+ported to several other platforms, including Windows and Macintosh.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>tkWWW can be obtained through anonymous FTP to <A HREF="ftp://harbor.ecn.purdue.edu">harbor.ecn.purdue.edu</A> in the directory /pub/tcl/extensions. Copies of Tcl and Tk can be found in several sites depending on the platform required, although most 
+distributions of Linux have Tcl and Tk included in the distribution set. As a starting point, try anonymous FTP to <A HREF="ftp://ftp.aud.alcatel.com">ftp.aud.alcatel.com</A> in the directory tcl/extensions.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>When you create a Web page with tkWWW in editor mode, you can then flip modes to browser to see the same page properly formatted. In editor mode, most of the formatting is correct, but the tags are left visible. This makes for fast development of a Web 
+page.
+
+<BR>
+
+<P>Unfortunately, tkWWW must rely on Tk for its windowing, which tends to slow things down a bit on average processors. Also, the browser aspect of tkWWW is not impressive, using standard Tk frames. However, as a prototyping tool, tkWWW is very attractive, 
+especially if you know the Tcl language.
+
+<BR>
+
+<P>Another option is to use an HTML filter. HTML filters are tools that let you take a document produced with any kind of editor (including ASCII text editors) and convert the document to HTML. Filters are useful when you work in an editor that has its own 
+proprietary format, such as Word.
+
+<BR>
+
+<P>HTML filters are attractive if you want to continue working in your favorite editor and simply want a utility to convert your document with tags to HTML. Filters tend to be fast and easy to work with, because they take a filename as input and generate 
+an HTML output file. The degree of error checking and reporting varies with the tool.
+
+<BR>
+
+<P>There are filters available for most types of documents, many of which are available directly for Linux, or as source code that can be recompiled without modification under Linux. Word for Windows and Word for DOS documents can be converted to HTML with 
+the CU_HTML and ANT_HTML extensions mentioned earlier. A few stand-alone conversion utilities have also begun to appear. The utility WPTOHTML converts WordPerfect documents to HTML. WPTOHTML is a set of macros for WordPerfect versions 5.1 and 6.0. The 
+WordPerfect filter can also be used with other word processor formats that WordPerfect can import.
+
+<BR>
+
+<P>FrameMaker and FrameBuilder documents can be converted to HTML format with the tool FM2HTML. FM2HTML is a set of scripts that converts Frame documents to HTML, while preserving hypertext links and tables. It also handles GIF files without a problem. 
+Because Frame documents are platform independent, Frame documents developed on a PC or Macintosh could be moved to the Linux platform and FM2HTML executed there.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>A copy of FM2HTML is available by anonymous FTP from bang.nta.no in the directory /pub. The UNIX set is called fm2html.tar.v.0.n.m.Z.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>LaTeX and TeX files can be converted to HTML with several different utilities. There are quite a few Linux-based utilities available, including LATEXTOHTML, which can even handle inline LaTeX equations and links. For simpler documents, the utility 
+VULCANIZE is faster but can't handle mathematical equations. Both LATEXTOHTML and VULCANIZE are Perl scripts.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>LATEXTOHTML is available through anonymous FTP from <A HREF="ftp://ftp.tex.ac.uk">ftp.tex.ac.uk</A> in the directory pub/archive/support as the file latextohtml. VULCANIZE can be obtained from the Web site <A 
+HREF="http://www.cis.upenn.edu/~mjd/vulcanize.html">http://www.cis.upenn.edu/~mjd/vulcanize.html</A>.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>RTFTOHTML is a common utility for converting RTF format documents to HTML. Many word processors handle RTF formats, so an RTF document can be saved from your favorite word processor and then RTFTOHTML run to convert the files.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>RTFTOHTML is available through 
+
+<BR><A HREF="http:\\www.w3.org/hypertext/www/tools/rtftohtml-2.6.html">http:\\www.w3.org/hypertext/www/tools/rtftohtml-2.6.html</A>.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E69E517"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Maintaining HTML</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Once you have written a Web document and it is available to the world, your job doesn't end. Unless your document is a simple text file, you will have links to other documents or Web servers embedded. These links must be verified at regular intervals. 
+Also, the integrity of your Web pages should be checked at intervals, to ensure that the flow of the document from your home page is correct.
+
+<BR>
+
+<P>There are several utilities available to help you check links and also to scan the Web for other sites or documents you may want to provide a hyperlink to. These utilities tend to go by a number of names, such as robot, spider, or wanderer. They are all 
+programs that move across the Web automatically, creating a list of Web links that you can access. (Spiders are similar to the Archie and Veronica tools for the Internet, although neither of these cover the Web.)
+
+<BR>
+
+<P>Although they are often thought of as utilities for users only (to get a list of sites to try), spiders and their kin are useful for document authors, too, because they show potentially useful and interesting links. One of the best known spiders is the 
+World Wide Web Worm, or WWWW. WWWW enables you to search for keywords or create a Boolean search, and can cover titles, documents, and several other search types (including a search of all known HTML pages).
+
+<BR>
+
+<P>A similarly useful spider is WebCrawler, which is similar to WWWW except it can scan entire documents for matches of any keywords. It displays the result in an ordered list from closest match to least likely match.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>A copy of World Wide Web Worm can be obtained from 
+
+<BR><A HREF="http://www.cs.colorado.edu/home/mcbryan/WWWW.html">http://www.cs.colorado.edu/home/mcbryan/WWWW.html</A>. 
+
+<BR>WebCrawler is available from 
+
+<BR><A HREF="http://www.biotech.washington.edu/WebCrawler/WebCrawler.html">http://www.biotech.washington.edu/WebCrawler/WebCrawler.html</A>.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>A common problem with HTML documents as they age is that links that point to files or servers may no longer exist (because either the locations or the documents have changed). It is therefore good practice to validate the hyperlinks in a document on a 
+regular basis. A popular hyperlink analyzer is HTML_ANALYZER. It examines each hyperlink and the contents of the hyperlink to ensure that they are consistent. HTML_ANALYZER functions by examining a document for all links, and then creating a text file that 
+has a list of the links in it. HTML_ANALYZER uses the text files to compare the actual link content to what it should be.
+
+<BR>
+
+<P>HTML_ANALYZER actually does three tests: It validates the availability of the documents pointed to by hyperlinks (called validation); it looks for hyperlink contents that occur in the database but are not themselves hyperlinks (called completeness); and 
+it looks for a one-to-one relation between hyperlinks and the contents of the hyperlink (called consistency). Any deviations are listed for the user.
+
+<BR>
+
+<P>HTML_ANALYZER users should have a good familiarity with HTML, their operating system, and the use of command-line driven analyzers. The tool must be compiled using the make utility prior to execution. There are several directories that must be created 
+prior to running HTML_ANALYZER, and when it runs, it creates several temporary fil<A NAME="I2"></A>es when that are not cleaned up, so this is not a good utility for a novice.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E393"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Summary</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Setting up your home page requires you to either use an HTML authoring tool or write HTML code directly into an editor. The HTML language is beyond the scope of this book, but you should find several good guides to HTML at your bookstore. HTML is rather 
+easy to learn. With the information in this chapter, you should be able to set up your Web site to enable anyone on the Internet to connect to you. Enjoy the Web!
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl49.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="#I0" TARGET="_self"><IMG SRC="purtop.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Page Top"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl51.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+</BODY></HTML>
+
+
+

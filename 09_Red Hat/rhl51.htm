@@ -1,0 +1,1525 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Red Hat Linux Unleashed rhl51.htm </TITLE>
+
+<LINK REL="ToC" HREF="index.htm">
+
+<LINK REL="Index" HREF="htindex.htm">
+
+<LINK REL="Next" HREF="rhl52.htm">
+
+<LINK REL="Previous" HREF="rhl50.htm"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+
+<A NAME="I0"></A>
+
+<H2>Red Hat Linux Unleashed rhl51.htm</H2>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl50.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl52.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+<HR ALIGN=CENTER>
+
+<P>
+
+<UL>
+
+<UL>
+
+<UL>
+
+<LI>
+
+<A HREF="#E68E394" >make</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E518" >A Sample makefile</A>
+
+<LI>
+
+<A HREF="#E69E519" >Basic makefile Format</A>
+
+<LI>
+
+<A HREF="#E69E520" >Building Different Versions of Programs</A>
+
+<LI>
+
+<A HREF="#E69E521" >Forcing Recompiles</A>
+
+<LI>
+
+<A HREF="#E69E522" >Macros</A>
+
+<LI>
+
+<A HREF="#E69E523" >Suffix Rules</A></UL>
+
+<LI>
+
+<A HREF="#E68E395" >RCS</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E524" >Deltas</A>
+
+<LI>
+
+<A HREF="#E69E525" >Creating an RCS File</A>
+
+<LI>
+
+<A HREF="#E69E526" >Retrieving an RCS File</A>
+
+<LI>
+
+<A HREF="#E69E527" >Using Keywords</A></UL>
+
+<LI>
+
+<A HREF="#E68E396" >Retrieving Version Information from an RCS File</A>
+
+<LI>
+
+<A HREF="#E68E397" >Administering Access</A>
+
+<LI>
+
+<A HREF="#E68E398" >Comparing and Merging Revisions</A>
+
+<LI>
+
+<A HREF="#E68E399" >Tying It All Together Working with make and RCS</A>
+
+<LI>
+
+<A HREF="#E68E400" >Summary</A></UL></UL></UL>
+
+<HR ALIGN=CENTER>
+
+<A NAME="E66E51"></A>
+
+<H1 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>51</B></FONT></CENTER></H1>
+
+<BR>
+
+<A NAME="E67E51"></A>
+
+<H2 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>Source Code Control</B></FONT></CENTER></H2>
+
+<BR>
+
+<P>A large-scale software project involving numerous files and programmers can present logistical nightmares if you happen to be the poor soul responsible for managing it:
+
+<BR>
+
+<P>&quot;How do I know whether this file of input/output routines that Sue has been working on is the most current one?&quot;
+
+<BR>
+
+<P>&quot;Oh, no&#151;I have to recompile my application, but I can't remember which of these 50 files I changed since the last compile!&quot;
+
+<BR>
+
+<P>Even small applications typically use more than one source code file. When compiling and linking C applications, you usually must deal with not only source code, but also header files and library files. Fortunately, Linux features a software development 
+environment that, for the most part, can greatly simplify these concerns.
+
+<BR>
+
+<P>In this chapter, we will look at the following software development utilities for Linux:
+
+<BR>
+
+<UL>
+
+<LI>make
+
+<BR>
+
+<BR>
+
+<LI>RCS (Revision Control System)
+
+<BR>
+
+<BR>
+
+</UL>
+
+<BR>
+
+<A NAME="E68E394"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>make</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Perhaps the most important of all the software development utilities for Linux, make is a program that keeps a record of dependencies between files and only updates those files that have been changed since the last update. The term update usually refers 
+to a compile or link operation, but it may also involve the removal of temporary files. This updating process can sometimes be repeated dozens of times in the course of a software project. Instead of managing these tasks manually, make can be your 
+automatic dependency manager, giving you more time to do other important things such as coding or watching TV.
+
+<BR>
+
+<P>make generates commands using a description file known as a makefile. These commands are then executed by the shell. The makefile is basically a set of rules for make to follow whenever performing an update of your program. These rules usually relate to 
+the definition of the dependencies between files. In the case of creating a Linux executable of C code, this usually means compiling source code into object files, and linking those object files together, perhaps with additional library files. make also 
+can figure some things out for itself, such as the fact that the modification times (or timestamps) for certain files may have changed.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>makefile or Makefile is literally the name that the make program expects to find in the current directory.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>make is certainly best suited for C programming, but it can be used with other types of language compilers for Linux, such as assembler or FORTRAN.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E518"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>A Sample </B><B>makefile</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Let's look at a simple application of make. The command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ make someonehappy</FONT></PRE>
+
+<P>tells Linux that you want to create a new version of someonehappy. In this case, someonehappy is an executable program; thus, there will be compiling and linking of files. someonehappy is referred to as the target of this make operation. The object 
+files that are linked together to create the executable are known as someonehappy's dependents. The source code files that are compiled to create these object files are also indirect dependents of someonehappy.
+
+<BR>
+
+<P>The files that are used to build someonehappy are the following (the contents of these files are unimportant to the example):
+
+<BR>
+
+<UL>
+
+<UL>
+
+<P>Two C source code files: main.c, dothis.c
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Three header files: yes.h, no.h, maybe.h
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>One library file: /usr/happy/lib/likeatree.a
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>An assembly language file: itquick.s
+
+<BR>
+
+</UL></UL>
+
+<P>It appears that this is a small project, so you could choose to manually compile and link these files to build your executable. Instead, create a makefile for your someonehappy project to help automate these tedious tasks.
+
+<BR>
+
+<P>In your favorite editor, write the following:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">someonehappy: main.o dothis.o itquick.o /usr/happy/lib/likeatree.a
+
+cc -o someonehappy main.o dothis.o itquick.o /usr/happy/lib/likeatree.a
+
+main.o: main.c
+
+cc -c main.c
+
+dothis.o: dothis.c
+
+cc -c dothis.c
+
+itquick.o: itquick.s
+
+as -o itquick.o itquick.s
+
+fresh:
+
+rm *.o
+
+maybe.h: yes.h no.h
+
+cp yes.h no.h /users/sue/</FONT></PRE>
+
+<BR>
+
+<A NAME="E69E519"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Basic </B><B>makefile</B><B> Format</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>So, assuming that these files are in the same directory as the makefile, what do you have? The format of a makefile such as the one you have made is a series of entries. Your makefile has six entries: the first line of an entry is the dependency line, 
+which lists the dependencies of the target denoted at the left of the colon; the second line is one or more command lines, which tells make what to do if the target is newer than its dependent (or dependents). An entry basically looks like this:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">target: dependents
+
+ (TAB) command list</FONT></PRE>
+
+<P>The space to the left of the command list is actually a tab. This is part of the makefile syntax: each command line must be indented using a tab. A dependency line can have a series of commands associated with it. make executes each command line as if 
+the command had its own shell. Thus, the command
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">cd somewhere
+
+mv *.c anotherwhere</FONT></PRE>
+
+<P>will not behave the way you may have intended. To remedy this kind of situation, you must use the following syntax whenever you need to specify more than one command:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">dependency line
+
+command1;command2;command3;...</FONT></PRE>
+
+<P>or
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">dependency line
+
+command1; \
+
+command2; \
+
+command3;</FONT></PRE>
+
+<P>and so on. If you use a backslash to continue a line, it must be the last character before the end-of-line character.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>You can specify different kinds of dependencies for a target by placing the same target name on different dependency lines.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>The first entry in our makefile is the key one for building our executable. It states that someonehappy is to be built if all the dependent object files and library files are present, and if any are newer than the last version of someonehappy. Of 
+course, if the executable is not present at all, make merrily performs the compile command listed, but not right away. First, make checks to see which object files need to be recompiled in order to recompile someonehappy. This is a recursive operation as 
+make examines the dependencies of each target in the hierarchy, as defined in the makefile.
+
+<BR>
+
+<P>The last entry is a little goofy. It copies the header files yes.h and no.h (somehow related to maybe.h) to the home directories of the user named sue if they have been modified. This is somewhat conceivable if Sue was working on related programs that 
+used these header files and needed the most recent copies at all times. More importantly, it illustrates that make can be used to do more than compiling and linking, and that make can execute several commands based on one dependency.
+
+<BR>
+
+<P>The fresh target is another example of a target being used to do more than just compiling. This target lacks any dependents, which is perfectly acceptable to the make program. As long as there are no files in the current directory named fresh, make 
+executes the supplied command to remove all object files. This works because make treats any such entry as a target that must be updated.
+
+<BR>
+
+<P>So, if you enter the command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ make someonehappy</FONT></PRE>
+
+<P>make starts issuing the commands it finds in the makefile for each target that must be updated to achieve the final target. make echoes these commands to the user as it processes them. Simply entering
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ make</FONT></PRE>
+
+<P>would also work in this case, because make always processes the first entry it finds in the makefile. These commands are echoed to the screen, and the make process halts if the compiler finds an error in the code.
+
+<BR>
+
+<P>If all of someonehappy's dependencies are up to date, make does nothing except inform you of the following:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">'someonehappy' is up to date</FONT></PRE>
+
+<P>You can actually supply the name (or names) of any valid target in your makefile on the command line for make. It performs updates in the order that they appear on the command line, but still applies the dependency rules found in the makefile. If you 
+supply the name of a fictional target (one that doesn't appear in your makefile and is not the name of a file in the current directory), make will complain something like this:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ make fiction
+
+make: Don't know how to make fiction. Stop.</FONT></PRE>
+
+<BR>
+
+<A NAME="E69E520"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Building Different Versions of Programs</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Suppose that you want to have different versions of your someonehappy program that use most of the same code, but require slightly different interface routines. These routines are located in different C files (dothis.c and dothat.c), and they both use 
+the code found in main.c. Instead of having separate makefiles for each version, you can simply add targets that do different compiles. Your makefile would look like the following one. Note the first line that has been added. It is a comment about the 
+makefile, and is denoted by a # character followed by the comment text.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"># A makefile that creates two versions of the someonehappy program
+
+someonehappy1: main.o dothis.o itquick.o /usr/happy/lib/likeatree.a
+
+cc -o someonehappy main.o dothis.o itquick.o /usr/happy/lib/likeatree.a
+
+someonehappy2: main.o dothat.o itquick.o /usr/happy/lib/likeatree.a
+
+cc -o someonehappy main.o dothat.o itquick.o /usr/happy/lib/likeatree.a
+
+main.o: main.c
+
+cc -c main.c
+
+dothis.o: dothis.c
+
+cc -c dothis.c
+
+dothat.o: dothat.c
+
+cc -c dothat.c
+
+itquick.o: itquick.s
+
+as -o itquick.o itquick.s
+
+fresh:
+
+rm *.o
+
+maybe.h: yes.h no.h
+
+cp yes.h no.h /users/sue/</FONT></PRE>
+
+<P>Thus, your makefile is now equipped to build two variations of the same program. Issue the command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ make someonehappy1</FONT></PRE>
+
+<P>to build the version using the interface routines found in dothis.c. Build your other program that uses the dothat.c interface routines with the following command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ make someonehappy2</FONT></PRE>
+
+<BR>
+
+<A NAME="E69E521"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Forcing Recompiles</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>It is possible to trick make into doing (or not doing) recompiles. An example of a situation in which you may not want make to recompile is when you have copied files from another directory. This operation updates the modification times of the files, 
+though they may not need to be recompiled. You can use the touch utility or make with the -t option to update the modification times of all target files defined in the makefile.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Do you want to test your makefile? Use make with the -n option. It will echo the commands to you without actually executing them.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E69E522"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Macros</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>make lets you define macros within your makefile, which are expanded by make before the program executes the commands found in your makefile. Macros have the following format:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">macro identifier = text</FONT></PRE>
+
+<P>The text portion can be the name of a file, a directory, a program to execute, or just about anything. Text can also be a list of files, or a literal text string enclosed by double quotes. The following is an example of macros that you might use in your 
+someonehappy makefile:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">LIBFILES=/usr/happy/lib/likeatree.a
+
+objects = main.o dothis.o
+
+CC = /usr/bin/cc
+
+1version=&quot;This is one version of someonehappy&quot;
+
+OPTIONS =</FONT></PRE>
+
+<P>As a matter of convention, macros are usually in uppercase, but they can be typed in lowercase as in the previous example. Notice that the OPTIONS macro defined in the list has no text after the equal sign. This means that you have assigned the OPTIONS 
+macro to a null string. Whenever this macro is found in a command list, make will generate the command as if there were no OPTIONS macro at all. By the same token, if you try to refer to an undefined macro, make will ignore it during command generation.
+
+<BR>
+
+<P>Macros can also include other macros, as in the following example:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">BOOK_DIR = /users/book/
+
+MY_CHAPTERS = ${BOOK_DIR}/pete/book</FONT></PRE>
+
+<P>Macros must be defined before they are used on a dependency line, although they can refer to each other in any order.
+
+<BR>
+
+<P>make has internal macros that it recognizes for commonly used commands. The C compiler is defined by the CC macro, and the flags that the C compiler uses are stored in the CFLAGS macro.
+
+<BR>
+
+<P>Macros are referred to in the makefile by enclosing the macro name in curly brackets and preceding the first bracket with a $. If you use macros in the first someonehappy makefile, it might look like this:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"># Time to exercise some macros
+
+CC = /usr/bin/cc
+
+AS = /usr/bin/as
+
+OBJS = main.o dothis.o itquick.o
+
+YN = yes.h no.h
+
+# We could do the following if this part of the path might be used elsewhere
+
+LIB_DIR = /usr/happy/lib
+
+LIB_FILES = ${LIB_DIR}/likeatree.a
+
+someonehappy: ${OBJS} ${LIB_FILES}
+
+${CC} -o someonehappy ${OBJS} ${LIB_FILES}
+
+main.o: main.c
+
+cc -c main.c
+
+dothis.o: dothis.c
+
+cc -c dothis.c
+
+itquick.o: itquick.s
+
+${AS} -o itquick.o itquick.s
+
+fresh:
+
+rm *.o
+
+maybe.h: ${YN}
+
+cp yes.h no.h /users/sue/</FONT></PRE>
+
+<P>make also recognizes shell variables as macros if they are set in the same shell in which make was invoked. For example, if a C shell variable named BACKUP is defined by
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ setenv BACKUP /usr/happy/backup</FONT></PRE>
+
+<P>you can use it as a macro in your makefile. The macro definition
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">OTHER_BACKUP = ${BACKUP}/last_week</FONT></PRE>
+
+<P>would be expanded by make to be
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">/usr/happy/backup/last_week</FONT></PRE>
+
+<P>You can reduce the size of your makefile even further. For starters, you don't have to specify the executables for the C and assembler compilers because these are known to make. You can also use two other internal macros, referred to by the symbols $@ 
+and $?. The $@ macro always denotes the current target; the $? macro refers to all the dependents that are newer than the current target. Both of these macros can only be used within command lines. Thus, the makefile command
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">someonehappy: ${OBJS} ${LIB_FILES}
+
+${CC} -o $@ ${OBJS} ${LIB_FILES}</FONT></PRE>
+
+<P>will generate
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">/usr/bin/cc -o someonehappy main.o dothis.o itquick.o /usr/happy/lib/likeatree.a</FONT></PRE>
+
+<P>when using the following:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ make someonehappy</FONT></PRE>
+
+<P>The $? macro is a little trickier to use, but quite powerful. Use it to copy the yes.h and no.h header files to Sue's home directory whenever they are updated. The makefile command
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">maybe.h: ${YN}
+
+cp $? /users/sue/</FONT></PRE>
+
+<P>evaluates to
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">cp no.h /users/sue/</FONT></PRE>
+
+<P>if only the no.h header file has been modified. It also evaluates to
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">cp yes.h no.h /users/sue/</FONT></PRE>
+
+<P>if both header files have been updated since the last make of someonehappy.
+
+<BR>
+
+<P>So, with a little imagination, you can make use of some well-placed macros to shrink your makefile further, and arrive at the following:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"># Papa's got a brand new makefile
+
+OBJS = main.o dothis.o itquick.o
+
+YN = yes.h no.h
+
+LIB_DIR = /usr/happy/lib
+
+LIB_FILES = ${LIB_DIR}/likeatree.a
+
+someonehappy: ${OBJS} ${LIB_FILES}
+
+${CC} -o $@ ${OBJS} ${LIB_FILES}
+
+main.o: main.c
+
+cc -c $?
+
+dothis.o: dothis.c
+
+cc -c $?
+
+itquick.o: itquick.s
+
+${AS} -o $@ $?
+
+fresh:
+
+rm *.o
+
+maybe.h: ${YN}
+
+cp $? /users/sue/</FONT></PRE>
+
+<BR>
+
+<A NAME="E69E523"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Suffix Rules</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>As mentioned earlier in the &quot;Macros&quot; section, make does not necessarily require everything to be spelled out for it in the makefile. Because make was designed to enhance software development in Linux, it has knowledge about how the compilers 
+work, especially for C. For example, make knows that the C compiler expects to compile source code files having a .c suffix, and that it generates object files having an .o suffix. This knowledge is encapsulated in a suffix rule: make examines the suffix 
+of a target or dependent to determine what it should do next.
+
+<BR>
+
+<P>There are many suffix rules that are internal to make, most of which deal with the compilation of source and linking of object files. The default suffix rules that are applicable in your makefile are as follows:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">.SUFFIXES: .o .c .s
+
+.c.o:
+
+${CC} ${CFLAGS} -c $&lt;
+
+.s.o:
+
+${AS} ${ASFLAGS} -o $@ $&lt;</FONT></PRE>
+
+<P>The first line is a dependency line stating the suffixes that make should try to find rules for if none are explicitly written in the makefile. The second dependency line is terse: Essentially, it tells make to execute the associated C compile on any 
+file with a .c suffix whose corresponding object file (.o) is out of date. The third line is a similar directive for assembler files. The new macro $&lt; has a similar role to that of the $? directive, but can only be used in a suffix rule. It represents 
+the dependency that the rule is currently being applied to.
+
+<BR>
+
+<P>These default suffix rules are powerful in that all you really have to list in your makefile are any relevant object files. make does the rest: If main.o is out of date, make automatically searches for a main.c file to compile. This also works for the 
+itquick.o object file. After the object files are updated, the compile of someonehappy can execute.
+
+<BR>
+
+<P>You can also specify your own suffix rules in order to have make perform other operations. Say, for instance, that you want to copy object files to another directory after they are compiled. You could explicitly write the appropriate suffix rule in the 
+following way:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">.c.o:
+
+${CC} ${CFLAGS} -c $&lt;
+
+cp $@ backup</FONT></PRE>
+
+<P>The $@ macro, as you know, refers to the current target. Thus, on the dependency line shown, the target is a .o file, and the dependency is the corresponding .c file.
+
+<BR>
+
+<P>Now that you know how to exploit the suffix rule feature of make, you can rewrite your someonehappy makefile for the last time (I'll bet you're glad to hear that news).
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"># The final kick at the can
+
+OBJS = main.o dothis.o itquick.o
+
+YN = yes.h no.h
+
+LIB_FILES = /usr/happy/lib/likeatree.a
+
+someonehappy: ${OBJS} ${LIB_FILES}
+
+${CC} -o $@ ${OBJS} ${LIB_FILES}
+
+fresh:
+
+rm *.o
+
+maybe.h: ${YN}
+
+cp $? /users/sue/</FONT></PRE>
+
+<P>This makefile works as your first one did, and you can compile the entire program using the following:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ make somonehappy</FONT></PRE>
+
+<P>Or, just compile one component of it as follows:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ make itquick.o</FONT></PRE>
+
+<P>This discussion only scratches the surface of make. You should refer to the man page for make to further explore its many capabilities.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E395"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>RCS</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>One of the other important factors involved in software development is the management of source code files as they evolve. On any type of software project, you might continuously release newer versions of a program as features are added or bugs are 
+fixed. Larger projects usually involve several programmers, which can complicate versioning and concurrency issues even further. In the absence of a system to manage the versioning of source code on your behalf, it would be very easy to lose track of the 
+versions of files. This could lead to situations in which modifications are inadvertently wiped out or redundantly coded by different programmers. Fortunately, Linux provides just such a versioning system, called RCS (Revision Control System).
+
+<BR>
+
+<P>RCS can administer the versioning of files by controlling access to them. For anyone to update a particular file, the person must record in RCS who she is and why she is making the changes. RCS can then record this information along with the updates in 
+an RCS file separate from the original version. Because the updates are kept independent from the original file, you can easily return to any previous version if necessary. This can also have the benefit of conserving disk space because you don't have to 
+keep copies of the entire file around. This is certainly true for situations in which versions differ only by a few lines; it is less useful if there are only a few versions, each of which is largely different from the next.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E524"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Deltas</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The set of changes that RCS records for an RCS file is referred to as a delta. The version number has two forms. The first form contains a release number and a level number. The release number is normally used to reflect a significant change to the code 
+in the file. When you first create an RCS file, it is given a default release of 1 and level of 1 (1.1). RCS automatically assigns incrementally higher integers for the level number within a release (for example, 1.1, 1.2, 1.3, and so on). RCS enables you 
+to override this automatic incrementing whenever you want to upgrade the version to a new release.
+
+<BR>
+
+<P>The second form of the version number also has the release and level components, but adds a branch number followed by a sequence number. You might use this form if you were developing a program for a client that required bug fixes, but you don't want to 
+place these fixes in the next &quot;official&quot; version. Although the next version may include these fixes anyway, you may be in the process of adding features that would delay its release. For this reason, you would add a branch to your RCS file for 
+this other development stream, which would then progress with sequence increments. For example, imagine that you have a planned development stream of 3.1, 3.2, 3.3, 3.4, and so on. You realize that you need to introduce a bug fix stream at 3.3, which will 
+not include the functionality proposed for 3.4. This bug fix stream would have a numbering sequence of 3.3.1.1, 3.3.1.2, 3.3.1.3, and so on.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>As a matter of good development practice, each level or sequence should represent a complete set of changes. That implies that the code in each version is tested to be free of any obvious bugs.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Is any code completely bug-free? This certainly isn't the case for complex programs in which bugs might become apparent only when code is integrated from different developers. Your aim is to at least make your own part of the world bug-free.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E69E525"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Creating an RCS File</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Let's assume that you have the following file of C code, called finest.c:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">/* A little something for RCS */
+
+#include &lt;stdio.h&gt;
+
+main()
+
+{
+
+printf(&quot;Programming at its finest...\n&quot;);
+
+}</FONT></PRE>
+
+<P>The first step in creating an RCS file is to make an RCS directory:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ mkdir RCS</FONT></PRE>
+
+<P>This is where your RCS files will be maintained. You can then check a file into RCS by issuing the ci (check-in) command. Using your trusty finest.c program, enter the following:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ ci finest.c</FONT></PRE>
+
+<P>This operation prompts for comments, and then creates a file in the RCS directory called finest.c,v, which contains all the deltas on your file. After this, RCS transfers the contents of the original file and denotes it as revision 1.1. Anytime that you 
+check in a file, RCS removes the working copy from the RCS directory.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E526"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Retrieving an RCS File</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>To retrieve a copy of your file, use the co (check-out) command. If you use this command without any parameters, RCS gives you a read-only version of the file, which you can't edit. You need to use the -l option in order to obtain a version of the file 
+that you can edit.
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ co -l finest.c</FONT></PRE>
+
+<P>Whenever you finish making changes to the file, you can check it back in using ci. RCS prompts for text that is entered as a log of the changes made. This time the finest.c file is deposited as revision 1.2.
+
+<BR>
+
+<P>RCS revision numbers consist of release, level, branch, and sequence components. RCS commands typically use the most recent version of a file, unless they are instructed otherwise. For instance, say that the most recent version of finest.c is 2.7. If 
+you want to check in finest.c as release 3, issue the ci command with the -r option, like this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ ci -r3 finest.c</FONT></PRE>
+
+<P>This creates a new release of the file as 3.1. You could also start a branch at revision 2.7 by issuing the following:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ ci -r2.7.1 finest.c</FONT></PRE>
+
+<P>You can remove out-of-date versions with the rcs command and its -o option.
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ rcs -o2.6 finest.c</FONT></PRE>
+
+<BR>
+
+<A NAME="E69E527"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Using Keywords</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>RCS lets you enter keywords as part of a file. These keywords contain specific information about such things as revision dates and creator names that can be extracted using the ident command. Keywords are embedded directly into the working copy of a 
+file. When that file is checked in and checked out again, these keywords have values attached to them. The syntax is
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$keyword$</FONT></PRE>
+
+<P>which is transformed into
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$keyword: value$</FONT></PRE>
+
+<P>Some keywords used by RCS are shown in the following list.
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+$Author$
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The user who checked in a revision</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+$Date$
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The date and time of check-in</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+$Log$
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Accumulated messages that describe the file</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Revision$
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The revision number</FONT>
+
+</TABLE><P>If your finest.c file used the keywords from the previous table, the command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ ident finest.c</FONT></PRE>
+
+<P>produces output like this:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$Author: pete $
+
+$Date: 95/01/15 23:18:15 $
+
+$Log: finest.c,v $
+
+<A NAME="I2"></A># Revision 1.2 95/01/15 23:18:15 pete
+
+# Some modifications
+
+#
+
+# Revision 1.1 95/01/15 18:34:09 pete
+
+# The grand opening of finest.c!
+
+#
+
+$Revision: 1.2 $</FONT></PRE>
+
+<BR>
+
+<A NAME="E68E396"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Retrieving Version Information from an RCS File</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Instead of querying the contents of an RCS file based on keywords, you might be interested in obtaining summary information about the version attributes using the rlog command with the -t option. On the finest.c RCS file, the output from
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ rlog -t finest.c</FONT></PRE>
+
+<P>would produce output formatted like this:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">RCS file: finest.c,v; Working file: finest.c
+
+head: 3.2
+
+locks: pete: 2.1; strict
+
+access list: rick tim
+
+aymbolic names:
+
+comment leader: &quot; * &quot;
+
+total revisions: 10;
+
+description:
+
+You know...programming at its finest...
+
+=========================================================</FONT></PRE>
+
+<P>head refers to the version number of the highest revision in the entire stream. locks describes which users have versions checked out and the type of lock (strict or implicit for the RCS file owner). access list is a list of users who have been 
+authorized to make deltas on this RCS file. The next section illustrates how user access privileges for an RCS file can be changed.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E397"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Administering Access</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>One of the most important functions of RCS is to mediate the access of users to a set of files. For each file, RCS maintains a list of users who have permission to create deltas on that file. This list is empty to begin with, so that all users have 
+permission to make deltas. The rcs command is used to assign user names or group names with delta privileges. The command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ rcs -arick,tim finest.c</FONT></PRE>
+
+<P>enables the users Rick and Tim to make deltas on finest.c and simultaneously restricts all other users (except the owner) from that privilege.
+
+<BR>
+
+<P>Perhaps you change your mind and decide that the user Rick is not worthy of making deltas on your wonderful finest.c program. You can deny him that privilege using the -e option:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">&amp; rcs -erick finest.c</FONT></PRE>
+
+<P>Suddenly, in a fit of paranoia, you can trust no one to make deltas on finest.c. Like a software Mussolini, you place a global lock (which applies to everyone, including the owner) on release 2 of finest.c using the -e and -L options:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ rcs -e -L2 finest.c</FONT></PRE>
+
+<P>so that no one can make changes on any delta in the release 2 stream. Only the file owner could make changes, but this person still would have to explicitly put a lock on the file for every check-out and check-in operation.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E398"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Comparing and Merging Revisions</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Revisions can be compared to each other to discover what, if any, differences lie between them. This can be used as a means of safely merging together edits of a single source file by different developers. The rcsdiff command is used to show differences 
+between revisions existing in an RCS file, or between a checked-out version and the most current revision in the RCS file. To compare the finest.c 1.2 version to the 1.5 version, enter
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ rcsdiff -r1.2 -r1.5 finest.c</FONT></PRE>
+
+<P>The output would appear something like
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">RCS file: finest.c,v
+
+retrieving revision 1.1
+
+rdiff -r1.2 -r1.5 finest.c
+
+6a7,8
+
+&gt;
+
+&gt; /* ...but what good is this? */</FONT></PRE>
+
+<P>This output indicates that the only difference between the files is that two new lines have been added after the original line six. To just compare your current checked-out version with that of the &quot;head&quot; version in the RCS file, simply enter
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ rcsdiff finest.c</FONT></PRE>
+
+<P>Once you have determined if there are any conflicts in your edits with others, you may decide to merge together revisions. You can do this with the rcsmerge command. The format of this command is to take one or two filenames representing the version to 
+be merged, and a third filename indicating the working file (in the following example, this is finest.c).
+
+<BR>
+
+<P>The command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ rcsmerge -r1.3 -r1.6 finest.c</FONT></PRE>
+
+<P>produces output like this:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">RCS file: finest.c,v
+
+retrieving revision 1.3
+
+retrieving revision 1.6
+
+Merging differences between 1.3 and 1.6 into finest.c</FONT></PRE>
+
+<P>If any lines between the two files overlapped, rcsmerge would indicate which lines originated from which merged file in the working copy. You would have to resolve these overlaps by explicitly editing the working copy to remove any conflicts before 
+checking the working copy back into RCS.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>There is an implied order in which the files to be merged are placed in the rcsmerge command. If you are placing a higher version before a lower one at the -r options, this is essentially undoing the edits that have transpired from the older (lower) 
+version to the newer (higher) version.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E68E399"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Tying It All Together Working with </B><B>make</B><B> and RCS</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The make program supports interaction with RCS, enabling you to have a largely complete software development environment. However, the whole issue of using make with RCS is a sticky one if your software project involves several people sharing source 
+code files. Clearly, it may be problematic if someone is compiling files that you need to be stable in order to do your own software testing. This may be more of a communication and scheduling issue between team members than anything else. At any rate, 
+using make with RCS can be very convenient for a single programmer, particularly in the Linux environment.
+
+<BR>
+
+<P>make can handle RCS files through the application of user-defined suffix rules that recognize the ,v suffix. RCS interfaces well with make because its files use the ,v suffix, which works well within a suffix rule. You could write a set of RCS-specific 
+suffix rules to compile C code as follows:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">CO = co
+
+.c,v.o:
+
+${CO} $&lt;
+
+${CC} ${CFLAGS} -c $*.c
+
+- rm -f $*.c</FONT></PRE>
+
+<P>The CO macro represents the RCS check-out command. The $*.c macro is necessary because make automatically strips off the .c suffix. The hyphen preceding the rm command instructs make to continue, even if the rm fails. For main.c stored in RCS, make 
+generates these commands:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">co main.c
+
+cc -O -c main.c
+
+rm -f main.c</FONT></PRE>
+
+<BR>
+
+<A NAME="E68E400"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Summary</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Linux offers two key utilities for managing software development: make and RCS. make is a program that generates commands for compilation, linking, and other related development activities. make can manage dependencies between source code and object 
+files so that an entire project can be recompiled as much as is required for it to be up-to-date. RCS is a set of source code control programs that enables several developers to work on a software project simultaneously. It manages the use of a source code 
+file by keeping a history of editing changes that have been applied to it. The other benefit of versioning control is that it can, in many cases, reduce disk space requirements for a project. CVS is an enhancement to the RCS programs. It automatically 
+provides for the merging of revisions. This capability enables several developers to work on the same source code file at once, with the caveat that they are responsible for any merging conflicts that arise.
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl50.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="#I0" TARGET="_self"><IMG SRC="purtop.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Page Top"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl52.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+</BODY></HTML>
+
+
+

@@ -1,0 +1,1176 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Red Hat Linux Unleashed rhl30.htm </TITLE>
+
+<LINK REL="ToC" HREF="index.htm">
+
+<LINK REL="Index" HREF="htindex.htm">
+
+<LINK REL="Next" HREF="rhl31.htm">
+
+<LINK REL="Previous" HREF="rhl29.htm"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+
+<A NAME="I0"></A>
+
+<H2>Red Hat Linux Unleashed rhl30.htm</H2>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl29.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl31.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+<HR ALIGN=CENTER>
+
+<P>
+
+<UL>
+
+<UL>
+
+<UL>
+
+<LI>
+
+<A HREF="#E68E238" >What Is Tcl?</A>
+
+<LI>
+
+<A HREF="#E68E239" >What Is Tk?</A>
+
+<LI>
+
+<A HREF="#E68E240" >The Tcl Language</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E364" >Tcl Variables and Variable Substitution</A>
+
+<LI>
+
+<A HREF="#E69E365" >Tcl Command Substitution</A>
+
+<LI>
+
+<A HREF="#E69E366" >Quotes</A>
+
+<LI>
+
+<A HREF="#E69E367" >The if Command</A>
+
+<LI>
+
+<A HREF="#E69E368" >The for Command</A>
+
+<LI>
+
+<A HREF="#E69E369" >The while Command</A>
+
+<LI>
+
+<A HREF="#E69E370" >The switch Command</A>
+
+<LI>
+
+<A HREF="#E69E371" >Comments</A></UL>
+
+<LI>
+
+<A HREF="#E68E241" >The Tk Language Extensions</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E372" >Frames</A>
+
+<LI>
+
+<A HREF="#E69E373" >Buttons</A>
+
+<LI>
+
+<A HREF="#E69E374" >Menus and Menu Buttons</A>
+
+<LI>
+
+<A HREF="#E69E375" >List Boxes</A>
+
+<LI>
+
+<A HREF="#E69E376" >Scrollbars</A></UL>
+
+<LI>
+
+<A HREF="#E68E242" >Summary</A></UL></UL></UL>
+
+<HR ALIGN=CENTER>
+
+<A NAME="E66E30"></A>
+
+<H1 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>30</B></FONT></CENTER></H1>
+
+<BR>
+
+<A NAME="E67E30"></A>
+
+<H2 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>Introduction to Tcl and Tk</B></FONT></CENTER></H2>
+
+<BR>
+
+<P>This chapter introduces the Tcl programming language and its most popular extension, Tk. This chapter covers the following topics:
+
+<BR>
+
+<UL>
+
+<LI>What Tcl is
+
+<BR>
+
+<BR>
+
+<LI>What Tk is
+
+<BR>
+
+<BR>
+
+<LI>The Tcl language
+
+<BR>
+
+<BR>
+
+<LI>The Tk language extensions
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>By the end of this chapter, you should understand what Tcl and Tk are, and also how to write simple applications using Tcl and Tk.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E238"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>What Is Tcl?</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Tcl stands for Tool Command Language. (It is pronounced &quot;tickle.&quot;) It is a scripting language similar to the shell scripting languages introduced in <A HREF="rhl13.htm">Chapter 13</A>, &quot;Shell Programming.&quot; Tcl can be used to quickly 
+write text-based application programs.
+
+<BR>
+
+<P>Tcl was developed by John Ousterhout, then of the University of California at Berkeley. Tcl is an interpreted language and therefore has the usual advantages and disadvantages of all interpreted languages. The key disadvantage of interpreted languages 
+is that they execute much slower than compiled languages. The biggest advantage of interpreted languages is that developing applications using them is usually much faster than using compiled languages. This is because you don't have to wait for code to 
+compile and can see any changes you make to the code almost instantly.
+
+<BR>
+
+<P>Tcl has a core set of built-in functions that provide the basic features of its programming language. The true power of Tcl, however, is that it is easily extendible. Application programmers can add functions to Tcl and can even imbed the Tcl function 
+library directly into their applications. This gives programmers the power to include an interpretive scripting language directly in their own application without having to do any of the work of developing the language. This means that you can provide 
+users of your application with all the commands that exist within Tcl and also any that you create and add to the Tcl library.
+
+<BR>
+
+<P>Invoking Tcl commands is done by starting up the Tcl shell, called tclsh. Once you have started tclsh, you can type Tcl commands directly into it. Straying slightly from the &quot;hello world&quot; example that you find in almost every introductory 
+language text, the following example shows you how to write Hello there instead to the screen:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">puts stdout &quot;Hello there&quot;</FONT></PRE>
+
+<P>This command contains three separate words. The first word in the command is the actual command name, puts. The puts command is an abbreviation for put string; it simply writes something to the device that is specified in the second word of the command. 
+In this case the second word tells puts to write to the standard output device, which is typically the screen. The third word in the puts command is &quot;Hello there&quot;. The quotation marks tell Tcl to interpret everything contained within them as a 
+single word.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>The default output device is stdout (standard output, usually the screen), so if you intend to write something to stdout using the puts command, the second argument is optional.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>Even though this is a very simple example, it illustrates the basic command syntax of the Tcl language. There are obviously many more commands contained within Tcl, but the basic syntax of all Tcl commands is the same:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">command parameter1 parameter2 ...</FONT></PRE>
+
+<P>The command can be any of the built-in Tcl commands, or it can be a user-defined extension to the Tcl command set in the form of a Tcl procedure. In either case, the fundamental syntax remains unchanged.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E239"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>What Is Tk?</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Tk, which was also developed by Ousterhout, is a graphical user interface extension to Tcl. Tk is based on the X Window system and allows application developers to develop X Window-based applications much faster than they could using other X Window 
+toolkits, such as Motif or OPEN LOOK.
+
+<BR>
+
+<P>Like Tcl, Tk also has a shell that enables you to enter commands to be interpreted. The Tk shell is a superset of the Tcl command shell. This means that anything you can do in the Tcl command shell you can also do in the Tk command shell. The big 
+difference between the two is that the Tk command shell was designed to enable you to build X Window front ends to your applications.
+
+<BR>
+
+<P>The Tk command shell is called wish, which stands for windowing shell. You must be running X Window when you invoke wish. This is because when wish is invoked, it brings up a window to display the results of any of the graphical commands it interprets. 
+When you invoke wish, a window should appear on your screen.
+
+<BR>
+
+<P>Let's try enhancing the earlier &quot;Hello there&quot; example by displaying Hello there in a button in the wish window. To accomplish this, you must first ensure that wish has been started. This is easily done by typing the following command into an 
+Xterm window:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">wish</FONT></PRE>
+
+<P>This command brings up the wish window and also executes the Tk interpreter in the Xterm window. You can now type Tcl or Tk commands directly in the Xterm window. The commands necessary to print Hello there in a button in the wish window are as follows:
+
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">button .b -text &quot;Hello there&quot; -command exit
+
+pack .b</FONT></PRE>
+
+<P>The syntax of the command on the first line contains the command name followed by a number of arguments. The first argument is the name you are giving to the new button. The rest of the arguments passed to the button command are slightly different from 
+the arguments you saw in the Tcl version of the &quot;Hello there&quot; example. These arguments each consist of two parts. The first part tells Tk what the argument name is, and the second part tells Tk the value of the argument.
+
+<BR>
+
+<P>The second argument has the name text, and the value of the argument is the string you want to display in the button. The third argument has the name command and is used to specify the command that you want to execute when that button is pushed. In this 
+example, you do not really want anything to happen if the button is pushed, so you just tell wish to exit from the current script.
+
+<BR>
+
+<P>The button command created a button widget that you called .b. To get the button to show up in the wish window, you must tell Tk to display the button. This is done by the pack command.
+
+<BR>
+
+<P>In this example, the pack command has only one argument: the name of the button that you created in the first command. When the pack command is executed, a button with the string Hello there displayed in it appears in the wish window.
+
+<BR>
+
+<P>Two things about this example are worth discussing in more detail. The first is why you called the button .b instead of b, bob, or button1. The significance is not the actual text in the button name (this in fact could be bob or button1), but the period 
+(.) preceding the name of the button.
+
+<BR>
+
+<P>The period notation is used to represent the widget hierarchy. Each widget is contained in another widget. The root widget, or the highest level widget, is contained in the wish window and is called . (this is analogous to the Linux directory structure, 
+in which each directory has an owner or a parent directory and the root or highest level directory is named /). Each time you create a new widget, you must tell Tk which widget the new widget should be contained in. In the &quot;Hello there&quot; example, 
+the container specified for the button widget was ., the root widget.
+
+<BR>
+
+<P>The second item of interest is the resizing of the wish window that occurs after you enter the pack command. The wish window shrinks down to a size that is just large enough to hold the button you created. Tk causes the wish window to default to a size 
+just large enough to hold whatever it has in it. Many commands can be used to change this behavior and customize how things are displayed on the screen. You will see some of these commands later in this chapter.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E240"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>The Tcl Language</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Now that you have seen examples of both Tcl and Tk in action, it is appropriate to take a step back and look at the underlying Tcl language in more detail. Tcl contains a rich set of programming commands that support all the features found in most 
+high-level languages. This section discusses many of these features and gives examples that explain how to use them.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E364"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Tcl Variables and Variable Substitution</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Like the UNIX shell programming languages, Tcl supports the concept of variables. Variables are temporary storage places used to hold information that will be needed by a program at some later point in time. In Tcl, variable names can consist of any 
+combination of printable characters.
+
+<BR>
+
+<P>Typically, variable names are meaningful names that describe the information being stored in them. For example, a variable that is being used to hold the monthly sales of a product might have one of the following names:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Monthly_sales
+
+&quot;Monthly sales&quot;</FONT></PRE>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Quotation marks cause Tcl to ignore the whitespace characters (spaces and tabs) in the variable name and treat it as one word. This is discussed in the &quot;Quotes&quot; section of this chapter.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>The value that is placed into a variable can also be any combination of printable characters. Possible values for the Monthly_sales variable are
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">&quot;40,000&quot;
+
+40000
+
+&quot;refer to table 3&quot;</FONT></PRE>
+
+<P>The Tcl set command is used to assign values to variables. The set command can pass either one or two arguments. When two arguments are passed to the set command, the first one is treated as the variable name and the second is the value to assign to 
+that variable.
+
+<BR>
+
+<P>When the set command is used with only one argument, Tcl expects the argument to be the name of a variable, and the set command returns the value of that variable. The following command assigns the value of 40000 to the variable Monthlysales and then 
+echoes the value to the screen:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">set Monthlysales 40000</FONT></PRE>
+
+<P>To print the value of the Monthlysales variable to the screen, you would type
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">set Monthlysales</FONT></PRE>
+
+<P>All values that are assigned to variables are stored as character strings. If you defined a variable to be equal to the integer 40, as in the following command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">set num 40</FONT></PRE>
+
+<P>the value 40 would be represented as the character string 40, not as an integer.
+
+<BR>
+
+<P>So far you have seen how to set variables and how to display their values to the screen, but you have not seen how they are used with commands other than the set command. To use the value of a variable in another command, you must precede the variable 
+name with an unquoted dollar sign ($). This tells Tcl to expect a variable name and to substitute the value of that variable for the variable name. The following example shows a simple use of variable substitution:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">set Monthlysales 40000
+
+expr $Monthlysales * 12</FONT></PRE>
+
+<P>The first command assigns the value of 40000 to the variable Monthlysales. The expr command is used to perform mathematical evaluations of expressions. In this case it takes the value of the variable Monthlysales and multiplies it by 12.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E365"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Tcl Command Substitution</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Command substitution provides a way of substituting the result of a Tcl command (or commands) into an argument of another command. The syntax for command substitution is to include the commands that are being substituted in square brackets, as follows:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">set Monthlysales 40000
+
+set Yearlyforecast [ expr $Monthlysales * 12 ]</FONT></PRE>
+
+<P>The first command once again sets the variable Monthlysales to the value of 40000. The second command makes use of command substitution to set the value of Yearlyforecast equal to the result of the command in the square braces.
+
+<BR>
+
+<P>In this example the substitute consisted of only one command. Tcl allows the substitute to consist of any valid Tcl script, meaning that it can contain any number of Tcl commands.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E366"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Quotes</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Often you want to use commands containing special characters that you don't want Tcl to interpret. By quoting these characters, you hide the special characters from the Tcl interpreter.
+
+<BR>
+
+<P>Three kinds of quoting can be used in Tcl scripts. The first is quoting with double quotation marks (&quot;&quot;). This kind of quoting is used to hide whitespace characters and command separators from the Tcl interpreter.
+
+<BR>
+
+<P>Whenever you have two or more words that you want Tcl to treat as a single word, you can do so by surrounding the words with quotation marks. A good example of this type of quoting is when you want to create variable names that contain more than one 
+word, or you want to assign a value that contains more than one word to a variable, as follows:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">set &quot;Monthly sales&quot; 40000
+
+set Heading1 &quot;Description of item&quot;</FONT></PRE>
+
+<P>The second kind of quoting uses the backslash character (\). This type of quoting can hide any single character from the interpreter. This form of quoting is most commonly used to hide special characters, such as $, from the Tcl interpreter. The 
+following example illustrates the need for backslash quoting:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">set Header1 &quot;The cost is \$3.50&quot;</FONT></PRE>
+
+<P>In this example the Header1 variable is being assigned the value The cost is $3.50. The quotation marks are necessary to hide the fact that there are four separate words contained in the character string. The backslash in this command tells the Tcl 
+interpreter to treat the $ as a regular character instead of the variable substitution character. If the backslash was not used in the command, the interpreter would attempt to substitute the variable named 3.50 into the command. This would result in an 
+error, because there is no variable with that name defined.
+
+<BR>
+
+<P>The third type of quoting available in Tcl uses curly braces ({}). This quoting is more powerful than quoting using quotation marks or backslashes. Quoting using braces hides not only whitespace and command separators from the Tcl interpreter but also 
+any other kind of special character. This type of quoting can be used to eliminate the need for backslash quoting in character strings. The example used for backslash quoting could be written using brace quotation as follows:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">set Header1 {The cost is $3.50}</FONT></PRE>
+
+<P>The most important use of curly brace quoting is to defer the evaluation of special characters. This means that special characters are not processed immediately by the Tcl interpreter but are instead passed to a command that processes the special 
+characters on its own. An example of when deferred evaluation is used is in the while command:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">set count 0
+
+while {$count &lt; 3} {
+
+puts &quot;count equals $count&quot;
+
+set count [expr $count + 1]
+
+}</FONT></PRE>
+
+<P>The while command has to evaluate both of its arguments each time it iterates through the loop. It is therefore necessary for the interpreter to ignore the special characters in both of these arguments and leave the evaluation of these characters up to 
+the while command.
+
+<BR>
+
+<P>Now that you have all the language basics out of the way, you can move on to some of the more advanced Tcl commands.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E367"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>The </B><B>if</B><B> Command</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The if command, just like in other languages, evaluates an expression and, based on the results of the expression, executes a set of commands. The syntax of the if command is the following:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">if {expr} {commands}</FONT></PRE>
+
+<P>The if command expects two arguments. The first argument is an expression that is used to determine whether to execute the commands contained in the second argument. The expression argument is typically an expression that evaluates to either True or 
+False. For example:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$i &lt; 10
+
+$num = 2</FONT></PRE>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Tcl treats any expression that evaluates to zero to be False and any expression that evaluates to a non-zero value to be True.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>Expressions such as the following, although valid, do not make much sense in the context of an if command:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$i + $b
+
+10 * 3</FONT></PRE>
+
+<P>The second argument to the if command is a Tcl script, which can contain any number of Tcl commands. This script is executed if the expression contained in the first argument evaluates to True.
+
+<BR>
+
+<P>The if commands can have one or more elseif commands and one else command associated with them. The syntax for these commands is shown here:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">if {expr} {
+
+commands }
+
+elseif {expr} {
+
+commands }
+
+elseif {expr} {
+
+commands }
+
+else {
+
+commands }</FONT></PRE>
+
+<P>The commands associated with the first if or elseif whose expression evaluates to True are executed. If none of these expressions evaluate to True, the commands associated with the else command are executed.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>The open curly brace must occur on the same line as the word that precedes it. This is because new lines are treated as command separators. If you entered an if command where the if {expr} portion of the command appeared on one line and the rest was 
+on the next line, it would be treated as two separate commands.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E69E368"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>The </B><B>for</B><B> Command</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The for command in Tcl provides a way of implementing for loops. Tcl for loops are very similar to for loops in other languages, such as C. The for command expects four arguments. The first argument is a script that is used to initialize the counter. 
+The second argument is an expression that is evaluated each time through the loop to determine whether to continue. The third argument is used to define the increment to be used on the counter. The fourth argument is the set of commands to be executed each 
+time through the loop.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">for { set i 0} {$i &lt; 10} {incr i 1} {
+
+puts [expr 2 * $i]
+
+}</FONT></PRE>
+
+<P>The preceding loop executes ten times. The counter i is initially set to 0. The for loop executes while i is less than 10, and the value of i is increased by 1 each time through the loop. The command that is executed each time through the loop is the 
+puts command. This evaluates 2 &#180; i each time through the loop and prints the result to the screen. The output that results from running this command is listed here:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">0
+
+2
+
+4
+
+6
+
+8
+
+10
+
+12
+
+14
+
+16
+
+18</FONT></PRE>
+
+<BR>
+
+<A NAME="E69E369"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>The </B><B>while</B><B> Command</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The while command is used to implement while loops in Tcl. while loops are very similar to for loops. The only real difference between them is that the for loop provides more enhanced features for controlling entrance and exit criteria for the loop. The 
+syntax for the while loop is shown in the following example:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">set i 0
+
+while {$i &lt; 10} {
+
+puts [expr 2 * $i]
+
+set i [expr $i + 1]
+
+}</FONT></PRE>
+
+<P>This while loop performs the same function as the example that was presented in the section describing the for loop. It calculates 2 &#180; i each time through the loop and prints the result to the screen. Notice that in this example you have to handle 
+incrementing the counter yourself. With the for loop, the counter incrementing was taken care of by the for command.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E370"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>The </B><B>switch</B><B> Command</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The switch command provides the same function as an if statement that has multiple elseif clauses associated with it. The switch command compares a value (this value is usually stored in a variable) with any number of patterns, and if it finds a match 
+it executes the Tcl code associated with the matching pattern.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">switch $thing {
+
+car {puts &quot;thing is a car&quot;}
+
+truck {puts &quot;thing is a truck&quot;}
+
+default {puts &quot;I don't know what this thing is&quot;}
+
+}</FONT></PRE>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>The Tcl switch command is equivalent to the case statement found in Pascal and some other languages.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>This switch command compares the value that is stored in the thing variable (which must be set prior to these statements, of course) with the string car and the string truck to see if it matches either of them. If the value of the thing variable is 
+equal to car, then thing is a car is displayed on the screen. If the value of the thing variable is equal to truck, then thing is a truck is displayed on the screen. If neither of these cases are true, the default clause is executed and I don't know what 
+this thing is displays on the screen.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Whenever you need to check to see if a variable is equal to one of a number of values, you should use a switch command instead of an if command with multiple elseif clauses. This makes your code much easier to read and understand.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E69E371"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Comments</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>It is always a good idea to include comments in any Tcl code you write&#151;or code you write in any other language, for that matter. This becomes especially important if any of the following situations are possible:
+
+<BR>
+
+<UL>
+
+<LI>Someone else needs to look at or maintain your code.
+
+<BR>
+
+<BR>
+
+<LI>Your programs get large.
+
+<BR>
+
+<BR>
+
+<LI>You won't be looking at code that you have written for long periods of time after you write it.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>Chances are that at least one of these situations will come up with Tcl code you have written.
+
+<BR>
+
+<P>Comments cannot be placed in the middle of a command. They must occur between commands. The pound sign (#) is used to inform Tcl to expect a comment.
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"># This is a valid comment
+
+<BR>
+
+set a 1 ; # This is a valid comment
+
+<BR>
+
+set a 1 # This is an invalid comment</FONT></PRE>
+
+<P>The third comment shown here is invalid because it occurs in the middle of a command.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Recall that Tcl interprets everything up to a newline character or a semicolon to be part of the command.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E68E241"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>The Tk Language Extensions</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Earlier in this chapter, a simple example of Tk displayed Hello there in a button in the wish window. Tk is much more powerful than that example showed. Along with the button widget are many other widgets provided by Tk. These include menus, scrollbars, 
+and list boxes. This section gives you an overview of some of the other Tk widgets and gives short examples explaining how these widgets can be used.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E372"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Frames</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Frame widgets are containers for other widgets. They do not have any interesting behavior like the other Tk widgets. The only visible properties of frame widgets that you can set are their color and their border appearance. You can give three different 
+border appearances to a frame widget: flat, raised, and sunken. You can experiment with the different frame widgets to see how they look.
+
+<BR>
+
+<P>The flat border frame widget is not too exciting. It looks exactly the same as the default wish window (because the default border appearance is flat).
+
+<BR>
+
+<BR>
+
+<A NAME="E69E373"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Buttons</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Button widgets are used to get specific input from a user. A button can be turned on or activated by the user of a Tk program by moving the mouse pointer over the button and then pressing the left mouse button. Tk provides the following three kinds of 
+button widgets:
+
+<BR>
+
+<UL>
+
+<LI>Button
+
+<BR>
+
+<BR>
+
+<LI>Check button
+
+<BR>
+
+<BR>
+
+<LI>Radio button
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>The button widget is used to initiate some specific actions. The button usually has a name such as &quot;Load file&quot; that describes the action that results if you press the button.
+
+<BR>
+
+<P>Check button widgets are used to allow users of a program to turn program options on or off. When the check button is shaded the program option is on, and when the check button is not shaded the program option is off.
+
+<BR>
+
+<P>Radio buttons are similar to check buttons except that they are defined in groups, where only one member of a group of radio buttons is allowed to be on at one time. This means that if one radio button in a group of radio buttons is on, none of the 
+other radio buttons in that group can be turned on. When the radio button is shaded it is on, and when the radio button is not shaded it is off.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E374"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Menus and Menu Buttons</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Menu widgets are used to implement pull-down menus, cascading menus, and pop-up menus. A menu is a top-level widget that contains a set of menu entries that have values or commands associated with them. Five kinds of entries can be used in menus:
+
+<BR>
+
+<UL>
+
+<LI>Cascade entries display a submenu when the mouse pointer passes over them. The cascade entry is similar in function to the menu button widget.
+
+<BR>
+
+<BR>
+
+<LI>Command entries invoke a Tcl script when activated. The command entry is similar to the button widget in function.
+
+<BR>
+
+<BR>
+
+<LI>Check button entries toggle a program option between on and off. When the check button is shaded the option is on, and when the check button is not shaded it is off. The check button entry is similar in function to the check button widget.
+
+<BR>
+
+<BR>
+
+<LI>Radio button entries toggle a program option. The difference between the radio button entry and the check button entry is that radio buttons are typically defined in groups, with the restriction that only one of the radio buttons in the group can be 
+active at once. The radio button entry is similar in function to the radio button widget.
+
+<BR>
+
+<BR>
+
+<LI>Separator entries display a horizontal line in the menu. This is used for appearance purposes only. There is no behavior associated with a separator entry.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>The main difference between the menu entries and the button widgets is that the button widgets can exist by themselves, but the menu entries must exist within the context of a menu widget.
+
+<BR>
+
+<P>Menu button widgets are similar to button widgets. The only real difference between the two is that when menu buttons are invoked they bring up menus instead of executing Tcl scripts as button widgets would. The menu button name usually describes the 
+types of menu entries contained in the menu that the menu button activates. This means that you should find menu entries that perform some kind of file operations contained within the File menu.
+
+<BR>
+
+<P>You can activate a menu by moving the mouse pointer to the menu button widget and pressing the left mouse button. This activates the menu associated with the menu button and displays the menu entries that are contained in that menu to the screen. You 
+can now move the mouse pointer down through the list of menu entries and select the one you want.
+
+<BR>
+
+<P>The File menu contains two command entries (the Open entry and Quit entry), one cascade entry (the Save As entry), and one separator entry. The menu that comes up as a result of clicking the mouse pointer on the Save As cascade entry contains three 
+command entries: the Text entry, the Ver 1 file entry, and the Ver 2 file entry.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E375"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>List Boxes</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The list box widget enables users of a Tk application to select items from a list of one or more items. If the number of items to be displayed in the list box is larger than the number of lines in the list box, you can attach scrollbars to make the 
+extra items accessible.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E376"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Scrollbars</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Scrollbar widgets are used to control what is displayed in other widgets. Scrollbar widgets are attached to other widgets to allow users to scroll up and down through the information contained in the widget. You typically put scrollbars on any widget 
+that is designed to contain an arbitrary number of lines of information (such as a list box) or on widgets that contain more lines of information than the widget can display, given its size.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E242"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Summary</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>This chapter started off by introducing Tcl and the Tk tool kit and describing the uses of both. Although this chapter contained a lot of information, it barely scratched the surface of the programming tools provided by Tcl and the Tk tool kit.
+
+<BR>
+
+<P>Tcl has many more programming features than were described in this book. Some of the most notable are arrays, lists, and procedures.
+
+<BR>
+
+<P>Not all of the Tk widgets were described here, either. Some of the widgets that were not described are canvasses, scales, labels, messages, and textedit widgets.
+
+<BR>
+
+<P>Tk is just one example of an extension to Tcl. There are many other extensions available that extend the behavior of Tcl in different ways. Some of these extensions are as follows:
+
+<BR>
+
+<UL>
+
+<LI>Ak: An audio extension for Tcl, Ak provides numerous commands for sound recording and playback.
+
+<BR>
+
+<BR>
+
+<LI>XF: This is an interactive graphical user interface developer for Tk.
+
+<BR>
+
+<BR>
+
+<LI>Tcl-DP: This is a Tcl extension that helps programmers develop distributed applications using Tcl.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>If you would like to learn more about Tcl and Tk, a good place to start is the manual pages for Tcl, Tk, and any of the specific commands you want information about. There are also a few books available that are devoted to Tcl and Tk programming.<A 
+NAME="I2"></A>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl29.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="#I0" TARGET="_self"><IMG SRC="purtop.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Page Top"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl31.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+</BODY></HTML>
+
+
+

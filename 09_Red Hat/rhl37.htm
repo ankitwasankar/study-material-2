@@ -1,0 +1,1084 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Red Hat Linux Unleashed rhl37.htm </TITLE>
+
+<LINK REL="ToC" HREF="index.htm">
+
+<LINK REL="Index" HREF="htindex.htm">
+
+<LINK REL="Next" HREF="rhl38.htm">
+
+<LINK REL="Previous" HREF="rhl36.htm"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+
+<A NAME="I0"></A>
+
+<H2>Red Hat Linux Unleashed rhl37.htm</H2>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl36.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl38.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+<HR ALIGN=CENTER>
+
+<P>
+
+<UL>
+
+<UL>
+
+<UL>
+
+<LI>
+
+<A HREF="#E68E319" >The root Account</A>
+
+<LI>
+
+<A HREF="#E68E320" >Starting and Stopping the System</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E413" >Booting from a Floppy</A>
+
+<LI>
+
+<A HREF="#E69E414" >Using LILO To Boot</A>
+
+<LI>
+
+<A HREF="#E69E415" >Shutting Down Linux</A></UL>
+
+<LI>
+
+<A HREF="#E68E321" >Mounting File Systems</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E416" >Mounting a Floppy</A>
+
+<LI>
+
+<A HREF="#E69E417" >Creating a New File System</A>
+
+<LI>
+
+<A HREF="#E69E418" >Unmounting File Systems</A>
+
+<LI>
+
+<A HREF="#E69E419" >Checking File Systems</A>
+
+<LI>
+
+<A HREF="#E69E420" >Using a File as Swap Space</A></UL>
+
+<LI>
+
+<A HREF="#E68E322" >Compressing Files with gzip and compress</A>
+
+<LI>
+
+<A HREF="#E68E323" >Using tar</A>
+
+<LI>
+
+<A HREF="#E68E324" >Backups</A>
+
+<LI>
+
+<A HREF="#E68E325" >Setting Up Your System</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E421" >Setting the System Name</A>
+
+<LI>
+
+<A HREF="#E69E422" >Using a Maintenance Disk</A>
+
+<LI>
+
+<A HREF="#E69E423" >Forgetting the root Password</A>
+
+<LI>
+
+<A HREF="#E69E424" >Setting the Login Message</A></UL>
+
+<LI>
+
+<A HREF="#E68E326" >Summary</A></UL></UL></UL>
+
+<HR ALIGN=CENTER>
+
+<A NAME="E66E37"></A>
+
+<H1 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>37</B></FONT></CENTER></H1>
+
+<BR>
+
+<A NAME="E67E37"></A>
+
+<H2 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>System Administration Basics</B></FONT></CENTER></H2>
+
+<BR>
+
+<P>So far in this book, you've seen how to use Linux for many different tasks. However, there are some issues we haven't dealt with because they are used rarely, or only by a single administrator (who may be the only user). This chapter looks at simple 
+system administration tasks, including the following:
+
+<BR>
+
+<UL>
+
+<LI>Starting and shutting down the system properly
+
+<BR>
+
+<BR>
+
+<LI>Managing the disk partitions
+
+<BR>
+
+<BR>
+
+<LI>Making backups
+
+<BR>
+
+<BR>
+
+<LI>gzip, compress, and tar
+
+<BR>
+
+<BR>
+
+<LI>Message of the day
+
+<BR>
+
+<BR>
+
+<LI>Emergency boot floppies
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>Of course, we can't cover everything you need to know to run a system efficiently. Instead, we will look at the basic information and utilities and leave you to experiment. For more details, check the documentation files with your Linux operating 
+system. Better yet, consider purchasing a good UNIX system administration book, such as Linux System Administrator's Survival Guide (Sams Publishing, 1995). Much of the information in a UNIX book will be applicable to Linux.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E319"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>The </B><B>root</B><B> Account</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The root login, as you probably know, has no limitations at all. It can do anything anywhere, access any files it wants, and control any processes. This power has its price, though: Any mistake can be disastrous, sometimes resulting in damage to the 
+entire operating system.
+
+<BR>
+
+<P>A mystique has built up in the UNIX community about the root login, because it holds unlimited power over the system. The tendency to want to use this superuser login is overwhelming for many. However, a simple rm command in the wrong place can spell 
+many hours of trouble.
+
+<BR>
+
+<P>For this reason, the root account should be employed only for limited system use, and then only when its power is necessary (such as when rebuilding a kernel, installing new software, or setting up new file systems). As a general rule, you should not 
+use the root account for routine tasks.
+
+<BR>
+
+<P>Naturally, many people use root for their daily Linux sessions, ignoring any advice because they think they won't make mistakes. In truth, everyone makes a mistake occasionally. Check with any UNIX system administrator and you'll find that accidents 
+happen with the root account. (I have managed to delete entire file systems more than once while trying to do two things at the same time.) Although many people will ignore the rule about using root only when necessary, most of them eventually find out why 
+this rule is important!
+
+<BR>
+
+<BR>
+
+<A NAME="E68E320"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Starting and Stopping the System</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>There are several ways of booting the Linux operating system, as well as a few ways to safely shut it down. Some were mentioned earlier in this book. Because Linux can be installed in many different ways, there is no single &quot;right&quot; method of 
+booting the operating system, so we must look at both hard-disk-based and floppy-disk-based boot procedures.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E413"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Booting from a Floppy</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>A boot floppy, as its name implies, is a floppy disk that boots the Linux kernel. A boot floppy has the root partition installed on the floppy itself instead of the hard drive (although both may co-exist). Without the root partition, Linux would be 
+unable to find the hard drives for the rest of the operating system.
+
+<BR>
+
+<P>You can create Linux boot floppies with the setup routine included in most distributions of the operating system. Check the documentation or information files that came with your Linux distribution, if there are any. Alternatively, most Linux setup 
+utilities have a menu-driven interface that prompts you for a boot floppy setup when you rebuild or reconfigure the kernel. You should use this procedure to make a boot floppy, which is also useful for emergencies.
+
+<BR>
+
+<P>In most cases, a boot floppy is used only in emergencies when your system won't start up normally. The boot floppy enables you to load Linux, and then mount the hard drives that are causing the problem to check for damage. Luckily, this is not required 
+very often. If you haven't used LILO to choose the partition to boot or set your boot sequence to Linux by default, you may need the boot floppy to start up Linux. In this case, the boot floppy is much like a DOS boot floppy.
+
+<BR>
+
+<P>You can create a boot floppy from scratch by copying over the kernel image from the hard drive. The kernel image is usually in the file vmlinuz, vmlinux, Image, or /etc/Image, depending on the distribution of Linux. The Red Hat distribution uses 
+vmlinuz, which is a compressed kernel (hence the z in the name). Compressed kernels uncompress themselves as they are loaded into memory at boot time. The vmlinuz image expands to vmlinux. (Compressed kernels take up less disk space; that's why they are 
+used.)
+
+<BR>
+
+<P>After you have identified the kernel, you can set the root device in the kernel image to point to the root partition on either the floppy or hard drive. In this case, we want the floppy. The root partition is set with the rdev command, whose format is 
+as follows:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">rdev kernelname device</FONT></PRE>
+
+<P>where kernelname is the name of the kernel image, and device is the name of the Linux root partition. To set a floppy boot device with the file vmlinuz, the command would be
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">rdev vmlinuz /dev/fd0</FONT></PRE>
+
+<P>for the first floppy on the system. You can set other parameters with rdev as well if you want to change system defaults during boot. Check the rdev man page for the rdev help file for complete information.
+
+<BR>
+
+<P>As a final step in creating the boot floppy, copy the kernel image to the floppy disk. You should use a preformatted diskette (format with DOS if necessary) to allow the Linux routines to identify the type of diskette and its density. To copy the 
+vmlinuz kernel to the first floppy drive, use this command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">cp vmlinuz /dev/fd0</FONT></PRE>
+
+<P>The floppy should now be ready to boot the system. You might not be able to boot the system without the floppy if you changed the location of the root partition. You can change the root partition back to the hard drive with the rdev command after 
+completing the boot floppy, which enables you to boot from either. This can be useful when you have diskettes for several different boot configurations. You can also create the boot floppy from the Linux setup program.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E414"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Using LILO To Boot</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>LILO is a program that resides in the boot sector of your hard drive and allows Linux to be booted from the hard disk either after you tell it to or after a default number of seconds has elapsed.
+
+<BR>
+
+<P>LILO can also be used with other operating systems such as OS/2 and DOS. If you have LILO set to autoboot Linux, you must interrupt the process by pressing the Ctrl, Alt, or Shift keys when the bootup is started if you want to boot into another 
+operating system. This displays a boot prompt that enables you to specify another operating system.
+
+<BR>
+
+<P>If LILO is set to allow a given time before it boots into Linux, you can use the Ctrl-Alt-Shift sequence to interrupt the boot process before the timer expires and Linux starts loading. Finally, if LILO is set to not autoboot into Linux, but to wait for 
+explicit instructions, you must press Enter to boot Linux or type the name of the other operating system.
+
+<BR>
+
+<P>Some Linux distributions have a configuration file in the directory /etc/lilo that can be edited to provide boot information, while other versions of Linux configure LILO during the installation process. If the latter is the case, you can change the 
+settings with the setup utility. Some versions of Linux use the configuration file /etc/lilo.conf instead of /etc/lilo.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E415"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Shutting Down Linux</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>You can't just turn off the power switch! This can cause damage to the file system, sometimes irreversibly. Because Linux keeps many files open at once, as well as several processes, they must all be closed down properly before you cycle the power to 
+the unit.
+
+<BR>
+
+<P>There are a few ways to shut the Linux system down, but the formal method is to use the shutdown command. The syntax for shutdown is
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">shutdown [minutes] [warning]</FONT></PRE>
+
+<P>where minutes is the number of minutes to wait before shutting the system down and warning is an optional message displayed for all users currently logged in. Some versions of shutdown allow the word now instead of a time, while others require either no 
+argument or the number 0 to shut the system down immediately without waiting. You can have shutdown reboot the system after the shutdown by adding the argument -r (for reboot).
+
+<BR>
+
+<P>Using shutdown is best if you have other users on your system, because it gives them a warning that they should log out, and it prevents loss of information. It can also be used to automate a shut-down much later (such as at midnight), with messages 
+just before that time warning any users still logged in.
+
+<BR>
+
+<P>If you can't wait and want to shut the system down immediately, use the halt command or the &quot;three-finger salute&quot; of Ctrl-Alt-Delete. This immediately shuts down all the processes and halts the system as quickly as possible. Then the power can 
+be shut off.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Some Linux distributions don't support Ctrl-Alt-Delete, and a couple of older distributions use it to halt the system immediately without terminating processes properly. This can cause damage. Check the documentation or man pages for 
+information.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E68E321"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Mounting File Systems</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>File systems are not available until they are mounted onto the Linux main file system. Even hard drives must be mounted, because only the root file system is available in the / directory until the rest are mounted. The mount command is used to mount a 
+file system.
+
+<BR>
+
+<P>During the boot process, the mount command is used from the startup files (such as the /etc/rc file or files under the /etc/rc.d directory) to mount all the File Systems maintained in the file /etc/fstab. You can look at the file to see the type of 
+information maintained there. Every file system that is mounted during the boot process has an entry giving its device name, its mount directory (called the mount point), the type of file system it is, and any options that apply.
+
+<BR>
+
+<P>You can add a new file system from a hard disk, a CD-ROM, a floppy, or any other type of device that provides a file system supported by Linux, using the mount command. The format is
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">mount filesystem mountpoint</FONT></PRE>
+
+<P>where filesystem is the name of the device and mountpoint is where in the Linux file system it should be mounted. For example, if you want to mount a SCSI CD-ROM to the file system as /usr/cdrom, issue the following command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">mount /dev/scd0 /usr/cdrom</FONT></PRE>
+
+<P>The directory /usr/cdrom must be created before the command is given, or the mount command will generate an ambiguous error. You should replace /dev/scd0 with the name of your CD-ROM device driver (/dev/cd0 for most non-SCSI CD-ROM drives, and /dev/scd0 
+for SCSI CD-ROM drivers). When the file system has been mounted properly, changing to /usr/cdrom lets you access all the files on the CD-ROM as if they were part of the normal file system.
+
+<BR>
+
+<P>If your /etc/fstab file doesn't have any entries in it already, you have to mount the file system with a slightly different syntax:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">mount -t fstypefilesystem mountpoint</FONT></PRE>
+
+<P>where fstype is the type of file system (such as ISO9660, MSDOS, and so on). The rest of the arguments are the same as the previous example. The -t option is used when the file system to be mounted doesn't already have an entry in the /etc/fstab file.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E416"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Mounting a Floppy</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>You can mount a floppy disk with a command similar to the one in the CD-ROM example just discussed. To mount a floppy in the first floppy drive on the directory /mnt, issue the following command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">mount /dev/fd0 /mnt</FONT></PRE>
+
+<P>If the file system is not the default value used by Linux, the type of file system must be specified. For example, to mount a floppy using the ext2 file system, use the -t option of the mount command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">mount -t ext2 /dev/fd0 /mnt</FONT></PRE>
+
+<BR>
+
+<A NAME="E69E417"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Creating a New File System</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>To create a file system on a floppy (so it can be mounted), you should use the utility mke2fs or the command mkdev fs, depending on the version of Linux. To use mke2fs, for example, issue the command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">mke2fs /dev/fd0 1440</FONT></PRE>
+
+<P>to create a floppy file system on a 1.44MB 3.5-inch diskette.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E418"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Unmounting File Systems</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>To detach a mounted file system from your Linux file system, use the umount command with the name of the device. For example, to unmount a floppy in /dev/fd0, issue the command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">umount /dev/fd0</FONT></PRE>
+
+<P>and the floppy will be removed from the mounted point. Be sure to type umount instead of unmount!
+
+<BR>
+
+<P>If you want to remove the current floppy and replace it with another, you can't simply swap them. The current floppy must be unmounted, and then the new one must be mounted. Failure to follow this process can result in corruption or erroneous directory 
+listings.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E419"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Checking File Systems</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Every now and again a file might get corrupted or a file system's inode table might get out of sync with the disk's contents. For these reasons, it is a good idea to check the file system at regular intervals. Several utilities can check file systems, 
+depending on the version of Linux. The utility fsck is available for some systems, while the utility e2fsck is designed for Linux's ext2fs file system. Many Linux versions include other utilities such as xfsck and efsfck for different file systems. In many 
+cases, the fsck command is linked to the individual file system versions.
+
+<BR>
+
+<P>To use e2fsck to check a file system, issue the command with the device name and the options a (automatically correct errors) and v (verbose output):
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">e2fsck -av /dev/hda1</FONT></PRE>
+
+<P>This command checks and repairs any problems on the /dev/hda1 (or whatever device driver you specify) partition. If any corrections have been made to a partition, you should reboot the machine as soon as possible to allow the system to resync its 
+tables.
+
+<BR>
+
+<P>Whenever possible, it is a good idea to unmount the file system before checking it, because this can prevent problems with open files. Of course, you can't unmount the primary root partition while running from it, so you can boot from a boot floppy that 
+contains the check utilities, and start them from the floppy.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E420"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Using a File as Swap Space</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>When you installed Linux, your setup program probably set up a partition specifically for the swap space. You can, when the original installation has been completed, set Linux to use a file instead of the partition, thus freeing up the partition's disk 
+space.
+
+<BR>
+
+<P>Generally, there is a performance degradation with using a file because the file system is involved, although the effect can be small on fast disks and CPUs. However, this is a useful technique when you need to add more swap space, such as when you 
+temporarily want to run a swap-space-intensive application such as a compiler.
+
+<BR>
+
+<P>To create a file used as the swap space, issue the following command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">dd if=/dev/zero of=/swap bs=1024 count=16416</FONT></PRE>
+
+<P>This creates a file (called swap) for swap space that is about 16MB (in this case, 16416 blocks). If you want a different size, replace the number after count with the correct value in bytes. Next, physically create the file swap file with the command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">mkswap /swap 16416</FONT></PRE>
+
+<P> (the number should match the blocks determined earlier) and turn the swap space on with the command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">swapon /swap</FONT></PRE>
+
+<P>If you want to remove the swap file and use the swap partition, use the command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">swapoff /swap</FONT></PRE>
+
+<P>followed by a standard rm command to remove the file.
+
+<BR>
+
+<P>Swap files can't be larger than 16MB with most Linux versions, but you can have up to eight swap files and partitions on your system.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E322"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Compressing Files with </B><B>gzip</B><B> and </B><B>compress</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Files abound on a UNIX system, adding up to a large chunk of disk real estate. Instead of deleting files, an alternative is to compress them so that they take up less space. Several compression utilities are available for UNIX and Linux systems. The 
+most commonly used are compress and the newer GNU gzip.
+
+<BR>
+
+<P>When run on a file, compress creates a smaller file with the extension .Z, which immediately identifies the file as being compressed. To compress a file, use the following command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">compress filename</FONT></PRE>
+
+<P>You can also use wildcards to compress several files at once. compress supports a number of options, but most aren't used often. By default, when a file is compressed, the uncompressed original is deleted, although this can be changed with a 
+command-line option.
+
+<BR>
+
+<P>To uncompress a compressed file, run the uncompress program:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">uncompress filename</FONT></PRE>
+
+<P>Alternatively, you can use a wildcard such as *.Z to uncompress all the compressed files. Remember to include the .Z suffix when specifying the filename.
+
+<BR>
+
+<P>The gzip utility is a new compression tool that uses different algorithms than compress. The gzip program has a few extra features that were added since compress was released, such as adjustable compression (the more compression required, the longer it 
+takes to compress). To use gzip, specify the filename to be compressed and the compression type:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">gzip -9 filename</FONT></PRE>
+
+<P>The -9 option, which tells gzip to use the highest compression factor, will probably be the option you use the most. Alternatively, leave this option off and let gzip work with its default settings. A gzip compressed file has the extension .gz appended, 
+and the original file is deleted. To uncompress a gzipped file, use either the gunzip utility or gzip -d filename.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E323"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Using </B><B>tar</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The tar (tape archiver) utility has been used with UNIX systems for many years. Unfortunately, it's not very friendly and can be quite temperamental at times, especially when you're unfamiliar with the syntax required to make tar do something useful.
+
+<BR>
+
+<P>The tar program is designed to create a single archive file, much as the ZIP utilities do for DOS. With tar, you can combine many files into a single larger file, which makes it easier to move the collection or back it up to tape. The general syntax 
+used by tar is as follows:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">tar [options] [file]</FONT></PRE>
+
+<P>The options available are lengthy and sometimes obtuse. Files can be specified with or without wildcards. A simple example of creating a tar archive file is
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">tar cvf archive1.tar /usr/tparker</FONT></PRE>
+
+<P>which combines all the files in /usr/tparker into a tar archive called archive1.tar. The c option tells tar to create the archive; the v tells it to be verbose, displaying messages as it goes; and the f tells it to use the filename archive1.tar as the 
+output file.
+
+<BR>
+
+<P>The extension .tar is not automatically appended by tar, but is a user convention that helps identify the file as an archive. This convention isn't widely used, though, although it should be as it helps identify the file.
+
+<BR>
+
+<P>The c option creates new archives. (If the file existed before, it is deleted.) The u (update) option is used to append new files to an existing archive, or to create the archive if it doesn't exist. This is useful if you keep adding files. The x option 
+is used to extract files from the archive. To extract with the tar command all the files in the archive in the earlier example, you would use the command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">tar xvf archive1.tar</FONT></PRE>
+
+<P>There's no need to specify a filename, because the filenames and paths will be retained as the archive is unpacked. It's important to remember that the path is saved with the file. So if you archived /usr/tparker and then moved into /usr/tparker and 
+issued the extract command, the files would be extracted relevant to the current directory, which would place them in /usr/tparker/usr/tparker. You must be very careful to extract files properly. If you want to force a new directory path on extracted 
+files, a command-line option allows this.
+
+<BR>
+
+<P>The tar system does not remove the original files as they are packed into the archive, nor does it remove the archive file when files are extracted. These steps must be performed manually.
+
+<BR>
+
+<P>You can use tar to copy files to tapes or floppies by specifying a device name and the f option as a device name. To archive files in /usr/tparker to a floppy disk in the first drive, you could use the following command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">tar cvf /dev/fd0 /usr/tparker</FONT></PRE>
+
+<P>This can cause a problem if the floppy doesn't have enough capacity, however, so tar lets you specify the capacity with the k option. In this case, the command for a 1.44MB floppy is as follows:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">tar cvfk /dev/fd0 1440 /usr/tparker</FONT></PRE>
+
+<P>If the floppy is full before the entire archive has been copied, tar prompts you for another one. It's important to keep the arguments in the right order. You see that the f is before the k, so the device name must be before the capacity. All the 
+argument keyletters are gathered together instead of issued one at a time followed by their value, which is one aspect of tar that can be very confusing.
+
+<BR>
+
+<P>As a last issue for backing up to floppy, it is sometimes necessary to tell the tar program about the blocking used (blocking identifies how many blocks are used for each chunk of information on the device). A floppy usually has a blocking factor of 4, 
+so the command becomes the following:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">tar cvfkb /dev/fd0 1440 4 /usr/tparker</FONT></PRE>
+
+<P>A final problem with tar is that it can't always handle a generic device such as /dev/fd0, and must be specifically told the disk type.
+
+<BR>
+
+<P>For more complete information on all the options used by tar, check the man pages or, even better, a good system administration book.
+
+<BR>
+
+<P>You can use tar to archive compressed files, too, in the same manner. You can also compress a tar file without any problems. In these cases, you might get filenames such as
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">filename.tar.gz</FONT></PRE>
+
+<P>which show that you should run gunzip first to recover the tar file, and then run tar to extract the files in the archive. You can run the commands together with pipes:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">gunzip filename.tar.gz | tar xvf -</FONT></PRE>
+
+<P>The hyphen as the tar filename after the pipe symbol is standard UNIX terminology for taking the input from the pipe (stdin).
+
+<BR>
+
+<BR>
+
+<A NAME="E68E324"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Backups</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The three rules of system administration are back up, back up, and back up. This might sound silly and trite, but a backup can save you whenever you do something silly to the file system, or when problems occur. With UNIX, most backups are made to a 
+tape device using tar, although many Linux users don't have tape units available and have to resort to floppies.
+
+<BR>
+
+<P>Backups are made with the tar utility, as I mentioned earlier. The procedure is exactly the same as I showed you earlier. To back up the entire system on floppy, the command is
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">tar -cvfbk /dev/fd0 1440 4 /</FONT></PRE>
+
+<P>To back up to a high-capacity tape device larger than the file system (and hence not needing a capacity limit) called /dev/rct0, the command is
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">tar -cvfk /dev/rct0 20 /</FONT></PRE>
+
+<P>In many cases, you won't want to back up the entire system, because it's easier to reinstall off a CD-ROM. However, you should back up your user files by either backing up the entire /usr directory or specifically backing up your own home directory.
+
+<BR>
+
+<P>To restore a backup, you use the tar command again:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">tar -xvf /dev/rct0</FONT></PRE>
+
+<P>This recovers all files from the tape device /dev/rct0. You can explicitly restore specific files if you need to.
+
+<BR>
+
+<P>Several commercial products offer automated backups, although you can do this quite easily with the cron command.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E325"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Setting Up Your System</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>You can perform several little tasks to tweak or optimize your Linux system, although in many cases they are dependent on the version you are running and other applications coexisting. We can look at a few of the miscellaneous tasks here.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E421"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Setting the System Name</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The system name is contained in a file called /etc/HOSTNAME. It is simply the name the system calls itself for identification, which is especially useful if you are networking your Linux machine with others. You can call the system anything you want.
+
+<BR>
+
+<P>To set your system name (also called a host name), you can either edit the system files (which should be followed by a reboot to make the changes effective) or use the hostname command. The command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">hostname hellfire</FONT></PRE>
+
+<P>sets the machine's name to hellfire.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E422"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Using a Maintenance Disk</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Every system should have a maintenance disk that enables you to check the root file system, recover from certain disk problems, and solve simple problems (such as forgetting your root password). The emergency disks, also called the boot/root floppies, 
+are created with the setup program in most distributions of Linux when the configuration is changed.
+
+<BR>
+
+<P>You can usually create an emergency boot disk from the CD-ROM that the system came on, as well as obtain the necessary files from FTP sites.
+
+<BR>
+
+<P>After you have booted your machine with the emergency disk, you can mount the disk partitions with the mount command.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E423"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Forgetting the </B><B>root</B><B> Password</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>This is an embarrassing and annoying problem, but luckily one easily fixed with Linux. (If only other UNIX systems were so easy!) To recover from a problem with the root password, use a boot floppy and boot the system. Mount the root partition, and edit 
+the /etc/passwd file to remove any password for root; then, reboot from the hard disk.
+
+<BR>
+
+<P>After the system has booted, you can set a password again.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>This points out one major security problem with Linux: Anyone with a boot floppy can get unrestricted access to your system!</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E69E424"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Setting the Login Message</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>If you have more than one user on the system, you can display information about the system, its maintenance, or changes in a file called /etc/motd (message of the day). The contents of this file are displayed whenever someone logs in.
+
+<BR>
+
+<P>To change the /etc/motd file, use any text editor and save the contents as ASCII. You can make the contents as long as you want, but readers usually appreciate brevity. The /etc/motd file is useful for informing users of downtime, backups, or new 
+additions. You can also use it to give a more personal feel to your system.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E326"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Summary</B></FONT></CENTER></H3>
+
+<BR>
+
+<P><A NAME="I2"></A>System administration is not a complicated subject, unless you want to get into the nitty-gritty of your operating system and its configuration. For most Linux users who use the operating system for their personal experimentation, the 
+administration steps explained in this chapter should be sufficient for most purposes. If you want to get into more detail, check out a good UNIX system administration book.
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl36.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="#I0" TARGET="_self"><IMG SRC="purtop.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Page Top"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl38.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+</BODY></HTML>
+
+
+

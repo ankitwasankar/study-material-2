@@ -1,0 +1,1887 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Red Hat Linux Unleashed rhl49.htm </TITLE>
+
+<LINK REL="ToC" HREF="index.htm">
+
+<LINK REL="Index" HREF="htindex.htm">
+
+<LINK REL="Next" HREF="rhl50.htm">
+
+<LINK REL="Previous" HREF="rhl48.htm"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+
+<A NAME="I0"></A>
+
+<H2>Red Hat Linux Unleashed rhl49.htm</H2>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl48.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl50.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+<HR ALIGN=CENTER>
+
+<P>
+
+<UL>
+
+<UL>
+
+<UL>
+
+<LI>
+
+<A HREF="#E68E385" >Gopher and Linux</A>
+
+<LI>
+
+<A HREF="#E68E386" >Configuring Gopher</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E508" >The gopherd.conf File</A>
+
+<LI>
+
+<A HREF="#E69E509" >The gopherdlocal.conf File</A>
+
+<LI>
+
+<A HREF="#E69E510" >Setting Up the Makefile</A>
+
+<LI>
+
+<A HREF="#E69E511" >WAIS and Gopher</A></UL>
+
+<LI>
+
+<A HREF="#E68E387" >Setting Up Your Gopher Directories</A>
+
+<LI>
+
+<A HREF="#E68E388" >Starting Gopher</A>
+
+<LI>
+
+<A HREF="#E68E389" >Letting the World Know</A>
+
+<LI>
+
+<A HREF="#E68E390" >Summary</A></UL></UL></UL>
+
+<HR ALIGN=CENTER>
+
+<A NAME="E66E49"></A>
+
+<H1 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>49</B></FONT></CENTER></H1>
+
+<BR>
+
+<A NAME="E67E49"></A>
+
+<H2 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>Setting Up a Gopher Service</B></FONT></CENTER></H2>
+
+<BR>
+
+<P>Gopher is one of the most useful Internet services available, because it is widely used by beginners and veterans alike. Gopher is a text-based file location system that leads you through a series of hierarchical menus to find specific files you want. 
+Setting up a Gopher site is really just a matter of configuring the Gopher server software and creating a number of logical directory structures with files indexed in a Gopher format.
+
+<BR>
+
+<P>Gopher works by having a client program (started by a user) connect to a Gopher server and retrieve information about files available on the Internet (or local area network, if the Gopher server is limited to that area). At the end of 1995, there were 
+more than 6,000 Gopher servers on the Internet, all accessible by anyone with a Gopher client. Those servers contain information about more than 10 million items, ranging from text files to movies, sounds, images, and many types of application binaries. 
+Gopher enables you to display and manipulate lists of files, looking for items of interest to you.
+
+<BR>
+
+<P>If you or the users of your Linux system want to connect to another Gopher server, you need a Gopher client. There are several clients available with Linux distributions, on FTP and BBS sites, and through several other sources. If you don't want to 
+allow users (or yourself) to start a Gopher client, you can use telnet to connect to sites known as public Gopher clients. These sites allow you to log in as an anonymous user and access the Gopher system. Most Gopher client packages offer more than just 
+Gopher programs. Typical Gopher clients enable you to access WAIS indexes, use FTP, and to some extent, interwork with the World Wide Web.
+
+<BR>
+
+<P>This chapter looks at how you can set up a Gopher server, allowing others to access your machine's Gopher listings. Although we won't go into detail about how you should structure your Gopher service, you will see how to configure your software.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E385"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Gopher and Linux</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>There are currently two versions of Gopher available for Linux systems: Gopher and Gopher+ (Gopher Plus). Gopher is freely available, but Gopher+ is a commercial product. The difference between the two is functionality. If the additional capabilities of 
+Gopher+ are important to you and your Gopher site, you may want to consider purchasing the product. Essentially, Gopher+ adds the following features:
+
+<BR>
+
+<UL>
+
+<LI>Makes extended file information available
+
+<BR>
+
+<BR>
+
+<LI>Offers a description of a file
+
+<BR>
+
+<BR>
+
+<LI>Can retrieve multiple versions of a file at one time (such as ASCII and PostScript simultaneously)
+
+<BR>
+
+<BR>
+
+<LI>Allows file retrieval based on search criteria determined by the user
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>Gopher+ works with Gopher, but Gopher cannot use the advanced features of Gopher+. Gopher+ and Gopher both work with WWW browsers. Gopher+ licenses tend to cost about $100 or $500, depending on the site's conditions.
+
+<BR>
+
+<P>The versions of Gopher usually offered with Linux come from one of two sources: University of Minnesota Gopher and Gopher+, or GN Public License Gopher. The most recent public version of UM Gopher is version 1.3 (version 2.13 is free only to educational 
+institutions), but the university is no longer working on the freeware Gopher product, instead concentrating on the commercial Gopher+ product. The GN Public License Gopher includes a WWW service but does not provide full functionality at present.
+
+<BR>
+
+<P>Gopher uses a TCP/IP family protocol known, surprisingly enough, as the Gopher protocol. This is a fairly simple request-answer protocol that is implemented for speed. When Gopher transfers information about a file it knows about (called a Gopher menu 
+file), it follows a set format. The format used by Gopher is:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">&lt;type&gt;&lt;display_name&gt;&lt;selector_string&gt;&lt;hostname&gt;&lt;port&gt;</FONT></PRE>
+
+<P>The fields in the Gopher menu file have the following meanings:
+
+<BR>
+
+<UL>
+
+<LI>type&#151;A one-character description of the item (see the next bulleted list for valid codes).
+
+<BR>
+
+<BR>
+
+<LI>display_name&#151;The menu or display name, followed by a tab character.
+
+<BR>
+
+<BR>
+
+<LI>selector_string&#151;A unique identifier for a document on each server (usually based on the filename). The selector string is followed by a tab character.
+
+<BR>
+
+<BR>
+
+<LI>hostname&#151;The host where the file resides, followed by a tab character.
+
+<BR>
+
+<BR>
+
+<LI>port&#151;The port to access the host, followed by a carriage return/line feed pair (usually port 70).
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>The Gopher+ version of the system adds a few new attributes to each line, including the name of the system administrator responsible for the service, a simple description of the document type (text, for example), the language the file is written in, the 
+last date the file was updated, and the size in bytes.
+
+<BR>
+
+<P>When a user wants to retrieve a file through the Gopher system, the hostname and port are used to create the connection to the remote server, while the selector string can be used to identify the file to be downloaded.
+
+<BR>
+
+<P>There are several types of files supported by Gopher, all given a unique one-character type code. The following is a list of valid codes:
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+0
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Plain text file</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+1
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Directory</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+2
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+CSO phonebook server (the hostname is the machine to connect to, the selector string is blank)</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+3
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Error</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+4
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+BinHex Macintosh file</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+5
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Binary DOS archive file</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+6
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+UNIX uuencoded file</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+7
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Index-search server</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+8
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Pointer to text-based telnet session (hostname is the machine name to connect to and selector string is the name to log in as)</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+9
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Binary file</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+g
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+GIF file</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+HTML document</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+I
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Graphic image</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+i
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Unselectable inline text</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+M
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+MIME-encapsulated mail document</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+P
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Adobe PDF file</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+s
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Sound</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+T
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Pointer to 3270 telnet session (hostname is machine to connect to and selector string is login name)</FONT>
+
+</TABLE><P>The Gopher system uses a number of other files on a Linux system, all of which must exist. The files necessary for Gopher are as follows:
+
+<BR>
+
+<UL>
+
+<LI>tn3270 or similar 3270 emulator&#151;Used for telnet 3270 connections.
+
+<BR>
+
+<BR>
+
+<LI>kermit or zmodem communications programs&#151;Used for downloading files. The binaries are usually called kermit, sz, sb, and sx.
+
+<BR>
+
+<BR>
+
+<LI>graphics utility&#151;If you allow the display of graphics, you need a graphics utility such as xv.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>You can modify these requirements if you have a private site (such as for your local area network), but if you are offering open access you should have all the components.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E386"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Configuring Gopher</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Installing and configuring Gopher (and Gopher+) is a matter of setting a number of configuration options prior to compiling the system software (it is usually not precompiled for you) and configuring some standard files. Gopher+ is done in the same 
+manner, although with some extra parameters. Since Gopher is more likely to be on a Linux site than Gopher+, we'll concentrate on that.
+
+<BR>
+
+<P>Throughout this section, we will use filenames without full path extensions because it really doesn't matter where you install the Gopher software, as long as the directory paths are set correctly. There is no real standard configuration for directory 
+locations, so feel free to choose whatever works best for you.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E508"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>The gopherd.conf File</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The configuration parameters for Gopher (and Gopher+) are in a file called gopherd.conf, which is read by the Gopher daemon gopherd. The default settings generally need a little modification, although many changes are simply changing commented lines to 
+uncommented, and vice versa.
+
+<BR>
+
+<P>The first step is to create an alias for the Gopher service on your machine. Perform this step with the line that defines the hostalias. There should be a line in the file that looks like this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">hostalias: tpci</FONT></PRE>
+
+<P>The alias is used to find the Gopher server on your system and should not be directly tied to a real machine, so you can make changes whenever you wish. The best approach is to create an alias and tie it to a physical machine with DNS. If you are 
+running a stand-alone machine, you can either use an alias tied to your machine name or use your machine name directly.
+
+<BR>
+
+<P>You can also control the number of Gopher connections allowed at one time. This is sometimes necessary to prevent a system from bogging down due to excessive user load. The maximum number of connections Gopher allows is given in a file, usually in the 
+directory PIDS_Directory. A line in the gopherd.conf file usually has this variable commented out because early versions didn't implement it properly, or it was unstable. If you want to allow this feature, remove the comment symbol and make sure the 
+directory it points to has the necessary files for your version of Gopher. The line usually looks like this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">#PIDS_Directory: /pids</FONT></PRE>
+
+<P>A better way to handle the load on your system is to use the MaxConnections keyword, which sets the number of clients you support concurrently. You have to experiment to determine the best balance between system load and user service. A good starting 
+point for a fast Linux system (80486 or Pentium CPU) is 15 to 25 users. This variable is set like this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">MaxConnections: 15</FONT></PRE>
+
+<P>If the number of users is exceeded, an error message is generated when the connection is attempted. You can set a number of file decoders for your system. This is used when a user requests a file from Gopher and adds an extension (such as .Z, .gz, or 
+.zip) for a compression or archive utility. The decoders recognize the extension the user supplies and invoke the proper utility to send the file properly decoded. Most gopherd.conf files have the following decoder lines already in the setup:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">decoder: .Z /usr/ucb/zcat
+
+decoder: .gz /usr/gnu/bin/zcat
+
+#decoder: .adpcm /usr/openwin/bin/adpcm_dec
+
+#decoder: .z /usr/gnu/bin/zcat</FONT></PRE>
+
+<P>The last two decoders are commented out and can be uncommented, if you want to offer files in these formats through Gopher. You can also add other extensions by adding new lines with the binary name (and its full path).
+
+<BR>
+
+<P>In addition, the amount of time a cache file stays valid should be set. This is controlled by the line using the keyword Cachetime. Set this value to a reasonable value, such as 180 seconds. You should have a line that looks like this in the 
+gopherd.conf file:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Cachetime: 180</FONT></PRE>
+
+<P>You can use the gopherd.conf file to restrict access to some files on your system by using the ignore keyword. Usually the gopherd.conf file will have a number of defined ignores, such as these:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">ignore: lib
+
+ignore: bin
+
+ignore: etc
+
+ignore: dev</FONT></PRE>
+
+<P>Any file with this type of extension is ignored. If you have a particular file extension you want to protect, add it to the list. For example, if your accounting system uses the extension .acct, you could have the Gopher clients ignore all these files 
+by adding this line:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">ignore: acct</FONT></PRE>
+
+<P>Note that these ignore statements only work with file extensions. To be more broad, you can use wildcards and the keyword ignore_patt (for ignore pattern). For example, the line:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">ignore_patt: ^usr$</FONT></PRE>
+
+<P>ignores any file with the letters usr at the beginning of the name.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E509"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>The gopherdlocal.conf File</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>In the file gopherdlocal.conf, you have to make two small changes to identify the system administrator, otherwise your system generates many annoying notes. The lines in the gopherdlocal.conf file look like this by default:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Admin: blank
+
+AdminEmail: blank</FONT></PRE>
+
+<P>If you do not change these entries to actual values, Gopher can generate all kinds of weird error messages. The Admin field usually has the administrator's name and sometimes a telephone number. For example, the file could be filled out as follows:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Admin: Yvonne Chow, 555-1212
+
+AdminEmail: ychow@chatton.com</FONT></PRE>
+
+<P>Another setting you should provide in the gopherdlocal.conf file is the Abstract, a short description of what your particular Gopher service provides. If you don't change the default setting, users get a message prompting them to request the Abstract, 
+so you may as well do it right away. Multiple lines in an abstract value are followed by a backslash to show the continuation. A sample Abstract setting looks like this:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Abstract: This server provides sound and graphics files \
+
+collected by the administrator on a recent trip to Outer \
+
+Mongolia.</FONT></PRE>
+
+<P>General information about your site is provided with a number of general settings for the site name, the organization that runs the site, your machine's geographic location, the latitude and longitude of your site, and a time zone setting. You can leave 
+these blank if you want, but providing the information leads to a more complete Gopher site. The settings in a sample gopherdlocal.conf file look like this:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Site: Explore_Mongolia
+
+Org: Mongolia Tourist Bureau
+
+Loc: North Bay, Ontario, Canada
+
+Geog: blank
+
+TZ: EDT</FONT></PRE>
+
+<P>The setting of blank for Geog leaves the setting with no value. Obviously, the system administrator didn't know the latitude and longitude settings.
+
+<BR>
+
+<P>You can set a language option used by Gopher clients to show what language most of the documents available on your site are written in. This is done like this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Language: En_US</FONT></PRE>
+
+<P>which refers to American English.
+
+<BR>
+
+<P>The setting BummerMsg is used to display a brief text string to a user who exceeds your maximum number of concurrent users or causes an error when accessing the system. The default value is this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">BummerMsg: Sorry, we have exceeded the number of permissible users</FONT></PRE>
+
+<P>You can change this to whatever message you want. Try not to be rude or obnoxious because you never know who will get this message.
+
+<BR>
+
+<P>The last step in modifying the gopherdlocal.conf file is to set access procedures for users who log in to your Gopher server. Limiting the users who can get to your server is done through entries with the keyword access. The general format of the access 
+line is:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">access: hostname permissions num_users</FONT></PRE>
+
+<P>where hostname is either the name or IP address of the host that is connecting to your server, permissions is the permission set for those users, and num_users is the maximum number of users that can be connected to the service concurrently.
+
+<BR>
+
+<P>The permissions are set using any combination of the following four words, either as they are or preceded by an exclamation mark to mean &quot;not allowed.&quot; The permission keywords are as follows:
+
+<BR>
+
+<UL>
+
+<LI>browse&#151;Can examine directory contents. If this is forbidden, users can access entries, but they can't get directory contents.
+
+<BR>
+
+<BR>
+
+<LI>ftp&#151;Allows server to act as gateway to FTP services.
+
+<BR>
+
+<BR>
+
+<LI>read&#151;Can access a file. If forbidden, the users get the BummerMsg when they ask for the file.
+
+<BR>
+
+<BR>
+
+<LI>search&#151;Can access indexes (type 7 items). If forbidden, access to the indexes is not allowed. This is used primarily with Gopher+.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>For example, to set access permissions to allow up to 10 users from the network chatton.com to access your Gopher server with full rights, you would add a line like this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">access: chatton.com browse ftp read search 10</FONT></PRE>
+
+<P>There is at least one space between each entry, even between permissions. This access entry:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">access: bignet.org !browse !ftp read search 3</FONT></PRE>
+
+<P>allows three concurrent users from bignet.org to access the Gopher server and read and search, but not use FTP gateways or browse the directory listings.
+
+<BR>
+
+<P>If you are using IP addresses, you can use a subset of the IP address to indicate the entire network. For example, if bignet.com's network address is 147.12, you can indicate the entire network with a line like this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">access: 147.12. !browse !ftp read search 3</FONT></PRE>
+
+<P>You must follow the last quad of numbers specified in the IP address with a period, otherwise 147.120 through 147.129 will also have the same permissions (because they match the digits specified).
+
+<BR>
+
+<P>If you want to enable access from a particular machine, you can do that, too. For example, to allow your friend's darkstar machine to access your Gopher server with full permissions, you would add a line like this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">access: darkstar.domain.name browse ftp read search 1</FONT></PRE>
+
+<P>Most general Gopher servers tend to allow anyone to connect, so they use a default entry to refer to anyone not explicitly defined by another access entry. The default setting is usually like this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">access: default !browse !ftp read search 15</FONT></PRE>
+
+<P>which allows anyone to read and search Gopher directories, but not move through them or use your machine as an FTP gateway.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E510"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Setting Up the </B><B>Makefile</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Two files need modification for the compilation process to proceed properly. These two files are Makefile.config and conf.h. With many versions of Gopher available on Linux systems, the configuration parameters these files need have already been set, 
+but you should check the values carefully to prevent problems.
+
+<BR>
+
+<P>The Makefile.config file (used by Makefile to build the executables) is a lengthy file, so you should be careful while moving through it to avoid accidental changes. The important areas to examine are the directory definitions and server and client 
+settings. These are dealt with individually in the following sections.
+
+<BR>
+
+<P>One setting you may wish to alter is the debugging utility, which is enabled by default in most systems. This can help you get the system running properly, but when the operation is correct, you should recompile the source with the debugging features 
+removed to make the process faster and smaller, as well as to reduce debug information overhead. To remove debugging features, comment out the DEBUGGING line so it looks like this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">#DEBUGGING = -DDEBUGGING</FONT></PRE>
+
+<P>By default, this line is probably not commented out.
+
+<BR>
+
+<P>The directory definitions are usually in a block with five to seven entries, depending on the number of entries for the man pages. A typical directory definition block looks like this:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">PREFIX = /usr/local
+
+CLIENTDIR = $(PREFIX)/bin
+
+CLIENTLIB = $(PREFIX)/lib
+
+SERVERDIR = $(PREFIX)/etc
+
+MAN1DIR = $(PREFIX)/man/man1
+
+MAN5DIR = $(PREFIX)/man/man5
+
+MAN8DIR = $(PREFIX)/man/man8</FONT></PRE>
+
+<P>The primary change to most Makefile.config files will be the PREFIX, which is used to set the basic directory for Gopher. The default value is usually /usr/local, although you can change it to anything you want (such as /usr/gopher). The rest of the 
+variables define subdirectories under the primary Gopher directory and are usually acceptable as they are. Each of the subdirectories can be left the way it is, or you can change it to suit your own needs. You can place all the files in one directory, if 
+you want. The meaning of each variable appears in the following list:
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+CLIENTDIR
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Gopher client software</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+CLIENTLIB
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Client help file (gopher.hlp)</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+MAN1DIR
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Man pages for gopher client</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+MAN8DIR
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Man pages for gopherd</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+SERVERDIR
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Gopher server (gopherd) and configuration file (gopherd.conf)</FONT>
+
+</TABLE><P>For a Gopher client to run properly on your system, you must modify the CLIENTOPTS line in the Makefile.config file. The two options for the CLIENTOPTS line to control its behavior are as follows:
+
+<BR>
+
+<UL>
+
+<UL>
+
+<P>-DNOMAIL Forbids remote users from mailing files.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>-DAUTOEXITONU Allows the Gopher client to be exited with the u command as well as q command.
+
+<BR>
+
+</UL></UL>
+
+<P>To use either or both or these options, add them to the CLIENTOPS line like this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">CLIENTOPTS = -DNOMAIL -DAUTOEXITONU</FONT></PRE>
+
+<P>Four variables relating to the Gopher server must also be set. These specify the host domain name, the port Gopher should use to listen for connections, the location of the data files, and option flags.
+
+<BR>
+
+<P>The domain name is set with the DOMAIN variable. It should have a leading period in the name, such as:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">DOMAIN = .tpci.com</FONT></PRE>
+
+<P>You do not need to set this variable, if the hostname command returns the fully qualified domain name of the server. In this case, leave the value blank.
+
+<BR>
+
+<P>The SERVERPORT variable defines the port Gopher uses to wait for services and is usually set for TCP port 70. This line usually looks like this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">SERVERPORT = 70</FONT></PRE>
+
+<P>If you are not allowing general access to your Gopher site by Internet users, you can change this value. However, if you want to allow Internet users (even a very small subset) to gain access, you should leave this as port 70. If you are setting up your 
+Gopher site for a small network only, then choose any port number you want (between 1024 and 9999) and make sure all the Gopher clients use that number, too.
+
+<BR>
+
+<P>The SERVERDATA variable defines the location of the data your Gopher server offers. Its default setting is usually as follows:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">SERVERDATA = /gopher-data</FONT></PRE>
+
+<P>Set the variable to point to the file location you use for your Gopher items.
+
+<BR>
+
+<P>The SERVEROPTS variable accepts a number of keywords that change the behavior of the Gopher service. A typical entry looks like this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">SERVEROPTS = -DSETPROCTITLE -DCAPFILES # -DBIO -DDL</FONT></PRE>
+
+<P>Any keywords after the pound sign are ignored when Makefile runs, so you can adjust its location to set the options you want if the order of the variables allows such a simple approach. The following lists the meaning of the different keywords allowed 
+in the SERVEROPTS entry:
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-DADD_DATE_AND_TIME
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Adds dates and times to titles.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-DBIO
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Used only with the WAIS versions developed by Don Gilbert (wais8b5).</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-DDL
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Provides support for the dl database utility (requires the dl system in a directory variable called DLPATH and the DLOBJS line uncommented out to show the files getdesc.o and enddesc.o locations).</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-DCAPFILES
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Offers backwards compatibility with the cap directory.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-DLOADRESTRICT
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Restricts user access based on the number of concurrent users (see the following section).</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-DSETPROCTITLE
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Sets the name displayed by ps command (BSD UNIX-based systems only).</FONT>
+
+</TABLE><P>The conf.h file is used during the compilation to set other parameters about the Gopher service. The important settings, at least when setting up a Gopher service, are those that relate to the number of queries and timeout variables. These tend 
+to occur at the end of the conf.h file.
+
+<BR>
+
+<P>The WAISMAXHITS variable defines the maximum number of hits a query to a WAIS database can offer, usually set to around 40. This variable is defined like this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">#define WAISMAXHITS 40</FONT></PRE>
+
+<P>Note that the pound sign is not a comment symbol because this is written in C. The pound sign is an important part of the processor directive and should be left in place. There is no equal sign in the definition, either.
+
+<BR>
+
+<P>The MAXLOAD variable is used if the -DLOADRESTRICT keyword was used in the SERVEROPTS variable of Makefile.config. The MAXLOAD defines the maximum load average the Gopher service will respond to requests under (this value can be overridden on the 
+command line). The usual definition is like this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">#define MAXLOAD 10.0</FONT></PRE>
+
+<P>The READTIMEOUT and WRITETIMEOUT variables set the amount of time a service waits for a network read or write operation before timing out. The default settings are usually adequate. These lines look like the following:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">#define READTIMEOUT (1*60)
+
+#define WRITETIMEOUT (3*60)</FONT></PRE>
+
+<P>The Gopher clients configuration is straight-forward. Begin by defining the Gopher servers the local machine connects to with the CLIENT1_HOST and CLIENT2_HOST entries. The Gopher client chooses one of the two (if both are defined) when it is started. 
+The entries look like this:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">#define CLIENT1_HOST &quot;gopher_serv.tpci.com&quot;
+
+#define CLIENT2_HOST &quot;other_gopher_serv.tpci.com&quot;</FONT></PRE>
+
+<P>The ports to be used to connect to the hosts are defined with these options:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">#define CLIENT1_PORT 70
+
+#define CLIENT2_PORT 70</FONT></PRE>
+
+<P>If you have a local service and don't want to use port 70 (to prevent access from the Internet, for example), set the proper port values. If only one Gopher server is used, set the second value to 0.
+
+<BR>
+
+<P>Define the language the Gopher client will use by choosing one value out of a number of options. The default is American English, set by this command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">#define DEFAULT_LANG &quot;En_US&quot;</FONT></PRE>
+
+<P>Other language defines are commented out below this one. If you want to change the default language, comment the American English setting and uncomment the one you want.
+
+<BR>
+
+<P>When all the configuration changes have been made, you can invoke the compilation process for the client and server with these commands:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">make client
+
+make server</FONT></PRE>
+
+<P>Or you can do both client and server systems at once by using the make command with no argument. The programs and data files must be installed, too, using the command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">make install</FONT></PRE>
+
+<BR>
+
+<A NAME="E69E511"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>WAIS and Gopher</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Gopher clients have the ability to use WAIS indexes to search for documents, but the system must be configured to allow this. We looked at WAIS in <A HREF="rhl48.htm">Chapter 48</A>, &quot;Configuring a WAIS Site,&quot; so for the sake of providing WAIS 
+index access to Gopher, we will assume you have installed WAIS properly and have WAIS indexes ready for Gopher.
+
+<BR>
+
+<P>To provide WAIS services through Gopher, you may have to make a change in the WAIS source code. Examine the WAIS source code for a line that looks like this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">if (gLastAnd) printf(&quot;search_word: boolean 'and' scored/n:);</FONT></PRE>
+
+<P>This line should be commented out to provide Gopher services, so if it is not, add C comment symbols before and after the line, like this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">/* if (gLastAnd) printf(&quot;search_word: boolean 'and' scored/n:); */</FONT></PRE>
+
+<P>If the line was already commented out (or didn't exist) then you need not make any change. If you changed the line, though, you have to recompile WAIS by changing into the WAIS top directory and running the makefile (type the command make).
+
+<BR>
+
+<P>Next, examine the Gopher Makefile.config file and look for the WAISTYPE variable. It should be defined on a line like this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">WAISTYPE = #-DFREEWAIS_0_4</FONT></PRE>
+
+<P>Then, you have to link the Gopher and WAIS services. Suppose your Gopher source directory is /usr/gopher/source and the WAIS source directory is /usr/wais/source. You can link these services by entering the following commands:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">cd /usr/gopher/source
+
+ln -s /usr/wais/source/include ./ir
+
+ln -s /usr/wais/source/client/ui .
+
+ln -s /usr/wais/source/bin .</FONT></PRE>
+
+<P>When Gopher is recompiled, it will make the links between Gopher and freeWAIS and allow the two services to interwork.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E387"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Setting Up Your Gopher Directories</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Gopher directories and files are quite simple to set up and follow standard naming conventions for the most part. Before you begin, though, you should know which documents and files are to be provided through Gopher to other users, and you should be 
+able to write a short description of each. (If you don't know the contents of a file, either read it or get the author to summarize the file for you.) To begin, we'll assume you will use only a single directory for all your Gopher documents.
+
+<BR>
+
+<P>Begin by changing to the top directory you use for your Gopher directories (which you may have to create if you haven't already done so). This directory should not be where the Gopher source and configuration files are located, for convenience. Simply 
+choose a useful name and create the directory. For example, to create the Gopher home directory /usr/gopher/data, you would issue a standard mkdir command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">mkdir /usr/gopher/data</FONT></PRE>
+
+<P>Change into your Gopher directory and copy the files you want to make available into it. When you have done that, you can create a descriptive filename for each file (instead of the more obtuse filenames usually used) up to 80 characters long. For 
+example, if you have a filename called q1.sales you may want to rename it to Company_Sales_1887_Q1 to help users identify the contents a little more easily.
+
+<BR>
+
+<P>The process for providing better filenames is to first create a .cap directory under your Gopher main directory (such as /usr/gopher/data/.cap). For each file in the main directory, you want to create a file in the .cap directory with the same name, but 
+with a name and number. For example, suppose you have a file called q1.sales in /usr/gopher/data. In /usr/gopher/data/.cap you would create a file with the same name, q1.sales, which has the following contents:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Name=Company Sales for the First Quarter, 1887
+
+Numb=1</FONT></PRE>
+
+<P>The Name entry can have spaces or other special symbols in it, because it is echoed as a complete string. The Numb entry is for the location of the entry on your Gopher menu. For example, suppose you had the preceding entry and two other files, shown by 
+using cat to display their contents:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ cat q1.sales
+
+Name=Company Sales for the First Quarter, 1887
+
+Numb=1
+
+$ cat q2.sales
+
+Name=Company Sales for the Second Quarter, 1887
+
+Numb=2
+
+$cat q3.sales
+
+Name=Company Sales for the Third Quarter, 1887
+
+Numb=3</FONT></PRE>
+
+<P>When these entries are displayed in a Gopher menu they will look like this:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">1. Company Sales for the First Quarter, 1887
+
+2. Company Sales for the Second Quarter, 1887
+
+3. Company Sales for the Third Quarter, 1887</FONT></PRE>
+
+<P>The order of filenames in the .cap directory doesn't matter, but you shouldn't have the same Numb entry more than once.
+
+<BR>
+
+<P>An alternative to using the .cap directory approach (which allows for easy addition of new files) is to use a single master file for each document you are making available. This file goes in your Gopher top directory and is called .names. Here's the 
+.names file for the same three files just mentioned:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ cd /usr/gopher/data
+
+$ cat .names
+
+# My Gopher main .names file
+
+Path=./q1.sales
+
+Name=Company Sales for the First Quarter, 1887
+
+Numb=1
+
+Path=./q2.sales
+
+Name=Company Sales for the Second Quarter, 1887
+
+Numb=2
+
+Path=./q3.sales
+
+Name=Company Sales for the Third Quarter, 1887
+
+Numb=3</FONT></PRE>
+
+<P>As you can see, this format contains the same information but adds the filename (which was not needed in .cap since the filenames were the same). One advantage to using a .names file is that you can reorder your menu entries much more easily because you 
+only have one file to work with instead of several. Also, the .names file enables you to add an abstract describing the file. For example, you could have the following entry in a .names file:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Path=./gopher
+
+Name=How to Set up A Gopher Service
+
+Numb=16
+
+Abstract=This document shows the steps you need to take to
+
+set up a Gopher service.</FONT></PRE>
+
+<P>You can get a little fancier with Gopher and have a menu item lead to another menu, or to another machine entirely. This is done with links, controlled by a link file, which ends with .link. A .link file has five pieces of information in it, in the same 
+format as this example:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Name=More Sales Info
+
+Type=1
+
+Port=70
+
+Path=/usr/gopher/data/more_sales
+
+Host=wizard.tpci.com</FONT></PRE>
+
+<P>The Name entry is what a user sees on the Gopher menu, and can be any type of description you want, regardless of what else is in the link file. The Type field has a code showing the type of document the file links to. The following are all valid codes:
+
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+0
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Text</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+1
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Directory</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+2
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+CSO name server</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+7
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Full text index</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+8
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+telnet session</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+9
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Binary</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+h
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+HTML file</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+I
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Image file</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+M
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+MIME file</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+s
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Sound file</FONT>
+
+</TABLE><P>These types are the same as the list shown earlier in this chapter for the types of files Gopher supports, although it's a little shorter here.
+
+<BR>
+
+<P>The Port field is the port for a connection to a remote system (if that's where the link leads), and the Path field is where the file is on the local or remote server. The Host field, not surprisingly, is the name of the host the file resides on. If you 
+are setting up a link to another machine via FTP or WAIS, you need to specify the path to include the service name and any arguments. For example, if your Gopher menu leads users to a file on another machine through FTP, your link file may look like this:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Name=More Sales Info
+
+Type=1
+
+Port=+
+
+Path=ftp:chatton.bigcat.com@/usr/gopher/cats
+
+Host=+</FONT></PRE>
+
+<P>The plus signs used in the Port and Host fields instruct the FTP service on the remote machine to return results to this machine using default ports (such as TCP port 21 for FTP). For a link to a WAIS directory, the format would be:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Name=More Sales Info
+
+Type=7
+
+Port=+
+
+Path=waisrc:/usr/wais/data
+
+Host=+</FONT></PRE>
+
+<P>Finally, you may want to have a menu item execute a program. You can do this by having the Path field use the exec command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Path=exec: &quot;args&quot; : do_this</FONT></PRE>
+
+<P>where do_this is the program you want to execute and args are any arguments to be passed to do_this. If you have no arguments to pass, leave the quotation marks empty. This format is a little awkward, but it does work.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E388"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Starting Gopher</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>A Gopher server can be started either from the rc startup files, from the command line, or from the inetd daemon. From the command line or the rc files, you need a command line similar to this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">/usr/local/etc/gopherd /usr/gopher/gopher-data 70</FONT></PRE>
+
+<P>which starts the daemon with the directory the startup Gopher menus reside in and the port number for connections.
+
+<BR>
+
+<P>The gopherd command line accepts a number of optional flags to control its behavior, although most mirror entries in the configuration files. Valid flags are as follows:
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-C
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Disables directory caching</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-c
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Runs without chroot restrictions</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-D
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Enables debugging</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-I
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+inetd is used to invoke gopherd</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-L
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Followed by a value for the maximum load average</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-l
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Log file to record connections (filename follows the option)</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-o
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Specifies an alternate configuration file from gopherd.conf (filename follows the option)</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-u
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Sets the name of the owner running gopherd (valid username must follow the option)</FONT>
+
+</TABLE><P>To help secure your system, use chroot to create a separate file system structure for the Gopher area (as you did with FTP: see <A HREF="rhl47.htm">Chapter 47</A>, &quot;Setting Up an FTP and Anonymous FTP Site&quot;). The -c option is not as 
+secure as running gopherd with chroot active. Also, the -u option should be used to make gopherd run as a standard user's process, instead of as root. This helps protect against holes in the daemon that a hacker could exploit.
+
+<BR>
+
+<P><A NAME="I2"></A>If you want to run Gopher under inetd (started whenever a request for the service arrives), modify the /etc/services and /etc/inetd.conf file to include a line for Gopher. Normally, the entry in /etc/services looks like this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">gopher 70/tcp</FONT></PRE>
+
+<P>and the entry in /etc/inetd.conf looks like this:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">gopher stream tcp nowait root
+
+/usr/local/etc/gopherd gopherd -I -u username</FONT></PRE>
+
+<P>where username is the name of the user to run gopherd as (you can set up a specific account for gopher in /etc/passwd with standard permissions).
+
+<BR>
+
+<P>Once the Gopher server process is up and running, you can test your Gopher installation. You will need a Gopher client. Use the Gopher client to connect to your Gopher server (using your host name), and you should see the top directory of your Gopher 
+resources. Another way to test your Gopher system is to use telnet. Use telnet to connect to the Gopher port, using a commandlike this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">telnet gopher 70</FONT></PRE>
+
+<P>If the connection is properly made, you will see your Gopher system on the screen.
+
+<BR>
+
+<P>Yet another alternative to test your system is to use the program gopherls, which requires the name of the directory your Gopher source resides in. To start gopherls, you would issue a command as follows:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">gopherls /usr/wais/gopher/data</FONT></PRE>
+
+<P>specifying your Gopher data directory. You can use this technique to test new Gopher directories as you develop them.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E389"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Letting the World Know</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Because you have spent a lot of time setting up your Gopher service, you can now let everyone else on the Internet know about it. (Of course, you should only do this when your Gopher service is ready, and if you want to allow general access. Don't 
+follow these steps if you are granting access only to a few people or your local area network.)
+
+<BR>
+
+<P>To have your Gopher service listed in the main Gopher service directories, send an e-mail message to the address:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">gopher@boombox.micro.umn.edu</FONT></PRE>
+
+<P>and include the Gopher service's full name as it appears on your main menu, your host's name and IP address, the port number Gopher uses (which should be TCP port 70 for general Internet access), the e-mail account of the Gopher administrator, and a 
+short paragraph describing your service. If you want, you can also provide a string that gives the path to the data directory, although since most Gopher systems start in the root directory, this string isn't necessary unless you have sub-menus for 
+different purposes.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E390"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Summary</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>After all that, your Gopher service should be ready to use. You do need to set up the Gopher file entries, but that is beyond the scope of this chapter. Consult a good Internet or Gopher book for more information on Gopher directories, files, and 
+entries. Gopher is a handy utility if you have volumes of information you want to share, and although the configuration process can take a while, once it's completed, the Gopher system tends to work very well.
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl48.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="#I0" TARGET="_self"><IMG SRC="purtop.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Page Top"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl50.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+</BODY></HTML>
+
+
+

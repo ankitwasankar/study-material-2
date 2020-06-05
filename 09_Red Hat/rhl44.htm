@@ -1,0 +1,579 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Red Hat Linux Unleashed rhl44.htm </TITLE>
+
+<LINK REL="ToC" HREF="index.htm">
+
+<LINK REL="Index" HREF="htindex.htm">
+
+<LINK REL="Next" HREF="rhl45.htm">
+
+<LINK REL="Previous" HREF="rhl43.htm"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+
+<A NAME="I0"></A>
+
+<H2>Red Hat Linux Unleashed rhl44.htm</H2>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl43.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl45.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+<HR ALIGN=CENTER>
+
+<P>
+
+<UL>
+
+<UL>
+
+<UL>
+
+<LI>
+
+<A HREF="#E68E363" >Mail</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E482" >Mail Transport Agents</A>
+
+<LI>
+
+<A HREF="#E69E483" >smail</A>
+
+<LI>
+
+<A HREF="#E69E484" >sendmail</A>
+
+<LI>
+
+<A HREF="#E69E485" >Local Delivery Agents</A>
+
+<LI>
+
+<A HREF="#E69E486" >Mail User Agents</A></UL>
+
+<LI>
+
+<A HREF="#E68E364" >News</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E487" >News Transport Software</A>
+
+<LI>
+
+<A HREF="#E69E488" >InterNetNews (INN)</A>
+
+<LI>
+
+<A HREF="#E69E489" >Newsreaders</A></UL>
+
+<LI>
+
+<A HREF="#E68E365" >Summary</A></UL></UL></UL>
+
+<HR ALIGN=CENTER>
+
+<A NAME="E66E44"></A>
+
+<H1 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>44</B></FONT></CENTER></H1>
+
+<BR>
+
+<A NAME="E67E44"></A>
+
+<H2 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>Installing Mail and News</B></FONT></CENTER></H2>
+
+<BR>
+
+<P>If you have access to other machines through a local area network or through the Internet, you will probably want to install the mail and news software. Both offer a lot of interaction with other users and add a whole new dimension to your Linux system.
+
+
+<BR>
+
+<P>To handle electronic mail, most systems rely on UUCP (UNIX-to-UNIX Copy). Setting up UUCP is covered in many different online guides and documents, as well as in most UNIX books. You can exchange e-mail with other users, or with the world at large, by 
+connecting to an Internet service provider such as UUNET Technologies.
+
+<BR>
+
+<P>Reading Usenet newsgroups is a little more complicated, because you have to download the news yourself (100MB per day!) or connect to a site that offers news&#151;a news server. Linux includes the software to connect you, although most users will find 
+it easier to use an online service such as CompuServe or Delphi for news access.
+
+<BR>
+
+<P>In this chapter we look at the following:
+
+<BR>
+
+<UL>
+
+<LI>The types of mail software you can use
+
+<BR>
+
+<BR>
+
+<LI>Simple UUCP-based configuration of e-mail systems
+
+<BR>
+
+<BR>
+
+<LI>Setting your machine to access Usenet newsgroups
+
+<BR>
+
+<BR>
+
+</UL>
+
+<BR>
+
+<A NAME="E68E363"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Mail</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>If you installed Linux from a CD-ROM (such as the Red Hat distribution included with this book), one of the installation options was to install the e-mail systems. Some Linux distributions give you a choice of mail packages, whereas others default to 
+one particular type.
+
+<BR>
+
+<P>During the installation, most Linux setup procedures will install the software properly except for some configuration information about the network. With this kind of installation, there is little you have to do with the mail system except add your host 
+name and configure UUCP (if you are using it to connect to other systems to transfer Mail).
+
+<BR>
+
+<P>Mail software for most UNIX systems (including Linux) has two components: a transport and a mailer. The transport is the low-level software that takes care of delivering the mail, both locally and across other machines. Users never work with the 
+transport, although system administrators must configure it and understand the basic principles. The mailer is the user interface that presents mail to the user and accepts new mail. Many mailers are available.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E482"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Mail Transport Agents</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Transport agents are the underlying software that connects your local machine to remote systems. Several transport agents are available with Linux, but the most commonly used are called smail (for send mail) and sendmail. You can find sendmail on the CD 
+that accompanies this book.
+
+<BR>
+
+<P>The smail and sendmail programs are ideally suited for sites that rely on UUCP for mail (either between other machines or to an Internet service provider), and they can be used with some SMTP (Simple Mail Transfer Protocol) sites. smail and sendmail are 
+usually provided as an executable binary form with most Linux distributions, although only one of the transport agents is usually supplied.
+
+<BR>
+
+<P>The configuration changes needed to set up smail or sendmail on your Linux system depend on the type of connection you have to the outside world.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E483"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>smail</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>If you are running a UUCP-based mail system and you use a remote system for all processing to other sites (usually used with local area networks that employ a communications server), the changes to your system configuration files are minimal.
+
+<BR>
+
+<P>The changes occur in the files /usr/local/lib/smail/config and /usr/local/lib/smail/paths. Look for the lines that have to do with hostname and subdomain names and perform the following changes:
+
+<BR>
+
+<UL>
+
+<LI>Replace subdomain.domain with your machine's domain name.
+
+<BR>
+
+<BR>
+
+<LI>Replace myhostname with your &quot;undomainized&quot; hostname.
+
+<BR>
+
+<BR>
+
+<LI>Replace my_uucp_neighbor with the UUCP name of your upstream site.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>For example, the following extract shows the settings for a machine called vader that attached to the machine deathstar in the domain starwars.com, first for the file /usr/local/lib/smail/config:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">#/usr/local/lib/smail/config
+
+# domains we belong to
+
+visible_domain=deathstar.starwars:uucp
+
+# who we're known as (fully-qualified-site-name)
+
+visible_name=vader.starwars
+
+# who we go through
+
+smart_path=deathstar</FONT></PRE>
+
+<P>The changes for /usr/local/lib/smail/paths are the machine name only:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">#/usr/local/lib/smail/paths
+
+# we're a domainized site, make sure we accept mail to both names
+
+vader %s
+
+vader.starwars.com %s</FONT></PRE>
+
+<P>If you want to run the smail program as an SMTP daemon, you must add the following line to the file /etc/inetd.conf (or whatever the equivalent file is called in your distribution):
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">smtp stream tcp nowait root /usr/bin/smtpd smtpd</FONT></PRE>
+
+<P>When this is added, any outgoing mail gets sent automatically when using a mailer like elm.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E484"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>sendmail</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The sendmail program is quite popular with small Linux installations. It is included with the Red Hat distribution of Linux.
+
+<BR>
+
+<P>To configure sendmail, change to the /etc directory and edit the sendmail.cf file. This file has enough information to help you determine which lines to replace with your system values. Usually you will edit the hostname, aliases, and smarthost 
+settings.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E485"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Local Delivery Agents</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Unlike most UNIX versions, Linux does not have a mail-delivery package built in. Mail-delivery packages send the received mail to the proper user. One of the most widely used is called deliver.
+
+<BR>
+
+<P>In most cases, you don't have to do anything to install and configure deliver. When you installed the mail software using the Linux installation routine, the necessary software was installed and configured properly.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E486"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Mail User Agents</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Mail user agents are the mailreaders you use to see your e-mail. Many newsreaders are available. Your choice of mailreaders is more a personal preference than a feature-based decision.
+
+<BR>
+
+<P>elm is probably the most widely used mailreader with Linux. It uses the configuration file /usr/ lib/elm.rc to provide basic information about the machine name and its connections. You should edit the elm.rc file to replace the names with proper values.
+
+
+<BR>
+
+<P>Another popular mailreader is mailx, which has been available for UNIX systems for many years. Versions of mailx are available for Linux on many archive sites. Make sure you get version 5.3b or higher because there are security problems in version 5.3a.
+
+
+<BR>
+
+<P>Other interesting and popular mailreaders are pine and metamail, both of which are freely available from Linux archive sites and user groups.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E364"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>News</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Usenet is a service provided over the Internet. It's composed of more than 14,000 newsgroups on every subject imaginable. If you want to set your system to download the entire day's news, you must dedicate a lot of money to hardware and telephone lines. 
+Such a connection is beyond the scope of most users.
+
+<BR>
+
+<P>However, accessing newsgroups from another machine that downloads them is quite easy, using software provided with Linux.
+
+<BR>
+
+<P>There are two parts to the News software: the server and the client. The server is the software that controls the newsgroups and handles delivering articles to other machines. The client or newsreader software is the user interface.
+
+<BR>
+
+<P>You do not have to hook up to the Internet to use News. You can run News locally (on your own machine for all the users) or across a small network. In this case, you don't have to worry about connecting to the Internet's Usenet newsfeed, which generally 
+is expensive and very time-consuming.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E487"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>News Transport Software</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>News transport software, as its name implies, carries the news to your system and its newsreaders and helps your users post news to Usenet. Two main news transport software packages are used with Linux: Cnews and INN. The two should not be mixed. Use 
+one or the other, or major hassles will result!
+
+<BR>
+
+<P>If you plan to use News locally only, much of the configuration required for connecting to the Internet or other newsfeed can be ignored. News normally is stored in the directory /usr/spool/news, so all the news transport and client software should be 
+set to point to this location.
+
+<BR>
+
+<P>The most popular news transport software is Cnews, which has been available for almost a decade. Cnews runs on many different machines, and many people understand it very well, providing technical resources should you need them. Cnews is designed 
+primarily for capturing news over a UUCP connection and a standard telephone modem, so it requires additional software to provide access to the Internet. This additional software is called NNTP (Network News Transfer Protocol). NNTP isn't necessary for 
+local news support.
+
+<BR>
+
+<P>Installing Cnews is straightforward, as long as you follow the directions in the accompanying documentation files. Configuration involves editing several files, which usually reside in /usr/ lib/news. The files of primary interest are as follows:
+
+<BR>
+
+<UL>
+
+<LI>active: The active file
+
+<BR>
+
+<BR>
+
+<LI>batchparms: Batch parameters
+
+<BR>
+
+<BR>
+
+<LI>explist: Article expiration
+
+<BR>
+
+<BR>
+
+<LI>mailname: Header names for mailed replies
+
+<BR>
+
+<BR>
+
+<LI>mailpaths: Path to mail moderated postings
+
+<BR>
+
+<BR>
+
+<LI>organization: Your company name
+
+<BR>
+
+<BR>
+
+<LI>sys: Controls what you take and feed
+
+<BR>
+
+<BR>
+
+<LI>whoami: Your hostname
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>Most of Cnews is configured with shell scripts or utility programs (such as addgroup to change the active file and addfeed to change newsfeed information). Again, check the documentation for complete information.
+
+<BR>
+
+<P>To download news automatically, cron makes an excellent choice. A sample cron entry for the Cnews newsfeed is
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">20 * * * * /usenet/sw/news/bin/input/newsrun
+
+0 * * * * /usenet/sw/news/bin/batch/sendbatches feedsite
+
+59 0 * * * /usenet/sw/news/bin/expire/doexpire
+
+10 5 * * * /usenet/sw/news/bin/newsdaily
+
+00 5 * * * /usenet/sw/new/bin/newswatch</FONT></PRE>
+
+<P>This sample does things every hour, which is fine for a large site but considerable overkill for a small network or single machine where you might want to connect only once a day. Modify the files as necessary to meet your requirement.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E488"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>InterNetNews (</B><B>INN</B><B>)</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>INN is newer than Cnews but is faster and has NNTP built in, making it easier to use for direct newsfeeds. Unfortunately, it is a little harder to install and configure than Cnews. INN uses a daemon (sometimes two) that runs continually, whereas Cnews 
+is invoked by the user (or cron). Novices to Linux should probably stick with Cnews at the beginning until they gain more experience.
+
+<BR>
+
+<P>Installation is a little more complex than with Cnews, but following the documentation helps. INN is very particular about its file permissions, so make sure you set them properly. Configuration is a matter of making sure all of the site information is 
+correct. Once correctly installed and configured, though, INN requires virtually no maintenance.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E489"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Newsreaders</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Many newsreaders are available for Linux. A newsreader presents the messages in a newsgroup and lets you step through them or reply to them, as well as create new messages. Some of the most popular newsreaders are tin, trn, and rtin.
+
+<BR>
+
+<P>Choosing a newsreader is essentially a personal choice. Experiment with several and stay with the one you find easiest to <A NAME="I2"></A>work with and that offers the features you need. They all have some slight twist that gives you different methods 
+of looking at news or moving through newsgroups.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E365"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Summary</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Both e-mail and news extend the Linux system to be a full-featured UNIX implementation, and make your machine part of a much larger network. Even if you are using your Linux machine only for yourself and have no interest in connecting to the outside 
+world, e-mail is simple and easy to install, configure, and use. Once you've used e-mail, you'll probably never go back to the paper-based kind!
+
+<BR>
+
+<P>If you have several users on your Linux system or plan to connect to a network, News is a great way to get discussions and information flowing amongst the users. On top of that, News is just plain fun!
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl43.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="#I0" TARGET="_self"><IMG SRC="purtop.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Page Top"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl45.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+</BODY></HTML>
+
+
+

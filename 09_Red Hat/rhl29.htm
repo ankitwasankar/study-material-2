@@ -1,0 +1,3157 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Red Hat Linux Unleashed rhl29.htm </TITLE>
+
+<LINK REL="ToC" HREF="index.htm">
+
+<LINK REL="Index" HREF="htindex.htm">
+
+<LINK REL="Next" HREF="rhl30.htm">
+
+<LINK REL="Previous" HREF="rhl28.htm"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+
+<A NAME="I0"></A>
+
+<H2>Red Hat Linux Unleashed rhl29.htm</H2>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl28.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl30.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+<HR ALIGN=CENTER>
+
+<P>
+
+<UL>
+
+<UL>
+
+<UL>
+
+<LI>
+
+<A HREF="#E68E230" >Variables in Perl</A>
+
+<UL>
+
+<UL>
+
+<LI>
+
+<A HREF="#E70E9" >Code Blocks in Loops</A></UL>
+
+<LI>
+
+<A HREF="#E69E362" >Quoting Rules</A></UL>
+
+<LI>
+
+<A HREF="#E68E231" >Arrays and Associative Arrays</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E363" >Associative Arrays</A></UL>
+
+<LI>
+
+<A HREF="#E68E232" >Array Operations</A>
+
+<LI>
+
+<A HREF="#E68E233" >File Handles and Operators</A>
+
+<LI>
+
+<A HREF="#E68E234" >Working with Patterns</A>
+
+<LI>
+
+<A HREF="#E68E235" >Subroutines</A>
+
+<LI>
+
+<A HREF="#E68E236" >More Features in Perl 5</A>
+
+<LI>
+
+<A HREF="#E68E237" >Summary</A></UL></UL></UL>
+
+<HR ALIGN=CENTER>
+
+<A NAME="E66E29"></A>
+
+<H1 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>29</B></FONT></CENTER></H1>
+
+<BR>
+
+<A NAME="E67E29"></A>
+
+<H2 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>Perl</B></FONT></CENTER></H2>
+
+<BR>
+
+<P>Perl stands for Practical Extraction and Report Language and is a free utility that comes with Linux versions. Perl was developed by Larry Wall. The -v option will print the version number of Perl you are running. This book is written for Perl 5.002, 
+and not for 5.001m which comes with your Linux system, since the later version has fewer bugs and more features. The full release of 5.002 is available at the FTP site ftp.mox. The latest release is available from the Web site <A 
+HREF="http://mox.perl.com/perl/info/software.html">http://mox.perl.com/perl/info/software.html</A> as perl5.002.tar.gz. Installation is very easy if you follow the read me directions.
+
+<BR>
+
+<P>Perl is a program just like any other program on your system, only it's more powerful than most other programs because it combines the features of awk, grep, sed, and C all in one language! To run Perl, you can simply type perl at the prompt and type in 
+your code. In almost all cases, though, you will want to keep your Perl code in files just like shell scripts. A Perl program is referred to as a script.
+
+<BR>
+
+<P>Perl programs are interpreted and compiled by the Perl program before executing the program. To create a Perl program you use the syntax of #!program_name as the first line of an executable file to create a Perl script. The following two lines are a 
+valid Perl script:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">#!/usr/bin/perl
+
+print &quot;I be Perl\n&quot;;</FONT></PRE>
+
+<P>On some Linux systems, the path to Perl is /sbin/perl, and on some it's /usr/local/bin/perl. The libraries for the Perl program on some other machines will be located in the /usr/bin/perl5, /usr/lib/perl5, or the /usr/local/lib/perl5 directory. Use a 
+find command to see if you can locate Perl on your system.
+
+<BR>
+
+<P>You can run programs via the command line with the -e switch to perl. For example, entering the following command at the prompt will print &quot;Howdy!&quot;.
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ perl -e 'print &quot;Howdy&quot;;\n'</FONT></PRE>
+
+<P>In all but the shortest of Perl programs, you will use a file to store your Perl code as a script. Using a script file offers you the ease of not having to type commands interactively and thus not being able to correct typing errors easily. A script 
+file also provides a written record of which commands to use to do some task.
+
+<BR>
+
+<P>To fire off a command on all lines in the input, use the -p option. Thus,
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$perl -p -e 's/old/new/g' test.txt</FONT></PRE>
+
+<P>will run the command to substitute all strings old with new on each line from the file test.txt. If you use the -p option, it will print each line as it is read in.
+
+<BR>
+
+<P>Let's start with an introduction to the Perl language.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E230"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Variables in Perl</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Perl has three basic types of variables: scalars, arrays, and associative arrays. A scalar variable is anything that can hold one number or a string. An array stores many scalars in a sequence, where each scalar can be indexed using a number starting 
+from 0. An associative is like an array in that it stores strings in sequenceb but uses another string as an index to address individual items instead of a number.
+
+<BR>
+
+<P>Let's start with scalar variables.
+
+<BR>
+
+<P>The syntax for a scalar variable is $variable_name. A variable name is set up and addressed in the same way as Bourne shell variables. To assign values to a scalar, you use statements like these:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$name = &quot;Kamran&quot;;
+
+$number= 100;
+
+$phone_Number = '555-1232';</FONT></PRE>
+
+<P>A variable in Perl is evaluated at runtime to derive a value that is one of the following: a string, a number, or a pointer to scalar. It's important to place a $ sign in front of the variable name, or it will be interpreted as a file handle.
+
+<BR>
+
+<P>To print out the value of a variable, you would use a print statement. To print the value of $name, you would make a call:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">print $name;</FONT></PRE>
+
+<P>The value of $name is printed to the screen. Perl scripts expect input from a standard input (the keyboard) and write to the standard output.
+
+<BR>
+
+<BR>
+
+<A NAME="E70E9"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Code Blocks in Loops</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>Variables and assignment statements exist in code blocks. Each code block is a section of code between two curly braces. The loop construct and conditional expressions used in Perl delimit code blocks with curly braces. The following are some examples 
+of code blocks available in Perl:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">while(condition) {
+
+... execute code here while condition is true;
+
+}
+
+until(condition) { # opposite of while statement.
+
+... execute code here while condition is false;
+
+}
+
+do {
+
+... do this at least once ...
+
+... stop if condition is false ...
+
+} while(condition);
+
+do {
+
+... do this at least once ...
+
+... stop if condition is true ...
+
+} until(condition);
+
+if (condition1) {
+
+condition1_code true;
+
+} else {
+
+...no condition1 up to conditionN is true;
+
+}
+
+if (condition1) {
+
+...condition1_code true;
+
+} elsif (condition2) {
+
+condition1_code true;
+
+....
+
+} elsif (conditionN) {
+
+conditionN_code true;
+
+} else {
+
+...no condition from 1 up to N is true;
+
+}
+
+unless (condition1) { # opposite of &quot;if&quot; statement.
+
+do this if condition is false;
+
+}</FONT></PRE>
+
+<P>The condition in the preceding blocks of code is anything from a Perl variable to an expression that returns either a true or false value. A true value is a nonzero or a nonempty string.
+
+<BR>
+
+<P>Code blocks can be declared within code blocks to create levels of code blocks. Variables declared in one code block are usually global to the rest of the program. To keep the scope of the variable limited to the code block in which it is declared, use 
+the my $variableName syntax. If you declare with local $variableName syntax, the $variableName will be available to all lower levels but not outside the code block. So if your code calls another subroutine, any variables declared with the word local could 
+be modified by the called subroutine; however, those variables declared by the my keyword will not be visible to the called subroutine.
+
+<BR>
+
+<P>Variables in code blocks are also declared the first time they are assigned a value. This creation includes arrays and strings. Variables are then evaluated by the parser when they appear in code, and even in strings. There are times when you do not 
+want the variable to be evaluated. This is the time when you should be aware of quoting rules in Perl.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E362"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Quoting Rules</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Three different types of quotes can be used on Perl. Double quotes (&quot;&quot;) are used to enclose strings. Any scalars in double quoted strings are evaluated by Perl. To force Perl not to evaluate anything in a quote, you will have to use single 
+quotes ('). Finally, to run some values in a shell program and get its return value back, use the back quote (`) symbol. To see an example of how it works, see the sample Perl script in Listing 29.1.
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 29.1. Quoting in a Perl script.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">1 #!/usr/bin/perl
+
+2 $folks=&quot;100&quot;;
+
+3 print &quot;\$folks = $folks \n&quot;;
+
+4 print '\$folks = $folks \n';
+
+5 print &quot;\n\n BEEP! \a \LSOME BLANK \ELINES HERE \n\n&quot;;
+
+6 $date = 'date +%D';
+
+7 print &quot;Today is [$date] \n&quot;;
+
+8 chop $date;
+
+9 print &quot;Date after chopping off carriage return: [&quot;.$date.&quot;]\n&quot;;</FONT></PRE>
+
+<P>The output from the code in Listing 29.1 is shown here. The line numbers shown in the listing are for the benefit of illustration only and are not present in the actual file.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$folks = 100
+
+$folks = $folks \n
+
+BEEP! some blank LINES HERE
+
+Today is [03/29/96
+
+]
+
+Date after chopping off carriage return: [03/29/96]</FONT></PRE>
+
+<P>Let's go over the code shown in Listing 29.1.
+
+<BR>
+
+<P>Line 1 is the mandatory first line of the Perl script.
+
+<BR>
+
+<P>Line 2 assigns a string value to $folks variable. Note that you did not have to declare the variable $folks; it was created when used for the first time.
+
+<BR>
+
+<P>Line 3 prints the value of $folks in between double quotes. The $ sign in $folks has to be escaped with the \ character to prevent Perl from evaluating the value of $folks instead of printing the word $folks verbatim in the output like this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$folks = 100</FONT></PRE>
+
+<P>In line 4, Perl does not evaluate anything between the single quotes. The entire contents of the line are left untouched and printed out here:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">\$folks = $folks \n</FONT></PRE>
+
+<P>Perl has several special characters to format text data for you. Line 5 prints multiple blank lines with the \n character and beeps at the terminal. Two \n characters are needed to proceed from the end of the current line, skip line and position the 
+cursor at the next line. Notice how the words SOME BLANK are printed in lowercase? This is because they are encased between the \L and \E special characters, which forces all characters to be lowercase. Some of these special characters are listed in Table 
+29.1.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 29.1. Special characters in Perl.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Character</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Meaning</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\n 
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+New line (line feed)</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\r 
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Carriage return (MSDOS)</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\t 
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Tab</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\a 
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Beep</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\b 
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Backspace</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\L \E 
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Lowercase all characters in between \L and \E</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\l 
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Lowercase next character</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\U \E 
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Uppercase all characters in between \U and \E</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\u 
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Uppercase next character</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\cC
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Insert control character &quot;C&quot;</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\x##
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Hex number in ##, such as \x1d</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\0ooo
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Octal number in ooo, such as \0213</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\\
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+A backslash</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\c
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Insert the next character literally, such as \$ puts $</FONT>
+
+</TABLE><P>In line 6, the script uses the back quotes (') to execute a command and then returns the results in the $date variable. The string in between the two back quotes is what you would type at the command line, with one exception: if you use Perl 
+variables in the command line for the back quotes, Perl will evaluate these variables before passing it off to the shell for execution. For example, line 6 could be rewritten as
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$parm = &quot;+%D&quot;;
+
+$date = '$date $parm';</FONT></PRE>
+
+<P>The returned value in $date is printed out in line 7. Note that there is an extra carriage return in the text for data. To remove it, use the chop command as shown in line 8.
+
+<BR>
+
+<P>Then in line 9, the $date output is shown to print correctly. Note how the period (.) is used to concatenate three strings together for the output.
+
+<BR>
+
+<P>It's easy to construct strings in Perl with the (.) operator. Given two strings $first and $last, you can construct the string $fullname like this to get &quot;Jim Smith&quot;:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$first = &quot;Jim&quot;;
+
+$last = &quot;Smith&quot;;
+
+$fullname = $first . &quot; &quot; . $last;</FONT></PRE>
+
+<P>Numbers in Perl are stored as floating point numbers; even variables used as integers are really stored as floating point numbers. There are a set of operations you can do with numbers. These operations are listed in Table 29.2.
+
+<BR>
+
+<P>Table 29.2 also lists Boolean operators.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 29.2. Numeric operations with Perl.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Operations</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Comparisons</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+$r = $x + $y 
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Add $x to $y and assign result to $r</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+$r = $x - $y 
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Subtract $y from $x and assign result to $r</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+$r = $x * $y 
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Multiply $y and $x and assign result to $r</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+$r = $x / $y 
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Divide $x by $y and assign result to $r</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+$r = $x % $y 
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Modulo. Divide $x by $y and assign remainder to $r</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+$r = $x ** $y 
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Raise $x to power of $y and assign result to $r</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+$r = $x &lt;&lt; $n
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Shift bits in $x left $n times and assign to $r</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+$r = $x &gt;&gt; $n
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Shift bits in $x right $n times and assign to $r</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+$r = ++$x 
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Increment $x, and assign $x to $r</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+$r = $x++ 
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Assign $x to $r, then increment $x</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+$r += $x;
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Add $x to $r, then assign to $r</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+$r = &#151;$x 
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Decrement $x, and assign $x to $r</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+$r = $x&#151; 
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Assign $x to $r, then decrement $x</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+$r -= $x;
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Subtract $x from $r, then assign to $r</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+$r /= $x;
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Divide $r by $x, then assign to $r</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+$r *= $x;
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Multiply $r by $x, then assign to $r</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+$r = $x &lt;=&gt; $y 
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+$r is 1 if $x &gt; $y; 0 if $x == $y; -1 if $x &lt; $y</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+$r =~ $x 
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Bind $x to $r</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+$r = $x || $y
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+$r = $x logical or $y</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+$r = $x &amp;&amp; $y
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+$r = $x logical and $y</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+$r = ! $x 
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+$r = logical not $x</FONT>
+
+</TABLE><P>You can compare values of variables to check results of operations. Table 29.3 lists the comparison operators for numbers and strings.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 29.3. Comparison operations with Perl.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Operations</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Comparisons</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+$x == $y 
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+True if $x is equal to $y</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+$x != $y 
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+True if $x is not equal to $y</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+$x &lt; $y 
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+True if $x is less than $y</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+$x &lt;= $y 
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+True if $x is less than or equal to $y</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+$x &gt; $y 
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+True if $x is greater than $y</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+$x &gt;= $y 
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+True if $x is greater than or equal to $y</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+$x eq $y 
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+True if string $x is equal to string $y</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+$x ne $y 
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+True if string $x is not equal to string $y</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+$x lt $y 
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+True if string $x is less than string $y</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+$x le $y 
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+True if string $x is less than or equal to string $y</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+$x gt $y 
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+True if string $x is less than string $y</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+$x ge $y 
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+True if string $x is less than or equal to string $y</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+$x x $y 
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Repeat $x, $y times</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+$x . $y 
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Return the concatenated value of $x and $y</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+$x cmp $y 
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Return 1 if $x gt $y, 0 if $x eq $y, -1 if $x lt $y</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+$w ? $x : $y
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Return $x if $w is true, $y if $w is false</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+ ($x..$y)
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Return a list of numbers from $x to $y</FONT>
+
+</TABLE><BR>
+
+<A NAME="E68E231"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Arrays and Associative Arrays</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Perl has arrays to let you group items using a single variable number. Perl offers two types of arrays: those whose items are indexed by number (arrays) and those whose items are indexed by a string (associative arrays).
+
+<BR>
+
+<P>An index into an array is referred to as the subscript of the array.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>An associative array is referred to as &quot;hash&quot; because of the way it's stored internally in Perl.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>Arrays are referred to with the @ symbol. Individual items in an array are derived with a $ and the subscript. For example, the first item in an array @count would be $count[0], the second item would be $count[1], and so on. See Listing 29.2 for some 
+usage of arrays.
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 29.2. Using arrays.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">1 #!/usr/bin/perl
+
+2 #
+
+3 # An example to show how arrays work in Perl
+
+4 #
+
+5 @amounts = (10,24,39);
+
+6 @parts = ('computer', 'rat', &quot;kbd&quot;);
+
+7
+
+8 $a = 1; $b = 2; $c = '3';
+
+9 @count = ($a, $b, $c);
+
+10
+
+11 @empty = ();
+
+12
+
+13 @spare = @parts;
+
+14
+
+15 print '@amounts = ';
+
+16 print &quot;@amounts \n&quot;;
+
+17
+
+18 print '@parts = ';
+
+19 print &quot;@parts \n&quot;;
+
+20
+
+21 print '@count = ';
+
+22 print &quot;@count \n&quot;;
+
+23
+
+24 print '@empty = ';
+
+25 print &quot;@empty \n&quot;;
+
+26
+
+27 print '@spare = ';
+
+28 print &quot;@spare \n&quot;;
+
+29
+
+30
+
+31 #
+
+32 # Accessing individual items in an array
+
+33 #
+
+34 print '$amounts[0] = ';
+
+35 print &quot;$amounts[0] \n&quot;;
+
+36 print '$amounts[1] = ';
+
+37 print &quot;$amounts[1] \n&quot;;
+
+38 print '$amounts[2] = ';
+
+39 print &quot;$amounts[2] \n&quot;;
+
+40 print '$amounts[3] = ';
+
+41 print &quot;$amounts[3] \n&quot;;
+
+42
+
+43 print &quot;Items in \@amounts = $#amounts \n&quot;;
+
+44 $size = @amounts; print &quot;Size of Amount = $size\n&quot;;
+
+45 print &quot;Item 0 in \@amounts = $amounts[$[]\n&quot;;
+
+46
+
+@amounts = 10 24 39
+
+@parts = computer rat kbd
+
+@count = 1 2 3
+
+@empty =
+
+@spare = computer rat kbd
+
+$amounts[0] = 10
+
+$amounts[1] = 24
+
+$amounts[2] = 39
+
+$amounts[3] =
+
+Items in @amounts = 2
+
+Size of Amount = 3
+
+Item 0 in @amounts = 10</FONT></PRE>
+
+<P>In line 5, three integer values are assigned the @amounts array. In line 6, three strings are assigned to the @parts array. In line 8, the script assigns both string and numeric values to variables and then assigns the values of the variable to the 
+@count array. An empty array is created in line 11. In line 13, the @spare array is assigned the same values as those in @parts.
+
+<BR>
+
+<P>Lines 15 through 28 print out the first five lines of the output. In lines 34 to 41, the script addresses individual items of the @amounts array. Note that $amount[3] does not exist; it is therefore printed as an empty item.
+
+<BR>
+
+<P>The $#array syntax is used in line 43 to print the last index in an array, so the script prints 2. The size of the amounts array would be ($#amounts + 1). If an array is assigned to a scalar, as shown in line 44, the size of the array is assigned to the 
+scalar. Line 45 shows the use of a special Perl variable called $[, which is the base subscript (zero, unless you redefine it) of an array.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E363"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Associative Arrays</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>An associative array is really an array with two items per index. The first item at each index is called a key and the other item is called the value. You index into an associative array using keys to get values. An associative array name is preceded 
+with a percent sign (%), and indexed items are with curly braces ({}).
+
+<BR>
+
+<P>See Listing 29.3 for some sample uses of associative arrays.
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 29.3. Using associative arrays.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">1 #!/usr/bin/perl
+
+2 #
+
+3 # Associative Arrays.
+
+4 #
+
+5
+
+6 %subscripts = (
+
+7 'bmp', 'Bitmap',
+
+8 &quot;cpp&quot;, &quot;C++ Source&quot;,
+
+9 &quot;txt&quot;, 'Text file' );
+
+10
+
+11 $bm = 'asc';
+
+12 $subscripts{$bm} = 'Ascii File';
+
+13
+
+14 print &quot;\n =========== Raw dump of hash ========= \n&quot;;
+
+15 print %subscripts;
+
+16
+
+17 print &quot;\n =========== using foreach ========= \n&quot;;
+
+18 foreach $key (keys (%subscripts)) {
+
+19 $value = $subscripts{$key};
+
+20 print &quot;Key = $key, Value = $value \n&quot;;
+
+21 }
+
+22
+
+23 print &quot;\n === using foreach with sort ========= \n&quot;;
+
+24 foreach $key (sort keys (%subscripts)) {
+
+25 $value = $subscripts{$key};
+
+26 print &quot;Key = $key, Value = $value \n&quot;;
+
+27 }
+
+28
+
+29 print &quot;\n =========== using each() ========= \n&quot;;
+
+30 while (($key,$value) = each(%subscripts)) {
+
+31 print &quot;Key = $key, Value = $value \n&quot;;
+
+32 }
+
+33
+
+=========== Raw dump of hash =========
+
+txtText filecppC++ SourceascAscii FilebmpBitmap
+
+=========== using foreach =========
+
+Key = txt, Value = Text file
+
+Key = cpp, Value = C++ Source
+
+Key = asc, Value = Ascii File
+
+Key = bmp, Value = Bitmap
+
+=== using foreach with sort =========
+
+Key = asc, Value = Ascii File
+
+Key = bmp, Value = Bitmap
+
+Key = cpp, Value = C++ Source
+
+Key = txt, Value = Text file
+
+=========== using each() =========
+
+Key = txt, Value = Text file
+
+Key = cpp, Value = C++ Source
+
+Key = asc, Value = Ascii File
+
+Key = bmp, Value = Bitmap</FONT></PRE>
+
+<P>An associative array called %subscripts is created in line 6 up to line 9. Three items of (key,value) pairs are added to %subscripts as a list. At line 11, a new item is added to the %subscript array by assigning $bm to a key and then using $bm as the 
+index. We could just as easily add the string 'Ascii File' with the hard-coded statement:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$subscripts{'asc'} = 'Ascii File';</FONT></PRE>
+
+<P>Look at the output from line 15 which dumps out the associative array items.
+
+<BR>
+
+<P>In line 17, the script uses a foreach statement to loop over the keys in the %subscripts array. The keys() function returns a list of keys for a given hash. The value of the item at $subscripts{$key} is assigned to $value at line 19. You could combine 
+lines 18 and 19 into one statement like this without loss of meaning:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">print &quot;Key = $key, Value = $subscripts{$key} \n&quot;;</FONT></PRE>
+
+<P>Using the keys alone did not list the contents of the %subscripts hash in the order you want. To sort the output, you should sort the keys into the hash. This is shown in line 24. The sort() function takes a list of items and returns a text-sorted 
+version. The foreach function takes the output from the sort() function applied to the value returned by the keys() function. To sort in decreasing order, you can apply the reverse function to the returned value of sort() to get this line:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">foreach $key (reverse sort keys (%subscripts)) {</FONT></PRE>
+
+<P>It's more efficient to use the each() function when working with associative arrays, because only one lookup is required per item to get both the key and its value. See line 30 where the ($key,$value) pairs assigned to the value are returned by the 
+each() command.
+
+<BR>
+
+<P>The code in line 30 is important and deserves some explaining. First of all, the while() loop is used here. The format for a while loop is defined as:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">while( conditionIsTrue) {
+
+codeInLOOP
+
+}
+
+..
+
+codeOutOfLOOP</FONT></PRE>
+
+<P>While the condition in the while loop is a nonzero number, a nonempty string, or a nonempty list, the code in the area codeInLOOP will be executed. Otherwise, the next statement outside the loop (for instance, after the curly brace) will be executed.
+
+<BR>
+
+<P>Secondly, look at how the list ($key,$value) is mapped onto the list returned by the each function. The first item of the returned list is assigned to $key, the next item to $value. This is part of the array slicing operations available in Perl.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E232"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Array Operations</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>When working with arrays in Perl, you are really working with lists. You can add or remove items from the front or back of the list. Items in the middle of the list can be indexed using subscripts or keys. Sublists can be created from lists. Lists can 
+be concatenated to create new lists. Got all that?
+
+<BR>
+
+<P>Let's look at some examples of how they fit together. See Listing 29.4, which uses some of these concepts.
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 29.4. Array operations.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">1 #!/usr/bin/perl
+
+2 #
+
+3 # Array operations
+
+4 #
+
+5
+
+6 $a = 'RFI';
+
+7 $b = 'UPS';
+
+8 $c = 'SPIKE';
+
+9
+
+10 @words = ('DC','AC','EMI','SURGE');
+
+11
+
+12 $count = @words; # Get the count
+
+13
+
+14 #
+
+15 # Using the for operator on a list
+
+16 #
+
+17 print &quot;\n \@words = &quot;;
+
+18 for $i (@words) {
+
+19 print &quot;[$i] &quot;;
+
+20 }
+
+21
+
+22 print &quot;\n&quot;;
+
+23 #
+
+24 # Using the for loop for indexing
+
+25 #
+
+26 for ($i=0;$i&lt;$count;$i++) {
+
+27 print &quot;\n Words[$i] : $words[$i];&quot;;
+
+28 }
+
+29 #
+
+30 # print 40 equal signs
+
+31 #
+
+32 print &quot;\n&quot;;
+
+33 print &quot;=&quot; x 40;
+
+34 print &quot;\n&quot;;
+
+35 #
+
+36 # Extracting items into scalars
+
+37 #
+
+38 ($x,$y) = @words;
+
+39 print &quot;x = $x, y = $y \n&quot;;
+
+40 ($w,$x,$y,$z) = @words;
+
+41 print &quot;w = $x, x = $x, y = $y, z = $z\n&quot;;
+
+42
+
+43 ($anew[0], $anew[3], $anew[9], $anew[5]) = @words;
+
+44
+
+45 $temp = @anew;
+
+46
+
+47 #
+
+48 # print 40 equal signs
+
+49 #
+
+50 print &quot;=&quot; x 40;
+
+51 print &quot;\n&quot;;
+
+52
+
+53 print &quot;Number of elements in anew = &quot;. $temp, &quot;\n&quot;;
+
+54 print &quot;Last index in anew = &quot;. $#anew, &quot;\n&quot;;
+
+55 print &quot;The newly created Anew array is: &quot;;
+
+56 $j = 0;
+
+57 for $i (@anew) {
+
+58 print &quot;\n \$anew[$j] = is $i &quot;;
+
+59 $j++;
+
+60 }
+
+61 print &quot;\n&quot;;
+
+62
+
+63
+
+@words = [DC] [AC] [EMI] [SURGE]
+
+Words[0] : DC;
+
+Words[1] : AC;
+
+Words[2] : EMI;
+
+Words[3] : SURGE;
+
+========================================
+
+x = DC, y = AC
+
+w = AC, x = AC, y = EMI z = SURGE
+
+========================================
+
+Number of elements in anew = 10
+
+Last index in anew = 9
+
+The newly created Anew array is:
+
+$anew[0] = is DC
+
+$anew[1] = is
+
+$anew[2] = is
+
+$anew[3] = is AC
+
+$anew[4] = is
+
+$anew[5] = is SURGE
+
+$anew[6] = is
+
+$anew[7] = is
+
+$anew[8] = is
+
+$anew[9] = is EMI</FONT></PRE>
+
+<P>Lines 6, 7, and 8 assign values to scalars $a, $b and $c. In line 10, four values are assigned to the @words array. Line 12 gives a count of the number of elements in the array.
+
+<BR>
+
+<P>The for loop statement is used to cycle through each element in the list. Perl takes each item in the @words array, assigns it to $i and then executes the statements in the block of code between the curly braces. We could rewrite line 18 as the 
+following and get the same result:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">for $i ('DC','AC','EMI','SURGE') {</FONT></PRE>
+
+<P>In the case of the sample in Listing 29.4, you print the value of each item with square brackets around them. Line 22 simply prints a new line.
+
+<BR>
+
+<P>Now look at line 26, where the for loop is defined. The syntax in the for() loop will be very familiar to C programmers:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">for (startingCondition; endingCondition; at_end_of_every_loop) {
+
+execute_statements_in_this_block;
+
+}</FONT></PRE>
+
+<P>Line 26 sets $i to zero when the for loop is started. Before Perl executes the next statement within the block, it checks to see if $i is less than $count. If $i is less than $count, the print statement is executed. If $i is greater than or equal to 
+$count, the next statement following the ending curly brace will be executed. After executing the last statement in a for() loop code block, line 28, Perl increments the value of with the end of loop statement: $i++. So $i is incremented. Perl goes back to 
+the top of the loop to test for the ending condition to see what to do next.
+
+<BR>
+
+<P>In the next lines 32 through 34, we print an output delimiting line with 40 equals signs. The x operator in line 33 will cause the = to be repeated by the number following it. Another way to print a somewhat fancier line would be to do the following in 
+lines 32-34:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">32 print &quot;\n[&quot;;
+
+33 print &quot;-=&quot; x 20;
+
+34 print &quot;]\n&quot;;</FONT></PRE>
+
+<P>Next, line 38 takes the first two items in @words and assigns them to variables $x and $y, respectively. The rest of the items in @words are not used. Line 40 assigns four items from @words to four variables. The mapping of items from @words to 
+variables is done on a one-to-one basis based on the type of parameter on the left-hand side of the = sign..
+
+<BR>
+
+<P>Had you used the following line in place of line 40, you would get the value of $word[0] in $x and the rest of @word in @sublist:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"> ($x,@sublist) = @words;</FONT></PRE>
+
+<P>Line 43 creates a new array, @anew, and assigns it values from the @words array&#151;but not on a one-to-one basis. In fact, you will see that the @anew array is not even the same size as @words. Perl automatically resizes the @anew array to be at least 
+as large as the largest index. In this case, since $anew[9] is being assigned a value, @anew will be at least 10 items long to cover items from 0 to 9.
+
+<BR>
+
+<P>In lines 53 and 54, the script prints out the value of the number of elements in the array and the highest valid index in the array. Lines 57 through 60 print out the value of each item in the anew area. Notice that items in the @new array are not 
+assigned any values.
+
+<BR>
+
+<P>You can create other lists from lists as well. See the example in Listing 29.5.
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 29.5. Creating sublists.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">1 #!/usr/bin/perl
+
+2 #
+
+3 # Array operations
+
+4 #
+
+5
+
+6 $a = 'RFI';
+
+7 $b = 'UPS';
+
+8 $c = 'SPIKE';
+
+9
+
+10 @words = ('DC','AC','EMI','SURGE');
+
+11
+
+12 $count = @words; # Get the count
+
+13 #
+
+14 # Using the for operator on a list
+
+15 #
+
+16 print &quot;\n \@words = &quot;;
+
+17 for $i (@words) {
+
+18 print &quot;[$i] &quot;;
+
+19 }
+
+20
+
+21 print &quot;\n&quot;;
+
+22 print &quot;=&quot; x 40;
+
+23 print &quot;\n&quot;;
+
+24
+
+25 #
+
+26 # Concatenate lists together
+
+27 #
+
+28 @more = ($c,@words,$a,$b);
+
+29 print &quot;\n Putting a list together: &quot;;
+
+30 $j = 0;
+
+31 for $i (@more) {
+
+32 print &quot;\n \$more[$j] = is $i &quot;;
+
+33 $j++;
+
+34 }
+
+35 print &quot;\n&quot;;
+
+36
+
+37 @more = (@words,($a,$b,$c));
+
+38 $j = 0;
+
+39 for $i (@more) {
+
+40 print &quot;\n \$more[$j] = is $i &quot;;
+
+41 $j++;
+
+42 }
+
+43 print &quot;\n&quot;;
+
+44
+
+45
+
+46 $fourth = ($a x 4);
+
+47 print &quot; is $fourth\n&quot;;
+
+@words = [DC] [AC] [EMI] [SURGE]
+
+========================================
+
+Putting a list together:
+
+$more[0] = is SPIKE
+
+$more[1] = is DC
+
+$more[2] = is AC
+
+$more[3] = is EMI
+
+$more[4] = is SURGE
+
+$more[5] = is RFI
+
+$more[6] = is UPS
+
+$more[0] = is DC
+
+$more[1] = is AC
+
+$more[2] = is EMI
+
+$more[3] = is SURGE
+
+$more[4] = is RFI
+
+$more[5] = is UPS
+
+$more[6] = is SPIKE
+
+$more[0] = is RFIRFIRFIRFI</FONT></PRE>
+
+<P>Listing 29.5 creates one list from another list. In line 10, the script creates and fills the @words array. In lines 16 through 19, the script prints out the array. Lines 21-23, which print equal signs to create a divider, are repeated again (which you 
+will soon convert into a subroutine).
+
+<BR>
+
+<P>At line 28, the @more array is created by placing $c, the entire @words array, $a, and $b together. The size of the @more array will be 6. The items in the @more array are printed out in lines 31 through 35.
+
+<BR>
+
+<P>The code at line 37 creates another @more array with different ordering. The previously created @more array is freed back to the memory pool. The newly ordered @more list is printed from lines 38 through 43.
+
+<BR>
+
+<P>The script then uses the x operator in line 46 to create another item by concatenating four copies of $a into the variable $fourth.
+
+<BR>
+
+<P>If you are like me, you probably don't want to type the same lines of code again and again. For example, the code in lines 21-23 of Listing 29.5 could be made into a function that looks like this:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">sub printLine {
+
+print &quot;\n&quot;;
+
+print &quot;=&quot; x 40;
+
+print &quot;\n&quot;;
+
+}</FONT></PRE>
+
+<P>Now when you want to print the lines, call the subroutine with this line of code:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">&amp;printLine;</FONT></PRE>
+
+<P>The section &quot;Subroutines&quot; covers other aspects of subroutines. For now, let's get back to some of the things you can do with arrays using the functions supplied with Perl. See Listing 29.6 for a script that uses the array functions discussed 
+here.
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 29.6. Using array functions.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">1 #!/usr/bin/perl
+
+2 #
+
+3 # Functions for Arrays
+
+4 #
+
+5 sub printLine {
+
+6 print &quot;\n&quot;; print &quot;=&quot; x 60; print &quot;\n&quot;;
+
+7 }
+
+8
+
+9 $quote= 'Listen to me slowly';
+
+10
+
+11 #
+
+12 # USING THE SPLIT function
+
+13 #
+
+14 @words = split(' ',$quote);
+
+15
+
+16 #
+
+17 # Using the for operator on a list
+
+18 #
+
+19 &amp;printLine;
+
+20 print &quot;The quote from Sam Goldwyn: $quote &quot;;
+
+21 &amp;printLine;
+
+22 print &quot;The words \@words = &quot;;
+
+23 for $i (@words) {
+
+24 print &quot;[$i] &quot;;
+
+25 }
+
+26
+
+27 #
+
+28 # CHOP
+
+29 #
+
+30 &amp;printLine;
+
+31 chop(@words);
+
+32 print &quot;The chopped words \@words = &quot;;
+
+33 for $i (@words) {
+
+34 print &quot;[$i] &quot;;
+
+35 }
+
+36 print &quot;\n .. restore&quot;;
+
+37 #
+
+38 # Restore!
+
+39 #
+
+40 @words = split(' ',$quote);
+
+41
+
+42 #
+
+43 # Using PUSH
+
+44 #
+
+45 @temp = push(@words,&quot;please&quot;);
+
+46 &amp;printLine;
+
+47 print &quot;After pushing \@words = &quot;;
+
+48 for $i (@words) {
+
+49 print &quot;[$i] &quot;;
+
+50 }
+
+51
+
+52 #
+
+53 # USING POP
+
+54 #
+
+55 $temp = pop(@words); # Take the 'please' off
+
+56 $temp = pop(@words); # Take the 'slowly' off
+
+57 &amp;printLine;
+
+58 print &quot;Popping twice \@words = &quot;;
+
+59 for $i (@words) {
+
+60 print &quot;[$i] &quot;;
+
+61 }
+
+62 #
+
+63 # SHIFT from the from the top of the array.
+
+64 #
+
+65 $temp = shift @words;
+
+66 &amp;printLine;
+
+67 print &quot;Shift $temp off, \@words= &quot;;
+
+68 for $i (@words) {
+
+69 print &quot;[$i] &quot;;
+
+70 }
+
+71 #
+
+72 # Restore words
+
+73 #
+
+74 @words = ();
+
+75 @words = split(' ',$quote);
+
+76 &amp;printLine;
+
+77 print &quot;Restore words&quot;;
+
+78 #
+
+79 # SPLICE FUNCTION
+
+80 #
+
+81 @two = splice(@words,1,2);
+
+82 print &quot;\n Words after splice = &quot;;
+
+83 for $i (@words) {
+
+84 print &quot; [$i]&quot;;
+
+85 }
+
+86 print &quot;\n Returned from splice = &quot;;
+
+87 for $i (@two) {
+
+88 print &quot; [$i]&quot;;
+
+89 }
+
+90 &amp;printLine;
+
+91
+
+92 #
+
+93 # Using the join function
+
+94 #
+
+95 $joined = join(&quot;:&quot;,@words,@two);
+
+96 print &quot;\n Returned from join = $joined &quot;;
+
+97 &amp;printLine;</FONT></PRE>
+
+<P>The split function is used in line 14 to split the items in the string $quote into the @words array.
+
+<BR>
+
+<P>Then the script uses chop() on a list. This function removes a character from a string. When applied to an array, chop removes a character from each item on the list. See lines 31 through 35.
+
+<BR>
+
+<P>You can add or delete items from an array using the pop(@Array) or push(@Array) functions. The pop() function removes the last item from a list and returns it as a scalar. In the push(ARRAY,LIST);, the push() function takes an array as the first 
+parameter and treats the rest of the parameters as items to place at the end of the array. In line 45, the push function pushes the word please into the back of the @words array. In lines 55 and 56, two words are popped off the @words list. The size of the 
+array @word changes with each command.
+
+<BR>
+
+<P>Let's look at how the shift function in used in line 65. The shift(ARRAY) function returns the first element of an array. The size of the array is decreased by 1. You can use shift in one of three ways listed here:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">shift (@mine); # return first item of @mine
+
+shift @mine; # return first item of @mine
+
+shift; # return first item in @ARGV</FONT></PRE>
+
+<P>The special variable @ARGV is the argument vector for your Perl program.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>The push/pop routines work on the back of an array and the shift/unshift routines work on the front of an array.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>The number of elements in @ARGV are easily found by assigning a scalar to $ARGC, which is equal to @#ARGV before any operations are applied to @ARGV.
+
+<BR>
+
+<P>Then, after restoring @words to its original value, the script uses the splice( ) function to remove items from the @words array. The splice function is very important function and is really the key behind the pop(), push(), and shift() functions. The 
+syntax for the splice() function is:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">splice(@array,$offset,$length,$list)</FONT></PRE>
+
+<P>The splice function will return the items removed in the form of a list. It will replace the $length items in @array starting from $offset with the contents of $list. If you leave out the $list parameter, and just use splice(@array,$offset,$length), 
+then nothing will be inserted in the original array. Any removed items will be returned from splice().If you leave out the $length paramater to splice and use it as splice(@array,$offset), then $length will be set the length of the @array from the offset.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E233"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>File Handles and Operators</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Now that we have covered basic array and numeric operations, let's cover some of the input/output operations where files are concerned. A Perl program has three file handles when it starts up: STDIN (for standard input), STDOUT (for standard output) and 
+STDERR (for standard error message output). Note the use of capitals and the lack of the $ sign to signify that these are file handles. For a C/C++ programmer, the three handles would be akin to stdin, stdout and stderr.
+
+<BR>
+
+<P>To open a file for I/O you have to use the open statement. The syntax for the open call is:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">open(HANDLE, $filename);</FONT></PRE>
+
+<P>The HANDLE is then used for all the operations on a file. To close a file, you would use the function close HANDLE;
+
+<BR>
+
+<P>For writing text to a file given a handle, you can use the print statements to write to the file:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">print HANDLE $output;</FONT></PRE>
+
+<P>The HANDLE defaults to STDIN if no handle is specified. To read one line from the file given a HANDLE you will use the &lt;&gt; operators:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$line = &lt;HANDLE&gt;</FONT></PRE>
+
+<P>In the preceding code, $line will be assigned all the input until a carriage return or eof. When writing interactive scripts, you normally use the chop() function to remove the end-of-line character. To read from the standard input into a variable 
+$response, you would use the statements in sequence:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$response = &lt;STDIN&gt;;
+
+chop $response; # remove offensive carriage return.</FONT></PRE>
+
+<P>You can do binary read and write operations on a file using the read() and write functions. The syntax for each type of function is:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">read(HANDLE,$buffer,$length[,$offset]);</FONT></PRE>
+
+<P>The read function will read from HANDLE into $buffer, up $length bytes from the $offset in bytes from the start of the file. The $offset is optional and read() defaults reading to the current location in the file if $offset is left out. The location in 
+the file to read from is advanced $length bytes. To check if you have reached the end of file, use the command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">eof(HANDLE);</FONT></PRE>
+
+<P>A nonzero value returned will signify the end of the file, and a zero returned will indicate that there is more to read in the file. You can move to a position in the file using the seek function.
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">seek(HANDLE,$offset,$base)</FONT></PRE>
+
+<P>The $offset is from the location specified in $base. The seek function behaves exactly like the C function call. If $base is 0, the $Offset is from the start of the file.
+
+<BR>
+
+<P>There can be errors associated with opening files, so to print out error messages before a script crashes the die() function is used. A call to open a file called &quot;test.data&quot; would look like this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">open(TESTFILE,&quot;test.data&quot;) || die &quot;\n $0 Cannot open $! \n&quot;;</FONT></PRE>
+
+<P>The preceding line literally reads, &quot;Open test.data for input or die if you cannot open it&quot;. The $0 is the Perl special variable for the process name and $! is the errno from the system as a string.
+
+<BR>
+
+<P>The filename signifies the type of operation you intend to perform with the file. Table 29.4 lists some of the ways you can open a file.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 29.4. File open types.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>File </I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Action</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+&quot;test.data&quot;
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Opens test.data for reading. File must exist.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+&quot;&lt;test.data&quot;
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Opens test.data for reading. File must exist.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+&quot;&gt;test.data&quot;
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Opens test.data for writing. Creates file if it does not exist. Appends to any existing file called test.data.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+&quot;+&gt;test.data&quot;
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Opens test.data for reading and writing. Creates file if it does not exist.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+&quot;+&lt;test.data&quot;
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Opens test.data for reading and writing. Creates file if it does not exist. Preferred way in Perl 5.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+&quot;| cmd&quot; 
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Opens a pipe to write to.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+&quot;cmd |&quot; 
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Opens a pipe to read from.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+&quot;-&quot;
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Opens STDIN.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+&quot;&gt;-&quot;
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Opens STDOUT.</FONT>
+
+</TABLE><P>When working with multiple files, you can have more than one unique handle to write to or read from. Use the select HANDLE; call to set the default file handle to use when using print statements. For example, say you have two file handles, LARRY 
+and CURLY. Here's how to switch between handles:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">select LARRY;
+
+print &quot;Whatsssa matter?\n&quot;; # write to LARRY
+
+select CURLY;
+
+print &quot;Whoop, whoop, whoop!&quot;; # write to CURLY
+
+select LARRY;
+
+print &quot;I oughta.... &quot;; # write to LARRY again</FONT></PRE>
+
+<P>Of course, by explicitly stating the handle name you could get the same result with these three lines of code:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">print LARRY &quot;Whatsssa matter?\n&quot;; # write to LARRY
+
+print CURLY &quot;Whoop, whoop, whoop!&quot;; # write to CURLY
+
+print LARRY &quot;I oughta.... &quot;; # write to LARRY again</FONT></PRE>
+
+<P>This is a very brief introduction to using file handles in Perl. The use of file handles is covered throughout the rest of the book, so don't worry if this pace of information is too quick. You will see plenty of examples throughout the book.
+
+<BR>
+
+<P>You can also check for the status of a file given a filename. The available tests are listed in the source test file in Listing 29.7.
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 29.7. Testing file parameters.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">#!/usr/bin/perl
+
+$name = &quot;test.txt&quot;;
+
+print &quot;\nTesting flags for $name \n&quot;;
+
+print &quot;\n========== Effective User ID tests &quot;;
+
+print &quot;\n is readable&quot; if ( -r $name);
+
+print &quot;\n is writeable&quot; if ( -w $name);
+
+print &quot;\n is executeable&quot; if ( -x $name);
+
+print &quot;\n is owned &quot; if ( -o $name);
+
+print &quot;\n========== Real User ID tests &quot;;
+
+print &quot;\n is readable&quot; if ( -R $name);
+
+print &quot;\n is writeable&quot; if ( -W $name);
+
+print &quot;\n is executeable&quot; if ( -X $name);
+
+print &quot;\n is owned &quot; if ( -O $name);
+
+print &quot;\n========== Reality Checks &quot;;
+
+print &quot;\n exists &quot; if ( -e $name);
+
+print &quot;\n has zero size &quot; if ( -z $name);
+
+print &quot;\n has some bytes in it &quot; if ( -s $name);
+
+print &quot;\n is a file &quot; if (-f $name);
+
+print &quot;\n is a directory &quot; if (-d $name);
+
+print &quot;\n is a link &quot; if (-l $name);
+
+print &quot;\n is a socket &quot; if (-S $name);
+
+print &quot;\n is a pipe &quot; if (-p $name);
+
+print &quot;\n is a block device &quot; if (-b $name);
+
+print &quot;\n is a character device &quot; if (-c $name);
+
+print &quot;\n has setuid bit set &quot; if (-u $name);
+
+print &quot;\n has sticky bit set &quot; if (-k $name);
+
+print &quot;\n has gid bit set &quot; if (-g $name);
+
+print &quot;\n is open to terminal &quot; if (-t $name);
+
+print &quot;\n is a Binary file &quot; if (-B $name);
+
+print &quot;\n is a Text file &quot; if (-T $name);
+
+print &quot;\n is Binary to terminal &quot; if (-t $name);
+
+print &quot;\n is open to terminal &quot; if (-t $name);
+
+print &quot;\n age of file is &quot;.(int(-M $name)+1).&quot; day(s) old&quot; if (-e $name);print &quot;\n access time of file is &quot;.(-A $name) if (-e $name);
+
+print &quot;\n inode change time of file is &quot;.(-C $name) if (-e $name);
+
+printf &quot;\n&quot;;</FONT></PRE>
+
+<BR>
+
+<A NAME="E68E234"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Working with Patterns</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Perl has a very powerful regular expression parser and string search and replace functions. To search for a substring, you would use the following syntax normally within an if block:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">if ($a =~ /menu/) {
+
+printf &quot;\n Found menu in $a! \n&quot;;
+
+}</FONT></PRE>
+
+<P>The value in $a is the number of matched strings. To search in a case-insensitive manner, use an 'i' at the end of the search statement like this:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">if ($a =~ /mEnU/i) {
+
+printf &quot;\n Found menu in $a! \n&quot;;
+
+}</FONT></PRE>
+
+<P>You can even search for items in an array. For example, if $a was an array @a, then the returned value from the search operation will be an array with all the matched strings. If you do not specify the &quot;@a =~&quot; portion, then Perl will use the 
+$_ default name space to search on.
+
+<BR>
+
+<P>To search and replace strings, use the following syntax:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$expr =~ s/old/new/gie</FONT></PRE>
+
+<P>The 'g', 'i', and 'e' are optional parameters. If the 'g' is not specified, only the first match to the &quot;old&quot; string will be replaced with &quot;new.&quot; The 'i' flag specifies a case-insensitive search. The 'e' forces Perl to use the 
+&quot;new&quot; string as a Perl expression. So, in the following example, the value of $a will be &quot;HIGHWAY&quot;:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$a = &quot;DRIVEWAY&quot;;
+
+$a =~ s/HIGH/DRIVE/
+
+print $a;</FONT></PRE>
+
+<P>Perl has a grep() function very similar to the grep function in UNIX, Perl's grep function takes a regular expression and a list. The return value from grep can be handled one of two ways: if assigned to a scalar, it is the number of matches found, and 
+if assigned to a list, it's a sublist of all the items found via grep.
+
+<BR>
+
+<P>Please check the man pages for using grep(). Some of the main types of predefined patterns are shown in Table 29.5.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 29.5. Main types of predefined patterns.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Code </I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Pattern</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+.
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Any character</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\d
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Digits [0-9]</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\D
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Anything but digits</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\w
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+[a-zA-Z]</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\W
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Anything but \w</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\s
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Space or tab</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\S
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Anything but \s</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\n
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Newline</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\r
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Carriage return</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\t
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Tab</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\f
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Formfeed</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\0
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Null</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\000
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Octal</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\X00
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Hex</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\cX
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+ASCII Control Character</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+*
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Zero or more of previous pattern</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
++
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+One or more of previous pattern</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+?
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Zero or one of previous pattern</FONT>
+
+</TABLE><P>Perl uses the special variable called $_. This is the default variable to use by Perl if you do not explicitly specify a variable name and Perl expects a variable. For example, in the grep() function, if you omit the LIST, grep() will use the 
+string in the variable $_. The $_ variable is Perl's default string to search, assign input, or read for data for a number.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E235"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Subroutines</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Perl 5 supports subroutines and functions with the sub command. You can use pointers to subroutines, too. The syntax for subroutines is
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">sub Name {
+
+}</FONT></PRE>
+
+<P>The ending curly brace does not require a semicolon to terminate it. If you are using a reference to a subroutine it can be declared without a Name, as shown here:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ptr = sub {
+
+};</FONT></PRE>
+
+<P>Note the use of the <!--(semicolons):Perl subroutines;):Perl subroutines;-->semicolon to terminate the end of the subroutine. To call this function you would use the following line:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">&amp;\$ptr(argument list);</FONT></PRE>
+
+<P>Parameters to subroutines are passed in the @_ array. To get the individual items in the array, we can use $_[0], $_[1], and so on. You can define your own local variables with the 'local' keyword.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">sub sample {
+
+local ($a, $b, @c, $x) = @_
+
+&amp;lowerFunc();
+
+}</FONT></PRE>
+
+<P>In the preceding subroutine, you will find that $a = $_[0], $b = $_[1] and @c will point to the rest of the arguments as one list with $x empty. Generally, an array is the last assignment in such an assignment since it chews up all your parameters.
+
+<BR>
+
+<P>The 'local' variables will all be available for use in the lowerFunc() function. To hide the $a, $b, @c, and $x from lowerFunc, use the 'my' keyword like this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">my ($a, $b, @c, $x) = @_</FONT></PRE>
+
+<P>Remember, $x will be empty. Now, the code in localFunc() will not be able to access $a, $b, @c, or $x.
+
+<BR>
+
+<P>Parameters in Perl can be in form, from the looks of it. Since Perl 5.001m, you can define prototypes for subroutine arguments as well with the syntax
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">sub Name (parameters) {
+
+}</FONT></PRE>
+
+<P>If the parameters are not what the function expects, Perl will bail out with an error. The parameter format is as follows: $ for a scalar, @ for an array, % for hash, &amp; for a reference to a subroutine, and * for anything. So, if you want your 
+function to accept only three scalars, you would declare it as
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">sub func1($$$) {
+
+my ($x,$y,$z) = @_;
+
+code here
+
+}</FONT></PRE>
+
+<P>To pass the value of an array by reference (by pointer), you would use a backslash (\). If you pass two arrays without the backslash specifier, the contents of the two arrays will be concatenated into one long array in @_. The function prototype to pass 
+three arrays, a hash, and the rest in an array would look like this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">sub func2(\@\@\@\%@)</FONT></PRE>
+
+<BR>
+
+<A NAME="E68E236"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>More Features in Perl 5</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Perl 5 offers a vast array of new features when compared with Perl 4. In fact, the new Perl 5 is a complete rewrite of the Perl 4 interpreter. The new features in Perl include object-oriented programming, dynamically loaded packages, and a rich set of 
+Perl modules designed for a specific task. Modules for Perl include those for networking, interprocess communications, World Wide Web applications, mathematical applications, and so on. The list goes on. You can even extend Perl with your own C modules!
+
+<BR>
+
+<P>The topics are too vast to cover in one chapter alone and require a book. For more information, please consult the following books:
+
+<BR>
+
+<UL>
+
+<LI>Teach Yourself Perl 5 in 21 Days, by Dave Till (Indianapolis: Sams Publishing, 1995). A good book on the basics of Perl for the new user.
+
+<BR>
+
+<BR>
+
+<LI>Teach Yourself CGI Programming with Perl in a Week, by Eric Herrmann (Indianapolis: Sams.net Publishing, 1996). A good book for learning how to create interactive Web pages with the Common Gateway Interface.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>The following two classics offer a good base and will serve as a good reference to Perl 4 and its internals:
+
+<BR>
+
+<UL>
+
+<LI>Programming Perl, by Larry Wall and Randall Schwartz, O'Reilly &amp; Associates, 1990.
+
+<BR>
+
+<BR>
+
+<LI>Learning Perl, by Randall Schwartz, O'Reilly &amp; Associates, 1993.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>Also, refer to the Perl man and documentation pages at the Web site at <A HREF="http://www.metronet.com/perlinfo/doc/manual">http://www.metronet.com/perlinfo/doc/manual</A>.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E237"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Summary</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>This chapter has been a whirlwind introduction to Perl and, sadly, could not cover every aspect of Perl programming basics. As you work with Perl, though, you will learn more from practice than anything else. Do not despair. Read the man pages and ask 
+lots of questions in the <A HREF="news:<A NAME="I2"></A>comp.lang.perl">comp.lang.perl</A> newsgroup.
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl28.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="#I0" TARGET="_self"><IMG SRC="purtop.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Page Top"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl30.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+</BODY></HTML>
+
+
+

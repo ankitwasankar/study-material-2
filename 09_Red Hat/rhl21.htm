@@ -1,0 +1,1656 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Red Hat Linux Unleashed rhl21.htm </TITLE>
+
+<LINK REL="ToC" HREF="index.htm">
+
+<LINK REL="Index" HREF="htindex.htm">
+
+<LINK REL="Next" HREF="rhl22.htm">
+
+<LINK REL="Previous" HREF="rhl20.htm"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+
+<A NAME="I0"></A>
+
+<H2>Red Hat Linux Unleashed rhl21.htm</H2>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl20.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl22.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+<HR ALIGN=CENTER>
+
+<P>
+
+<UL>
+
+<UL>
+
+<UL>
+
+<LI>
+
+<A HREF="#E68E142" >Introduction to XFree86 and X11</A>
+
+<LI>
+
+<A HREF="#E68E143" >The XFree86 Project, Incorporated</A>
+
+<LI>
+
+<A HREF="#E68E144" >Installing XFree86</A>
+
+<LI>
+
+<A HREF="#E68E145" >Setting Up Your XFree86 System</A>
+
+<LI>
+
+<A HREF="#E68E146" >Running X</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E274" >Stopping X</A></UL>
+
+<LI>
+
+<A HREF="#E68E147" >X Applications Packages</A>
+
+<LI>
+
+<A HREF="#E68E148" >Compiling Programs That Use X</A>
+
+<LI>
+
+<A HREF="#E68E149" >Finding Information on X and XFree86 on the Net</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E275" >Newsgroups</A></UL>
+
+<LI>
+
+<A HREF="#E68E150" >Some Common Problems</A>
+
+<LI>
+
+<A HREF="#E68E151" >Supported Hardware</A>
+
+<LI>
+
+<A HREF="#E68E152" >Summary</A></UL></UL></UL>
+
+<HR ALIGN=CENTER>
+
+<A NAME="E66E21"></A>
+
+<H1 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>21</B></FONT></CENTER></H1>
+
+<BR>
+
+<A NAME="E67E21"></A>
+
+<H2 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>Installing X Window on Linux</B></FONT></CENTER></H2>
+
+<BR>
+
+<P>This chapter details the way to install X Window system for Linux. This version of X Window for Linux, called XFree86 Version 3.1.2, is an enhanced version of the X Window System Version 11 Release 6 with support for many versions of UNIX, including 
+Linux. XFree86 supports considerably more hardware than the video hardware supported by the MIT standard release of X Window.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Please read this entire chapter before starting XFree86. If you are not careful, you could damage your hardware. Most important:
+
+<BR>XFree86 comes without a warranty of any kind. If you damage anything, even after reading these instructions, you are on your own.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>Please note that even though I try to cover all the bases for installing X11 on your Linux system, I cannot cover all the hardware out there for PCs. In other words, this whole chapter is moot if you happen to have that one video card this version of 
+XFree86 on Linux will smoke! So read all the items here carefully and see how they apply to your hardware. You could also check <A HREF="rhl02.htm">Chapter 2</A>, &quot;Types of Linux Available,&quot; for the listing of the hardware supported by this 
+version of Linux. Check the HOWTO files for Hardware and Xfree86 for more up-to-date information.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>You can use the terms X, XFree86, X11, and X Window interchangeably, if you do not care about legal issues. Actually, however, XFree86 refers to the product of The XFree86 Project, Inc.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>You can also look at the installation documentation files and other manuals that come with XFree86 in your /usr/X11R6/lib/X11/etc directory. The main directory path is /usr/X11R6 for access to this tree, so that we are compatible with UNIX 
+installations of X11R6.
+
+<BR>To read these documents, you need a working man program, as well as the groff package for formatting documents. Note that groff is required often to read man pages, so you should install the groff package, even though some distributions regard the 
+groff package as optional.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>This chapter covers the following:
+
+<BR>
+
+<UL>
+
+<LI>How to install X Window on Linux
+
+<BR>
+
+<BR>
+
+<LI>A brief introduction to XFree86
+
+<BR>
+
+<BR>
+
+<LI>Working with XF86Config and the XConfig file
+
+<BR>
+
+<BR>
+
+<LI>Running X Window system
+
+<BR>
+
+<BR>
+
+<LI>Introduction to X applications packages and compiling programs that use X
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>I also cover ways of finding information on X and XFree86 on the Internet and the ways to upgrade in the future. I discuss some of the problems you might have during installation, in addition to a list of the supported hardware.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E142"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Introduction to XFree86 and X11</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>X11 is a windowing system for UNIX clone operating systems. The X Window System with source code was issued by the MIT Consortium along with a set of original copyright notices. The X11 release on which XFree86.3.1.2 (or greater) is based is X11 Release 
+6.
+
+<BR>
+
+<P>The MIT Consortium's work is continued by the X Consortium, which just released an updated X called X11R6. Most commercial releases of Linux already include X11R6.
+
+<BR>
+
+<P>Some XFree86 servers are partly derived from X386 1.2, which was the X server distributed with X11R5. However, many servers have been developed in the past few years. Although the source and installation trees retain the X386 name&#151;simplifying 
+maintenance of the source trees&#151;there is no connection between XFree86 and the commercial X386 product sold by SGCS. The XFree86 Project maintains technical contacts in an effort to keep changes that affect the user from diverging too radically from 
+the workings of the products. Neither group is involved directly in the workings of the other.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E143"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>The XFree86 Project, Incorporated</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>In the past, the XFree86 development team had several problems because it was not a legal organization, which made it impossible to become a member of the X Consortium, Inc. Not being a member was detrimental because new releases are provided only for 
+members by the X Consortium before the official release date. This reason, along with several others, led to the founding of The XFree86 Project, Inc.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E144"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Installing XFree86</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Xfree86 can be installed from the Red Hat CD-ROM using the RPM tool. The release is located in the /RedHat/SRPMS directory and is approximately 35MB. Installation from the CD-ROM or a hard drive is the only practical approach.
+
+<BR>
+
+<P>If you are downloading XFree from the Internet, the major files needed are listed in Table 21.1.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 21.1. Some distribution files for XFree86 available for FTP.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Filename</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Description</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+X3128514.tgz
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Server for 8514-based boards.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+X312AGX.tgz
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Server for AGX-based boards.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+X312Ma32.tgz
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Server for Mach32-based boards.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+X312Ma8.tgz
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Server for Mach8-based boards.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+X312Mono.tgz
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Server for monochrome video modes.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+X312P9K.tgz
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Server for P9000-based boards.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+X312S3.tar.gz
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Server for S3-based boards.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+X312SVGA.tgz
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Server for Super VGA-based boards.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+X312VGA.tgz
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Server for VGA/EGA-based boards.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+X312W32.tgz
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Server for ET4000/W32-based boards.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+X312bin.tgz
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The rest of the X11R6 binaries.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+X312cfg.tgz
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Config files for xdm, xinit, and fs.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+X312doc.tgz
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Documentation and manpages.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+X312inc.tgz
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Include files.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+X312lib.tgz
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Shared X libraries and support files.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+X312fnt.tgz
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Basic fonts.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+X312ctrb.tgz
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Selected contrib programs.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+X312xtra.tgz
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Extra XFree86 servers and binaries.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+X312lkit.tgz
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Server linkkit for customization.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+X312fnt75.tgz
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+75-dpi screen fonts.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+X312fnt100.tgz
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+100-dpi screen fonts.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+X312fbig.tgz
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Large Kanji and other fonts.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+X312fscl.tgz
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Scaled fonts (Speedo, Type1).</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+X312man.tgz
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Manual pages.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+X312pex.tgz
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+PEX binaries, includes, and libraries.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+X312slib.tgz
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Static X libraries and support files.</FONT>
+
+</TABLE><P>You can find the most recent versions on most Linux sites. You can find the C library (libc) and the dynamic loader (ld.so) in the GCC directory on the same Linux sites.
+
+<BR>
+
+<P>You can get the binary distributions of XFree86 for Linux via anonymous FTP from
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">tsx-11.mit.edu:/pub/linux/packages/X11/XFree86-3.1.2./binaries/Linux/els.</FONT></PRE>
+
+<P>or
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">sunsite.unc.edu:/pub/Linux/X11/XFree86-3.1.2</FONT></PRE>
+
+<P>The files have names of the form X(ver)(name).tar.gz (version 3.1.2) or XF86-name .tar.gz where ver is the XFree86 version and name is the name of the package. If you already know which server you need to run, you should not get the *-svr* files. The 
+filename form is XF86 servername.tar.gz, where servername is the name of the server to run.
+
+<BR>
+
+<P>The XFree86 distribution consists of several large gzipped tar files. You need the following setup to run XFree86. You have to have at least these versions.
+
+<BR>
+
+<P>Your computer needs main memory of at least 8MB and virtual memory of at least 16MB (that is, main memory plus swap memory). It is possible to run X on a 4MB machine if you take some precautions with memory usage.
+
+<BR>
+
+<P>In any event, your computer should have 16MB of virtual memory to run X Window. If you have 4MB of physical RAM, you should have 12MB of swap memory.
+
+<BR>
+
+<P>Because swapping is quite slow, you should have installed at least 8MB of RAM in your computer. With only 4MB of physical RAM, your X programs will run terribly slowly. If you want to run memory-hog programs from within X (for example, the C compiler 
+gcc), you should have at least 16MB of main memory and another 16MB of swap memory.
+
+<BR>
+
+<P>The XFree86 distribution takes up about 17MB to 37MB of disk space depending on how many servers you install. You can save several megabytes of disk space by removing the X servers you do not need. However, if you plan to install more window managers 
+than normal, you can expect to use about 35MB of disk space.
+
+<BR>
+
+<P>Before installing XFree86, you should make a backup of all files that you changed. They may not be usable, but they still hold a lot of information you might want to preserve. (Your old XConfig file will not be deleted, but it's always better to have a 
+backup of this file.)
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Do not use XFree86 3.1.x or earlier. From the Internet, you can get a copy of a version later than 3.1.1. Version 3.1.2 is on this book's CD-ROM.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>There are two ways to install XFree86 on your machine: by using the setup utility or by using the manual procedure. The setup utility is the same menu-driven utility that you used in the original installation. The manual procedure is a bit more 
+involved. It also requires attention to detail but enables you to have more control over every step. This procedure offers you the ability to stop and repeat steps instead of going through the complete installation process in the menu-driven option.
+
+<BR>
+
+<P>To avoid headaches, and get to sleep early, use the setup program and menus to do the installation process. If you really are in a foul mood, proceed with the following manual method.
+
+<BR>
+
+<P>To install the binary distribution manually, perform the following steps:
+
+<BR>
+
+<OL>
+
+<LI>Log in as root or become root if you already are logged in.
+
+<BR>
+
+<BR>
+
+<LI>Copy all the release's tar files to floppies or the hard drive, or know their location on the CD-ROM. If the CD-ROM or hard drive is not mounted, mount it now and ensure that you can get to the files from within Linux. Determine from Table 21.2 the 
+name of the server type you need. For example, if you are using a color VGA monitor, you would want to use the XF86_SVGA server; for monochrome monitors including some EGA monitors (Do people still use them?), you might try XF86_Mono. You do not have to 
+choose the server this minute, but realize that you can use only one of these servers.
+
+<BR>
+
+<BR>
+
+<LI>Create the directory /usr/X11R6 (don't worry if it's already there).
+
+<BR>
+
+<BR>
+
+<LI>Change your current working directory to /usr/X11R6 (cd /usr/X11R6).
+
+<BR>
+
+<BR>
+
+<LI>Run umask 022 to make sure all the files are writable.
+
+<BR>
+
+<BR>
+
+<LI>Run the following command on each *.tgz file to unzip and install its contents:
+
+<BR>gzip -rc tarfilename | tar xvof -
+
+<BR>
+
+</OL>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 21.2. Types of servers in XFree86.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Type of server</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Name</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Color SVGA server
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+XF86_SVGA</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+16-color (S)VGA server
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+XF86_VGA16.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Monochrome server
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+XF86_Mono</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+S3 accelerated server
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+XF86_S3</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+8514/A accelerated server
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+XF86_8514</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+AGX support
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+XF86_AGX</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Mach8 accelerated server
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+XF86_Mach8</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Mach32 accelerated server
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+XF86_Mach32</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Mach64 accelerated server
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+XF86_Mach64</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+ET4000/W32 accelerated server
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+XF86_W32</FONT>
+
+</TABLE><P>The flag (-r) for the gzip command tells it to recursively create all names and paths for the files in the tar file. The -c option will send the contents out to the standard output from where it will be piped to the tar command. The flags for 
+the tar command tell tar to extract (x), be verbose (v), all files while preserving original ownership (o), from the file , designated by the standard input (-).
+
+<BR>
+
+<P>Repeat this step for all the tar files you have in your distribution.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>The preceding step will overwrite all files from an older XFree86 version.
+
+<BR>This step will not affect the XF86Config file, but the XF86Config.eg file will be overwritten. Most files in the distribution set will be overwritten. I repeat: Before installing XFree86, back up every file you changed.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>After you finish installing XFree86, you have to configure it to match your system.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E145"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Setting Up Your XFree86 System</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>This section covers another one of the more difficult, time-consuming, and frustrating parts of installing XFree86: setting up a XF86Config file.
+
+<BR>
+
+<P>If you have XFree86 3.1.2 and your graphic card is listed in the Hardware-HOWTO file (see <A HREF="rhl01.htm">Chapter 1</A>, &quot;Introduction to Linux&quot;), you should use the XF86Config program to do your configuration. This XF86Config program is a 
+comfortable and safe way to set up your system. If your graphics card is not listed, you have some work ahead of you.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Your XConfig file is called XF86Config.eg and is in the /usr/lib/x11 directory.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>For more information, check the section called &quot;The XF86Config File&quot; in <A HREF="rhl22.htm">Chapter 22</A>, &quot;Configuring X Window on Linux.&quot;
+
+<BR>
+
+<P>One final check that you should do is to follow the link of /usr/lib/X11/X to the correct server. If you have an SVGA card, this link should be set, via an intermediate link if any, to /usr/bin/X11/XF86_SVGA. If the link does not point to the right 
+server, make it point to the correct server in /usr/bin/X11.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E146"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Running X</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>At this point, you should be able to type xinit at the prompt and have X Window on your monitor. You have two options in starting X: Use the xinit program or use the startx shell script. The advantage to using the xinit program is that you can easily 
+start X Window. The advantage to the startx script is that you can make modifications to how the environment variables are treated in bringing up X. With xinit, you are stuck with the defaults. In most cases, the defaults are what you want anyway. The 
+xinit program executes statements in the order they are found in the .xinitrc file.
+
+<BR>
+
+<P>Once you have set up an XF86Config file, you probably want to run X. This is not done by running X, but by running startx. When running it for the first time, use the command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ startx 2&gt;&amp;1 &gt; Xstartup.log</FONT></PRE>
+
+<P>This command gets a log file of the X startup by redirecting all output from stdout and stderr to a log file, Xstartup.log. If you encounter problems, the information in this file will help you get a clue as to what happened.
+
+<BR>
+
+<P>If you encounter any problems, please look at the XFree86 documentation files in /usr/X11R6/lib/X11/doc. These files provide a lot of information on what to do if problems occur. For more information, also look in the FAQs that are mentioned in those 
+files.
+
+<BR>
+
+<P>Once you are in the environment of the window manager you chose in the .xinitrc file, you have to conform X Windows System's way of moving around. Please see the next few chapters to learn how to work with windows with three window managers: mwm, olwm, 
+and fvwm.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E274"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Stopping X</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>To stop X and get back to the text-based console, you have to list the last application that was in the .xinitrc file. This last application could be the window manager, an xterm, or just about any application. When you quit X Window by stopping this 
+application, you return to your character- or text-based terminal.
+
+<BR>
+
+<P>Another way to kill the window manager (and X) is to use the Ctrl-Alt-Backspace combination. This is not the preferred way of doing things because a more graceful way is to have the window manager be the last program started in the .xinitrc file, and 
+exit from it to stop X and get back to console.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E147"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>X Applications Packages</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Several packages are related to X. I have mentioned the first two by name because they have a great influence on the look and feel of X.
+
+<BR>
+
+<UL>
+
+<LI>XView. This package is included on the CD-ROM as part of the Slackware distribution. If you are installing from another source, you may want to read the next few paragraphs; otherwise skip to the next item.
+
+<BR>The xview3L5.1.tar.gz package is a port to Linux of SUN's xview3.2 package by Kenneth Osterberg. It includes the xview toolkit, a set of extensions to X. The xview3L5.1.tar.gz gives you the look and feel of the OPEN LOOK extension to X (many recognize 
+that from Open Windows from SUN). You can get it in the /pub/Linux/libs/X/Xview directory on sunsite.unc.edu.
+
+<BR>To install XView, as root untar the tar file in any directory (/usr/src for example), read the documentation that comes with it (most importantly, the README), and run the INSTALL script. Note that you need about 25MB of free disk space to install 
+XView completely (with examples). Some files are duplicated on this distribution. After running the INSTALL script and removing the xview3L5.1 directory, you need about 11MB. This would include all examples, which take about 2MB of disk space, along with 
+2.5MB for development libraries and files. If you do not want to compile any XView programs, you can spare this 4.5MB by removing the static (*.a) and stub (*.sa) libraries, as well as the examples.
+
+<BR>To run XView, you need at least 8MB of RAM, or even better, 16MB.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Do not remove any shared (*.so) libraries while pruning the XView tree! Other applications may need these libraries in the future.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<UL>
+
+<LI>Motif. This is commercial software, so you will have to pay for it. You can find an advertisement from Metrolink (a company that provides a port to Linux) on tsx-11:/pub/linux/advertisements. There are companies other than Metrolink that sell Motif; 
+every now and then advertisements will appear in the newsgroup <A HREF="nntp:comp.os.linux.announce">comp.os.linux.announce</A>.
+
+<BR>
+
+<BR>
+
+<LI>Other Window managers. Both Motif and OPEN LOOK packages provide window managers different from the standard twm that comes with XFree86. XFree86 also includes the selection fvwm, a free window manager you may fall in love with. Many people do not like 
+the twm window manager, so better window managers have been developed for XFree86. There are many X Window system managers available that run on Linux. A selection of these can be found on sunsite in the directory /pub/Linux/X11/window-managers.
+
+<BR>
+
+<BR>
+
+<LI>Additional libraries. Sometimes you need additional libraries to run binary distributions or to compile an application. If the former is the case, you should find a pointer to that library in the README file of that package. If you do not have a 
+pointer, you should look at the /pub/Linux/libs hierarchy at sunsite. Most libraries that work on Linux can be found there. If you cannot find it there and you have Internet access, follow the instructions on getting information in <A 
+HREF="rhlxa.htm">Appendix A</A>, &quot;Linux FTP Sites and Newsgroups.&quot;
+
+<BR>
+
+<BR>
+
+<LI>Other X11 applications. There are many programs and applications available for X, way too many to list here. Look through the /pub/Linux/X11 hierarchy on <A HREF="ftp://sunsite.unc.edu">sunsite.unc.edu</A> for ports with many Linux packages. Most 
+programs need no changes to run on Linux, so look at the generic X11 program archives, as well as at the Linux-specific sites. One of the largest X11 sites is <A HREF="ftp://ftp.x.org">ftp.x.org</A>. In the /R5contrib directory you can find many programs 
+for X11.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<BR>
+
+<A NAME="E68E148"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Compiling Programs That Use X</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Please read the GCC-FAQ file. This is on the F series of the installation disks and CD-ROM. This file can also be found in the /pub/Linux/docs/faqs directories of sunsite before compiling any programs. Many questions on compiling programs with Linux are 
+answered in this FAQ. Many Linux distributions include the most relevant FAQs in the directory /usr/doc, so you might look there first.
+
+<BR>
+
+<P>If you have the source code for a program that uses X11, it usually is shipped with an Imakefile instead of a Makefile.
+
+<BR>
+
+<P>Imakefiles are files that create Makefiles for your system. Discussing Imakefiles is beyond the scope of this book; however, you have to work with Imakefiles if you work at all with X sources. Just remember the shell script xmkmf, and you should be 
+okay.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>The xmkmf shell script actually runs the imake command with a set of arguments. The most common argument is the -DUseInstalled argument. If you examine xmkmf, (look in /usr/bin/X11/imake), you will see that the xmkmf script is a basic wrapper around 
+a call to imake. It's very tempting to use imake on a command line by itself. Do not do so. Run the imake command with the -DUseInstalled argument if you must run imake on the command line. If you do not use this argument, imake will behave as if it were 
+re-creating the X Window system on your current directory.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>Of course, before ever running xmkmf, you should have read the documentation that usually comes with such packages.
+
+<BR>
+
+<P>Run xmkmf in the directory that contains the Imakefile. If there is a hierarchy of directories with Imakefiles, you usually only have to run xmkmf in the root directory of that hierarchy.
+
+<BR>
+
+<P>The xmkmf command builds the Makefiles in all directories in the hierarchy.
+
+<BR>
+
+<P>Then you should run the make command with an argument to let make resolve its dependencies with the following command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ make depend</FONT></PRE>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Don't be afraid if include files such as stddef.h, varargs.h, and so on, are not found. They are gcc proprietary header files and therefore not in the standard include directories.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>After that, you can make the program by running make, and you can install your new utility (usually in /usr/X11R6/bin) by running
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ make install</FONT></PRE>
+
+<P>The installation of the man pages is done by running
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ make install.man</FONT></PRE>
+
+<BR>
+
+<A NAME="E68E149"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Finding Information on X and XFree86 on the Net</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>There is an excellent document about XFree86 on the Internet by Matt Welsh, called &quot;The Linux XFree86 HOWTO&quot; document. This document will make an excellent resource for you as you install XFree86.
+
+<BR>
+
+<P>The ASCII version of this HOWTO document will be posted regularly to <A HREF="nntp://comp.os.linux.announce">comp.os.linux.announce</A>, <A HREF="nntp://comp.windows.x.i386unix">comp.windows.x.i386unix</A>, <A HREF="nntp://news.answers">news.answers</A>, and <A 
+HREF="nntp://comp.answers">comp.answers</A>. The latest version can be found on <A HREF="ftp://sunsite.unc.edu">sunsite.unc.edu</A> in the directory /pub/Linux/docs/HOWTO. This document will almost certainly be more current than any printed material because the 
+electronic version is constantly updated.
+
+<BR>
+
+<P>For general X questions, you should read the FAQ and the FAQ-Xt. You can get these from <A HREF="ftp://ftp.x.org">ftp.x.org</A> in the directory /R5contrib. Many Linux distributions include most relevant FAQs in the directory /usr/doc. Look on the 
+CD-ROM for this directory.
+
+<BR>
+
+<P>If you have questions about the XFree86 package and cannot find an answer in the documentation files (XFree86, XF86Config, XF86_* manpages, or the README files in /usr/X11R6/lib/X11/doc), you may want to post a question to a newsgroup. The appropriate 
+newsgroup for that purpose is <A HREF="nntp://comp.windows.x.i386unix">comp.windows.x.i386unix</A>. This newsgroup is dedicated to the XFree86 system. If you have a problem with the server and want to post a question to this newsgroup, you should provide 
+enough information for those that want to help you. Here are some things that should be included in all postings concerning server problems:
+
+<BR>
+
+<UL>
+
+<LI>The operating system and which release you are running.
+
+<BR>
+
+<BR>
+
+<LI>Hardware you have (at least bus type [ISA/EISA/VLB/PCI], your graphic card including chip set, video RAM type #[D/VRAM], size, and speed).
+
+<BR>
+
+<BR>
+
+<LI>A concise description of the problem.
+
+<BR>
+
+<BR>
+
+<LI>A printout of the server startup (you can generate that by running startx 2&gt;1 &gt; Xerror.log or startx &gt;&amp; Xerror.log depending on whether you use a Bourne shell or C shell derivative.
+
+<BR>
+
+<BR>
+
+<LI>The used parts of the XF86Config. (It is not a good idea to include all lines commented out by a leading #.) This would be the largest part of your post, and most people will already know the copyright statements.
+
+<BR>
+
+<BR>
+
+<LI>A list of fixes you have already attempted.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>Bug reports or questions on XFree86 can be sent directly to XFree86@Xfree86.org. This is the contact address of The XFree86 Project.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E275"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Newsgroups</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>There are some other newsgroups that cover X-related topics:
+
+<BR>
+
+<UL>
+
+<LI><A HREF="news:comp.windows.x.apps">comp.windows.x.apps</A>&#151;X applications
+
+<BR>
+
+<BR>
+
+<LI><A HREF="news:comp.windows.x.intrinsics">comp.windows.x.intrinsics</A>&#151;X-intrinsic toolkit-related information
+
+<BR>
+
+<BR>
+
+<LI><A HREF="news:comp.windows.x.motif">comp.windows.x.motif</A>&#151;Motif extension to X
+
+<BR>
+
+<BR>
+
+<LI><A HREF="news:comp.windows.open">comp.windows.open</A>-look&#151;OPENLOOK and the XView extension to X
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>Note that most of these groups have FAQ lists that are posted regularly to these groups. As always with regular postings, these can be obtained from <A HREF="ftp://rtfm.mit.edu">rtfm.mit.edu</A> via anonymous FTP.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E150"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Some Common Problems</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Here are some of the problems you might see when you work with XFree86.
+
+<BR>
+
+<UL>
+
+<LI>No windows. All you get is a gray background and no windows. This is due to running without a window manager. Running X only starts the X server, not the window manager. You should use a script shown earlier in startx.
+
+<BR>
+
+<BR>
+
+<LI>Your Logitech serial mouse does not work. The keyword Logitech is reserved for older Logitech serial mice. Use the keyword MouseMan (or Microsoft) for newer mice. Logitech serial mice plugged into a PS/2 port require the keyword PS/2.
+
+<BR>
+
+<BR>
+
+<LI>You get errors about not finding any font files. First check the XF86Config file to see whether the directories in the font path are named correctly and contain fonts. If they are, run mkfontdir in each of those directories to set them up for use with 
+X.
+
+<BR>
+
+<BR>
+
+<LI>After leaving X, your screen fonts are not restored. This is a known bug with some servers. There are utilities called runx or restoretext coming with svgalib that can help you in most cases. You can get them from sunsite.unc.edu in the file 
+/pub/Linux/libs/graphics/svgalib-1.2.10.tar.gz.
+
+<BR>
+
+<BR>
+
+<LI>You will have some problems with the Diamond, Compaq AVGA, and S3 cards. This is what you have to live with when you are dealing with freeware.
+
+<BR>
+
+<BR>
+
+<LI>The server dies with the message Cannot find a free VT. XFree86 needs a free virtual terminal (VT) on which to run. So if you have put a getty process on every virtual console in your /etc/inittab, XFree86 is not able to start. The common practice is 
+to leave /dev/tty8 (for kernel messages) and /dev/tty7 (for XFree86) free of a getty process.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>This is not an exhaustive list. Please read the HOWTO documents in /doc/HOWTO on the CD-ROM for more information about other video card problems that are too specific to list here.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E151"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Supported Hardware</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Currently, XFree86 Version 3.1.2 supports the following chip sets in the XF86_SVGA server. The list will be much much longer by the time this book hits the stands, so use the following list as a guideline:
+
+<BR>
+
+<P>Nonaccelerated chip sets:
+
+<BR>
+
+<UL>
+
+<LI>Tseng ET3000, ET4000AX, ET4000/W32
+
+<BR>
+
+<BR>
+
+<LI>Western Digital/Paradise PVGA1, WD90C00, WD90C10, WD90C11, WD90C24, and WD90C30
+
+<BR>
+
+<BR>
+
+<LI>Genoa GVGA
+
+<BR>
+
+<BR>
+
+<LI>Trident TVGA8800CS, TVGA8900B, TVGA8900C, TVGA8900CL, TVGA9000, TVGA9000i, TVGA9100B, TVGA9200CX, TVGA9320, TVGA9400CX, and TVGA9420
+
+<BR>
+
+<BR>
+
+<LI>ATI 28800-4, 28800-5, 28800-6, 28800-a
+
+<BR>
+
+<BR>
+
+<LI>NCR 77C22, 77C22E, 77C22E+
+
+<BR>
+
+<BR>
+
+<LI>Cirrus Logic CLGD6205, CLGD6215, CLGD6225, CLGD6235
+
+<BR>
+
+<BR>
+
+<LI>Compaq AVGA
+
+<BR>
+
+<BR>
+
+<LI>OAK OTI067, OTI077
+
+<BR>
+
+<BR>
+
+<LI>Cirrus CLGD5420, CLGD5422, CLGD5424, CLGD5426, and CLGD5428 chip sets
+
+<BR>
+
+<BR>
+
+<LI>Western Digital WD90C31 chip sets
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>These chip sets are all supported in 256-color (XF86_SVGA) and in monochrome mode (XF86_Mono) with the exception of the Cirrus chip sets, which are only supported in 256-color mode.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>If you have a grayscale display, you have to run the color server because grayscale behaves just like color, not like monochrome.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>The monochrome server also supports generic VGA cards (using 64KB of the video memory as a single bank), the Hercules card, and the Hyundai HGC-1280. These drivers are not part of the XF86_Mono server by default. If you want to use these, you have to 
+reconfigure your XF86_Mono server using the LinkKit, or of course, the source distribution&#151;but the LinkKit needs less disk space and a shorter compile time.
+
+<BR>
+
+<P>XFree86 supports at least the following accelerated chip sets with separate servers:
+
+<BR>
+
+<UL>
+
+<LI>S3 86C911, 86C924, 86C801, 86C805, and 86C928 supported by the XF86_S3 server
+
+<BR>
+
+<BR>
+
+<LI>ATI mach8 supported by the XF86_Mach8 server
+
+<BR>
+
+<BR>
+
+<LI>ATI mach32 supported by the XF86_Mach32 server
+
+<BR>
+
+<BR>
+
+<LI>ATI Mach64 supported by the XF86_Mach64 server
+
+<BR>
+
+<BR>
+
+<LI>ET4000/W32 supported by the XF86_W32 server
+
+<BR>
+
+<BR>
+
+<LI>IBM 8514/a and true clones supported by the XF86_8514 server
+
+<BR>
+
+<BR>
+
+<LI>S3 Vision864 and Vision964.
+
+<BR>
+
+<BR>
+
+<LI>Weitek P9000.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>The hardware that is not currently supported is:
+
+<BR>
+
+<UL>
+
+<LI>TIGA. TIGA will never be supported because it requires licensing materials from TI and may disallow source distributions.
+
+<BR>
+
+<BR>
+
+<LI>Microfield boards. Microfield boards will never be supported because they use proprietary and undocumented custom microcode interfaces.
+
+<BR>
+
+<BR>
+
+<LI>MGA chip sets (Matrox cards).
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>For some of these chip sets there are specific README files to be found in /usr/X11R6/lib/X11/doc. If there is one for the chip set you use, read it! In these READMEs, the specific options that can be used to configure the server are explained. 
+Currently, there are special READMEs for ATI, Trident, Tseng, Western Digital, Cirrus, and manufacturer-specific chip sets.
+
+<BR>
+
+<P>More information on the servers can be found in their man pages. Another place to check is the XFree86-HOWTO file in the sunsite and tsx-11 archives. The HOWTO document will generally be more up-to-date than any printed matter.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E152"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Summary</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>This section covered one of the hardest things you will have to do when installing a package on Linux&#151;installing XFree86. Naturally, all of the possible problems you will face while installing this are too long to list here. After reading this 
+chapter, though, you should have an idea of what you are getting yourself into and the general steps you have to take.
+
+<BR>
+
+<P>Do not despair if things don't work out just as the instructions say they will. You should be able to look at the configuration files to determine where the problem is and what might be done to fix it. If nothing works despite your best efforts, you 
+have the recourse of knowing where to look for answers in FAQs, newsgroups, and FTP sites on t<A NAME="I2"></A>he Internet for HOWTO and other documents on Linux.
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl20.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="#I0" TARGET="_self"><IMG SRC="purtop.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Page Top"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl22.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+</BODY></HTML>
+
+
+

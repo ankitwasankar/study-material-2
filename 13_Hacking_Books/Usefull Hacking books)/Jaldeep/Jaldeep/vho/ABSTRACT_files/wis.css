@@ -1,0 +1,197 @@
+/* BEGIN: site-wide object definitions ====================================== */
+
+/* -- these provide page structure  ----------------------------------------- */
+/* NOTES:
+- ID based
+- they are meant to encapsulate a high-level chunk of a page, thereby allowing 
+  style control of elements in specific page chunks
+*/
+
+.structureTable {  }
+
+#personalnavFrame, #statusFrame, #headerFrame, #contentFrame, #footerFrame { }
+
+#statusFrame { padding: 2px 0 0 10px; }
+#statusFrame .txt {color: #999; }
+#statusFrame A { font-weight: bold; }
+
+#personalnavFrame { margin-top: 11px; }
+#personalnavFrame .txt { color: #FFF; }
+#personalnavFrame A { font-weight: bold; text-decoration: none; color: #9CF; }
+#personalnavFill { background-image: url(http://download.interscience.wiley.com/images/fill.personal-nav.gif); background-repeat: repeat-y; background-position: top right; width: 100%; }
+#personalnavFill DIV { width: 70px; }
+#personalnavMenus DIV.txt { padding: 0 10px; white-space: nowrap; }
+#personalnavSpecial { padding: 0; margin: 0 0 0.15em 0; font-weight: bold; }
+#personalnavSpecialName { padding: 0; margin: 0 0 0.5em 0; color: #069; }
+
+#headerFrame { }
+#headerFrame IMG { display: block; }
+
+/*
+ * Jonathan Sugar, September 2003.
+ * Style for the framed pdf pages.
+ */
+#pdfHeaderFrame
+{	
+	border: 2px solid #069;
+	padding: 2px;
+	font-family: arial;
+	font-size: 11pt;
+}
+
+#footerFrame { margin-top: 4px; }
+#footerFrame P { text-align:center; line-height: 140%; }
+#footerFrame P A { font-weight: bold; }
+#footerFrame .copyright { font-weight: normal; }
+
+#searchHeader .item { padding: 10px; }
+#searchHeader .item H4 { margin-bottom: 3px; }
+#searchHeader .item H4 SPAN { color: #000; }
+
+/* -- site-wide page elements ----------------------------------------------  */
+/* NOTES:
+- ID based
+- these are specific page elements, widgets, etc.
+*/
+
+#logoCellHome { background-image: url(http://download.interscience.wiley.com/images/bg.logo.home.jpg); background-repeat: no-repeat; }
+#logoCell { background-image: url(http://download.interscience.wiley.com/images/bg.logo.jpg); background-repeat: no-repeat; }
+
+#sectionHeader { }
+
+/* -- the breadcrumb trail; could appear in headerFrame or contentFrame */
+#breadcrumb { /* font-size: 11px; */ color: #666; font-weight: bold; padding-left: 1em; }
+#headerFrame #breadcrumb { }
+#contentFrame .mainCol #breadcrumb { }
+
+/* -- browse areas */
+#browseSubjArea { }
+#browseCategory { }
+#browseProdType { }
+
+/* -- search elements */
+#searchTitles #titlesPubtitle { width: 140px; margin: 2px 0; }
+#searchTitles #titlesGo { margin: 0 4px; }
+
+#searchArticles,
+#searchContent,
+#searchInTitle { width: 170px; }
+
+#searchArticles #articleKeywords,
+#searchInTitle #titleKeywords { width: 164px; margin: 2px 0; }
+
+#searchArticles SELECT,
+#searchInTitle SELECT { width: 170px; margin: 2px 0; }
+
+#searchContent #contentKeywords { width: 125px; margin: 2px 0; }
+#searchContent #contentGo { margin: 0 4px; }
+
+#searchInTitle .txt { margin: 4px 0; }
+
+/*-+-------------------------------------------------------------------ADDITION--*/
+#searchCitationForm #articleKeywords { width: 164px; margin: 2px 0; }
+#searchCitationForm SELECT { width: 170px; margin: 2px 0; }
+#searchCitationForm
+{
+  background-color: #FFFFE5; 
+}
+/*-+------------------------------------------------------------------ADDITION--*/
+
+
+
+.featureBox { }
+
+
+/* -- some abstract reusable objects ---------------------------------------- */
+/* NOTES:
+- CLASS based
+- could appear multiple times in a page/template
+*/
+/* -- types of columns */
+.mainCol { }
+.sideCol { }
+.lCol { }
+.rCol { }
+
+/* -- for wrapping structural markup with */
+#content { } /* meant for 'blob' content */
+.subContent { padding: 0 10px; }
+.area { } /* something to wrap a .item with */
+.item { } /* something that there are 1 or more of (...in an area -- optional) */
+.promo { } /* a promotional item that could appear anywhere, a sub-class of an item, really */
+.intro { } /* for the curved area in the main col on nearly all the pages */
+.subnav { }
+.info { } /* used on journal home page for right now */
+.tools { }
+.hdr { } /* instead of Hx tags (maybe), since NS4 can't remove padding/margins on them */
+
+.prerendered { }
+
+/* -- for listings, of course */
+.listingHeader { }
+.listingContent { }
+.listingFooter { }
+
+.featureBox { margin: 10px 0 0 20px; }
+.featureBox .item { padding: 10px; }
+.featureBox UL { padding-bottom: 10px; }
+
+
+/* -- for wrapping tables */
+/* NOTES:
+- could be used as a class on a TABLE, but for right now, a DIV with one of these classes wraps a TABLE
+*/
+.formTable { } /* for controlling form layout */
+.dataTable { } /* for displaying tabular data */
+
+
+/* -- other stuff ----------------------------------------------------------- */
+
+/* -- debugging/development */
+.debug { border: 1px solid red !important; background-color: #FCC; }
+#browserWarning { font-family: arial; font-size: 100%; color: #300; margin: 5px 28px 5px 28px; border: 1px solid #c00; padding: 0.3em; background-color: #fef; }
+
+/* -- for things that should be invisible for normal users */
+.invisible{
+	height: 0;
+	width: 0;
+	overflow: hidden;
+	position: absolute;
+}
+
+
+/* -- for styling the current page set in a listingNav */
+.pageSet { color: #000; }
+.pageSetLabel { color: #666; }
+
+.issueNav { white-space: nowrap; }
+
+/* -- for status of orders */
+.available { color: #390; }
+.unavailable { color: #F00; }
+
+/* -- used to designate a product image */
+.productImage { margin-right: 10px; }
+
+/* -- standard link types */
+.linkMore { font-weight: bold; } /* used as a class on an anchor that contains something like: 'Read More' */
+/* next three most likely used on a DIV or SPAN */
+.linkBack {	margin: 10px; float: left; } /* back to prev page */
+.linkPrint { margin: 10px 20px 0 0; float: right; }
+.linkTop { text-align: right; clear: both; } /* back to top of page */
+
+/* -- for gfx that goes inline with text */
+.icon { vertical-align: middle; margin-right: 2px; }
+
+/* -- used instead of CSS borders in certain cases */
+.spacer { }
+.border { }
+.line { margin: 10px 0; }
+.lineNopad { }
+.spacer IMG { }
+.spacer IMG, .border IMG, .line IMG, .lineNopad IMG { display: block; }
+
+#errorTxt { color: #C00; font-weight: bold; }
+#errorList li { color: #C00 !important; font-weight: bold; list-style-type: none; }
+
+/* END: site-wide object definitions */

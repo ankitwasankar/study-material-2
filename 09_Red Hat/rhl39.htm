@@ -1,0 +1,1339 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Red Hat Linux Unleashed rhl39.htm </TITLE>
+
+<LINK REL="ToC" HREF="index.htm">
+
+<LINK REL="Index" HREF="htindex.htm">
+
+<LINK REL="Next" HREF="rhl40.htm">
+
+<LINK REL="Previous" HREF="rhl38.htm"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+
+<A NAME="I0"></A>
+
+<H2>Red Hat Linux Unleashed rhl39.htm</H2>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl38.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl40.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+<HR ALIGN=CENTER>
+
+<P>
+
+<UL>
+
+<UL>
+
+<UL>
+
+<LI>
+
+<A HREF="#E68E332" >The Superuser Account</A>
+
+<LI>
+
+<A HREF="#E68E333" >User Accounts /etc/passwd</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E442" >User Names</A>
+
+<LI>
+
+<A HREF="#E69E443" >Passwords</A>
+
+<LI>
+
+<A HREF="#E69E444" >User ID</A>
+
+<LI>
+
+<A HREF="#E69E445" >Group ID</A>
+
+<LI>
+
+<A HREF="#E69E446" >Comments</A>
+
+<LI>
+
+<A HREF="#E69E447" >Home Directory</A>
+
+<LI>
+
+<A HREF="#E69E448" >Login Command</A></UL>
+
+<LI>
+
+<A HREF="#E68E334" >Default System User Names</A>
+
+<LI>
+
+<A HREF="#E68E335" >Adding Users</A>
+
+<LI>
+
+<A HREF="#E68E336" >Deleting Users</A>
+
+<LI>
+
+<A HREF="#E68E337" >Groups</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E449" >Default System Groups</A>
+
+<LI>
+
+<A HREF="#E69E450" >Adding a Group</A>
+
+<LI>
+
+<A HREF="#E69E451" >Adding a User to New Groups</A>
+
+<LI>
+
+<A HREF="#E69E452" >Deleting a Group</A></UL>
+
+<LI>
+
+<A HREF="#E68E338" >The su Command</A>
+
+<LI>
+
+<A HREF="#E68E339" >Summary</A></UL></UL></UL>
+
+<HR ALIGN=CENTER>
+
+<A NAME="E66E39"></A>
+
+<H1 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>39</B></FONT></CENTER></H1>
+
+<BR>
+
+<A NAME="E67E39"></A>
+
+<H2 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>Users and Logins</B></FONT></CENTER></H2>
+
+<BR>
+
+<P>All access to a Linux system is through a user account. Every user must be set up by the system administrator, with the sole exception of the root account (and some system accounts that users seldom, if ever, use). While many Linux systems only have one 
+user, that user should not use the root account for daily access. Most systems allow several users to gain access, either through multiple users on the main console, through a modem or network, or over hard-wired terminals. Knowing how to set up and manage 
+user accounts and their associated directories and files is an important aspect of Linux system administration.
+
+<BR>
+
+<P>This chapter looks at the the following subjects:
+
+<BR>
+
+<UL>
+
+<LI>The root (superuser) account
+
+<BR>
+
+<BR>
+
+<LI>How to create new users
+
+<BR>
+
+<BR>
+
+<LI>The files a new user requires
+
+<BR>
+
+<BR>
+
+<LI>What is a group of users
+
+<BR>
+
+<BR>
+
+<LI>Managing groups
+
+<BR>
+
+<BR>
+
+</UL>
+
+<BR>
+
+<A NAME="E68E332"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>The Superuser Account</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>When the Linux software is installed, one master login is created automatically. This login, called root, is known as the superuser because there is nothing the login can't access or do. While most user accounts on a Linux system are set to prevent the 
+user from accidentally destroying all the system files, for example, the root login can blow away the entire Linux operating system with one simple command. Essentially, the root login has no limitations.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>The sheer power of the root login can be addictive. When you log in as root you don't have to worry about file permissions, access rights, or software settings. You can do anything at anytime. This power is very attractive to newcomers to the 
+operating system, who tend to do everything while logged in as root. It's only after the system has been damaged that the root login's problems become obvious: There are no safeguards! As a rule, you should only use the root login for system maintenance 
+functions. Do not use the superuser account for daily usage!</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>The root login should be kept only for those purposes where you really need it. It's a good idea to change the login prompt of the root account to clearly show that you are logged in as root, and hopefully you will think twice about the commands you 
+issue when you use that login. You can change the login prompt with the PS environment variable, discussed in <A HREF="rhl13.htm">Chapter 13</A>, &quot;Shell Programming.&quot; If you are on a standalone system and you destroy the entire file system, it's 
+only you that is inconvenienced. If you are on a multiuser system and you insist on using root for common access, you will have several very mad users after you when you damage the operating system.
+
+<BR>
+
+<P>So after all those dire warnings, the first thing you should do on a new system is create a login for your normal daily usage. Set the root password to something other users of the system (if there are any) will not easily guess, and change the password 
+frequently to prevent snooping.
+
+<BR>
+
+<P>You can also create special logins for system administration tasks that do not need wide-open access, such as for tape backups. You can set a login to have root read-only access to the entire file system, but not the potential for damage. This lets you 
+back up the system properly, but not erase the kernel by accident. Similar special logins can be set up for e-mail access, gateways to the Internet, and so on. Think carefully about the permissions each task requires and create a special login for that 
+task&#151;your system will be much more secure and have less chance of accidental damage.
+
+<BR>
+
+<P>To be precise, the superuser account doesn't have to be called root. It can have any name. The superuser account is always defined as the account with a user ID number of zero. User ID numbers are defined in the /etc/passwd file.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E333"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>User Accounts </B><B>/etc/passwd</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Even if you are the only user on your Linux system, you should know about user accounts and managing users. This is because you should have your own account (other than root) for your daily tasks. You therefore need to be able to create a new user. If 
+your system lets others access the operating system, either directly or through a modem, you should create user accounts for everyone who wants access. You may also want a more generic guest account for friends who just want occasional access.
+
+<BR>
+
+<P>Every person using your Linux system should have his or her own unique user name and password. The only exception is a guest account, or perhaps an account that accesses a specific application, such as a read-only database. By keeping separate accounts 
+for each user, your security is much tighter, and you have a better idea of who is accessing your system and what they are doing. A one-to-one correspondence between users and accounts makes tracking activities much easier.
+
+<BR>
+
+<P>All the information about user accounts is kept in the file /etc/passwd. The /etc/passwd file should be owned only by root and have the group ID set to zero (usually root or system group, as defined in the /etc/group file). The permissions of the 
+/etc/passwd file should be set to allow write access only by root, but all others can have read access. (We deal with groups and permissions later in this section.) The lines in the /etc/passwd file are divided into a strict format:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">username:password:user ID:group ID:comment:home directory:login command</FONT></PRE>
+
+<P>This format can best be seen by looking at a sample /etc/passwd file. The /etc/passwd file created when a Linux system is newly installed is shown in Listing 39.1.
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 39.1. The </B><B>/etc/passwd</B><B> file created when Linux is first installed.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">root::0:0:root:/root:/bin/bash
+
+bin:*:1:1:bin:/bin:
+
+daemon:*:2:2:daemon:/sbin:
+
+adm:*:3:4:adm:/var/adm:
+
+lp:*:4:7:lp:/var/spool/lpd:
+
+sync:*:5:0:sync:/sbin:/bin/sync
+
+shutdown:*:6:0:shutdown:/sbin:/sbin/shutdown
+
+halt:*:7:0:halt:/sbin:/sbin/halt
+
+mail:*:8:12:mail:/var/spool/mail:
+
+news:*:9:13:news:/usr/lib/news:
+
+uucp:*:10:14:uucp:/var/spool/uucppublic:
+
+operator:*:11:0:operator:/root:/bin/bash
+
+games:*:12:100:games:/usr/games:
+
+gopher:*:13:30:gopher:/usr/lib/gopher-data:
+
+ftp:*:14:50:ftp user:/home/ftp:
+
+nobody:*:-1:100:nobody:/dev/null:</FONT></PRE>
+
+<P>Each line in the /etc/passwd file is composed of seven fields, separated by a full colon. If there is nothing to be entered in a field, the field is left blank, but the colons are retained to make sure each line has seven fields (which also means each 
+line will have six colons). The seven fields (from left to right on each line) are:
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+user name
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+A unique identifier for the user.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+password
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The user's password (encrypted).</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+user ID (UID)
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+A unique number that identifies the user to the operating system.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+group ID (GID)
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+A unique number that identifies the user's group (for file permissions).</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+comment
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Usually the user's real name, but sometimes phone numbers, departments, and so on.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+home directory
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The directory in which users are placed when they log in.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+login command
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The command executed when the user logs in, normally a shell.</FONT>
+
+</TABLE><P>We can look at each field in a little more detail. You should know what each field does and how it is used by other programs on your Linux system. Note that this type of user file is used with almost every UNIX system in the world, so once you 
+know it for Linux, you know it for most UNIX versions.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E442"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>User Names</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The user name is a single string, usually eight characters or less, that uniquely identifies each user. Since the user name is the basis of most communications between users and other machines, the user name you use (or assign to others) should be 
+simple and obvious. Usually, this means a permutation of the user's real name. A typical user name may be a combination of the user's first and last names, such as tparker or timp. The former example, composed of the first initial and last name, is fairly 
+common in large networks.
+
+<BR>
+
+<P>Note that the characters in these examples are all lowercase. Case is important in Linux (as with all UNIX versions), so tparker and Tparker are two different logins. Since most Linux commands are lowercase, convention is to also keep user names 
+lowercase. Underscores, periods, numbers, and some special characters are allowed, but should be avoided.
+
+<BR>
+
+<P>Small systems, such as on a single machine, may use more familiar names, such as the user's first name only. A small system may have users with the names tim, bill, yvonne, and so on. If two users have the same name, then there must be some method found 
+to differentiate between the two (such as bill and billy).
+
+<BR>
+
+<P>A few users like to create cryptic user names that reflect their hobbies, nicknames, pets, lifestyle, or personality. You may find user names such as vader, grumpy, wizard, and hoops. This type of naming is fine on small systems that are used by one or 
+two users, but quickly becomes awkward on larger systems where other users may not know their coworkers' user names. On the whole, if your system is used by more than a couple of friends, discourage this type of user name.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E443"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Passwords</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The system stores the user's encrypted password in this field. (Actually, the password is encoded, not encrypted, although the convention has always been to use the term encrypted.) This field is very sensitive to changes, and any modification 
+whatsoever can render the login useless until the system administrator performs a password change. A user's password can only be changed by the system administrator by using the passwd command when logged in as root (or by the users themselves).
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Some versions of UNIX do not keep the passwords in the /etc/passwd file because of potential security problems. If the password fields on your system are all set to x, then another file (called a shadow password file) is in use. However, all versions 
+of Linux currently available do use this field normally.
+
+<BR>Systems running either Yellow Pages or NIS (Network Information Service), both of which rely on a central file of user names and passwords, do not use this field. However, few Linux systems will use either YP or NIS, so this distinction can be ignored 
+for the moment.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>When a user logs in, the login program logically compares the password the user typed to a block of zeros, and then compares that result to the entry in the password field. If they match, the user is granted access. Any deviation causes login to refuse 
+access.
+
+<BR>
+
+<P>This field can be used to restrict access to the system. If you want a login to never be used for access, such as a system login like lp or sync, place an asterisk between the two colons for this field. This restricts all access. In the example 
+/etc/passwd file shown earlier, you can see that many system logins have an asterisk as their password, effectively blocking access.
+
+<BR>
+
+<P>This field can also be used to allow unrestricted access by leaving it blank. If there is no password, anyone using the user name is granted access immediately, with no password requested. This is a very bad habit to get into! Do not leave passwords 
+open unless you are using your Linux system for your own pleasure and have nothing of value on the file system.
+
+<BR>
+
+<P>Don't attempt to put a password in the password field&#151;you cannot recreate the encryption method, and you'll end up locking the user out. Then, only the system administrator is able to change the password and allow access.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E444"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>User ID</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Every user name has an associated, unique user ID. The user ID, also called the UID, is used by Linux to identify everything associated with the user. The user ID is preferable to the user name because numbers are easier to work with than the characters 
+in a name, and they take up much less space. Linux tracks all processes started by a user, for example, by the user ID and not the user name. A translation can take place in some utilities to display the user name, but the utility generally examines the 
+/etc/passwd file to match the UID to the name.
+
+<BR>
+
+<P>The user ID numbers are usually assigned in specific ranges. Most UNIX systems, for example, allocate the numbers from zero to 99 for machine-specific logins, and the user ID numbers from 100 and up for users. This is a good working model and makes your 
+system consistent with others. In the example /etc/passwd file shown earlier, you can see that root has a UID of 0, while the other system-created logins have numbers ranging upward. The login nobody is a special login used for NFS (Network File System) 
+and has a UID of &#151;1, an invalid number. When you assign user ID numbers, it is a good idea to assign them sequentially, so the first user is 100, the second 101, and so on.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E445"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Group ID</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The group ID (GID) is used to track the users' startup group (in other words, the ID of the group the users belongs to when they log in). A group, as you will see later, is used for organization purposes to set file permissions, although many 
+organizations don't bother with them. Group ID numbers range from zero and upwards. Linux systems assign a group called users with the group number 100 for this purpose.
+
+<BR>
+
+<P>The GID is used by the system when tracking file permissions, access, and file creation and modification specifications. If your system has only a single user group, then you need not worry about the GID. If you work with several groups (as might be 
+implemented on a large system), then you need to examine the /etc/group file.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E446"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Comments</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>This field is used for the system administrator to add any information necessary to make the entry more self-explanatory. Typically, this area is used to enter the user's full name, although some system administrators like to add department or extension 
+numbers for convenience. (This field is sometimes called the GECOS field, after the operating system that first used it.)
+
+<BR>
+
+<P>The comment field is used by some utilities to display information about users, so make sure you don't place any sensitive information there. Electronic mail systems, for example, can access this field to show who is sending mail. While you don't have 
+to use the field, on larger systems it can make things much easier for administrators and other users when they can discover the real name of the person the user name belongs to.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E447"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Home Directory</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The home directory field indicates to the login process where to place users when they log in. This is usually their home directory. Each user on the system should have her own dedicated home directory, and then the startup files will initialize the 
+environment variable HOME to this value. The directory indicated in this field is the user's initial working directory only, and places no restrictions on the user (unless file permissions have been set to restrict movement).
+
+<BR>
+
+<P>For the most part, user home directories are located in a common area. Linux tends to use the /home directory, so you will find home directories such as /home/tparker, /home/ychow, and so on. Other versions use /usr, /user, or /u as user home 
+directories. In some cases where the system administrator has experience with another type of UNIX that uses an alternate directory structure, you may find the home directories changed to make life easier (and more familiar) for that administrator. As far 
+as Linux is concerned, it doesn't care what the name of the home directory is, as long as it can be entered.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E448"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Login Command</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The login command is the command to be executed when login terminates. In most cases this is a shell command that is started, such as the C Shell or Bourne Shell, to provide the user with a shell environment. In some cases, it may be a single 
+application or front-end system that restricts what the user can do. For example, the uucp login (used for e-mail and other simple networking tasks) executes the uucp command only. If the login command field is left empty, the operating system usually 
+defaults to the Bourne shell (although this may change depending on the manner in which the operating system is set up).
+
+<BR>
+
+<P>Many versions of Linux enable users to change their login shell with the command chsh or passwd -s. When either command is used, the file /etc/shells is searched for a match. Only those commands in the /etc/shells file are allowed as valid entries when 
+the user tries to change his startup shell. (You can add or remove lines in the /etc/shells file using any editor.) This helps you keep tighter security on the system. The superuser account has no restrictions on the entry in this field (or any other 
+user's field). If your system uses the /etc/shells file, make sure it has the same file permissions and ownership as the /etc/passwd file, or a user can sneak through the system security by modifying the startup command for her login.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E334"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Default System User Names</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The extract from the /etc/passwd file shown in the preceding section lists over a dozen system-dependent user names. These all serve special purposes on the Linux system. A few of these logins are worth noting because they have specific uses for the 
+operating system and for system administrators:
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+root
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080><BR></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The superuser account (UID 0) with unrestricted access and owns many system files.
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080><BR></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+daemon
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Used for system processes. This login is used only to own the processes and set their permissions properly.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+bin
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Owns executables.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+sys
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Owns executables.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+adm
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Owns accounting and log files.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+uucp
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Used for UUCP communication access and files.</FONT>
+
+</TABLE><P>The other system logins are used for specific purposes (postmaster for mail, and so on) that are usually self-explanatory. You should not change any of the system logins. In most cases, they have an asterisk in the password field preventing 
+their use for entry purposes.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E335"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Adding Users</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>There are two ways to add users to your system: manually edit the /etc/passwd file, or use an automated script that prompts you for the new user's details and writes a new line to the /etc/passwd file for you. The automated approach is handy for new 
+system administrators who are uneasy about editing a file as important as /etc/passwd, or for those occasions when you have to add several users and the risk of error is thus increased. You must modify the /etc/passwd file when you are logged in as root.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Before making changes to your /etc/passwd file, make a copy of it! If you corrupt the /etc/passwd file you will not be able to log in, even as root, and your system is effectively useless except in system administration mode. Keep a copy of the 
+/etc/passwd file on your emergency floppy or boot floppy in case of problems.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>To add an entry to the /etc/passwd file, use any editor that saves information in ASCII. Add the new users to the end of the file, using a new line for each user. Make sure you use a unique user name and user ID (UID) for each user. For example, to add 
+a new user called bill to the system with a UID of 103 (remember to keep UIDs sequential for convenience) and a GID of 100 (the default group), a home directory of /home/bill, and a startup shell of the Bourne shell, add the following line to the 
+/etc/passwd file:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">bill::103:100:Bill Smallwood:/home/bill:/bin/sh</FONT></PRE>
+
+<P>Note that we have left the password blank because you can't type in an encrypted password yourself. As soon as you have saved the changes to /etc/passwd, set a password for this account by running the command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">passwd bill</FONT></PRE>
+
+<P>This command prompts you for an initial password. Set the password to something that Bill will be able to use, and ask him to change the password the first time he works on the system. Many system administrators set the initial password to a generic 
+string (such as &quot;password&quot; or the login name) and then force the new user to change the password the first time they log in. Using generic strings is usually acceptable if the user logs in quickly, but don't leave accounts with generic login 
+strings sitting around too long&#151;someone else may use the account.
+
+<BR>
+
+<P>After you have added the necessary line to the /etc/passwd file, you should create the user's home directory. Once created, you must set the ownership to have that user own the directory. For the preceding example, you would issue the following 
+commands:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">mkdir /home/bill
+
+chown bill /home/bill</FONT></PRE>
+
+<P>All users must belong to a group. If your system has only one group defined, then add the user's user name to the line in the /etc/group file that represents that group. If the new user should belong to several groups, add the user name to each group in 
+the /etc/group file. The /etc/group file and groups in general are discussed in the &quot;Groups&quot; section later in the chapter.
+
+<BR>
+
+<P>Finally, the configuration files for the users' shells should be copied into their home directory and set to allow them access for customization. For example, if you copy the Bourne shell's .profile file from another user called yvonne, you would issue 
+the following commands:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">cp /home/yvonne/.profile /home/bill/.profile
+
+chown bill /home/bill/.profile</FONT></PRE>
+
+<P>You should also manually check the configuration file to ensure there are no environment variables that will be incorrectly set when the user logs in. For example, there may be a line defining the HOME environment variable or the spool directories for 
+printer and mail. Use any ASCII editor to check the configuration file. If you are using the Korn or C shell, there are other configuration files that need to be copied over and edited. Bourne shell compatibles need only a .profile, while the C shell and 
+compatibles need .login and .cshrc. The Korn shell and compatibles need a .profile and usually another file with environment variables embedded in it.
+
+<BR>
+
+<P>In general, the process for manually adding a new user to your system is:
+
+<BR>
+
+<OL>
+
+<LI>Add an entry for the user in the /etc/passwd file.
+
+<BR>
+
+<BR>
+
+<LI>Create the user's home directory and set the ownership.
+
+<BR>
+
+<BR>
+
+<LI>Copy the shell startup files and edit their settings and ownerships.
+
+<BR>
+
+<BR>
+
+</OL>
+
+<P>The command vipw invokes the vi editor (or whatever the default system editor has been set to) and edits a temporary copy of the /etc/passwd file. The use of a temporary file and file lock acts as a lock mechanism to prevent two different users from 
+editing the file at the same time. When the file is saved, vipw does a simple consistency check on the changed file, and if all appears proper, the /etc/passwd file is updated.
+
+<BR>
+
+<P>The automated scripts for Linux tend to have the names useradd or adduser. When run, they prompt you for all the information that is necessary in the /etc/passwd file. Both versions let you exit at any time to avoid changing the /etc/passwd file. The 
+automated scripts also tend to ask for an initial password, which you can set to anything you want or leave blank. One advantage of the automated scripts is that they copy all the configuration files for the supported shells automatically, and in some 
+cases, make environment variable changes for you. This can significantly simplify the process of adding users.
+
+<BR>
+
+<P>A quick note on passwords&#151;they are vitally important to the security of your system. Unless you are on a standalone Linux machine with no dial-in modems, every account should have a secure password. Passwords are assigned and changed with the 
+passwd command. The superuser can change any password on the system, but a user can only change his own password.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E336"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Deleting Users</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Just like adding new users, deleting users can be done with an automated script or manually. The automated scripts deluser or userdel asks which user you want to delete, and then removes the entry from the /etc/passwd file. Some scripts also clean out 
+the spool and home directory files, if you want. You must make any deletions to the /etc/passwd file when logged in as root.
+
+<BR>
+
+<P>If you delete users manually, simply remove their entries from the /etc/passwd file. Then you can clean up their directories to clear disk space. You can completely delete all their files and their home directory with the command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">rm -r -f /home/userdir</FONT></PRE>
+
+<P>where /home/userdir is the full pathname of the user's home directory. Make sure there are no files you want to keep in that directory before you blow them all away!
+
+<BR>
+
+<P>Next, you should remove the user's mail spool file, which is usually kept in /usr/spool/mail/username. For example, to remove the user walter's mail file, issue the command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">rm /usr/spool/mail/walter</FONT></PRE>
+
+<P>The spool file is a single file, so this command cleans up the entries properly. To finish off the mail clean-up, check that the user has no entries in the mail alias files (usually /etc/aliases) or you can force all mail for that user to another login 
+(such as root). To make any changes to the /etc/aliases file effective, you must run the newaliases command.
+
+<BR>
+
+<P>Finally, clean up the user's cron and at jobs. You can display the user's crontab file using the crontab command.
+
+<BR>
+
+<P>If you need to retain the user for some reason (such as file ownerships, a general access account, or accounting purposes), you can disable the login completely by placing an asterisk in the password field of the /etc/passwd file. That login can never 
+be used once an asterisk is in the password field. If you need to reactivate the account, simply run the passwd command.
+
+<BR>
+
+<P>The process for manually deleting a user (or using an automated script that doesn't clean up directories and files) is:
+
+<BR>
+
+<OL>
+
+<LI>Remove the user's entry from /etc/passwd and /etc/group.
+
+<BR>
+
+<BR>
+
+<LI>Remove the user's mail file and any mail aliases.
+
+<BR>
+
+<BR>
+
+<LI>Remove any cron or at jobs.
+
+<BR>
+
+<BR>
+
+<LI>Remove the home directory if you don't want any files it holds.
+
+<BR>
+
+<BR>
+
+</OL>
+
+<P>Occasionally, you may want to temporarily disable a user's account, such as when he or she goes on extended leave, vacation, or because you are mad at them! If you want to temporarily disable the login but be able to recover it at any time in the 
+future, add an asterisk as the first character of the encrypted password. Don't alter any characters in the existing password, but just add the asterisk to the front. When you want to reactivate the account, remove the asterisk and the password is back to 
+whatever it was set at before you made the changes.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E337"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Groups</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Every user on a UNIX and Linux system belongs to a group. A group is a collection of individuals lumped together for some reason. The users in a group may all work in the same department, may need access to a particular programming utility, or they may 
+all have access to use a special device, such as a scanner or color laser printer. Groups can be set up for any reason, and users can belong to any number of groups. However, a user can only be a member of one group at a time, because groups are used for 
+determining file permissions and Linux only allows one group ID per user at any point in time.
+
+<BR>
+
+<P>Groups can have their permissions set so that members of that group have access to devices, files, file systems, or entire machines that other users who do not belong to that group may be restricted from. For example, this can be useful when you have an 
+accounting department, all members of which need access to the company's accounts. However, you wouldn't want non-accounting people to go snooping through financial statements, so creating a special group that has access to the accounting system makes 
+sense.
+
+<BR>
+
+<P>Many small Linux systems have only one group, the default group, because that is the simplest way to manage a system. Then, each user's access to devices and files is controlled by the devices' or files' permissions, not the group. When you start to get 
+several different users in logical groupings, though, groups start to make more sense. You can even use groups to control your friends' or children's access to areas on your home Linux system.
+
+<BR>
+
+<P>Group information is maintained in the file /etc/group, which is similar in layout to the /etc/passwd file. The default /etc/group file from a newly installed Linux system is shown in Listing 39.2.
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 39.2. The default </B><B>/etc/group</B><B> file.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">root::0:root
+
+bin::1:root,bin,daemon
+
+daemon::2:root,bin,daemon
+
+sys::3:root,bin,adm
+
+adm::4:root,adm,daemon
+
+tty::5:
+
+disk::6:root,adm
+
+lp::7:lp
+
+mem::8:
+
+kmem::9:
+
+wheel::10:root
+
+floppy::11:root
+
+mail::12:mail
+
+news::13:news
+
+uucp::14:uucp
+
+man::15:man
+
+users::100:games
+
+nogroup::-1:</FONT></PRE>
+
+<P>Each line in the file has four fields separated by colons. Two colons together mean that the field is empty and has no value specified. Each line in the file follows this format:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">group name:group password:group ID:users</FONT></PRE>
+
+<P>Each group has a line of its own in the file. The fields in the /etc/group file (from left to right) are listed as follows:
+
+<BR>
+
+<UL>
+
+<LI>group name&#151;A unique name usually of eight characters or less (usually standard alphanumeric characters only).
+
+<BR>
+
+<BR>
+
+<LI>password&#151;Usually left as an asterisk or blank, but a password can be assigned that a user must enter to join the group. Not all versions of Linux or UNIX use this field, and it is left in the file for backward compatibility reasons.
+
+<BR>
+
+<BR>
+
+<LI>group ID (GID)&#151;A unique number for each group, used by the operating system.
+
+<BR>
+
+<BR>
+
+<LI>users&#151;A list of all user IDs that belong to that group.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>Every Linux system has a number of default groups which belong to the operating system, usually called bin, mail, uucp, sys, and so on. You can see the system-dependent groups in the default /etc/group file as shown in Listing 39.2. In that file, all 
+but the last two entries are system groups. You should never allow users to belong to one of these groups because it gives them access permissions that can be the same as root's. Only system logins should have access to these operating system groups.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E449"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Default System Groups</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>You may have noticed in the startup /etc/group file shown in Listing 39.2 that there are several groups defined. These groups are used to set file permissions and access rights for many utilities. It's worth taking a quick look at some of the most 
+important groups and their functions:
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+root/wheel/system
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Usually used to enable a user to employ the su command to gain root access, it owns most system files.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+daemon
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Used to own spooling directories (mail, printer, and so on).</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+kmem
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Used for programs that need to access kernel memory directly (including ps).</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+sys
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Owns some system files; on some systems this group behaves the same as kmem.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+tty
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Owns all special files dealing with terminals.</FONT>
+
+</TABLE><P>The default group for the Slackware Linux version /etc/group file, shown previously, is called users, and has a GID of 100. (Many UNIX systems have the default group called group with a group ID of 50 which is the convention.)
+
+<BR>
+
+<BR>
+
+<A NAME="E69E450"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Adding a Group</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>You can edit the information in the /etc/group file manually, using any ASCII editor, or you can use a shell utility such as addgroup or groupadd which go through the process for you. As a system administrator, you may find it easier to do the changes 
+manually because you can see the entire group file at the time you are editing it. Not all versions of Linux have an addgroup or groupadd utility.
+
+<BR>
+
+<P>To manually add a group to the /etc/group file, first make a backup copy of the file. Use any ASCII editor and add one line to the file for each new group you want to create. Make sure you follow the syntax of the file carefully because incorrect 
+entries prevent users from belonging to that group. In the following lines, two new groups have been created:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">accounts::101:bill
+
+scanner::102:yvonne</FONT></PRE>
+
+<P>The two groups have GIDs of 101 and 102, and like user IDs, the GIDs should be assigned sequentially for convenience. The users that are in the group are appended. In these cases, only one user is in each group. You'll see how to assign multiple users 
+to a group in the next section. The groups do not have to be in order of the GID or group name, although for convenience you usually have the file ordered by GID. You could add new lines anywhere in the file.
+
+<BR>
+
+<P>The /etc/group file should be checked for file permissions and ownership after you have made changes to it. The file should be owned by root and have a group owner of root (or system, depending on the group with GID 0). The file permissions should 
+prevent anyone but root from writing the file.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E451"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Adding a User to New Groups</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Users can belong to many groups, in which case their user IDs should be on each group line that they belong to in the file /etc/group. Each user name on a line in the /etc/group file is separated by a comma. There is no limit to the number of users that 
+can belong to a group, in theory, but in practice, the line length of the Linux system (255 characters) acts as an effective limiter. There are ways around this limit, but few systems will require it.
+
+<BR>
+
+<P>The following excerpt from a /etc/group file shows several groups with multiple members:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">accounts::52:bill,yvonne,tim,roy,root
+
+prgming::53:bill,tim,walter,gita,phyliss,john,root
+
+cad::54:john,doreen,root
+
+scanner::55:john,root,tim</FONT></PRE>
+
+<P>The user names on each line do not have to be in any particular order. Linux searches along each line to find the user names it wants.
+
+<BR>
+
+<P>A user can be a member of only one group at a time while logged in, so they must use the command newgrp to change between groups they are members of. The starting group a user belongs to when they log in is given by the GID field in the /etc/passwd 
+file.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E452"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Deleting a Group</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>If you decide you don't want a particular group to exist anymore, you can simply remove the group name from the /etc/group file. You should also check the /etc/passwd file to see if any users have that group ID as their startup GID, and change it to 
+another group of which they are members. If you don't change the GIDs, those users will not be able to log in because they have no valid group membership. You should also scan the entire file system for files and directories that are owned by that group 
+and change them to another group. Failure to make this change may prevent access to the file or directory.
+
+<BR>
+
+<P>Some Linux versions have shell scripts that remove group lines from the /etc/group file for you. The utility is generally called delgroup or groupdel. However, most versions of Linux don't bother with this utility.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E338"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>The </B><B>su</B><B> Command</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Sometimes you want to execute a command as another user. If you are logged in as superuser and want to create files with bill's permissions and ownership set, it is easier to log in as bill than work as root and then reset all the parameters. Similarly, 
+if you are logged in as a user and need to be superuser for a little while, you would have to log out and back in to make the change. An alternative is the su command.
+
+<BR>
+
+<P>The su command changes your effective user name and grants you the permissions that user name has. The su command takes the user name you want to change to as an argument. For example, if you are logged in as a typical user and want to be root, you can 
+issue the command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">su root</FONT></PRE>
+
+<P>and the Linux system prompts you for the root password. If you supply it correctly, you will be root until you issue a Ctrl-D to log out of that account and back to where you started. Similarly, if you are logged in as root and want to be a user, you 
+can issue the command with the user name, such as:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">su tparker</FONT></PRE>
+
+<P>You won't be prompted for a password when changing from root to another user because you have superuser powers. When you Ctrl-D out of the login, you are back as root. If you are logged in as a normal user and want to switch to another non-root login, 
+you have to supply the password, though.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E339"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Summary</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>In this chapter we've looked at the basics of the /etc/passwd and /etc/group files, the two files intimately connected with user access to Linux. As you have seen, these are simple files and can easily be modified by a system administrator to add users 
+and groups at any time. Always bear in mind that these are vital files, and they should be copied to a backup filename, then edited carefully and their permissions checked after each edit.<A NAME="I2"></A>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl38.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="#I0" TARGET="_self"><IMG SRC="purtop.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Page Top"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl40.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+</BODY></HTML>
+
+
+

@@ -1,0 +1,510 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Red Hat Linux Unleashed rhl41.htm </TITLE>
+
+<LINK REL="ToC" HREF="index.htm">
+
+<LINK REL="Index" HREF="htindex.htm">
+
+<LINK REL="Next" HREF="rhl42.htm">
+
+<LINK REL="Previous" HREF="rhl40.htm"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+
+<A NAME="I0"></A>
+
+<H2>Red Hat Linux Unleashed rhl41.htm</H2>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl40.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl42.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+<HR ALIGN=CENTER>
+
+<P>
+
+<UL>
+
+<UL>
+
+<UL>
+
+<LI>
+
+<A HREF="#E68E344" >Supported SCSI Devices</A>
+
+<LI>
+
+<A HREF="#E68E345" >SCSI Device Drivers</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E460" >Hard Drives</A>
+
+<LI>
+
+<A HREF="#E69E461" >CD-ROM Devices</A>
+
+<LI>
+
+<A HREF="#E69E462" >Tape Drives</A>
+
+<LI>
+
+<A HREF="#E69E463" >Other Devices</A></UL>
+
+<LI>
+
+<A HREF="#E68E346" >Troubleshooting SCSI Devices</A>
+
+<LI>
+
+<A HREF="#E68E347" >Summary</A></UL></UL></UL>
+
+<HR ALIGN=CENTER>
+
+<A NAME="E66E41"></A>
+
+<H1 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>41</B></FONT></CENTER></H1>
+
+<BR>
+
+<A NAME="E67E41"></A>
+
+<H2 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>SCSI Device Support</B></FONT></CENTER></H2>
+
+<BR>
+
+<P>This chapter will look at SCSI devices. More specifically, you will see:
+
+<BR>
+
+<UL>
+
+<LI>What a SCSI device is
+
+<BR>
+
+<BR>
+
+<LI>What kind of SCSI devices can be attached to Linux
+
+<BR>
+
+<BR>
+
+<LI>How to configure SCSI devices
+
+<BR>
+
+<BR>
+
+<LI>Typical problems and solutions for SCSI users
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>SCSI (Small Computer Systems Interface), pronounced &quot;scuzzy,&quot; is a standard method of interfacing between a computer and peripherals. It has many advantages over other interconnect systems such as IDE, albeit generally at a higher price.
+
+<BR>
+
+<P>SCSI uses a dedicated controller card within the computer, from which a chain of devices can be connected. All the SCSI devices are coupled using a flat-ribbon cable (internally) or a shielded cable (externally). Each SCSI chain can support seven 
+devices. Each device has a SCSI ID number from 0 to 7. Usually the controller card is set to use number 7, while bootable SCSI hard drives are set to use SCSI ID 0. The other numbers are available for other devices, although each ID can be used by only one 
+device.
+
+<BR>
+
+<P>The advantages of SCSI are primarily in its high speed. Also, with most SCSI devices, all the electronics needed to control them are attached to the device, making it easier for devices to talk to each other. The other major advantage of SCSI is that 
+you don't have to do anything special to configure the system. When you plug in a new SCSI device (such as a scanner) with a unique SCSI ID, the system controller card recognizes it because the on-board electronics identify the type of device to the card 
+automatically.
+
+<BR>
+
+<P>SCSI devices must have a terminator at each end of the chain. Terminators are a set of resistors that provide an electrical indication that the chain ends at that point. There should only be two terminators on each SCSI chain, one at each end. Most SCSI 
+controller cards have a set of switches or a block of removable resistors that terminate one end, while SCSI devices have a switch or resistors that allow that device to automatically terminate the chain. Some devices are clever enough to sense that they 
+are the last SCSI device in a chain, and they terminate without any intervention from you.
+
+<BR>
+
+<P>SCSI devices can communicate with each other quickly over the chain. A scanner can send instructions straight to a hard drive, and a tape drive can dump information straight to another SCSI device without involving the operating system too much. This 
+helps the speed and makes SCSI devices particularly flexible.
+
+<BR>
+
+<P>I won't go into all the details of SCSI connectivity and architecture, because you don't need to know these details for most purposes. If you need more information, most SCSI controller cards include a good description of the theory.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E344"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Supported SCSI Devices</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>You can't assume that since Linux supports SCSI, any SCSI device will work. Most versions of the operating system have a hardware compatibility file in the distribution set that lists all devices that have been tested and are known to work properly with 
+the SCSI system. Check this file carefully before you buy a new device or controller card! Some devices and cards simply don't work with Linux.
+
+<BR>
+
+<P>Some SCSI devices are shipped with their own kernel patches. You will have to make sure the patches correspond to the version of the Linux kernel you are using, then rebuild the kernel with the new drivers in place. If the devices don't have a Linux 
+kernel patch, check with the manufacturer or Linux distribution sites.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E345"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>SCSI Device Drivers</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Every device on the Linux system must have a device file, and SCSI devices are no different. In many cases, Linux is distributed with a complete set of SCSI device files that only need to be configured properly. You should know a little about device 
+drivers, device files, and major and minor device numbers. See <A HREF="rhl38.htm">Chapter 38</A>, &quot;Devices and Device Administration,&quot; for more information.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E460"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Hard Drives</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>SCSI disk drives are always block devices and should always use major device number 8. No &quot;raw&quot; SCSI devices are usually supported by Linux, despite its similarity to BSD UNIX, which does support raw SCSI devices.
+
+<BR>
+
+<P>Sixteen minor device numbers are allocated to each SCSI disk device. Minor device number 0 represents the whole disk drive, minor numbers 1 through 4 are the four primary partitions, and minor numbers 5 through 15 are used for any extended partitions.
+
+<BR>
+
+<P>With Linux, SCSI disk minor device numbers are assigned dynamically, starting with the lowest SCSI ID numbers. The standard naming convention for SCSI hard drives is /dev/sd{letter} for the entire disk device (such as /dev/sda or /dev/sdb), and 
+/dev/sd{letter}{partition} for the partitions on that device (such as /dev/sda1 or /dev/sda2).
+
+<BR>
+
+<P>Linux presents a few problems when partitioning SCSI disks, because Linux talks directly to the SCSI interface. Each disk drive is viewed as the SCSI host sees it, with block numbers from 0 up to the highest block number. They are all assumed to be 
+error-free. This means there is an easy way to get at the disk geometry. (For comparison, DOS requires head-cylinder-sector mapping, which is not as efficient but does allow direct manipulation.)
+
+<BR>
+
+<P>To partition the drive, you will either have to use the entire disk for Linux (in which case the installation takes care of it), or you can use DOS or Linux's fdisk program to create partitions for other operating systems first. Also, with systems that 
+support both SCSI hard drives and IDE hard drives, you might have to reconfigure the system in the machine's BIOS to recognize the SCSI drive as the primary (boot) device.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E461"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>CD-ROM Devices</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>SCSI CD-ROM drives with a block size of 512 or 2048 bytes will work with Linux, but any other block size will not. Since most CD-ROM drives and CD-ROM discs have either 512- or 2048-byte blocks, this shouldn't cause a problem unless the drive is from a 
+source where other block sizes are the norm.
+
+<BR>
+
+<P>CD-ROM discs are offered in several different formats, not all of which might be readable on a Linux system. The international standard is called ISO 9660, but not all CD-ROMs conform to this standard because it was adopted long after CD-ROMs became 
+popular.
+
+<BR>
+
+<P>SCSI CD-ROMs use the major device number 11, and minor device numbers are allocated dynamically. The first CD-ROM drive found is minor 0, the second is minor 1, and so on. The naming convention used with Linux is /dev/sr{digit}, such as /dev/sr0 and 
+/dev/sr1 for the first and second CD-ROM drives installed. Alternatively, some Linux distributions name the devices /dev/scd0, /dev/scd1, and so on.
+
+<BR>
+
+<P>After you set the CD-ROM SCSI address properly (the system should recognize the device when the SCSI card boots), the CD-ROM device must be mounted. This can be done manually or embedded in the startup sequence so that the drive is always available.
+
+<BR>
+
+<P>To mount a CD-ROM device, the general command is
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">mount /dev/sr0 /mount_point</FONT></PRE>
+
+<P>where mount_point is a directory that can be used. You must create the directory beforehand in order for the mount to work. For convenience, most systems that use CD-ROMs should create a directory called /cdrom, which is always the mount point.
+
+<BR>
+
+<P>If your CD-ROM doesn't mount properly with this command, the reason might be the disc type or the lack of an entry in the file /etc/fstab which identifies the CD as an ISO 9660 device. The correct syntax to mount an ISO 9660 CD-ROM (also called 
+High-Sierra) is
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">mount -t iso9660 /dev/sr0 /mount_point</FONT></PRE>
+
+<P>For this to work correctly, you must have the kernel set to support the ISO 9660 file system. If this hasn't been done, rebuild the kernel with this option added.
+
+<BR>
+
+<P>Linux attempts to lock the CD-ROM drive door when a disc is mounted. This is done to prevent file system confusion due to a media change. Not all CD-ROM drives support door locking, but if you find yourself unable to eject a CD-ROM, it is probably 
+because the disc is mounted (it doesn't have to be in use).
+
+<BR>
+
+<BR>
+
+<A NAME="E69E462"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Tape Drives</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Linux supports several SCSI tape drives. You should check the hardware configuration guide before purchasing one, though, to ensure compatibility. The most popular SCSI tape models, including the Archive Viper QIC drives, Exabyte 8mm drives, and Wangtek 
+5150S and DAT tape drives, are all known to work well.
+
+<BR>
+
+<P>SCSI tapes use character device major number 9, and the minor numbers are assigned dynamically. Usually, rewinding tape devices are numbered from 0, so the first tape drive is /dev/rst0 (character mode, major number 9, minor number 0), the second device 
+is /dev/rst1 (character mode, major number 9, minor number 1), and so on. Non-rewinding devices have the high bit set in the minor number so that the first non-rewinding tape drive is /dev/nrst0 (character mode, major device 9, minor device 128).
+
+<BR>
+
+<P>The standard naming convention for SCSI tape drives is /dev/nrst{digit} for non-rewinding devices (such as /dev/nrst0, /dev/nrst1, and so on), and /dev/rst{digit} for rewinding devices (such as /dev/rst0 and /dev/rst1).
+
+<BR>
+
+<P>Generally, Linux supports tape devices that use either fixed or variable-length blocks, as long as the block length is smaller than the driver buffer length, which is set to 32KB in most Linux distribution sources (although this can be changed). Tape 
+drive parameters such as block size, buffering process, and tape density are set with ioctls, which can be issued by the mt program.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E463"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Other Devices</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Many other SCSI devices are available, such as scanners, printers, removable cartridge drives, and so on. These are handled by the Linux generic SCSI device driver. The generic SCSI driver provides an interface for sending commands to all SCSI devices.
+
+<BR>
+
+<P>SCSI generic devices use character mode and major number 21. The minor device numbers are assigned dynamically from 0 for the first device, and so on. The generic devices have the names /dev/sg0, /dev/sg1, /dev/sg2, and so on.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E346"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Troubleshooting SCSI Devices</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Many common problems with SCSI devices are quite easy to solve. Finding the cause of the problem is often the most difficult step. It's usually helpful to read the diagnostic message that the operating system displays when it boots or attempts to use a 
+SCSI device.
+
+<BR>
+
+<P>The following are the most common problems encountered with SCSI devices, their probable causes, and possible solutions:
+
+<BR>
+
+<UL>
+
+<UL>
+
+<P>SCSI devices show up at all possible SCSI IDs You have configured the device with the same SCSI address as the controller, which is typically set at SCSI ID 7. Change the jumper settings to another SCSI ID.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>A SCSI device shows up with all possible LUNs The device probably has bad firmware. The file /usr/src/linux/drivers/scsi/scsi.c contains a list of bad devices under the variable blacklist. You can try adding the device to this list and see if it affects 
+the behavior. If not, contact the device manufacturer.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Your SCSI system times out Make sure the controller card's interrupts are enabled correctly and that there are no IRQ, DMA, or address conflicts with other boards in your system.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>You get &quot;sense errors&quot; from error-free devices This is usually caused by either bad cables or improper termination on the chain. Make sure the SCSI chain is terminated at both ends using external or onboard terminators. Don't terminate in the 
+middle of the chain, because this can also cause problems. You can probably use passive termination, but for long chains with several devices, try active termination for better behavior.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>The tape drive is not recognized at boot time Try booting with a tape in the drive.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>A networking kernel does not work with new SCSI devices The autoprobe routines for many network drivers are not passive and can interfere with some SCSI drivers. Try to disable the network portions to identify the guilty program, and then reconfigure 
+it.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>A SCSI device is detected, but the system is unable to access it You probably don't have a device file for the device. Device drivers should be in /dev and configured with the proper type (block or character) and unique major and minor device numbers. 
+Run mkdev for the device.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>The SCSI controller card fails when it uses memory-mapped I/O This problem is common with Trantor T128 and Seagate boards and is caused when the memory-mapped I/O ports are incorrectly cached. You should have the board's address space marked as 
+uncacheable in the XCMOS settings. If you can't mark them as such, disable the cache and see if the board functions properly.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Your system fails to find the SCSI devices and you get messages when the system boots, such as scsi : 0 hosts or scsi%d : type: The autoprobe routines on the controller cards rely on the system BIOS autoprobe and can't boot properly. This is 
+particularly prevalent with these SCSI adapters: Adaptec 152x, Adaptec 151x, Adaptec AIC-6260, Adaptec AIC-6360, Future Domain 1680, Future Domain TMC-950, Future Domain TMC-8xx, Trantor T128, Trantor T128F, Trantor T228F, Seagate ST01, Seagate ST02, and 
+Western Digital 7000. Check that your BIOS is enabled and not conflicting with any other peripheral BIOSes (such as on some adapter cards). If the BIOS is properly enabled, find the board's &quot;signature&quot; by running DOS's DEBUG command to check if 
+the board is responding. For example, use the DEBUG command d=c800:0 to see if the board replies with an acknowledgment (assuming you have set the controller card to use address 0xc8000; if not, replace the DEBUG command with the proper address). If the 
+card doesn't respond, check the address settings.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Sometimes the SCSI system locks up completely There are many possible solutions, including a problem with the host adapter. Check the host adapter with any diagnostics that came with the board. Try a different SCSI cable to see if that is the problem. 
+If the lockups seem to occur when multiple devices are in use at the same time, there is probably a firmware problem. Contact the manufacturer to see if upgrades are available that would correct the problem. Finally, check the disk drives to ensure that <A 
+NAME="I2"></A>there are no bad blocks that could affect the device files, buffers, or swap space.
+
+<BR>
+
+</UL></UL>
+
+<BR>
+
+<A NAME="E68E347"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Summary</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>SCSI has a reputation for being difficult to work with, but in fact it is one of the easiest and most versatile systems available. Once you get used to the nomenclature, SCSI offers many useful features to the Linux user. Indeed, most veteran UNIX 
+people prefer working with SCSI because it is easy to use with the UNIX kernel, and the same applies to Linux.
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl40.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="#I0" TARGET="_self"><IMG SRC="purtop.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Page Top"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl42.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+</BODY></HTML>
+
+
+

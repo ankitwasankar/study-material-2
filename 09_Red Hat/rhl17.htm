@@ -1,0 +1,920 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Red Hat Linux Unleashed rhl17.htm </TITLE>
+
+<LINK REL="ToC" HREF="index.htm">
+
+<LINK REL="Index" HREF="htindex.htm">
+
+<LINK REL="Next" HREF="rhl18.htm">
+
+<LINK REL="Previous" HREF="rhl16.htm"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+
+<A NAME="I0"></A>
+
+<H2>Red Hat Linux Unleashed rhl17.htm</H2>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl16.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl18.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+<HR ALIGN=CENTER>
+
+<P>
+
+<UL>
+
+<UL>
+
+<UL>
+
+<LI>
+
+<A HREF="#E68E119" >Embedding Commands</A>
+
+<LI>
+
+<A HREF="#E68E120" >Controlling Character Appearance</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E235" >Sizes and Line Spacing</A>
+
+<LI>
+
+<A HREF="#E69E236" >Fonts</A>
+
+<LI>
+
+<A HREF="#E69E237" >Indenting and Line Length</A>
+
+<LI>
+
+<A HREF="#E69E238" >Other Character Controls</A></UL>
+
+<LI>
+
+<A HREF="#E68E121" >Macros</A>
+
+<LI>
+
+<A HREF="#E68E122" >Using mm</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E239" >Lists</A>
+
+<LI>
+
+<A HREF="#E69E240" >Font Changes</A>
+
+<LI>
+
+<A HREF="#E69E241" >Footnotes</A></UL>
+
+<LI>
+
+<A HREF="#E68E123" >Summary</A></UL></UL></UL>
+
+<HR ALIGN=CENTER>
+
+<A NAME="E66E17"></A>
+
+<H1 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>17</B></FONT></CENTER></H1>
+
+<BR>
+
+<A NAME="E67E17"></A>
+
+<H2 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>groff</B></FONT></CENTER></H2>
+
+<BR>
+
+<P>This chapter looks at the groff text-formatting utility. Specifically, you will learn the following:
+
+<BR>
+
+<UL>
+
+<LI>What groff is
+
+<BR>
+
+<BR>
+
+<LI>How to do basic text formatting
+
+<BR>
+
+<BR>
+
+<LI>How to create macros
+
+<BR>
+
+<BR>
+
+<LI>What the mm macro package is
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>The groff program is the GNU version of nroff and troff, text-formatting languages that have been used in UNIX for many years. The groff system includes versions of troff, nroff, eqn, tbl, and other UNIX text-formatting utilities. The groff language is 
+used primarily to compile man pages written and stored in groff/nroff format into a form that can be printed or displayed on-screen.
+
+<BR>
+
+<P>The nroff language was designed to provide text formatting in lineprinters, whereas troff was developed for phototypesetters. The commands in the two languages are identical, although some commands that cannot be processed by a lineprinter are ignored 
+by nroff. In most cases, you don't use nroff or troff directly, but use a macro package to access them.
+
+<BR>
+
+<P>For the most part, nroff and troff have fallen into disuse with the development of powerful word processors and desktop-publishing packages. Their sole remaining use is for formatting man pages, which continue to be used widely.
+
+<BR>
+
+<P>Both nroff and troff have many commands that you will never require. Therefore, in this chapter we will look at the basic command set necessary for you to use the groff version of the two languages, and how they can be used for man page-specific 
+applications. If you really want to use groff for advanced text formatting, you should pick up a dedicated book on the subject.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E119"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Embedding Commands</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>One aspect of groff that may take a little getting used to is that the way you type lines in the file isn't necessarily the way they will be displayed in the finished output. The groff system runs text lines together as much as possible. For example, 
+the source file
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">This is fine stuff.
+
+It is really interesting and
+
+could keep me busy for hours.</FONT></PRE>
+
+<P>covers three lines in the source, but when formatted, it's run together by groff to look like this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">This is fine stuff. It is really interesting and could keep me busy for hours.</FONT></PRE>
+
+<P>with line breaks wherever necessary because of the page layout. This has an advantage in that you don't have to worry about making everything look properly formatted within the source. However, the disadvantage is that you might not have any idea what 
+the output will look like until you see it!
+
+<BR>
+
+<P>A look at a groff source file shows that it is all ASCII characters that contain the usual text of the displayed output and a set of commands starting with a period, like this:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">This is a bunch of text that will be displayed.
+
+Here is even more text.
+
+.ps 14
+
+The line above is a groff command, identified by the
+
+period in the first column of the line.</FONT></PRE>
+
+<P>Most groff commands are on a line by themselves, although a few can be embedded anywhere on a line. These commands are usually prefaced by a backslash, much as the shell uses the backslash as an escape character. An example of a line with embedded 
+commands is
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">This \fBline\fR has two embedded \fIgroff\fR commands.</FONT></PRE>
+
+<P>Although there will be times when you want to use embedded commands, the majority are the commands on a single line, starting with a period.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E120"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Controlling Character Appearance</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The groff language has a few commands for controlling the way characters look when printed or displayed. These include changing the size and line spacing of characters, as well as controlling fonts.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E235"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Sizes and Line Spacing</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Character size and line spacing are not usually useful when displaying text on-screen, unless you are using a bitmapped terminal. They are used for printed documents, though. You can change the size of text with the .ps (point size) command:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">This is the default 10-point size.
+
+.ps 14
+
+This is now in 14-point size.
+
+.ps 20
+
+This is a point size of 20.
+
+.ps 6
+
+And this is a really small point size of six.</FONT></PRE>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>A point is 1/72 of an inch, so a 36-point character size is half an inch high. The 12-point size used most commonly is 1/6-inch high. Different versions of groff support different point sizes, but most versions support 6, 7, 8, 9, 10, 11, 12, 14, 16, 
+20, 24, 28, and 36 points. If you set a value that is not supported, it is rounded up to the next highest value (to a maximum of 36). The default point size is 10. If you use the .ps command without a value, groff reverts to the previous value.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>Within a sentence, the point size can be changed with the line-embedded command \s followed by the point size. For example:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">This is in 10-point, while \s20this is in 20,\s10 and back to 10 again.</FONT></PRE>
+
+<P>The \s command should be followed by a legal point size. The special command \s0 causes groff to revert to its previous value. Relative changes are also supported, so you could embed commands such as \s+2 and \s-2, although only a single digit can be 
+specified (so you can't change by more than nine points).
+
+<BR>
+
+<P>Line spacing is the vertical spacing between lines. Vertical spacing is not tied to point size, so it should be adjusted manually. As a general rule, use a vertical spacing about 20 percent larger than the point size. The default vertical spacing is 11.
+
+
+<BR>
+
+<P>Line spacing is controlled by the .vs (vertical space) command. In the next example, we change the point size and the vertical spacing to permit the characters to be printed clearly without overlap:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">This is in normal 10-point, 11 vertical space size.
+
+.ps 12
+
+.vs 14
+
+This is in 12-point with 14 vertical spacing.</FONT></PRE>
+
+<P>If you use the .vs command without a value, groff reverts to the previous value.
+
+<BR>
+
+<P>If you want to force spacing for some reason, such as to separate sections of text, you can use the .sp (space) command. Used with no argument, .sp gives one blank line. It can also take arguments of i for inches and p for points:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">This is default 10-point 11 vertical spaced text.
+
+.sp
+
+We have a blank line above this because of the command.
+
+.sp 3.5i
+
+This is three and a half inches below the previous line.</FONT></PRE>
+
+<P>You can use fractions in most groff commands, as this example shows.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E236"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Fonts</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Changing fonts requires the command .ft (font type). In the early days of troff, only four fonts were supported: Roman, Roman bold, Roman italic, and a set of special characters. Other fonts had to be specially loaded in the phototypesetter. For this 
+reason, groff defaults to Roman.
+
+<BR>
+
+<P>To switch to Roman bold, you use the command .ft B, while .ft I switches, not surprisingly, to Roman italic. To return to the normal Roman font, the command .ft R is used, although on most systems, .ft by itself will suffice:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">This is in normal Roman font.
+
+.ft B
+
+This is bold.
+
+.ft I
+
+This is italics.
+
+.ft
+
+This is back to normal Roman font.</FONT></PRE>
+
+<P>You can switch fonts with a line-embedded command, too, using \f followed by either I or B, switching back with R to the normal font:
+
+<BR>
+
+<P>This is normal, \fBbold\fR and \fIitalics\fR.
+
+<BR>
+
+<P>Because underline wasn't supported on most system printers, underlined text was converted to italic. The underline command .ux would italicize the next x lines of text.
+
+<BR>
+
+<P>Because we now have many thousands more fonts to work with than Roman, we must be able to change fonts within groff. The command to change fonts is .fp (font physically mounted), which also requires a number to indicate what position the font was 
+mounted in the phototypesetter (old stuff, isn't it?). For example, if Helvetica were mounted in font position three and we referred to it by the font letter H, the command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">.fp 3 H</FONT></PRE>
+
+<P>would instruct the phototypesetter to switch to Helvetica in font position three. groff still retains these old-style commands.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E237"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Indenting and Line Length</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The line length is set to default to 6.5 inches within groff. To override this value, the .ll (line length) command is used with an argument indicating the units. For example, the command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">.ll 7i</FONT></PRE>
+
+<P>switches groff to use a seven-inch line length. The maximum length accepted is usually about 7.5 inches, so to use paper wider than that you have to move the left margin over to compensate with the .po (page offset) command. The value .po 0 sets the 
+left margin as far over as is possible.
+
+<BR>
+
+<P>To indent text, you use the .in (indent) command. It takes a number and an indicator of the units as arguments, as the following example shows:
+
+<BR>
+
+<P>This is normal stuff.
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">.in 0.75I</FONT></PRE>
+
+<P>This is indented three-quarters of an inch.
+
+<BR>
+
+<P>To move the right margin to the left so that you can make a distinctive block of text within a normal chunk, you use the .ll (line length) command you saw earlier:
+
+<BR>
+
+<P>This is normal text, and goes on and on.Even more text that continues the tradition.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">.in 1i
+
+.ll -1i</FONT></PRE>
+
+<P>This is now indented one inch to the left, and the right margin is indented one inch from the normal right margin. This makes the text stand out a little.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">.in -1i
+
+.ll +1i</FONT></PRE>
+
+<P>And this is back to normal. The block will stand out nicely amongst all this normal text.
+
+<BR>
+
+<P>You will notice that we used relative movements of plus and minus a value in this example to make it easier. This way, we don't have to measure the page. You can revert to original values with the command .in and .ll with no arguments, as well.
+
+<BR>
+
+<P>An indent and line-length change is effective until the next command changes it. Sometimes you want to affect only a single line, though. If you want to indent only a single line, use the .ti (temporary indent) command:
+
+<BR>
+
+<P>This is really fine stuff. You can tell, 'cause I'm still awake.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">.ti 3i</FONT></PRE>
+
+<P>This line is temporarily indented by three inches, but the next line will be back to normal.
+
+<BR>
+
+<P>Tabs are used to set column output. Usually, tabs are used with groff only for unfilled text, which means material you would display in columns. Tab stops are set, by default, every half inch. To override these values, you use the .ta (tab) command. The 
+command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">.ta 1i 2i 3i 4i 5i 6i</FONT></PRE>
+
+<P>sets the tabs at every inch instead. You can think of the setting of tabs within groff much as they are done on a typewriter, from left to right. Tabs are usually set for columns of numbers or tables, but the groff macro gtbl is much better at this. 
+(You get a look at gtbl in the next chapter.)
+
+<BR>
+
+<BR>
+
+<A NAME="E69E238"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Other Character Controls</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The groff system has special instructions for controlling the size of individual letters, as well as formulas and special characters such as Greek letters. However, because it is unlikely that groff is used for this type of output these days, we'll 
+ignore the capabilities. If you want more information on how to provide these special features, check the groff man pages or consult a good troff book.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E121"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Macros</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>A macro is a shorthand notation for a set of commands or strings. Many commands used to write man pages are macros. To give a practical example of a groff macro, suppose we want every paragraph to start with a blank line and a temporary indent of half 
+an inch. The groff commands to do this are
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">.sp
+
+.ti +.5i</FONT></PRE>
+
+<P>Instead of typing these two lines every paragraph, we can define a macro of one character (or more) that does it for us.
+
+<BR>
+
+<P>To define the macro, we use the .de (define) command followed by the name of the macro and the commands. It would look like this, placed somewhere at the top of the source code:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">.de PP
+
+.sp
+
+.ti +.5I
+
+..</FONT></PRE>
+
+<P>The last line with two periods indicates the end of the definition. Now, whenever we use the command .PP it will be executed as the lines in the macro.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Make sure that you don't define a macro with the name of a reserved groff command, or the macro will not be executed.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E68E122"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Using mm</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The mm (memorandum macros) package is not really part of nroff or troff, although both can use it. The mm program reads a source file much as groff does and translates it to output. Many of the mm macros are used for man pages. Indeed, many users find 
+the nroff and troff commands too awkward or complicated, whereas mm is fully able to meet all their basic formatting needs.
+
+<BR>
+
+<P>To add mm commands, you use the period in the first column as with groff. The mm macros are usually quite simple, and easy to work with and use. We can look at the most important of them here.
+
+<BR>
+
+<P>Like groff, mm runs text together when reformatting, regardless of line breaks in the source file. To force a new paragraph, use the .P command. It forces a line break and adds a blank line to the output. Paragraphs are usually formatted so that they 
+are flush left.
+
+<BR>
+
+<P>Headings are created with the .H command. For example, the command
+
+<BR>
+
+<P>.H This is a Heading
+
+<BR>
+
+<P>will create a break, output the heading text in bold, and leave a bit of a space between the heading and the text that follows it.
+
+<BR>
+
+<P>There can be seven levels of headings; 1 is the highest and 7 is the lowest. To specify the heading level, add the number as the first argument after the .H command:
+
+<BR>
+
+<P>.H 2 This is a level 2 heading
+
+<BR>
+
+<P>The mm heading macro will number the headings automatically, although you can suppress the numbering with the .HU (heading unnumbered) command. To reset the numbering (at a section break, for example), use the .nr (number register) command followed by 
+the heading level and the number to use. For example, the command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">.nr H2 1</FONT></PRE>
+
+<P>will restart the numbering of second-level headings at 1.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E239"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Lists</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Lists are easily created in mm with the .LI (list) command and the .LE (list end) command. This creates a bulleted list. For example, the command
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">.LI
+
+thing 1
+
+.LI
+
+thing 2
+
+.LE
+
+thing 3</FONT></PRE>
+
+<P>creates a bulleted list of the three bits of text. You can create a list with dashes instead of bullets using the .DL (dash list) command. The mark list command, .ML, creates a list with the character of your choice.
+
+<BR>
+
+<P>If you want a numbered list, use the .AL (automatic list) command. Lists with no arguments are created with Arabic numbers. To create an alphabetical list (A, B, C, and so on), use the macro command .AL A. Roman numerals (i, ii, iii, iv, v, and so on) 
+can be used with the .AL I command.
+
+<BR>
+
+<P>You can nest list types as necessary. For example, the command
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">.AL I
+
+.LI
+
+groff
+
+.AL
+
+.LI
+
+macros
+
+.LI
+
+mm
+
+.LE
+
+.LI
+
+gtbl
+
+.LI
+
+geqn
+
+.LE</FONT></PRE>
+
+<P>will create output that looks like this:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">I. groff
+
+1. macros
+
+2. mm
+
+II. gtbl
+
+III. geqn</FONT></PRE>
+
+<P>You have to be careful when terminating each list with an .LE command to ensure that you terminate the proper one. Experimentation and practice help you get the hang of this. You may have noticed that it takes a lot of commands to make a little list!
+
+<BR>
+
+<BR>
+
+<A NAME="E69E240"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Font Changes</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Changing fonts with mm is quite simple. When working from a period command, the command .B (bold) creates bold text until an .R (restore) command, while .I (italic) does the same until an .R command. If you want to bold or italicize only one word, you 
+can do it after the period command, as this example shows:
+
+<BR>
+
+<P>This is normal text
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">.B</FONT></PRE>
+
+<P>This is bold.
+
+<BR>
+
+<P>So is this.
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">.R</FONT></PRE>
+
+<P>This is normal.
+
+<BR>
+
+<P>This is a single
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">.Bbold</FONT></PRE>
+
+<P>word, though.
+
+<BR>
+
+<P>When you change only one word, you don't need a .R command.
+
+<BR>
+
+<P>Changes can be performed within text in the same manner as with groff:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">This is an \fIitalics set of words\fR until here.</FONT></PRE>
+
+<BR>
+
+<A NAME="E69E241"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Footnotes</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>To create a footnote, use the .FS (footnote start) and .FE (footnote end) commands. Every footnote on a single page will be collected and printed at the bottom. Footnotes are automatically numbered unless you specify another character:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">This is normal text.
+
+.FS</FONT></PRE>
+
+<P>This is a footnote with its proper number in front of it.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">.FE
+
+This is more normal text.
+
+.FS *</FONT></PRE>
+
+<P>But this is a footnote marked with an asterisk.
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">.FE</FONT></PRE>
+
+<P>This is even more normal text. At the bottom of the page
+
+<BR>
+
+<P>will be a numbered footnote and an asterisked footnote.
+
+<BR>
+
+<P>You can use any valid character for the optional footnote mark, including special characters supported by groff.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E123"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Summary</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>As you might expect, there is a lot to both groff and mm that we haven't looked at. Because groff is seldom used these days, we covered only the most important aspects. As I said earlier, if you want to learn more about groff or mm, find a good 
+reference book on the subject.
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl16.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="#I0" TARGET="_self"><IMG SRC="purtop.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Page Top"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl18.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+</BODY></HTML>
+
+
+

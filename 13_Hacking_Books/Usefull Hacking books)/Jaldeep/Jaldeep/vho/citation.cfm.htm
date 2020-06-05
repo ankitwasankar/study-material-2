@@ -1,0 +1,2751 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head>
+
+ 
+
+
+
+
+
+	
+
+
+
+
+
+
+
+	
+	
+	  	
+		
+		
+		
+	
+	
+	
+	
+	  	
+		
+		
+		
+	
+	
+
+
+
+ 		
+
+
+
+
+
+
+
+  
+		
+<style>
+.note-header-text {font-family: Times, Times New Roman, serif;
+		color:#ff0000; font-size: .95em;
+		margin-left: .75em; margin-right: .75em;}
+</style> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 	
+	
+  		
+		
+	
+
+
+
+  	 
+     
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+	
+		
+		
+   	 
+
+
+
+
+ 	
+ 	
+	
+
+
+
+
+
+<link rel="STYLESHEET" type="text/css" href="citation.cfm_files/dl.css"><title>OmniCon: a Mobile IP-based vertical handoff system for wireless LAN and GPRS links</title>
+
+<style type="text/css"><!--
+    body {margin-left: 0em; margin-top: 0}
+    a:link {text-decoration: underline; 	Color: #006699;}
+    a:visited  { color: #990033; text-decoration: underline;}
+    a:hover {color: red; text-decoration: none}
+    a.dLink1:link {color:#336699}
+    a.dLink1:visited {color:#666666}
+	a.isblack:link {text-decoration: underline; 	Color: #000000;}
+    a.isblack:visited  { color: #000000; text-decoration: underline;}
+    a.isblack:hover {color: #000000; text-decoration: none}
+    h1 {font-size: 140%; margin-bottom: 0}
+	ul {margin-top: .25em; list-style-type: disc}
+	ol {margin-top: .25em;}
+	li {padding-bottom: .25em}
+    h2 {color: white; background-color: #069; 
+        font-size: 100%; padding-left: 1em;
+		margin: 0}
+	h3 {color: black; background-color: yellow; 
+    	font-size: 100%;
+		margin: 0}
+	 h4 {color: black; background-color: #99c5e8; 
+        font-size: 100%;
+		margin: 0}
+    hr {color: #39176d;}
+    form {margin-top: 10}
+    form.xrs {margin-top: 0}
+	
+	a {text-decoration: none; }
+	
+	input {font-size: 1em;}
+	.chevron {color: #ff0000;}
+	.light-blue {color:#336699;}
+	.black {color:#000000;}
+	
+	/* ### standard text styles, smallest to largest ### */
+	
+	.footer-link-text {font-family: Arial, Helvetica, sans-serif;
+		color:#336699; font-size: .75em; line-height: 1.33em;
+		text-indent: -.75 em; margin-left: 2em; margin-right: .75em;}
+		
+	.footer-copy-text {font-family: Arial, Helvetica, sans-serif;
+		color:#000000; font-size: .75em; line-height: 1.3em;
+		margin-left: .75em; margin-right: .75em;}
+		
+	.small-link-text {font-family: Arial, Helvetica, sans-serif;
+		color:#000000; font-size: .83em; padding-bottom : 2px;
+	  	padding-top : 2px;}
+
+	.smaller-text {font-family: Arial, Helvetica, sans-serif;
+		color:#000000; font-size: .75em;}		
+	.small-text {font-family: Arial, Helvetica, sans-serif;
+		color:#000000; font-size: .83em;}
+	.medium-text {font-family: Arial, Helvetica, sans-serif;
+		color:#000000; font-size: 1em;}
+	.mediumb-text {font-family: Arial, Helvetica, sans-serif;
+		color:#000000; font-size: 1em; font-weight: bold;}
+	.large-text {font-family: Arial, Helvetica, sans-serif;
+		color:#000000; font-size: 1.3em;}		
+	
+	.list-link-text {font-family: Arial, Helvetica, sans-serif;
+		color:#336699; font-size: .83em; line-height: 1.3em;}
+	.list-link-btext {font-family: Arial, Helvetica, sans-serif;
+		color:#000000; font-size: .83em; line-height: 1.3em;}
+	
+	.searchbox-text {font-family: Arial, Helvetica, sans-serif;
+		color:#000066; font-size: 1em; font-weight: bold;}
+	.footer-header-text {font-family: Arial, Helvetica, sans-serif;
+		color:#000066; font-size: 1em; font-weight: bold;
+		margin-left: .75em; margin-right: .75em;}
+	.medium-link-text {font-family: Arial, Helvetica, sans-serif;
+		color:#000066; font-size: 1em; font-weight: bold; line-height: 1em;
+		text-indent: -1.25em; margin-left: 2em; margin-right: .75em;}
+	
+	
+	.small-copy-text {font-family: Times, Times New Roman, serif;
+		color:#000066; font-size: .75em; line-height: 1.2em;
+		margin-left: .75em; margin-right: .75em;}
+
+	.medium-copy-text {font-family: Times, Times New Roman, serif;
+		color:#000066; font-size: 1em; line-height: 1.2em;
+		margin-left: .75em; margin-right: .75em;}
+	
+	.large-copy-text {font-family: Times, Times New Roman, serif;
+		color:#000066; font-size: 1.3em; line-height: 1.5em;
+		margin-left: .75em; margin-right: .75em;}
+	
+	.medium-header-text {font-family: Times, Times New Roman, serif;
+		color:#ff0000; font-size: 1em;
+		margin-left: .75em; margin-right: .75em;}
+	
+	.large-header-text {font-family: Times, Times New Roman, serif;
+		color:#ff0000; font-size: 1.5em;
+		margin-left: .75em; margin-right: .75em;}
+
+  --></style>
+ 
+<script language="JavaScript">
+ /* <!-- Begin
+	if(document.layers || document.all) {
+	a = 1;
+	setInterval("Jump()", 10);
+	}
+	function Jump() {
+	a = a + 1;
+	//self.moveBy((Math.random() * a * 2 - a), (Math.random() * a * 2) - a);
+	}
+//  End --> */
+</script>
+<script type="text/javascript" src="citation.cfm_files/cfform.js"></script>
+<script type="text/javascript" src="citation.cfm_files/masks.js"></script>
+<script type="text/javascript">
+<!--
+    function  _CF_checkqiksearch(_CF_this)
+    {
+        //reset on submit
+        _CF_error_exists = false;
+        _CF_error_messages = new Array();
+        _CF_error_fields = new Object();
+        _CF_FirstErrorField = null;
+
+        //form element query required check
+        if( !_CF_hasValue(_CF_this['query'], "TEXT", false ) )
+        {
+            _CF_onError(_CF_this, "query", _CF_this['query'].value, "Please enter your Search Criteria");
+            _CF_error_exists = true;
+        }
+
+
+        //display error messages and return success
+        if( _CF_error_exists )
+        {
+            if( _CF_error_messages.length > 0 )
+            {
+                // show alert() message
+                _CF_onErrorAlert(_CF_error_messages);
+                // set focus to first form error, if the field supports js focus().
+                if( _CF_this[_CF_FirstErrorField].type == "text" )
+                { _CF_this[_CF_FirstErrorField].focus(); }
+
+            }
+            return false;
+        }else {
+            return true;
+        }
+    }
+//-->
+</script></head><body onload="window.focus(); " bgcolor="#ffffff">
+<div align="center">
+<a name="CIT"></a>
+<table border="0" cellpadding="0" cellspacing="0" width="85%">
+<tbody><tr>
+<td>
+
+
+	
+		
+				
+				
+					
+				  
+		
+	 
+
+
+
+
+
+
+
+
+
+	
+		
+	  
+		
+
+	
+
+
+
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tbody><tr valign="top">
+		<td class="small-link-text" align="center" background="citation.cfm_files/horiz-bar.jpg" width="1%"><img src="citation.cfm_files/logo_acm_portal2.jpg" alt="ACM Portal" usemap="#PORT" border="0" height="54" width="263">
+			
+			
+		</td>
+		<td class="small-link-text" align="left" width="99%">
+			<table border="0" cellpadding="0" cellspacing="0">
+			<tbody><tr>
+				<td>&nbsp;</td>
+				
+					<td class="small-link-text"><a href="https://campus.acm.org/Public/login_genpubqj.cfm?rdr=http://portal.acm.org/citation.cfm?id=1248445.1248449&amp;coll=&amp;dl=&amp;promo=QJPUB&amp;offering=200&amp;form_type=PUB&amp;CFID=13867517&amp;CFTOKEN=23846864" class="small-link-text">Subscribe</a><span class="small-link-text">&nbsp;(Full Service)</span>&nbsp;&nbsp;&nbsp;</td>
+					<td class="small-link-text"><a href="https://portal.acm.org/poplogin.cfm?dl=&amp;coll=&amp;want_href=citation%2Ecfm%3Fid%3D1248445%2E1248449%26coll%3D%26dl%3D%26CFID%3D13867517%26CFTOKEN%3D23846864&amp;CFID=13867517&amp;CFTOKEN=23846864" class="small-link-text">Register</a><span class="small-link-text">&nbsp;(Limited Service, <font color="Red">Free</font>)</span>&nbsp;&nbsp;&nbsp;</td>
+				
+				<td class="small-link-text" valign="bot">
+					
+					
+		 					<a href="https://portal.acm.org/poplogin.cfm?dl=&amp;coll=&amp;want_href=citation%2Ecfm%3Fid%3D1248445%2E1248449%26coll%3D%26dl%3D%26CFID%3D13867517%26CFTOKEN%3D23846864&amp;CFID=13867517&amp;CFTOKEN=23846864" class="small-link-text">Login</a>
+					
+				</td>			
+			</tr>
+			</tbody></table>
+			
+			
+			
+			<input name="parser" value="Internet" type="hidden">
+					<table border="0" cellpadding="0" cellspacing="0" width="100%">
+				
+					<form name="qiksearch" action="results.cfm?coll=&amp;dl=&amp;CFID=13867517&amp;CFTOKEN=23846864" method="post" target="_self" onsubmit="return _CF_checkqiksearch(this)"></form>
+					<tbody><tr>
+						<td height="5"><img src="citation.cfm_files/blanks.gif" alt="" border="0" height="1" width="1"></td>
+					</tr>
+					<tr>
+						<td class="small-link-text">&nbsp;</td>
+						<td class="small-link-text">
+							
+							  	
+							
+							<b>Search:</b>&nbsp;&nbsp;&nbsp;<input name="whichDL" value="acm" type="radio">The ACM Digital Library&nbsp;&nbsp;&nbsp;<input name="whichDL" value="guide" type="radio">The Guide
+							<br><input name="query" id="query" size="60" class="pubdescr" type="text">&nbsp;&nbsp;
+							<input alt="Search" name="Go" src="citation.cfm_files/search_small.jpg" border="0" type="image">
+						</td>
+					</tr>
+					
+
+				
+			</tbody></table>
+
+			
+		</td>
+	<!-- top nav END -->
+	</tr>
+	</tbody></table>
+	<table border="0" cellpadding="0" cellspacing="0">
+	<tbody><tr>
+		<td height="12"><img src="citation.cfm_files/blanks.gif" alt="" border="0" height="1" width="1"></td>
+	</tr>
+	</tbody></table>
+
+<map name="PORT"><area shape="rect" coords="1,1,55,60" href="http://www.acm.org/" alt="ACM Home Page"><area shape="rect" coords="65,1,300,78" href="http://portal.acm.org/portal.cfm?coll=&amp;dl=&amp;CFID=13867517&amp;CFTOKEN=23846864"> 
+  
+  
+</map>
+
+	
+
+<table align="left" border="0" width="100%">
+	<col width="40%">
+	<col width="60%">
+	<tbody><tr>
+		<td>
+			
+				<a href="http://portal.acm.org/guide.cfm?coll=&amp;dl=&amp;CFID=13867517&amp;CFTOKEN=23846864"><img src="citation.cfm_files/acm_guide_bar_large2.jpg" alt="" border="0" height="25" width="350"></a>
+			
+		</td>
+ 		<td class="small-text" align="center">
+			<img src="citation.cfm_files/feedback.gif" alt="Please provide us with feedback." border="0" height="19" width="20">&nbsp;<a href="http://portal.acm.org/feedback.cfm?CFID=13867517&amp;CFTOKEN=23846864">Feedback</a>
+		</td>
+	</tr>
+	<tr>
+		<td height="6"><img src="citation.cfm_files/blanks.gif" alt="" border="0" height="1" width="1"></td>
+	</tr>
+</tbody></table>
+</td>
+</tr>
+
+
+
+
+<tr>
+	<td colspan="3" background="citation.cfm_files/horiz-bar-long.jpg" height="1" valign="top"></td>
+</tr>
+
+<tr>
+<td class="small-text">
+	<table border="0" cellpadding="2" width="100%">
+		<col width="1%">
+		<col width="8%">
+		<col width="91%">
+	<tbody><tr>
+		<td class="medium-text" colspan="3"><strong>OmniCon: a Mobile IP-based vertical handoff system for wireless LAN and GPRS links</strong></td>
+	</tr>
+			
+	
+		<tr valign="middle">
+			
+			
+		</tr>
+		
+
+		<tr valign="top">
+			<td class="small-text"><strong>Source</strong>
+				
+				
+						
+				
+				
+					
+
+					
+				
+				
+			</td>
+			<td class="small-text" colspan="2">
+			
+								
+										
+											
+											
+										
+											
+											
+										
+											
+											
+												
+										
+											
+											
+											
+											
+											
+											
+												
+												
+												
+													
+													
+												
+											
+												
+											
+											
+													
+													
+													
+												    
+													
+														
+														
+															
+													
+														
+														
+														
+														
+														
+														<span class="mediumb-text">Software—Practice &amp; Experience </span>
+																			<a href="http://portal.acm.org/toc.cfm?id=J737&amp;type=periodical&amp;coll=&amp;dl=&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self" class="small-link-text">archive</a><br>
+														
+															 <span class="small-text"> Volume 37 ,&nbsp; Issue 7 &nbsp;(June 2007)</span>
+															 					  <a href="http://portal.acm.org/toc.cfm?id=1248445&amp;type=issue&amp;coll=&amp;dl=&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self" class="small-link-text">table of contents</a><br>
+																				  <span class="small-text"> </span>
+														   
+													
+												 
+										
+								
+		
+
+		
+		<div class="medium-text">
+			
+			
+			
+		</div>
+		
+		
+		    
+			
+			
+		
+
+			
+			
+			<div class="small-text">
+				 Pages: 779 - 798&nbsp;&nbsp;
+			</div>
+					
+			
+			
+			
+				<div class="small-text">
+					Year of Publication:&nbsp;2007
+				</div>
+			
+					
+			
+				<div class="small-text">
+					
+						
+						
+						  	
+						  	
+						
+					  
+					ISSN:0038-0644
+				</div>
+				
+
+			
+			
+				
+					
+					
+					
+				
+					
+					
+					
+				
+					
+					
+					
+				
+			
+			
+		
+			 
+			  	
+			 
+			 
+		
+			
+				
+			</td>
+		</tr>
+		
+		
+		
+			<tr valign="top">
+				<td class="small-text">							
+										  	<strong>Authors</strong>
+										
+				</td>
+				
+				
+					
+					
+				<td colspan="2">
+				<div class="authors">
+					<table cellpadding="0" cellspacing="0">		
+					
+							<tbody><tr>
+								<td class="small-text">
+									
+									  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81328490211&amp;querydisp=ProfileID%3A81328490211&amp;coll=&amp;dl=&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Srikant Sharma</a>
+									
+
+ 									 
+										
+										
+										
+										
+							    </td>
+								<td class="small-text">
+									
+										<small>&nbsp;Computer Science Department, Stony Brook University, Stony Brook, NY 11790, U.S.A.</small>
+										
+								</td>
+							</tr>
+					
+							<tr>
+								<td class="small-text">
+									
+									  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81100651072&amp;querydisp=ProfileID%3A81100651072&amp;coll=&amp;dl=&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Inho Baek</a>
+									
+
+ 									 
+										
+										
+										
+										
+							    </td>
+								<td class="small-text">
+									
+										<small>&nbsp;Computer Science Department, Stony Brook University, Stony Brook, NY 11790, U.S.A.</small>
+										
+								</td>
+							</tr>
+					
+							<tr>
+								<td class="small-text">
+									
+									  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81100152968&amp;querydisp=ProfileID%3A81100152968&amp;coll=&amp;dl=&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Tzi-Cker Chiueh</a>
+									
+
+ 									 
+										
+										
+										
+										
+							    </td>
+								<td class="small-text">
+									
+										<small>&nbsp;Computer Science Department, Stony Brook University, Stony Brook, NY 11790, U.S.A.</small>
+										
+								</td>
+							</tr>
+					
+					</tbody></table>	
+				</div>
+				</td>
+			</tr>
+			
+		
+		
+		
+	    
+
+		
+		
+		
+		
+			
+		
+		
+		
+		
+			
+					<tr valign="top">
+						<td class="small-text"><strong>Publisher</strong></td>
+						<td colspan="2">
+							<div class="publishers">
+									
+									  	John Wiley &amp; Sons, Inc.&nbsp;
+									
+									
+										<small>New York, NY, USA</small>
+									
+							</div>
+						</td>
+					</tr>
+			
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		</tbody></table>
+		
+		
+		
+		
+		
+		
+		
+ 
+ 		
+</td>
+</tr>
+
+
+<tr>
+<td>
+
+<!-- third main table: main content START -->
+	<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tbody><tr>
+		<td height="6"><img src="citation.cfm_files/blanks.gif" alt="" border="0" height="1" width="1"></td>
+	</tr>
+	<tr>
+		<td colspan="4" background="citation.cfm_files/horiz-bar-long.jpg" height="1" valign="top"></td>
+	</tr>
+	<tr>
+		<td height="6"><img src="citation.cfm_files/blanks.gif" alt="" border="0" height="1" width="1"></td>
+	</tr>
+
+	
+
+	<tr valign="top">
+	<!-- buttons -->
+		<td colspan="4" width="100%">
+	    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+		<col width="22%">
+	    <col width="78%">
+		<tbody><tr>
+			<td class="small-text"><b>Additional Information:</b></td>
+			<td>
+			<p class="small-text">
+				
+				
+				
+					<a href="http://portal.acm.org/citation.cfm?id=1248445.1248449&amp;coll=&amp;dl=#abstract">abstract</a>&nbsp;&nbsp;
+				
+				
+					<a href="http://portal.acm.org/citation.cfm?id=1248445.1248449&amp;coll=&amp;dl=#references">references</a>&nbsp;&nbsp;
+				
+				
+				
+				
+					<a href="http://portal.acm.org/citation.cfm?id=1248445.1248449&amp;coll=&amp;dl=#IndexTerms">index terms</a>&nbsp;&nbsp;
+				
+				
+				
+						<a href="http://portal.acm.org/citation.cfm?id=1248445.1248449&amp;coll=&amp;dl=#collab">collaborative colleagues</a>&nbsp;&nbsp;
+				
+				
+				</p>
+			</td>
+		</tr>
+		</tbody></table>
+		</td>
+	</tr>
+	<tr>
+		<td height="6"><img src="citation.cfm_files/blanks.gif" alt="" border="0" height="1" width="1"></td>
+	</tr>
+	
+	<tr valign="top">
+	<!-- buttons -->
+		<form name="popbinder"></form>
+		<td colspan="4" width="100%">
+		
+		<table border="0" cellpadding="2" cellspacing="0" width="100%">
+		  <col width="22%">
+		  <col width="78%">
+		  <tbody><tr valign="top">
+		  	<td class="small-text"><b>Tools and Actions:</b></td>
+			<td>
+			
+			  	
+			
+			
+			
+			
+
+			<a href="http://www.reviews.com/reviewer/quickreview/frameset_toplevel.cfm?bib_id=1248449" target="reviews" class="small-link-text">Review this Article</a>&nbsp;&nbsp;
+			
+			
+				<br>
+				
+					<a href="https://portal.acm.org/poplogin.cfm?dl=&amp;coll=&amp;comp_id=COMPONENT034&amp;want_href=citation%2Ecfm%3Fid%3D1248445%2E1248449%26coll%3D%26dl%3D%26backfrombind%3D1&amp;CFID=13867517&amp;CFTOKEN=23846864" class="small-link-text">
+				
+				Save this Article to a Binder</a><img src="citation.cfm_files/blanks.gif" name="saved" border="0">
+			  
+			&nbsp;&nbsp;
+			<span class="small-text">Display Formats:</span>
+			<a href="http://portal.acm.org/citation.cfm?id=1248445.1248449&amp;coll=&amp;dl=#" onclick="window.open('popBibTex.cfm?id=1248449&ids=J737.1248445.1248449&types=periodical.issue.article&reqtype=article&coll=&dl=&CFID=13867517&CFTOKEN=23846864','BibTex','width=800,height=100,top=100,left=100,scrollbars=Yes,resizable=yes');" class="small-link-text">
+			BibTex</a>&nbsp;
+
+			<a href="http://portal.acm.org/citation.cfm?id=1248445.1248449&amp;coll=&amp;dl=#" onclick="window.open('testpopendnotes.cfm?id=1248449&ids=J737.1248445.1248449&types=periodical.issue.article&reqtype=article&coll=&dl=&CFID=13867517&CFTOKEN=23846864','BibTex','width=800,height=100,top=100,left=100,scrollbars=Yes,resizable=yes');" class="small-link-text">
+			EndNote</a>
+
+			
+			 
+				<a href="http://portal.acm.org/citation.cfm?id=1248445.1248449&amp;coll=&amp;dl=#" onclick="window.open('popacmref.cfm?id=1248449&ids=J737.1248445.1248449&types=periodical.issue.article&reqtype=article&coll=&dl=&CFID=13867517&CFTOKEN=23846864','BibTeX','width=800,height=100,top=100,left=100,scrollbars=Yes,resizable=yes');" class="small-link-text">
+			ACM Ref</a>
+			
+			
+			&nbsp;&nbsp;				
+			
+			</td>
+		</tr>
+		<tr>
+			<td height="10"><img src="citation.cfm_files/blanks.gif" alt="" border="0" height="1" width="1"></td>
+		</tr>
+		
+		<tr valign="top">
+			<td class="small-text"><b>DOI Bookmark:</b></td>
+			<td class="small-text">
+				
+			    <a href="http://dx.doi.org/10.1002/spe.v37:7">10.1002/spe.v37:7</a>
+			</td>
+		</tr> 
+		
+		</tbody></table>
+		
+		</td>
+		
+	</tr>
+	<tr>
+		<td height="6"><img src="citation.cfm_files/blanks.gif" alt="" border="0" height="1" width="1"></td>
+	</tr>
+	<tr>
+		<td colspan="4" background="citation.cfm_files/horiz-bar-long.jpg" height="1" valign="top"></td>
+	</tr>
+	<tr>
+		<td height="6"><img src="citation.cfm_files/blanks.gif" alt="" border="0" height="1" width="1"></td>
+	</tr>
+	</tbody></table>
+<!-- third main table: main content END -->
+	
+
+		
+		
+
+
+
+		
+		
+		  	<div class="abstract">
+			
+			
+			  	
+			 
+			 
+			
+			</div>
+		
+		
+		
+
+		
+			<br>
+			<div class="abstract">
+			
+			<a href="http://portal.acm.org/citation.cfm?id=1248445.1248449&amp;coll=&amp;dl=#CIT"><img name="top" src="citation.cfm_files/arrowu.gif" border="0" hspace="10"></a><span class="heading"><a name="abstract">ABSTRACT</a></span>
+			
+			  	
+			 
+			 
+			
+				<p class="abstract">
+				
+					 </p><p>Wi-Fi
+based hotspots offer mobile users broadband wireless Internet
+connectivity in public work spaces and corporate&amp;sol;university
+campuses. Despite the aggressive deployment of these hotspots in recent
+years, high-speed wireless Internet access remains restricted to small
+geographical areas due to the limited physical coverage of wireless
+LANs. On the other hand, despite their lower throughput, cellular
+networks have a significantly wider coverage and are thus much more
+available. Recognizing that 2.5G or 3G cellular networks can
+effectively complement wireless LANs, we set out to develop a vertical
+handoff system that allows mobile users to seamlessly fall back to such
+cellular networks as the general packet radio service (GPRS) or 3G
+whenever wireless LAN connectivity is not available. The resulting
+handoff mechanism allows a network connection of a mobile node to
+operate over multiple wireless access networks in a way that is
+transparent to end user applications. In this paper, we present the
+design, implementation, and evaluation of a fully operational vertical
+handoff system, called <i>OmniCon</i>, which enables mobile nodes to
+automatically switch between wireless LAN and GPRS, based on wireless
+LAN availability, by introducing a simple extension to the existing
+Mobile IP implementation. We discuss the design issues in the proposed
+vertical handoff system for heterogeneous networks, including
+connection setup problems due to network address translation, and the
+disparity in link characteristics between wireless LANs and GPRS. A
+detailed performance evaluation study of the OmniCon prototype
+demonstrates its ability to migrate active network connections between
+these two wireless technologies with low handoff latency and close to
+zero packet loss. Copyright © 2006 John Wiley &amp; Sons, Ltd.</p>
+				 
+				<p></p>
+			
+			
+			</div>
+		  
+			
+		
+			<br>
+			<div class="abstract">
+			
+			<a href="http://portal.acm.org/citation.cfm?id=1248445.1248449&amp;coll=&amp;dl=#CIT"><img name="top" src="citation.cfm_files/arrowu.gif" border="0" hspace="10"></a><span class="heading"><a name="references">REFERENCES</a></span>
+			<p class="abstract"><font color="Red">Note:
+OCR errors may be found in this Reference List extracted from the full
+text article. ACM has opted to expose the complete List rather than
+only correct and linked references.</font></p>
+			
+			
+			  	
+			
+			
+			
+				
+				<table border="0" cellpadding="5">
+					
+						<tbody><tr valign="top">
+							<td valign="top"> &nbsp;</td>
+							<td>
+								<div class="abstract">
+									1
+								</div>
+							</td>
+							<td>
+								<div class="abstract">
+1. IEEE. IEEE standard for wireless LAN medium access control (MAC) and
+physical layer (PHY) specifications. Institute of Electrical and
+Electronics Engineers, November 1999. </div>
+							</td>
+						</tr>
+					
+						<tr valign="top">
+							<td valign="top"> &nbsp;</td>
+							<td>
+								<div class="abstract">
+									2
+								</div>
+							</td>
+							<td>
+								<div class="abstract">
+									 
+									2. Perkins C (ed.). IP mobility support. <i>Request For Comments 2002</i>, IETE October 1996.
+									
+
+																		
+								</div>
+							</td>
+						</tr>
+					
+						<tr valign="top">
+							<td valign="top"> &nbsp;</td>
+							<td>
+								<div class="abstract">
+									3
+								</div>
+							</td>
+							<td>
+								<div class="abstract">
+									 
+									3. Gartner group, http://www.gartner.com [23 October 2006].
+									
+
+																		
+								</div>
+							</td>
+						</tr>
+					
+						<tr valign="top">
+							<td valign="top"> &nbsp;</td>
+							<td>
+								<div class="abstract">
+									4
+								</div>
+							</td>
+							<td>
+								<div class="abstract">
+									 
+									4. Pollini G. Trends in handover design. <i>IEEE Communications Magazine</i> 1996; (March).
+									
+
+																		
+								</div>
+							</td>
+						</tr>
+					
+						<tr valign="top">
+							<td valign="top"> &nbsp;</td>
+							<td>
+								<div class="abstract">
+									5
+								</div>
+							</td>
+							<td>
+								<div class="abstract">
+									 
+										
+										<a href="http://portal.acm.org/citation.cfm?id=295138&amp;dl=&amp;coll=&amp;CFID=13867517&amp;CFTOKEN=23846864">
+Mark Stemm , Randy H. Katz, Vertical handoffs in wireless overlay
+networks, Mobile Networks and Applications, v.3 n.4, p.335-350, 1998 </a>
+
+									&nbsp;[doi&gt;<a href="http://dx.doi.org/10.1023/A:1019197320544">10.1023/A:1019197320544</a>]									
+								</div>
+							</td>
+						</tr>
+					
+						<tr valign="top">
+							<td valign="top"> &nbsp;</td>
+							<td>
+								<div class="abstract">
+									6
+								</div>
+							</td>
+							<td>
+								<div class="abstract">
+									 
+										
+										<a href="http://portal.acm.org/citation.cfm?id=837517&amp;dl=&amp;coll=&amp;CFID=13867517&amp;CFTOKEN=23846864">
+H. J. Wang , R. H. Katz , J. Giese, Policy-Enabled Handoffs Across
+Heterogeneous Wireless Networks, Proceedings of the Second IEEE
+Workshop on Mobile Computer Systems and Applications, p.51, February
+25-26, 1999 </a>
+
+																		
+								</div>
+							</td>
+						</tr>
+					
+						<tr valign="top">
+							<td valign="top"> &nbsp;</td>
+							<td>
+								<div class="abstract">
+									7
+								</div>
+							</td>
+							<td>
+								<div class="abstract">
+									 
+										
+										<a href="http://portal.acm.org/citation.cfm?id=1268310&amp;dl=&amp;coll=&amp;CFID=13867517&amp;CFTOKEN=23846864">
+Mary G. Baker , Xinhua Zhao , Stuart Cheshire , Jonathan Stone,
+Supporting mobility in MosquitoNet, Proceedings of the Annual Technical
+Conference on USENIX 1996 Annual Technical Conference, p.11-11, January
+22-26, 1996, San Diego, CA </a>
+
+																		
+								</div>
+							</td>
+						</tr>
+					
+						<tr valign="top">
+							<td valign="top"> &nbsp;</td>
+							<td>
+								<div class="abstract">
+									8
+								</div>
+							</td>
+							<td>
+								<div class="abstract">
+8. Buddhikot M, Chandranmenon G, Han S, Lee YW, Miller S, Salgarelli L.
+Integration of 802.11 and third generation wireless data networks. <i>Proceedings of the IEEE INFOCOM'03 Conference</i>, San Francisco, CA, April 2003. IEEE Press: Piscataway, NJ, 2003.
+									
+
+																		
+								</div>
+							</td>
+						</tr>
+					
+						<tr valign="top">
+							<td valign="top"> <img src="citation.cfm_files/ACM_mini.jpg" alt="" align="top" border="0" height="24" vspace="0" width="25"></td>
+							<td>
+								<div class="abstract">
+									9
+								</div>
+							</td>
+							<td>
+								<div class="abstract">
+									 
+										
+										<a href="http://portal.acm.org/citation.cfm?id=1066128&amp;dl=&amp;coll=&amp;CFID=13867517&amp;CFTOKEN=23846864">
+Rajiv Chakravorty , Andrew Clark , Ian Pratt, GPRSWeb: optimizing the
+web for GPRS links, Proceedings of the 1st international conference on
+Mobile systems, applications and services, p.317-330, May 05-08, 2003,
+San Francisco, California </a>
+
+									&nbsp;[doi&gt;<a href="http://doi.acm.org/10.1145/1066116.1066128">10.1145/1066116.1066128</a>]									
+								</div>
+							</td>
+						</tr>
+					
+						<tr valign="top">
+							<td valign="top"> &nbsp;</td>
+							<td>
+								<div class="abstract">
+									10
+								</div>
+							</td>
+							<td>
+								<div class="abstract">
+									 
+									10. Bakre A, Badrinath BR. A comparison of mechanisms for improving TCP performance over wireless links. <i>Proceedings of the 2nd USENIX Symposium on Mobile and Location Independent Computing</i>, Ann Arbor, MI, April 1995. USENIX Association: Berkeley, CA, 1995.
+									
+
+																		
+								</div>
+							</td>
+						</tr>
+					
+						<tr valign="top">
+							<td valign="top"> &nbsp;</td>
+							<td>
+								<div class="abstract">
+									11
+								</div>
+							</td>
+							<td>
+								<div class="abstract">
+									 
+									11. Droms R. Dynamic Host Configuration Protocol. <i>Request For Comments 2131</i>, IETF, March 1997.
+									
+
+																		
+								</div>
+							</td>
+						</tr>
+					
+						<tr valign="top">
+							<td valign="top"> &nbsp;</td>
+							<td>
+								<div class="abstract">
+									12
+								</div>
+							</td>
+							<td>
+								<div class="abstract">
+									 
+									12. Rubini A. Virtual Network Interfaces. http://www.linux.it/kerneldocs/vinter/vinter.html [23 October 2003].
+									
+
+																		
+								</div>
+							</td>
+						</tr>
+					
+						<tr valign="top">
+							<td valign="top"> &nbsp;</td>
+							<td>
+								<div class="abstract">
+									13
+								</div>
+							</td>
+							<td>
+								<div class="abstract">
+									 
+									13. Microsoft Corporation. Windows DDK, NDIS 5.0 overview, 2003.
+									
+
+																		
+								</div>
+							</td>
+						</tr>
+					
+						<tr valign="top">
+							<td valign="top"> &nbsp;</td>
+							<td>
+								<div class="abstract">
+									14
+								</div>
+							</td>
+							<td>
+								<div class="abstract">
+									 
+										
+										<a href="http://portal.acm.org/citation.cfm?id=RFC2475&amp;dl=&amp;coll=&amp;CFID=13867517&amp;CFTOKEN=23846864">
+S. Blake , D. Black , M. Carlson , E. Davies , Z. Wang , W. Weiss, An
+Architecture for Differentiated Service, RFC Editor, 1998 </a>
+
+																		
+								</div>
+							</td>
+						</tr>
+					
+						<tr valign="top">
+							<td valign="top"> &nbsp;</td>
+							<td>
+								<div class="abstract">
+									15
+								</div>
+							</td>
+							<td>
+								<div class="abstract">
+									 
+										
+										<a href="http://portal.acm.org/citation.cfm?id=RFC3246&amp;dl=&amp;coll=&amp;CFID=13867517&amp;CFTOKEN=23846864">
+B. Davie , A. Charny , J. C. R. Bennet , K. Benson , J. Y. Le Boudec ,
+W. Courtney , S. Davari , V. Firoiu , D. Stiliadis, An Expedited
+Forwarding PHB (Per-Hop Behavior), RFC Editor, 2002 </a>
+
+																		
+								</div>
+							</td>
+						</tr>
+					
+						<tr valign="top">
+							<td valign="top"> &nbsp;</td>
+							<td>
+								<div class="abstract">
+									16
+								</div>
+							</td>
+							<td>
+								<div class="abstract">
+16. Sharma S, Gopalan K, Zhu N, De P, Peng G, Chiueh T-c.
+Implementation experiences of bandwidth guarantee on a wireless LAN. <i>Proceedings of the ACM/SPIE Conference on Multimedia Computing and Networking (MMCN 2002)</i>, January 2002. Springer: New York, 2002.
+									
+
+																		
+								</div>
+							</td>
+						</tr>
+					
+				</tbody></table>
+				
+			  
+			
+			</div>
+		
+		
+		
+
+		
+			
+			
+			  	
+			 
+			 
+			
+		
+		
+		
+		  	<br>
+			<div class="indterms">
+			
+			<a href="http://portal.acm.org/citation.cfm?id=1248445.1248449&amp;coll=&amp;dl=#CIT"><img name="top" src="citation.cfm_files/arrowu.gif" border="0" hspace="10"></a><span class="heading"><a name="IndexTerms">INDEX TERMS</a></span>
+			
+				
+					<p class="Categories">
+						<span class="heading"><a name="GenTerms">Primary Classification:</a></span>
+						
+						  	
+						
+						
+						
+							<br>&nbsp;
+							
+							
+								  
+									
+									
+									
+									<b>C.</b>
+									
+									
+									
+									<a href="http://portal.acm.org/results.cfm?query=PrimaryCCS%3AC&amp;querydisp=PrimaryCCS%3AC&amp;coll=&amp;dl=&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">
+									
+									Computer Systems Organization</a><br>
+								  
+							
+								  
+									
+									
+										&nbsp;
+									
+									
+										<img src="citation.cfm_files/tree.gif" border="0" height="20" width="20">
+									
+									<b>C.2</b>
+									
+									
+									
+									<a href="http://portal.acm.org/results.cfm?query=PrimaryCCS%3AC2&amp;querydisp=PrimaryCCS%3AC2&amp;coll=&amp;dl=&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">
+									
+									 COMPUTER-COMMUNICATION NETWORKS</a><br>
+								  
+							
+								  
+									
+									
+										&nbsp;
+									
+										&nbsp;
+									
+										&nbsp;
+									
+									
+										<img src="citation.cfm_files/tree.gif" border="0" height="20" width="20">
+									
+									<b>C.2.1</b>
+									
+									
+									
+									<a href="http://portal.acm.org/results.cfm?query=PrimaryCCS%3AC21&amp;querydisp=PrimaryCCS%3AC21&amp;coll=&amp;dl=&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">
+									
+									 Network Architecture and Design</a><br>
+								  
+							
+								
+									  	
+										
+										
+											
+											
+												&nbsp;
+											
+												&nbsp;
+											
+												&nbsp;
+											
+												&nbsp;
+											
+												&nbsp;
+											
+											
+												<img src="citation.cfm_files/tree.gif" border="0" height="20" width="20">
+											 
+											<b>Subjects:</b>
+										    
+												<a href="http://portal.acm.org/results.cfm?query=PrimarySubject%3A%22Wireless%20communication%22&amp;querydisp=PrimarySubject%3A%22Wireless%20communication%22&amp;coll=&amp;dl=&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Wireless communication</a>											
+
+											
+										
+										<br>
+										
+								
+							
+						
+					 </p>
+				  
+				
+				  <p class="Categories">
+					<span class="heading"><a name="GenTerms">Additional&nbsp;Classification:</a></span>
+					 
+					  	
+					 
+					 
+					
+							<br>&nbsp;
+							
+							
+								 
+									
+									
+									 
+									<b>C.</b>
+									
+									
+
+									<a href="http://portal.acm.org/results.cfm?query=CCS%3AC&amp;querydisp=CCS%3AC&amp;coll=&amp;dl=&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">									 
+
+									Computer Systems Organization</a><br>
+								 
+							
+								 
+									
+									
+										&nbsp;
+									
+									
+										<img src="citation.cfm_files/tree.gif" border="0" height="20" width="20">
+									 
+									<b>C.2</b>
+									
+									
+
+									<a href="http://portal.acm.org/results.cfm?query=CCS%3AC2&amp;querydisp=CCS%3AC2&amp;coll=&amp;dl=&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">									 
+
+									 COMPUTER-COMMUNICATION NETWORKS</a><br>
+								 
+							
+								 
+									
+									
+										&nbsp;
+									
+										&nbsp;
+									
+										&nbsp;
+									
+									
+										<img src="citation.cfm_files/tree.gif" border="0" height="20" width="20">
+									 
+									<b>C.2.2</b>
+									
+									
+
+									<a href="http://portal.acm.org/results.cfm?query=CCS%3AC22&amp;querydisp=CCS%3AC22&amp;coll=&amp;dl=&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">									 
+
+									 Network Protocols</a><br>
+								 
+							
+								
+								  	
+									
+									
+									<br>
+									
+										
+										
+											&nbsp;
+										
+											&nbsp;
+										
+											&nbsp;
+										
+											&nbsp;
+										
+											&nbsp;
+										
+										
+											<img src="citation.cfm_files/tree.gif" border="0" height="20" width="20">
+										 
+										<b>Nouns:</b>
+										
+												<a href="http://portal.acm.org/results.cfm?query=Subject%3A%22IP%22&amp;querydisp=Subject%2FNoun%3A%22IP%22&amp;coll=&amp;dl=&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">IP</a>																					
+
+										
+										<br>
+									
+								
+							
+								 
+									
+									
+										&nbsp;
+									
+										&nbsp;
+									
+										&nbsp;
+									
+									
+										<img src="citation.cfm_files/tree.gif" border="0" height="20" width="20">
+									 
+									<b>C.2.3</b>
+									
+									
+
+									<a href="http://portal.acm.org/results.cfm?query=CCS%3AC23&amp;querydisp=CCS%3AC23&amp;coll=&amp;dl=&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">									 
+
+									 Network Operations</a><br>
+								 
+							
+								
+								  	
+									
+									
+										
+										
+											&nbsp;
+										
+											&nbsp;
+										
+											&nbsp;
+										
+											&nbsp;
+										
+											&nbsp;
+										
+										
+											<img src="citation.cfm_files/tree.gif" border="0" height="20" width="20">
+										 
+										<b>Subjects:</b>
+									    
+											<a href="http://portal.acm.org/results.cfm?query=Subject%3A%22Network%20management%22&amp;querydisp=Subject%3A%22Network%20management%22&amp;coll=&amp;dl=&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Network management</a>																					
+
+										
+									
+									<br>
+									
+								
+							
+					
+
+					</p>
+				   
+			
+				
+				<br>
+					<p class="GenTerms">
+						<span class="heading"><a name="GenTerms">General Terms:</a></span>
+						
+						  	
+						
+						
+						<br>
+						 
+						
+							
+							<a href="http://portal.acm.org/results.cfm?query=General%20Terms%3A%22Design%22&amp;querydisp=General%20Terms%3A%22Design%22&amp;coll=&amp;dl=&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">
+
+							Design</a>,
+							
+						
+							
+							<a href="http://portal.acm.org/results.cfm?query=General%20Terms%3A%22Management%22&amp;querydisp=General%20Terms%3A%22Management%22&amp;coll=&amp;dl=&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">
+
+							 Management</a>
+							
+						
+					</p>
+				  
+				
+				
+				<br>
+					<p class="keywords">
+						<span class="heading"><a name="Keywords">Keywords:</a></span>
+						
+						  	
+						
+						
+						<br>
+						 
+						
+							
+							<a href="http://portal.acm.org/results.cfm?query=Keywords%3A%22802%2E11b%20%28Wi%2DFi%29%22&amp;querydisp=Keywords%3A%22802%2E11b%20%28Wi%2DFi%29%22&amp;coll=&amp;dl=&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">							
+
+							802.11b (Wi-Fi)</a>,
+							
+						
+							
+							<a href="http://portal.acm.org/results.cfm?query=Keywords%3A%22GPRS%22&amp;querydisp=Keywords%3A%22GPRS%22&amp;coll=&amp;dl=&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">							
+
+							 GPRS</a>,
+							
+						
+							
+							<a href="http://portal.acm.org/results.cfm?query=Keywords%3A%22QoS%22&amp;querydisp=Keywords%3A%22QoS%22&amp;coll=&amp;dl=&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">							
+
+							 QoS</a>,
+							
+						
+							
+							<a href="http://portal.acm.org/results.cfm?query=Keywords%3A%22network%20address%20translation%22&amp;querydisp=Keywords%3A%22network%20address%20translation%22&amp;coll=&amp;dl=&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">							
+
+							 network address translation</a>,
+							
+						
+							
+							<a href="http://portal.acm.org/results.cfm?query=Keywords%3A%22vertical%20handoff%22&amp;querydisp=Keywords%3A%22vertical%20handoff%22&amp;coll=&amp;dl=&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">							
+
+							 vertical handoff</a>,
+							
+						
+							
+							<a href="http://portal.acm.org/results.cfm?query=Keywords%3A%22wireless%20LAN%22&amp;querydisp=Keywords%3A%22wireless%20LAN%22&amp;coll=&amp;dl=&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">							
+
+							 wireless LAN</a>
+							
+												
+					</p>
+				  
+				
+			
+			</div>
+		 
+		
+		
+				
+		
+			<div class="abstract">
+				
+				<a href="http://portal.acm.org/citation.cfm?id=1248445.1248449&amp;coll=&amp;dl=#CIT"><img name="top" src="citation.cfm_files/arrowu.gif" border="0" hspace="10"></a><span class="heading"><a name="collab">Collaborative Colleagues:</a></span>
+				
+				<table style="margin-left: 2em;" border="0" cellpadding="2">
+				
+				
+						<tbody><tr valign="top"><td><div class="abstract"><a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81100651072&amp;querydisp=ProfileID%3A81100651072&amp;coll=&amp;dl=&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Inho Baek</a>:</div></td><td>
+					
+					
+						
+					
+						
+					
+						
+					
+						
+					
+					
+							
+						
+					
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81100152968&amp;querydisp=ProfileID%3A81100152968&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Tzi cker cker Chiueh</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81100210871&amp;querydisp=ProfileID%3A81100210871&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Yuvrajsinh Dodia</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81100236089&amp;querydisp=ProfileID%3A81100236089&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Srikant Sharma</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81328490211&amp;querydisp=ProfileID%3A81328490211&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Srikant Sharma</a>
+							
+							</div>
+						
+					
+						</td>
+						</tr>
+				
+						<tr valign="top"><td><div class="abstract"><a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81100152968&amp;querydisp=ProfileID%3A81100152968&amp;coll=&amp;dl=&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Tzi cker cker Chiueh</a>:</div></td><td>
+					
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+						
+					
+					
+							
+						
+					
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81100651072&amp;querydisp=ProfileID%3A81100651072&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Inho Baek</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81100532646&amp;querydisp=ProfileID%3A81100532646&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Allen Ballman</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81100119151&amp;querydisp=ProfileID%3A81100119151&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Jiawu Chen</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81330489335&amp;querydisp=ProfileID%3A81330489335&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Jiawu Chen</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81100567144&amp;querydisp=ProfileID%3A81100567144&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Pradipta De</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81100180186&amp;querydisp=ProfileID%3A81100180186&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Peitao Deng</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81100210871&amp;querydisp=ProfileID%3A81100210871&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Yuvrajsinh Dodia</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81100211278&amp;querydisp=ProfileID%3A81100211278&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Daniel Joseph Ellard</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81100258930&amp;querydisp=ProfileID%3A81100258930&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Nicolas D Georganas</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81100283907&amp;querydisp=ProfileID%3A81100283907&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Kartik Gopalan</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81309489743&amp;querydisp=ProfileID%3A81309489743&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Fanglu Guo</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81100331178&amp;querydisp=ProfileID%3A81100331178&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Taosong He</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81100320775&amp;querydisp=ProfileID%3A81100320775&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Fu Hau Hsu</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81320490490&amp;querydisp=ProfileID%3A81320490490&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Fu Hau Hau Hsu</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81100079652&amp;querydisp=ProfileID%3A81100079652&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Lan Huang</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81328488966&amp;querydisp=ProfileID%3A81328488966&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Lan Huang</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81339505892&amp;querydisp=ProfileID%3A81339505892&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Lan Huang</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81100416511&amp;querydisp=ProfileID%3A81100416511&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Randy Howard Katz</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81100226395&amp;querydisp=ProfileID%3A81100226395&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Arie E Kaufman</a>
+							
+							</div>
+						
+					
+						
+						
+							
+							</td><td>							
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81100193850&amp;querydisp=ProfileID%3A81100193850&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Valerie D King</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81100176018&amp;querydisp=ProfileID%3A81100176018&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Wolfgang Klas</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81332509968&amp;querydisp=ProfileID%3A81332509968&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Kevin Kreeger</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81314490095&amp;querydisp=ProfileID%3A81314490095&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Rupa Krishnan</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81100237217&amp;querydisp=ProfileID%3A81100237217&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Lap chung Chung Lam</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81100479368&amp;querydisp=ProfileID%3A81100479368&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Chang Li</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81314483725&amp;querydisp=ProfileID%3A81314483725&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Wei Li</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81323492514&amp;querydisp=ProfileID%3A81323492514&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Wei Li</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81330494305&amp;querydisp=ProfileID%3A81330494305&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Maxim Lifantsev</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81100221597&amp;querydisp=ProfileID%3A81100221597&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Wei jen jen Lin</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81100224312&amp;querydisp=ProfileID%3A81100224312&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Yow Jian Jian Lin</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81322499707&amp;querydisp=ProfileID%3A81322499707&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Yow Jian Jian Lin</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81339513382&amp;querydisp=ProfileID%3A81339513382&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Shibiao Lin</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81339514534&amp;querydisp=ProfileID%3A81339514534&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Maohua Lu</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81100447918&amp;querydisp=ProfileID%3A81100447918&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Kwan Liu Liu Ma</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81100105977&amp;querydisp=ProfileID%3A81100105977&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Tulika Mitra</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81314490940&amp;querydisp=ProfileID%3A81314490940&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Jatan Modi</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81311485239&amp;querydisp=ProfileID%3A81311485239&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Susanta Nanda</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81100548302&amp;querydisp=ProfileID%3A81100548302&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Vishnu Navda</a>
+							
+							</div>
+						
+					
+						
+						
+							
+							</td><td>							
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81100137507&amp;querydisp=ProfileID%3A81100137507&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Anindya Neogi</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81339520056&amp;querydisp=ProfileID%3A81339520056&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Thirumale N Niranjan</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81339520848&amp;querydisp=ProfileID%3A81339520848&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Vincent Oria</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81100050252&amp;querydisp=ProfileID%3A81100050252&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Gang Peng</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81328489798&amp;querydisp=ProfileID%3A81328489798&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Gang Peng</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81100199891&amp;querydisp=ProfileID%3A81100199891&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Hanspeter Pfister</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81100397367&amp;querydisp=ProfileID%3A81100397367&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Dhruv Pilania</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81100203121&amp;querydisp=ProfileID%3A81100203121&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Radu Popescu Zeletin</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81100191901&amp;querydisp=ProfileID%3A81100191901&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Prashant Pradhan</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81100366568&amp;querydisp=ProfileID%3A81100366568&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Amit Purohit</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81100326865&amp;querydisp=ProfileID%3A81100326865&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Ashish Raniwala</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81331502410&amp;querydisp=ProfileID%3A81331502410&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">A Raniwala</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81100524054&amp;querydisp=ProfileID%3A81100524054&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Harish Sankaran</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81100236089&amp;querydisp=ProfileID%3A81100236089&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Srikant Sharma</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81328490211&amp;querydisp=ProfileID%3A81328490211&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Srikant Sharma</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81100283848&amp;querydisp=ProfileID%3A81100283848&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Alexey Smirnov</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81100295197&amp;querydisp=ProfileID%3A81100295197&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Nadeem Ahmed Syed</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81314492363&amp;querydisp=ProfileID%3A81314492363&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Krishna Tatavarthi</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81100297692&amp;querydisp=ProfileID%3A81100297692&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Srinidhi Varadarajan</a>
+							
+							</div>
+						
+					
+						
+						
+							
+							</td><td>							
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81339533913&amp;querydisp=ProfileID%3A81339533913&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Srinidhi Varadarajan</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81100235228&amp;querydisp=ProfileID%3A81100235228&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Chitra Venkatramani</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81100527527&amp;querydisp=ProfileID%3A81100527527&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Ganesh Venkitachalam</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81100404318&amp;querydisp=ProfileID%3A81100404318&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Manish Chandra Verma</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81332533482&amp;querydisp=ProfileID%3A81332533482&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Manish Verma</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81339534025&amp;querydisp=ProfileID%3A81339534025&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Manish Chandra Verma</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81100023743&amp;querydisp=ProfileID%3A81100023743&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Michael David Vernick</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81332533770&amp;querydisp=ProfileID%3A81332533770&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Michael Vernick</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81339536974&amp;querydisp=ProfileID%3A81339536974&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Gang Wu</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81100356304&amp;querydisp=ProfileID%3A81100356304&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Chuan Kai Kai Yang</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81328490847&amp;querydisp=ProfileID%3A81328490847&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Chuan Kai Kai Yang</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81336494188&amp;querydisp=ProfileID%3A81336494188&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Chuan Kai Kai Yang</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81339538169&amp;querydisp=ProfileID%3A81339538169&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Chuan Kai Kai Yang</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81100472699&amp;querydisp=ProfileID%3A81100472699&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Yang Yu</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81309491900&amp;querydisp=ProfileID%3A81309491900&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Yang Yu</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81332537573&amp;querydisp=ProfileID%3A81332537573&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Yang Yu</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81100115610&amp;querydisp=ProfileID%3A81100115610&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Aidong Zhang</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81100413603&amp;querydisp=ProfileID%3A81100413603&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Ningning Zhu</a>
+							
+							</div>
+						
+					
+						</td>
+						</tr>
+				
+						<tr valign="top"><td><div class="abstract"><a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81328490211&amp;querydisp=ProfileID%3A81328490211&amp;coll=&amp;dl=&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Srikant Sharma</a>:</div></td><td>
+					
+					
+						
+					
+						
+					
+						
+					
+					
+							
+						
+					
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81100651072&amp;querydisp=ProfileID%3A81100651072&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Inho Baek</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81100152968&amp;querydisp=ProfileID%3A81100152968&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Tzi cker cker Chiueh</a>
+							
+							</div>
+						
+					
+						
+						
+						<div class="abstract">
+							
+							  	<a href="http://portal.acm.org/results.cfm?query=ProfileID%3A81328489798&amp;querydisp=ProfileID%3A81328489798&amp;coll=&amp;dl=GUIDE&amp;CFID=13867517&amp;CFTOKEN=23846864" target="_self">Gang Peng</a>
+							
+							</div>
+						
+					
+						</td>
+						</tr>
+				
+				</tbody></table>
+			</div>
+						
+		
+		
+		
+		
+		
+		
+		
+			
+				
+				
+				
+			
+				
+				
+				
+			
+				
+				
+				
+			
+		
+				
+			
+  	
+
+
+
+
+<br>
+<div class="footer-copy-text" align="center">
+	
+	The ACM Portal is published by the Association for Computing Machinery. Copyright © 2008 ACM, Inc.<br>
+	<a href="http://www.acm.org/publications/policies/usage">Terms of Usage</a>&nbsp;&nbsp;
+	<a href="http://www.acm.org/about/privacy-policy">Privacy Policy</a>&nbsp;&nbsp;
+	<a href="http://www.acm.org/about/code-of-ethics">Code of Ethics</a>&nbsp;&nbsp;	  
+	<a href="http://www.acm.org/about/contact-us">Contact Us</a>
+
+<br><br>
+Useful downloads: 
+<a href="http://www.adobe.com/products/acrobat/readstep2.html"><img src="citation.cfm_files/pdf_logo.gif" alt="" border="0" height="16" width="16"> Adobe Acrobat</a>
+&nbsp;&nbsp;
+<a href="http://www.apple.com/quicktime/download/" target="_blank"><img src="citation.cfm_files/qtlogo.gif" alt="" border="0" height="16" width="16"> QuickTime</a>
+&nbsp;&nbsp;
+<a href="http://www.microsoft.com/windows/windowsmedia/download/default.asp" target="_blank"><img src="citation.cfm_files/wmv.gif" alt="" border="0" height="15" width="16"> Windows Media Player</a>
+&nbsp;&nbsp;
+<a href="http://www.real.com/" target="_blank"><img src="citation.cfm_files/realplayer.gif" alt="" border="0" height="18" width="20"> Real Player</a>
+
+
+</div>
+
+</td>
+</tr>
+</tbody></table>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body></html>
+
+
+

@@ -1,0 +1,824 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Red Hat Linux Unleashed rhl53.htm </TITLE>
+
+<LINK REL="ToC" HREF="index.htm">
+
+<LINK REL="Index" HREF="htindex.htm">
+
+<LINK REL="Next" HREF="rhl54.htm">
+
+<LINK REL="Previous" HREF="rhl52.htm"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+
+<A NAME="I0"></A>
+
+<H2>Red Hat Linux Unleashed rhl53.htm</H2>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl52.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl54.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+<HR ALIGN=CENTER>
+
+<P>
+
+<UL>
+
+<UL>
+
+<UL>
+
+<LI>
+
+<A HREF="#E68E410" >Device Drivers</A>
+
+<LI>
+
+<A HREF="#E68E411" >Interrupts</A>
+
+<LI>
+
+<A HREF="#E68E412" >Anatomy of a Linux Device Driver</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E528" >Headers</A>
+
+<LI>
+
+<A HREF="#E69E529" >Opening the Device</A>
+
+<LI>
+
+<A HREF="#E69E530" >Closing the Device</A>
+
+<LI>
+
+<A HREF="#E69E531" >Strategy Functions</A>
+
+<LI>
+
+<A HREF="#E69E532" >Write Functions</A>
+
+<LI>
+
+<A HREF="#E69E533" >Read Functions</A>
+
+<LI>
+
+<A HREF="#E69E534" >start and ioctl Routines</A></UL>
+
+<LI>
+
+<A HREF="#E68E413" >Using a New Device Driver</A>
+
+<LI>
+
+<A HREF="#E68E414" >Summary</A></UL></UL></UL>
+
+<HR ALIGN=CENTER>
+
+<A NAME="E66E53"></A>
+
+<H1 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>53</B></FONT></CENTER></H1>
+
+<BR>
+
+<A NAME="E67E53"></A>
+
+<H2 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>Writing Device Drivers</B></FONT></CENTER></H2>
+
+<BR>
+
+<P>This chapter will look at:
+
+<BR>
+
+<UL>
+
+<LI>What a device driver is
+
+<BR>
+
+<BR>
+
+<LI>How Linux uses device drivers
+
+<BR>
+
+<BR>
+
+<LI>Interrupts and device drivers
+
+<BR>
+
+<BR>
+
+<LI>How a device driver is written
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>Device drivers provide an interface between the operating system and the peripherals attached to the machine. A typical device driver consists of a number of functions that accept I/O requests from the operating system and instruct the device to perform 
+those requests. In this manner, a uniform interface between devices and the operating system kernel is provided.
+
+<BR>
+
+<P>We can't cover everything there is to know about device drivers in a single chapter. Indeed, several sizable books have been written on the subject. Since device drivers are not written by casual users, but mostly by talented programmers, the 
+information supplied here is mainly an introduction to the subject.
+
+<BR>
+
+<P>The code snippets in this chapter were taken from a set of simple device drivers written in C. They are portable and designed for a UNIX system, but they also execute properly under Linux. Use them only as a guide, if you decide you want to write device 
+drivers. Obtain one of the specialty books on the subject if you get serious about programming device drivers.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E410"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Device Drivers</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Linux uses a device driver for every device attached to the system. The basic device driver instructions are part of the kernel or loaded during the boot process. By using a device driver, the devices appear to the operating system as files that can 
+addressed, redirected, or piped as normal files.
+
+<BR>
+
+<P>Each device attached to the Linux system is described in a device driver program file, and some parameters about the device are described in a device file which is usually stored in the /dev directory. When you add a new peripheral to the system, a 
+device driver must either be attached to the Linux operating system to control the device, or you must write or supply a device driver. You also need a device file in the /dev directory for each device. Otherwise, the device can't be used.
+
+<BR>
+
+<P>Each device file has an assigned device number that uniquely identifies the device to the operating system. Linux device numbers consist of two parts. The major number identifies what general type the device driver handles, while the minor number can 
+specify a particular unit for that general type of device. For example, multiple hard disk drives will use the same device driver (the same major number), but each has unique minor numbers to identify the specific drives to the operating system.
+
+<BR>
+
+<P>There are two major types of device drivers: character mode and block mode. Any UNIX device uses one or both of the driver types. Block mode drivers are the most common type. They deal with I/O in blocks of data to and from the kernel's buffer cache 
+(which copies to memory the data from the cache). Originally designed for use with disk drives, block mode is used with virtually all mass storage devices, such as disk drives, high-capacity tape drives, magneto-optical drives, synchronous modems, and some 
+high-speed printers.
+
+<BR>
+
+<P>Character mode devices differ from block mode devices in two significant ways. I/O can be processed directly to and from the process's memory space, without using the kernel's cache. In addition, I/O requests are usually passed directly to the character 
+mode device. Terminals and printers are obvious character mode devices, as are asynchronous modems and some tape drives.
+
+<BR>
+
+<P>Block mode devices perform a &quot;strategy&quot; function that reads or writes a block of data to the device. A series of special device control functions called ioctl() functions are available with character mode devices. In order to use these ioctl() 
+functions, block mode devices will sometimes use character mode. An example is a tape drive that can use either a character or block mode driver, depending on the type of data being written.
+
+<BR>
+
+<P>Regardless of the type of device driver, the driver itself performs a series of basic tasks whenever a request is made of the device. First, the device is checked to ensure that it is ready and available for use. If so, it is &quot;opened&quot; to allow 
+the calling process access. Read or write commands are usually executed, and then the device is &quot;closed&quot; to allow other processes access to the device.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E411"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Interrupts</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Interrupts are signals from the devices to the operating system to indicate that attention is required. Interrupts are generated whenever an I/O is processed and the device is ready for another process. The interrupts used by Linux are similar to those 
+used by DOS, so if you are familiar with DOS interrupts, you know most of the story already.
+
+<BR>
+
+<P>Upon receipt of an interrupt, the operating system suspends whatever it was executing and processes the interrupt. In most cases, interrupts are handled by the device driver. Interrupts must be checked to ensure that they are valid and will not affect 
+operation of a process underway, except to suspend it momentarily.
+
+<BR>
+
+<P>A problem with handling interrupts is that the interrupt should not suspend the Linux kernel's operation or that of the device drivers themselves, except under controlled conditions. Interrupts that are not properly handled or carefully checked can 
+cause suspension of a device driver that was processing the I/O that the interrupt requested.
+
+<BR>
+
+<P>The processing of an interrupt is usually suspended during the stages where critical operation would be affected. The areas of device driver code that should not allow an interrupt to stop their processing are termed non-stoppable or critical code. 
+Typically, interrupt suspension during critical code segments is performed by raising the CPU priority equal to or greater than the interrupt priority level. After critical code execution, the CPU priority level is lowered again.
+
+<BR>
+
+<P>Interrupt priority is usually manipulated with four functions: spl5(), spl6(), spl7(), and splx(). Calling one of the first three will cause interrupts not to be acknowledged during processing. spl5() disables disk drives, printer, and keyboard 
+interrupts. spl6() disables the system clock, while spl7() disables all interrupts, including serial devices. These three functions always return a code indicating the previous value of the interrupt level. splx() is used to restore interrupts to their 
+previous values.
+
+<BR>
+
+<P>Therefore, before processing critical code, embedding the command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">old_level = spl5();</FONT></PRE>
+
+<P>in the device driver source disables interrupts until the following command is issued:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">splx(old_level);</FONT></PRE>
+
+<P>Multiple level changes are combined into device drivers as in the following example:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">int level_a, level_b;
+
+level_a = spl5();
+
+/* do any code that can't be */
+
+/* interrupted by disk drives */
+
+level_b = spl7();
+
+/* do all code that can't be */
+
+/* interrupted by anything */
+
+splx(level_b);
+
+/* any final code that's not */
+
+/* interrupted by disk drives */
+
+splx(level_a);</FONT></PRE>
+
+<P>This seemingly awkward method of bouncing between levels is necessary to avoid freezing the device driver and kernel, which prevents the system from operating normally. The protection mechanisms must be invoked only for as short a time as necessary.
+
+<BR>
+
+<P>It is usually unwise to use the spl6() and spl7() functions. spl6() can cause the system clock to lose time in some cases, and spl7() causes loss of characters in serial I/O, unless they are used for very short time spans. Even then, it is usually 
+sufficient to use spl5() for all interrupts in critical code.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E412"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Anatomy of a Linux Device Driver</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Device driver code is similar to normal code in its structure. In Linux, drivers are generally written in C, although assembler and C++ are still occasionally used.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E528"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Headers</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>A typical device driver has a header that consists of include statements for system functions, device register addresses, content definitions, and driver global variable definitions. Most device drivers use a standard list of include files, such as:
+
+<BR>
+
+<UL>
+
+<UL>
+
+<P>param.h Kernel parameters
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>dir.h Directory parameters
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>user.h User area definitions
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>tty.h Terminal and clist definitions
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>buf.h Buffer header information
+
+<BR>
+
+</UL></UL>
+
+<P>The tty.h file is used for character mode drivers, while buf.h is used by all block mode devices.
+
+<BR>
+
+<P>Device registers are defined in the device driver header and are based on the device. For a character mode device, these registers commonly refer to port addresses, such as I/O address, status bits, and control bits. Toggle commands for the device are 
+defined as their device codes.
+
+<BR>
+
+<P>An example of device register's initialization is shown in the device driver for a standard screen terminal (UART) device:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">/* define the registers */
+
+#define RRDATA 0x01 /* receive */
+
+#define RTDATA 0x02 /* transmit */
+
+#define RSTATUS 0x03 /* status */
+
+#define RCONTRL 0x04 /* control */
+
+...etc
+
+/* define the status registers */
+
+#define SRRDY 0x01 /* received data ready */
+
+#define STRDY 0x02 /* transmitter ready */
+
+#define SPERR 0x08 /* parity error */
+
+#define SCTS 0x40 /* clear to send status */
+
+...etc</FONT></PRE>
+
+<P>The functions the device driver must perform are dependent on the nature of the device. All devices have an open() and close() routine that allows the device to perform I/O.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E529"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Opening the Device</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The open() routine must check to ensure a valid device has been specified, validate the device request (permission to access the device or device not ready), then initialize the device. The open() routine is run every time a process uses the device.
+
+<BR>
+
+<P>The open() routine presented here is for a generic terminal device, td.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">tdopen(device,flag)
+
+int device,flag;
+
+{
+
+/* definitions for local variables ignored */
+
+/* details and definitions ignored in code */
+
+/* check device number */
+
+if (UNMODEM(device) &gt;= NTDEVS)
+
+{
+
+seterror(ENXIO);
+
+return;
+
+}
+
+/* check if device in use */
+
+/* if so, see if superuser (suser) for override */
+
+tp = &amp;td_tty[UNMODEM(device)];
+
+address = td_address[UNMODEM(device)];
+
+if((tp-&gt;t_lflag &amp; XCLUDE) &amp;&amp; !suser())
+
+{
+
+seterror(EBBUSY);
+
+return;
+
+}
+
+/* if not open, initialize by calling ttinit() */
+
+if((tp-&gt;t_state &amp; (ISOPEN|WOPEN)) == 0)
+
+{
+
+ttinit(tp);
+
+/* initialize flags, and call tdparam() to set line */
+
+tdparam(device);
+
+}
+
+/* if a modem is used, check carrier status */
+
+/* if direct, set carrier detect flags */
+
+/* set interrupt priority to avoid overwrite */
+
+/* wait for carrier detect signal */
+
+/* code eliminated from example */</FONT></PRE>
+
+<BR>
+
+<A NAME="E69E530"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Closing the Device</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The close() routine is used only after the process is finished with the device. The routine disables interrupts from the device and issues any shut-down commands. All internal references to the device will be reset. close() routines are not usually 
+required in many device drivers because the device is treated as being available throughout. Exceptions are removable media and exclusive-use devices. Some modems require closing (close()) to allow the line to be hung up.
+
+<BR>
+
+<P>Again, the terminal device example is used for the close() routine sample:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">tdclose(device)
+
+{
+
+register struct tty *tp;
+
+tp = &amp;td_tty[UNMODEM(device)];
+
+(*linesw[tp-&gt;t_line].l_close)(tp);
+
+if(tp-&gt;t_cflag &amp; HUPCL)
+
+tdmodem(device,TURNOFF);
+
+/* turn off exclusive flag bit */
+
+ip-&gt;t_lflag &amp; =~XCLUDE
+
+}</FONT></PRE>
+
+<BR>
+
+<A NAME="E69E531"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Strategy Functions</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Strategy functions (block mode devices only) are issued with a parameter to the kernel buffer header. The buffer header contains the instructions for a read or write along with a memory location for the operation to occur to or from. The size of the 
+buffer is usually fixed at installation and varies from 512 to 1024 bytes. It can be examined in the file param.h as the BSIZE variable. A device's block size may be smaller than the buffer block size, in which case, the driver executes multiple reads or 
+writes.
+
+<BR>
+
+<P>The strategy function can be illustrated in a sample device driver for a hard disk. No code is supplied, but the skeleton explains the functions of the device driver in order:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">int hdstrategy(bp)
+
+register struct buf *bp;
+
+{
+
+/* initialize drive and partition numbers */
+
+/* set local variables */
+
+/* check for valid drive &amp; partition */
+
+/* compute target cylinder */
+
+/* disable interrupts */
+
+/* push request into the queue */
+
+/* check controller: if not active, start it */
+
+/* reset interrupt level */
+
+}</FONT></PRE>
+
+<BR>
+
+<A NAME="E69E532"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Write Functions</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Character mode devices employ a write() instruction that checks the arguments of the instruction for validity, and then copies the data from the process memory to the device driver buffer. When all data is copied, or the buffer is full, I/O is initiated 
+to the device until the buffer is empty, at which point the process is repeated. Data is read from the process memory using a simple function (cpass) that returns a -1 when end of memory is reached. The data is written to process memory using a 
+complementary function (passc). The write() routine is illustrated for the terminal device:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">tdwrite(device)
+
+{
+
+register struct tty *tp;
+
+tp=&amp;td_tty[UNMODEM(device)];
+
+(*linesw[tp-&gt;t_line].l_write)(tp);
+
+}</FONT></PRE>
+
+<P>Large amounts of data are handled by a process called copyio which takes the addresses of source and destination, a byte count, and a status flag as arguments.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E533"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Read Functions</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The read() operation for character mode devices transfers data from the device to the process memory. The operation is analogous to that of the write procedure. For the terminal device, the read() code becomes:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">tdread(device)
+
+{
+
+register struct tty *tp;
+
+tp=&amp;td_tty[UNMODEM(device)];
+
+(*linesw[tp-&gt;t_line].l_read)(tp);
+
+}</FONT></PRE>
+
+<P>A small buffer is used when several characters are to be copied at once by read() or write(), rather than continually copying single characters. clist implements a small buffer used by character mode devices as a series of linked lists that use getc and 
+putc to move characters on and off the buffer respectively. A header for clist maintains a count of the contents.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E534"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>start</B><B> and </B><B>ioctl </B><B>Routines</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>A start routine is usually used for both block and character mode devices. It takes requests or data from device queues and sends them in order to the device. Block mode devices queue data with the strategy routine, while character mode devices use 
+clist. The start routine maintains busy flags automatically as instructions are passed to the device. When a device has finished its process, it executes an intr routine which reinitializes the device for the next process.
+
+<BR>
+
+<P>The character mode ioctl() routine provides a special series of instructions to drivers. These include changes in the communications method between the driver and the operating system, as well as device-dependent operations (tape load or rewind, or 
+memory allocation, for example).
+
+<BR>
+
+<P>The ioctl() function can be illustrated with the terminal device example. The ioctl() routine, in this case, calls another function that sets the device parameters. No code is supplied for the called function, but the skeleton explains the process of 
+the device driver in order:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">tdioctl(device,cmd,arg,mode) int device;
+
+int cmd;
+
+int mode;
+
+faddr_t arg;
+
+{
+
+if(ttiocom(&amp;td_tty[UNMODEM(device)],cmd,arg,mode))
+
+tdparam(device)
+
+}
+
+tdparam(device)
+
+{
+
+/* initialize variables */
+
+/* get address and flags for referenced line */
+
+addr=td_addr[UNMODEM(device)];
+
+cflag=td_tty[UNMODEM(device].t_cflag;
+
+/* check speed: if zero hang up line */
+
+/* set up speed change */
+
+/* set up line control */
+
+/* manage interrupts */
+
+}</FONT></PRE>
+
+<BR>
+
+<A NAME="E68E413"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Using a New Device Driver</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Drivers are added to Linux systems in a series of steps. First the interrupt handler is identified, and then the device driver entry points (such as open) are added to a driver entry point table. The entire driver is compiled and linked to the kernel, 
+and then placed in the /dev directory. (See <A HREF="rhl52.htm">Chapter 52</A>, &quot;Working with the Kernel,&quot; for more information on adding to the Linux kernel.) Finally, the system is rebooted and the device driver tested. Obviously, changes to 
+the driver require the process to be repeated, so device driver debugging is an art that minimizes the number of machine reboots!
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Two basic don'ts are important for device driver programming. Don't use sleep() or seterror() during interrupt suspensions, and don't use floating-point operations.
+
+<BR>Interrupt suspensions must be minimized, but they must be used to avoid corruption of clist (or other buffer) data. Finally, it is important to minimize stack space.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>You can simplify debugging device drivers in many cases by using judicious printf or getchar statements to another device, such as the console. Statements like printf and getchar enable you to set up code that traces the execution steps of the device 
+driver. If you are testing the device when logged in as root, the adb debugger can be used to allow examination of the kernel's memory while the device driver executes. Careful use of adb allows direct testing of minor changes in variables or addresses, 
+but be careful as incorrect use of adb may result in system crashes!
+
+<BR>
+
+<P>One of the most common problems with device drivers (other than faulty coding) is the loss of interrupts or the suspension of a device while an interrupt is pending. This causes the device to hang. A time-out routine is included in most device drivers 
+to prevent this. Typically, if an interrupt is expected and has not been received within a specified amount of time, the device is checked directly to ensure the interrupt was not missed. If an interrupt was missed, it can be simulated by code. You can use 
+the spl functions during debugging usually helps to isolate these problems.
+
+<BR>
+
+<P>Block mode-based device drivers are generally written using interrupts. However, more programmers are now using polling for character mode devices. Polling means the device driver checks at frequent intervals to determine the device's status. The device 
+driver doesn't wait for interrupts but this does add to the CPU overhead the process requires. Polling is not suitable for many devices, such as mass storage systems, but for character mode devices it can be of benefit. Serial devices generally are polled 
+to save interrupt overhead.
+
+<BR>
+
+<P>A 19,200 baud terminal will cause approximately 1,920 interrupts per second, causing the operating system to interrupt and enter the device driver that many times. By replacing the interrupt routines with polling routines, the interval between CPU 
+demands can be decreased by an order of magnitude, using a small device buffer to hold intermediate characters generated to or from the device. Real time devices also benefit from polling, since the number of interrupts does not overwhelm the CPU. If you 
+want to use polling in your device drivers, you should read one of the books dedicated to device driver design, as this is a complex subject.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E414"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Summary</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Most Linux users will never have to write a device driver, as most devices you can buy already have a device driver available. If you <A NAME="I2"></A>acquire brand new hardware, or have the adventurous bug, you may want to try writing a driver, though. 
+Device drivers are not really difficult to write (as long as you are comfortable coding in a high-level language like C), but drivers tend to be very difficult to debug. The device driver programmer must at all times be careful of impacting other processes 
+or devices. However, there is a peculiar sense of accomplishment when a device driver executes properly.
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl52.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="#I0" TARGET="_self"><IMG SRC="purtop.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Page Top"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl54.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+</BODY></HTML>
+
+
+

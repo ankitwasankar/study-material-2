@@ -1,0 +1,15 @@
+HKEY_LOCAL_MACHINE\SOFTWARE\MICROSOFT\Windows NT\CurrentVersion\WPAEvents
+
+ OOBETimer
+
+71--65
+
+%systemroot%\system32\oobe\msoobe.exe /a
+
+the activation screen will come up
+5.1) Choose second option (yes, I want to telephone…..)
+5.2) click on ‘CHANGE PRODUCT KEY’
+5.3) enter in this key: JG28K-H9Q7X-BH6W4-3PDCQ-6XBFJ and click on ‘Update’
+
+
+AND THATS ALL!!

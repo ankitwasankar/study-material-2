@@ -1,0 +1,3120 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Red Hat Linux Unleashed rhl34.htm </TITLE>
+
+<LINK REL="ToC" HREF="index.htm">
+
+<LINK REL="Index" HREF="htindex.htm">
+
+<LINK REL="Next" HREF="rhl35.htm">
+
+<LINK REL="Previous" HREF="rhl33.htm"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+
+<A NAME="I0"></A>
+
+<H2>Red Hat Linux Unleashed rhl34.htm</H2>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl33.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl35.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+<HR ALIGN=CENTER>
+
+<P>
+
+<UL>
+
+<UL>
+
+<UL>
+
+<LI>
+
+<A HREF="#E68E293" >What Is Smalltalk/X?</A>
+
+<LI>
+
+<A HREF="#E68E294" >How To Install Smalltalk/X</A>
+
+<LI>
+
+<A HREF="#E68E295" >Invoking Smalltalk/X</A>
+
+<LI>
+
+<A HREF="#E68E296" >Getting Around in ST/X</A>
+
+<LI>
+
+<A HREF="#E68E297" >The Browsers Options</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E401" >The System Browser</A>
+
+<LI>
+
+<A HREF="#E69E402" >The Class Hierarchy Browser</A>
+
+<LI>
+
+<A HREF="#E69E403" >Implementors</A>
+
+<LI>
+
+<A HREF="#E69E404" >Senders</A>
+
+<LI>
+
+<A HREF="#E69E405" >The Changes Browser</A>
+
+<LI>
+
+<A HREF="#E69E406" >Directory Browser</A></UL>
+
+<LI>
+
+<A HREF="#E68E298" >The Workspace Option</A>
+
+<LI>
+
+<A HREF="#E68E299" >The File Browser Option</A>
+
+<LI>
+
+<A HREF="#E68E300" >The Projects Option</A>
+
+<LI>
+
+<A HREF="#E68E301" >The Utilities Option</A>
+
+<LI>
+
+<A HREF="#E68E302" >The Goodies Option</A>
+
+<LI>
+
+<A HREF="#E68E303" >The Games &amp; Demo Option</A>
+
+<LI>
+
+<A HREF="#E68E304" >Editing in Browsers</A>
+
+<LI>
+
+<A HREF="#E68E305" >Using the Inspector</A>
+
+<LI>
+
+<A HREF="#E68E306" >Using the Debugger</A>
+
+<LI>
+
+<A HREF="#E68E307" >Summary</A></UL></UL></UL>
+
+<HR ALIGN=CENTER>
+
+<A NAME="E66E34"></A>
+
+<H1 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>34</B></FONT></CENTER></H1>
+
+<BR>
+
+<A NAME="E67E34"></A>
+
+<H2 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>Smalltalk/X</B></FONT></CENTER></H2>
+
+<BR>
+
+<P>This chapter describes Smalltalk/X (ST/X), a fairly complete implementation of the Smalltalk-80 programming environment. Anyone who has used Smalltalk-80 or any other version of Smalltalk will be impressed with this freely available implementation. In 
+this chapter we will see
+
+<BR>
+
+<UL>
+
+<LI>What Smalltalk/X is
+
+<BR>
+
+<BR>
+
+<LI>How to install Smalltalk/X
+
+<BR>
+
+<BR>
+
+<LI>Invoking Smalltalk/X
+
+<BR>
+
+<BR>
+
+<LI>Getting around in Smalltalk/X
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>This chapter gives you an overview of the Smalltalk/X application. After reading the chapter you should be familiar with the facilities that Smalltalk/X provides and be able to navigate your way through the Smalltalk/X user interface.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E293"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>What Is Smalltalk/X?</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>When describing Smalltalk/X, it is probably appropriate to start with a description of Smalltalk itself. Smalltalk is an object-oriented programming language that has been a continuing development project at ParcPlace Systems since the early 1970s. 
+Although it was not the first object-oriented language, it was the first object-oriented language to gain wide use in the industry.
+
+<BR>
+
+<P>Smalltalk has been around for about 15 years now but it was not until recently that it started to become popular. Many universities now teach a Smalltalk course as part of their standard computer science curriculum, and many companies have seen the 
+value that Smalltalk adds in terms of quick development.
+
+<BR>
+
+<P>Smalltalk/X was developed by Claus Gittinger and was first released in 1988. It is almost identical to the behavior of the Smalltalk 80 implementation of the Smalltalk language. Smalltalk/X comes complete with an application launcher, several different 
+browsers for browsing through the Smalltalk class hierarchy, and a very powerful debugging utility. The unique aspect of Smalltalk/X is that it can also behave as a Smalltalk-to-C translation utility. This is a very useful feature because this means that 
+you will be able to combine the speed of development that Smalltalk provides with the speed of execution that C provides.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E294"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>How To Install Smalltalk/X</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Before installing Smalltalk/X, you must first retrieve it from <A HREF="ftp://sunsite.unc.edu">sunsite.unc.edu</A> in the /pub/Linux/devel/lang/smalltalkx directory. Once there, you will find the following files:
+
+<BR>
+
+<UL>
+
+<LI>COPYRIGHT As the filename suggests, this is the SmallTalk/X copyright information document.
+
+<BR>
+
+<BR>
+
+<LI>INDEX Provides a list of files in the directory.
+
+<BR>
+
+<BR>
+
+<LI>LICENSE The distribution license for SmallTalk/X.
+
+<BR>
+
+<BR>
+
+<LI>README Contains a brief discription of how to get SmallTalk/X running.
+
+<BR>
+
+<BR>
+
+<LI>bitmaps.tar.Z Contains sample graphics that can be used to dress up the visual appeal of your programs.
+
+<BR>
+
+<BR>
+
+<LI>doc.tar.Z The documentation set for SmallTalk/X. This package also includes several demos.
+
+<BR>
+
+<BR>
+
+<LI>exe.tar.Z The executable archive. Although this is really the only file you need to download to get SmallTalk/X up and running, installing the bitmap, documentation, goodies, and source files is also highly recommended.
+
+<BR>
+
+<BR>
+
+<LI>goodies.tar.Z Various extras thrown in for your enjoyment.
+
+<BR>
+
+<BR>
+
+<LI>source.tar.Z Support and library files needed to get the most out of SmallTalk/X.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>To install Smalltalk/X, perform the following steps as root.
+
+<BR>
+
+<OL>
+
+<LI>Create a directory called /usr/local/lib/smalltalk.
+
+<BR>
+
+<BR>
+
+<LI>Copy the following files into the /usr/local/lib/smalltalk directory.
+
+<BR>bitmaps.tar.Z
+
+<BR>doc.tar.Z
+
+<BR>exe.tar.Z
+
+<BR>goodies.tar.Z
+
+<BR>source.tar.Z
+
+<BR>
+
+<LI>Uncompress and untar these files by entering the following commands from the /usr/local/lib/smalltalk directory.
+
+<BR>uncompress *.Z
+
+<BR>tar -xf bitmaps.tar
+
+<BR>tar -xf doc.tar
+
+<BR>tar -xf exe.tar
+
+<BR>tar -xf goodies.tar
+
+<BR>tar -xf source.tar
+
+<BR>
+
+<LI>You can now delete all of the tar files by typing the following command:
+
+<BR>rm -f *.tar
+
+<BR>
+
+<LI>Finally, create the following links:
+
+<BR>ln /usr/i486-linuxaout/lib/libc.so.4 /usr/lib/libc.so.4
+
+<BR>ln /usr/i486-linuxaout/lib/libXt.so.3 /usr/lib/libXt.so.3
+
+<BR>ln /usr/i486-linuxaout/lib/libxll.so.3 /usr/lib/libxll.so.3
+
+<BR>ln /usr/i486-linuxaout/lib/libm.so.4 /usr/lib/libm.so.4
+
+<BR>
+
+</OL>
+
+<P>The Smalltalk/X program should now be installed and ready to go.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>If you do not have write access to the /usr/local/lib directory, install Smalltalk/X in some other directory by following the same steps listed above. If you do this you must set the SMALLTALK_LIBDIR variable to be equal to the new directory.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E68E295"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Invoking Smalltalk/X</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>You invoke Smalltalk/X by typing
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">smalltalk</FONT></PRE>
+
+<P>in an Xterm window from the /usr/local/lib/smalltalk directory. When ST/X starts, it checks to see if there is an image file for it to use. If it cannot find an image file, it uses a file called smalltalk.rc to set up the default behavior for your 
+environment. The image file that is loaded by default is called st.img, and contains a snapshot of what your ST/X environment looked like the last time you exited. This allows you to resume exactly where you left off. You can save a snapshot under any name 
+with the extension .img. To invoke ST/X with an image other than st.img, type the following command at the prompt:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">smalltalk -i nameofImage.img</FONT></PRE>
+
+<BR>
+
+<A NAME="E68E296"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Getting Around in ST/X</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Once ST/X is invoked, two windows or views will appear. The Transcript view and the Launcher menu. The Transcript view is shown in Figure 34.1.
+
+<BR>
+
+<P><B> <A HREF="34rhl01.gif">Figure 34.1. The Transcript view.</A></B>
+
+<BR>
+
+<P>The Transcript is the console where relevant systems information is shown. The Launcher menu is shown in Figure 34.2.
+
+<BR>
+
+<P><B> <A HREF="34rhl02.gif">Figure 34.2. The Launcher menu.</A></B>
+
+<BR>
+
+<P>The Launcher allows access to the tools you will need to program your application. Table 34.1 gives the options available from the Launcher and a brief description of each.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 34.1. The Launcher menu options.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Option</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Description</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Browsers
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The pull-right menu of this option gives you access to browsers, senders, and implementors.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Workspace
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+This option brings up a workspace view.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+FileBrowser
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+This browser allows inspection and manipulation of files and directories.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Projects
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+This option allows you to choose an existing or new project.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Utilities
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+This contains tools specific to your programming needs.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Goodies
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+This contains other non-programming related tools.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Games &amp; Demos
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+This contains some sample programs and games to play.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+info &amp; help
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+This contains topics that give you help and information on the ST/X environment and programming in Smalltalk.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+snapshot
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+This option takes a snapshot of your present ST/X environment and asks for the name of the image file you wish to store the snapshot in.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+exit
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+This option allows you to exit ST/X immediately or exit and save a snapshot of the current environment.</FONT>
+
+</TABLE><P>The following sections describe most of these options in more detail.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E297"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>The Browsers Options</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The Browsers option in the Launcher menu gives you access to different browsers or editors that let you read and manipulate classes, methods, changes, senders, and implementors. The sub-options available are
+
+<BR>
+
+<UL>
+
+<LI>System Browser
+
+<BR>
+
+<BR>
+
+<LI>Class Hierarchy Browser
+
+<BR>
+
+<BR>
+
+<LI>Implementors
+
+<BR>
+
+<BR>
+
+<LI>Senders
+
+<BR>
+
+<BR>
+
+<LI>Changes Browser
+
+<BR>
+
+<BR>
+
+<LI>Directory Browser
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>Each of these sub-options will be discussed in detail in this section.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E401"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>The System Browser</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The standard System Browser contains five subviews:
+
+<BR>
+
+<UL>
+
+<LI>Class category list
+
+<BR>
+
+<BR>
+
+<LI>Class list
+
+<BR>
+
+<BR>
+
+<LI>Method category list
+
+<BR>
+
+<BR>
+
+<LI>Method list
+
+<BR>
+
+<BR>
+
+<LI>Code view
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>The System Browser is shown in Figure 34.3.
+
+<BR>
+
+<P><B> <A HREF="34rhl03.gif">Figure 34.3. The System Browser.</A></B>
+<P>
+Within the ST/X system, classes are assigned to a category. A category is simply an attribute used for grouping classes to make them easier to handle. To select a class category, 
+click on the name of the category in the class category list. This is the leftmost section of the top half of the System Browser. This will display, in the class list subview, all classes belonging to that category. The class list 
+subview is the second section from the far left of the system browser. You can also select one of two special categories: all *which selects all classes and lists them alphabetically; and *hierarchy, 
+which lists all classes in a tree byinheritance.</B>
+
+<BR>
+
+<P>If you select a class in the class list, all method categories for that class will be displayed in the method category list, which is the second section from the right in the top half of the System Browser. Like class categories, method categories are 
+simply for grouping methods according to their function. When you select a method category, all methods in that category are shown in the method list view in the far right section of the browser. The special * all * category will show all methods in 
+alphabetical order. Selecting a method from the method list will show the corresponding method's source code in the code view which is the bottom half of the System Browser.
+
+<BR>
+
+<P>The browser enables you to change either a class or its metaclass. There are two toggle buttons, class and instance, in the same section of the browser as the class list view. Instance, which is the default, makes the changes affect the class. Selecting 
+class makes the changes affect the metaclass.A pop-up menu is available in each view by pressing the middle or menu mouse button while the pointer is in that view. The pop-up menu available in the class category view is shown in Figure 34.4, and the 
+purpose of each function is shown in Table 34.2.
+
+<BR>
+
+<P><B> <A HREF="34rhl04.gif">Figure 34.4. The Class Category pop-up menu.</A></B>
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 34.2. Class Category pop-up menu functions.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Function</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Description</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+fileOut
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Saves all classes in the currently selected class category into one source file named classCategory.st</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+fileOut each
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Saves all classes but puts each class into a separate file called className.st</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+printOut
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Sends a printed representation of all classes selected to the printer including the method source code</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+printOut protocol
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Sends a protocol-only representation of all classes in the category to the printer without the method's source code</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+spawn
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Starts a class category browser without a class category list on the currently selected class category</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+spawn class
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Starts a full class browser which allows you to edit all code for the selected class in one view</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+update
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Re-scans all classes in the system and updates the lists shown</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+find class...
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Pops up a dialog box to enter the name of a class you wish to search for and have displayed</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+new class category...
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Displays a dialog for the creation of a new class category.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+rename...
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Renames a category and changes the category attribute of all classes in the currently selected class category</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+remove
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Removes all classes and subclasses in the current class category</FONT>
+
+</TABLE><P>The class list pop-up menu appears when you press the menu mouse button with the pointer in the class list view. The functions available from this menu are shown in Figure 34.5 and are explained in Table 34.3.
+
+<BR>
+
+<P><B> <A HREF="34rhl05.gif">Figure 34.5. The Class List pop-up menu.</A></B>
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 34.3. Class List pop-up menu functions.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Function</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Description</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+fileOut
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Saves the source code of the currently selected class in a file named className.st.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+printOut
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Sends the source code of the currently selected class to the printer.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+printOut protocol
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Sends a protocol description of the currently selected class to the printer. The output will contain the class description, class comment, and the classes protocol and method comments.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+spawn
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Starts a class browser on the currently selected class.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+spawn hierarchy
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Starts a browser on all subclasses of the currently selected class.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+hierarchy
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Shows the hierarchy of the currently selected class in the code view.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+definition
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Shows the class definition in the code view and allows you to change the class definition.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+comment
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Shows the class comment in the code view and allows you to edit it.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+class instvars
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Shows the class-instance-variables for the selected class and allows you to edit them.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+variable search
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Provides a search facility to find different variable references and all methods referencing the searched-for variable.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+new class
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Allows you to create a new class using as a template the currently selected class.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+new subclass
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Same as new class but it will create a subclass of the currently selected class.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+rename
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Changes the name of the currently selected class.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+remove
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Removes the currently selected class and all of its subclasses.</FONT>
+
+</TABLE><P>The method category pop-up menu appears when you press the menu mouse button while the pointer is in the method category view. The functions available from this menu are shown in Figure 34.6 and explained in Table 34.4.
+
+<BR>
+
+<P><B> <A HREF="34rhl06.gif">Figure 34.6. The Method Category pop-up </B><B>menu.</A></B>
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 34.4. Method Category pop-up menu functions.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Function</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Description</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+fileOut
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Saves the source code of the currently selected method category in a file named className-category.st</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+printOut
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Sends the source code of the currently selected method category to the printer</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+spawn
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Starts a method category browser on the currently selected method category of the currently selected class</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+spawn category
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Starts a browser on all methods of the class which have the same category as the currently selected one</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+find method here...
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Searches for the method that implements a specified selector</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+find method...
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Searches in the class hierarchy for the first class implementing the selector you specify in the dialog box</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+new category...
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Enables you to add a new category to the list</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+copy category...
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Enables you to copy all methods in a class category to the currently selected class</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+create access methods
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Creates methods to access instance variables</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+rename...
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Renames the currently selected method category</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+remove
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Removes all methods in the currently selected class that are members of the currently selected method category</FONT>
+
+</TABLE><P>The method list pop-up menu appears when you press the menu mouse button while the pointer is in the method list view. The functions available from this menu are shown in Figure 34.7 and explained in Table 34.5.
+
+<BR>
+
+<P><B> <A HREF="34rhl07.gif">Figure 34.7. The Method List pop-up menu.</A></B>
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 34.5. Method List pop-up menu functions.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Function</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Description</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+fileOut
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Saves the currently selected method in a file named className-selector.st</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+printOut
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Sends the source code of the currently selected method to the printer</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+spawn
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Starts a browser for editing this method</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+senders...
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Starts a new browser on all methods sending a specific message</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+implementors...
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Starts a new browser on all methods implementing a specific message</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+globals...
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Starts a new browser on all methods that are accessing a global that is either a global variable or a symbol, as well as all methods sending a corresponding message</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+local senders...
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Same as senders but limits the search to the current class and its subclasses</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+local implementors...
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Same as implementors... but limits the search to the current class and its subclasses</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+new method
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Enables you to create a new method from a template in the code view</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+change category...
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Enables you to change the category of the selected method</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+remove
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Removes the currently selected method</FONT>
+
+</TABLE><P>When you add or remove instance variables to or from a system class description and accept (that is, save the changes), the system creates a new class instead of changing the old one. The original class still exists to give existing instances of 
+the class a valid class even though it is no longer accessible by name. After the change, you can no longer edit the old class.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>It is recommended that you don't change the definition of system classes but only private ones. It is safer to use the copy category function to copy an existing class and its methods to a new class and modify the new class. This is especially 
+important for classes which are used by the system itself since changes can lead to problems in the operation of the ST/X environment.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>The code view is the lower half of the System Browser. It is here that you can modify the class or instance definitions as well as methods. The pop-up menu for this area is the edit menu that appears in every text editing view in ST/X. The functions in 
+this menu are discussed in the &quot;Editing in Browsers&quot; section of this chapter.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E402"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>The Class Hierarchy Browser</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>When the Class Hierarchy Browser is selected, a dialog box appears which asks for the name of class. If you enter a valid class, the Class Hierarchy Browser appears for that class. This is the same as the System Browser except there is no class category 
+list since this is for one specific class. The pop-up menus for each of the four subviews are the same as in the System Browser.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E403"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Implementors</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>When the Implementors option is selected, a dialog box appears which asks for a selector. A selector is the name of the type of operation a message requests of its receiver.
+
+<BR>
+
+<P>If you enter a valid selector, an Implementors view will be displayed. This view is similar to the one shown in Figure 34.8.
+
+<BR>
+
+<P><B> <A HREF="34rhl08.gif">Figure 34.8. The Implementors view.</A></B>
+
+<BR>
+
+<P>The Implementors view contains a list of the methods that implement the method specified by the selector. The pop-up menu for the top half of the Implementor view is the same as the pop-up menu for the method list subview which was discussed in the 
+&quot;System Browser&quot; section of this chapter.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E404"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Senders</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>When the Senders option is selected, a dialog box appears that asks for a selector. If you enter a valid selector, then a Senders view will be displayed. This view is similar to the one shown in Figure 34.9.
+
+<BR>
+
+<P><B> <A HREF="34rhl09.gif">Figure 34.9. Senders view.</A></B>
+
+<BR>
+
+<P>The Senders view contains a list of the methods that send the selected message. The pop-up menu for the top half of the Senders view is the same as the pop-up menu for the method list subview which was discussed in the &quot;System Browser&quot; 
+section.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E405"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>The Changes Browser</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Each time you make a change to either the class hierarchy or to a method, ST/X writes a record to a changes file. The Changes Browser enables you to inspect and manipulate the changes file. There are two subviews in the Changes Browser; the change list 
+and the contents view. The change list gives a list of all changes in chronological order. A sample Changes Browser is shown in Figure 34.10.
+
+<BR>
+
+<P><B> <A HREF="34rhl10.gif">Figure 34.10. The Changes Browser.</A></B>
+
+<BR>
+
+<P>To display a change, select one of the changes from the change list. The change browser then displays the contents of the change in the contents view.
+
+<BR>
+
+<P>The pop-up menu for the change list has the functions described in Table 34.6.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 34.6. The Change List pop-up menu.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Function</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Description</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+apply change
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Applies the currently selected change.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+apply to end
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Applies all the changes from the currently selected change to the end of the changes file.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+apply all changes
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Applies all the changes in the file.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+delete
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Deletes the currently selected change from the list.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+delete to end
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Deletes all changes from the currently selected change to the end of the file.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+delete changes for
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Deletes all changes affecting the same class as the currently selected this class change to the end of the changes file.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+delete all changes
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Deletes all changes in the file for the same class as the currently for this class selected change.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+update
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Rereads the changes file.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+compress
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Compresses the change list and removes multiple changes of a method and leaves the most recent change compared to current.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+compare with 
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Compares a method's source code in a change with the current current version version of the method and outputs a message in the Transcript view.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+make change a patch
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Appends the change to the end of the patches file which will be run and automatically applied at ST/X startup.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+save change a file
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Saves any changes made to the current file.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+update sourcefile
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+This function is not currently implemented.from change</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+writeback changefile
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Writes the change list back to the changefile changes file. All delete/compress operations performed in the Change Browser will not affect the changes file unless this operation is performed.</FONT>
+
+</TABLE><P>The Change Browser can be used to recover from a system crash by re-applying all changes that were made after the last snapshot entry.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>To control the size of the changes file, it is a good idea to apply a compress periodically. This will remove all old changes for a method leaving the newest one.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E69E406"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Directory Browser</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>When you select the Directory Browser option, a browser with five subviews is displayed. The top half of the browser displays the current directory and all subdirectories and files contained in it. If you select a directory, it is expanded in the next 
+section to the right across the top half of the browser. If you select a file, the contents of the file are displayed in the lower half of the Browser. The pop-up menu for the directory area has only two functions:
+
+<BR>
+
+<UL>
+
+<LI>up&#151;Moves up to the directory above the one selected
+
+<BR>
+
+<BR>
+
+<LI>goto directory&#151;Enables you to go to a specified directory
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>The content view has the same edit menu as all the other text editors and is discussed in the &quot;Editing in Browsers&quot; section in this chapter. A typical Directory Browser is shown in Figure 34.11.
+
+<BR>
+
+<P><B> <A HREF="34rhl11.gif">Figure 34.11. The Directory Browser.</A></B>
+
+<BR>
+
+<BR>
+
+<A NAME="E68E298"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>The Workspace Option</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The Workspace option displays a view from which you can enter and compile Smalltalk code. The Workspace is usually used as a testing area or scratch pad when coding. You can use it to test your Smalltalk code before building it into the code library 
+using the System Browser code view.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E299"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>The File Browser Option</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The File Browser gives you the ability to inspect and manipulate files and directories. The File Browser is shown in Figure 34.12.
+
+<BR>
+
+<P><B> <A HREF="34rhl12.gif">Figure 34.12. The File Browser.</A></B>
+
+<BR>
+
+<P>It consists of four subviews that are described in Table 34.7.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 34.7. The File Browser subviews.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Subview</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Purpose</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+path-label field
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Shows the name of the current directory</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+file pattern field
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Allows a search pattern to be entered for choosing files for the file list</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+file list
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Shows a list of file and directory names</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+contents view
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Shows the contents of a selected file</FONT>
+
+</TABLE><P>To inspect the contents of a file, double-click the left mouse button on the name of the file in the file list. To change directories, double-click on the directory name. Directory names are always shown in the file list.
+
+<BR>
+
+<P>You can use the file pattern field to display the list of files matching the specified pattern. The default is *, which shows all files. The search pattern can be changed by moving the pointer to the field, editing the pattern, and then pressing enter 
+or choosing accept from the file pattern pop-up menu.
+
+<BR>
+
+<P>As in the other browsers we have discussed, each subview has a pop-up menu that is activated by the menu mouse button. The path-label pop-up menu is shown in Figure 34.13.
+
+<BR>
+
+<P><B> <A HREF="34rhl13.gif">Figure 34.13. The Path-Label pop-up menu.</A></B>
+
+<BR>
+
+<P>The functions available in this menu are described in Table 34.8.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 34.8. The Path-Label pop-up menu functions.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Function</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Purpose</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+copy path
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Copies the current pathname into the cut and paste buffer</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+change directory...
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Opens a dialog box to enter the name of the directory you wish to change to</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+change to home directory
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Changes the file list to your home directory</FONT>
+
+</TABLE><P>The file list pop-up menu is shown in Figure 34.14.
+
+<BR>
+
+<P><B> <A HREF="34rhl14.gif">Figure 34.14. The File List pop-up menu.</A></B>
+
+<BR>
+
+<P>The functions available in this menu are described in Table 34.9.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 34.9. The File List pop-up menu functions.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Function</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Purpose</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+spawn
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Starts another file browser on the current directory or the directory selected in the file list.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+get contents
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Shows the contents of the currently selected file in the contents view.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+show info
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Displays a view with type, size, access, and owner information for the currently selected file or directory.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+show full info
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Displays the same as above with more details such as the last access, last modification date, and time.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+fileIn
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Loads the selected file into the system by reading and evaluating Smalltalk expressions from it.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+update
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Rereads the directory and updates the file list.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+execute unix command_
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Allows execution of any UNIX command through a pop-up box.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+remove
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Removes the selected file(s) or directory(s).</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+rename...
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Renames the selected file.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+display long list
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Shows file information in the file list. This option toggles with display short list which is the default.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+show all files
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Displays all the files including hidden files. This option toggles with hide hidden files which is the default.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+create directory...
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Creates a new directory.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+create file...
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Creates a new file.</FONT>
+
+</TABLE><P>The pop-up menu for the contents view is the same edit menu as the other text editors and is discussed in the &quot;Editing in Browsers&quot; section of this chapter.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E300"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>The Projects Option</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The Projects option of the Launcher menu enables you to create a new project or select a previously created project. When the new project function is selected, a new project is automatically created for you and the new project object appears on your 
+screen. If you select the select project function, a dialog box appears with a list of existing projects from which to choose. Simply select a project and it will be loaded in to the environment.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E301"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>The Utilities Option</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The Utilities option provides thirteen tools that assist you in programming in the ST/X environment. Table 34.10 gives you a brief description of each tool.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 34.10. The Utilities option.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Utility</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Description</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Transcript
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Opens the Transcript view.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Window tree
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Displays a graphical tree representation of the window hierarchy of all windows that are active or in wait state at the time it was requested.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Class tree
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Displays a graphical tree representation of the class hierarchy of the system.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Event monitor
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Displays a view that monitors events.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Process monitor
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Displays a view that gives information about all currently active or waiting processes. This information changes as the state of the processes change.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Memory monitor 
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Displays a graph that tells you the present memory usage and changes as the memory usage changes.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Memory usage
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Displays a table of the classes and the number of instances of each, average size, bytes, and percentage of memory used by each.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+collect Garbage
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Runs a Generation Scavenge algorithm to collect short term objects and destroy them. If an object survives long enough, it is moved to an area of memory where it remains until the user requests its collection.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+collect Garbage &amp;
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Same as Collect Garbage but also compresses</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+compress
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+to recover space.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+full screen hardcopy
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Takes a picture of the screen and asks you for a name of a file with a .tiff extension in which to save the image.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+screen area hardcopy
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Same as Fullscreen hardcopy but for only a specific area of the screen.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+view hardcopy
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Same as Fullscreen hardcopy but for one specific view only.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+ScreenSaver
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Enables you to choose from one of three different screen savers to use in the ST/X environment.</FONT>
+
+</TABLE><BR>
+
+<A NAME="E68E302"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>The Goodies Option</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The Goodies option of the Launcher menu provides a pull-right menu of six different tools that are useful at any time, not just when you program in Smalltalk. The Goodies are described in Table 34.11.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 34.11. The Goodies.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Tool</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Description</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Clock
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Displays an analog clock in a square with a toggle for the second hand.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Round Clock
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Same as the clock but it's round and remains visible when it is minimized.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Directory View
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Displays a pictorial representation of files and directories. A folder represents a directory and a document is a file.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Mail Tool
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+A tool for managing electronic mail.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+News Tool
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+A repository for news, information and documents.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Draw Tool
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+A fairly comprehensive tool for drawing diagrams, charts, pictures, and so on.</FONT>
+
+</TABLE><BR>
+
+<A NAME="E68E303"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>The Games &amp; Demo Option</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Contained in the pull-right menu of this option are games for your enjoyment and example applications that may be useful. The Games &amp; Demos option menu is shown in Figure 34.15.
+
+<BR>
+
+<P><B> <A HREF="34rhl15.gif">Figure 34.15. The Games &amp; Demos option menu.</A></B>
+
+<BR>
+
+<BR>
+
+<A NAME="E68E304"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Editing in Browsers</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>All views that show text allow the usual editing functions of that text through a pop-up menu. The functions available in this menu are described in Table 34.12.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 34.12. Editing functions.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Function</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Description</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+again
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Repeats the last edit.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+copy
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Copies the selected text.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+cut
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Cuts the selected text out of the file.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+paste
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Pastes the text that was copied or cut prior to choosing the paste option to the current position of the pointer.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+doIt
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Evaluates the highlighted text.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+printIt
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Prints a representation of the result of the evaluation at the current cursor position.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+inspectIt
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Invokes the Inspector view on the result.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+accept
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Once you have completed editing, you must use this option to save the changes to the file; otherwise, the changes will not be written to the file.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+search...
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Enables you to search for a specific string.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+goto...
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Enables you to move to a specific location in the file.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+font...
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Enables you to change the font of the file.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+indent...
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Enables you to change the indenting of the file.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+save as...
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Enables you to save the file under a different name.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+print
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Prints the file.</FONT>
+
+</TABLE><P>To select or highlight text, press the left mouse button over the first character and move the mouse (while pressing the mouse button) to the end of the text you wish to select and then release the mouse button. If you press the left mouse 
+button again, the highlighting is removed and you can select something else.
+
+<BR>
+
+<P>To scroll through the text, use the scroll bars on the left of the view. By clicking the mouse below or above the thumb, the text scrolls one page for every click. If you press the Shift key at the same time as you click, the text scrolls to the 
+position of the pointer in the scroll bar. This is useful for scrolling rapidly through long documents.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E305"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Using the Inspector</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The Inspector enables you to inspect an object. It consists of two subviews, one showing the names of the object's instance variables and the other showing the value of the selected instance variable. You can start an inspector by using the inspectIt 
+function on the edit menu or by sending one of the following messages to an object:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">anObject inspect</FONT></PRE>
+
+<P>or
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">anObject basicInspect</FONT></PRE>
+
+<P>The basicInspect command will open a general inspector that shows instance variables as they are physically present in the object. The inspect command is redefined in some classes to open an inspector showing the logical contents of the object.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E306"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Using the Debugger</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The Debugger is displayed whenever an error occurs in your Smalltalk code. It shows you where the error occurred and how the system got there. The Debugger runs in one of three modes: normal, modal, and inspecting.
+
+<BR>
+
+<P>When in normal mode and an error occurs in a process, which is not the event handler process, the debugger will start up on top of the erroneous process. This blocks all interaction with the affected process and its views. Other views are still active 
+and respond as usual.
+
+<BR>
+
+<P>When an error occurs in the Smalltalk event handler process, the debugger starts in modal mode. While a modal debugger is active you cannot interact with any other view.
+
+<BR>
+
+<P>The inspecting mode can be entered from the ProcessMonitor by the pop-up menu and allows inspection of the state of other processes. But since the debugged process may continue to run, it is only possible to inspect a snapshot of the affected process.
+
+<BR>
+
+<P>The Debugger contains four subviews:
+
+<BR>
+
+<UL>
+
+<LI>The Context Walkback List shows the context chain that led to the error
+
+<BR>
+
+<BR>
+
+<LI>The Method Source View shows the method that caused the error
+
+<BR>
+
+<BR>
+
+<LI>The Receiver Inspector allows inspection of the receiver of the selected message
+
+<BR>
+
+<BR>
+
+<LI>The Context Inspector provides information about the arguments and local variables of this context.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>The Debugger is shown in Figure 34.16.
+
+<BR>
+
+<P><B> <A HREF="34rhl16.gif">Figure 34.16. The Debugger.</A></B>
+
+<BR>
+
+<P>The functions that are common to each view appear as a set of buttons below the context walkback list. These functions are described in Table 34.13.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 34.13. The Debugger function buttons.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Button</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Description</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+terminate
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Terminates the erroneous process</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+abort
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Aborts the current activity if possible</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+return
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Continues execution as if the selected context returned</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+restart
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Continues execution by restarting the selected context</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+continue
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Continues execution</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+step (single step)
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Lets the process continue execution until the next send is executed in the currently selected context</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+send (single send)
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Lets the process continue execution for one message send</FONT>
+
+</TABLE><P>The walkback subview has a pop-up menu with the functions described in Table 34.14.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 34.14. Walkback Subview pop-up menu function.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Function</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Description</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+exit smalltalk
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Leaves ST/X without saving an image</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+show more
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Shows 50 more contexts of the walk-back</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+breakpoints
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Not yet available</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+trace on/off
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Not yet available</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+trace step
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Not yet available</FONT>
+
+</TABLE><P>A miniDebugger is entered if an error occurs within the Debugger itself. This is a line-by-line debugger that allows limited debugging without the use of a graphical user interface. It is controlled by entering commands in the Xterm window where 
+ST/X was started. If you type ? at the miniDebugger prompt, you will get a list of commands that are available for use in this stripped down debugger.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E307"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Summary</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>This chapter introduced you to the Smalltalk environment that is provided by the Smalltalk/X application. If you are interested in learning how to program using Smalltalk and do not have access to one of the commercial versions of Smalltalk, then 
+Smalltalk/X is perfect for you. Not only does Smalltalk/X come with all the tools and programming aids that were talked about in this chapter, but it also comes with many examples and some fairly complete documentation that will make learning Smalltalk 
+easier for you.
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl33.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="#I0" TARGET="_self"><IMG SRC="purtop.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Page Top"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl35.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+</BODY></HTML>
+
+
+

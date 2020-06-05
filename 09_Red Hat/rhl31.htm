@@ -1,0 +1,606 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Red Hat Linux Unleashed rhl31.htm </TITLE>
+
+<LINK REL="ToC" HREF="index.htm">
+
+<LINK REL="Index" HREF="htindex.htm">
+
+<LINK REL="Next" HREF="rhl32.htm">
+
+<LINK REL="Previous" HREF="rhl30.htm"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+
+<A NAME="I0"></A>
+
+<H2>Red Hat Linux Unleashed rhl31.htm</H2>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl30.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl32.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+<HR ALIGN=CENTER>
+
+<P>
+
+<UL>
+
+<UL>
+
+<UL>
+
+<LI>
+
+<A HREF="#E68E243" >Ada</A>
+
+<LI>
+
+<A HREF="#E68E244" >FORTRAN</A>
+
+<LI>
+
+<A HREF="#E68E245" >Digital Signal Processing</A>
+
+<LI>
+
+<A HREF="#E68E246" >Modula-3</A>
+
+<LI>
+
+<A HREF="#E68E247" >OGI</A>
+
+<LI>
+
+<A HREF="#E68E248" >Eiffel</A>
+
+<LI>
+
+<A HREF="#E68E249" >COBOL</A>
+
+<LI>
+
+<A HREF="#E68E250" >LISP</A>
+
+<LI>
+
+<A HREF="#E68E251" >Scheme</A>
+
+<LI>
+
+<A HREF="#E68E252" >Summary</A></UL></UL></UL>
+
+<HR ALIGN=CENTER>
+
+<A NAME="E66E31"></A>
+
+<H1 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>31</B></FONT></CENTER></H1>
+
+<BR>
+
+<A NAME="E67E31"></A>
+
+<H2 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>Other Compilers and Languages Ported to Linux</B></FONT></CENTER></H2>
+
+<BR>
+
+<P>This chapter gives you a brief introduction to some languages other than those that have been assigned whole chapters in this book. You will learn details about the following languages and how to get packages for them:
+
+<BR>
+
+<UL>
+
+<LI>Ada
+
+<BR>
+
+<BR>
+
+<LI>FORTRAN
+
+<BR>
+
+<BR>
+
+<LI>Digital Signal Processing
+
+<BR>
+
+<BR>
+
+<LI>Modula-3
+
+<BR>
+
+<BR>
+
+<LI>OGI
+
+<BR>
+
+<BR>
+
+<LI>Eiffel
+
+<BR>
+
+<BR>
+
+<LI>COBOL
+
+<BR>
+
+<BR>
+
+<LI>LISP
+
+<BR>
+
+<BR>
+
+<LI>Scheme
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>All the packages here have accompanying documentation and &quot;how-to-use&quot; instructions for them.
+
+<BR>
+
+<P>The list of programming languages covered here is not complete. As Linux becomes more and more acceptable in the programming community, you will see more languages being ported to Linux.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E243"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Ada</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The Ada programming language was named after Ms. Ada Lovelace, a member of the original Ada software development team. Ada is the choice of many real-time system software developers and has been enhanced significantly for this purpose. Needless to say, 
+some greatly enthused individuals have ported this language over to Linux. The Ada package is referred to as the GNAT (for GNu Ada Translator). The authors therefore appropriately belong to the GNAT project at New York University.
+
+<BR>
+
+<P>The latest update at the time of this writing was in March 1996. The Ada95 standard of the Ada language is covered in this release. The Ada for Linux package comes in the following files:
+
+<BR>
+
+<UL>
+
+<LI>gnat-3.03-src.tar.gz
+
+<BR>
+
+<BR>
+
+<LI>gnat-3.03-i486-linux-elf-bin.tar.gz
+
+<BR>
+
+<BR>
+
+<LI>gnat-3.01-linuxaout.tar.gz
+
+<BR>
+
+<BR>
+
+<LI>gnat-3.01-linuxaout.README
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>For more information, you can contact the support folks via e-mail at <A HREF="mailto:gnat-request@cs.nyu.edu">gnat-request@cs.nyu.edu</A>. The FTP site at <A HREF="ftp://tsx-11.mit.edu">tsx-11.mit.edu</A> has the latest information and release of this 
+software in the directory /pub/linux/packages/Ada.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E244"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>FORTRAN</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The FORTRAN programming language is also ported to Linux. Only versions up to FORTRAN 77 have been ported over. There are only commercial ports of FORTRAN 90 as of this publication. The package in the <A HREF="ftp://tsx-11.mit.edu">tsx-11.mit.edu</A> 
+archives under the /pub/linux/packages/fortran directory contains the following files:
+
+<BR>
+
+<UL>
+
+<LI>ftnchek-2.7.lsm
+
+<BR>
+
+<BR>
+
+<LI>ftnchek-2.7.tgz
+
+<BR>
+
+<BR>
+
+<LI>libf2c-0.9.lsm
+
+<BR>
+
+<BR>
+
+<LI>libf2c-0.9.tar.gz
+
+<BR>
+
+<BR>
+
+<LI>mpfun-1.0.lsm
+
+<BR>
+
+<BR>
+
+<LI>mpfun-1.0.tar.gz
+
+<BR>
+
+<BR>
+
+<LI>toolpack-1.2.lsm
+
+<BR>
+
+<BR>
+
+<LI>toolpack-1.2.tar.gz
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>For a more up-to-date description of the files, check the INDEX file in the same directory as the above files. The libf2c-0.9.tar.gz contains the functions for converting FORTRAN code to C. Actually, the program f2c does a pretty decent job on all my 
+class assignments at the university. The output is not idiot-proof, but it does the major portion of the job of translation.
+
+<BR>
+
+<P>The toolpack files are tools for FORTRAN programmers. Functions include printing aids for clean output listings and some sort of lint checker. Tools in this package include those for portability testing and dynamic programming analysis. All the script 
+files in the toolpack are written for the C shell, so you will need to have the tcsh program installed on your system.
+
+<BR>
+
+<P>You will use at least 5&#151;10MB of your disk space depending on which package you install.
+
+<BR>
+
+<P>The mpfun package is a multiple precision (FORTRAN MP) library and translator. This package performs multiprecision floating-point arithmetic with up to 16 million decimal digits, using advanced, recent algorithms and automatic translation from FORTRAN 
+77 code to FORTRAN multi-processor code. The translation is done via directives within comment fields.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E245"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Digital Signal Processing</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The ObjectProDSP package is an X Window system, object-oriented tool for Digital Signal Processing design development and implementation. The package contains the basics for building interactive scientific and engineering applications. The package was 
+developed by Paul P. Budnik, Jr. (mtnmath@mtnmath.com). The amount of disk space required is about 5MB. You can get it from <A HREF="ftp://tsx-11.mit.edu">tsx-11.mit.edu</A>archives in the /pub/linux/packages/dsp directory.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E246"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Modula-3</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The Modula-3 language is available from Digital Equipment Corporation's research center SRC. Modula-3 is an object-oriented language designed for multiprocess, distributed application development. Modula-3 resembles Pascal in many ways but is more 
+suited for building large applications.
+
+<BR>
+
+<P>The key features of the Modula-3 package include a full-blown GUI interface, runtime typing, support for multithreaded applications, garbage collection, and exception handling. The garbage collection and storage reallocation features of the language are 
+of keen interest to object-oriented programmers. After all, what frees an object&#151;the portion of the code that created it, or the portion to which the object was passed? The garbage collector for removing a large number of these problems is built into 
+the language.
+
+<BR>
+
+<P>Modula-3 uses threads to process its incoming messages. Unlike other X-based applications, where one event queue has to be managed between several listening applications, Modula-3 allows the invocation of threads to perform message handling. A good 
+example of the usage of this feature is the Trestle package&#151;the interface package to X. With Trestle you can create threads to run in the background while you're doing other processing.
+
+<BR>
+
+<P>You can get Modula-3 from the Internet from the FTP site at: <A HREF="ftp://tsx-11.mit.edu">tsx-11.mit.edu</A> in the /pub/linux/packages/modula-3 directory.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E247"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>OGI</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The OGI Speech Tools version 1.0.1 for Linux are speech data manipulation research tools. These tools are primarily used for signal manipulation, phonetic, phonemic, and word analysis. This package has the capability to build audio databases that can be 
+used to train neural networks, with a neural network trainer (NN) also in the package. The OGI speech tools were developed at the Center for Spoken Language Understanding (CSLU-OGI). You can get more information about them from <A 
+HREF="mailto:tools@cse.ogi.edu">tools@cse.ogi.edu</A>.
+
+<BR>
+
+<P>The FTP site for this package is <A HREF="ftp://sunsite.unc.edu">sunsite.unc.edu</A> in the file /pub/Linux/apps/sound/ogi-speech.tar.gz or in <A HREF="ftp://tsx-11.mit.edu">tsx-11.mit.edu</A> in the directory /pub/linux/packages/ogi.
+
+<BR>
+
+<P>You need some sort of sound card that is capable of digitizing sound under Linux. A good package for digitizing sound would be the Sox package.
+
+<BR>
+
+<P>If you are into computational linguistics, or are interested in speech compression, recognition, or applications of neural networks, this is one great research package to check out. The documentation in this package consists of man pages, and TeX 
+source. Check ogi-doc-PS.tar.gz for TeX documentation in PostScript format. For the document in DVI format, try using the file ogi-doc-dvi.tar.gz.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E248"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Eiffel</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Eiffel is a nonproprietary object-oriented language developed by Dr. Bertrand Meyer and his colleagues. An excellent reference book for Eiffel is Dr. Meyer's Book Object-Oriented Software Construction, Prentice Hall, 1988. In 1994, Dr. Meyer's company 
+ported Eiffel to Linux.
+
+<BR>
+
+<P>The most advertised feature of Eiffel is its capability to reuse code without modifications. In conventional C++ and some other object-oriented languages, code reuse is still in its infancy. Eiffel is a new language primarily written with reuse in mind. 
+Polymorphism, garbage collection, dynamic binding, multiple inheritance, and templates are built into the language. Even so, Eiffel code is interoperable with C and C++.
+
+<BR>
+
+<P>The design of Eiffel has been placed in the public domain. The Eiffel trademark is owned by the Nonprofit International Consortium for Eiffel (NICE). You should really have no fear using this trademark because NICE is quite nice about using the Eiffel 
+trademark. The official language description is Eiffel: The Language, by Dr. Meyers, Prentice Hall, 1992. The formal syntax is included in the 600-plus page book along with examples, source code, and application guidelines.
+
+<BR>
+
+<P>Tower Technologies Corporation is promoting its commercial release of Eiffel, called TowerEiffel. Visit the web site at <A HREF="http://www.twr.com">http://www.twr.com</A>. This site is a bit slow to get access to at times.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E249"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>COBOL</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Though not the preferred choice of &quot;real&quot; systems programmers, COBOL is a very widely used language in the business community. Naturally, there are ports to Linux in this database-oriented language. A good commercial port worth looking into is 
+the ACUCOBOL-85 port by the Acucobol, Inc., company. Check the Web site at <A HREF="http://www.acucobol.com">http://www.acucobol.com</A> for more information about COBOL.
+
+<BR>
+
+<P>The ACUCOBOL-85 version of COBOL offers programmable hot keys, advanced windows capabilities (not X), its own file system, and a source = level debugger. Acucobol, Inc., also offers more than 600 tools to work with the Linux compiler. The COBOL code on 
+Linux is portable to other platforms running COBOL-85.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E250"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>LISP</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>LISP stands for LISt Processing. LISP was developed around 1958 and has been used in all areas of computer science research (for example, in artificial intelligence), as well as being the basis for products, such as emacs and AutoCAD. (Actually, AutoCAD 
+uses AutoLISP, an enhanced version of LISP.)
+
+<BR>
+
+<P>The Common LISP language interpreter and compiler (clisp) package is in the Red Hat Linux distribution. As the name suggests, the package contains both an interpreter and a compiler for generating machine-executable code. Invoked without arguments, 
+clisp executes a read-eval-print loop, in which expressions are read from standard input, evaluated by the LISP interpreter, and their results output to standard output. When invoked with the -c option, the specified LISP files are compiled to a 
+machine-readable code that can be executed more efficiently.
+
+<BR>
+
+<P>To get more information about the clisp package, type clisp -h at the prompt. If you are short of RAM on your machine, specify the amount of memory that clisp will use with the -m XXXK option, where XXX is the amount of memory to use in kilobytes. The 
+clisp package has support for three languages: English, German, and French.
+
+<BR>
+
+<P>If you are an emacs user, you will want to use the -I option to make clisp ILISP compatible. ILISP is the LISP interface for the emacs editor.
+
+<BR>
+
+<P>The language implemented conforms to the book by Guy L. Steele Jr., Common LISP&#151;The Language, Digital Press, First edition, 1984.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E251"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Scheme</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Another language closely related to LISP is the Scheme language. A Scheme programmer has at his or her disposal the power of C and LISP. Scheme allows free data-typing of variables by offering lists, arrays of lists, associative lists, and arrays, in 
+addition to the numeric and string data types.
+
+<BR>
+
+<P>Scheme, like clisp, is available in compiled or interpreted form. You can create output files from Scheme using two of three types of options: fast, cheap, and algorithmically correct. The fast option produces a large executable, the &quot;correct&quot; 
+version has more error checking, and the cheap version produces a smaller, though (maybe) slower version of the program.
+
+<BR>
+
+<P>The interpreted environment produces a rapid development front end because there is no edit-compile-run cycle. You simply edit what you have changed and reexecute, just like in LISP.
+
+<BR>
+
+<P>Several versions of Scheme are available on various sites on the Internet:
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+bigloo-bin.tar.gz: 
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The Bigloo version, which is the de facto standard for Scheme</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+bigloo-ELF-bin.tar.gz:
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The ELF version of the Bigloo version</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+scheme2c-bin.tar.gz: 
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The Scheme to C converter libraries for converting Scheme code to C code</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+scm-bin.tar.gz and slib.tar.gz:
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The SCM package by Aubrey Jaffer(<A HREF="mailto:jaffer@ai.mit.edu">jaffer@ai.mit.edu</A>) contains sockets, I/O, POSIX interfaces, and a curses screen-management library</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<A NAME="I2"></A>stk-bin.tar.gz:
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The Tk compatible library</FONT>
+
+</TABLE><BR>
+
+<A NAME="E68E252"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Summary</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The number of languages and software packages available for Linux continues to grow with Linux's popularity. This chapter has given you a snapshot of some of the languages available for Linux. Time and space have limited us to introducing in detail only 
+a few of the more common languages, such as Fortran, LISP, Scheme and so on. There are, however, many more languages which may be ideal for your project. It might be worth your while to check out some of these languages and get that ideal fit.
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl30.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="#I0" TARGET="_self"><IMG SRC="purtop.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Page Top"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl32.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+</BODY></HTML>
+
+
+

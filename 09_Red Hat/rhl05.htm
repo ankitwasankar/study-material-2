@@ -1,0 +1,284 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Red Hat Linux Unleashed rhl05.htm </TITLE>
+
+<LINK REL="ToC" HREF="index.htm">
+
+<LINK REL="Index" HREF="htindex.htm">
+
+<LINK REL="Next" HREF="rhl06.htm">
+
+<LINK REL="Previous" HREF="rhl04.htm"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+
+<A NAME="I0"></A>
+
+<H2>Red Hat Linux Unleashed rhl05.htm</H2>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl04.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl06.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+<HR ALIGN=CENTER>
+
+<P>
+
+<UL>
+
+<UL>
+
+<UL>
+
+<LI>
+
+<A HREF="#E68E30" >Setting the Default Video Mode</A>
+
+<LI>
+
+<A HREF="#E68E31" >Identifying Bad Blocks on Your Hard Drive</A>
+
+<LI>
+
+<A HREF="#E68E32" >Linux Loadable Modules</A>
+
+<LI>
+
+<A HREF="#E68E33" >Summary</A></UL></UL></UL>
+
+<HR ALIGN=CENTER>
+
+<A NAME="E66E5"></A>
+
+<H1 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>5</B></FONT></CENTER></H1>
+
+<BR>
+
+<A NAME="E67E5"></A>
+
+<H2 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>Odds and Ends</B></FONT></CENTER></H2>
+
+<BR>
+
+<P>This chapter covers a variety of topics that basically could not fit in other chapters, nor could they justify a chapter by themselves. We cover these topics <A NAME="I2"></A>briefly and provide locations where you can get more information:
+
+<BR>
+
+<UL>
+
+<LI>Setting the default video mode
+
+<BR>
+
+<BR>
+
+<LI>How to mark bad blocks on a hard disk
+
+<BR>
+
+<BR>
+
+<LI>Loadable modules
+
+<BR>
+
+<BR>
+
+</UL>
+
+<BR>
+
+<A NAME="E68E30"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Setting the Default Video Mode</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>You don't have to recompile the kernel to set the default video mode. Just use rdev with the -v switch to set the video mode in the kernel (either on your hard drive or on your boot floppy). For example, to change the kernel in /vmlinuz to prompt for 
+the video mode on bootup, type the following:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">rdev -v /vmlinuz -3</FONT></PRE>
+
+<P>To change the kernel on your boot floppy, type
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">rdev -v /dev/fd0 {video-mode}</FONT></PRE>
+
+<P>The valid video-mode options for the kernel are:
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-3
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Prompt the user for a response every time</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-2
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Extended VGA</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-1
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Normal VGA</FONT>
+
+</TABLE><P>The rdev program resides in /sbin. rdev is very handy and also is used to set the root and swap partitions, ramdisk size, and more in a compiled kernel. It means you don't have to recompile the kernel to make these changes. Use rdev -? for a 
+list of options.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E31"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Identifying Bad Blocks on Your Hard Drive</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>If you are using a SCSI or IDE (and EIDE) drive, you don't have to worry about bad blocks as they are handled at the device level. On the other hand, if you have an older ESDI, RLL, or MFM drive (or other non-SCSI or non-IDE drive) you may need to scan 
+your drive for bad blocks. Normally the bad blocks are identified and marked when the file system is created using mkefs, mke2fs, and mkxfs.
+
+<BR>
+
+<P>Unfortunately, the mkefs program cannot detect bad blocks on a hard drive. So if you create a file system over a part of your hard drive with bad blocks, things will eventually go wrong. What you need is a &quot;bad block list&quot; stored in a file; 
+use the -l option on mkefs so it will flag those blocks when making a file system.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Do not check for bad blocks on a mounted system. Doing a check on a mounted file system will cause irreparable damage and/or loss of data. Unmount the file system first with the umount command. If you have to check the root file system, boot off a 
+floppy disk, unmount the root file system if it is mounted, and then check for bad blocks.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>mke2fs and mkxfs correctly flag bad blocks, so this only applies to mkfs and mkefs. This is also only needed for older RLL and MFM drives. SCSI and IDE drives have bad block logic on- board, so you are safe there.
+
+<BR>
+
+<P>How do you generate a bad block list? Generating a bad block list is only needed for older drives and older file system types (such as Minix and extfs). Your best bet is to use mke2fs or mkxfs, anyway.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E32"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Linux Loadable Modules</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The Linux kernel (since version 1.2.0) supports loadable modules. Using loadable modules enables you to build a minimal kernel and add or remove modules to this kernel without requiring a kernel rebuild. A module could be support for a kernel function 
+or a new feature.
+
+<BR>
+
+<P>To see what modules exist in your system, use the lsmod command. To install a module, use the insmod command. Some modules may require other modules. To check the dependencies, use the depmod command. To install a module (and its dependant modules), use 
+the depmod command.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E33"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Summary</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>It's hard to summarize this chapter except to say that this has been a grab-bag of all the things that did not fit anywhere else. A lot of the information you need to configure Linux and install new kernels are included in separate chapters later in 
+this book. Details on file systems are included in Part VI, &quot;Linux for System Administrators.&quot;
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl04.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="#I0" TARGET="_self"><IMG SRC="purtop.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Page Top"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl06.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+</BODY></HTML>
+
+
+

@@ -1,0 +1,2812 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Red Hat Linux Unleashed rhl26.htm </TITLE>
+
+<LINK REL="ToC" HREF="index.htm">
+
+<LINK REL="Index" HREF="htindex.htm">
+
+<LINK REL="Next" HREF="rhl27.htm">
+
+<LINK REL="Previous" HREF="rhl25.htm"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+
+<A NAME="I0"></A>
+
+<H2>Red Hat Linux Unleashed rhl26.htm</H2>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl25.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl27.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+<HR ALIGN=CENTER>
+
+<P>
+
+<UL>
+
+<UL>
+
+<UL>
+
+<LI>
+
+<A HREF="#E68E215" >What Is the awk Language?</A>
+
+<LI>
+
+<A HREF="#E68E216" >Files, Records, and Fields</A>
+
+<LI>
+
+<A HREF="#E68E217" >Pattern-Action Pairs</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E318" >Simple Patterns</A>
+
+<LI>
+
+<A HREF="#E69E319" >Comparisons and Arithmetic</A>
+
+<LI>
+
+<A HREF="#E69E320" >Strings and Numbers</A>
+
+<LI>
+
+<A HREF="#E69E321" >Formatting Output</A>
+
+<LI>
+
+<A HREF="#E69E322" >Changing Field Separators</A>
+
+<LI>
+
+<A HREF="#E69E323" >Metacharacters</A></UL>
+
+<LI>
+
+<A HREF="#E68E218" >Calling gawk Programs</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E324" >BEGIN and END</A>
+
+<LI>
+
+<A HREF="#E69E325" >Variables</A>
+
+<LI>
+
+<A HREF="#E69E326" >Built-In Variables</A></UL>
+
+<LI>
+
+<A HREF="#E68E219" >Control Structures</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E327" >The if Statement</A>
+
+<LI>
+
+<A HREF="#E69E328" >The while Loop</A>
+
+<LI>
+
+<A HREF="#E69E329" >The for Loop</A>
+
+<LI>
+
+<A HREF="#E69E330" >next and exit</A>
+
+<LI>
+
+<A HREF="#E69E331" >Arrays</A></UL>
+
+<LI>
+
+<A HREF="#E68E220" >Summary</A></UL></UL></UL>
+
+<HR ALIGN=CENTER>
+
+<A NAME="E66E26"></A>
+
+<H1 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>26</B></FONT></CENTER></H1>
+
+<BR>
+
+<A NAME="E67E26"></A>
+
+<H2 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>gawk</B></FONT></CENTER></H2>
+
+<BR>
+
+<P>The awk programming language was created by the three people who gave their last-name initials to the language: Alfred Aho, Peter Weinberger, and Brian Kernighan. The gawk program included with Linux is the GNU implementation of that programming 
+language.
+
+<BR>
+
+<P>The awk language is more than just a programming language; it is an almost indispensable tool for many system administrators and UNIX programmers. The language itself is easy to learn, easy to master, and amazingly flexible. Once you get the hang of 
+using awk, you'll be surprised how often you can use it for routine tasks on your system.
+
+<BR>
+
+<P>To help you understand gawk, I will follow a simple order of introducing the elements of the programming language, as well as showing good examples. You are encouraged, or course, to experiment as the chapter progresses.
+
+<BR>
+
+<P>I can't cover all the different aspects and features of gawk in this chapter, but we will look at the basics of the language and show you enough, hopefully, to get your curiosity working.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E215"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>What Is the </B><B>awk</B><B> Language?</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>awk is designed to be an easy-to-use programming language that lets you work with information either stored in files or piped to it. The main strengths of awk are its abilities to do the following:
+
+<BR>
+
+<UL>
+
+<LI>Display some or all the contents of a file, selecting rows, columns, or fields as necessary.
+
+<BR>
+
+<BR>
+
+<LI>Analyze text for frequency of words, occurrences, and so on.
+
+<BR>
+
+<BR>
+
+<LI>Prepare formatted output reports based on information in a file.
+
+<BR>
+
+<BR>
+
+<LI>Filter text in a very powerful manner.
+
+<BR>
+
+<BR>
+
+<LI>Perform calculations with numeric information from a file.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>awk isn't difficult to learn. In many ways, awk is the ideal first programming language because of its simple rules, basic formatting, and standard usage. Experienced programmers will find awk refreshingly easy to use.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E216"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Files, Records, and Fields</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Usually, gawk works with data stored in files. Often this is numeric data, but gawk can work with character information, too. If data is not stored in a file, it is supplied to gawk through a pipe or other form of redirection. Only ASCII files (text 
+files) can be properly handled with gawk. Although it does have the ability to work with binary files, the results are often unpredictable. Since most information on a Linux system is stored in ASCII, this isn't a problem.
+
+<BR>
+
+<P>As a simple example of a file that gawk works with, consider a telephone directory. It is composed of many entries, all with the same format: last name, first name, address, telephone number. The entire telephone directory is a database of sorts, 
+although without a sophisticated search routine. Indeed, the telephone directory relies on a pure alphabetical order to enable users to search for the data they need.
+
+<BR>
+
+<P>Each line in the telephone directory is a complete set of data on its own and is called a record. For example, the entry in the telephone directory for &quot;Smith, John,&quot; which includes his address and telephone number, is a record.
+
+<BR>
+
+<P>Each piece of information in the record&#151;the last name, the first name, the address, and the telephone number&#151;is called a field. For the gawk language, the field is a single piece of information. A record, then, is a number of fields that 
+pertain to a single item. A set of records makes up a file.
+
+<BR>
+
+<P>In most cases, fields are separated by a character that is used only to separate fields, such as a space, a tab, a colon, or some other special symbol. This character is called a field separator. A good example is the file /etc/passwd, which looks like 
+this:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">tparker:t36s62hsh:501:101:Tim Parker:/home/tparker:/bin/bash
+
+etreijs:2ys639dj3h:502:101:Ed Treijs:/home/etreijs:/bin/tcsh
+
+ychow:1h27sj:503:101:Yvonne Chow:/home/ychow:/bin/bash</FONT></PRE>
+
+<P>If you look carefully at the file, you will see that it uses a colon as the field separator. Each line in the /etc/passwd file has seven fields: the user name, the password, the user ID, the group ID, a comment field, the home directory, and the startup 
+shell. Each field is separated by a colon. Colons exist only to separate fields. A program looking for the sixth field in any line needs only count five colons across (because the first field doesn't have a colon before it).
+
+<BR>
+
+<P>That's where we find a problem with the gawk definition of fields as they pertain to the telephone directory example. Consider the following lines from a telephone directory:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Smith, John 13 Wilson St. 555-1283
+
+Smith, John 2736 Artside Dr, Apt 123 555-2736
+
+Smith, John 125 Westmount Cr 555-1726</FONT></PRE>
+
+<P>We &quot;know&quot; there are four fields here: the last name, the first name, the address, and the telephone number. But gawk doesn't see it that way. The telephone book uses the space character as a field separator, so on the first line it sees 
+&quot;Smith&quot; as the first field, &quot;John&quot; as the second, &quot;13&quot; as the third, &quot;Wilson&quot; as the fourth, and so on. As far as gawk is concerned, the first line when using a space character as a field separator has six fields. 
+The second line has eight fields.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>When working with a programming language, you must consider data the way the language will see it. Remember that programming languages take things literally.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>To make sense of the telephone directory the way we want to handle it, we have to find another way of structuring the data so that there is a field separator between the sections. For example, the following uses the slash character as the field 
+separator:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Smith/John/13 Wilson St./555-1283
+
+Smith/John/2736 Artside Dr, Apt 123/555-2736
+
+Smith/John/125 Westmount Cr/555-1726</FONT></PRE>
+
+<P>By default, gawk uses blank characters (spaces or tabs) as field separators unless instructed to use another character. If gawk is using spaces, it doesn't matter how many are in a row; they are treated as a single block for purposes of finding fields. 
+Naturally, there is a way to override this behavior, too.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E217"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Pattern-Action Pairs</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The gawk language has a particular format for almost all instructions. Each command is composed of two parts: a pattern and a corresponding action. Whenever the pattern is matched, gawk executes the action that matches that pattern.
+
+<BR>
+
+<P>Pattern-action pairs can be thought of in more common terms to show how they work. Consider instructing someone how to get to the post office. You might say, &quot;Go to the end of the street and turn right. At the stop sign, turn left. At the end of 
+the street, go right.&quot; You have created three pattern-action pairs with these instructions:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">end of street: turn right
+
+stop sign: turn left
+
+end of street: turn right</FONT></PRE>
+
+<P>When these patterns are met, the corresponding action is taken. You wouldn't turn right before you reached the end of the street, and you don't turn right until you get to the end of the street, so the pattern must be matched precisely for the action to 
+be performed. This is a bit simplistic, but it gives you the basic idea.
+
+<BR>
+
+<P>With gawk, the patterns to be matched are enclosed in a pair of slashes, and the actions are in a pair of curly braces:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">/pattern1/{action1}
+
+/pattern2/{action2}
+
+/pattern3/{action3}</FONT></PRE>
+
+<P>This format makes it quite easy to tell where the pattern starts and ends, and when the action starts and ends. All gawk programs are sets of these pattern-action pairs, one after the other. Remember these pattern-action pairs are working on text files, 
+so a typical set of patterns might be matching a set of strings, and the actions might be to print out parts of the line that matched.
+
+<BR>
+
+<P>Suppose there isn't a pattern? In that case, the pattern matches every time and the action is executed every time. If there is no action, gawk copies the entire line that matched without change.
+
+<BR>
+
+<P>Here are some simple examples. The gawk command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">gawk '/tparker/' /etc/passwd</FONT></PRE>
+
+<P>will look for each line in the /etc/passwd file that contains the pattern tparker and display it (there is no action, only a pattern). The output from the command will be the one line in the /etc/passwd file that contains the string tparker. If there is 
+more than one line in the file with that pattern, they all will be displayed. In this case, gawk is acting exactly like the grep utility!
+
+<BR>
+
+<P>This example shows you two important things about gawk: It can be invoked from the command line by giving it the pattern-action pair to work with and a filename, and it likes to have single quotes around the pattern-action pair in order to differentiate 
+them from the filename.
+
+<BR>
+
+<P>The gawk language is literal in its matching. The string cat will match any lines with cat in them, whether the word &quot;cat&quot; by itself or part of another word such as &quot;concatenate.&quot; To be exact, put spaces on either side of the word. 
+Also, case is important. We'll see how to expand the matching in the section &quot;Metacharacters&quot; a little later in the chapter.
+
+<BR>
+
+<P>Jumping ahead slightly, we can introduce a gawk command. The command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">gawk '{print $3}' file2.data</FONT></PRE>
+
+<P>has only an action, so it performs that action on every line in the file file2.data. The action is print $3, which tells gawk to print the third field of every line. The default field separator, a space, is used to tell where fields begin and end. If we 
+had tried the same command on the /etc/passwd file, nothing would have been displayed because the field separator used in that file is the colon.
+
+<BR>
+
+<P>We can combine the two commands to show a complete pattern-action pair:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">gawk '/UNIX/{print $2}' file2.data</FONT></PRE>
+
+<P>This command will search file2.data line by line, looking for the string UNIX. If it finds UNIX, it prints the second column of that line (record).
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>The quotes around the entire pattern-action pair are very important and should not be left off. Without them, the command might not execute properly. Make sure the quotes match (don't use a single quote at the beginning and a double quote at the 
+end).</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>You can combine more than one pattern-action pair in a command. For example, the command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">gawk '/scandal/{print $1} /rumor/{print $2}' gossip_file</FONT></PRE>
+
+<P>scans gossip_file for all occurrences of the pattern &quot;scandal&quot; and prints the first column, and then starts at the top again and searches for the pattern &quot;rumor&quot; and prints the second column. The scan starts at the top of the file 
+each time there is a new pattern-action pair.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E318"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Simple Patterns</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>As you might have figured out, gawk numbers all of the fields in a record. The first field is $1, the second is $2, and so on. The entire record is called $0. As a short form, gawk allows you to ignore the $0 in simple commands, so the instructions
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">gawk '/tparker/{print $0}' /etc/passwd
+
+gawk '/tparker/{print}' /etc/passwd
+
+gawk '/tparker/' /etcpasswd</FONT></PRE>
+
+<P>result in the same output (the latter one because no action causes the entire line to be printed).
+
+<BR>
+
+<P>Sometimes you want to do more than match a simple character string. The gawk language has many powerful features, but I'll just introduce a few at the moment. We can, for example, make a comparison of a field with a value. The command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">gawk '$2 == &quot;foo&quot; {print $3}' testfile</FONT></PRE>
+
+<P>instructs gawk to compare the second string ($2) of each record in testfile and check to see if it is equal to the string foo. If it is, gawk prints the third column ($3).
+
+<BR>
+
+<P>This command demonstrates a few important points. First, there are no slashes around the pattern because we are not matching a pattern but are evaluating something. Slashes are used only for character matches. Second, the == sign means &quot;is equal 
+to.&quot; We must use two equal signs, because the single equal sign is used for assignment of values, as you will see shortly. Finally, we put double quotations around foo because we want gawk to interpret it literally. Only strings of characters that are 
+to be literally interpreted must be quoted in this manner.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Don't confuse the quotes used for literal characters with those used to surround the pattern-action pair on the command line. If you use the same quote marks for both, gawk will be unable to process the command properly.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E69E319"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Comparisons and Arithmetic</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>An essential component of any programming language is the ability to compare two strings or numbers and evaluate whether they are equal or different. The gawk program has several comparisons, including ==, which you just saw in an example. Table 26.1 
+shows the important comparisons.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 26.1. The important comparisons.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Comparison</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Description</I>
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+==
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Equal to
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+!=
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Not equal to
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+&gt;
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Greater than
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+&lt;
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Less than
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+&gt;=
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Greater than or equal to
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+&lt;=
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Less than or equal to</FONT>
+
+</TABLE><P>These are probably familiar to you from arithmetic and other programming languages you may have seen. From this, you can surmise that the command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">gawk '$4 &gt; 100' testfile</FONT></PRE>
+
+<P>will display every line in testfile in which the value in the fourth column is greater than 100.
+
+<BR>
+
+<P>All of the normal arithmetic commands are available, including add, subtract, multiply, and divide. There are also more advanced functions such as exponentials and remainders (also called modulus). Table 26.2 shows the basic arithmetic operations that 
+gawk supports.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 26.2. Basic arithmetic operators.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Operator</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Description</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Example</I>
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
++
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Addition
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+2+6
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Subtraction
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+6-3
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+*
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Multiplication
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+2*5
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+/
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Division
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+8/4
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+^
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Exponentiation
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+3^2 (=9)
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+%
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Remainder
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+9%4 (=1)</FONT>
+
+</TABLE><P>You can combine column numbers and math, too. For example, the action
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">{print $3/2}</FONT></PRE>
+
+<P>divides the number in the third column by 2.
+
+<BR>
+
+<P>There is also a set of arithmetic functions for trigonometry and generating random numbers. See Table 26.3.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 26.3. Random-number and trigonometric functions.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Function
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Description
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+sqrt(x)
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Square root of x
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+sin(x)
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Sine of x (in radians)
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+cos(x)
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Cosine of x (in radians)
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+atan2(x,y)
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Arctangent of x/y
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+log(x)
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Natural logarithm of x
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+exp(x)
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The constant e to the power x
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+int(x)
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Integer part of x
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+rand()
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Random number between 0 and 1
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+srand(x)
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Set x as seed for rand()</FONT>
+
+</TABLE><P>The order of operations is important to gawk, as it is to regular arithmetic. The rules gawk follows are the same as with arithmetic: all multiplications, divisions, and remainders are performed before additions and subtractions. For example, 
+the command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">{print $1+$2*$3}</FONT></PRE>
+
+<P>multiplies column two by column three and then adds the result to column one. If you wanted to force the addition first, you would have to use parentheses:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">{print ($1+$2)*$3}</FONT></PRE>
+
+<P>Because these are the same rules you have heard about since grade school, they shouldn't cause you any confusion. Remember, if in doubt, put parentheses in the proper places to force the operations.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E320"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Strings and Numbers</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>If you've used any other programming language, these concepts will be familiar to you. If you are new to programming, you will probably find them obvious, but you'd be surprised how many people get things hopelessly muddled by using strings when they 
+should have used numbers.
+
+<BR>
+
+<P>A string is a set of characters that are to be interpreted literally by gawk. Strings are surrounded by quotation marks. Numbers are not surrounded by quotation marks and are treated as real values.
+
+<BR>
+
+<P>For example, the command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">gawk '$1 != &quot;Tim&quot; {print}' testfile</FONT></PRE>
+
+<P>will print any line in testfile that doesn't have the word Tim in the first column. If we had left out the quotation marks around Tim, gawk wouldn't have processed the command properly. The command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">gawk '$1 == &quot;50&quot; {print}' testfile</FONT></PRE>
+
+<P>will display any line that has the string 50 in it. It does not attempt to see if the value stored in the first column is different than 50; it just does a character check. The string 50 is not equal to the number 50 as far as gawk is concerned.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E321"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Formatting Output</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>We've seen how to do simple actions in the commands we've already discussed, but you can do several things in an action. For example, the command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">gawk '$1 != &quot;Tim&quot; {print $1, $5, $6, $2}' testfile</FONT></PRE>
+
+<P>will print the first, fifth, sixth, and second columns of testfile for every line that doesn't have the first column equal to &quot;Tim&quot;. You can place as many of these columns as you want in a print 
+
+<BR>command.
+
+<BR>
+
+<P>Indeed, you can place strings in a print command, too, such as in this command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">gawk '$1 != &quot;Tim&quot; {print &quot;The entry for &quot;, $1, &quot;is not Tim. &quot;, $2}' testfile</FONT></PRE>
+
+<P>which will print the strings and the columns as shown. Each section of the print command is separated by a comma. There are also spaces at the end of the strings to ensure there is a space between the string and the value of the column that is printed.
+
+<BR>
+
+<P>You can use additional formatting instructions to make gawk format the output properly. These instructions are borrowed from the C language, and they use the command printf (print formatted) instead of print.
+
+<BR>
+
+<P>The printf command uses a placeholder scheme, but the gawk language knows how to format the entry because of the placeholder and looks later in the command line to find out what to put there. An example will help make this obvious:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">{printf &quot;%5s likes this language\n&quot;, $2}</FONT></PRE>
+
+<P>The %5s part of the line instructs gawk how to format the string, in this case using five string characters. The value to place in this position is given at the end of the line as the second column. The \n at the end of the quoted section is a newline 
+character. If the second column of a four-line file held names, printf would format the output like this:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Tim likes this language
+
+Geoff likes this language
+
+Mike likes this language
+
+Joe likes this language</FONT></PRE>
+
+<P>You will notice that the %5s format means to right-justify the column entry. This prevents awkward spacing.
+
+<BR>
+
+<P>The gawk language supports several format placeholders. They are shown in Table 26.4.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 26.4. Format placeholders.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Placeholder
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Description
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+c
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+If a string, the first character of the string; if an integer, the character that matches the first value
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+d
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+An integer
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+e
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+A floating-point number in scientific notation
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+f
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+A floating-point number in conventional notation
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+g
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+A floating-point number in either scientific or conventional notation, whichever is shorter
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+o
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+An unsigned integer in octal format
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+s
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+A string
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+x
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+An unsigned integer in hexadecimal format</FONT>
+
+</TABLE><P>Whenever you use one of the format characters, you can place a number before the character to show how many digits or characters are to be used. Therefore, the format 6d would have six digits of an integer. Many formats can be on a line, but 
+each must have a value at the end of the line, as in this example
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">{printf &quot;%5s works for %5s and earns %2d an hour&quot;, $1, $2, $3}</FONT></PRE>
+
+<P>Here, the first string is the first column, the second string is the second column, and the third set of digits is from the third column in a file. The output would be something like:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Joe works for Mike and earns 12 an hour</FONT></PRE>
+
+<P>A few little tricks are useful. As you saw in an earlier example, strings are right-justified, so the command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">{printf &quot;%5s likes this language\n&quot;, $2}</FONT></PRE>
+
+<P>results in the output
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Tim likes this language
+
+Geoff likes this language
+
+Mike likes this language
+
+Joe likes this language</FONT></PRE>
+
+<P>To left-justify the names, place a minus sign in the format statement:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">{printf &quot;%-5s likes this language\n&quot;, $2}</FONT></PRE>
+
+<P>This will result in the output
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Tim likes this language
+
+Geoff likes this language
+
+Mike likes this language
+
+Joe likes this language</FONT></PRE>
+
+<P>Notice that the name is justified on the left instead of on the right.
+
+<BR>
+
+<P>When dealing with numbers, you can specify the precision to be used, so that the command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">{printf &quot;%5s earns $%.2f an hour&quot;, $3, $6}</FONT></PRE>
+
+<P>will use the string in column three and put five characters from it in the first placeholder, and then take the value in the sixth column and place it in the second placeholder with two digits after the decimal point. The output of the command would be 
+like this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Joe earns $12.17 an hour</FONT></PRE>
+
+<P>The dollar sign was inside the quotation marks in the printf command, and was not generated by the system. It has no special meaning inside the quotation marks. If you want to limit the number of digits to the right of the period, you can do that too. 
+The command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">{printf &quot;%5s earns $%6.2f an hour&quot;, $3, $6}</FONT></PRE>
+
+<P>will put six digits before the period and two after.
+
+<BR>
+
+<P>Finally, we can impose some formatting on the output lines themselves. In an earlier example, you saw the use of \n to add a newline character. These are called escape codes, because the backslash is interpreted by gawk to mean something different than 
+a backslash. Table 26.5 shows the important escape codes that gawk supports.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 26.5. Escape codes.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Code</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Description</I>
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\a
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Bell
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\b
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Backspace
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\f
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Formfeed
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\n
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Newline
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\r
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Carriage return
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\t
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Tab
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\v
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Vertical tab
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\ooo
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Octal character ooo
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\xdd
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Hexadecimal character dd
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\c
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Any character c</FONT>
+
+</TABLE><P>You can, for example, escape a quotation mark by using the sequence \&quot;, which will place a quotation mark in the string without interpreting it to mean something special. For example:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">{printf &quot;I said \&quot;Hello\&quot; and he said &quot;\Hello\&quot;.&quot;</FONT></PRE>
+
+<P>Awkward-looking, perhaps, but necessary to avoid problems. You'll see lots more escape characters used in examples later in this chapter.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E322"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Changing Field Separators</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>As I mentioned earlier, the default field separator is always a whitespace character (spaces or tabs). This is not often convenient, as we found with the /etc/passwd file. You can change the field separator on the gawk command line by using the -F 
+option followed by the separator you want to use:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">gawk -F&quot;:&quot; '/tparker/{print}' /etc/passwd</FONT></PRE>
+
+<P>This command changes the field separator to a colon and searches the etc/passwd file for the lines containing the string tparker. The new field separator is put in quotation marks to avoid any confusion. Also, the -F option (it must be a capital F) is 
+before the first quote character enclosing the pattern-action pair. If it came after, it wouldn't be applied.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E323"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Metacharacters</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Earlier I mentioned that gawk is particular about its pattern-matching habits. The string cat will match anything with the three letters on the line. Sometimes you want to be more exact in the matching. If you only want to match the word &quot;cat&quot; 
+but not &quot;concatenate,&quot; you should put spaces on either side of the pattern:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">/ cat / {print}</FONT></PRE>
+
+<P>What about matching different cases? That's where the or instruction, represented by a vertical bar, comes in. For example
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">/ cat | CAT / {print}</FONT></PRE>
+
+<P>will match &quot;cat&quot; or &quot;CAT&quot; on a line. However, what about &quot;Cat?&quot; That's where we also need to specify options within a pattern. With gawk, we use square brackets for this. To match any combination of &quot;cat&quot; in 
+upper- or lowercase, we must write the pattern like this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">/ [Cc][Aa][Tt] / {print}</FONT></PRE>
+
+<P>This can get pretty awkward, but it's seldom necessary. To match just &quot;Cat&quot; and &quot;cat,&quot; for example, we would use the pattern
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">/ [Cc]at / {print}</FONT></PRE>
+
+<P>A useful matching operator is the tilde (~). This is used when you want to look for a match in a particular field in a record. For example, the pattern
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$5 ~ /tparker/</FONT></PRE>
+
+<P>will match any records where the fifth field is tparker. It is similar to the == operator. The matching operator can be negated, so
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$5 !~ /tparker/</FONT></PRE>
+
+<P>will find any record where the fifth field is not equal to tparker.
+
+<BR>
+
+<P>A few characters (called metacharacters) have special meaning to gawk. Many of these metacharacters will be familiar to shell users, because they are carried over from UNIX shells. The metacharacters shown in Table 26.6 can be used in gawk patterns.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 26.6. Metacharacters.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Metacharacter</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Meaning</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Example</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Meaning of </I><I>Example</I>
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+~
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The beginning of the field
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+$3 ~ /^b/
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Matches if the third field starts with b
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+$
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The end of the field
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+$3 ~ /b$/
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Matches if the third field ends with b
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+.
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Matches any single character
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+$3 ~ /i.m/
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Matches any record that has a third field value of i, another character, and then m
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+|
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Or
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+/cat|CAT/
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Matches cat or CAT
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+*
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Zero or more repetitions of a character
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+/UNI*X/
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Matches UNX, UNIX, UNIIX, UNIIIX, and so on
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
++
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+One or more repetitions of a character
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+/UNI+X/
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Matches UNIX, UNIIX, and so on, but not UNX
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\{a,b\}
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The number of repetitions between a and b (both integers)
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+/UNI\{1,3\}X
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Matches only UNIX, UNIIX, and UNIIIX
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+?
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Zero or one repetitions of a string
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+/UNI?X/
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Matches UNX and UNIX only
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+[]
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Range of characters
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+/I[BDG]M/
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Matches IBM, IDM, and IGM
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+[^]
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Not in the set
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+/I[^DE]M/
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Matches all three character sets starting with I and ending in M, except IDM and IEM</FONT>
+
+</TABLE><P>Some of these metacharacters are used frequently. You will see some examples later in this chapter.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E218"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Calling </B><B>gawk</B><B> Programs</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Running pattern-action pairs one or two at a time from the command line would be pretty difficult (and time consuming), so gawk allows you to store pattern-action pairs in a file. A gawk program (called a script) is a set of pattern-action pairs stored 
+in an ASCII file. For example, this could be the contents of a valid gawk script:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">/tparker/{print $6}
+
+$2 != &quot;foo&quot; {print}</FONT></PRE>
+
+<P>The first line would look for tparker and print the sixth column, and the second line would start at the top of the file again and look for second columns that don't match the string &quot;foo&quot;, then display the entire line. When you are writing a 
+script, you don't need to worry about the quotation marks around the pattern-action pairs as you did on the command line, because the new command to execute this script makes it obvious where the pattern-action pairs start and end.
+
+<BR>
+
+<P>After you have saved all of the pattern-action pairs in a program, they are called by gawk with the -f option on the command line:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">gawk -f script filename</FONT></PRE>
+
+<P>This command causes gawk to read all of the pattern-action pairs from the file script and process them against the file called filename. This is how most gawk programs are written. Don't confuse the -f and -F options!
+
+<BR>
+
+<P>If you want to specify a different field separator on the command line (they can be specified in the script, but use a special format you'll see later), the -F option must follow the -f option:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">gawk -f script -F&quot;:&quot; filename</FONT></PRE>
+
+<P>If you want to process more than one file using the script, just append the names of the files:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">gawk -f script filename1 filename2 filename3 ...</FONT></PRE>
+
+<P>By default, all output from the gawk command is displayed on the screen. You could redirect it to a file with the usual Linux redirection commands:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">gawk -f script filename &gt; save_file</FONT></PRE>
+
+<P>There is another way of specifying the output file from within the script, but we'll come back to that in a moment.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E324"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>BEGIN and END</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Two special patterns supported by gawk are useful when writing scripts. The BEGIN pattern is used to indicate any actions that should take place before gawk starts processing a file. This is usually used to initialize values, set parameters such as 
+field separators, and so on. The END pattern is used to execute any instructions after the file has been completely processed. Typically, this can be for summaries or completion notices.
+
+<BR>
+
+<P>Any instructions following the BEGIN and END patterns are enclosed in curly braces to identify which instructions are part of both patterns. Both BEGIN and END must appear in capitals. Here's a simple example of a gawk script that uses BEGIN and END, 
+albeit only for sending a message to the terminal:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">BEGIN { print &quot;Starting the process the file&quot; }
+
+$1 == &quot;UNIX&quot; {print}
+
+$2 &gt; 10 {printf &quot;This line has a value of %d&quot;, $2}
+
+END { print &quot;Finished processing the file. Bye!&quot;}</FONT></PRE>
+
+<P>In this script, a message is initially printed out, and each line that has the word UNIX in the first column is echoed to the screen. Next, the file is processed again to look for any line with the second column greater than 10, and the message is 
+generated with its current value. Finally, the END pattern prints out a message that the program is finished.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E325"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Variables</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>If you have used any programming language before, you know that a variable is a storage location for a value. Each variable has a name and an associated value, which may change.
+
+<BR>
+
+<P>With gawk, you assign a variable a value using the assignment operator, =:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">var1 = 10</FONT></PRE>
+
+<P>This assigns the value 10 (numeric, not string) to the variable var1. With gawk, you don't have to declare variable types before you use them as you must with most other languages. This makes it easy to work with variables in gawk.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Don't confuse the assignment operator, =, which assigns a value, with the comparison operator, ==, which compares two values. This is a common error that takes a little practice to overcome.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>The gawk language lets you use variables within actions, so the pattern-action pair
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$1 == &quot;Plastic&quot; { count = count + 1 }</FONT></PRE>
+
+<P>checks to see if the first column is equal to the string &quot;Plastic&quot;, and if it is, increments the value of count by one. Somewhere above this line we should set a preliminary value for the variable count (usually in the BEGIN section), or we 
+will be adding one to something that isn't a recognizable number.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Actually, gawk assigns all variables a value of zero when they are first used, so you don't really have to define the value before you use it. It is, however, good programming practice to initialize the variable anyway.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>Here's a more complete example:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">BEGIN { count = 0 }
+
+$5 == &quot;UNIX&quot; { count = count + 1 }
+
+END { printf &quot;%d occurrences of UNIX were found&quot;, count }</FONT></PRE>
+
+<P>In the BEGIN section, the variable count is set to zero. Then, the gawk pattern-action pair is processed, with every occurrence of &quot;UNIX&quot; adding one to the value of count. After the entire file has been processed, the END statement displays 
+the total number.
+
+<BR>
+
+<P>Variables can be used in combination with columns and values, so all of the following statements are legal:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">count = count + $6
+
+count = $5 - 8
+
+count = $5 + var1</FONT></PRE>
+
+<P>Variables can also be part of a pattern. The following are all valid as pattern-action pairs:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$2 &gt; max_value {print &quot;Max value exceeded by &quot;, $2 - max_value}
+
+$4 - var1 &lt; min_value {print &quot;Illegal value of &quot;, $4}</FONT></PRE>
+
+<P>Two special operators are used with variables to increment and decrement by one, because these are common operations. Both of these special operators are borrowed from the C language:
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+count++
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+increments count by one
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+count&#151;
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+decrements count by one</FONT>
+
+</TABLE><BR>
+
+<A NAME="E69E326"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Built-In Variables</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The gawk language has a few built-in variables that are used to represent things such as the total number of records processed. These are useful when you want to get totals. Table 26.7 shows the important built-in variables.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 26.7. The important built-in variables.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Variable</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Description</I>
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+NR
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The number of records read so far
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+FNR
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The number of records read from the current file
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+FILENAME
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The name of the input file
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+FS
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Field separator (default is whitespace)
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+RS
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Record separator (default is newline)
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+OFMT
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Output format for numbers (default is %g)
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+OFS
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Output field separator
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+ORS
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Output record separator
+
+</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+NF
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The number of fields in the current record</FONT>
+
+</TABLE><P>The NR and FNR values are the same if you are processing only one file, but if you are doing more than one file, NR is a running total of all files, while FNR is the total for the current file only.
+
+<BR>
+
+<P>The FS variable is useful, because it controls the input file's field separator. To use the colon for the /etc/passwd file, for example, you would use the command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">FS=&quot;:&quot;</FONT></PRE>
+
+<P>in the script, usually as part of the BEGIN pattern.
+
+<BR>
+
+<P>You can use these built-in variables as you would any other. For example, the command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">NF &lt;= 5 {print &quot;Not enough fields in the record&quot;}</FONT></PRE>
+
+<P>gives you a way to check the number of fields in the file you are processing and generate an error message if the values are incorrect.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E219"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Control Structures</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Enough of the details have been covered to allow us to start doing some real gawk programming. Although we have not covered all of gawk's pattern and action considerations, we have seen all the important material. Now we can look at writing control 
+structures.
+
+<BR>
+
+<P>If you have any programming experience at all, or have tried some shell script writing, many of these control structures will appear familiar. If you haven't done any programming, common sense should help, as gawk is cleanly laid out without weird 
+syntax. Follow the examples and try a few test programs of your own.
+
+<BR>
+
+<P>Incidentally, gawk enables you to place comments anywhere in your scripts, as long as the comment starts with a # sign. You should use comments to indicate what is going on in your scripts if it is not immediately obvious.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E327"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>The </B><B>if</B><B> Statement</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The if statement is used to allow gawk to test some condition and, if it is true, execute a set of commands. The general syntax for the if statement is
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">if (expression) {commands} else {commands}</FONT></PRE>
+
+<P>The expression is always evaluated to see if it is true or false. No other value is calculated for the if expression. Here's a simple if script:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"># a simple if loop
+
+ (if ($1 == 0){
+
+print &quot;This cell has a value of zero&quot;
+
+}
+
+else {
+
+printf &quot;The value is %d\n&quot;, $1
+
+})</FONT></PRE>
+
+<P>You will notice that I used the curly braces to lay out the program in a readable manner. Of course, this could all have been typed on one line and gawk would have understood it, but writing in a nicely formatted manner makes it easier to understand 
+what is going on, and debugging the program becomes much easier if the need arises.
+
+<BR>
+
+<P>In this simple script, we test the first column to see if the value is zero. If it is, a message to that effect is printed. If not, the printf statement prints the value of the column.
+
+<BR>
+
+<P>The flow of the if statement is quite simple to follow. There can be several commands in each part, as long as the curly braces mark the start and end. There is no need to have an else section. It can be left out entirely, if desired. For example, this 
+is a complete and valid gawk script:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"> (if ($1 == 0){
+
+print &quot;This cell has a value of zero&quot;
+
+})</FONT></PRE>
+
+<P>The gawk language, to be compatible with other programming languages, allows a special format of the if statement when a simple comparison is being conducted. This quick-and-dirty if structure is harder to read for novices, and I don't recommend it if 
+you are new to the language. For example, here's the if statement written the proper way:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"># a nicely formatted if loop
+
+ (if ($1 &gt; $2){
+
+print &quot;The first column is larger&quot;
+
+}
+
+else {
+
+print &quot;The second column is larger&quot;
+
+})</FONT></PRE>
+
+<P>Here's the quick-and-dirty method:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"># if syntax from hell
+
+$1 &gt; $2{
+
+print &quot;The first column is larger&quot;
+
+}
+
+{print &quot;The second column is larger&quot;)</FONT></PRE>
+
+<P>You will notice that the keywords if and else are left off. The general structure is retained: expression, true commands, and false commands. However, this is much less readable if you do not know that it is a if statement! Not all versions of gawk will 
+allow this method of using if, so don't be too surprised if it doesn't work. Besides, you should be using the more verbose method of writing if statements for readability's sake.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E328"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>The </B><B>while</B><B> Loop</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The while statement allows a set of commands to be repeated as long as some condition is true. The condition is evaluated each time the program loops. The general format of the gawk while loop is
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">while (expression){
+
+commands
+
+}</FONT></PRE>
+
+<P>For example, the while loop can be used in a program that calculates the value of an investment over several years (the formula for the calculation is value=amount(1+interest_rate)^years):
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"># interest calculation computes compound interest
+
+# inputs from a file are the amount, interest_rate, and years
+
+{var = 1
+
+while (var &lt;= $3) {
+
+printf(&quot;%f\n&quot;, $1*(1+$2)^var)
+
+var++
+
+}
+
+}</FONT></PRE>
+
+<P>You can see in this script that we initialize the variable var to 1 before entering the while loop. If we hadn't done this, gawk would have assigned a value of zero. The values for the three variables we use are read from the input file. The 
+autoincrement command is used to add one to var each time the line is executed.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E329"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>The </B><B>for</B><B> Loop</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The for loop is commonly used when you want to initialize a value and then ignore it. The syntax of the gawk for loop is
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">for (initialization; expression; increment) {
+
+command
+
+}</FONT></PRE>
+
+<P>The initialization is executed only once and then ignored, the expression is evaluated each time the loop executes, and the increment is executed each time the loop is executed. Usually the increment is a counter of some type, but it can be any 
+collection of valid commands. Here's an example of a for loop, which is the same basic program as shown for the while loop:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"># interest calculation computes compound interest
+
+# inputs from a file are the amount, interest_rate, and years
+
+{for (var=1; var &lt;= $3; var++) {
+
+printf(&quot;%f\n&quot;, $1*(1+$2)^var)
+
+}
+
+}</FONT></PRE>
+
+<P>In this case, var is initialized when the for loop starts. The expression is evaluated, and if true, the loop runs. Then the value of var is incremented and the expression is tested again.
+
+<BR>
+
+<P>The format of the for loop might look strange if you haven't encountered programming languages before, but it is the same as the for loop used in C, for example.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E330"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>next and exit</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The next instruction tells gawk to process the next record in the file, regardless of what it was doing. For example, in this script:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">{ command1
+
+command2
+
+command3
+
+next
+
+command4
+
+}</FONT></PRE>
+
+<P>as soon as the next statement is read, gawk moves to the next record in the file and starts at the top of the current script block (given by the curly brace). In this example, command4 will never be executed because the next statement moves back up to 
+command1 each time.
+
+<BR>
+
+<P>The next statement is usually used inside an if loop, where you may want execution to return to the start of the script if some condition is met.
+
+<BR>
+
+<P>The exit statement makes gawk behave as though it has reached the end of the file, and it then executes any END patterns (if any exist). This is a useful method of aborting processing if there was an error in the file.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E331"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Arrays</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The gawk language supports arrays and enables you to access any element in the array easily. No special initialization is necessary with an array, because gawk treats it like any other variable. The general format for declaring arrays is
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">var[num]=value</FONT></PRE>
+
+<P>As an example, consider the following script that reads an input file and generates an output file with the lines reversed in order:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"># reverse lines in a file
+
+{line[NR] = $0 } # remember each line
+
+END {var=NR # output lines in reverse order
+
+while (var &gt; 0){
+
+print line[var]
+
+var&#151;
+
+}
+
+}</FONT></PRE>
+
+<P>In this simple program (try and do the same task in any other programming language to see how efficient gawk is!), we used the NR (number of records) built-in variable. After reading each line into the array line[], we simply start at the last record 
+and print them again, stepping down through the array each time. We don't have to declare the array or do anything special with it, which is one of the powerful features of gawk.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E220"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Summary</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>We've only scratched the surface of gawk's abilities, but you might have noticed that it is a relatively easy language to work with and places no special demands on the programmer. That's one of the reasons gawk is so often used for quick programs. It 
+is ideal, for example, for writing a quick script to count the total size of all the files in a directory. In the C language, this would take many lines, but it can be done in less than a dozen lines in gawk.
+
+<BR>
+
+<P>If you are a system administrator or simply a power user, you will find that gawk is a great complement to all the other tools you have available, especially because it can accept input from a pipe or redirection. For more information on gawk, check the 
+man pages or one of the few awk books that are available.
+
+<BR>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl25.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="#I0" TARGET="_self"><IMG SRC="purtop.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Page Top"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl27.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+</BODY></HTML>
+
+
+

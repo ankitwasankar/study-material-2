@@ -1,0 +1,17 @@
+Oreilly IRC Hacks 2004
+
+Book Description
+
+IRC ( Internet Relay Chat) may very well turn out to be the world's most successful hack. In 1988, Jarkko Oikarinen wrote the original IRC program at the University of Oulu, Finland. As he says in his forward, IRC started as one summer trainee's programming exercise. A hack grew into a software development project that hundreds of people participated in, and then became a worldwide environment where tens of thousands of people now spend time with each other. I have found many of my friends through IRC and learnt a significant part of my present software engineering knowledge while using and working with IRC. That would not have been possible without learning from code examples and hacks from others.
+
+IRC has continued to grow in popularity since its inception. Millions of people from all over the world now use IRC to chat with friends, discuss projects and collaborate on research. With a simple, clearly defined protocol, IRC has become one of the most accessible chat environments, with clients written for a multitude of operating systems. And IRC is more than just a simple chat system it is a network of intercommunicating servers, allowing thousands of clients to connect from anywhere in the world using the IRC protocol.
+
+While IRC is easy to get into and many people are happy to use it without being aware of what s happening under the hood, there are those who hunger for more knowledge, and this book is for them. IRC Hacks is a collection of tips and tools that cover just about everything you'd need to become a true IRC master, featuring contributions from some of the most renowned IRC hackers, many of whom collaborated on IRC, grouping together to form the channel #irchacks on the freenode IRC network (irc.freenode.net).
+
+Like all of our Hacks books, there are many different ways to use IRC Hacks. You can read the book from cover to cover, but you might be better served by picking an interesting item from the table of contents and just diving in.
+
+If you're relatively new to IRC, you should considering starting with a few hacks from each progressive chapter. Chapter 1 starts you off by showing you how to connect to IRC, while Chapter 2 acquaints you with the everyday concepts you'll need to use IRC effectively. Chapter 3 is all about users and channels, and introduces the first pieces of code. Chapter 4 shows you how to make useful enhancements to IRC clients.
+
+Chapter 5 is where you will learn the basics about creating IRC bots, with Chapters 6-12 introducing more complex bots that can be used for logging, servicing communities, searching, announcing, networking, managing channels or simply for having fun. Chapter 13 delves into the IRC protocol in more detail, and Chapter 14 demonstrates some interesting alternative methods for connecting to IRC. Finally, Chapter 15 will move you on to new pastures by showing you how to set up your own IRC server.
+
+This book presents an opportunity to learn how IRC works and how to make best use of some of the features that have made it the most successful, most scalable, and most mature chat system on this planet. IRC Hacks delves deep into the possibilities.

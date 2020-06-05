@@ -1,0 +1,477 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Red Hat Linux Unleashed rhl45.htm </TITLE>
+
+<LINK REL="ToC" HREF="index.htm">
+
+<LINK REL="Index" HREF="htindex.htm">
+
+<LINK REL="Next" HREF="rhl46.htm">
+
+<LINK REL="Previous" HREF="rhl44.htm"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+
+<A NAME="I0"></A>
+
+<H2>Red Hat Linux Unleashed rhl45.htm</H2>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl44.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl46.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+<HR ALIGN=CENTER>
+
+<P>
+
+<UL>
+
+<UL>
+
+<UL>
+
+<LI>
+
+<A HREF="#E68E366" >Weak Passwords</A>
+
+<LI>
+
+<A HREF="#E68E367" >File Security</A>
+
+<LI>
+
+<A HREF="#E68E368" >Modem Access</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E490" >Callback Modems</A>
+
+<LI>
+
+<A HREF="#E69E491" >Modem-Line Problems</A>
+
+<LI>
+
+<A HREF="#E69E492" >How a Modem Handles a Call</A></UL>
+
+<LI>
+
+<A HREF="#E68E369" >UUCP</A>
+
+<LI>
+
+<A HREF="#E68E370" >Local Area Network Access</A>
+
+<LI>
+
+<A HREF="#E68E371" >Tracking Intruders</A>
+
+<LI>
+
+<A HREF="#E68E372" >Preparing for the Worst</A>
+
+<LI>
+
+<A HREF="#E68E373" >Summary</A></UL></UL></UL>
+
+<HR ALIGN=CENTER>
+
+<A NAME="E66E45"></A>
+
+<H1 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>45</B></FONT></CENTER></H1>
+
+<BR>
+
+<A NAME="E67E45"></A>
+
+<H2 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>Network Security</B></FONT></CENTER></H2>
+
+<BR>
+
+<P>Covering everything about security would take several volumes of books, so we can only look at the basics. We can take a quick look at the primary defenses you need in order to protect yourself from unauthorized access through telephone lines (modems), 
+as well as some aspects of network connections. We won't bother with complex solutions that are difficult to implement because they can require a considerable amount of knowledge and they apply only to specific configurations.
+
+<BR>
+
+<P>Instead, we can look at the basic methods of buttoning up your Linux system, most of which are downright simple and effective. Many system administrators either don't know what is necessary to protect a system from unauthorized access, or they have 
+discounted the chances of a break-in happening to them. It happens with alarming frequency, so take the industry's advice: Don't take chances. Protect your system.
+
+<BR>
+
+<P>In this chapter, we look at the following topics:
+
+<BR>
+
+<UL>
+
+<LI>File permissions
+
+<BR>
+
+<BR>
+
+<LI>Protecting modem access
+
+<BR>
+
+<BR>
+
+<LI>UUCP's holes
+
+<BR>
+
+<BR>
+
+<LI>Tracking an intruder
+
+<BR>
+
+<BR>
+
+<LI>What to do if you get broken into
+
+<BR>
+
+<BR>
+
+</UL>
+
+<BR>
+
+<A NAME="E68E366"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Weak Passwords</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Believe it or not, the most common access method of breaking into a system through a network, over a modem connection, or sitting in front of a terminal is through weak passwords. Weak (which means easily guessable) passwords are very common. When these 
+are used by system users, even the best security systems can't protect against intrusion.
+
+<BR>
+
+<P>If you're managing a system that has several users, you should implement a policy requiring users to set their passwords at regular intervals (usually six to eight weeks is a good idea), and to use non-English words. The best passwords are combinations 
+of letters and numbers that are not in the dictionary.
+
+<BR>
+
+<P>Sometimes, though, having a policy against weak passwords isn't enough. You might want to consider forcing stronger password usage by using public domain or commercial software that checks potential passwords for susceptibility. These packages are often 
+available in source code, so they can be compiled for Linux without a problem.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E367"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>File Security</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Security begins at the file permission level and should be carried out carefully. Whether you want to protect a file from snooping by an unauthorized invader or another user, you should carefully set your umask (file creation mask) to set your files for 
+maximum security.
+
+<BR>
+
+<P>Of course, this is really only important if you have more than one user on the system or have to consider hiding information from certain users. However, if you are on a system with several users, consider forcing umask settings for everyone and set 
+read-and-write permissions only for the user, and no permissions for everyone else. This is as good as you can get with file security.
+
+<BR>
+
+<P>For very sensitive files (such as accounting or employee information), consider encrypting them with a simple utility. There are many such programs available. Most require only a password to trigger the encryption or decryption.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E368"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Modem Access</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>For most Linux users, protecting your system from access through an Internet gateway isn't important because few users have an Internet access machine directly connected to their Linux boxes. Instead, the concern should be about protecting yourself from 
+break-in through the most accessible method open to system invaders: modems.
+
+<BR>
+
+<P>Modems are the most commonly used interface into every Linux system (unless you're running completely stand-alone, or on a closed network). Modems are used for remote user access, as well as for network and Internet access. Securing your system's modem 
+lines from intrusion is simple and effective enough to stop casual browsers.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E490"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Callback Modems</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The safest technique to prevent unauthorized access through modems is to employ a callback modem. A callback modem lets a user connect to the system as usual; it then hangs up and consults a list of valid users and their telephone numbers before calling 
+the user back to establish the call. Callback modems are quite expensive, so this is not a practical solution for many systems.
+
+<BR>
+
+<P>Callback modems have some problems, too, especially if users change locations frequently. Also, callback modems are vulnerable to abuse because of call-forwarding features of modern telephone switches.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E491"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Modem-Line Problems</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The typical telephone modem can be a source of problems if it doesn't hang up the line properly after a user session has finished. Most often, this is a problem with the wiring of the modem or the configuration setup.
+
+<BR>
+
+<P>Wiring problems might sound trivial, but there are many systems with hand-wired modem cables that don't properly control all the pins. In this case, the system can be left with a modem session not properly closed and a logout not completed. Anyone 
+calling that modem continues where the last user ended.
+
+<BR>
+
+<P>To prevent this kind of problem, make sure the cables connecting the modem to the Linux machine are complete. Replace hand-wired cables that you are unsure of with properly constructed commercial ones. Also, watch the modem when a few sessions are 
+completed to make sure the line hangs up properly.
+
+<BR>
+
+<P>Configuration problems can also prevent line hangups. Check the modem documentation to make sure your Linux script can hang up the telephone line when the connection is broken. This is seldom a problem with the most commonly used modems, but off-brand 
+modems that do not have true compatibility with a supported modem can cause problems. Again, watch the modem after a call to make sure it is hanging up properly.
+
+<BR>
+
+<P>One way to prevent break-ins is to remove the modem from the circuit when it's not needed. Because access through modems by unwanted intruders is usually attempted after normal business hours, you can control the serial ports that the modems are 
+connected to by using cron to change the status of the ports or disable the ports completely after-hours.
+
+<BR>
+
+<P>For most systems this is not practical, but for many businesses it is a simple-enough solution. If late-night access is required, one or two modem lines out of a pool can be kept active. Some larger systems keep a dedicated number for the after-hours 
+modem line, usually different from the normal modem line numbers.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E492"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>How a Modem Handles a Call</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>In order for a user to gain access to Linux through a modem line, the system uses the getty process. The getty process itself is spawned by the init process for each serial line. The getty program is responsible for getting user names, setting 
+communications parameters (baud rate and terminal mode, for example), and controlling time-outs. With Linux, the serial and multiport board ports are controlled by the /etc/ttys file.
+
+<BR>
+
+<P>Some Linux systems enable a dialup password system to be implemented. This forces a user calling on a modem to enter a second password that validates access through the modem. If it is supported on your system, dialup passwords are usually set in a file 
+called /etc/dialups.
+
+<BR>
+
+<P>The Linux system uses the file /etc/dialups to supply a list of ports that offer dialup passwords, while a second file (such as /etc/d_passwd) has the passwords for the modem lines. Access is determined by the type of shell utilized by the user. The 
+same procedure can be applied to UUCP access.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E369"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>UUCP</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The UUCP program was designed with good security in mind. However, it was designed many years ago, and security requirements have changed considerably since then. A number of security problems have been found over the years with UUCP, many of which have 
+been addressed with changes and patches to the system. Still, UUCP requires some system administration attention to ensure that it is working properly and securely.
+
+<BR>
+
+<P>If you don't plan to use UUCP, remove the uucp user entirely from the /etc/password file or provide a strong password that can't be guessed (putting an asterisk as the first character of the password field in /etc/passwd effectively disables the login). 
+Removing uucp from the /etc/passwd file won't affect anything else on the Linux system.
+
+<BR>
+
+<P>You should set permissions to be as restrictive as possible in all UUCP directories (usually /usr/lib/uucp, /usr/spool/uucp, and /usr/spool/uucppublic). Permissions for these directories tend to be lax with most systems, so use chown, chmod, and chgrp 
+to restrict access only to the uucp login. The group and user name for all files should be set to uucp. Check the file permissions regularly.
+
+<BR>
+
+<P>UUCP uses several files to control who is allowed in. These files (/usr/lib/uucp/Systems and /usr/lib/uucp/Permissions, for example) should be owned and accessible only by the uucp login. This prevents modification by an intruder with another login 
+name.
+
+<BR>
+
+<P>The /usr/spool/uucppublic directory can be a common target for break-ins because it requires read and write access by all systems accessing it. To safeguard this directory, create two subdirectories: one for receiving files and another for sending 
+files. Further subdirectories can be created for each system that is on the valid user list, if you want to go that far.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E370"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Local Area Network Access</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Most LANs are not thought of as a security problem, but they tend to be one of the easiest methods of getting into a system. However, if any of the machines on the network has a weak access point, all of the machines on the network can be accessed 
+through that machine's network services. PCs and Macintoshes usually have little security, especially over call-in modems, so they can be used in a similar manner to access the network services. A basic rule about LANs is that it's impossible to have a 
+secure machine on the same network as nonsecure machines. Therefore, any solution for one machine must be implemented for all machines on the network.
+
+<BR>
+
+<P>The ideal LAN security system forces proper authentication of any connection, including the machine name and the user name. A few software problems contribute to authentication difficulties. The concept of a trusted host, which is implemented in Linux, 
+enables a machine to connect without hassle, assuming its name is in a file on the host (Linux) machine. A password isn't even required in most cases! All an intruder has to do is determine the name of a trusted host and then connect with that name. 
+Carefully check the /etc/hosts.equiv, /etc/hosts, and .rhosts files for entries that might cause problems.
+
+<BR>
+
+<P>One network authentication solution that is now widely used is Kerberos, a method originally developed at MIT. Kerberos uses a &quot;very secure&quot; host, which acts as an authentication server. Using encryption in the messages between machines to 
+prevent intruders from examining headers, Kerberos authenticates all messages over the network.
+
+<BR>
+
+<P>Because of the nature of most networks, most Linux systems are vulnerable to a knowledgeable intruder. There are literally hundreds of known problems with utilities in the TCP/IP family. A good first step to securing a system is to disable the TCP/IP 
+services you don't use at all because other people can use them to access your system.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E371"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Tracking Intruders</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Many intruders are curious about your system but don't want to do any damage. They might get on your system with some regularity, snoop around, play a few games, and leave without changing anything. This makes it hard to know that you are being broken 
+into, and it leaves you at the intruder's mercy should he decide he wants to cause damage or use your system to springboard to another.
+
+<BR>
+
+<P>You can track users of your system quite easily by invoking auditing, a process that logs every time a user connects and disconnects from your system. Not all Linux versions support auditing, so consult your man pages and system documentation for more 
+information.
+
+<BR>
+
+<P>If you do rely on auditing, you should scan the logs often. It might be worthwhile to write a quick summary script program that totals the amount of time each user is on the system so that you can watch for anomalies and numbers that don't mesh with 
+your personal knowledge of the user's connect times. A simple shell script to analyze the log can be written in gawk. In addition, some audit reporting systems are available in the public domain.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E372"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Preparing for the Worst</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Assuming someone does break in, what can you do? Obviously, backups of the system are helpful because they let you recover any damaged or deleted files. But beyond that, what should you do?
+
+<BR>
+
+<P>First, find out how the invader got in, and secure that method of access so it can't be used again. If you're not sure of the access method, close down all modems and terminals and carefully check all the configuration and setup files for holes. There 
+has to be one, or the invader couldn't have gotten in. Also check passwords and user lists for weak or outdated material.
+
+<BR>
+
+<P>If you are the victim of repeated attacks, consider enabling an <A NAME="I2"></A>audit system to keep track of how intruders get in and what they do. As soon as you see an intruder log in, force him off.
+
+<BR>
+
+<P>Finally, if the break-ins continue, call the local authorities. Breaking into computer systems (whether in a large corporation or a home) is illegal in most countries, and the authorities usually know how to trace the users back to their calling points. 
+They're breaking into your system and shouldn't get away with it!
+
+<BR>
+
+<BR>
+
+<A NAME="E68E373"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Summary</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Following the simple steps outlined in this chapter will give you enough security to protect your systems against all but the most determined and knowledgeable crackers. You can't do any harm with the steps mentioned, so you may as well perform them for 
+all Linux systems that have modems or network connections.
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl44.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="#I0" TARGET="_self"><IMG SRC="purtop.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Page Top"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl46.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+</BODY></HTML>
+
+
+

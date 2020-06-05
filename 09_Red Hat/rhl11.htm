@@ -1,0 +1,1874 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Red Hat Linux Unleashed rhl11.htm </TITLE>
+
+<LINK REL="ToC" HREF="index.htm">
+
+<LINK REL="Index" HREF="htindex.htm">
+
+<LINK REL="Next" HREF="rhl12.htm">
+
+<LINK REL="Previous" HREF="rhl10.htm"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+
+<A NAME="I0"></A>
+
+<H2>Red Hat Linux Unleashed rhl11.htm</H2>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl10.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl12.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+<HR ALIGN=CENTER>
+
+<P>
+
+<UL>
+
+<UL>
+
+<UL>
+
+<LI>
+
+<A HREF="#E68E69" >The Public Domain Korn Shell (pdksh)</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E175" >Command-Line Completion</A>
+
+<LI>
+
+<A HREF="#E69E176" >Wildcards</A>
+
+<LI>
+
+<A HREF="#E69E177" >Command History</A>
+
+<LI>
+
+<A HREF="#E69E178" >Aliases</A>
+
+<LI>
+
+<A HREF="#E69E179" >Input Redirection</A>
+
+<LI>
+
+<A HREF="#E69E180" >Output Redirection</A>
+
+<LI>
+
+<A HREF="#E69E181" >Pipelines</A></UL>
+
+<LI>
+
+<A HREF="#E68E70" >Shell Prompts</A>
+
+<LI>
+
+<A HREF="#E68E71" >Job Control</A>
+
+<LI>
+
+<A HREF="#E68E72" >Key Bindings</A>
+
+<LI>
+
+<A HREF="#E68E73" >Customizing Your pdksh</A>
+
+<LI>
+
+<A HREF="#E68E74" >pdksh Commands</A>
+
+<LI>
+
+<A HREF="#E68E75" >pdksh Variables</A>
+
+<LI>
+
+<A HREF="#E68E76" >Summary</A></UL></UL></UL>
+
+<HR ALIGN=CENTER>
+
+<A NAME="E66E11"></A>
+
+<H1 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>11</B></FONT></CENTER></H1>
+
+<BR>
+
+<A NAME="E67E11"></A>
+
+<H2 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>Using </B><B>pdksh</B></FONT></CENTER></H2>
+
+<BR>
+
+<P>In the last chapter, you saw the Bourne Again Shell (bash) in some detail. Not everyone wants to use the bash shell, so several other shells are included with most Linux systems. One of them is pdksh, a variation on the Korn Shell.
+
+<BR>
+
+<P>In this chapter, we look at the pdksh shell and how it can be efficiently used. After reading this chapter, you will be familiar with the following topics:
+
+<BR>
+
+<UL>
+
+<LI>Command-line completion and wildcards
+
+<BR>
+
+<BR>
+
+<LI>Command history and aliases
+
+<BR>
+
+<BR>
+
+<LI>Input and output redirection
+
+<BR>
+
+<BR>
+
+<LI>Pipelines
+
+<BR>
+
+<BR>
+
+<LI>How to change your shell prompt
+
+<BR>
+
+<BR>
+
+<LI>Job control
+
+<BR>
+
+<BR>
+
+<LI>Key bindings
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>We will also look at how you can customize your copy of pdksh, as well as several of the important commands and variables used by the shell.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E69"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>The Public Domain Korn Shell (</B><B>pdksh</B><B>)</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The Korn shell, written by David Korn, was the third mainstream shell written for UNIX. Because of this, it incorporated many of the features of the Bourne and C shells (which were the first two shells). Because of the Korn shell's popularity among UNIX 
+users, a version was developed for Linux called the Public Domain Korn Shell, or pdksh.
+
+<BR>
+
+<P>The current version of the Public Domain Korn Shell does not support all of the features that exist in the commercial version of the Korn shell. It does support most of the main features, however, and adds a few new features of its own.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E175"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Command-Line Completion</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Often, when you are entering commands at the command line, the complete text of the command is not necessary in order for pdksh to be able to determine what you want to do. Command-line completion enables you to type in a partial command, and then by 
+entering a key sequence, tell pdksh to try to finish the command for you.
+
+<BR>
+
+<P>pdksh does not default to allowing the user to perform command-line completion. You must enter a command to tell pdksh that you want to be able to use command-line completion. In order to enable command-line completion, enter one of the following 
+commands:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">set -o emacs
+
+set -o vi</FONT></PRE>
+
+<P>This causes pdksh to accept command editing that is similar to emacs or vi. Choose the editor that you are most familiar with, and use the basic editor commands for command-line editing.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Most people find the emacs editing mode more user-friendly than the vi editing mode.
+
+<BR>When using vi command-line editing, you must be in command mode when you enter any of the editing commands. You can enter command mode by pressing the Esc key. When command mode has been entered, you cannot type any characters onto the command line 
+until you enter edit mode. There are many ways of doing this, but the usual way is by pressing the i (insert) key.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>After the command-line completion function has been enabled, you can perform command-line completion by pressing the Esc key twice (when using emacs command-line editing), or by pressing \ (when using vi command-line editing). For example, if your 
+current directory contains the files
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">News/ bin/ games/ mail/ sample.text test/</FONT></PRE>
+
+<P>and you want to edit the file sample.text using the vi text editor, you could enter the following command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">vi sample.text</FONT></PRE>
+
+<P>After the s is typed, the only file that you could be referring to is sample.text, because it is the only file in the current directory that begins with the letter s. To get pdksh to finish the command when you are using emacs-style command editing, you 
+must press the Esc key twice after you type the letter s:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">vi s&lt;escape&gt;&lt;escape&gt;</FONT></PRE>
+
+<P>To get pdksh to finish the command when you are using vi command editing, you must press the \ key after you type the letter s:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">vi s\</FONT></PRE>
+
+<P>Either of these commands causes pdksh to finish the line for you and display the result on the screen. The command does not execute until you press the Enter key. This is done to give you a chance to confirm that the command pdksh came up with is the 
+command that you really intended.
+
+<BR>
+
+<P>If the sample.text file is not the only file in the directory that begins with the letter s, pdksh completes the command as far as it can and then beeps, indicating that it needs more information to complete the command.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>The keyboard equivalent of pressing the Esc key is Ctrl-[, usually written as ^[. The caret (^) is the abbreviation for the Ctrl key. Pressing Esc twice using the Ctrl-[ sequence would be written as ^[^[. You might see this convention in books or man 
+pages.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E69E176"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Wildcards</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The pdksh shell makes typing commands easier by enabling the user to use wildcards. pdksh supports the same wildcards that bash does:
+
+<BR>
+
+<UL>
+
+<UL>
+
+<P>* matches any character and any number of characters.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>? matches any single character.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>[...] matches any single character contained within the brackets.
+
+<BR>
+
+</UL></UL>
+
+<P>The * wildcard can be used in a way that is similar to command-line completion. For example, if the current directory contains the files
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">News/ bin/ games/ mail/ sample.text test/</FONT></PRE>
+
+<P>and you want to edit the sample.text file using the vi text editor, you can perform this task by using the following wildcard:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">vi s*</FONT></PRE>
+
+<P>The * matches any character (and any number of characters), so pdksh replaces s* with sample.text (the only file in the directory that matches the wildcard pattern).
+
+<BR>
+
+<P>This works reliably if there is only one file in the directory that starts with the letter s. If more than one file starts with the same letter, the shell tries to replace s* with the list of filenames that match the wildcard pattern, and runs vi on the 
+first file in this list. After you quit editing the first file, the second file in the list is loaded into vi, and so on for each file that matched the wildcard pattern. If you intended to edit more than one file, this would be fine, but if you only wanted 
+to edit the sample.text file, this command would not work the way you expected it to.
+
+<BR>
+
+<P>A more practical situation in which to use the * wildcard is when you want to execute the same command on multiple files that have similar filenames. For example, assume that the current directory contains the following files:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">News/ bin/ games/ mail/ sample.text temp1.out
+
+temp2.out temp3.out test/</FONT></PRE>
+
+<P>If you want to delete all of the files with an .out extension, you can do it by entering the following command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">rm *.out</FONT></PRE>
+
+<P>In this case, pdksh replaces *.out with the names of all of the files in the directory that match the wildcard pattern. After pdksh performs this substitution, the following command is processed:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">rm temp1.out temp2.out temp3.out</FONT></PRE>
+
+<P>The rm command is invoked with the arguments of temp1.out, temp2.out, and temp3.out.
+
+<BR>
+
+<P>The ? wildcard functions in a similar way to the * wildcard, except that the ? wildcard matches only a single character. Assuming the same directory contents as in the previous example, the ? wildcard can be used to delete all of the files with the .out 
+extension by entering the following command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">rm temp?.out</FONT></PRE>
+
+<P>The [...] wildcard enables you to specify characters or ranges of characters to match. To print all of the files in the previous example that have the .doc extension, enter one of the following two commands:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">rm temp[123].out
+
+rm temp[1-3].out</FONT></PRE>
+
+<BR>
+
+<A NAME="E69E177"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Command History</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The pdksh shell supports a command history in much the same way as bash. The pdksh shell keeps track of the last HISTSIZE commands that have been entered (HISTSIZE is a user-definable pdksh variable).
+
+<BR>
+
+<P>pdksh stores the text of the last HISTSIZE commands in a history list. When you log in, the history list is initialized from a history file. The filename of the history file can be set using the HISTFILE pdksh variable. The default filename for the 
+history file is .ksh_history. This file is located in your home directory. Notice that the file begins with a ., meaning that the file is hidden, and it appears in a directory listing only if you use the -a or -A option of the ls command.
+
+<BR>
+
+<P>The shell provides several ways of accessing the history list. The simplest way is to scroll through the commands that have been previously entered. In pdksh, this is done differently depending on whether you are using emacs or vi command editing.
+
+<BR>
+
+<P>If you are using emacs command editing, you scroll up through the history list by pressing Ctrl-p, and you scroll down through the list by pressing Ctrl-n. If you are using vi command-line editing, you scroll up through the history list by pressing 
+either the k or - key, and you scroll down through the history list by pressing j or +.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>When using vi command editing, you must be in command mode for the key commands to work. You enter command mode by pressing the Esc key.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>The command that is on the command line can be edited. The pdksh shell supports a complex set of editing capabilities (most of which are beyond the scope of this book). You can use the left and right arrow keys to move along the command line. You can 
+insert text at any point and delete text from the command line by using the backspace or delete keys. Most users should find these simple editing commands sufficient; for those who do not, there are many other more complicated ways of editing the command 
+line.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>The complex set of editing commands that pdksh offers is similar to the commands contained in the emacs or vi text editor (you can set either emacs or vi emulation by using the set -o emacs or set -o vi commands). If you are familiar with emacs (or 
+vi), these commands will be familiar to you.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>Another method of using the history file is to display and edit it using fc (fix command), the built-in pdksh shell command. If you read <A HREF="rhl10.htm">Chapter 10</A>, &quot;Using bash,&quot; you may remember that bash supported another command 
+called history, which allowed you to view and modify the history file. The history command was left out of the pdksh shell because all of its functionality could be provided by the fc command.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Even though the history command is not built into pdksh, the command normally still works because it is usually set up as an alias to the fc -l command. For example, the .kshrc file usually contains a line such as alias history='fc -l', which 
+provides behavior almost identical to the history command that is built into other shells.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>The fc command is used to edit the command history. It has a number of options, as is illustrated in the following command syntax:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">fc [-e ename] [-nlr] [first] [last]</FONT></PRE>
+
+<P>All options given in braces are optional. The -e portion of the command can be used to specify the text editor that is to be used for editing the commands in the command history. The first and last options are used to select a range of commands to take 
+out of the history list. First and last can refer either to the number of a command in the history list, or to a string that fc tries to find in the history list.
+
+<BR>
+
+<P>The -n option is used to suppress command numbers when listing the history commands that matched the specified range. The -r option lists the matched commands in reverse order. The -l command lists the matched commands to the screen. In all cases except 
+for the -l option, the matching commands are loaded into a text editor.
+
+<BR>
+
+<P>The text editor used by fc is found by taking the value of ename if the -e option was used. If this option was not used, fc uses the editor specified by the variable FCEDIT. If this variable does not exist, fc uses the value of the EDITOR variable. 
+Finally, if none of these variables exists, the editor chosen is vi.
+
+<BR>
+
+<P>If you enter the fc command with no arguments, it loads the last command that was entered into the editor. Remember that when you exit the editor, fc attempts to execute any commands that are in the editor.
+
+<BR>
+
+<P>The easiest way to understand what the fc command does is to look at a few examples:
+
+<BR>
+
+<UL>
+
+<UL>
+
+<P>fc loads the last command into the default editor.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>fc -l lists the last 16 commands that were entered.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>fc -l 5 10 lists the commands with history numbers between 5 and 10, inclusive.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>fc 6 loads history command number 6 into the default editor.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>fc mo loads into the default editor the most recent command that starts with the string mo.
+
+<BR>
+
+</UL></UL>
+
+<BR>
+
+<A NAME="E69E178"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Aliases</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Another way pdksh makes life easier for you is by supporting command aliases. Command aliases are commands that you can specify and execute. Alias commands are usually abbreviations of other commands.
+
+<BR>
+
+<P>You tell pdksh to execute a Linux command whenever it encounters the alias. For example, if you have a file in your directory that holds a list of things that you must do each day, and you typically edit the file every morning to update it, you might 
+find yourself entering the following command on a regular basis:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">vi things-to-do-today.txt</FONT></PRE>
+
+<P>Because you are entering this command quite often, you might be inclined to create an alias for it to save yourself some typing. Instead of typing this command every time you want to edit the file, you can create an alias called ttd that causes the 
+longer command to be executed.
+
+<BR>
+
+<P>To set up an alias such as this, you must use the pdksh alias command. To create the ttd alias, you enter the following command at the pdksh command prompt:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">alias ttd='vi things-to-do-today.txt'</FONT></PRE>
+
+<P>From the time that you enter the alias command until the time you exit from pdksh, the ttd command causes the longer command to be executed. If you decide after you enter an alias that you no longer want that alias, you can use the pdksh unalias command 
+to delete the alias:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">unalias ttd</FONT></PRE>
+
+<P>After you use the unalias command to remove an alias, the alias no longer exists, and trying to execute it causes pdksh to report Command not found.
+
+<BR>
+
+<P>The following are some aliases that you might want to define:
+
+<BR>
+
+<UL>
+
+<UL>
+
+<P>alias ll='ls -l'
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>alias log='logout'
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>alias ls='ls -F'
+
+<BR>
+
+</UL></UL>
+
+<P>If you are a DOS user and you prefer to use DOS file commands, you may also want to define the following aliases:
+
+<BR>
+
+<UL>
+
+<UL>
+
+<P>alias dir='ls'
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>alias copy='cp'
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>alias rename='mv'
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>alias md='mkdir'
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>alias rd='rmdir'
+
+<BR>
+
+</UL></UL>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>When defining aliases, there must not be spaces on either side of the equal sign. The quotation marks are only necessary if the command within them contains spaces or other special characters.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>If you enter the alias command without any arguments, it prints all of the aliases that are already defined to the screen. There is a way to make sure that all of your alias commands get executed each time you start pdksh. This is done by using an 
+initialization file, which we will discuss in the &quot;Customizing pdksh&quot; section, later in this chapter.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E179"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Input Redirection</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Input redirection is used to change the source of input for a command. Typically, when a command is entered in pdksh, the command expects some kind of input in order to do its job. Some of the simpler commands must get all of the information that they 
+need passed to them on the command line. The rm command, for example, requires you to tell it on the command line which files you want to delete; if you do not specify any files it issues a prompt telling you to enter rm -h for help.
+
+<BR>
+
+<P>Other commands require more elaborate input than a simple directory name. The input for these commands is typically found in a file. For example, the wc (word count) command counts the number of characters, words, and lines in the input that was given 
+to it. If you enter the wc command with a filename as an argument, wc returns the number of characters, words, and lines that are contained in that file. An example of this is
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">wc test
+
+11 2 1</FONT></PRE>
+
+<P>Another way to pass the contents of the test file to wc as input is to change (or redirect) the input of the wc command from the terminal to the test file. This results in the same output. The &lt; character is used by pdksh to redirect the input to the 
+current command from the file following the character. So, redirecting wc's input from the terminal to the test file is done by entering the following command:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">wc &lt; test
+
+11 2 1</FONT></PRE>
+
+<P>Input redirection is not used too often because most commands that require input from a file have an option to specify a filename on the command line. There are times, however, when you will come across a program that does not accept a filename as an 
+input parameter, and yet the input that you want to give to the command exists in a file. Whenever this situation occurs, you can use input redirection to get around the problem.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E180"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Output Redirection</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Output redirection is more commonly used than input redirection. Output redirection enables you to redirect the output from a command into a file, as opposed to having the output displayed on the screen.
+
+<BR>
+
+<P>There are many situations in which this capability can be very useful. For example, if the output of a command is quite large and does not fit on the screen, you might want to redirect it to a file so you can later view it using a text editor. Output 
+redirection is done in much the same way as input redirection. Instead of using the &lt; symbol, the &gt; symbol is used.
+
+<BR>
+
+<P>To redirect the output of an ls command into a file named directory.out, the following command is used:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">ls &gt; directory.out</FONT></PRE>
+
+<BR>
+
+<A NAME="E69E181"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Pipelines</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Pipelines are a way to string together a series of commands. This means that the output from the first command in the pipeline is used as the input to the second command. You can tell pdksh to create a pipeline by typing two or more commands separated 
+by the | character. The following is an example of using a pdksh pipeline:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">cat test.file | sort | uniq</FONT></PRE>
+
+<P>This is a fairly common pipeline. Here, the contents of test.file (the output from the cat command) are fed into the input of the sort command. The sort command, without any options, sorts its input alphabetically by the first field in the input. The 
+sorted file is then piped into the uniq command. The uniq command removes any duplicate lines from the input. If test.file contains the lines
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Sample dialog
+
+Hello there
+
+How are you today
+
+Hello there
+
+I am fine</FONT></PRE>
+
+<P>the output from the pipeline is the following:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Hello there
+
+How are you today
+
+I am fine
+
+Sample dialog</FONT></PRE>
+
+<P>All of the lines in the file have been sorted by the first word in the line, and one of the Hello there lines has been removed because of the uniq command.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E70"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Shell Prompts</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>pdksh has three levels of user prompts. The first level is what the user sees when the shell is waiting for a command to be typed. (This is what you normally see when you are working with the shell.) The default prompt is the $ character. If you do not 
+like the dollar sign as the prompt or prefer to customize the prompt to your own requirements, you can do so by setting the value of the PS1 pdksh variable.
+
+<BR>
+
+<P>To set a variable, give the name and equal sign, and the string you want to set it to. Make sure you do not place any spaces on either side of the equal sign, or the shell will not interpret your command properly. For example, the line
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">PS1=&quot;! Tell me what to do&quot;</FONT></PRE>
+
+<P>sets the shell prompt to the string ! Tell me what to do. The pdksh shell keeps track of how many commands have been entered since it was started. This number is stored into the shell variable called !. When you include the ! in the prompt, it displays 
+the current command number in the prompt. The previous prompt command causes the command number followed by the string Tell me what to do to be displayed on the command line each time pdksh is expecting you to enter a command.
+
+<BR>
+
+<P>The second level of prompt is displayed when pdksh is expecting more input from you in order to complete a command. The default for the second level prompt is &gt;. If you want to change the second level prompt, you can do so by setting the value of the 
+PS2 pdksh variable, as in the following example:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">PS2=&quot; I need more information&quot;</FONT></PRE>
+
+<P>This causes the string I need more information to be displayed on the command line whenever pdksh needs something from you to complete a command.
+
+<BR>
+
+<P>pdksh does not support the advanced prompt options that bash supports. There is not a predefined set of escape codes that you can put in a pdksh prompt variable to display such items as the time or current working directory. You can, however, put other 
+pdksh variables into a prompt variable. For example, the following two prompts are valid:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">PS1=&quot;(LOGNAME) &quot;
+
+PS1='($PW '</FONT></PRE>
+
+<P>The first example causes your prompt to be equal to your UNIX user name. The second example causes your prompt to be the current working directory. The single quotes are needed here so that the value of the PWD variable does not get assigned to the 
+variable only the first time it is executed. If you use double quotes, the PWD variable is evaluated only when the command is first entered. (The prompt would always be the directory name of the directory that you are in when you enter the command.) The 
+single quotes cause the value of the PS1 variable to be equal to the current value of the PWD variable. For more information on using these quotes, see <A HREF="rhl13.htm">Chapter 13</A>, &quot;Shell Pro-gramming.&quot;
+
+<BR>
+
+<BR>
+
+<A NAME="E68E71"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Job Control</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Job control is the capability to control the execution behavior of a currently running process. Specifically, you can suspend a running process and cause it to resume running at a later time. The pdksh shell keeps track of all of the processes that it 
+started, and you can suspend a running process or restart a suspended one at any time during the life of that process.
+
+<BR>
+
+<P>Pressing the Ctrl-Z key sequence suspends a running process. The bg command restarts a suspended process in the background, and the fg command restarts a process in the foreground.
+
+<BR>
+
+<P>These commands are most often used when a user wants to run a command in the background but accidentally starts it in the foreground. When a command is started in the foreground, it locks the shell from any further user interaction until the command 
+completes execution. This is usually not a problem, because most commands only take a few seconds to execute. If the command you are running is going to take a long time, you typically start the command in the background so that you can continue to use 
+pdksh to enter other commands while it completes running.
+
+<BR>
+
+<P>If you start a command in the foreground that is going to take a long time, your shell may be tied up for several minutes. If you have done this and want to continue executing the command in the background, enter the following:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">control-z
+
+bg</FONT></PRE>
+
+<P>This suspends the command and restarts it in the background. The command continues to execute, and you have the control of pdksh.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E72"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Key Bindings</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>One useful feature that pdksh supports, which is lacking in the Bourne Again Shell, is key bindings. This feature enables you to change the behavior of key combinations for the purpose of command-line editing.
+
+<BR>
+
+<P>If, for example, you do not like the fact that you have to use the emacs key sequence Ctrl-P to move up in the history buffer, you can change the key sequence for that command to something else. The syntax for doing the key binding is the following:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">bind &lt;key sequence&gt; &lt;command&gt;</FONT></PRE>
+
+<P>This feature effectively enables you to customize pdksh to have the exact feel that you want. One of the most commonly used key bindings is to bind the up, down, left, and right arrows to be used as they are in bash (for scrolling up and down the 
+history list, and for moving left and right along the command line). This binding is typically found in your .kshrc file, which is the startup file for the shell (it is read whenever the shell starts).
+
+<BR>
+
+<P>The bind commands that are needed to create these bindings are as follows:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">bind '^[['=prefix-2
+
+bind '^XA'=up-history
+
+bind &quot;^XB'=down-history
+
+bind '^XC'=forward-char
+
+bind '^XD'=backward-char</FONT></PRE>
+
+<P>The following list gives some of the most useful editing commands that you can use for binding keys, along with the default binding and a description of each. You can get a listing of all of the editing commands that pdksh supports by typing the bind 
+command without any arguments.
+
+<BR>
+
+<UL>
+
+<UL>
+
+<P>abort (^G) is used to abort another editing command. It is most commonly used to stop a history list search.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>backward-char (^B) moves the cursor backward one character. This command is often bound to the left arrow key.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>backward-word (^[b) moves the cursor backward to the beginning of a word.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>beginning-of-line (^A) moves the cursor to the beginning of the command line.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>complete (^[^[) tells pdksh to try to complete the current command.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>copy-last-arg (^[_) causes the last word of the previous command to be inserted at the cursor position.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>delete-char-backward (ERASE) deletes the character that is to the left of the cursor.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>delete-char-forward deletes the character to the right of the cursor.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>delete-word-backward (^[ERASE) deletes the characters to the left of the cursor back to the first white space character that is encountered.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>delete-word-forward (^[ deletes the characters to the right of the cursor up to the first character that occurs after a whitespace character.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>down-history (^N) moves down one line in the history list. This command is often bound to the down arrow key.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>end-of-line (^E) moves the cursor to the end of the current line.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>forward-char (^F) moves the cursor forward one character. This command is often bound to the right arrow key.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>forward-word (^[F) moves the cursor forward to the end of a word.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>kill-line (KILL) deletes the current line.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>kill-to-eol (^K) deletes all of the characters to the right of the cursor on the current line.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>list (^[?) causes pdksh to list all of the possible command names or filenames that can complete the word in which the cursor is currently contained.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>search-history (^R) searches the history list backward for the first command that contains the inputted characters.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>transpose-chars (^T) exchanges the two characters on either side of the cursor. If the cursor is at the end of the command line it switches the last two characters on the line.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>up-history (^P) moves up one command in the history list. This command is often bound to the up arrow key.
+
+<BR>
+
+</UL></UL>
+
+<BR>
+
+<A NAME="E68E73"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Customizing Your </B><B>pdksh</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Many ways of customizing pdksh have been described in this chapter. Until now, though, the changes that you made only affected the current pdksh session. As soon as you quit pdksh, all of the customizations that you made are lost. There is a way of 
+making the customizations more per-manent.
+
+<BR>
+
+<P>This is done by storing all of your customizations in a pdksh initialization file. Users can put commands into this file that they want to be executed each and every time pdksh is started. Examples of commands that are typically found in this file are 
+aliases and initializations of variables (such as the prompts).
+
+<BR>
+
+<P>In order to set up your customization file, you must tell pdksh where to look for the initialization file. This is different than with bash. The bash shell automatically knew where to look for its customization file. To tell pdksh where to look for the 
+customization file, you must create a file in your home directory called .profile. This file is read and all of the commands in the file are executed each time you log into the system.
+
+<BR>
+
+<P>A sample of the commands that you should place in your .profile file are as follows:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">export ENV=$HOME/.kshrc
+
+EDITOR=emacs</FONT></PRE>
+
+<P>The first line in the .profile file sets the ENV variable. This is the variable that pdksh looks at to find the initialization file that it should use. If you plan to customize pdksh, you should tell pdksh to look for a file in your home directory. The 
+filename .kshrc is often used as the pdksh initialization filename, but you can pick another name if you want.
+
+<BR>
+
+<P>If you are not planning to customize pdksh, you can set the ENV variable to be equal to the system default pdksh initialization file. This file is in the /etc directory, and is called ksh.kshrc.
+
+<BR>
+
+<P>The second line in the .profile file sets the EDITOR variable. This is used by the .kshrc initialization file to determine what type of command-line editing commands to use for your session. If you prefer to use vi command-line editing, you can set this 
+variable to be equal to vi.
+
+<BR>
+
+<P>Listing 11.1 shows most of what is contained in the system's default ksh.kshrc file. If you want to add your own customizations to pdksh, you should copy this file into your home directory and then add the customizations that you want to your own copy 
+of the file.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Instead of copying the file to your home directory, you can create a new file in your home directory that calls the system default file, and then add customizations afterward.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 11.1. Default </B><B>ksh.kshrc</B><B> file.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"># NAME
+
+# ksh.kshrc - global initialization for ksh
+
+#
+
+# DESCRIPTION:
+
+# Each invocation of /bin/ksh processes the file pointed
+
+# to by $ENV (usually $HOME/.kshrc).
+
+# This file is intended as a global .kshrc file for the
+
+# Korn shell. A user's $HOME/.kshrc file simply requires
+
+# the line:
+
+# . /etc/ksh.kshrc
+
+# at or near the start to pick up the defaults in this
+
+# file which can then be overridden as desired.
+
+#
+
+# SEE ALSO:
+
+# $HOME/.kshrc
+
+#
+
+# RCSid:
+
+# $Id: ksh.kshrc,v 1.6 93/09/29 08:57:50 sjg Exp $
+
+#
+
+# @(#)Copyright 1991 Simon J. Gerraty
+
+#
+
+# This file is provided in the hope that it will
+
+# be of use. There is absolutely NO WARRANTY.
+
+# Permission to copy, redistribute or otherwise
+
+# use this file is hereby granted provided that
+
+# the above copyright notice and this notice are
+
+# left intact.
+
+case &quot;$-&quot; in
+
+*i*) # we are interactive
+
+# we may have su'ed so reset these
+
+# NOTE: SCO-UNIX doesn't have whoami,
+
+# install whoami.sh
+
+HOSTNAME='hostname'
+
+USER='whoami'
+
+PROMPT=&quot;&lt;$USER@$HOSTNAME:!&gt;$ &quot;
+
+PPROMPT='&lt;$USER@$HOSTNAME:$PWD:!&gt;$ '
+
+PS1=$PROMPT
+
+# $TTY is the tty we logged in on,
+
+# $tty is that which we are in now (might by pty)
+
+tty='tty'
+
+tty='basename $tty'
+
+set -o $EDITOR
+
+alias ls='ls -CF'
+
+alias h='fc -l | more'
+
+# the PD ksh is not 100% compatible
+
+case &quot;$KSH_VERSION&quot; in
+
+*PD*) # PD ksh
+
+case &quot;$TERM&quot; in
+
+xterm*)
+
+# bind arrow keys
+
+bind '^[['=prefix-2
+
+bind '^XA'=up-history
+
+bind '^XB'=down-history
+
+bind '^XC'=forward-char
+
+bind '^XD'=backward-char
+
+;;
+
+esac
+
+;;
+
+*) # real ksh ?
+
+;;
+
+esac
+
+case &quot;$TERM&quot; in
+
+sun*)
+
+# these are not as neat as their csh equivalents
+
+if [ &quot;$tty&quot; != console ]; then
+
+# ilabel
+
+ILS='\033]L'; ILE='\033\\'
+
+# window title bar
+
+WLS='\033]l'; WLE='\033\\'
+
+fi
+
+;;
+
+xterm*)
+
+ILS='\033]1;'; ILE='\007'
+
+WLS='\033]2;xterm: '; WLE='\007'
+
+;;
+
+*) ;;
+
+esac
+
+# do we want window decorations?
+
+if [ &quot;$ILS&quot; ]; then
+
+ilabel () { print -n &quot;${ILS}$*${ILE}&quot;; }
+
+label () { print -n &quot;${WLS}$*${WLE}&quot;; }
+
+alias stripe='label &quot;$USER@$HOST ($tty) - $PWD&quot;'
+
+alias istripe='ilabel &quot;$USER@$HOST ($tty)&quot;'
+
+wftp () { ilabel &quot;ftp $*&quot;; &quot;ftp&quot; $*; eval istripe; }
+
+wcd () { &quot;cd&quot; $*; eval stripe; }
+
+wtelnet ()
+
+{
+
+&quot;telnet&quot; &quot;$@&quot;
+
+eval istripe
+
+eval stripe
+
+}
+
+wsu ()
+
+{
+
+&quot;su&quot; &quot;$@&quot;
+
+eval istripe
+
+eval stripe
+
+}
+
+alias su=wsu
+
+alias cd=wcd
+
+alias ftp=wftp
+
+alias telnet=wtelnet
+
+eval stripe
+
+eval istripe
+
+PS1=$PROMPT
+
+fi
+
+alias quit=exit
+
+alias cls=clear
+
+alias logout=exit
+
+alias bye=exit
+
+alias p='ps -l'
+
+alias j=jobs
+
+alias o='fg %-'
+
+# add your favourite aliases here
+
+;;
+
+*) # non-interactive
+
+;;
+
+esac
+
+# commands for both interactive and non-interactive shells</FONT></PRE>
+
+<BR>
+
+<A NAME="E68E74"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>pdksh</B><B> Commands</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Here are some of the most useful built-in pdksh commands:
+
+<BR>
+
+<UL>
+
+<UL>
+
+<P>. reads and executes the contents of the file. (This will be discussed in more detail in <A HREF="rhl13.htm">Chapter 13</A>.)
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>alias is used to set aliases, command nicknames that can be defined by the user.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>bg (background command) forces a suspended process to continue to execute in the background.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>cd (change working directory) changes the current working directory to the directory specified.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>exit terminates the shell.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>export causes the value of a variable to be made visible to all subprocesses that belong to the current shell.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>fc (fix command) used to edit the commands that are in the current history list.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>fg (foreground command) forces a suspended process to continue to execute in the foreground.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>kill is used to terminate another process.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>pwd (print working directory) prints to the screen the directory in which the user is currently working.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>unalias is used to remove aliases that have previously been defined using the alias command.
+
+<BR>
+
+</UL></UL>
+
+<BR>
+
+<A NAME="E68E75"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>pdksh</B><B> Variables</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Some of the most useful pdksh variables are listed next, including the variable name, a short description, and default value (if one exists).
+
+<BR>
+
+<UL>
+
+<UL>
+
+<P>EDITOR, FCEDIT The default editor for the fc bash command.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>HISTFILE The name of the file that is used to store the command history.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>HISTSIZE The size of the history list.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>HOME The HOME directory of the current user
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>OLDPWD The previous working directory (the one that was current before the current directory was entered).
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>PATH The search path that bash uses when looking for executable files.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>PS1 The first level prompt that is displayed on the command line.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>PS2 The second level prompt that is displayed when a command is expecting more input.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>PWD The current working directory.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>SECONDS The number of seconds that have elapsed since the current bash session was started.
+
+<BR>
+
+</UL></UL>
+
+<BR>
+
+<A NAME="E68E76"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Summary</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>We've looked at many of the features of the Public Domain Korn Shell (pdksh). It is similar to the Bourne Again Shell in many aspects, but it does add some new utilities.
+
+<BR>
+
+<P>In the next chapter, we look at tcsh, a version of the C shell that is available with Linux. After you have seen the features and the way you use the three shells, you should be able to decide which shell is best for you to use on a regular basis. Of 
+course, you can use any shell at any time by simply typing its name.<A NAME="I2"></A>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl10.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="#I0" TARGET="_self"><IMG SRC="purtop.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Page Top"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl12.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+</BODY></HTML>
+
+
+

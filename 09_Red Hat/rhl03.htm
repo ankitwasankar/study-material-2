@@ -1,0 +1,1945 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Red Hat Linux Unleashed rhl03.htm </TITLE>
+
+<LINK REL="ToC" HREF="index.htm">
+
+<LINK REL="Index" HREF="htindex.htm">
+
+<LINK REL="Next" HREF="rhl04.htm">
+
+<LINK REL="Previous" HREF="rhl02.htm"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+
+<A NAME="I0"></A>
+
+<H2>Red Hat Linux Unleashed rhl03.htm</H2>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl02.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl04.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+<HR ALIGN=CENTER>
+
+<P>
+
+<UL>
+
+<UL>
+
+<UL>
+
+<LI>
+
+<A HREF="#E68E18" >Installing Red Hat Linux</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E7" >Floppyless Installation</A>
+
+<LI>
+
+<A HREF="#E69E8" >Floppy-Based Installation</A></UL>
+
+<LI>
+
+<A HREF="#E68E19" >The Red Hat Installation Routine A Quick Guide</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E9" >Choosing Text or Graphics Installation</A>
+
+<LI>
+
+<A HREF="#E69E10" >Setting Up Your Hard Drive</A>
+
+<LI>
+
+<A HREF="#E69E11" >Formatting the Partitions</A>
+
+<LI>
+
+<A HREF="#E69E12" >Setting Up Ethernet</A>
+
+<LI>
+
+<A HREF="#E69E13" >Setting Up the Mouse</A>
+
+<LI>
+
+<A HREF="#E69E14" >Configuring X</A>
+
+<LI>
+
+<A HREF="#E69E15" >Selecting Packages to Install</A>
+
+<LI>
+
+<A HREF="#E69E16" >Using LILO</A></UL>
+
+<LI>
+
+<A HREF="#E68E20" >Boot and Root Disks</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E17" >Selecting a Boot Kernel and Root Image</A>
+
+<LI>
+
+<A HREF="#E69E18" >Creating the Boot and Root Floppies</A></UL>
+
+<LI>
+
+<A HREF="#E68E21" >Partitioning the Hard Disk</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E19" >Linux Swap-Space Partition</A>
+
+<LI>
+
+<A HREF="#E69E20" >Setting Up Partitions</A></UL>
+
+<LI>
+
+<A HREF="#E68E22" >Install the Linux Partitions</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E21" >Linux's fdisk</A>
+
+<LI>
+
+<A HREF="#E69E22" >Setting Up Linux Partitions</A>
+
+<LI>
+
+<A HREF="#E69E23" >Enabling the Swap Space For Installation</A>
+
+<LI>
+
+<A HREF="#E69E24" >Creating the Linux File-System Partition</A></UL>
+
+<LI>
+
+<A HREF="#E68E23" >Troubleshooting</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E25" >Software Installation</A>
+
+<LI>
+
+<A HREF="#E69E26" >Hard Disk and Disk Controller</A>
+
+<LI>
+
+<A HREF="#E69E27" >Device Conflicts</A></UL>
+
+<LI>
+
+<A HREF="#E68E24" >SCSI Problems</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E28" >Booting Linux</A></UL>
+
+<LI>
+
+<A HREF="#E68E25" >Summary</A></UL></UL></UL>
+
+<HR ALIGN=CENTER>
+
+<A NAME="E66E3"></A>
+
+<H1 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>3</B></FONT></CENTER></H1>
+
+<BR>
+
+<A NAME="E67E3"></A>
+
+<H2 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>Installing and Updating Linux</B></FONT></CENTER></H2>
+
+<BR>
+
+<P>The process of installing Red Hat Linux is straightforward, although there are lots of little problems scattered throughout the process that can cause hassles. Red Hat Linux is much easier to install than many other versions of Linux, so you will find 
+the installation goes quite easily. Common errors that you might make are handled nicely by the Red Hat installation program, and the system is versatile enough to handle most configuration requirements.
+
+<BR>
+
+<P>The essential steps for installing Red Hat Linux are as follows:
+
+<BR>
+
+<OL>
+
+<LI>Create boot and root disks.
+
+<BR>
+
+<BR>
+
+<LI>Boot Linux from floppies.
+
+<BR>
+
+<BR>
+
+<LI>Partition the hard disk.
+
+<BR>
+
+<BR>
+
+<LI>Create a swap file.
+
+<BR>
+
+<BR>
+
+<LI>Create a Linux file system.
+
+<BR>
+
+<BR>
+
+<LI>Install the Linux software.
+
+<BR>
+
+<BR>
+
+<LI>Configure the kernel.
+
+<BR>
+
+<BR>
+
+<LI>Set the boot process.
+
+<BR>
+
+<BR>
+
+<LI>Reboot into Linux from your hard disk.
+
+<BR>
+
+<BR>
+
+</OL>
+
+<P>The process is similar whether you are installing from a CD-ROM or from a diskette (which may have come from an FTP site, for example). Because the CD-ROM is the most common form of installation (and the one included with this book), it is used as the 
+example in this chapter.
+
+<BR>
+
+<P>If you are installing from a floppy and have downloaded the distribution files from an FTP site or copied them from a CD-ROM, you will need a DOS-formatted floppy for each disk in the distribution disk set. You can use standard DOS copy commands to copy 
+the disk set files to the floppy, one floppy for each file in the distribution set. The files are all numbered so you know which floppy is in which set, and what their order should be.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E18"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Installing Red Hat Linux</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Unlike some versions of Linux, Red Hat gives you a number of methods of installing its operating system that offer versatility and ease of use. For most people, installation will be a very simple task with most of the process automated by the Red Hat 
+installation routines. Users with some special hardware or disk-layout problems will have to perform a more typical manual installation of Linux. This chapter covers all the steps you need to install Linux manually, as well as the brief instructions you 
+need to allow an automated installation.
+
+<BR>
+
+<P>If you want to try an automated installation of Red Hat Linux, there are two ways to go. One is called floppyless, as it uses a routine on the CD-ROM to install itself. This step simply saves you the trouble of making floppy diskettes; the rest of the 
+installation process is exactly the same.
+
+<BR>
+
+<P>The alternative to floppyless installation is to create boot and root floppies and use those to start up the system and access the CD-ROM. The following sections discuss both floppyless and floppy-based methods in more detail.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E7"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Floppyless Installation</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>If your hard disk already has an operating system like DOS, or one that produces a DOS window, you can try installing directly from the CD-ROM. Boot into your existing operating system, change to the CD-ROM drive, and issue the command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">REDHAT</FONT></PRE>
+
+<P>at the DOS prompt. You will be asked a series of questions by the program that help it determine the best images for the boot kernel. You can also provide any special startup installation commands during this stage.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Do not run the floppyless installation process from inside a Windows or OS/2 session. Boot your system into DOS or DOS emulation and run it from there.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>The floppyless installation routine guides you through the kernel determination process by displaying all possible choices on menus and prompting you for your answers. The process is intuitive and can be used by anyone who knows the type of hardware 
+installed on their system. If you are not exactly sure of hardware, you can still try the floppyless installation; the worst that can happen is you must try again with different settings.
+
+<BR>
+
+<P>If the installation process detects some hardware-configuration issues, it may offer you advice on setting parameters or making changes. These bits of advice are, for the most part, just that: advice. You don't have to heed the advice if you don't want. 
+In some cases, the advice makes a lot of sense (such as resolving IRQ conflicts), in which case you should take care of the issue.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E8"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Floppy-Based Installation</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>A floppy-based installation requires you to produce three floppies: one for the boot (kernel) image, and two for the root or swap images. The following section, entitled &quot;Boot and Root Floppies,&quot; looks at the production of these floppies in 
+detail. After these disks have been produced, your system is booted with the boot floppy in drive A:. After the kernel has been read and some diagnostics have been performed, you are prompted for the first of the root or swap floppies, then the second 
+floppy, and then the installation procedure is started.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>A quick word of advice when using floppies: Red Hat Linux is particularly sensitive to fast floppy changes. If you hit the Return key too quickly and the floppy is not in the drive, you will probably get errors and have to start the boot process all 
+over again. This occurs when booting and Red Hat asks for the first and second swap or root floppies. Make sure the diskette is in the drive, wait a few seconds, then hit Return to prevent any problems. The disk-change process is not as forgiving as DOS or 
+Windows!</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>After the boot and root floppies have been loaded, the normal Red Hat Linux installation routine is started.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E19"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>The Red Hat Installation Routine A Quick Guide</B></FONT></CENTER></H3>
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>This section gives you a quick overview of the installation routine and can be used by those experienced with Linux or very simple hardware setups. If you run into any problems at all during the installation process, check the more detailed sections 
+later in this chapter.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>After you have successfully loaded your boot and root images either from disk or CD-ROM, you are launched into the installation routine. The Red Hat Linux distribution has a very useful menu-driven installation routine that is much more forgiving of 
+errors than many other Linux versions. For the most part, you need only read the screens and make logical choices to have the installation process continue properly. Many of the steps are automated and occur without your intervention.
+
+<BR>
+
+<P>If something happens with the automated installation routine that causes an error, a warning on the screen is displayed and you will be dropped into a manual installation routine. This can be used just as easily as the automated routine; it just takes a 
+little longer. Again, menu-driven options make the process painless.
+
+<BR>
+
+<P>You can probably install Red Hat Linux on your system based entirely on the automated installation routine. If this is the case, you can move on to other chapters in this book. The rest of this chapter covers some of the most important steps in setting 
+up and installing a Linux system in more detail. If you encounter problems during the installation, or want to make changes to your configuration, you can check the respective sections later in this chapter. For now, you can take a quick look at each of 
+the steps in the automated installation process.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E9"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Choosing Text or Graphics Installation</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Red Hat Linux gives you two choices for installation: text-based or X-based. If you have installed Linux before or are familiar with operating systems, you can use either with equal confidence. The graphical interface installation using X is a more 
+visually pleasant installation process, and it is a neat aspect of Red Hat Linux.
+
+<BR>
+
+<P>On the other hand, the text-based installation process is more traditional and familiar to veteran Linux users. If you are unsure of how to use X, or not sure of your system configuration with respect to mouse and video card, you should stay with the 
+text-based installation. It guides you through each step with full descriptions on the screen.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E10"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Setting Up Your Hard Drive</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>If you have not set up Linux on your system before, or you need to allocate partitions for Linux on your system, you will need to use a disk-partitioning scheme. Red Hat Linux gives you a choice of two disk partitioning utilities: fdisk and cfdisk. The 
+fdisk utility is similar to the DOS FDISK program. It is covered in more detail later in this chapter, in the section entitled, &quot;Installing the Linux Partitions.&quot;
+
+<BR>
+
+<P>The cfdisk utility is similar to fdisk but is a little more friendly. Many people find cfdisk easier to use than fdisk, as it uses simple mnemonic commands to perform each function. The choice of partitioning utility is entirely up to you: they both do 
+the same job.
+
+<BR>
+
+<P>If you have set new partitions on your hard disk for Linux, you will have to reboot your system to make them effective (don't forget to write the partition table to disk when you exit either fdisk or cfdisk!). After a reboot, start the installation 
+process again either from your boot floppies or the CD-ROM, and the new disk partitions will be recognized by Linux.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E11"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Formatting the Partitions</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>After the disk partitions are set, Red Hat will try to detect your swap partition. The installation routine will display a window with the device names of all your swap partitions listed. To format the swap partition, choose one of the partitions listed 
+(or the only entry if you set up only one swap partition) and choose Yes from the menu to start the formatting. The process takes about a minute, depending on the size of the swap partition.
+
+<BR>
+
+<P>After the swap partition has been formatted and made available to the kernel, the installation routine detects any Linux data partitions. These are displayed with the option to format them. For a new installation, you should format the Linux partition 
+using this screen.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E12"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Setting Up Ethernet</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>During the swap and Linux data-formatting process, Red Hat asks if you want to install Ethernet now. If you have an Ethernet card in your machine and want to set it up while the installation process is running, you can do so. If you don't have an 
+Ethernet card or want to delay the installation for later, that's fine, too; you can skip a few steps.
+
+<BR>
+
+<P>If you elect to set up Ethernet now, you are asked for a machine name and a domain name. After that, you are asked for the IP address of your machine and the subnet mask (which is generated automatically and probably doesn't need changing). A few other 
+configuration settings based on the IP address may be displayed. Again, the default settings are fine for almost every system.
+
+<BR>
+
+<P>You will be asked if your machine uses a gateway. If you use a separate machine to access the Internet or another network, answer Yes. If you use a gateway, you will be asked for its identification.
+
+<BR>
+
+<P>You will also be asked if there is a nameserver to be used by this machine. If your network has a DNS (Domain Name System) server that performs IP address conversions, answer Yes and supply its identification. Otherwise, answer No. You can always add a 
+nameserver later, after the system is up and running.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E13"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Setting Up the Mouse</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>After a message about the Metro-X server supplied with Red Hat Linux and a selection of the type of graphics card to use (if in doubt, select standard VGA or SVGA), you are asked for the type of mouse attached to your system. Select the entry that 
+matches the type of mouse you use, or one that is compatible with your mouse.
+
+<BR>
+
+<P>You are then asked which device your mouse is attached to. In most cases, the mouse is attached to COM1 (/dev/ttyS0) or COM2 (/dev/ttyS1). Select the proper entry. If you are not sure which port your mouse uses, select COM1; it is the most common 
+configuration.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E14"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Configuring X</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>If you have selected the X-based installation routine, Red Hat Linux tries to determine your video system so it can start X. If you are using the text-based installation routine, this process is skipped for now.
+
+<BR>
+
+<P>In most cases, Red Hat Linux will try to set up the X system by checking the type of video card you have. You will probably see a message asking if you want the installation routine to &quot;autoprobe,&quot; which means it will try to determine the type 
+of video card and video chipset installed on your machine. If you have a particular reason for not autoprobing (some video cards will hang if they are sent the wrong sequence), you will have to manually supply the configuration information. If you are 
+unsure whether or not autoprobing should be allowed, let it go ahead and try. The worst that can happen (usually) is that the system will hang and you have to reboot.
+
+<BR>
+
+<P>After autoprobing, the installation routine displays the type of video chipset it found and the amount of memory it thinks is on the card. For most systems, accept the defaults unless you know exactly what type of chipset and on-board RAM you have.
+
+<BR>
+
+<P>After answering all the questions properly, X will start and you will see the X-based installation procedure.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E15"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Selecting Packages to Install</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Whether you are using X or text-based installation, you will see a screen that lists all the packages on the Linux CD-ROM. You can select which packages are to be installed during the setup process. You can install as many or as few of these packages as 
+you want. You can delay the installation of many of them until later, if you want.
+
+<BR>
+
+<P>After selecting the packages to be installed, you will see a message asking if you want to have individual package contents displayed for selection. This lets you select only portions of the more generic packages for installation. If you select this 
+option, you will have to wait by your screen and provide input at regular intervals. If you want Linux to install all the components in a package, answer No to this prompt and you can leave the system to install by itself.
+
+<BR>
+
+<P>After you have selected the packages to be installed, Red Hat's installation routine will start installing the software. You will see status messages on the screen as the process goes along.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E16"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Using LILO</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>After the installation process has formatted the drive partitions and copied all the software packages you selected to the data partition, you are asked if you want to run LILO to set up the boot system for this drive. If you have a disk drive devoted 
+only to Linux, or it is a split DOS/Linux drive, you can run LILO and set the drive to boot into either operating system.
+
+<BR>
+
+<P>If you are running another operating system, such as UNIX or OS/2, you may elect not to use LILO and create a boot floppy instead. LILO is covered in much more detail in <A HREF="rhl04.htm">Chapter 4</A>, &quot;LILO.&quot;
+
+<BR>
+
+<BR>
+
+<A NAME="E68E20"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Boot and Root Disks</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Even if you are installing from CD-ROM, you need three high-capacity floppies (either 1.2MB or 1.44MB). These are a single-boot floppy and two root (also called swap) floppies. The boot floppy holds the kernel used to start Linux the first time. The 
+root or swap floppies hold a small file system that includes utilities needed for the installation.
+
+<BR>
+
+<P>In most cases, the boot and root floppies are copied from existing files that are called images. The image is a precompiled version of the system that you duplicate onto the floppies, eliminating the need to start from scratch. CD-ROM and FTP 
+distributions will have directories for several boot and root images. You must select the image that matches your hardware as much as possible, copy them to the diskettes, and start your system with the diskettes.
+
+<BR>
+
+<P>You can do most of these steps from DOS, although you can't use the DOS copy command to create the boot and root floppies. The floppies must be created with a utility that ignores DOS formatting. This utility, commonly called RAWRITE.EXE, is included 
+with most Linux software distributions.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E17"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Selecting a Boot Kernel and Root Image</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The Red Hat Linux CD-ROM has a directory under the root directory called images which contain the boot and root images. You should run DOS either from a floppy or a partition on your hard disk to examine the CD-ROM. If you are copying your files from an 
+FTP site, you can select the boot and root images you need while connected to the remote FTP machine and transfer only the images you need to your local machine.
+
+<BR>
+
+<P>The types of boot kernels usually available are described in a file in the kernel image directories. The Red Hat Linux CD-ROM accompanying this book has a number of directories under the images directory:
+
+<BR>
+
+<UL>
+
+<LI>1213&#151;Contains the standard boot images
+
+<BR>
+
+<BR>
+
+<LI>1357&#151;Contains experimental boot images with a new kernel
+
+<BR>
+
+<BR>
+
+<LI>custom&#151;Contains boot-disk images of a specialized nature
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>Under the images directory there is also a directory called floppies, which contains mirror images of the floppy distribution set for Red Hat Linux. Among the three subdirectories that hold images, there are many hundreds of images. If you are not 
+familiar with Linux or don't want to play around with special kernels and hardware configurations, stick to the 1213 directory. It has boot images that will handle most systems.
+
+<BR>
+
+<P>In the \images\1213 directory there is a file called IMAGE.TXT, which lists the makeup of each image. A typical entry looks like this:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">image # 0021:
+
+SCSI : Adaptec, Buslogic
+
+Ethernet: SMC
+
+CD-ROM : IDE/ATAPI or SCSI</FONT></PRE>
+
+<P>For each image in the 1213 directory the IMAGE.TXT file lists the image name (the file for the preceding entry is called BOOT0021.IMG), the type of controller card used for the disk drives (a SCSI controller made by, or compatible with those by, Adaptec 
+or Buslogic), the type of Ethernet card (SMC in this example), and the type of CD-ROM drive on the system (an IDE or SCSI CD-ROM drive, in this case).
+
+<BR>
+
+<P>After you have selected the proper image that most closely matches your hardware setup, you can copy it to a floppy. You will also need the two root-disk images, which are in the \images\1213 directory as RAMDISK1.IMG and RAMDISK2.IMG. If you choose the 
+boot image incorrectly, don't worry. All that will happen is you won't be able to install Linux, and you can start the process again.
+
+<BR>
+
+<P>If you obtained your boot and root images from an FTP or BBS site, the files may be compressed and archived. If they are, they will end with the file type .gz. Before you can install the images to a floppy, they must be uncompressed with the gzip 
+utility.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E18"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Creating the Boot and Root Floppies</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>You can create the boot and root floppies either from DOS or from a running UNIX or Linux system. If you don't run DOS yet, or don't have a DOS boot disk, you will have to use another machine to create the floppies. Because the DOS-based floppy creation 
+is the most common, we can deal with it first. This uses a utility called RAWRITE.EXE, which is included on the CD-ROM in the \DOSUTILS directory.
+
+<BR>
+
+<P>To create the boot and root floppies, you must use a utility program to write the image to diskette. If your image files are compressed (they will have a .gz) extension, they must first be uncompressed with the gzip utility. If you are working from 
+CD-ROM, you will have to copy the files to a DOS hard disk since you can't write the uncompressed image to the CD-ROM. To uncompress a .gz file, issue the command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">gzip -d filename</FONT></PRE>
+
+<P>where filename is the name of the compressed file (including the .gz extension). The -d option tells gzip to decompress the file. When it is completed, the .gz file will have been erased and only the uncompressed file will remain (with the same 
+filename, less the .gz extension). You should uncompress the boot and root images.
+
+<BR>
+
+<P>The three floppies you need for Red Hat Linux don't have to be blank, as the RAWRITE utility used to copy the image to the floppies doesn't respect DOS formatting conventions. The two floppies must be high density. The disks must be formatted using the 
+DOS format program. The boot diskette must be the correct size for your system's boot floppy drive (A: in DOS terms).
+
+<BR>
+
+<P>To use the RAWRITE program, enter its name at the DOS prompt with the full path to the utility, such as:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">D:\DOSUTILS\RAWRITE</FONT></PRE>
+
+<P>if your CD-ROM is drive D (or you can copy the files to a directory on your hard disk). RAWRITE will prompt you for the name of the file to copy and then destination drive letter. RAWRITE will then copy the images. Label the disks when the process is 
+finished.
+
+<BR>
+
+<P>If you have access to a UNIX or Linux system, you can create the boot disks from within that operating system. You will need to put the image files on the UNIX or Linux system and use the dd utility to copy them to floppy. First, make sure the images 
+are uncompressed (no .gz extension). If they are not, uncompress them with the gunzip utility.
+
+<BR>
+
+<P>To uncompress files in UNIX or Linux, issue the command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">gunzip filename</FONT></PRE>
+
+<P>where filename is the name of the image file, with its .gz extension. The gunzip utility will erase the compressed file and leave an uncompressed version in its place.
+
+<BR>
+
+<P>To copy the images to a floppy, you need to know the device name of the floppy within the operating system. For most systems, the first floppy drive is /dev/fd0 and the second floppy drive is /dev/fd1. (Some systems treat the floppy drives as a raw 
+device, which have the names /dev/rfd0 and /dev/rfd1.) Copy image files to the floppy with the command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">dd if=filename of=/dev/fd0 obs=18k</FONT></PRE>
+
+<P>where filename is the name of the uncompressed image. The dd command converts file formats. The if and of parts of the command indicate the input and output filenames or devices. The obs portion of the command indicates the output block size (in this 
+case, 18KB).
+
+<BR>
+
+<P>For example, to copy the BOOT0023.IMG image to the first floppy (3.5-inch 1.44MB), issue the command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">dd if=boot0023.img of=/dev/fd0 obs=18k</FONT></PRE>
+
+<P>If you already have a Linux system, an easy way to make the boot and root floppies for Red Hat Linux is with a utility supplied on the CD-ROM. There is a Perl program called MKFLOPPIES.PL in the IMAGES subdirectory that can do the entire task for you. A 
+series of questions will help you determine the proper images.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E21"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Partitioning the Hard Disk</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Hard disks are divided into partitions or areas dedicated to an operating system. A hard disk can have up to four primary partitions, with some partitions being further divided into more logical drives by the operating system software.
+
+<BR>
+
+<P>Linux prefers to have two partitions: one for the Linux swap space, and one for the Linux software file system itself. The swap space is used as an extension of your machine's physical RAM and can be quite small. The Linux file-system partition tends to 
+be quite large, as it must hold all the Linux software. You can have several Linux file-system partitions, although one must be designated as the boot partition (where the kernel and primary utilities are located).
+
+<BR>
+
+<P>If you are using an existing hard disk that has an operating system already installed on it, you will have to repartition your hard disk to make room for Linux. This tends to be a destructive process, meaning that anything on your hard disk will be 
+destroyed. Make backups of your existing data if you want to keep it!
+
+<BR>
+
+<P>Partitioning of a hard disk is done with the fdisk utility from DOS or Linux, or interactively during the Red Hat Linux installation. You don't need to partition the drives before installing Red Hat Linux, but if you do partition during the installation 
+routine you will have to reboot to make the changes effective. If you have used fdisk in DOS, the Linux version does the same task (although the menus are completely different and much more complicated). Many PC-based UNIX systems also use fdisk to 
+partition hard drives.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>A DOS utility called FIPS sometimes allows nondestructive changes to your partitions, assuming no data is on the areas that will be repartitioned. FIPS is available from many sources, including most of the Linux FTP sites and some Linux CD-ROMs. 
+However, you should make backups, just in case!</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>You must decide how much space to allocate to the different partitions before you start, as changing your mind later will mean destroying all the data you have saved to disk. The Linux swap-space partition size will depend on the amount of RAM in your 
+system, the number of users you expect, and the type of development you will do.
+
+<BR>
+
+<P>If you are going to maintain a DOS partition on the same disk, you will have to balance the disk-space requirements of both operating systems against your total disk capacity. A minimum Linux file-system partition will be about 20MB, although closer to 
+200MB is needed for a full X-based installation.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E19"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Linux Swap-Space Partition</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>How big should the swap-space partition be? No single number works for all installations, unfortunately. Generally, because the swap space is used as an extension of physical RAM, the more RAM you have, the less swap space is required. You can add the 
+amount of swap space and the amount of RAM together to get the amount of RAM Linux will use. For example, if you have 8MB of RAM on your machine's motherboard, and a 16MB swap-space partition, Linux will behave as though you had 24MB of total RAM.
+
+<BR>
+
+<P>Linux uses the swap space by moving pages of physical RAM to the swap space when it doesn't need that page at the moment, and vice versa when it needs the memory page. So why not make a very large swap space and let Linux think it's in heaven? Because 
+the swap space is much slower in access time than RAM, and there is a point at which the size of the swap space acts against your Linux system's efficiency, instead of for it.
+
+<BR>
+
+<P>Swap space may not be needed if you have lots of RAM. For example, if you have 16MB of physical RAM and don't intend to do any application development or run X, you won't make much use of the swap space because Linux can fit everything it needs into the 
+16MB. (You still should have a small swap space, just in case.)
+
+<BR>
+
+<P>If you are running X, developing applications, or running memory-hog applications like databases, swap space is crucial even if you have lots of physical RAM. Even 16MB RAM is not enough for X, so you need swap space.
+
+<BR>
+
+<P>A good rule is to create a swap space with a size of 16MB. Unless you have a very small capacity hard disk, this won't be a major drain on your resources and it does give Linux plenty to work with. If you don't want to allocate this much space, a good 
+rule is to have a total of 16MB RAM (swap space plus physical RAM). Don't eliminate the swap space completely, though, unless you really have a lot of RAM. At a minimum, set up a 4MB swap space. Running out of RAM can cause Linux to totally lock up or 
+crash, which isn't a pretty sight!
+
+<BR>
+
+<BR>
+
+<A NAME="E69E20"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Setting Up Partitions</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Because the versions of fdisk in DOS, OS/2, UNIX, and Linux all differ, all the steps aren't explained here. The fdisk utility is very easy to use, so if you have used PC machines for a while this will not be a problem for you. Remember, though, that 
+fdisk will destroy existing data on your disk! You can set up your Linux disk partitions either from DOS or from within Linux. It really doesn't matter which approach you use, although the DOS fdisk program is a little easier to use than the Linux version. 
+If you are using DOS fdisk to repartition a DOS area on your drives, you may as well use it to set up the Linux swap space and file-system partitions, too. The DOS version of fdisk has one problem, though: it can't set the partition type numbers. Linux's 
+fdisk lets you set the partition types to be recognized more easily (type 82 for Linux swap and type 83 for Linux data).
+
+<BR>
+
+<P>To set up partitions for Linux, remove any existing partitions first (unless you want to keep them as they are). If you intend to use DOS on the same system as Linux, DOS should be the first partition on the disk so it can boot. (There are a few ways to 
+get by this using LILO, but it is still a good rule to leave DOS as the first partition.) If you are keeping an existing DOS partition, it should be the first partition.
+
+<BR>
+
+<P>You should create a DOS boot disk that can reformat and transfer the DOS kernel to the hard drive, regardless of whether you are leaving an existing DOS partition or creating a new one. To create the boot diskette, use the DOS command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">format a: /s</FONT></PRE>
+
+<P> (assuming A: is the drive the diskette is in). The /s option transfers the operating system kernel. Next, copy the utilities FDISK, FORMAT, SYS, and CHKDSK to the boot floppy. You should also copy an editor, such as EDIT, and your existing CONFIG.SYS 
+and AUTOEXEC.BAT files (although you could rename them). This disk will let you format any new DOS partitions. Alternatively, if you are starting from scratch with a new DOS partition, you can simply reload DOS from the original diskettes when ready to 
+format the DOS partition.
+
+<BR>
+
+<P>If you are removing an existing DOS partition and re-creating a smaller one (as you would if your entire disk was DOS before Linux came into your life), follow these steps (after making a backup of your DOS data):
+
+<BR>
+
+<OL>
+
+<LI>Remove the existing DOS partition.
+
+<BR>
+
+<BR>
+
+<LI>Create a new primary DOS partition as the first partition.
+
+<BR>
+
+<BR>
+
+<LI>Make the DOS partition active.
+
+<BR>
+
+<BR>
+
+<LI>Reboot the system from your boot floppy (or DOS disks).
+
+<BR>
+
+<BR>
+
+<LI>Format the DOS partition and transfer the DOS kernel (COMMAND.COM) and hidden .SYS files by using the DOS SYS command or using FORMAT /S.
+
+<BR>
+
+<BR>
+
+<LI>Restore your backup files to the DOS partition (this can be done at any time).
+
+<BR>
+
+<BR>
+
+</OL>
+
+<P>Next, set up the Linux swap-space partition by creating a partition of the proper size. You can do this step either from DOS or when you have booted Linux from the boot and root floppies. For the sake of this chapter, we'll assume you are setting up the 
+partitions from DOS (although the process is the same either way).
+
+<BR>
+
+<P>Most versions of fdisk enable you to enter the size of the partition in MB, with the utility calculating the sector numbers that apply to it. Set the size of the Linux swap space to whatever size you decided. Don't make the partition active or format 
+it! You can set up the swap-space partition in an extended disk partition, but a primary partition is a better choice if your disk can support it.
+
+<BR>
+
+<P>Finally, create the Linux file-system partition to be whatever size you want, or the rest of the disk if that's the only partition missing. Again, don't activate or format the partition. When you are running the Linux installation routine, you will 
+identify and format the swap space and file-system partitions properly.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E22"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Install the Linux Partitions</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>One of the first steps you are asked to do by the installation routine is to set up disk partitions. Red Hat Linux has two disk-partitioning utilities: fdisk and cfdisk. Both perform the same tasks, but cfdisk is a little easier to use. The fdisk 
+utility, though, will be familiar to users of other Linux versions.
+
+<BR>
+
+<P>If you have more than one hard drive, you can place your Linux partitions on either drive. If you are planning on keeping a DOS partition, though, make sure it is the first partition on the first drive. Linux isn't so picky. If you want to boot Linux 
+cleanly, place a Linux file system on the first drive. You can also create Linux file systems on the second drive. Linux swap partitions can be on either drive. If you have two drives, putting the swap space on the second drive and the bootable Linux data 
+partition on the first should provide better performance.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E21"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Linux's fdisk</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Linux's fdisk program is different from the one in DOS, so you should check the menus frequently to determine the proper commands. During the installation process the disk partitions are detected automatically, and you are placed in the fdisk program.
+
+<BR>
+
+<P>Alternatively, you can run fdisk at any time from a Linux prompt. You invoke the Linux fdisk in the same manner as that in DOS. If you don't specify a drive, fdisk will assume the first one in the system. Otherwise, you can specifically indicate which 
+disk drive to partition by giving the device name on the command line, as in
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">fdisk /dev/hdb</FONT></PRE>
+
+<P>which will invoke fdisk for the second drive. If your system has IDE, ESDI, or RLL drives, the first is /dev/hda and the second /dev/hdb. SCSI drives are /dev/sda, /dev/sdb, and so on. Because seven SCSI drives can be supported on a single controller, 
+you could have up to /dev/hdg. (You can go even higher with another controller card, but few Linux systems will require this!)
+
+<BR>
+
+<P>As mentioned previously, Linux fdisk commands are different from the fdisk commands for DOS. Essentially, the commands you need to run the Linux fdisk utility are the following:
+
+<BR>
+
+<UL>
+
+<LI>d&#151;Deletes an existing partition
+
+<BR>
+
+<BR>
+
+<LI>l&#151;Lists all known partition types
+
+<BR>
+
+<BR>
+
+<LI>n&#151;Creates a new partition
+
+<BR>
+
+<BR>
+
+<LI>p&#151;Displays the current partition table
+
+<BR>
+
+<BR>
+
+<LI>q&#151;Quits fdisk without saving changes
+
+<BR>
+
+<BR>
+
+<LI>t&#151;Changes a partition's type code
+
+<BR>
+
+<BR>
+
+<LI>v&#151;Verifies the partition table
+
+<BR>
+
+<BR>
+
+<LI>w&#151;Writes current partition table to disk and exits
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>The process for setting up a partition is to first examine the partition table to make sure any existing partitions are correct. If you have a DOS partition on your drive, it should show in the partition table. If you created Linux swap and file-system 
+partitions when you were in DOS's fdisk, they should appear in the partition table too, although the partition types will be incorrect.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E22"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Setting Up Linux Partitions</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>To create the Linux swap space, use the n command and give the starting sector number. Usually, this will be immediately after any existing DOS partition (or other operating systems you have installed). Linux's fdisk lets you specify the size of the 
+partition either by supplying an end sector number or by giving a size in MB. The latter is much easier to work with, so just enter the number of MB you want to set your Linux swap-space partition to. The format is usually +XXM, where XX is the number of 
+megabytes (such as +16M). You can also specify kilobytes, but you don't want to create a swap partition that is less than 1MB in size.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Most PC BIOSs cannot handle more than 1024 cylinders on a disk drive. You may not be able to create DOS or Linux partitions or file systems that go beyond the 1,023th cylinder (numbering starts at zero). Some other operating systems, such as SCO 
+UNIX, enable you to use anything beyond the 1,024 limit. Linux can use partitions beyond the 1,024 limit, but it can't boot from them. If you have a disk drive that has more than 1,023 cylinders, make sure your primary Linux partition ends before 1,023. 
+You can create extra partitions following that cylinder and mount them as second file systems.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>The fdisk program will ask you if you want to create a primary or an extended partition. If you are creating a primary partition it wants the number (one to four&#151;remember a DOS partition has to be number 1 to boot). In most cases you should create 
+only primary partitions, unless you have a large disk drive. Extended partitions can be used to add logical drives inside them, as DOS creates logical drives. In Linux, extended partitions are not the same as extended file systems!
+
+<BR>
+
+<P>After you have created the Linux partition, you should assign its type. Some versions of fdisk prompt for this right away, whereas others let you select the option to assign file-system types from the fdisk menu. In either case, the letter l will 
+display all known file-system types. Choose the one that designates a Linux swap space (number 82), and check the partition table. Your Linux swap-space partition should have the correct size and partition type displayed. Actually, Linux doesn't care about 
+the partition-type numbers and ignores them completely, although it can make autodetection of the Linux partitions a little easier during installation. Some other operating systems do note them, though, so it's a good practice to label them correctly to 
+prevent future problems. It also helps you keep the partition table nicely organized!
+
+<BR>
+
+<P>Next, create your primary Linux file-system partition in the same manner. If you want to use the rest of the disk drive for that partition, you can enter the end sector number of your drive (Linux's fdisk will tell you the range you can use). This would 
+be the usual default if your hard drive has a DOS, Linux swap space, and Linux file-system partition on it. After you have created the Linux file system, you should identify its file type as 82, which is a &quot;Linux native&quot; type.
+
+<BR>
+
+<P>You should note the size of the swap-space and file-system partitions in blocks; you will need this information later. You can read this straight from the partition table.
+
+<BR>
+
+<P>After you've created the Linux partitions and are satisfied with the partition-table layout, save and exit fdisk. If you don't save the information, you will have to repeat the process again.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E23"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Enabling the Swap Space For Installation</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>When you have set up the disk partitions through the automated installation routine, you don't have to worry about enabling the swap space; it is performed automatically. If you are doing these steps manually, you will have to enable the swap space so 
+Linux can use it.
+
+<BR>
+
+<P>If you have 4MB of RAM or less, you will have problems installing Linux unless you have the kernel use the swap space. (If you have only 4MB or less of RAM in your system, you should have a swap space of at least 8MB&#151;preferably 16MB.) If you try to 
+install Linux and get memory error messages, it's because there is not enough RAM and the swap space is needed.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>If you've turned the swap space on and still get error messages, you need either more physical RAM or a larger swap space. To increase the size of a swap-space partition, you may have to remove the existing Linux partitions and re-create them with 
+fdisk.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>If you have a small amount of RAM, you should enable the swap space to help the installation process. Even if you have lots of RAM, there's no reason not to enable the swap space now, anyway. To enable the swap space, issue the command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">mkswap -c partition size</FONT></PRE>
+
+<P>where partition is the name of the partition and size is the size of the partition in blocks. You may have noted this number earlier when setting up the partition table. If not, you can start fdisk again and read the size in blocks from the 
+partition-table display.
+
+<BR>
+
+<P>For example, if you have set up the Linux swap space on partition /dev/hda2 (the second primary partition on the first non-SCSI drive) and it has a size of 13,565 blocks, you would issue the command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">mkswap -c /dev/hda2 13565</FONT></PRE>
+
+<P>The -c option in the command line tells the mkswap utility to check for bad blocks in the partition. If this option is on, it will take a little longer to create the swap partition; however, a bad block in the swap partition can cause your entire system 
+to crash, so it's worth the delay. If mkswap finds any errors in the swap space, it will generate an error message. However, because mkswap flags bad blocks to be left alone, you can ignore the messages unless there are a considerable number of them, in 
+which case your hard drive has too many bad blocks!
+
+<BR>
+
+<P>When the swap partition has been formatted, you enable the Linux swap-space partition with the command swapon. Usually you will have to specify the partition, although some versions can figure the partition out automatically from the partition table. It 
+never hurts to be explicit, though. To enable the swap partition just formatted, enter the command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">swapon /dev/hda2</FONT></PRE>
+
+<P>You will have to repeat the format and swapon commands for each swap partition, if you created more than one. As soon as the swapon command is executed, the Linux kernel will start to use the new swap space as an extension of the physical RAM.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E24"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Creating the Linux File-System Partition</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>When you have a swap space configured and working, you can set up the Linux file system. This step may be automated by some Linux installation scripts, or you may have to execute it yourself. Either way, this section explains what is going on.
+
+<BR>
+
+<P>You will have already allocated the partition table to support a Linux file system. Now you can create the file system with the mkfs (make file system) command. The exact format of the command depends on the type of file system you are setting up. The 
+most popular file system (for reasons of speed and flexibility) is called the Second Extended file system (which has nothing to do with extended partitions on a hard disk). To create a Second Extended file system, issue the command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">mke2fs -c partition size</FONT></PRE>
+
+<P>where partition is the device name and size is the size of the partition in blocks (taken from the partition display in fdisk). The size doesn't have to be specified with mke2fs as it can figure it out from the partition information. For example, to 
+create a file system in /dev/hda3, the command would be
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">mke2fs -c /dev/hda3</FONT></PRE>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>When specifying the size of a partition, make sure you use blocks and not sectors or cylinders. Using the wrong value will result in errors or only a fraction of your partition being used.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>The mke2fs utility will check the partition for bad blocks (the -c option) then set the file system up properly in that partition. If you are setting up a large partition, the disk check can take a few minutes&#151;but you should not ignore it unless 
+you know your disk is good.
+
+<BR>
+
+<P>The other file systems available to Linux are the Xia file system, the Extended file system, and the Minix file system. The Xia file system is good, but not as popular as the Second Extended. The Extended file system is an older version of Second 
+Extended, whereas the Minix file system is compatible with the old Minix operating system. You can create these file systems with the following commands:
+
+<BR>
+
+<UL>
+
+<LI>Extended&#151;mkefs
+
+<BR>
+
+<BR>
+
+<LI>Minix&#151;mkfs
+
+<BR>
+
+<BR>
+
+<LI>Xia&#151;mkxfs
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>All three commands take the same arguments as the Second Extended file-system command. The Minix file system is limited to 64MB.
+
+<BR>
+
+<P>None of the mkfs commands format the filesystem&#151;they simply set it up. You are prompted for a file-system format during the installation process.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E23"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Troubleshooting</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>There are many different problems that can occur while setting up and installing a Linux system, although most of them will be self-explanatory from error messages. A few commonly encountered problems can be easily dealt with, though, so we'll look at 
+them briefly.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E25"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Software Installation</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>You may encounter a few errors when installing Linux. If you get the message device full, it means you have run out of disk space and need to install fewer components or allocate more hard disk space. If you haven't installed the basic system, you will 
+need more disk space. You will have to delete your partitions and start the installation process again, allocating more to Linux.
+
+<BR>
+
+<P>Errors such as read error, file not found, and tar: read error are indicative of a problem with either the disk medium you are installing from, or an incomplete Disk Set. These problems usually occur with floppies, and they tend to indicate a bad 
+diskette. All you can do in most cases is replace the diskette with a new one.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E26"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Hard Disk and Disk Controller</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>When Linux boots it displays a few messages, one of the most important being a partition check. You will see messages like this:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Partition check:
+
+hda: hda1 hda2 hda3
+
+hdb: hdb1 hdb2</FONT></PRE>
+
+<P>In this example, the first non-SCSI disk has three partitions and the second disk has two. Your system's output will probably be different, of course. If you don't see any partition information, either the hard disk controller is not recognized 
+properly, or the disk drives themselves are not accessible. There are a number of potential causes for these problems, including the obvious:
+
+<BR>
+
+<UL>
+
+<LI>Check the cables inside the computer. The hard-disk cable should run from the adapter card to each drive's connector. Make sure the cables are connected in the proper manner (the red strip on the cable is at pin 1 on the connector).
+
+<BR>
+
+<BR>
+
+<LI>Confirm that the power connector is attached to each disk drive. Without power, your drive won't spin up and Linux can't touch it.
+
+<BR>
+
+<BR>
+
+<LI>Check the partition table to make sure you created a Linux partition properly.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>After that, if the drive is not working properly with Linux but works fine when you boot DOS, a kernel driver for the hard disk is probably at fault. Some IDE drives, for example, are not as well-behaved (that is, conforming to the IDE standards) as 
+others, and your IDE kernel driver may not be able to talk to your drives. Try using a different kernel image and see if the problem solves itself. If you are using a SCSI kernel and adapter and the drives are not recognized, use the utilities that came 
+with the SCSI adapter card to force a check of the hard drives. They may have a SCSI ID set incorrectly.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E27"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Device Conflicts</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>One of the most commonly encountered problems is hardware not recognized properly. This can happen to a CD-ROM, a network card, and even a hard disk. Most of the time this is caused by a conflict in the IRQ (interrupt), DMA (Direct Memory Address), or 
+I/O address settings. When two devices have the same settings on any one of the three characteristics, Linux and the BIOS may not be able to communicate with the device properly.
+
+<BR>
+
+<P>A symptom of this problem may be Linux hanging when it tries to find a specific device, as explained on the boot messages. When Linux boots up, it generates verbose messages on the console that explain what it is doing. If you see a message that it is 
+trying to connect to the network card, for example, and it never gets past that point, chances are that the network card has a conflict with another device. (Totally failed cards are very rare and don't usually stop the boot process; Linux ignores devices 
+it can't access. The problem with a working card with conflicting settings is that Linux is getting messages from two devices that don't act the same.)
+
+<BR>
+
+<P>To check for conflicts, you can run a diagnostic utility under DOS such as MSD or Norton Info. Windows 95 users can use the System icon in the Control Panel to obtain this information. These diagnostics can show you the current IRQ, DMA, and I/O 
+addresses and pinpoint any conflicts. They can also be used for finding available settings.
+
+<BR>
+
+<P>Alternately, you will have to check the settings of every device in your system for conflicts. Usually, network cards will conflict with sound boards, non-SCSI tape driver cards, video cards, and similar add-on cards. Most cards use DIPs or jumpers to 
+set these parameters, so check them against the documentation. To help isolate the problem, remove cards that are not necessary, such as a sound card, and see if the boot process moves past the device that caused the hang-up.
+
+<BR>
+
+<P>Another problem that can occur is with SCSI devices (and a few others, although much rarer) that must have specific settings in the kernel image. Some kernels were compiled with settings that are default values for adapters or disk drives; if the 
+settings have been changed, the kernel will hang up. This is often the case with special-purpose kernels that have been developed for non-mainstream adapters. To check for this type of problem, you should investigate any documentation that came with the 
+kernel image.
+
+<BR>
+
+<P>The most common devices in a PC (COM ports, parallel ports, and floppies) and their IRQ, DMA, and I/O addresses are shown in Table 3.1. These are the default values for a PC, but they may be changed by users. Because only two COM ports (serial ports) 
+are usually supported by DOS, they share IRQ values. The I/O addresses are different, though. Both floppy disks share the same I/O addresses, IRQ, and DMA.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 3.1. Common IRQ, DMA, and memory address settings.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Device</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>IRQ</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>DMA</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>I/O Address </I><I>(Hex)</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+COM 1 (/dev/ttyS0)
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+4
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+N/A
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+3F8</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+COM 2 (/dev/ttyS1)
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+3
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+N/A
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+2F8</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+COM 3 (/dev/ttyS2)
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+4
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+N/A
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+3E8</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+COM 4 (/dev/ttys3)
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+3
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+N/A
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+2E8</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+LPT 1 (/dev/lp0)
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+7
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+N/A
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+378-37F</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+LPT 2 (/dev/lp1)
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+5
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+N/A
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+278-27F</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Floppy A (/dev/fd0)
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+6
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+2
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+3F0-3F7</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Floppy B (/dev/fd1)
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+6
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+2
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+3F0-3F7</FONT>
+
+</TABLE><P>Network cards, SCSI adapters, sound boards, video cards, and other peripherals all must have unique IRQ, DMA, and I/O addresses, which can be difficult to arrange with a fully loaded system. For more information on available values, you should 
+check your device or card-<A NAME="I2"></A>installation manual for recommended values and potential conflicts.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E24"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>SCSI Problems</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>SCSI is one of the most versatile interfaces, and it pays for that versatility in potential problems. Linux is usually good about reporting problems with SCSI devices, although the error messages may leave you wondering about the real cause of the 
+problem.
+
+<BR>
+
+<P>Table 3.2 lists many of the common SCSI errors and their probable causes. Find the message that closely matches the error message Linux displays in this table to determine your corrective steps.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 3.2. Common SCSI problems and their solutions.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Problem</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Probable Solution</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+SCSI device at all possible IDs
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+One or more devices are at the same SCSI ID as the controller. Check and change device IDs. Controllers should be ID 7.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Sense errors
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Probably caused by bad termination. Check that both ends of the SCSI chain are terminated. If that is not the problem, the cable is likely at fault.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Timeout errors
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Usually caused by a DMA, IRQ, or I/O-address conflict. See the preceding section for more information.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+SCSI adapter not detected
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The BIOS is disabled or the SCSI adapter is not recognized by the kernel. Check the drivers.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Cylinders Beyond 1024
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Your disk has more than 1,024 cylinders, which the PC BIOS can't handle. Linux can use more than 1,024 cylinders, but it can't boot from a partition that extends across that cylinder boundary.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+CD-ROM drive not recognized
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Some CD-ROMs require a CD in the drive to be recognized properly. Insert a CD and reboot.</FONT>
+
+</TABLE><BR>
+
+<A NAME="E69E28"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Booting Linux</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>If you have installed Linux and the system won't boot properly from your hard disk, it may be a problem with LILO or with the partitions. If you created a boot floppy, boot from that. If that boots without a problem, check the partition table by 
+executing fdisk. Make sure the Linux partition is active. If it is and you still can't boot from the hard disk, boot from the floppy and run LILO again to configure the boot sector. See <A HREF="rhl04.htm">Chapter 4</A> for more information on LILO.
+
+<BR>
+
+<P>A problem will sometimes occur when Linux can't find the main Linux partition. Boot from the floppy and hold down Shift or Ctrl. This produces a menu that enables you to specify the boot device explicitly. This problem can usually be corrected with 
+LILO.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E25"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Summary</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Much of this chapter will be familiar to you if you have installed Linux before, although some users really don't know what goes on during the automated installation script. Knowing the process, and staying on top of it, helps prevent problems with the 
+Linux installation.
+
+<BR>
+
+<P>The next step is using LILO to properly configure the boot system&#151;a commonly misunderstood and misused process. The next chapter looks at LILO.
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl02.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="#I0" TARGET="_self"><IMG SRC="purtop.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Page Top"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl04.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+</BODY></HTML>
+
+
+

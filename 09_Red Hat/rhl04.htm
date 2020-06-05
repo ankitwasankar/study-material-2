@@ -1,0 +1,1209 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Red Hat Linux Unleashed rhl04.htm </TITLE>
+
+<LINK REL="ToC" HREF="index.htm">
+
+<LINK REL="Index" HREF="htindex.htm">
+
+<LINK REL="Next" HREF="rhl05.htm">
+
+<LINK REL="Previous" HREF="rhl03.htm"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+
+<A NAME="I0"></A>
+
+<H2>Red Hat Linux Unleashed rhl04.htm</H2>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl03.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl05.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+<HR ALIGN=CENTER>
+
+<P>
+
+<UL>
+
+<UL>
+
+<UL>
+
+<LI>
+
+<A HREF="#E68E26" >Using LILO to Boot Off the Hard Drive</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E29" >LILO Command-Line Arguments</A>
+
+<LI>
+
+<A HREF="#E69E30" >Configuration Parameters</A>
+
+<LI>
+
+<A HREF="#E69E31" >The boot Prompt</A>
+
+<LI>
+
+<A HREF="#E69E32" >Uninstalling LILO</A>
+
+<LI>
+
+<A HREF="#E69E33" >Map Installer Errors</A>
+
+<LI>
+
+<A HREF="#E69E34" >LILO Error Codes</A></UL>
+
+<LI>
+
+<A HREF="#E68E27" >Using BOOTLIN Instead of LILO</A>
+
+<LI>
+
+<A HREF="#E68E28" >Restoring the MBR</A>
+
+<LI>
+
+<A HREF="#E68E29" >Summary</A></UL></UL></UL>
+
+<HR ALIGN=CENTER>
+
+<A NAME="E66E4"></A>
+
+<H1 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>4</B></FONT></CENTER></H1>
+
+<BR>
+
+<A NAME="E67E4"></A>
+
+<H2 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>LILO</B></FONT></CENTER></H2>
+
+<BR>
+
+<P>Whenever you hear about Linux, you'll also hear about LILO. LILO is the boot loader used by Linux to load the operating system kernel. Whenever the Linux kernel is changed or moved, LILO must be invoked to rebuild a map of the kernel locations. LILO is 
+versatile; it can boot Linux kernels from any type of file system, including floppy disk, as well as from other operating systems.
+
+<BR>
+
+<P>This chapter looks at LILO, the way hard disks are laid out with Linux, the boot process, and the most common boot processes and LILO's interactions with each. This should help you install and use LILO efficiently and effectively.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E26"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Using LILO to Boot Off the Hard Drive</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>LILO (which means LInux LOader) is a bit tricky to use if you are not familiar with it and its purpose. You need to install the LILO program, which changes the boot sector of your hard drive to allow you to choose between a DOS or a Linux partition as 
+the boot source partition. LILO is included with Red Hat Linux and is installed automaically when you load the system from CD-ROM.
+
+<BR>
+
+<P>Some of the features of LILO include the following:
+
+<BR>
+
+<UL>
+
+<LI>It is independent of the file system. You can use LILO with DOS, UNIX, OS/2, and Windows NT.
+
+<BR>
+
+<BR>
+
+<LI>It can replace the master boot record on your hard drive.
+
+<BR>
+
+<BR>
+
+<LI>It can use up to 16 different boot images on several partitions on your hard drive. Each image can be protected by a password.
+
+<BR>
+
+<BR>
+
+<LI>It provides support for boot-sector, map-file, and boot images to reside on different disks or partitions.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>Using LILO may seem risky at first; it can ruin your hard drive or leave you with a system that you cannot boot. To prepare yourself for this mishap, keep a boot disk handy. Also, you have to do this installation as root, so be careful.
+
+<BR>
+
+<P>If you have already installed Red Hat Linux, the LILO files will exist on your hard drive. If you are about to install Red Hat Linux, the LILO installation routine will be activated automatically as part of the installation process. If you want to redo 
+the LILO system at any time, though, you can run the program /sbin/liloconfig.
+
+<BR>
+
+<P>The liloconfig program is easy to use and asks several questions about your system. The sheer number of possibilities cannot be completely covered here, but here are the terms with which you must be familiar:
+
+<BR>
+
+<UL>
+
+<LI>/dev/hda and /dev/hdb refer to both IDE hard drives 1 and 2 on your system. Individual partitions on each hard drive are referred to as /dev/hda1, /dev/hda2, /dev/hda3, and so on for drive 1. Similar to this are the partitions for drive 2: /dev/dhb1 
+and so on.
+
+<BR>
+
+<BR>
+
+<LI>SCSI hard drives are referred to as /dev/sda and /dev/sdb for drive 1 and 2, respectively.
+
+<BR>
+
+<BR>
+
+<LI>The Master Boot Record (MBR) is the first boot sector of your drive that contains the partitioning information and boot-strap code. LILO will change this sector and make it incompatible with DOS. The DOS MBR program simply loads MS-DOS from the boot 
+sector, which in turns loads command.com.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>The liloconfig program asks you where you want to install LILO. If you are running multiple operating systems and plan to switch between them often, try installing on the Linux partition superblock. If you will use Linux primarily or only, install on 
+the Master Boot Record. You will then be asked about the ability to load other operating systems from the boot prompt, and you get to identify each operating system and provide a name for it. This lets you start DOS, for example, from the boot prompt by 
+entering the name you assigned to DOS partition.
+
+<BR>
+
+<P>After the liloconfig program has run, it will create a file called lilo.conf for you in the /etc directory. If you already have this file in your /etc directory, you can edit it manually using any ASCII editor. Of course, depending on how your system is 
+set up, the contents of your Linux installation may vary. A sample lilo.conf file for a system containing both DOS and Linux looks like this:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">boot=/dev/hda
+
+map=/boot/map
+
+install=/boot/boot.b
+
+prompt
+
+timeout=50
+
+image=/vmlinuz
+
+root=/dev/hda2
+
+label=linux
+
+other=/dev/hda1
+
+label=dos
+
+table=/dev/hda</FONT></PRE>
+
+<P>In this lilo.conf file, you can see two different kernels that can be booted from /dev/hda. The first image is the default image, called vmlinuz. The other image is labeled DOS for the DOS partition. Typing dos at the boot prompt will boot this 
+partition.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E29"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>LILO Command-Line Arguments</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The LILO configuration is written to disk using the /sbin/lilo command. The /sbin/lilo installer accepts several command-line options. A few of the more usual ones are listed here.
+
+<BR>
+
+<UL>
+
+<LI>-C &lt;config_file&gt;. Specifies the configuration file that is used by the map installer. If -C is omitted, /etc/lilo/config is used. In this example, you would use /etc/lilo.conf.
+
+<BR>
+
+<BR>
+
+<LI>-q. Lists the currently mapped files.
+
+<BR>
+
+<BR>
+
+<LI>-r &lt;root_directory&gt;. Changes the directory to the specified directory before doing anything else. This is useful when running the map installer while the normal root file system is mounted somewhere else, for example, when recovering from an 
+installation failure with an install disk.
+
+<BR>
+
+<BR>
+
+<LI>-t. Test only. Performs the entire installation procedure without replacing the map file or writing the modified boot sector. This can be used in conjunction with the -v option to verify that LILO will use sane values.
+
+<BR>
+
+<BR>
+
+<LI>-v. Be verbose about what it's doing. If you don't do this, the installation process will not display any messages or status information.
+
+<BR>
+
+<BR>
+
+<LI>-u [ device_name ]. Restores the backup copy of the specified boot sector. The name is normally derived from its present name.
+
+<BR>
+
+<BR>
+
+<LI>-V. Prints the version number and exits.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<BR>
+
+<A NAME="E69E30"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Configuration Parameters</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The /etc/lilo.conf file can have the following parameters. All of these can be set from the command line, but storing them in a configuration file is more reliable. The following options are available to you:
+
+<BR>
+
+<UL>
+
+<LI>boot=&lt;boot_device&gt;. Sets the name of the device that contains the boot sector. If boot is omitted, the boot sector is read from (and possibly written to) the device that is currently mounted as root.
+
+<BR>
+
+<BR>
+
+<LI>linear. Generates linear sector addresses instead of sector/head/cylinder addresses. Linear addresses are translated at run time and do not depend on disk geometry. Note that boot disks, where linear is used, may not be portable.
+
+<BR>
+
+<BR>
+
+<LI>install=&lt;boot_sector&gt;. Installs the specified file as the new boot sector. If install is omitted, /etc/lilo/boot.b is used as the default.
+
+<BR>
+
+<BR>
+
+<LI>disktab=&lt;disktab_file&gt;. Specifies the name of the disk parameter table. The map installer looks for /etc/lilo/disktab if disktab is omitted.
+
+<BR>
+
+<BR>
+
+<LI>map=&lt;map_file&gt;. Specifies the location of the map file. If map is omitted, the file /etc/lilo/map is used.
+
+<BR>
+
+<BR>
+
+<LI>message=&lt;message_file&gt;. Specifies a file containing a message that is displayed before the boot prompt. No message is displayed when waiting for a Shift key after printing &quot;LILO.&quot; The FF character ([Ctrl L]) clears the local screen. The 
+size of the message file is limited to 65,535 bytes. The map file has to be rebuilt if the message file is changed or moved. The default file for messages is the /etc/boot.message file. Use this file to display boot options for your LILO configuration.
+
+<BR>
+
+<BR>
+
+<LI>verbose=&lt;level&gt;. Turns on lots of progress reporting. Higher numbers give more verbose output.
+
+<BR>
+
+<BR>
+
+<LI>backup=&lt;backup_file&gt;. Copies the original boot sector to &lt;backup_file&gt; (which may also be a device, such as /dev/null) instead of to /etc/lilo/boot.&lt;number&gt;.
+
+<BR>
+
+<BR>
+
+<LI>force-backup=&lt;backup_file&gt;. Like backup, but overwrites an old backup copy if it exists. backup=&lt;backup_file&gt; is ignored if force-backup appears in the same configuration file.
+
+<BR>
+
+<BR>
+
+<LI>prompt. Forces entering the boot prompt without expecting any prior key presses. Unattended reboots are impossible if prompt is set and timeout isn't.
+
+<BR>
+
+<BR>
+
+<LI>timeout=&lt;tsecs&gt;. Sets a time out (in tenths of a second) for keyboard input. If no key is pressed for the specified time, the first image is automatically booted. Similarly, password input is aborted if the user is idle for too long. The default 
+timeout is infinite.
+
+<BR>
+
+<BR>
+
+<LI>serial=&lt;parameters&gt;. Enables control from a serial line. The specified serial port must be initialized, and LILO is accepting input from it and from the PC's keyboard. Sending a break on the serial line corresponds to pressing the Shift key on 
+the console in order to get LILO's attention. All boot images should be password-protected if the serial access is less secure than access to the console&#151;that is, if the line is connected to a modem. The parameter string has the syntax 
+&lt;port&gt;,&lt;bps&gt;&lt;parity&gt;&lt;bits&gt;. The components &lt;bps&gt;, &lt;parity&gt;, and &lt;bits&gt; can be omitted. If a component is omitted, all following components have to be omitted as well. Additionally, the comma has to be omitted only 
+if the port number is specified.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<UL>
+
+<UL>
+
+<P>&lt;port&gt;. The number of the serial port, zero-based. 0 corresponds to COM1.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>alias /dev/ttyS0, alias /dev/ttys1, alias /dev/ttys2, alias /dev/ttys3. All four ports can be used (if present).
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>&lt;bps&gt;. The baud rate of the serial port. The following baud rates are supported: 110, 150, 300, 600, 1200, 2400, 4800, and 9600 bps. Default is 2400 bps.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>&lt;parity&gt;. The parity used on the serial line. LILO ignores input parity and strips the eighth bit. The following (upper- or lowercase) characters are used to describe the parity: n for no parity, e for even parity, and o for odd parity.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>&lt;bits&gt;. The number of bits in a character. Only 7 and 8 bits are supported. Default is 8 if parity is none, 7 if parity is even or odd.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<LI>If serial is set, the value of delay is automatically raised to 20. Example: serial=0,2400n8 initializes COM1 with the default parameters.
+
+<BR>
+
+<BR>
+
+<LI>ignore-table. Tells LILO to ignore corrupt partition tables.
+
+<BR>
+
+<BR>
+
+<LI>fix-table. Allows LILO to adjust 3-D addresses in partition tables. Each partition entry contains a 3-D (sector/head/cylinder) and a linear address of the first and the last sector of the partition. If a partition is not track-aligned and if certain 
+other operating systems (such as PC/MS-DOS or OS/2) are using the same disk, the operating system may change the 3-D address. LILO can store its boot sector only on partitions where both address types correspond. LILO readjusts incorrect 3-D start 
+addresses if fix-table is set.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>fix-table does not guarantee that other operating systems might not attempt to reset the address later. It is also possible that this change has other, unexpected side effects. The correct fix is to repartition the drive with a program that does 
+align partitions to tracks.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<UL>
+
+<LI>password=&lt;password&gt;. Sets a password for all images.
+
+<BR>
+
+<BR>
+
+<LI>unsafe. This keyword is placed after a definition for a partition. The keyword tells LILO not to attempt to read the MBR or that disk's partition table entry. You can declare all the partitions in your system as a log of all exisiting partitions, then 
+place the unsafe keyword entry to prevent LILO from reading it.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>The kernel configuration parameters append, ramdisk, read-only, read-write, root, and vga can be set in the options section. They are used as defaults if they aren't specified in the configuration sections of the respective kernel images.
+
+<BR>
+
+<P>If the option -q is specified on the command line, the currently mapped files are listed. Otherwise, a new map is created for the images described in the configuration file /etc/lilo/config and they are written to in the boot sector.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E31"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>The boot Prompt</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>When the system boots up, after the keyboard test, press and hold down one of any one of these keys: Alt, Shift, or Ctrl (or you can set the Caps Lock or Scroll Lock key). If any of these keys are pressed, LILO displays the boot: prompt and waits for 
+the name of a boot image. Pressing the Tab key or typing ? gives you a list of names recognized by LILO. If you do not press any of these keys, LILO will boot up the first it finds in the lilo.conf file kernel (in this case, vmlinuz.cd) if there is no 
+timeout specified in the /etc/lilo.conf file.
+
+<BR>
+
+<P>LILO can also pass command-line options to the kernel. Command-line options are words that follow the name of the boot image and are separated by spaces. Currently, the kernel recognizes the options root=&lt;device&gt;, ro, and rw, and all current init 
+programs also recognize the option single, which boots the system in single-user mode. This bypasses all system-initialization procedures and directly starts a root shell on the console. Multiuser mode can be entered by exiting the single-user shell or by 
+rebooting.
+
+<BR>
+
+<P>The option vga is processed by the boot loader itself. The option vga=&lt;mode&gt; alters the VGA mode that was set at startup. The legal values for mode are NORMAL, EXTENDED, ASK, or a decimal number for the BIOS mode command. You can get a list of 
+available modes by typing vga=ask and pressing Enter.
+
+<BR>
+
+<P>The root=&lt;device&gt; option changes the root device. This overrides settings that may have been made in the boot image and on the LILO command line.
+
+<BR>
+
+<UL>
+
+<UL>
+
+<P>&lt;device&gt; is either a hexadecimal device number or the full pathname of the device, such as /dev/hda3. (The device names are hard-coded in the kernel.)
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>ro instructs the kernel to mount the root file system as read-only. rw mounts it as read-write. If neither ro nor rw is specified, the setting from the boot image is used.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>The no387 option disables using the hardware FPU.
+
+<BR>
+
+</UL></UL>
+
+<P>Depending on the kernel configuration, some special configuration options for nonstandard hardware might be recognized as well. Some of these boot prompts include the following :
+
+<BR>
+
+<UL>
+
+<LI>For a Panasonic CD-ROM with SoundBlaster support, use sbpcd=0x340,SoundBlaster.
+
+<BR>
+
+<BR>
+
+<LI>For a bus mouse, use bmouse=irq.
+
+<BR>
+
+<BR>
+
+<LI>For reserving ports from being autoprobed by device drivers in special hardware device-conflict situations, you can use reserve=port,size. For example, reserve=0x200,8 will reserve 8 ports starting at 0x200 from being probed by device drivers.
+
+<BR>
+
+<BR>
+
+<LI>Ethernet cards usually take parameter from the ether=x,x,x,... command. The actual parameters sent depend on the type of card.
+
+<BR>
+
+<BR>
+
+<LI>For Mitsumi CD-ROM, use mcd=port,irq&#151;for example, mcd=0x340,11.
+
+<BR>
+
+<BR>
+
+<LI>If your Ethernet card is not recognized, try ether=10,0x340 to probe for it at port 0x340 using interrupt 10. Note that the interrupt number here is given before the port number is given for the Mitsumi CD-ROM driver.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>The parameters for each type of device will come with their documentation, so do not assume anything. Use only specified values. If you do follow instructions, you may wind up causing irrecoverable errors, which may lead to a corrupt file system.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E32"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Uninstalling LILO</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>In order to keep LILO from being invoked when the system boots, its boot sector has to be either removed or disabled. All other files belonging to LILO can be deleted after removing the boot sector, if desired.
+
+<BR>
+
+<P>LILO 0.14 (and newer) can be uninstalled with the lilo -u command.
+
+<BR>
+
+<P>If LILO's boot sector has been installed on a primary partition and is booted by the standard MBR or some partition-switching program, it can be disabled by making a different partition active. MS-DOS's FDISK, Linux's fdisk, or LILO's activate can do 
+that.
+
+<BR>
+
+<P>If LILO's boot sector is the Master Boot Record (MBR) of a disk, it has to be replaced with a different MBR, typically MS-DOS's standard MBR. When using MS-DOS 5.0 or above, the MS-DOS MBR can be restored with FDISK /MBR. This alters only the boot 
+loader code, not the partition table. LILO automatically makes backup copies when it overwrites boot sectors. They are named /etc/lilo/boot.&lt;nnnn&gt;, with &lt;nnnn&gt; corresponding to the device number&#151;that is, 0300 is /dev/hda, 0800 is /dev/sda, 
+and so on. Those backups can be used to restore the old MBR if no easier method is available.
+
+<BR>
+
+<P>The commands are
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">dd if=/etc/lilo/boot.0300 of=/dev/hda bs=446 count=1</FONT></PRE>
+
+<P>or
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">dd if=/etc/lilo/boot.0800 of=/dev/sda bs=446 count=1</FONT></PRE>
+
+<P>respectively.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Some other operating systems (such as MS-DOS 6.0) appear to modify the MBR in their install procedures. It is therefore possible that LILO will cease to work after such an installation and Linux has to be booted from floppy disk. The original state 
+can be restored by either rerunning /etc/lilo/lilo (if LILO is installed as the MBR) or by making LILO's partition active (if it's installed on a primary partition).
+
+<BR>Typically, the new operating system then has to be added to LILO's configuration (and /etc/lilo/lilo has to be rerun) in order to boot it.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E69E33"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Map Installer Errors</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Some messages that indicate common errors when installing the maps are as follows:
+
+<BR>
+
+<UL>
+
+<LI>Can't put the boot sector on logical partition &lt;number&gt;
+
+<BR>You attempted to put LILO's boot sector on the current root file system partition, which is on a logical partition. This usually doesn't have the desired effect, because common MBRs can boot only primary partitions. This check can be bypassed by 
+explicitly specifying the boot partition with the -b option or by setting the configuration variable boot.
+
+<BR>
+
+<BR>
+
+<LI>Device 0x&lt;number&gt;: Got bad geometry &lt;sec&gt;//&lt;cyl&gt;
+
+<BR>The device driver for your SCSI controller does not support geometry detection. You have to use an /etc/lilo/disktab file.
+
+<BR>
+
+<BR>
+
+<LI>Device 0x&lt;number&gt;: Invalid partition table, entry &lt;number&gt;
+
+<BR>The 3-D and linear addresses of the first sector of the specified partition don't correspond. LILO can attempt to correct the problem; see variable FIX-TABLE.
+
+<BR>
+
+<BR>
+
+<LI>First sector of &lt;device&gt; doesn't have a valid boot signature
+
+<BR>The first sector of the specified device does not appear to be a valid boot sector. Check the device name.
+
+<BR>
+
+<BR>
+
+<LI>geo_comp_addr: Cylinder number is too big (&lt;number&gt; &gt; 1023)
+
+<BR>A file is located beyond the 1024th cylinder of a hard disk. LILO can't access such files, because the BIOS limits cylinder numbers to the range 0-1023. Try moving the file to a different place, preferably a partition that is entirely within the first 
+1024 cylinders of the disk.
+
+<BR>
+
+<BR>
+
+<LI>&lt;item&gt; doesn't have a valid LILO signature
+
+<BR>The specified item has been located, but it is not part of LILO. If &lt;item&gt; is the first boot sector, you've probably forgotten to specify the -i option or the install variable to install the LILO boot sector.
+
+<BR>
+
+<BR>
+
+<LI>&lt;item&gt; has an invalid stage code (&lt;number&gt;)
+
+<BR>The specified item has probably been corrupted. Rebuild LILO.
+
+<BR>
+
+<BR>
+
+<LI>&lt;item&gt; is version &lt;number&gt;. Expecting version &lt;number&gt;
+
+<BR>The specified entity is either too old or too new. Make sure all parts of LILO (map installer, boot loaders, and chain loaders) are from the same distribution.
+
+<BR>
+
+<BR>
+
+<LI>Kernel &lt;name&gt; is too big
+
+<BR>The kernel image (without the setup code) is bigger than 512KB. LILO would overwrite itself when trying to load such a kernel. Try removing some unused drivers and compiling the kernel again.
+
+<BR>
+
+<BR>
+
+<LI>Partition entry not found
+
+<BR>The partition from which another operating system should be booted isn't listed in the specified partition table. This means either that an incorrect partition table has been specified or that you're trying to boot from a logical partition. The latter 
+usually doesn't work. You can bypass this check by omitting the partition table specification (that is, omitting the variable table).
+
+<BR>
+
+<BR>
+
+<LI>Sorry, don't know how to handle device &lt;number&gt;
+
+<BR>LILO uses files that are located on a device for which there is no easy way to determine the disk geometry. Such devices have to be described in the file /etc/lilo/disktab.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<BR>
+
+<A NAME="E69E34"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>LILO Error Codes</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>When LILO loads itself, it displays the word LILO. Each letter is printed before or after performing some specific action. If LILO fails at some point, the letters printed so far can be used to identify the problem. This is described in more detail in 
+the technical overview.
+
+<BR>
+
+<P>Note that some hex digits may be inserted after the first L if a transient disk problem occurs. Unless LILO stops at that point, generating an endless stream of error codes, such hex digits do not indicate a severe problem. The following is the list of 
+error messages you can see:
+
+<BR>
+
+<UL>
+
+<UL>
+
+<P>(nothing) No part of LILO has been loaded. LILO either isn't installed, or the partition on which its boot sector is located isn't active.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>L&lt;error&gt; The first stage boot loader has been loaded and started, but it can't load the second stage boot loader. The two-digit error codes indicate the type of problem. (They are described in the next section.) This condition usually indicates a 
+media failure or a geometry mismatch (that is, bad parameters in /etc/lilo/disktab).
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>LI The first-stage boot loader was able to load the second-stage boot loader but has failed to execute it. This can be caused either by a geometry mismatch or by moving /etc/lilo/boot.b without running the map installer.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>LIL The second-stage boot loader has been started, but it can't load the descriptor table from the map file. This is typically caused by a media failure or a geometry mismatch.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>LIL? The second-stage boot loader has been loaded at an incorrect address. This is typically caused by a subtle geometry mismatch or by moving /etc/lilo/boot.b without running the map installer.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>LIL- The descriptor table is corrupt. This can be caused either by a geometry mismatch or by moving /etc/lilo/map without running the map installer.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>LILO All parts of LILO have been successfully loaded.
+
+<BR>
+
+</UL></UL>
+
+<P>There are also BIOS error codes that you might get while loading LILO. These are listed in Table 4.1.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 4.1. BIOS error codes.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Code </I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Value</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+0x00
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Internal error. This code is generated by the sector-read routine of the LILO boot loader whenever an internal inconsistency is detected. This might be caused by corrupt files; try rebuilding the map file.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+0x01
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Illegal command. This shouldn't happen.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+0x02
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Address mark not found. This usually indicates a media problem. Try again several times.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+0x03
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Write-protected disk. This shouldn't happen.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+0x04
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Sector not found. This typically indicates a geometry mismatch. If you're booting a raw-written disk image, verify whether it was created for disks with the same geometry as the one you're using. If you're booting from a SCSI disk, you should check whether 
+LILO has obtained correct geometry data from the kernel or whether the contents of your /etc/lilo/disktab file correspond to the real disk geometry. Removing compact may help too.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+0x06
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Change line active. This should be a transient error. Try booting a second time.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+0x08
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+DMA overrun. This shouldn't happen. Try booting again.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+0x09
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+DMA attempt across 64KB boundary. This shouldn't happen. Try omitting the -c option.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+0x0C
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Invalid media. This shouldn't happen and might be caused by a media error. Try booting again.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+0x10
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+CRC error. A media error has been detected. Try booting several times, running the map installer a second time (to put the map file at some other physical location or to write good data over the bad spot), mapping out the bad sectors/tracks, and, if all 
+else fails, replacing the media.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+0x20
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Controller error. This shouldn't happen.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+0x40
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Seek failure. This might be a media problem. Try booting again.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+0x80
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Disk timeout. The disk or the drive isn't ready. Either the media is bad or the disk isn't spinning. If you're booting from a floppy, you might not have closed the drive door. Otherwise, trying to boot again might help.</FONT>
+
+</TABLE><BR>
+
+<A NAME="E68E27"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Using BOOTLIN Instead of LILO</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The BOOTLIN package uses the DOS MBR to boot off the hard drive. To install this package, you mus<A NAME="I2"></A>t take the following steps:
+
+<BR>
+
+<OL>
+
+<LI>From within Linux, copy a bootable kernel to your DOS partition.
+
+<BR>
+
+<BR>
+
+<LI>Edit config.sys on the DOS partition to include two files: BOOT.SYS and BOOTLIN.SYS. The README files for these packages tell you how.
+
+<BR>
+
+<BR>
+
+<LI>Reboot.
+
+<BR>
+
+<BR>
+
+</OL>
+
+<P>Now when you reboot, the BOOT.SYS and BOOTLIN.SYS files will boot into Linux for you.
+
+<BR>
+
+<P>To get back to running only DOS, remove the BOOTLIN.SYS and BOOT.SYS from your config.sys file.
+
+<BR>
+
+<P>The disadvantage of this approach is that you are limited to having DOS on your hard drive.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E28"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Restoring the MBR</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>If you want to restore the MBR to the original DOS MBR, you can use the following procedure:
+
+<BR>
+
+<OL>
+
+<LI>Boot from a DOS floppy.
+
+<BR>
+
+<BR>
+
+<LI>Run fdisk /MBR from the DOS prompt. (You can also use the command SYS C:.)
+
+<BR>
+
+<BR>
+
+<LI>Reboot.
+
+<BR>
+
+<BR>
+
+</OL>
+
+<BR>
+
+<A NAME="E68E29"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Summary</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>This chapter covered the topic of installing, configuring, and using LILO. It also covered some of the basic errors you can face and how to set up LILO using the liloconfig utility. The information you have learned from this topic should get you started 
+in setting up LILO to boot Linux on your machine off the hard drive.
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl03.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="#I0" TARGET="_self"><IMG SRC="purtop.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Page Top"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl05.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+</BODY></HTML>
+
+
+

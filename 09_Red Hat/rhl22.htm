@@ -1,0 +1,1671 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Red Hat Linux Unleashed rhl22.htm </TITLE>
+
+<LINK REL="ToC" HREF="index.htm">
+
+<LINK REL="Index" HREF="htindex.htm">
+
+<LINK REL="Next" HREF="rhl23.htm">
+
+<LINK REL="Previous" HREF="rhl21.htm"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+
+<A NAME="I0"></A>
+
+<H2>Red Hat Linux Unleashed rhl22.htm</H2>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl21.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl23.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+<HR ALIGN=CENTER>
+
+<P>
+
+<UL>
+
+<UL>
+
+<UL>
+
+<LI>
+
+<A HREF="#E68E153" >Setting Up Your XFree86 System</A>
+
+<LI>
+
+<A HREF="#E68E154" >The XF86Config File</A>
+
+<LI>
+
+<A HREF="#E68E155" >Using Xconfigurator</A>
+
+<LI>
+
+<A HREF="#E68E156" >Examining the XF86Config File</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E276" >The Pathnames</A>
+
+<LI>
+
+<A HREF="#E69E277" >The Keyboard Section</A>
+
+<LI>
+
+<A HREF="#E69E278" >The Pointer Section</A>
+
+<LI>
+
+<A HREF="#E69E279" >The Server Section</A>
+
+<LI>
+
+<A HREF="#E69E280" >Setting Up Video Modes</A>
+
+<LI>
+
+<A HREF="#E69E281" >International Keyboard Layout for XFree86</A></UL>
+
+<LI>
+
+<A HREF="#E68E157" >The .xinitrc File</A>
+
+<LI>
+
+<A HREF="#E68E158" >The Personal X Resource File</A>
+
+<LI>
+
+<A HREF="#E68E159" >Using xdm</A>
+
+<LI>
+
+<A HREF="#E68E160" >Configuration of the Window Manager</A>
+
+<LI>
+
+<A HREF="#E68E161" >Compiling Programs That Use X</A>
+
+<LI>
+
+<A HREF="#E68E162" >Some Common Problems</A>
+
+<LI>
+
+<A HREF="#E68E163" >Compiling Sources for XFree86</A>
+
+<LI>
+
+<A HREF="#E68E164" >Summary</A></UL></UL></UL>
+
+<HR ALIGN=CENTER>
+
+<A NAME="E66E22"></A>
+
+<H1 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>22</B></FONT></CENTER></H1>
+
+<BR>
+
+<A NAME="E67E22"></A>
+
+<H2 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>Configuring X Window on Linux</B></FONT></CENTER></H2>
+
+<BR>
+
+<P>This chapter details the way to configure the X Window System for Linux. This version of X Window for Linux is called XFree86 Version 3.1.2.
+
+<BR>
+
+<P>This chapter covers the following topics with regard to configuring your X Window System:
+
+<BR>
+
+<UL>
+
+<LI>How to configure XFree86 on your system
+
+<BR>
+
+<BR>
+
+<LI>Working with ConfigXF86 and the XF86Config file
+
+<BR>
+
+<BR>
+
+<LI>What the .xinitrc file is
+
+<BR>
+
+<BR>
+
+<LI>Your personal X resource file
+
+<BR>
+
+<BR>
+
+<LI>Using xdm
+
+<BR>
+
+<BR>
+
+<LI>Configuration of the window manager
+
+<BR>
+
+<BR>
+
+</UL>
+
+<BR>
+
+<A NAME="E68E153"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Setting Up Your XFree86 System</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>This section covers another one of the most difficult, time-consuming, and frustrating parts of installing XFree86: setting up an XF86Config file.
+
+<BR>
+
+<P>If you have XFree86 3.1.2 and your graphic card is listed in the Hardware-HOWTO file (see <A HREF="rhl01.htm">Chapter 1</A>, &quot;Introduction to Linux&quot;), you should use the ConfigXF86 program to do your configuration. This ConfigXF86 program is a 
+comfortable and safe way to set up your system. If your graphics card is not listed, you have some work ahead of you.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E154"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>The </B><B>XF86Config</B><B> File</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>To be able to set up an XF86Config file, you need to read from /usr/X11R6/lib/X11/etc these files: README, README.Config, VideoModes.doc, and README.Linux. You also need to read the man pages on the following topics: XF86Config, XFree86, XFree86kbd, and 
+the server you are using.
+
+<BR>
+
+<P>The XF86Config file can be located in several places:
+
+<BR>
+
+<UL>
+
+<LI>/usr/X11R6/lib/X11. This is the standard location for the sample XF86Config file, but in some cases you cannot use it (for example, a read-only /usr partition).
+
+<BR>
+
+<BR>
+
+<LI>/etc.
+
+<BR>
+
+<BR>
+
+<LI>In your home directory.
+
+<BR>
+
+<BR>
+
+<LI>As XF86Config.eg in /usr/X11R6/lib/X11.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>The Linux file system standard places the XF86Config file in /etc/X11. The XFree86 servers will not &quot;expect&quot; an XF86Config file at this location, so there must be a link from one of the places in the preceding list to /usr/X11R6/lib/X11. Find 
+this link first and use it to access the file. This way, you can be sure your changes take effect.
+
+<BR>
+
+<P>To give you some hints, here is a list of what you need to set up the XF86Config file correctly:
+
+<BR>
+
+<UL>
+
+<LI>The server suitable for your system. To get a hint as to which is the correct one, run the SuperProbe program that comes with XFree86. It will identify your chip set, and you can look at the XFree86HOWTO file on the CD at the back of this book to see 
+which server supports this chip set. Note that SuperProbe can detect far more hardware than XFree86 supports.
+
+<BR>
+
+<BR>
+
+<LI>Your monitor's specifications, most importantly the maximum horizontal and vertical scan frequency ranges and the bandwidth. This information can be obtained from your monitor's datasheet.
+
+<BR>
+
+<BR>
+
+<LI>The name of the chip set for your video card. For example, Tseng Labs, ET3000, ET4000, and so on.
+
+<BR>
+
+<BR>
+
+<LI>The available dot clocks for your card or (if supported) the name of the programmable dot clock generator. Learn how to obtain these by reading the file /usr/X11R6/lib/X11/doc/README.Config. Running XF86Config sets your system's dot clocks.
+
+<BR>
+
+<BR>
+
+<LI>&quot;Mouse type&quot; refers to the protocol the mouse is using, not to the manufacturer. For example, a serial Microsoft mouse connected to the PS/2 port uses the PS/2 protocol, not the Microsoft protocol.
+
+<BR>
+
+<BR>
+
+<LI>The type of device your mouse is connected to: serial or bus. (Usually you can use /dev/mouse.)
+
+<BR>
+
+<BR>
+
+<LI>Whether you want to use a national keyboard map or if you want to run the generic U.S. key table.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Do not share XF86Config files with people who do not have the same configuration (graphics card and monitor). By sharing, you could fry your monitor.
+
+<BR>It isn't so hard to figure out modes for multisync monitors. Don't ever use a mode that you haven't verified as being within your monitor's specs. Even if you have exactly the same setup as the computer you're sharing the file with, check all modes 
+before trying them. There are many people who run their computers from specs that may not damage their hardware but could damage yours.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E68E155"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Using Xconfigurator</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Red Hat Linux comes with a utility called Xconfigurator. This is a menu-driven tool that will ask questions about your video card, monitor, and mouse, and then create an XF86Config file for you. Xconfigurator will ask some fairly in-depth questions 
+about your video card and monitor. Gather up all your documentation about your machine's hardware before running Xconfigurator.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E156"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Examining the </B><B>XF86Config</B><B> File</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The XF86Config file contains all the configuration parameters for your X Window installation. Space does not permit me to print the whole file. You will have to look in the directory /usr/lib/X11 for the XF86Config.eq file. Copy this XF86Config.eg file 
+to XF86Config. Then edit the XF86Config file. The format of the XF86Config file consists of different sets that are listed in the following sections:
+
+<BR>
+
+<UL>
+
+<LI>Pathnames
+
+<BR>
+
+<BR>
+
+<LI>Font paths
+
+<BR>
+
+<BR>
+
+<LI>Keyboard type
+
+<BR>
+
+<BR>
+
+<LI>Mouse type
+
+<BR>
+
+<BR>
+
+<LI>Server type
+
+<BR>
+
+<BR>
+
+<LI>Video modes
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>Each of these sections describes your hardware configuration, location of files, or both, to the X server. Each section is enclosed by the words:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Section &quot;SectionName&quot;
+
+&lt; information for the section &gt;
+
+EndSection</FONT></PRE>
+
+<BR>
+
+<A NAME="E69E276"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>The Pathnames</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>There is no reason to fiddle with the standard paths as provided in the sample XF86Config file. In fact, any distribution that provides a different path structure should have edited this section of the XF86Config.sample or the template XF86Config file 
+for ConfigXF86. You do have to know where these paths are pointing to in case of difficulties.
+
+<BR>
+
+<P>Your XF86Config file should look similar to the lines from my XF86Config file, as shown in Listing 22.1.
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 22.1. Font paths.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">#
+
+# Multiple FontPath entries are allowed (which are concatenated together),
+
+# as well as specifying multiple comma-separated entries in one FontPath
+
+# command (or a combination of both methods)
+
+#
+
+FontPath &quot;/usr/X11R6/lib/X11/fonts/misc/&quot;
+
+FontPath &quot;/usr/X11R6/lib/X11/fonts/Type1/&quot;
+
+FontPath &quot;/usr/X11R6/lib/X11/fonts/Speedo/&quot;
+
+FontPath &quot;/usr/X11R6/lib/X11/fonts/75dpi/&quot;
+
+# FontPath &quot;/usr/X11R6/lib/X11/fonts/100dpi/&quot;</FONT></PRE>
+
+<P>To see whether these lines are correct, please look into each of the directories mentioned in Listing 22.1 to see whether they have files in them. If these directories are empty, you do not have the fonts installed, or they may be at another location.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E277"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>The Keyboard Section</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>You should specify the ServerNumlock option. This is an easy way to specify your keyboard for XFree86. Otherwise, only those keyboard modifications needed for international keyboard support have to be set manually. In a typical XConfig file, this 
+section looks like the one shown in Listing 22.2.
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 22.2. Keyboard selection.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">#
+
+# Keyboard and various keyboard-related parameters
+
+#
+
+Section &quot;Keyboard&quot;
+
+AutoRepeat 500 5
+
+ServerNumLock
+
+# Xleds 1 2 3
+
+# DontZap
+
+#
+
+# To set the LeftAlt to Meta, RightAlt key to ModeShift,
+
+# RightCtl key to Compose, and ScrollLock key to ModeLock:
+
+#
+
+# LeftAlt Meta
+
+# RightCtl Compose
+
+# ScrollLock ModeLock
+
+# EndSection</FONT></PRE>
+
+<BR>
+
+<A NAME="E69E278"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>The Pointer Section</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The pointer section keyword is the name for the protocol the mouse uses. The available protocol names are listed in the XF86Config man page.
+
+<BR>
+
+<P>The Logitech serial mouse uses several keywords. The MouseMan uses the MouseMan keyword. The more recent Logitech serial mouse uses the Microsoft keyword. The older Logitech serial mouse uses the Logitech keyword.
+
+<BR>
+
+<P>Any mouse connected to the PS/2 port uses the PS/2 keyword even if it is in fact a serial mouse.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>If you are not sure which kind of bus mouse you have, look at the kernel's startup messages. They identify the bus mouse type.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Ensure that the kernel bus mouse driver is using the same IRQ as the bus mouse. If not, you have to change the IRQ and rebuild the kernel. The IRQ for bus mouse devices is given in /usr/src/linux/include/linux/busmouse.h. The macro MOUSE_IRQ contains 
+this IRQ and is set to 5 by default.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>The following is a list of device names for the mouse selection:
+
+<BR>
+
+<UL>
+
+<LI>/dev/inportbm Use for the Microsoft bus mouse. Note that this uses the bus mouse protocol, not the Microsoft protocol.
+
+<BR>
+
+<BR>
+
+<LI>/dev/logibm Use this for the Logitech bus mouse. Note that this uses the bus mouse protocol, not the Logitech protocol.
+
+<BR>
+
+<BR>
+
+<LI>/dev/psaux Select for a PS/2 or quick port mouse. This uses the PS/2 protocol.
+
+<BR>
+
+<BR>
+
+<LI>/dev/atibm For the ATI XL bus mouse. Note that the ATI GU bus mouse is a Logitech or Microsoft bus mouse, depending on the version you have.
+
+<BR>
+
+<BR>
+
+<LI>Other supported mice are serial mice; therefore, the device names are the same as the serial devices (/dev/ttyS? or /dev/ttyS?? for Linux).
+
+<BR>
+
+<BR>
+
+</UL>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>If you have a two-button mouse, you might want to emulate the third button by setting Emulate3Buttons in the mouse section. Emulation is accomplished by pressing both buttons simultaneously. There are quite a number of other settings available, but 
+they usually are not needed. Look at the XF86Config man page for a list of available settings.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>You have to select one type of mouse and its baud rate if it's serial. Note in Listing 22.3 that I have &quot;uncommented&quot; the Microsoft mouse selection for my mouse and the 1200-baud rate line, and you will have to uncomment the line that matches 
+your mouse selection. The 1200-baud rate seems to work fine with older mice and using the 9600 rate did not result in a speed difference for newer mice. Your results may vary.
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 22.3. Mouse selection.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">#
+
+Section &quot;Pointer&quot;
+
+# Mouse definition and related parameters
+
+#
+
+#MouseSystems &quot;/dev/mouse&quot;
+
+Microsoft &quot;/dev/mouse&quot;
+
+#MMSeries &quot;/dev/mouse&quot;
+
+#Logitech &quot;/dev/mouse&quot;
+
+#MouseMan &quot;/dev/mouse&quot;
+
+#Busmouse &quot;/dev/mouse&quot;
+
+BaudRate 1200
+
+# BaudRate 9600
+
+# SampleRate 150
+
+# Emulate3Buttons
+
+... &lt;deleted some stuff here &gt; ...
+
+EndSection</FONT></PRE>
+
+<BR>
+
+<A NAME="E69E279"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>The Server Section</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>If you want to identify the chip set your graphics card uses, run SuperProbe, a program that comes with XFree86 and is capable of identifying a wide range of graphics hardware. Note that SuperProbe can probe far more hardware than XFree86 supports.
+
+<BR>
+
+<P>Listing 22.4 shows a plain setting for a 640&#180;480 monitor for X with a virtual space of 800&#180;600. A virtual space is an area where the display portion of your monitor is mapped onto. Your monitor is a window into this space.
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 22.4. Server selection.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">#
+
+# First the 8-bit color SVGA driver
+
+#
+
+vga256
+
+#
+
+# To disable SpeedUp, use NoSpeedUp
+
+#
+
+# NoSpeedUp
+
+# Virtual 1152 900
+
+# Virtual 800 600
+
+Virtual 640 480
+
+ViewPort 0 0
+
+# Modes &quot;640x480&quot; &quot;800x600&quot; &quot;1024x768&quot;
+
+# Modes &quot;640x480&quot; &quot;800x600&quot;
+
+Modes &quot;640x480&quot;
+
+#
+
+# Next the 1-bit mono SVGA driver
+
+#
+
+vga2
+
+Virtual 800 600
+
+ViewPort 0 0
+
+Modes &quot;640x480&quot;
+
+# Modes &quot;800x600&quot; &quot;640x480&quot;</FONT></PRE>
+
+<BR>
+
+<A NAME="E69E280"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Setting Up Video Modes</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>This is the hardest part. Please read VideoModes.doc before beginning. If you are using ConfigXF86 (which I strongly recommend), and your monitor is not in the database, choose the generic modes and start making your own modes from there. If you do not 
+have ConfigXF86, read the tutorial on building modes in the README.Config file.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>I know this entire chapter is full of warnings. Please do not be alarmed. Just be careful and read the instructions for each step before taking it.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>ConfigXF86 includes a neat utility to tune video modes. Because there is no check on the usability of a mode, you have to check the mode data against your monitor's specifications before testing the mode. The first line of the tuning modes screen gives 
+you information on the specifications of the mode. You have to continuously check that these values are within your monitor's capabilities before testing that mode.
+
+<BR>
+
+<P>See Listing 22.5 for the common video modes for XFree86.
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 22.5. Video modes.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Section &quot;Device&quot;
+
+Identifier &quot;Generic VGA&quot;
+
+VendorName &quot;Unknown&quot;
+
+BoardName &quot;Unknown&quot;
+
+ChipSet &quot;generic&quot;
+
+# VideoRam 256
+
+# Clocks 25.2 28.3
+
+EndSection
+
+# **********************************************************************
+
+# Screen sections
+
+# **********************************************************************
+
+# The color SVGA server
+
+Section &quot;Screen&quot;
+
+Driver &quot;svga&quot;
+
+Device &quot;Generic SVGA&quot;
+
+Monitor &quot;Generic Monitor&quot;
+
+Subsection &quot;Display&quot;
+
+Depth 8
+
+Modes &quot;640x480&quot;
+
+ViewPort 0 0
+
+Virtual 800 600
+
+EndSubsection
+
+EndSection
+
+# The 16-color VGA server
+
+Section &quot;Screen&quot;
+
+Driver &quot;vga16&quot;
+
+Device &quot;Generic VGA&quot;
+
+Monitor &quot;Generic Monitor&quot;
+
+Subsection &quot;Display&quot;
+
+Modes &quot;640x480&quot;
+
+ViewPort 0 0
+
+Virtual 800 600
+
+EndSubsection
+
+EndSection
+
+# The Mono server
+
+Section &quot;Screen&quot;
+
+Driver &quot;vga2&quot;
+
+Device &quot;Generic VGA&quot;
+
+Monitor &quot;Generic Monitor&quot;
+
+Subsection &quot;Display&quot;
+
+Modes &quot;640x480&quot;
+
+ViewPort 0 0
+
+Virtual 800 600
+
+EndSubsection
+
+EndSection</FONT></PRE>
+
+<P>The Mode line in a video section can have up to 10 values. Be very careful when modifying these values because a wrong setting may wind up destroying your monitor! It does not matter if these are not present because defaults can be used. A typical line 
+to override defaults for a monitor would be:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">&quot;640x400&quot; 28 640 480 728 776 480 480 482 494</FONT></PRE>
+
+<P>The 10 values in order from left to right are shown in the following section. These values only make sense to video engineers or those folks who have to work with a monitor not defined in the default modes. Check your monitor's hardware specifications 
+and get the values from there to fill in these ten parameters. The following are the fields to set:
+
+<BR>
+
+<UL>
+
+<LI>Label for screen resolution; for example, 640&#180;480 or 1024&#180;768.
+
+<BR>
+
+<BR>
+
+<LI>The clock frequency in mHz.
+
+<BR>
+
+<BR>
+
+<LI>The Horizontal Display End in number of visible dots per line on the screen.
+
+<BR>
+
+<BR>
+
+<LI>The Start Horizontal Retrace value. This specifies the number of pulses before the video sync pulse starts.
+
+<BR>
+
+<BR>
+
+<LI>The End Horizontal Retrace value defines the end of the sync pulse.
+
+<BR>
+
+<BR>
+
+<LI>The Horizontal Total value. This is the total number of dots per line invisible and visible.
+
+<BR>
+
+<BR>
+
+<LI>The Vertical Display End value. The number of visible lines on the screen.
+
+<BR>
+
+<BR>
+
+<LI>The Start Vertical Retrace value. The number of lines before the sync pulse starts.
+
+<BR>
+
+<BR>
+
+<LI>The End Vertical Retrace value is the number of lines at the end of the sync pulse.
+
+<BR>
+
+<BR>
+
+<LI>The Vertical Total value. The total number of lines, invisible plus visible, on the screen.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>Multiscan monitors handle frequencies of 15 to 40 mHz. Some monitors work at 72 mHz vertical scan to prevent the flicker. You have to be able to calculate the frequency from the monitor's specification and come up with these numbers. A good place to 
+start would be the XFree86-HOWTO document on how to get these values. Keep in mind that your video monitor is just a glorified television. You give it wrong values and you can fry it.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E281"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>International Keyboard Layout for XFree86</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>XFree86 servers are able to read the key table from the Linux kernel, so you need to set up only one keyboard layout file (for the kernel). There are some restrictions, though; the kernel can support more keyboard functions than X11. X11 can only modify 
+one of the four key tables. This modifier is called ModeShift.
+
+<BR>
+
+<P>Configurable keys for the ModeShift modifier are LeftAlt, RightAlt (=AltGr), RightCtl, and ScrollLock.
+
+<BR>
+
+<P>Usually the AltGr key is used for international keyboard modifications. To enable the XFree86 server to read the AltGr key table from the kernel, you should put the following line in the .olvwmrc file:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">RightAlt &quot;ModeShift&quot;</FONT></PRE>
+
+<P>Besides supporting only one additional key map, X11 cannot use dead keys. A key is called dead if when it is typed, it does not print a character until a second character is typed. A typical example is an accent key. Such keys are not supported by X11, 
+so you need to replace all dead-key symbols with non-dead equivalents. Table 22.1 lists what you have to change.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 22.1. Key symbols.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Dead</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Non-Dead</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+dead_tilde
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+ASCII tilde</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+dead_grave
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+grave</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+dead_circumflex
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+ASCII circum</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+dead_acute
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+apostrophe</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+dead_diaeresis
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+diaeresis</FONT>
+
+</TABLE><P>Instead of supporting dead keys, XFree86 supports a Compose key. This feature is described in the XFree86kbd man page and can be modified by assigning the Compose function to one of the keys. By default the ScrollLock key has the Compose 
+function.
+
+<BR>
+
+<P>If you still want to have the dead keys on the console, you will have to use an xmodmap file to map the keys to the correct symbols under X. This is also the method that must be used with earlier versions of XFree86. On sunsite in the directory 
+/pub/Linux/X11/misc, you can find sample xmodmap files for several languages. Note that you have to set the ModeShift modifier to get the right key table working.
+
+<BR>
+
+<P>Please read the kbd.FAQ that comes with the kbd package for Linux. You will find many hints for modifying your keyboard layout on the console, as well as for X.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E157"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>The </B><B>.xinitrc</B><B> File</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>To use X, you need a startup file that calls the local modifications, the window manager, and an application you want to use right after X has started. If you are using startx (or runx) to start X, this startup file is called xinitrc. There is a 
+standard xinitrc file, /usr/lib/X11/xinit/xinitrc, which is the traditional location for this file. The Linux file system standard places this file in /etc/X11/xinit/xinitrc in order to allow a read-only mounted /usr partition, so look in that location 
+first.
+
+<BR>
+
+<P>If you are not content with what this file does (for instance, if you want to use a different window manager), you should copy it to the file .xinitrc in your home directory. After copying the file, you can edit it. Look at the man pages for startx and 
+xinit for more information.
+
+<BR>
+
+<P>Note that both the .xinitrc and the .Xresources files must be readable and executable, so run the following commands on these files after editing them. You only have to run the chmod command once on the application.
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ chmod u+rx .xinitrc .Xresources</FONT></PRE>
+
+<P>This command makes these files executable.
+
+<BR>
+
+<P>See Listing 22.6 for a sample .xinitrc file.
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 22.6. Sample </B><B>.xinitrc</B><B> file.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">1 #!/bin/sh
+
+2 # $XConsortium: xinitrc.cpp,v 1.4 91/08/22 11:41:34 rws Exp $
+
+3 # modified by obz
+
+4 userresources=$HOME/.Xresources
+
+5 usermodmap=$HOME/.Xmodmap
+
+6 sysresources=/usr/lib/X11/xinit/.Xresources
+
+7 sysmodmap=/usr/lib/X11/xinit/.Xmodmap
+
+8 # merge in defaults and keymaps
+
+9 if [ -f $sysresources ]; then
+
+10 xrdb -merge $sysresources
+
+11 fi
+
+12 if [ -f $sysmodmap ]; then
+
+13 xmodmap $sysmodmap
+
+14 fi
+
+15 if [ -f $userresources ]; then
+
+16 xrdb -merge $userresources
+
+17 fi
+
+18 if [ -f $usermodmap ]; then
+
+19 xmodmap $usermodmap
+
+20 fi
+
+21 # Set the background to a dull gray
+
+22 if [ -f /usr/bin/X11/xsetroot ]; then
+
+23 xsetroot -solid gray32
+
+24 fi
+
+25 if [ -f /usr/bin/X11/xclock ]; then
+
+26 xclock -geometry 80x80 &amp;
+
+27 fi
+
+28 olvwm &amp;
+
+29 # fvwm &amp;
+
+30 xterm -e /bin/bash</FONT></PRE>
+
+<P>The line numbers in this listing have been added for your benefit. Let's look at these lines in greater detail.
+
+<BR>
+
+<P>Lines 4 to 7 set the resource environment variables for the X Window installation for your system. Change these to the path of your system's X Window system distribution.
+
+<BR>
+
+<P>Lines 9 through 20 check for the existence of these resources and then run the appropriate program, xmodmap or xrdb, with these resources as parameters. I will cover xmodmap and xrdb in <A HREF="rhl23.htm">Chapter 23</A>, &quot;Using Motif.&quot; For 
+now you can use this the way it stands.
+
+<BR>
+
+<P>Lines 22 to 24 check for the xsetroot program, and if present, execute it to set the background to a solid color, gray32.
+
+<BR>
+
+<P>The olvwm &amp; command in line 28 starts the OPEN LOOK window manager for you. If you want to use fvwm instead of olvwm, uncomment line 29 and comment line 28 instead. The window manager must be run in the background if you have more commands following 
+this one.
+
+<BR>
+
+<P>Line 30 starts a terminal to work with. Because this is the last line in the .xinitrc file, exiting this terminal causes your X session to stop. If you want to start more xterms, you can start them from within this xterm.
+
+<BR>
+
+<P>A simpler .xinitrc file to start with would be the following:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">xterm -name Console &amp;
+
+olvwm</FONT></PRE>
+
+<P>You can then enhance this .xinitrc file with what you want.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E158"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>The Personal X Resource File</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Sometimes you won't be content with default settings for applications that don't have a configuration file of their own. You can change some of these defaults by setting X resources in the .Xresources file in your home directory.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>You should know what effects setting the resources will have on the programs you use. Read the man pages for the program and for xrdb before editing the .Xresources file. See <A HREF="rhl02.htm">Chapter 2</A>, &quot;Types of Linux Available,&quot; 
+and <A HREF="rhl25.htm">Chapter 25</A>, &quot;Ghostscript,&quot; for more information about X resources.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>A resource file looks like an application default file. The difference is that in the resource file, resources for several applications are set. You should use the full names (Progname.Resourcename) instead of abbreviating the program name with an 
+asterisk. Examples of application default files can be found in the /usr/X11R6/lib/X11/app-defaults directory. The resources available for a single application are usually shown in the man pages for that application.
+
+<BR>
+
+<P>If you are running a color server, you might want to put the following lines into your .Xresources file if some programs start in black and white:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">#ifdef COLOR
+
+*customization: -color
+
+#endif</FONT></PRE>
+
+<P>If this change is made, the program foo will read both the Foo and the Foo-color application default file from /usr/X11R6/lib/X11/app-defaults. The usual behavior is for Foo only to be read.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>If you are running a color server, the preceding code definitely should be added to the system .Xresources file. You might mention that to the person or entity who maintains the program you are running.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>Note that the black-and-white color scheme of a program may be caused by the program rather than its resources.
+
+<BR>
+
+<P>The -xrm can be used with most X programs to override the parameters set in your .Xresources file. The usage is
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">-xrm &quot;resource&quot;</FONT></PRE>
+
+<P>Alternatively, you can use xrdb &lt;filename&gt; command to enforce any changes you have made in &lt;filename&gt; apply to your current session.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E159"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Using </B><B>xdm</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>If you want to run X on your system all the time, you could run xdm from the system startup. xdm is preconfigured on most systems, so you should not have to edit any of the xdm configuration files. Usually a run level is attached to an X-only system 
+(look at /etc/inittab). All you have to do to get it working is change the default run level. On systems that use an init without run levels (run man init to see whether your system uses an init), you should look into the /etc/rc and /etc/rc.d/rc.local 
+files; you usually only have to remove comment signs at the beginning of a line that calls xdm. If no such line is present, you probably have a system that has no preconfigured xdm. In any event, xdm by default runs your .xinitrc file for you.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E160"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Configuration of the Window Manager</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Window managers are a user- and site-specific issue. Several window managers are available for Linux. The configuration of one window manager is quite different from that of another. The window manager used in the configuration is usually explained in 
+your .xinitrc file, so look there. The most commonly used window managers for Linux are
+
+<BR>
+
+<UL>
+
+<LI>olwm or olvwm for the OPEN LOOK Window manager. (It is on the CD at the back of this book.)
+
+<BR>
+
+<BR>
+
+<LI>mwm for the Motif window manager, possibly the most common commercial window manager. You have to buy it along with Motif.
+
+<BR>
+
+<BR>
+
+<LI>twm. (It is part of the XFree86 distribution on the CD at the back of this book.)
+
+<BR>
+
+<BR>
+
+<LI>fvwm. (This seems to be the most popular freely available window manager and is on the CD at the back of this book.)
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>I discuss some window managers in greater detail in the next few chapters on OPEN LOOK and Motif.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E161"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Compiling Programs That Use X</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Before compiling any programs for X, please read the GCC-FAQ file. This file can be found in the pub/Linux/docs/faqs directories of sunsite. Many questions on compiling programs with Linux are answered in this FAQ. Many Linux distributions include the 
+most relevant FAQs in the directory /usr/doc, so you might look there first.
+
+<BR>
+
+<P>If you have the source code for a program that uses X11, it is usually shipped with an Imakefile instead of a Makefile.
+
+<BR>
+
+<P>Imakefiles are files that create Makefiles for your system. Discussing Imakefiles is beyond the scope of this book; however, you will have to work with Imakefiles if you work at all with X sources. Just remember the shell script xmkmf, and you should be 
+okay.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>xmkmf is an abbreviation for X Make Makefile.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>The xmkmf shell script actually runs the imake command with a set of arguments. The most common argument is the -DUseInstalled argument. If you examine xmkmf, (look in /usr/X11R6/bin/); you will see that the xmkmf script is a basic wrapper around a 
+call to imake. It's very tempting to use imake on a command line by itself. Do not do so. Run the imake command with the -DUseInstalled argument if you must run imake on the command line. If you do not use this argument, imake will behave as if it were 
+re-creating the X Window system on your current directory.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>Of course, before ever running xmkmf, you should read the documentation that usually comes with such packages.
+
+<BR>
+
+<P>Run xmkmf in the directory that contains the Imakefile. If there is a hierarchy of directories with Imakefiles, you usually only have to run xmkmf in the root directory of that hierarchy.
+
+<BR>
+
+<P>The xmkmf command builds the Makefiles in all directories in the hierarchy.
+
+<BR>
+
+<P>Then you should run the make command with an argument to let make resolve its dependencies, using the following command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ make depend</FONT></PRE>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Don't be afraid if include files, such as stddef.h, varargs.h, and so on, are not found. They are gcc proprietary header files, and therefore not in the standard include directories.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>After that, you can make the program by running make, and you can install your new utility (usually in /usr/X11R6/bin) by running this line:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ make install</FONT></PRE>
+
+<P>The installation of the man pages is accomplished by running
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ make install.man</FONT></PRE>
+
+<BR>
+
+<A NAME="E68E162"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Some Common Problems</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Some of the problems you might see when you work with XFree86 are outlined in the following list.
+
+<BR>
+
+<UL>
+
+<LI>No windows&#151;all you get is a gray background and no windows. This is due to running without a window manager. Running X only starts the X server, not the window manager. You should use a script shown earlier in startx in <A HREF="rhl21.htm">Chapter 
+21</A>, &quot;Installing X Window on Linux.&quot;
+
+<BR>
+
+<BR>
+
+<LI>Your Logitech serial mouse does not work. The keyword Logitech is reserved for older Logitech serial mice. Use the keyword MouseMan (or Microsoft) for newer mice. Logitech serial mice plugged into a PS/2 port require the keyword PS/2.
+
+<BR>
+
+<BR>
+
+<LI>You get errors about not finding any font files. First check the XF86Config file to see whether the directories in the font path are named correctly and contain fonts. If they are correct, run mkfontdir in each of those directories to set them up for 
+use with X.
+
+<BR>
+
+<BR>
+
+<LI>After leaving X, your screen fonts are not restored. This is a known bug with some servers. There are utilities called runx or restoretext included with svgalib that can help you in most cases. You can get them from sunsite.unc.edu in the file 
+/pub/Linux/libs/graphics/svgalib-1.2.10.tar.gz.
+
+<BR>
+
+<BR>
+
+<LI>You will have some problems on uncommon, extremely new, or extremely old cards. This is what you have to live with when you are dealing with freeware.
+
+<BR>
+
+<BR>
+
+<LI>The server dies with the message Cannot find a free VT. XFree86 needs a free virtual terminal (VT) on which to run. So if you have put a getty process on every virtual console in your /etc/inittab, XFree86 is not able to start. The common practice is 
+to leave /dev/tty8 (for kernel messages) and /dev/tty7 (for XFree86) free of a getty process.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>This is not an exhaustive list. Please read the HOWTO documents in /usr/docs on the CD-ROM for more information about other video card problems that are too specific to list here.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E163"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Compiling Sources for XFree86</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>You do not typically want to compile sources for XFree86 unless you really want to make changes to the sources because something is not working. You will need a lot of disk space and CPU time to do a complete build of the XFree86 system. Anything you 
+need to know for compiling XFree86, you can find in the following files (in /usr/X11R6/lib/X11/etc): INSTALL, README, and README.Linux.
+
+<BR>
+
+<P>Note that you should not compile XFree86 to get rid of hardcoded restrictions (on the maximal pixel clock, for example) because without these restrictions, your hardware will probably break down.
+
+<BR>
+
+<P>To build a server that includes only those drivers you need, you should use the LinkKit instead of compiling the complete system. This is a little easier than trying to build it from scratch. The LinkKit package is specific and complicated and is 
+therefore beyond the scope of this chapter.
+
+<BR>
+
+<P>Read /usr/X11R6/lib/Server/README for a description of how to use LinkKit. This file is not included in the standard XFree86 tar files but is part of the file that includes the LinkKit.
+
+<BR>
+
+<P>For adding drivers to the SVGA servers, you need the LinkKit only.
+
+<BR>
+
+<P>The documentation on how to build servers can be found in the /usr/X11R6/lib/Server/VGADriverDoc directory after installing the LinkKit package.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E164"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Summary</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>This chapter covered the topic of configuring the XFree86 system. After reading this chapter, you should have an idea of how to set up your XF86Config file to generate your X environment. Just remember to start with the basic configuration settings for 
+VGA cards and then make enhancements. Keep backups of your work and do not change the video settings unless you know what you are doing. If nothing works despite your best efforts, you have the recourse of knowing where to look for answers in FAQs, 
+newsgroups, and FTP sites on the Internet for HOWTO and other documents on Linux.<A NAME="I2"></A>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl21.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="#I0" TARGET="_self"><IMG SRC="purtop.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Page Top"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl23.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+</BODY></HTML>
+
+
+

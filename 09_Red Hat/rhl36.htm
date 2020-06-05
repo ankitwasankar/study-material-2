@@ -1,0 +1,454 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Red Hat Linux Unleashed rhl36.htm </TITLE>
+
+<LINK REL="ToC" HREF="index.htm">
+
+<LINK REL="Index" HREF="htindex.htm">
+
+<LINK REL="Next" HREF="rhl37.htm">
+
+<LINK REL="Previous" HREF="rhl35.htm"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+
+<A NAME="I0"></A>
+
+<H2>Red Hat Linux Unleashed rhl36.htm</H2>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl35.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl37.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+<HR ALIGN=CENTER>
+
+<P>
+
+<UL>
+
+<UL>
+
+<UL>
+
+<LI>
+
+<A HREF="#E68E313" >What Is XBASE?</A>
+
+<LI>
+
+<A HREF="#E68E314" >FlagShip</A>
+
+<LI>
+
+<A HREF="#E68E315" >dbMAN</A>
+
+<LI>
+
+<A HREF="#E68E316" >LINCKS</A>
+
+<LI>
+
+<A HREF="#E68E317" >Other Database Products</A>
+
+<LI>
+
+<A HREF="#E68E318" >Summary</A></UL></UL></UL>
+
+<HR ALIGN=CENTER>
+
+<A NAME="E66E36"></A>
+
+<H1 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>36</B></FONT></CENTER></H1>
+
+<BR>
+
+<A NAME="E67E36"></A>
+
+<H2 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>Database Products for Linux</B></FONT></CENTER></H2>
+
+<BR>
+
+<P>This chapter covers some common database applications for Linux. The two applications we focus on in this chapter are FlagShip and dbMAN V. We also briefly cover LINCKS, a free, object-oriented database management system (DBMS).
+
+<BR>
+
+<BR>
+
+<A NAME="E68E313"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>What Is XBASE?</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>XBASE is a generic term for implementations of what was originally the dBASE programming language. The main players in the MS-DOS version of this database are FoxPro (now owned by Microsoft), dBASE V (now owned by Borland), and Clipper (owned by 
+Computer Associates).
+
+<BR>
+
+<P>XBASE is a language that has statements normally found in programming languages, such as IF, ELSE, ENDIF, and WHILE. The programming language structure is designed for accessing records in databases and not for general purpose programming. For example, 
+the GOTO statement in XBASE refers to a record in a database, not a location in the program code. XBASE has some powerful statements for processing files and getting data from forms and screens.
+
+<BR>
+
+<P>In addition, setting up relations between files is easy to do with XBASE. The names of all fields in a file, and their types and lengths, are recorded in the file header. New fields can be added to a file without changing programs that use the file. The 
+scheme allows for having different, disjointed programs all accessing the database file in their own way and all using the fields in the header.
+
+<BR>
+
+<P>The three major manufacturers of databases have largely ignored Linux as a platform for their products. What we have instead for Linux are products called FlagShip (by WorkGroup Solutions) and dbMAN (from Versasoft Corporation). Both of these products 
+run on several implementations of UNIX. dbMAN also runs on MS-DOS.
+
+<BR>
+
+<P>Comparing the two products is like comparing apples and oranges. FlagShip is patterned after Clipper Version 5. The dbMAN package resembles dBASE III+ or FoxPlus. FlagShip, like Clipper, is a compiler. dbMAN is primarily an interpreter, although it is 
+possible to &quot;compile&quot; dbMAN programs.
+
+<BR>
+
+<P>FlagShip is also an object-oriented language, which makes it philosophically different from dbMAN, as well as from FoxPro and dBASE. Clipper and FlagShip have several C-like features. Actually, the resemblance is a plus for Linux users.
+
+<BR>
+
+<P>The target markets of the two are also different. dbMAN is targeted primarily at individual users. If you want a program you can run on your desk to keep track of time billed to clients or that maintains a phone list of customers or your sales record, 
+dbMAN can do the job.
+
+<BR>
+
+<P>By contrast, FlagShip might be overkill for simple database operations such as mailing or customer tracking lists, in other words, the casual user, not programmer. This is not to say that you cannot use it for simple applications, but you may have to 
+learn a bit of programming to really use FlagShip's wonderful and powerful features. FlagShip is more realistically aimed at people who want to develop or port software packages. Traditionally, dBASE files always have separate data (.DBF) and index files. 
+The format of data files is pretty much uniform for all XBASEs. It is hard to find two products that use the same index file formats. I was able to use the same .DBF files with FlagShip and dbMAN.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E314"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>FlagShip</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>FlagShip is available from Red Hat (<A HREF="http://www.redhat.com/acc/product-pages">http://www.redhat.com/acc/product-pages</A>) and WorkGroup Solutions. Download an evaluation version from WGS at <A 
+HREF="ftp://ftp.wgs.com/pub2/wgs">ftp://ftp.wgs.com/pub2/wgs</A> (see <A HREF="http://www.wgs.com/fsdemo.html">http://www.wgs.com/fsdemo.html</A> for instructions), or see <A HREF="http://www.wgs.com/flagship.html">http://www.wgs.com/flagship.html</A> for 
+more information.
+
+<BR>
+
+<P>FlagShip is a compiler. It translates the XBASE code into C. The generated code can be linked with the gcc compiler. This means that you can link functions written in C or assembler into FlagShip programs. You can even mix XBASE and C code in a program. 
+The compiled binaries may be distributed without paying royalties to MultiSoft.
+
+<BR>
+
+<P>FlagShip has no equivalent of the &quot;dot prompt&quot; or interactive command interface found in other XBASE products. However, there is a public-domain program in their WorkGroup Solutions's FTP area named dbu. This program will provide the 
+capability to create files and indexes, add, change, or locate records, and browse files.
+
+<BR>
+
+<P>The FlagShip feature has an online reference program called fsman. The fsman contains the entire FlagShip manual&#151;more than 1,000 pages worth of material. This means that you do not have thick manuals all over your desk. The samples can be saved as 
+text files on disk. This makes it easy to incorporate programming examples in the manual into whatever program you are working on at the time. Of course, you could also use the mouse to copy text from fsman into your program by cutting and pasting between 
+windows.
+
+<BR>
+
+<P>FlagShip uses the curses toolkit for its user interface. During installation, you get a set of terminfo files specifically for FlagShip. Because of a problem with ncurses 1.8.5, they are compiled with ncurses 1.8.1.
+
+<BR>
+
+<P>FlagShip doesn't have a function specifically for managing pull-down menus. What FlagShip and Clipper programmers normally do is use @PROMPT/MENU TO statements to create the horizontal menu, and use a function called ACHOICE() for the vertical menus.
+
+<BR>
+
+<P>FlagShip has functions for managing windows that work very nicely, but the functions are not part of the basic package. You have to buy the FStools library. As the name suggests, the FStools library is a clone of the Clipper Tools library. There are 
+also windowing functions in the NanForum library (containing mathematical and statistics functions), which is public domain.
+
+<BR>
+
+<P>You can set hot keys with the statement SET KEY keyid TO statement. Normally, the statement would be a function invocation. Within this function, you can call the function READVAR() to find out which field the cursor was in when the key was pressed. An 
+input field can be validated by adding the VALID statement parameter to the @SAY/GET statement. Again, the statement would normally be a function invocation. Within the function, the value the user typed in could be looked up in a database file.
+
+<BR>
+
+<P>To determine how compatible FlagShip is with Clipper, I downloaded a couple of programs from a local BBS. I ran into two problems. The programs contained function calls that looked like this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">IF (expr, true_result,)</FONT></PRE>
+
+<P>FlagShip complained about the absence of the third parameter. Adding .f. for the third parameter solved the problem. The other problem was a reference to a function named FT_Shadow(), which FlagShip simply doesn't know about. Get rid of this problem by 
+commenting it out.
+
+<BR>
+
+<P>A key feature of FlagShip is the TBROWSE() object. You use this in place of the BROWSE command that exists in other languages. If you don't have any previous experience with object-oriented programming, setting up TBROWSE() for the first time is not 
+easy. The best course of action is to use the examples and samples in the fsman pages.
+
+<BR>
+
+<P>When running a FlagShip program in an xterm, you may get hieroglyphics instead of line drawing characters. Fiddling with the acsc parameter in the fslinxterm terminfo entry may not help. Try using the vga font that comes with DOSemu package. See <A 
+HREF="rhl57.htm">Chapter 57</A>, &quot;DOSemu,&quot; for more information. Instead of using the acsc parameter, FlagShip uses another file named Fschrmap.def which maps the character codes generated by the program to the character codes displayed on the 
+screen. Using the vga font is actually a better solution because it's possible to display double line drawing characters.
+
+<BR>
+
+<P>FlagShip is picky about reserved words. If you have a filename such as browse, you are liable to run into problems running programs. Keep a list of all the reserved words in FlagShip and avoid using these as file or program names. Check the list of 
+reserved words in the fsman pages.
+
+<BR>
+
+<P>FlagShip programs could be attached to WWW pages. This makes it possible for net surfers to access and update databases. This feature, plus the ability to link in your C and C++ programs, makes FlagShip a very powerful data management tool.
+
+<BR>
+
+<P>Currently, the enhancements to FlagShip include GUI support. This should further increase the visual appeal of the product.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E315"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>dbMAN</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The dbMAN program is an interpreter. When you start dbMAN, you get a CMD: prompt. This is where you enter all your commands to dbMAN. You can think of this a . prompt in dBASE. For starters, you can type in ASSIST, at the CMD: prompt. ASSIST starts up a 
+menu-driven interface similar to ones available with FoxPro or dBASE.
+
+<BR>
+
+<P>The menu-driven interface is not very elaborate. ASSIST only enables one file to be open at a time. This means that it is not possible to set up relations. It is possible to start up a simple program generator from ASSIST. Again, it has a single file 
+limitation.
+
+<BR>
+
+<P>You can compile programs in dbMAN. Compiling a program does not produce an executable binary. It produces a .run file, which still requires dbMAN to execute it.
+
+<BR>
+
+<P>It is also possible to enter CREATE REPORT or MODIFY REPORT at the CMD: prompt. This puts you in dbMAN's report writer. The report writer enables display of data by using the relational operators. dbMAN provides a function called PMENU() to create 
+pull-down menus. PMENU doesn't have any mechanism for temporarily disabling a menu choice.
+
+<BR>
+
+<P>dbMAN handles windows differently from other XBASE products. Prior to defining a window, you call PUSHWIND() to push the current window onto a stack. When a program is in its initial state, the entire screen is considered to be a window. You then call 
+WINDOW() to create the window. When you are finished with it, you call POPWIND(), which removes the window and makes the previous window active.
+
+<BR>
+
+<P>dbMAN enables you to define only one hot key. You do so by invoking the ONKEY() function. This will have no effect until you execute the ON KEY statement. The statement will normally be DO hot-key-handler.
+
+<BR>
+
+<P>The BROWSE command has a long list of options. You can browse only specified fields, and you can specify the width of each field, and whether it is editable. The list of fields can include fields in other files, which is great if you have relationships 
+set up.
+
+<BR>
+
+<P>dbMAN does not use either termcap or terminfo. Instead, it includes a file named dbmterm.dbm. This file looks similar to termcap. There are no entries for either xterm or console. You have to create your own entries using the existing entries.
+
+<BR>
+
+<P>dbMAN has no facility for executing functions written in C or assembler. So you have to use what they offer. There were a couple of nasty bugs in the version of dbMAN I evaluated, which was version 5.32. The main one bug I found was that procedure files 
+simply didn't work if the procedure file was a .prg. If you compiled the procedure file into a .run file, it worked OK.
+
+<BR>
+
+<P>You can get dbMAN from
+
+<BR>
+
+<UL>
+
+<UL>
+
+<P>VERASOFT Corp.
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>4340 Alamaden Expressway, #110
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>San Jose, CA 95118
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P> (408) 723-9044
+
+<BR>
+
+</UL></UL>
+
+<BR>
+
+<A NAME="E68E316"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>LINCKS</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>LINCKS is an object-oriented database management system. LINCKS is a good system if you intend to use this system on a network and share data via RPC calls. You need to have some experience with networks, as well as an existing network to fully benefit 
+from this package. This package is not for a single node system just because it would be an overkill for such a platform.
+
+<BR>
+
+<P>You can get LINCKS from <A HREF="ftp://sunsite.unc.edu">sunsite.unc.edu</A> in the /pub/Linux/apps/databases/lincks directory.
+
+<BR>
+
+<P>LINCKS is based on an append-only object-oriented structure. Objects are derived from other objects. Links can be set between objects to define relationships. You define views to an object. A view is used to specify how the data in the object is 
+presented to a user. Multiple views can exist for the same object. Views can be inherited.
+
+<BR>
+
+<P>The main interface is xlincks program. Using commands similar to emacs, you can interactively browse through databases. The interface resembles the hypertext functions of a Web page. You click on a highlighted item, and the program leads to a page with 
+more information about the topic.
+
+<BR>
+
+<P>Help is available in two forms: context sensitive or as a browsable database. The help file is always a button away&#151;to access help, simply press the Help button. The contents of the help file are well organized and are a good starting place to 
+learn ab<A NAME="I2"></A>out LINCKS. The manual is also available in PostScript for the sunsite archives.
+
+<BR>
+
+<P>LINCKS comes with a few programs in its distribution package. You can create new databases using the dbroot command. To prune databases of unreferenced objects, use the cutoff command. The main server for the application is the netserv program which 
+fires off a dbs process for each connected client.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E317"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Other Database Products</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>This is a quick overview of some other database management systems for Linux. Most of these are free and can be found on the Internet.
+
+<BR>
+
+<UL>
+
+<UL>
+
+<P>mbase v5.0 is a relational database system originally written for the Amiga and ported to other platforms. It uses a format similar to C to do the database programming. To compile using mbase, you need ncurses and time. My efforts to compile the package 
+failed miserably until I made several modifications to the Makefile. If you really want cheap, C-like access to your DBMS, use this package. Otherwise get FlagShip or dbMAN.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>onyx is a database prototype program based on a format like the C language. The make config command starts the process and a series of questions pop up. Answering all these questions results in configuring Linux.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>DBF is an XBASE manipulation package and is a collection of utility programs that manipulate dbf files. Some of the utilities, such as dbfadd, add a record or layer of information in the database. dbflist lists the records in the database, dbft lists 
+the structure of each database and its items.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>typhoon is yet another RDBMS. The package is in Beta form. The &quot;most notable&quot; feature for this RDBMS (depending on your point of view) is that it's entirely like C. The problem is that the product still has to mature before being considered a 
+viable RDBMS.
+
+<BR>
+
+</UL></UL>
+
+<BR>
+
+<A NAME="E68E318"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Summary</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>This chapter has given you a brief introduction to the various database management systems for Linux. There are many more products for Linux which can provide DBMS solutions. Hopefully, the major manufacturers will soon catch on and provide the database 
+solutions for this market.
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl35.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="#I0" TARGET="_self"><IMG SRC="purtop.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Page Top"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl37.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+</BODY></HTML>
+
+
+

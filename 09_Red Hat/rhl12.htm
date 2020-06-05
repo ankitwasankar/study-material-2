@@ -1,0 +1,1691 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Red Hat Linux Unleashed rhl12.htm </TITLE>
+
+<LINK REL="ToC" HREF="index.htm">
+
+<LINK REL="Index" HREF="htindex.htm">
+
+<LINK REL="Next" HREF="rhl13.htm">
+
+<LINK REL="Previous" HREF="rhl11.htm"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+
+<A NAME="I0"></A>
+
+<H2>Red Hat Linux Unleashed rhl12.htm</H2>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl11.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl13.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+<HR ALIGN=CENTER>
+
+<P>
+
+<UL>
+
+<UL>
+
+<UL>
+
+<LI>
+
+<A HREF="#E68E77" >An Introduction to tcsh</A>
+
+<LI>
+
+<A HREF="#E68E78" >Command Completion</A>
+
+<LI>
+
+<A HREF="#E68E79" >Wildcards</A>
+
+<LI>
+
+<A HREF="#E68E80" >Command History</A>
+
+<LI>
+
+<A HREF="#E68E81" >Aliases</A>
+
+<LI>
+
+<A HREF="#E68E82" >Input and Output Redirection</A>
+
+<LI>
+
+<A HREF="#E68E83" >Pipelines</A>
+
+<LI>
+
+<A HREF="#E68E84" >Prompts</A>
+
+<LI>
+
+<A HREF="#E68E85" >Job Control</A>
+
+<LI>
+
+<A HREF="#E68E86" >Key Bindings</A>
+
+<LI>
+
+<A HREF="#E68E87" >Other Neat Stuff</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E182" >Correcting Spelling Errors</A>
+
+<LI>
+
+<A HREF="#E69E183" >Precommands</A>
+
+<LI>
+
+<A HREF="#E69E184" >Change Directory Commands</A>
+
+<LI>
+
+<A HREF="#E69E185" >Monitoring Logins and Logouts</A></UL>
+
+<LI>
+
+<A HREF="#E68E88" >Customizing tcsh</A>
+
+<LI>
+
+<A HREF="#E68E89" >tcsh Command Summary</A>
+
+<LI>
+
+<A HREF="#E68E90" >tcsh Variables</A>
+
+<LI>
+
+<A HREF="#E68E91" >Summary</A></UL></UL></UL>
+
+<HR ALIGN=CENTER>
+
+<A NAME="E66E12"></A>
+
+<H1 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>12</B></FONT></CENTER></H1>
+
+<BR>
+
+<A NAME="E67E12"></A>
+
+<H2 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>Using </B><B>tcsh</B></FONT></CENTER></H2>
+
+<BR>
+
+<P>The last two chapters introduced you to the Bourne Again Shell (bash) and the Public Domain Korn Shell (pdksh). This chapter introduces a third shell, tcsh. This chapter shows you how tcsh supports the following:
+
+<BR>
+
+<UL>
+
+<LI>Command-line completion
+
+<BR>
+
+<BR>
+
+<LI>Command history and aliases
+
+<BR>
+
+<BR>
+
+<LI>Input and output redirection
+
+<BR>
+
+<BR>
+
+<LI>Pipelines
+
+<BR>
+
+<BR>
+
+<LI>Changing your prompts
+
+<BR>
+
+<BR>
+
+<LI>Job control
+
+<BR>
+
+<BR>
+
+<LI>Key bindings
+
+<BR>
+
+<BR>
+
+<LI>Spelling correction
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>In addition to these topics, we will see how you can customize tcsh to suit your tastes. You will also be introduced to several important tcsh commands and variables.
+
+<BR>
+
+<P>Rounding out the chapter is a section on neat little features that tcsh provides that are not available in any of the other shell programs we have discussed.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E77"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>An Introduction to </B><B>tcsh</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>tcsh is a modified version of the C shell (csh). It is fully backward-compatible with csh, but it contains many new features that make user interaction much easier. The biggest improvements over the csh are in the areas of command-line editing and 
+history navigation.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E78"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Command Completion</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Just like pdksh and bash, tcsh supports command-line completion. You invoke command-line completion in tcsh exactly the same way as you do in bash: by pressing the Tab key at any point while you are typing a command.
+
+<BR>
+
+<P>When you press the Tab key, tcsh tries to complete the command by matching what has been typed with any file in the directory that the command is referring to. For example, assume that you typed the following command and then pressed the Tab key:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">emacs hello</FONT></PRE>
+
+<P>Here, tcsh will try to match the letters hello with any file (or subdirectory) in the current directory. If there is a single file in the current directory that begins with the letters hello, tcsh fills in the rest of the filename for you. Now assume 
+that you typed the following command and then pressed the Tab key:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">emacs /usr/bin/hello</FONT></PRE>
+
+<P>In this case, tcsh would try to match the letters hello with any file in the /usr/bin directory. From these examples, you can see that you must give tcsh something to go on before asking it to complete the command for you.
+
+<BR>
+
+<P>Another example of using command-line completion is as follows: Assume that the directory that you are currently in contains these files:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">News/ bin/ mail/ sample.txt testfile ttd.txt</FONT></PRE>
+
+<P>If you want to print the sample.txt file, you could type the following command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">lpr sample.txt</FONT></PRE>
+
+<P>Using command-line completion, you could get away with typing the following command and then pressing the Tab key:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">lpr s</FONT></PRE>
+
+<P>At this point, tcsh attempts to complete the command and finds that the only file that can possibly match what was typed so far is the sample.txt file. tcsh would then complete the command by putting the following text on the command line:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">lpr sample.txt</FONT></PRE>
+
+<P>You can now either confirm that this is the intended command by pressing the Enter key, or you can edit the command if it isn't what you intended.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E79"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Wildcards</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>tcsh enables you to use wildcards in your commands. It supports the same three wildcards as bash and pdksh:
+
+<BR>
+
+<UL>
+
+<UL>
+
+<P>* matches any character or any number of characters.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>? matches any single character.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P> [...] matches any single character contained within the brackets.
+
+<BR>
+
+</UL></UL>
+
+<P>The * wildcard can be used to perform some of the same functions as command-line completion. If you entered a command like
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">cd t*</FONT></PRE>
+
+<P>and only one subdirectory in the current directory begins with the letter t, this command would behave the same as if you had used command-line completion by pressing the Tab key.
+
+<BR>
+
+<P>The * matches any character or any number of characters, so the shell will replace the t* with the file in the directory that matches the wildcard pattern.
+
+<BR>
+
+<P>This will work reliably only if there is one file in the directory that starts with the letter t. If more than one file in the directory starts with the letter t, the shell will try to replace t* with the list of filenames in the directory that match 
+the wildcard pattern, and the cd command will make the first directory in this list the working directory. This will end up being the file that comes first alphabetically and may or may not be the intended file.
+
+<BR>
+
+<P>A case that is more suited to using the * wildcard is if you want to perform the same operation on a number of files that have similar filenames. For example, assume the current directory contains the following files:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Mail/ atc1.stk atc2.stk bin/ borl.stk cdrom.txt lfi.stk temp/</FONT></PRE>
+
+<P>If you want to print both of the files that start with atc and end with the .stk extension, you could do so by typing
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">lpr a*.stk</FONT></PRE>
+
+<P>This command will do the job, because there are no other files in the directory that start with the letter a and have the .stk extension.
+
+<BR>
+
+<P>Using the ? wildcard, the following command will accomplish the same thing:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">lpr atc?.stk</FONT></PRE>
+
+<P>Using the [...] wildcard, you could enter the following command to get the same files to print:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">lpr atc[12].stk</FONT></PRE>
+
+<BR>
+
+<A NAME="E68E80"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Command History</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The tcsh shell provides a mechanism for accessing the command history that is similar to ones provided with bash and pdksh. The shell remembers the last history commands that have been entered into the shell (where history is a user-definable tcsh 
+variable).
+
+<BR>
+
+<P>tcsh stores the text of the last history commands in a history list. When you log into your account, the history list is initialized from a history file. The default filename for the history file is .history, but you can change it using the histfile 
+tcsh variable. This file is located in your home directory. Notice that the file begins with a period. This means that the file is a hidden file and will appear in a directory listing only if you use the -a or -A options of the ls command.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>In order for the history list to be saved in the history file, you must make sure that the savehist variable is set to the number of commands that you want to be saved. Refer to the .login file listing in the &quot;Customizing tcsh&quot; section of 
+this chapter for an example of setting this variable.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>The simplest way of using the history list is to use the up and down arrow keys to scroll through the commands that were entered earlier. Pressing the up arrow key will cause the last command entered to appear on the command line. Pressing the up arrow 
+key again will put the command before that on the command line, and so on. If you move up in the command buffer past the command that you wanted, you can move down the history list one command at a time by pressing the down arrow key.
+
+<BR>
+
+<P>The command that is on the command line can be edited. You can use the left and right arrow keys to move along the command line, and you can insert text at any point. You can also delete text from the command line by using the Backspace or Delete keys. 
+Most users should find these simple editing commands sufficient, but for those who do not, tcsh also supports a wide range of equivalent emacs and vi editing commands. See the &quot;Key Bindings&quot; section of this chapter for more information on vi and 
+emacs command-line editing.
+
+<BR>
+
+<P>Another method of using the history file is to display and edit the history list using a number of other editing commands that tcsh provides. The history command can be invoked by any one of three different methods. The first method has the following 
+command-line syntax:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">history [-hr] [n]</FONT></PRE>
+
+<P>This form of the history command displays the history list to the screen. The n option is used to specify the number of commands to display. If the n option is not used, the history command will display the entire history list. The -h option causes 
+history to remove the command numbers and timestamps that are usually present in the output of the history command. The -r option tells history to display the commands in reverse order, starting with the most recent command. The following command displays 
+the last five commands that were entered:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">history 5</FONT></PRE>
+
+<P>The second method of invoking the history command is used to modify the contents of the history file or the history list. It has the following command-line syntax:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">history -S | -L | -M [filename]</FONT></PRE>
+
+<P>The -S option writes the history list to a file. The -L option appends a history file to the current history list. The -M option merges the contents of the history file with the current history list and sorts the resulting list by the timestamp 
+contained with each command.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>All of the options for the second form of the history command use the filename option as the name of the history file. If no filename is specified, the history command will use the value of the histfile variable. If the histfile variable isn't set, 
+it will use the ~/.history (home directory) file.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>The history command using the -c option clears the current history list.
+
+<BR>
+
+<P>In addition to the history command and its options, tcsh also contains many history navigation and editing commands. The following commands are used to navigate through the history list:
+
+<BR>
+
+<UL>
+
+<LI>!n re-executes the command with the history number of n.
+
+<BR>
+
+<BR>
+
+<LI>!-n re-executes the command that is n commands from the end of the history list.
+
+<BR>
+
+<BR>
+
+<LI>!! re-executes the last command that was entered.
+
+<BR>
+
+<BR>
+
+<LI>!c re-executes the last command in the history list that begins with the letter c.
+
+<BR>
+
+<BR>
+
+<LI>!?c? re-executes the last command in the history list that contains the letter c.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>The history editing commands enable you to replace words and letters in previously entered commands as well as add words to the end of previously entered commands. More information on these editing commands can be found by referring to the tcsh man 
+page. You can view this man page by entering the following command at the shell prompt:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">man tcsh</FONT></PRE>
+
+<BR>
+
+<A NAME="E68E81"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Aliases</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Command aliases are commands that you can specify and execute. Alias commands are usually abbreviations of other Linux commands. You tell tcsh to execute a Linux command whenever it encounters the alias. For example, if you entered the following alias 
+command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">alias ls 'ls -F'</FONT></PRE>
+
+<P>the ls -F command would be substituted for the ls command each time the ls command was used.
+
+<BR>
+
+<P>If you decide after you enter an alias that you don't need or want that alias to exist any longer, you can use the tcsh unalias command to delete that alias:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">unalias cd</FONT></PRE>
+
+<P>After you use the unalias command to remove an alias, the alias will no longer exist, and trying to execute that alias will cause tcsh to return a command not found error message.
+
+<BR>
+
+<P>Some aliases that you might want to define are:
+
+<BR>
+
+<UL>
+
+<LI>alias ll 'ls -l'
+
+<BR>
+
+<BR>
+
+<LI>alias ls 'ls -F'
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>If you are a DOS user and are accustomed to using DOS file commands, you might also want to define the following aliases:
+
+<BR>
+
+<UL>
+
+<LI>alias dir 'ls'
+
+<BR>
+
+<BR>
+
+<LI>alias copy 'cp'
+
+<BR>
+
+<BR>
+
+<LI>alias rename 'mv'
+
+<BR>
+
+<BR>
+
+<LI>alias md 'mkdir'
+
+<BR>
+
+<BR>
+
+<LI>alias rd 'rmdir'
+
+<BR>
+
+<BR>
+
+</UL>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>When you define aliases, quotation marks are necessary only if the command within them contains spaces or other special characters.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>If you enter the alias command without any arguments, it will print to the screen all of the aliases that are already defined. The following listing illustrates sample output from the alias command:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">alias ls 'ls -F'
+
+alias dir 'ls'
+
+alias ll 'ls -l'
+
+alias md 'mkdir'
+
+alias rd 'rmdir'</FONT></PRE>
+
+<BR>
+
+<A NAME="E68E82"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Input and Output Redirection</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The standard input and output of a command can be redirected using the same syntax that is used by bash and pdksh. The &lt; character is used for input redirection, and the &gt; character is used for output redirection. The following command redirects 
+the standard input of the cat command to the .cshrc file:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">cat &lt; .cshrc</FONT></PRE>
+
+<P>In practice, input redirection isn't used very often because most commands that require input from a file support passing the filename as an argument to the command.
+
+<BR>
+
+<P>Output redirection is used much more frequently. The following command redirects the standard output of the cat command to the file named cshenv (which has the effect of storing the contents of the .cshrc and .login files in one file named cshenv):
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">cat .cshrc .login &gt; cshenv</FONT></PRE>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>The file to which output is being redirected is created if it does not exist and is overwritten without warning if it already exists.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E68E83"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Pipelines</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>tcsh pipelines, just like bash and pdksh pipelines, are a way to string together a series of Linux commands. This means that the output from the first command in the pipeline is used as the input to the second command in the pipeline. The output from 
+the second command in the pipeline is used as input to the third command in the pipeline, and so on. The output from the last command in the pipeline is the output that the user will actually see. This output will be displayed to the screen (or put into a 
+file if output redirection was specified on the command line).
+
+<BR>
+
+<P>You can tell tcsh to create a pipeline by typing two or more commands separated by the | character. The following command illustrates an example of using a tcsh pipeline:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">cat file1 file2 | wc -l</FONT></PRE>
+
+<P>The cat command in this pipeline appends file2 to the end of file1 and passes the resulting file to the wc command. The wc command prints to the screen the total number of lines contained in the resulting file.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E84"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Prompts</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>tcsh has three levels of user prompts. The first-level prompt is what you see when tcsh is waiting for you to type a command. The default prompt is the % character. This prompt can be customized by assigning a new value to the prompt tcsh variable:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">set prompt=&quot;%t$&quot;</FONT></PRE>
+
+<P>This example would change the first-level prompt to the current time followed by a dollar sign.
+
+<BR>
+
+<P>The second-level prompt is displayed when tcsh is waiting for input when in a while or for loop (used in shell programming, discussed in <A HREF="rhl13.htm">Chapter 13</A>, &quot;Shell Programming&quot;). The default for the second-level prompt is %R?, 
+where %R is a special character sequence that displays the status of the parser. You can change the second-level prompt by setting the value of the prompt2 tcsh variable. For example:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">set prompt2=&quot;?&quot;</FONT></PRE>
+
+<P>changes the second-level prompt to a question mark.
+
+<BR>
+
+<P>The third-level prompt is used when tcsh displays the corrected command line when automatic spelling correction is in effect. This prompt is set using the prompt3 variable, and it has a default value of CORRECT&gt;%R (y|n|e)?. See the &quot;Correcting 
+Spelling Errors&quot; section for more information on this feature.
+
+<BR>
+
+<P>tcsh supports special character codes in its prompt variables. These codes are similar to the codes that bash supports in its prompts. The main difference between the two is that the syntax for using them is different. Table 12.1 lists the most commonly 
+used special character codes.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 12.1. </B><B>tcsh</B><B> prompt special character codes.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Character Code</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Meaning</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+%/
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Displays the current working directory.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+%h, %!, !
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+These codes all display the current history number.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+%t, %@
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+These codes both display the time of day.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+%n
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Displays the username.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+%d
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Displays the current day of the week.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+%w
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Displays the current month.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+%y
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Displays the current year.</FONT>
+
+</TABLE><P>The following is an example of setting the prompt variable:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"><A NAME="I2"></A>set prompt=&quot;%h %/&quot;</FONT></PRE>
+
+<P>This command sets the prompt to display the history number of the current command, followed by the current working directory.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E85"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Job Control</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Job control refers to the ability to control the execution behavior of a currently running process. Specifically, you can suspend a running process and cause it to resume running at a later time. tcsh keeps track of all the processes that it starts as a 
+result of user input. You can suspend a running process or restart a suspended one at any time during the life of that process.
+
+<BR>
+
+<P>Pressing the Ctrl-Z key sequence suspends a running process. The bg command restarts a suspended process in the background, and the fg command restarts a process in the foreground.
+
+<BR>
+
+<P>These commands are most often used when you want to run a command in the background but by accident start it in the foreground. When a command is started in the foreground, it locks the shell from any further user interaction until the command completes 
+execution. This is usually fine because most commands take only a few seconds to execute. If the command you're running is going to take a long time, you would typically start the command in the background so that you could continue to use tcsh to enter 
+other commands.
+
+<BR>
+
+<P>For example, if you started a command that was going to take a long time in the foreground, such as
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">find / -named &quot;test&quot; &gt; find.out</FONT></PRE>
+
+<P>your shell will be tied up for several minutes. If you have done this and want to cause the find command to continue executing in the background, you could enter the following:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">control-z
+
+bg</FONT></PRE>
+
+<P>This would suspend the find command and then restart it in the background. The find command would continue to execute, and you would regain control of tcsh.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E86"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Key Bindings</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Like the pdksh, tcsh provides the ability to change and add key bindings. The tcsh implementation of key bindings is more powerful than the way key bindings are done in pdksh.
+
+<BR>
+
+<P>With tcsh you can bind to things other than the built-in editor commands. This means that you can bind a key to a UNIX command, for example. tcsh also enables you to bind vi editing commands, whereas pdksh only allows the binding of emacs editing 
+commands.
+
+<BR>
+
+<P>Key bindings can be very useful, especially if you're using a favorite editor other than emacs or vi. The basic syntax for defining key bindings is
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">bindkey [option] &lt;instring or keyname&gt; &lt;outstring or command&gt;</FONT></PRE>
+
+<P>The options that bindkey supports are not discussed in this book. If you want to learn about the bindkey options, refer to the tcsh man page. The basic function of the bindkey command is to bind the key sequence contained in the first argument to the 
+command contained in the second argument.
+
+<BR>
+
+<P>The following list gives some of the most useful editing commands that you can bind key sequences to, along with the default key binding for that command. You can list all the bindings that are defined in tcsh by typing the bindkey command without any 
+arguments.
+
+<BR>
+
+<UL>
+
+<LI>beginning-of-line (^A): Moves the cursor to the beginning of the command line.
+
+<BR>
+
+<BR>
+
+<LI>backward-char (^B): Moves the cursor back one character.
+
+<BR>
+
+<BR>
+
+<LI>end-of-line (^E): Moves the cursor to the end of the command line.
+
+<BR>
+
+<BR>
+
+<LI>forward-char (^F): Moves the cursor forward one character.
+
+<BR>
+
+<BR>
+
+<LI>backward-delete-char (^H): Deletes the character to the left of the cursor.
+
+<BR>
+
+<BR>
+
+<LI>kill-line (^K): Deletes all of the characters to the right of the cursor.
+
+<BR>
+
+<BR>
+
+<LI>clear-screen (^L): Removes all of the text from the shell window.
+
+<BR>
+
+<BR>
+
+<LI>down-history (^N): Moves down one command in the history list.
+
+<BR>
+
+<BR>
+
+<LI>up-history (^P): Moves up one command in the history list.
+
+<BR>
+
+<BR>
+
+<LI>kill-whole-line (^U): Deletes all of the characters on the current line.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>All of these commands are the same whether you're in emacs or vi insert mode. tcsh supports many more editing commands than are listed here. To see what these commands are, refer to the tcsh man page.
+
+<BR>
+
+<P>The following are examples of setting key bindings:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">bindkey ^W kill-whole-line
+
+bindkey ^S beginning-of-line</FONT></PRE>
+
+<BR>
+
+<A NAME="E68E87"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Other Neat Stuff</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>tcsh supports a few neat features that none of the other shells discussed in this book support. This section lists a few of the most useful of these extended features.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E182"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Correcting Spelling Errors</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>This feature, which is not available with any of the other shells discussed in this book, is a dream come true for many people (including me). If you're plagued by recurring typos, this feature might be enough to cause you to use tcsh over any of the 
+other shells. You can tell tcsh to correct spelling errors in a command that you typed, and you also can tell it to automatically try to correct commands that it can't figure out.
+
+<BR>
+
+<P>The first function isn't quite as useful, because you must know that you have made a typing mistake before you actually execute the command. This feature is invoked by pressing Esc-S on the command line before you press Enter.
+
+<BR>
+
+<P>For example, suppose you wanted to change to the /usr/X11R6/X11 directory, so you typed the following command on the command line:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">cd /usr/X11RT/bun</FONT></PRE>
+
+<P>If you caught the typing errors before you executed the command (by pressing the Enter key), you could correct the errors by pressing Esc-S. tcsh will try to correct the spelling of the command. It would change the command to read
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">cd /usr/X11R6/bin</FONT></PRE>
+
+<P>You could now press the Enter key, and the command would execute just as you wanted. Obviously this command has some limitations, because the shell can't (yet) read your mind, but for simple character transpositions or capitalization errors, it works 
+very nicely.
+
+<BR>
+
+<P>The second method of instructing tcsh to perform spelling corrections on your commands is to set the correct tcsh variable. This variable, depending on what options you use, will tell tcsh to try to correct spelling errors in command names or anywhere 
+in the command. The syntax for setting the correct variable is one of the following:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">set correct=cmd 
+
+<BR>
+
+<BR>or
+
+<BR>
+
+set correct=all</FONT></PRE>
+
+<P>After you set the correct variable, whenever you enter a command that tcsh doesn't understand, it will automatically check to see if the command has any spelling errors. If it finds possible spelling errors, it gives you the corrected command and asks 
+you if the new command is what you intended. For example, if you had set the correct variable with the all option and then entered the following command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">cd /usr/gmes</FONT></PRE>
+
+<P>tcsh would respond with the following prompt on the command line:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">CORRECT&gt;cd /usr/games (y|n|e)?</FONT></PRE>
+
+<P>If you respond to the prompt by pressing the y (yes) key, tcsh will execute the corrected command. If you respond to the prompt by pressing the n (no) key, tcsh will execute the command that you initially entered, which will in turn will cause an error 
+message to be displayed.
+
+<BR>
+
+<P>If you respond to the prompt by pressing the e (edit) key, tcsh will put the command that you entered back on the command line and enable you to edit it.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E183"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Precommands</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>tcsh supports a way of executing a command prior to displaying each command prompt. This is done through the use of a special variable called precmd. If the precmd variable is set, the command that it is set to will be executed before the command prompt 
+is displayed on-screen. For example, assume that you set the precmd variable using the following command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">alias precmd time</FONT></PRE>
+
+<P>After this alias has been declared, the time command will always be executed before the command prompt is displayed on-screen.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E184"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Change Directory Commands</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>tcsh also supports change directory commands. These commands are executed only when the current directory changes (usually as a result of executing the cd command). This type of command is probably more useful than the precommands just mentioned, 
+because there are times when you might want to know something about a directory that you just entered.
+
+<BR>
+
+<P>This feature is supported in the same way precommands are supported, only you must provide an alias for a different variable. The variable used for this is cwdcmd. If this variable is aliased to a command, that command will be executed each time you 
+change current working directories.
+
+<BR>
+
+<P>A common use for this variable is to display the current directory to the screen. This can be done by entering the command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">alias cwdcmd 'pwd'</FONT></PRE>
+
+<P>This will display the name of the new directory each time a new directory is entered.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>You should not put a cd command into cwdcmd. Doing so could cause an infinite loop that would cause you to lose control of tcsh.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E69E185"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Monitoring Logins and Logouts</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>tcsh provides a mechanism that enables you to watch for any user who logs on or off the system. It does this through a tcsh variable named watch.
+
+<BR>
+
+<P>The watch variable contains a set of user ID and terminal number pairs. These pairs can contain wildcards and also can contain the word &quot;any,&quot; which tells tcsh to match any user or terminal. The syntax for setting the watch variable is
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">set watch=(&lt;user&gt; &lt;terminal&gt;)</FONT></PRE>
+
+<P>The user in this command refers to a Linux user ID. terminal refers to a Linux terminal device number.
+
+<BR>
+
+<P>Most people would use this capability to watch for friends logging onto the system. For example, if you were waiting for a person with the username jules to come to work in the morning, you could set the following watch variable:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">set watch=(jules any)</FONT></PRE>
+
+<P>This command would inform you when a person with the user ID jules logged into the system on any terminal. tcsh defaults to checking the defined watches every 10 minutes. If you want to know with greater or lesser frequency, you can change this default 
+by passing the number of minutes to wait between checks as the first parameter to the watch variable. For example, to check every five minutes to see if jules has logged in, you would use the following watch variable:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">set watch=(5 jules any)</FONT></PRE>
+
+<P>This will do the same thing as the first command, except it will check every five minutes instead of every 10 to see if jules has logged in.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E88"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Customizing </B><B>tcsh</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>I've discussed many ways of customizing tcsh in this chapter. If you just enter the commands that we have discussed at the command line, the changes you make will be lost every time you log out of the system. This section describes how to store these 
+changes in a file that will be executed each time you start tcsh.
+
+<BR>
+
+<P>Two initialization files are important to tcsh. The first is called the login file. The commands in this file are executed when you first log into Linux. The contents of the default login file are shown in Listing 12.1.
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 12.1. Default csh.login file.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">if ($?prompt) then
+
+umask 022
+
+set cdpath = ( /usr/spool )
+
+set notify
+
+set history = 100
+
+setenv OPENWINHOME /usr/openwin
+
+setenv MANPATH /usr/local/man:/usr/man/preformat:/usr/man:/usr/X11r6/man:
+
+_/usr/openwin/man
+
+setenv MINICOM &quot;-c on&quot;
+
+setenv HOSTNAME &quot;`cat /etc/HOSTNAME`&quot;
+
+set path = ( $path /usr/X11r6/bin /usr/andrew/bin
+
+_$OPENWINHOME/bin /usr/games . )
+
+endif
+
+# I had problems with the Backspace key installed by 'tset,' but you might want
+
+# to try it anyway, instead of the 'setenv term.....' below it.
+
+# eval 'tset -sQ &quot;$term&quot;'
+
+# setenv term linux
+
+#if ! $?TERM setenv TERM linux
+
+# set to &quot;linux&quot; for unknown term type:
+
+if (&quot;$TERM&quot; == &quot;&quot;) setenv TERM linux
+
+if (&quot;$TERM&quot; == &quot;unknown&quot; setenv TERM linux
+
+set prompt = &quot;%m:%~%# &quot;
+
+eval 'dircolors -t' # set up color-ls variables
+
+alias ls 'ls -F'
+
+if ( { tty &#151;silent } ) then &gt;&amp; /dev/null
+
+echo &quot;&quot;;fortune;echo &quot;&quot;
+
+endif</FONT></PRE>
+
+<P>This file, csh.login, can be found in the /etc directory. If you want to change any of the settings found in csh.login, you should copy it to your home directory and make the changes you want there.
+
+<BR>
+
+<P>The other file that tcsh makes use of is cshrc. The commands in this file are executed each time a copy of the tcsh program is run. Examples of the types of commands that usually appear in this file are aliases and variable declarations. This file, 
+csh.cshrc, is also contained in the /etc directory. If you want to make changes to this file, you should copy it to your home directory and make your changes there.
+
+<BR>
+
+<P>When you first log in to Linux, tcsh executes the /etc/csh.cshrc file, followed by the /etc/csh.login file. It then checks your home directory to see if you have a personal copy of the csh.cshrc file. This file can be named either .tcshrc or .cshrc. If 
+you have one of these files in your home directory, tcsh will execute it next.
+
+<BR>
+
+<P>tcsh next checks to see if you have your own copy of the csh.login file in your home directory. This file must be named .login. If you do have a .login file in your home directory, it will be executed next.
+
+<BR>
+
+<P>Whenever you start another copy of tcsh after you log in to the system, it will execute the commands that are in the /etc/csh.cshrc file and then check your home directory to see if there is a .tcshrc or a .cshrc file there.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E89"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>tcsh</B><B> Command Summary</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Here are some of the most useful tcsh commands:
+
+<BR>
+
+<UL>
+
+<LI>alias: Used to set and display aliases, command nicknames that can be set by the user.
+
+<BR>
+
+<BR>
+
+<LI>bg: Background command. Forces a suspended process to continue running in the background.
+
+<BR>
+
+<BR>
+
+<LI>bindkey: Enables users to change the editing actions that are associated with a key sequence.
+
+<BR>
+
+<BR>
+
+<LI>cd: Changes the current working directory to the directory specified.
+
+<BR>
+
+<BR>
+
+<LI>exit: Terminates the shell.
+
+<BR>
+
+<BR>
+
+<LI>fg: Foreground command. Forces a suspended process to continue running in the foreground.
+
+<BR>
+
+<BR>
+
+<LI>history: Enables users to display and modify the contents of the history list and the history file.
+
+<BR>
+
+<BR>
+
+<LI>kill: Terminates another process.
+
+<BR>
+
+<BR>
+
+<LI>logout: Terminates a login shell.
+
+<BR>
+
+<BR>
+
+<LI>set: Used to set the value of tcsh variables.
+
+<BR>
+
+<BR>
+
+<LI>source: Reads and executes the contents of a file. This command is discussed in more detail in <A HREF="rhl13.htm">Chapter 13</A>.
+
+<BR>
+
+<BR>
+
+<LI>unalias: Used to remove aliases that have been defined using the alias command.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<BR>
+
+<A NAME="E68E90"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>tcsh</B><B> Variables</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Here are some of the most useful tcsh variables:
+
+<BR>
+
+<UL>
+
+<LI>autocorrect: If this is set, tcsh will automatically try to correct command-line spelling errors.
+
+<BR>
+
+<BR>
+
+<LI>histfile: The name of the file that is used to store the command history.
+
+<BR>
+
+<BR>
+
+<LI>history: The size of the history list.
+
+<BR>
+
+<BR>
+
+<LI>home: The user's home directory.
+
+<BR>
+
+<BR>
+
+<LI>path: The search path that tcsh uses when looking for executable programs.
+
+<BR>
+
+<BR>
+
+<LI>prompt: The first-level prompt that is displayed on the command line.
+
+<BR>
+
+<BR>
+
+<LI>prompt2: The second-level prompt that is displayed when a for, foreach, or while loop is expecting input.
+
+<BR>
+
+<BR>
+
+<LI>prompt3: The third-level prompt that is displayed when tcsh has attempted to correct a spelling error in a command.
+
+<BR>
+
+<BR>
+
+<LI>savehist: This variable must be set to the number of history commands that you want to save, if you want tcsh to save the history list when you log out.
+
+<BR>
+
+<BR>
+
+<LI>watch: Contains a list of user terminal pairs to watch for logins and logouts.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<BR>
+
+<A NAME="E68E91"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Summary</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The last three chapters have presented the fundamental commands and concepts of the three most popular UNIX shells. tcsh is the most feature-rich shell of those presented, but that doesn't necessarily mean that it's the best shell for you to use. In the 
+end, this decision will probably be based on your personal preference as opposed to what features are offered.
+
+<BR>
+
+<P>The next chapter looks at the programming languages that are provided by each of the shells we have discussed.
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl11.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="#I0" TARGET="_self"><IMG SRC="purtop.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Page Top"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl13.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+</BODY></HTML>
+
+
+

@@ -1,0 +1,7 @@
+[DEFAULT]
+BASEURL=http://www.lokitorrent.com/
+[InternetShortcut]
+URL=http://www.lokitorrent.com/
+Modified=90B971385177C4017F
+IconFile=http://www.lokitorrent.com/favicon.ico
+IconIndex=1

@@ -1,0 +1,153 @@
+/* -- GENERIC LAYOUT RULES -------------------------------------------------- */
+/* NOTES:
+- these rules provide the basis for styling across the site
+*/
+
+/* -- for the 'intro' area */
+#contentFrame .mainCol #intro { padding: 10px 10px 0 10px; }
+
+
+/* -- styling some headers */
+#contentFrame #content H4 { padding-bottom: 4px; }
+
+
+/* -- for the content of the page */
+#contentFrame .mainCol { padding-bottom: 10px; }
+#contentFrame .mainCol #content { padding: 10px; }
+#contentFrame .mainCol #content H4 SPAN { color: #000; }
+
+
+/* -- for the subnav */
+#contentFrame .mainCol #intro .subnav { margin: 10px 0; }
+/*#contentFrame .mainCol #intro .subnav LI { background-color: #FFC; margin-bottom: 1px; } */
+#contentFrame .mainCol #intro .subnav A { text-decoration: none; color: #448FAA; }
+#contentFrame .mainCol #intro .subnav DIV.active,
+#contentFrame .mainCol #intro .subnav DIV.inactive { margin: 0; font-weight: bold; color: #666; padding: 2px 3px 2px 22px; text-indent: -16px; }
+#contentFrame .mainCol #intro .subnav DIV.active { background-color: #FC6; }
+#contentFrame .mainCol #intro .subnav DIV.inactive { }
+
+
+/* -- for 'data' tables (e.g. not forms) */
+/* #contentFrame .mainCol #content .formTable TH, */
+#contentFrame .dataTable TD,
+#contentFrame .dataTable TH {
+	font-family: geneva, arial, helvetica, sans-serif;
+	color: #333;
+	font-size: small; /* just for NS4 */
+	/*/*/font-size: 70%;/* */
+	}
+#contentFrame .dataTable TH { text-align: left; }
+
+
+/* -- for things in lists, with navigation between pages */
+.listingHeader,
+.listingFooter { margin: 6px 0; }
+
+#contentFrame .mainCol #content TD P.listingNav { text-align: right; margin: 0; font-weight: bold; }
+#contentFrame .mainCol #content P.listingNav SPAN { color: #F90; }
+#contentFrame .mainCol #content P.listingNav STRONG { color: #666; }
+#contentFrame .mainCol #content P.listingNav STRONG.pageSet { color: #000; }
+#contentFrame .mainCol #content TD P.listingNav A { font-weight: normal; }
+
+#contentFrame .mainCol #content .listingContent .dataTable TH { color: #F90; border-bottom: 2px solid #CCC; }
+#contentFrame .mainCol #content .listingContent .dataTable TD { border-bottom: 1px solid #CCC; }
+
+
+/* -- for laying out forms */
+#contentFrame .mainCol #content .formTable TH { text-align: left; font-weight: normal; }
+
+
+/* -- for things 'after' the #content */
+#contentFrame .mainCol #footer { border-top: 2px solid #CCC; margin: 10px 10px 0 10px; padding-top: 10px; }
+#contentFrame .mainCol #footer H6 {
+	font-size: small; /* just for NS4 */
+	/*/*/font-size: 70%;/* */
+	color: #666;
+	margin-bottom: 0px;
+}
+#contentFrame .mainCol #footer TD .item { margin-right: 1em; }
+#contentFrame .mainCol #footer UL { margin: 0px; }
+
+
+
+/* -- thingys in the 'side' column */
+#contentFrame .sideCol { margin-left: 1px; }
+#contentFrame .sideCol H3 { margin-bottom: 6px; }
+#contentFrame .sideCol .area { margin: 0 0 15px 0; padding: 7px 10px; border-left: 1px solid #CCC; }
+#contentFrame .sideCol .area LI { padding-bottom: 4px; }
+#contentFrame .sideCol .area P { margin-bottom: .5em; }
+#contentFrame .sideCol .area .item  { margin-bottom: 10px; }
+#contentFrame .sideCol .area .line  { margin-bottom: 10px; }
+
+/* -- search/citation boxes */
+#contentFrame .sideCol #searchBox,
+#contentFrame .sideCol #citationBox { width: 190px; }
+
+/* #contentFrame .sideCol #searchBox .area { margin: 0; padding: 10px; border-left: none; } */
+#contentFrame .sideCol #searchBox .item { margin-bottom: 0; padding: 10px; border-left: none; }
+#contentFrame .sideCol #searchBox #articleGo { padding-top: 4px; }
+
+#contentFrame .sideCol #citationBox { border-bottom: 1px solid #CCE5FF; margin-top: 1px; }
+#contentFrame .sideCol #citationBox .item { padding: 10px 0; margin: 0 10px; }
+
+#contentFrame .sideCol #providedBy { }
+
+#contentFrame .sideCol #latestNews { }
+#contentFrame .sideCol #latestNews P A { font-weight: bold; }
+
+#contentFrame .sideCol #relatedProducts { }
+#contentFrame .sideCol #relatedProducts H6 {
+	color: #666;
+	margin-bottom: 0px;
+	font-size: small; /* just for NS4 */
+	/*/*/font-size: 70%;/* */
+	}
+#contentFrame .sideCol #relatedProducts UL { padding-bottom: 8px; margin-top: 0; }
+#contentFrame .sideCol #relatedProducts LI { padding-bottom: 2px; }
+
+#contentFrame .sideCol #newsFromWI LI A  { font-weight: bold; }
+
+#contentFrame .sideCol #news { }
+
+#contentFrame .sideCol #featuredCollection { }
+
+#contentFrame .sideCol #freeTrials { }
+#contentFrame .sideCol #freeTrials TABLE { width: 169px; } /* for IE/win */
+
+#contentFrame .sideCol #featuredProduct TABLE { width: 169px; } /* for IE/win */
+#contentFrame .sideCol #featuredProduct P { font-weight: bold; }
+
+#contentFrame .sideCol #introducing A { font-weight: bold; }
+
+#contentFrame .sideCol #quickQuestion H6 { margin-bottom: 4px; }
+#contentFrame .sideCol #quickQuestion LEGEND { font-weight: bold; }
+#contentFrame .sideCol #quickQuestion DIV { padding-top: 6px; }
+
+#contentFrame .sideCol #alsoOfInterest LI { padding-bottom: 2px; }
+#contentFrame .sideCol #specialIssue { }
+#contentFrame .sideCol #specialIssue TABLE { width: 169px; } /* for IE/win */
+
+#contentFrame .sideCol #newAddition { }
+
+#contentFrame .sideCol #moreFromCollection { }
+
+#contentFrame .sideCol #featuredProtocol { }
+
+#contentFrame .sideCol #mobileEdition { }
+#contentFrame .sideCol #profiledAlerts { }
+
+#contentFrame .sideCol #recentlyPublished { }
+#contentFrame .sideCol #recentlyPublished H6 {
+	font-size: small; /* just for NS4 */
+	/*/*/font-size: 70%;/* */
+	}
+
+#contentFrame .sideCol #searchTips { }
+#contentFrame .sideCol #searchTips LI EM { color: #999; }
+
+#contentFrame .sideCol #nowAvailableOnline { }
+#contentFrame .sideCol #nowAvailableOnline .dataTable TH { text-align: right; padding-right: 0.5em; }
+
+#contentFrame .sideCol #forYourUsers { }
+#contentFrame .sideCol #forYourUsers LI { padding-bottom: 1px; }
+

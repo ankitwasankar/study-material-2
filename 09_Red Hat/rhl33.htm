@@ -1,0 +1,3028 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Red Hat Linux Unleashed rhl33.htm </TITLE>
+
+<LINK REL="ToC" HREF="index.htm">
+
+<LINK REL="Index" HREF="htindex.htm">
+
+<LINK REL="Next" HREF="rhl34.htm">
+
+<LINK REL="Previous" HREF="rhl32.htm"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+
+<A NAME="I0"></A>
+
+<H2>Red Hat Linux Unleashed rhl33.htm</H2>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl32.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl34.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+<HR ALIGN=CENTER>
+
+<P>
+
+<UL>
+
+<UL>
+
+<UL>
+
+<LI>
+
+<A HREF="#E68E280" >A Note About CDE</A>
+
+<LI>
+
+<A HREF="#E68E281" >Overview</A>
+
+<LI>
+
+<A HREF="#E68E282" >Requirements</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E396" >Header Files</A>
+
+<LI>
+
+<A HREF="#E69E397" >Sample Application</A>
+
+<LI>
+
+<A HREF="#E69E398" >Initialization</A>
+
+<LI>
+
+<A HREF="#E69E399" >Creating Objects</A>
+
+<LI>
+
+<A HREF="#E69E400" >Exiting an Application</A></UL>
+
+<LI>
+
+<A HREF="#E68E283" >Frames</A>
+
+<LI>
+
+<A HREF="#E68E284" >Command Frames</A>
+
+<LI>
+
+<A HREF="#E68E285" >Setting Colors on Frames</A>
+
+<LI>
+
+<A HREF="#E68E286" >Canvases</A>
+
+<LI>
+
+<A HREF="#E68E287" >Buttons</A>
+
+<LI>
+
+<A HREF="#E68E288" >List Items</A>
+
+<LI>
+
+<A HREF="#E68E289" >Scale Bars</A>
+
+<LI>
+
+<A HREF="#E68E290" >Text Windows</A>
+
+<LI>
+
+<A HREF="#E68E291" >Where To Go from Here</A>
+
+<LI>
+
+<A HREF="#E68E292" >Summary</A></UL></UL></UL>
+
+<HR ALIGN=CENTER>
+
+<A NAME="E66E33"></A>
+
+<H1 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>33</B></FONT></CENTER></H1>
+
+<BR>
+
+<A NAME="E67E33"></A>
+
+<H2 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>Programming XView Applications</B></FONT></CENTER></H2>
+
+<BR>
+
+<P>In this chapter you will learn how to program in an older, but still widely found, OPEN LOOK&#151;based user interface manager called XView. You will find this distribution helpful when you work with older code or when you port code from the OPEN LOOK 
+style to Motif.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E280"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>A Note About CDE</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>In March 1993, the Common Open Software Environment (COSE) committees adopted the Common Desktop Environment (CDE). CDE is based on the Motif interface. Sun Microsystems Inc., the primary developer of OPEN LOOK applications, agreed to conform to CDE as 
+well. In short, this means that OPEN LOOK interface&#151;based applications will soon be out of style. However, applications with an OPEN LOOK interface still exist and have to be ported to Motif eventually. A good knowledge of how OPEN LOOK applications 
+work will be very beneficial to you if you ever have to port old existing code to conform to CDE.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E281"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Overview</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>To a programmer, the XView toolkit is an object-oriented toolkit. Think of XView objects as building blocks from which the user can create complicated applications, and think of each block as part of a package. Each package provides properties that you 
+can modify to configure the object.
+
+<BR>
+
+<P>The XView toolkit consists of the objects shown in Figure 33.1. The subclasses are derived from the classes to their left. For example, Icon is a subclass of Window. Each class is also referred to as a package.
+
+<BR>
+
+<P><B> <A HREF="33rhl01.gif">Figure 33.1. XView class hierarchy.</A></B>
+
+<BR>
+
+<P>Some objects are visible and some are not. The visible objects provide the windows, scrollbars, and so on. The invisible objects, such as the font, display, or server, <A NAME="I2"></A>provide frameworks that aid in the display or layout of visible 
+objects.
+
+<BR>
+
+<P>When you create an object, you get a handle to the object back from the XView libraries. Handles are opaque pointers to structures. This means that you can pass information via functions to these objects via their handles but you cannot see their 
+structures directly.
+
+<BR>
+
+<P>The following functions enable you to manipulate all XView objects:
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+xv_init()
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Establishes the connection to the server, initializes the notifier (message handler), and loads the resource databases</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+xv_create()
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Creates an object</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+xv_destroy()
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Destroys an object</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+xv_find()
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Finds an object with given criteria; if not found, creates the object</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+xv_get()
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Gets an attribute value</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+xv_set()
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Sets an attribute value</FONT>
+
+</TABLE><P>There are three categories of attributes: generic attributes apply to all objects; common attributes are shared by some, but not all, objects; and specific attributes belong to one class of objects only. Attributes that are specific to a type of 
+object are prefixed with the name of the object; for example, FRAME_*, ICON_*, MENU_*, and so on. Common and generic attributes are prefixed by XV_. For example, XV_HEIGHT applies to all objects, but FRAME_HEIGHT applies only to frame objects.
+
+<BR>
+
+<P>Each attribute may have different types of values. For example, the following code sets a panel_item.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">panel_item = (Panel_item) xv_create( masterpanel, PANEL_CYCLE,
+
+XV_HEIGHT, 100,
+
+XV_WIDTH, 50,
+
+PANEL_LABEL_X, 100,
+
+PANEL_LABEL_Y, 100,
+
+PANEL_LABEL_STRING, &quot;Help&quot;,
+
+PANEL_CHOICE_STRINGS, &quot;About ... &quot;,
+
+&quot;How to use Help&quot;,
+
+&quot;Search Index&quot;,
+
+NULL,
+
+NULL);</FONT></PRE>
+
+<P>Note how the types of values are mixed in this function call. All attributes except PANEL_CHOICE_STRINGS take a single argument. The PANEL_CHOICE_STRINGS attribute takes a list of arguments. The list is terminated with a NULL value.
+
+<BR>
+
+<P>We will go over the details of each object in this chapter.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E282"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Requirements</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>To create an XView program you must link in the XView and OPEN LOOK graphics library, which includes all the toolkit functions for you. You will also need the X11 library. The command line to use the gcc compiler for a simple XView application is
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ gcc sample.c -lxview -lolgx -lX11 -o sample</FONT></PRE>
+
+<P>However, this compile command relies on the fact that your libraries are located in /usr/lib or you have links to this location. The XView libraries are located in the /usr/openwin/lib directories.
+
+<BR>
+
+<P>See the sample makefile in Listing 33.1 that you can use with the applications in this chapter. To compile a listing from this book, type make filename. For example, type make list33_2.
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 33.1. Sample </B><B>makefile</B><B> for creating XView applications.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">CC=gcc
+
+LIBPATH=-L/usr/openwin/lib -L/usr/X11/lib
+
+INCPATH=/usr/openwin/include
+
+LIBS= -lxview -lolgx -lX11
+
+list33_2: list 33_2.c
+
+$(CC) $&lt; -I$(INCPATH) $(LIBPATH) $(LIBS) -o $@
+
+list33_3: list 33_3.c
+
+$(CC) $&lt; -I$(INCPATH) $(LIBPATH) $(LIBS) -o $@
+
+list33_4: list 33_4.c
+
+$(CC) $&lt; -I$(INCPATH) $(LIBPATH) $(LIBS) -o $@
+
+list33_5: list 33_5.c
+
+$(CC) $&lt; -I$(INCPATH) $(LIBPATH) $(LIBS) -o $@
+
+list33_6: list 33_6.c
+
+$(CC) $&lt; -I$(INCPATH) $(LIBPATH) $(LIBS) -o $@
+
+list33_7: list 33_7.c
+
+$(CC) $&lt; -I$(INCPATH) $(LIBPATH) $(LIBS) -o $@
+
+list33_8: list 33_8.c
+
+$(CC) $&lt; -I$(INCPATH) $(LIBPATH) $(LIBS) -o $@
+
+list33_9: list 33_9.c
+
+$(CC) $&lt; -I$(INCPATH) $(LIBPATH) $(LIBS) -o $@
+
+list33_10: list 33_10.c
+
+ $(CC) $&lt; -I$(INCPATH) $(LIBPATH) $(LIBS) -o $@</FONT></PRE>
+
+<P>The -lxview in LIBS refers to the libxview.a library. The libxview.a library contains the code for all the windows manipulation and libolgx.a contains the OPENLOOK graphics library. The libX11.a is required by the libxview.a library, and libolgx.a is 
+required by the libxview.a library.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E396"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Header Files</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The basic definitions you must use for XView are located in two files: xview/generic.h and xview/xview.h in the /usr/openwin/include directory tree. The header files required by other packages, such as FONT or FRAME, are declared in files of the same 
+name as the package. For example, for the FONT package you must use the xview/font.h header file. You can include these files more than once.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>In some source distributions, the file generic.h is not explicitly called out in the source files. In order to compile source files under Linux, you will need the generic.h file.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E69E397"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Sample Application</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Take a look at the simple application shown in Listing 33.2, which places a window with a Quit button on it.
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 33.2. A simple application.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">/*
+
+** A sample program to show you how to present items for
+
+** selection to the user.
+
+**
+
+*/
+
+#include &lt;xview/generic.h&gt;
+
+#include &lt;xview/xview.h&gt;
+
+#include &lt;xview/frame.h&gt;
+
+#include &lt;xview/panel.h&gt;
+
+#include &lt;xview/cms.h&gt;
+
+Frame frame;
+
+#define FORE 0
+
+#define BACK 2
+
+int main(int argc, char *argv[])
+
+{
+
+Cms cms;
+
+Panel panel;
+
+void quit();
+
+printf(&quot;\n 0\n&quot;);
+
+xv_init(XV_INIT_ARGC_PTR_ARGV, &amp;argc, argv, NULL);
+
+cms = (Cms ) xv_create((int)NULL,CMS, /* NULL -&gt; use the default Frame*/
+
+CMS_SIZE, CMS_CONTROL_COLORS + 4,
+
+CMS_CONTROL_CMS, True,
+
+CMS_NAMED_COLORS, &quot;LightBlue&quot;, &quot;Blue&quot;, &quot;Red&quot;, &quot;Green&quot;, NULL,
+
+NULL);
+
+frame = (Frame)xv_create((int)NULL, FRAME,
+
+FRAME_LABEL, argv[0],
+
+XV_WIDTH, 200,
+
+XV_HEIGHT, 100,
+
+NULL);
+
+xv_set(frame,
+
+WIN_CMS, cms,
+
+WIN_FOREGROUND_COLOR, CMS_CONTROL_COLORS + FORE,
+
+WIN_BACKGROUND_COLOR, CMS_CONTROL_COLORS + BACK,
+
+NULL);
+
+panel = (Panel)xv_create(frame, PANEL,NULL);
+
+ (void) xv_create(panel, PANEL_BUTTON,
+
+PANEL_LABEL_STRING, &quot;Quit&quot;,
+
+PANEL_NOTIFY_PROC, quit,
+
+NULL);
+
+xv_main_loop(frame);
+
+exit(0);
+
+}
+
+void quit()
+
+{
+
+xv_destroy_safe(frame);
+
+}</FONT></PRE>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>At the chance of being too literal, don't forget to run the applications in this chapter from an X terminal. The programs will not run without the X server.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>The output from this application is shown in Figure 33.2. There are several things that you should note about this sample application.
+
+<BR>
+
+<P><B> <A HREF="33rhl02.gif">Figure 33.2. A sample XView application.</A></B>
+
+<BR>
+
+<UL>
+
+<LI>The XV toolkit is initialized as soon as possible in the application with the xv_init call.
+
+<BR>
+
+<BR>
+
+<LI>All attribute values to the xv_create() function call are terminated with a NULL parameter.
+
+<BR>
+
+<BR>
+
+<LI>The (Frame) cast is used to override the default returned value from xv_create().
+
+<BR>
+
+<BR>
+
+<LI>The &lt;xview/generic.h&gt; header file is used to get all the required definitions for the file.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>The figures shown in this chapter depict the program being run from the dwm window manager.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E69E398"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Initialization</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>You should initialize the XView system as soon as possible in any application. The xv_init() call does this for you. By default, xv_init() uses the DISPLAY environment variable for you. By pass-ing the argc and argv values you can override the default 
+values for the application from the command line. You can use xv_init() only once in an application; the libraries ignore all other calls. Normally you'd override the DISPLAY variable if you wanted to display the window on a different machine.
+
+<BR>
+
+<P>You can use two types of parameters for the first argument to xv_init(): XV_INIT_ARGS, which leaves the argc and argv unchanged, or XV_INIT_ARGC_PTR_ARGV, which modifies argc and argv to remove all XView-specific arguments. With XV_INIT_ARGS, you pass 
+argc into xv_init and with XV_INIT_ARGC_PTR_ARGV you pass the address of argc to xv_init().
+
+<BR>
+
+<BR>
+
+<A NAME="E69E399"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Creating Objects</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The xv_create function is used to create all the objects in an application. The syntax for the xv_create function is
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">xv_object xv_create(xv_object owner, xv_package pkg, void *attr)</FONT></PRE>
+
+<P>where the owner is the parent of the object being created, and of type pkg given the attributes listed in variable length arguments starting with attr. Sometimes you can use a NULL value in place of the owner parameter to indicate that the owner value 
+can be substituted for screen or server as appropriate. However, in some calls the owner parameter must point to a valid object, so the NULL value will generate an error.
+
+<BR>
+
+<P>The attributes for the newly created object inherit their behavior from their parents. The attributes can be overridden by values included in the variable list specified in attr.
+
+<BR>
+
+<P>The values of attributes are set in the following decreasing order of precedence:
+
+<BR>
+
+<UL>
+
+<LI>A call to xv_set will override any other type of setting
+
+<BR>
+
+<BR>
+
+<LI>Any command-line arguments
+
+<BR>
+
+<BR>
+
+<LI>Values in the .Xdefaults file
+
+<BR>
+
+<BR>
+
+<LI>Values in the attributes of an xv_create call
+
+<BR>
+
+<BR>
+
+<LI>Window Manager defaults
+
+<BR>
+
+<BR>
+
+</UL>
+
+<BR>
+
+<A NAME="E69E400"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Exiting an Application</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The best way to get out of an XView application is to destroy the topmost object. Use the xv_destroy_safe() function call, which waits for the destruction of all derived objects and cleans up after itself. You can also use xv_destroy() to get out 
+immediately with the risk of not giving up system resources but be able to exit very quickly. If you don't give up resources, they will not be freed for use by any other applications in the system and will use up valuable memory space.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E283"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Frames</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>A frame is a container for other windows. A frame manages the geometry of subwindows that do not overlap. Some examples include canvases, text windows, panels, and scrollbars. You saw a base frame in the output of LIST33_1.c (refer to Figure 33.2 and 
+Listing 33.2).
+
+<BR>
+
+<P>Frames enable you to specify three types of outputs on three areas. The topmost area is the name on the top of the frame called the header. The bottom of the frame is divided into two sections; one is left-justified and the other is right-justified. 
+Figure 33.3 shows the output from Listing 33.3, which shows you how to write to these areas.
+
+<BR>
+
+<P><B> <A HREF="33rhl03.gif">Figure 33.3. Header and footer frames.</A></B>
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 33.3. Header and footer frames.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">/*
+
+**
+
+** Listing to show headers and footers.
+
+**
+
+*/
+
+#include &lt;xview/generic.h&gt;
+
+#include &lt;xview/xview.h&gt;
+
+#include &lt;xview/frame.h&gt;
+
+#include &lt;xview/panel.h&gt;
+
+/*
+
+**
+
+*/
+
+Frame frame;
+
+/*
+
+**
+
+*/
+
+int main(int argc, char *argv[])
+
+{
+
+Panel panel;
+
+void quit();
+
+xv_init(XV_INIT_ARGC_PTR_ARGV, &amp;argc, argv, NULL);
+
+frame = (Frame)xv_create(NULL, FRAME,
+
+FRAME_LABEL, &quot;Title Here&quot;,
+
+FRAME_SHOW_FOOTER, TRUE,
+
+FRAME_LEFT_FOOTER, &quot;left side&quot;,
+
+FRAME_RIGHT_FOOTER, &quot;right side&quot;,
+
+XV_WIDTH, 200,
+
+XV_HEIGHT, 100,
+
+NULL);
+
+panel = (Panel)xv_create(frame, PANEL,NULL);
+
+ (void) xv_create(panel, PANEL_BUTTON,
+
+PANEL_LABEL_STRING, &quot;Quit&quot;,
+
+PANEL_NOTIFY_PROC, quit,
+
+NULL);
+
+xv_main_loop(frame);
+
+exit(0);
+
+}
+
+void quit()
+
+{
+
+xv_destroy_safe(frame);
+
+}</FONT></PRE>
+
+<P>The parameters used to create these headers are shown in the following lines:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Frame frame;
+
+frame = (Frame) xv_create(NULL, FRAME,
+
+FRAME_LABEL, argv[0],
+
+FRAME_SHOW_FOOTER, TRUE,
+
+FRAME_LEFT_FOOTER, &quot;left side&quot;,
+
+FRAME_RIGHT_FOOTER, &quot;right side&quot;,
+
+FRAME_LABEL, &quot;Title Here&quot;,
+
+NULL);</FONT></PRE>
+
+<P>You have to turn the footer display on with the FRAME_SHOW_FOOTER attribute set to TRUE. The other values in this call actually set the values of the header and footer.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E284"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Command Frames</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Command frames are usually used to perform a quick function and then disappear. These frames are usually pop-up frames like the pushpin dialog boxes you saw in <A HREF="rhl24.htm">Chapter 24</A>, &quot;OPEN LOOK and OpenWindows.&quot; If the pushpin is 
+pressed in, the dialog box remains &quot;pinned&quot; to the screen; otherwise, the dialog box will go away after the user performs the section.
+
+<BR>
+
+<P>Listing 33.4 shows you a program to create command frames.
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 33.4. Using command frames.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">/*
+
+** Sample Application to show command frames.
+
+**
+
+*/
+
+#include &lt;xview/generic.h&gt;
+
+#include &lt;xview/xview.h&gt;
+
+#include &lt;xview/frame.h&gt;
+
+#include &lt;xview/panel.h&gt;
+
+/*
+
+** Global Frames
+
+*/
+
+Frame frame;
+
+Frame popup;
+
+/*
+
+**
+
+** Declare the used functions here
+
+**
+
+*/
+
+void show_greeting(Frame *fp);
+
+int show_popup();
+
+int push_it();
+
+void quit();
+
+/*
+
+** The main function
+
+*/
+
+int main(int argc, char *argv[])
+
+{
+
+Panel panel;
+
+Panel fpanel;
+
+/*
+
+** Initialize the toolkit
+
+*/
+
+xv_init(XV_INIT_ARGC_PTR_ARGV, &amp;argc, argv, NULL);
+
+/*
+
+** Create top level frame.
+
+*/
+
+frame = (Frame)xv_create(NULL, FRAME,
+
+FRAME_LABEL, &quot;Title Here&quot;,
+
+FRAME_SHOW_FOOTER, TRUE,
+
+FRAME_LEFT_FOOTER, &quot;Popup&quot;,
+
+FRAME_RIGHT_FOOTER, argv[0],
+
+XV_WIDTH, 200,
+
+XV_HEIGHT, 100,
+
+NULL);
+
+/*
+
+** Create the popup Frame.
+
+*/
+
+popup = (Frame) xv_create(frame, FRAME_CMD,
+
+FRAME_LABEL, &quot;Popup&quot;,
+
+XV_WIDTH, 100,
+
+XV_HEIGHT, 100,
+
+NULL);
+
+/*
+
+** Create panel for popup
+
+*/
+
+fpanel = (Panel)xv_get(popup, FRAME_CMD_PANEL,NULL);
+
+/*
+
+** Add buttons to popup
+
+*/
+
+(void) xv_create(fpanel, PANEL_BUTTON,
+
+PANEL_LABEL_STRING, &quot;Greet&quot;,
+
+PANEL_NOTIFY_PROC, show_greeting,
+
+NULL);
+
+(void) xv_create(fpanel, PANEL_BUTTON,
+
+PANEL_LABEL_STRING, &quot;Push Me&quot;,
+
+PANEL_NOTIFY_PROC, push_it,
+
+NULL);
+
+/*
+
+** Create panel
+
+*/
+
+panel = (Panel)xv_create(frame, PANEL,NULL);
+
+/*
+
+** Add buttons to main application frame
+
+*/
+
+(void) xv_create(panel, PANEL_BUTTON,
+
+PANEL_LABEL_STRING, &quot;Hello&quot;,
+
+PANEL_NOTIFY_PROC, show_popup,
+
+NULL);
+
+(void) xv_create(panel, PANEL_BUTTON,
+
+PANEL_LABEL_STRING, &quot;Quit&quot;,
+
+PANEL_NOTIFY_PROC, quit,
+
+NULL);
+
+xv_main_loop(frame);
+
+exit(0);
+
+}
+
+void quit()
+
+{
+
+xv_destroy_safe(frame);
+
+}
+
+void show_greeting(Frame *fp)
+
+{
+
+printf (&quot;\n Greet you? How?&quot;);
+
+}
+
+show_popup(Frame item, Event *ev)
+
+{
+
+xv_set(popup, XV_SHOW, TRUE, NULL);
+
+}
+
+push_it(Panel_item item, Event *ev)
+
+{
+
+int ret;
+
+ret = (int)xv_get(popup, FRAME_CMD_PIN_STATE) ;
+
+if (ret == FRAME_CMD_PIN_IN)
+
+{
+
+printf(&quot;Pin already in.. bye\n&quot;);
+
+xv_set(popup, XV_SHOW, TRUE, NULL); /* refresh anyway */
+
+}
+
+else
+
+{
+
+printf(&quot;Pin out.. pushing it in\n&quot;);
+
+xv_set(popup, FRAME_CMD_PIN_STATE, FRAME_CMD_PIN_IN, NULL);
+
+xv_set(popup, XV_SHOW, TRUE, NULL); /* refresh anyway */
+
+}
+
+}</FONT></PRE>
+
+<P>The output from Listing 33.4 is shown in Figure 33.4.
+
+<BR>
+
+<P><B> <A HREF="33rhl04.gif">Figure 33.4. Using command frames.</A></B>
+
+<BR>
+
+<P>Look at the important lines of the program in Listing 33.4 in detail. By examining these lines you will learn the following:
+
+<BR>
+
+<UL>
+
+<LI>How to create pop-up menus
+
+<BR>
+
+<BR>
+
+<LI>How to add buttons to a panel
+
+<BR>
+
+<BR>
+
+<LI>How to handle callback functions for xview objects
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>There are two frames in this application: frame and popup. These frames are declared at the top of the application with the statements
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Frame frame;
+
+Frame popup;</FONT></PRE>
+
+<P>We also declared the following functions in this application:
+
+<BR>
+
+<UL>
+
+<LI>void show_greeting(Frame *fp); This function is called when the Greeting button is pressed.
+
+<BR>
+
+<BR>
+
+<LI>int show_popup(); This function is called when the Hello button is pressed.
+
+<BR>
+
+<BR>
+
+<LI>int push_it(); This function is called when the Push Me button is pressed.
+
+<BR>
+
+<BR>
+
+<LI>void quit(); This function is called when the Quit button is pressed.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>The main xv_init() and frame creation for the program is as in Listing 33.3. Let's concentrate on the pop-up menu examples.
+
+<BR>
+
+<P>First, the pop-up frame is created with the following lines:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">popup = (Frame) xv_create(frame, FRAME_CMD,
+
+FRAME_LABEL, &quot;Popup&quot;,
+
+XV_WIDTH, 100,
+
+XV_HEIGHT, 100,
+
+NULL);</FONT></PRE>
+
+<P>This call will create the pop-up frame with frame as the owner. The pop-up frame is not displayed immediately. You can create several pop-up frames this way and display them only when they are needed.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Note that if you do not set the XV_WIDTH and XV_HEIGHT parameters for this xv_create() call, the pop-up screen will occupy the entire screen.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>Next we create a panel for this pop-up with the call
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">fpanel = (Panel)xv_get(popup, FRAME_CMD_PANEL,NULL);</FONT></PRE>
+
+<P>Then we add the Greet and Push Me buttons to this new fpanel. This is done by the xv_create calls, which are shown next:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"> (void) xv_create(fpanel, PANEL_BUTTON,
+
+PANEL_LABEL_STRING, &quot;Greet&quot;,
+
+PANEL_NOTIFY_PROC, show_greeting,
+
+NULL);
+
+ (void) xv_create(fpanel, PANEL_BUTTON,
+
+PANEL_LABEL_STRING, &quot;Push Me&quot;,
+
+PANEL_NOTIFY_PROC, push_it,
+
+NULL);</FONT></PRE>
+
+<P>At this point you are ready to create the main application frame, show it, and go into the main loop. The important call that does this is shown next. The function show_popup() is assigned to be called when the Hello button is pressed.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">(void) xv_create(panel, PANEL_BUTTON,
+
+PANEL_LABEL_STRING, &quot;Hello&quot;,
+
+PANEL_NOTIFY_PROC, show_popup,
+
+NULL);</FONT></PRE>
+
+<P>Now look at the functions that are called when each button is pressed. The show_greeting function simply prints out a string. (You can use your imagination here for the contents of the string for your own application.) The show_popup() function will use 
+the call to the xv_set() function to actually make the pop-up frame visible.
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">xv_set(popup, XV_SHOW, TRUE, NULL);</FONT></PRE>
+
+<P>Now for the function that will emulate the behavior of pushing in the pin. This is the push_it() function. The FRAME_CMD_PIN_STATE parameter requests the state of the pushpin on the dialog box. The state for the pin is defined as FRAME_CMD_PIN_IN if the 
+pushpin is already pushed in. This is the state for which you check. If the pushpin is not in this state, it is pushed in with the xv_set(popup, FRAME_CMD_PIN_STATE, FRAME_CMD_PIN_IN, NULL); function call.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>A command frame has no resize corners by default. To turn these corners on, set FRAME_SHOW_RESIZE_CORNERS to TRUE.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E68E285"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Setting Colors on Frames</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The colors on an XView frame object are defaulted to the OpenWindows.WindowColor resource. This resource is inherited by all subframes as well. You can override these colors with the CMS package. The CMS package is created by a call to xv_create():
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">cms = (Cms *) xv_create(parent, CMS, attrs, NULL);</FONT></PRE>
+
+<P>A CMS can contain as many colors as are allowed in the largest color map you can create. You can have several color maps referencing the same color; in fact, the system can share the location of colors between two independent applications. For this 
+reason, you should allocate all your colors once, at cms creation, to allocate all the colors in your color map to prevent another application from changing the colors you absolutely need.
+
+<BR>
+
+<P>For example, to create a cms with four named colors, you would use the following function call:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">cms = (Cms *)xv_create(parent, CMS,
+
+CMS_SIZE, 4,
+
+CMS_NAMED_COLORS, &quot;Violet&quot;, &quot;Yellow&quot;, &quot;Blue&quot;, &quot;Orange&quot;,
+
+NULL);</FONT></PRE>
+
+<P>The CMS_SIZE value asks for a four-entry color table that is indexed from 0 to 3, with the values of the named colors &quot;Violet&quot;, &quot;Yellow&quot;, &quot;Blue&quot;, and &quot;Orange&quot;. The foreground color for a frame is the first indexed 
+color in a Cms and the background color for a frame is the last indexed (n-1) color in a Cms. Setting a CMS_SIZE will give you either an error or a monochromatic display. Of course, to avoid runtime errors you must know that the colors you just specified 
+by name do exist in the /usr/lib/rgb.txt file.
+
+<BR>
+
+<P>Listing 33.5 is an example of an application that sets the colors. This will let you set the foreground and background colors of a frame and all its children.
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 33.5. Using CMS.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">#include &lt;xview/generic.h&gt;
+
+#include &lt;xview/xview.h&gt;
+
+#include &lt;xview/frame.h&gt;
+
+#include &lt;xview/panel.h&gt;
+
+#include &lt;xview/cms.h&gt;
+
+Frame frame;
+
+#define FORE 3
+
+#define BACK 0
+
+int main(int argc, char *argv[])
+
+{
+
+Cms cms;
+
+Panel panel;
+
+void quit();
+
+printf(&quot;\n 0\n&quot;);
+
+xv_init(XV_INIT_ARGC_PTR_ARGV, &amp;argc, argv, NULL);
+
+cms = (Cms ) xv_create((int)NULL,CMS, /* NULL -&gt; use the default Frame*/
+
+CMS_SIZE, CMS_CONTROL_COLORS + 4,
+
+CMS_CONTROL_CMS, True,
+
+CMS_NAMED_COLORS, &quot;LightBlue&quot;, &quot;Blue&quot;, &quot;Red&quot;, &quot;Green&quot;, NULL,
+
+NULL);
+
+frame = (Frame)xv_create((int)NULL, FRAME,
+
+FRAME_LABEL, argv[0],
+
+XV_WIDTH, 200,
+
+XV_HEIGHT, 100,
+
+NULL);
+
+xv_set(frame,
+
+WIN_CMS, cms,
+
+WIN_FOREGROUND_COLOR, CMS_CONTROL_COLORS + FORE,
+
+WIN_BACKGROUND_COLOR, CMS_CONTROL_COLORS + BACK,
+
+NULL);
+
+panel = (Panel)xv_create(frame, PANEL,NULL);
+
+ (void) xv_create(panel, PANEL_BUTTON,
+
+PANEL_LABEL_STRING, &quot;Quit&quot;,
+
+PANEL_NOTIFY_PROC, quit,
+
+NULL);
+
+xv_main_loop(frame);
+
+exit(0);
+
+}
+
+void quit()
+
+{
+
+xv_destroy_safe(frame);
+
+}</FONT></PRE>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>You cannot use xv_get with the CMS_NAMED_COLORS attribute.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Use xv_set() to override the colors on a frame. Any color requests on a frame at the time of creation are overridden by values of the .Xdefaults resources values.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E68E286"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Canvases</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>A canvas is an XView object that is used to display items that are too large to fit on a window. The viewable portion of the image is seen through a viewport or view window of the object. You can have multiple views of the same data that is stored on a 
+canvas by splitting each scrollable portion into two or more views. The split views must all reside on the same canvas because you cannot have multiple views of canvas data that are not on the same frame.
+
+<BR>
+
+<P>There are three components of a canvas object:
+
+<BR>
+
+<UL>
+
+<LI>The Paint window, which contains the actual painted data
+
+<BR>
+
+<BR>
+
+<LI>The View window, which has the scrollbars but no painted data
+
+<BR>
+
+<BR>
+
+<LI>The canvas subwindow, which contains the union of the View window and Paint window
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>Look at a simple example in Listing 33.6 of how to use scrollbars and how to paint on a paint window. (I have added line numbers for readability.)
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 33.6. Using canvases and scrollbars.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">1 /*
+
+2 ** An example of a scrolled window
+
+3 */
+
+4 #include &lt;X11/Xlib.h&gt;
+
+5 #include &lt;xview/generic.h&gt;
+
+6 #include &lt;xview/xview.h&gt;
+
+7 #include &lt;xview/frame.h&gt;
+
+8 #include &lt;xview/panel.h&gt;
+
+9 #include &lt;xview/canvas.h&gt;
+
+10 #include &lt;xview/scrollbar.h&gt;
+
+11 #include &lt;xview/xv_xrect.h&gt;
+
+12 /*
+
+13 ** Declare our callback functions for this application.
+
+14 */
+
+15 Frame frame;
+
+16 void redraw(Canvas c, Xv_Window pw, Display *dp, Window xwin,
+
+17 Xv_xrectlist *rp) ;
+
+18 int main(int argc, char *argv[])
+
+19 {
+
+20 Canvas canvas;
+
+21 Panel panel;
+
+22 Scrollbar h_s, h_v;
+
+23 void quit();
+
+24 xv_init(XV_INIT_ARGC_PTR_ARGV, &amp;argc, argv, NULL);
+
+25 frame = (Frame)xv_create(NULL, FRAME,
+
+26 FRAME_LABEL, argv[0],
+
+27 XV_WIDTH, 400,
+
+28 XV_HEIGHT, 200,
+
+29 (int)NULL);
+
+30 /*
+
+31 ** Create the canvas.
+
+32 */
+
+33 canvas = (Canvas) xv_create(frame, CANVAS,
+
+34 CANVAS_REPAINT_PROC, redraw,
+
+35 CANVAS_X_PAINT_WINDOW, TRUE,
+
+36 CANVAS_AUTO_SHRINK, FALSE,
+
+37 CANVAS_AUTO_EXPAND, TRUE,
+
+38 CANVAS_WIDTH, 500,
+
+39 CANVAS_HEIGHT, 500,
+
+40 XV_WIDTH, 400,
+
+41 XV_HEIGHT, 200,
+
+42 NULL);
+
+43 /*
+
+44 ** Create the splittable scrollbars
+
+45 */
+
+46 h_s = (Scrollbar)xv_create(canvas, SCROLLBAR,
+
+47 SCROLLBAR_DIRECTION, SCROLLBAR_HORIZONTAL,
+
+48 SCROLLBAR_SPLITTABLE, TRUE,
+
+49 NULL);
+
+50 h_v = (Scrollbar)xv_create(canvas, SCROLLBAR,
+
+51 SCROLLBAR_DIRECTION, SCROLLBAR_VERTICAL,
+
+52 SCROLLBAR_SPLITTABLE, TRUE,
+
+53 NULL);
+
+54 xv_main_loop(frame);
+
+55 exit(0);
+
+56 }
+
+57 void redraw(Canvas c, Xv_Window pw, Display *dp, Window xwin,
+
+58 Xv_xrectlist *rp)
+
+59 {
+
+60 GC gc;
+
+61 int wd, ht;
+
+62 int i;
+
+63 int j;
+
+64 int dx;
+
+65 int dy;
+
+66 gc = DefaultGC(dp, DefaultScreen(dp));
+
+67 wd = (int)xv_get(pw, XV_WIDTH);
+
+68 ht = (int)xv_get(pw, XV_HEIGHT);
+
+69 dx = ht / 10;
+
+70 for (i = 0; i &lt; ht; i += dx)
+
+71 XDrawLine(dp,xwin,gc, i,0,i,ht);
+
+72
+
+73 dx = wd / 10;
+
+74 for (i = 0; i &lt; wd; i += dx)
+
+75 XDrawLine(dp,xwin,gc, 0,i,wd,i);
+
+76 /* XDrawLine(dp,xwin,gc, 0,0,wd,ht); */
+
+77 }
+
+78 void quit()
+
+79 {
+
+80 xv_destroy_safe(frame);
+
+81 }</FONT></PRE>
+
+<P>Lines 33 through 42 create the canvas. The CANVAS_AUTO_EXPAND and CANVAS_AUTO_SHRINK parameters maintain the relation of the canvas subwindow and the paint subwindow. These values default to TRUE. When both values are TRUE, the canvas and paint 
+subwindows will expand or shrink based on the size of the window on which they are being displayed.
+
+<BR>
+
+<P>Setting the CANVAS_AUTO_EXPAND value to TRUE enables the paint subwindow to expand larger than the canvas subwindow. If the canvas subwindow expands to a bigger size than the paint subwindow, the paint subwindow is expanded to at least that size as 
+well. If the canvas subwindow size shrinks, the paint subwindow does not shrink because it is already at the same size or bigger than canvas subwindows at that time.
+
+<BR>
+
+<P>Setting the CANVAS_AUTO_SHRINK value to TRUE forces the canvas object to always confirm that the paint subwindow's height and width are never greater than the canvas subwindow. In other words, the size of the paint subwindow is always changed to be at 
+least the same or less than the size of the canvas subwindow.
+
+<BR>
+
+<P>You can explicitly set the size of the canvas window with the CANVAS_WIDTH and CANVAS_HEIGHT parameters. (See lines 38 and 39.) These canvas dimensions can be greater than the viewing window dimensions set with XV_WIDTH and XV_HEIGHT (lines 40 and 41).
+
+<BR>
+
+<P>We have to add the include file &lt;xview/scrollbar.h&gt; to get the definitions for the scrollbar package. These are created in lines 46 through 53. Note how we have to create two separate scrollbars, one vertical and one horizontal.
+
+<BR>
+
+<P>The scrollbars in this example show how they can split to provide multiple, tiled views of the data in the canvas window. To split a view, press the right mouse button on a scrollbar and you will be presented with a pop-up menu. Choose the Split View 
+option to split the view or the Join View option to join two views together. You will not see a Join View option if a scrollbar does not dissect a view.
+
+<BR>
+
+<P>You can programmatically split a canvas view even if scrollbars are not present. Use the OPENWIN_SPLIT attribute in an xv_set() function call. For example:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">xv_window xv;
+
+xv = (xv_window)xv_get(canvas,OPENWIN_NTH_VIEW,0);
+
+xv_set(canvas,
+
+OPENWIN_SPLIT,
+
+OPENWIN_SPLIT_VIEW, xv,
+
+OPENWIN_SPLIT_DIRECTION,
+
+OPENWIN_SPLIT_HORIZONTAL,
+
+NULL);</FONT></PRE>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>You may want to group your xv_set() function calls into distinct logical calls to set each type of parameter instead of one long convoluted list of parameters to one xv_set() function. Splitting the code into these groups makes the code easier to 
+read and debug.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>Note that only OPENWIN_* type of attributes are allowed in the xv_set() call with the OPENWIN_SPLIT parameter. Do not mix other types of attributes. To get the first view you can use a value of 0 to the OPENWIN_NTH_VIEW parameter. For the next view, use 
+1, and so on. To get an idea of how many views there are for this canvas use the call
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">int number;
+
+number = (int)xv_get(canvas, OPENWIN_NVIEWS);</FONT></PRE>
+
+<P>To get the paint window to do your own drawing, perhaps in response to other user input, you can use the xv_get() function to get the paint window. For example,
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">xv_window xv_paint;
+
+xv_paint = (xv_window)xv_get(canvas, CANVAS_VIEW_PAINT, null);</FONT></PRE>
+
+<P>Listing 33.6 shows how to use the standard Xlib function calls to draw on the canvas. (See Figure 33.5.) You must use the include file &lt;X/Xlib.h&gt; for all the definitions and declarations. The XDrawLine function used in this example is somewhat 
+simple. However, this example shows you how to set up your Graphics Context and use the standard XDrawLine function to draw a grid. You can use other X drawing functions just as easily.
+
+<BR>
+
+<P><B> <A HREF="33rhl05.gif">Figure 33.5. The scrolled window example.</A></B>
+
+<BR>
+
+<BR>
+
+<A NAME="E68E287"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Buttons</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>A button item enables a user to select an action. Several types of buttons are available to you as a programmer. Figure 33.6 shows how various buttons are used. There are four distinct examples shown in Figure 33.6:
+
+<BR>
+
+<P><B> <A HREF="33rhl06.gif">Figure 33.6. Using buttons.</A></B>
+
+<BR>
+
+<UL>
+
+<LI>The Menu Item is shown as &quot;Y/N/Q&quot;.
+
+<BR>
+
+<BR>
+
+<LI>The 1 of N choice of items from four items.
+
+<BR>
+
+<BR>
+
+<LI>The M of N choice of items from three items to match others.
+
+<BR>
+
+<BR>
+
+<LI>Choosing via four checkboxes.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>The listing for generating Figure 33.6 is shown in Listing 33.7. We will go over this listing in detail.
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 33.7. Using menus, buttons, and choices.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">/*
+
+** A sampler of some of the choices to present to a user
+
+*/
+
+#include &lt;xview/generic.h&gt;
+
+#include &lt;xview/xview.h&gt;
+
+#include &lt;xview/frame.h&gt;
+
+#include &lt;xview/panel.h&gt;
+
+#include &lt;xview/openmenu.h&gt;
+
+Frame frame;
+
+int menuHandler( Menu item, Menu_item selection);
+
+int selected( Panel_item item, Event *ev);
+
+void quit();
+
+int main(int argc, char *argv[])
+
+{
+
+Rect *rt;
+
+Rect *qrt;
+
+Panel panel;
+
+Panel quitbtn;
+
+Panel oneN;
+
+Panel manyN;
+
+Panel chooser;
+
+Menu menu1;
+
+xv_init(XV_INIT_ARGC_PTR_ARGV, &amp;argc, argv, NULL);
+
+frame = (Frame)xv_create(NULL, FRAME,
+
+FRAME_LABEL, argv[0],
+
+XV_WIDTH, 400,
+
+XV_HEIGHT, 200,
+
+NULL);
+
+panel = (Panel)xv_create(frame, PANEL,NULL);
+
+quitbtn = (Panel)xv_create(panel, PANEL_BUTTON,
+
+PANEL_LABEL_STRING, &quot;Quit&quot;,
+
+PANEL_NOTIFY_PROC, quit,
+
+XV_X, 20,
+
+NULL);
+
+menu1 = (Menu) xv_create(NULL, MENU,
+
+MENU_STRINGS, &quot;Yes&quot;, &quot;No&quot;, &quot;Maybe&quot;, &quot;Bye&quot;, NULL,
+
+MENU_NOTIFY_PROC, menuHandler,
+
+NULL);
+
+xv_create (panel, PANEL_BUTTON,
+
+PANEL_LABEL_STRING, &quot;Y/N/Q&quot;,
+
+PANEL_ITEM_MENU, menu1,
+
+PANEL_NOTIFY_PROC, selected,
+
+NULL);
+
+qrt = (Rect *) xv_get(quitbtn, XV_RECT);
+
+oneN = (Panel) xv_create(panel, PANEL_CHOICE,
+
+PANEL_LABEL_STRING, &quot;1 of N&quot;,
+
+PANEL_CHOICE_STRINGS,
+
+&quot;extra&quot;, &quot;large&quot;, &quot;medium&quot;, &quot;small&quot;, NULL,
+
+XV_X, 20,
+
+XV_Y, rect_bottom(qrt) + 20,
+
+NULL);
+
+rt = (Rect *) xv_get(oneN, XV_RECT);
+
+manyN = (Panel) xv_create(panel, PANEL_CHOICE,
+
+PANEL_LABEL_STRING, &quot;M of N&quot;,
+
+PANEL_CHOICE_STRINGS,
+
+&quot;tomato&quot;, &quot;celery&quot;, &quot;carrot&quot; , NULL,
+
+PANEL_CHOOSE_ONE, FALSE,
+
+XV_X, 20,
+
+XV_Y, rect_bottom(rt) + 20,
+
+NULL);
+
+rt = (Rect *) xv_get(manyN, XV_RECT);
+
+chooser = (Panel) xv_create(panel, PANEL_CHECK_BOX,
+
+PANEL_LAYOUT, PANEL_HORIZONTAL,
+
+PANEL_LABEL_STRING, &quot;Extras&quot;,
+
+PANEL_CHOICE_STRINGS,
+
+&quot;fries&quot;, &quot;potato&quot;, &quot;Q. potato&quot;, &quot;salad&quot; , NULL,
+
+PANEL_CHOOSE_ONE, FALSE, /* Let 'em have it all */
+
+XV_X, 20,
+
+XV_Y, rect_bottom(rt) + 20,
+
+NULL);
+
+xv_main_loop(frame);
+
+exit(0);
+
+}
+
+/*
+
+** This function is called when you select an item
+
+*/
+
+int selected( Panel_item item, Event *ev)
+
+{
+
+printf(&quot; %s .. \n &quot;, xv_get(item, PANEL_LABEL_STRING));
+
+}
+
+/*
+
+** This function handles the menu selection item.
+
+** Shows you how to exit via menu item too.
+
+*/
+
+int menuHandler(Menu item, Menu_item thing)
+
+{
+
+printf(&quot;%s .. \n&quot;, xv_get(thing, MENU_STRING));
+
+if (!strcmp((char *)xv_get(thing,MENU_STRING), &quot;Bye&quot;)) quit();
+
+}
+
+/*
+
+** Make a clean exit.
+
+*/
+
+void quit()
+
+{
+
+xv_destroy_safe(frame);
+
+}</FONT></PRE>
+
+<P>Take a look at the part where the &quot;Y/N/Q&quot; menu button was created. First we created the menu items on the menu as menu1. Note that we did not display all of the choices in the menu, just its header.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">menu1 = (Menu) xv_create(NULL, MENU,
+
+MENU_STRINGS, &quot;Yes&quot;, &quot;No&quot;, &quot;Maybe&quot;, &quot;Bye&quot;, NULL,
+
+MENU_NOTIFY_PROC, menuHandler,
+
+NULL);</FONT></PRE>
+
+<P>Then we created the panel button that will house this menu with the following lines:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">xv_create (panel, PANEL_BUTTON,
+
+PANEL_LABEL_STRING, &quot;Y/N/Q&quot;,
+
+PANEL_ITEM_MENU, menu1,
+
+PANEL_NOTIFY_PROC, selected,
+
+NULL);</FONT></PRE>
+
+<P>That was it. Now you can click the right button on the &quot;Y/N/Q&quot; button to get the selection items as a pull-down menu. If you click the left button, the first item in the menu item will be displayed momentarily and selected. Two functions are 
+assigned as callbacks in the previous code segments:
+
+<BR>
+
+<UL>
+
+<LI>menuHandler(): This function will show on your terminal the menu item selected.
+
+<BR>
+
+<BR>
+
+<LI>selected(): This function merely displays the menu item string. You could just as easily display another menu or other items instead of this simple example.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>Now look at the example for the &quot;1 of N&quot; selection. As the name of this item suggests, you can choose only one of a given number of items. This is called an exclusive selection.
+
+<BR>
+
+<P>The following lines are used to create this exclusive selection item:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">oneN = (Panel) xv_create(panel, PANEL_CHOICE,
+
+PANEL_LABEL_STRING, &quot;1 of N&quot;,
+
+PANEL_CHOICE_STRINGS,
+
+&quot;extra&quot;, &quot;large&quot;, &quot;medium&quot;, &quot;small&quot;, NULL,
+
+XV_X, 20,
+
+XV_Y, rect_bottom(qrt) + 20,
+
+NULL);</FONT></PRE>
+
+<P>Note how we used the core class's XV_X and XV_Y attributes to position this box below the Quit button. We got the position as a rectangle (typedef Rect) of the Quit button via the xv_get call given the XV_RECT attribute:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">qrt = (Rect *) xv_get(quitbtn, XV_RECT);</FONT></PRE>
+
+<P>The position given by XV_X and XV_Y was relative to the top-left position of the panel. This given position is known as absolute positioning because we are using hard-coded numbers to position items.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>To position items generally we can use two functions: xv_row() and xv_col(). These functions use the WIN_ROW_GAP and WIN_COLUMN_GAP to set the spaces between the items. The following example shows you how to position twelve items on a panel:
+
+<BR>#define ROW 3
+
+<BR>#define COL 4
+
+<BR>extern char *name[ROW][COL];
+
+<BR>int i, j;
+
+<BR>for (i = 0; i &lt; ROW; i++)
+
+<BR> for (j = 0; j &lt; COL; j++)
+
+<BR> {
+
+<BR> xv_create(panel, PANEL_BUTTON,
+
+<BR> XV_X, xv_col(panel,j),
+
+<BR> XV_Y, xv_row(panel,i),
+
+<BR> PANEL_LABEL_STRING, name[i][j],
+
+<BR> NULL);
+
+<BR> }</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>All items presented in this list are shown with the NULL-terminated list passed in with the PANEL_CHOICE_STRINGS attribute. The default function of PANEL_CHOICE is to enable only one selection. To get more than one selection if you have a list of 
+choices, you can follow the same procedure you used for the exclusive selection panel. The difference between 1 of M and M of N lies in setting the value of the PANEL_CHOOSE_ONE to FALSE. This usage creates the M of N items shown in the following lines:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">manyN = (Panel) xv_create(panel, PANEL_CHOICE,
+
+PANEL_LABEL_STRING, &quot;M of N&quot;,
+
+PANEL_CHOICE_STRINGS,
+
+&quot;tomato&quot;, &quot;celery&quot;, &quot;carrot&quot; , NULL,
+
+PANEL_CHOOSE_ONE, FALSE,
+
+XV_X, 20,
+
+XV_Y, rect_bottom(rt) + 20,
+
+NULL);</FONT></PRE>
+
+<P>With 1 of M, we use the XV_RECT call to position this choice of many item's button on the screen.
+
+<BR>
+
+<P>Finally, this example showed you how to use check boxes to create the input items shown for our choices of a side order. Checkboxes are always non-exclusive. The text to do this is shown in the following lines:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">chooser = (Panel) xv_create(panel, PANEL_CHECK_BOX,
+
+PANEL_LAYOUT, PANEL_HORIZONTAL,
+
+PANEL_LABEL_STRING, &quot;Extras&quot;,
+
+PANEL_CHOICE_STRINGS,
+
+&quot;fries&quot;, &quot;potato&quot;, &quot;Q. potato&quot;, &quot;salad&quot; , NULL,
+
+XV_X, 20,
+
+XV_Y, rect_bottom(rt) + 20,
+
+NULL);</FONT></PRE>
+
+<P>This set of checkboxes was also positioned to align with the qv_get and rect_bottom() calls.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E288"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>List Items</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Use the PANEL_LIST attribute to show lists of items. An example is shown in Figure 33.7. The corresponding listing is shown in Listing 33.8. Lists enable you to insert text (and graphics as glyphs) in them. You can have duplicates in a list. If you do 
+not want to allow duplicates, set the PANEL_LIST_INSERT_DUPLICATE to FALSE.
+
+<BR>
+
+<P><B> <A HREF="33rhl07.gif">Figure 33.7. Using lists to display data.</A></B>
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 33.8. Using lists to display data.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">/*
+
+** Using Lists
+
+*/
+
+#include &lt;xview/generic.h&gt;
+
+#include &lt;xview/xview.h&gt;
+
+#include &lt;xview/frame.h&gt;
+
+#include &lt;xview/panel.h&gt;
+
+Frame frame;
+
+int main(int argc, char *argv[])
+
+{
+
+Panel panel;
+
+void quit();
+
+xv_init(XV_INIT_ARGC_PTR_ARGV, &amp;argc, argv, NULL);
+
+frame = (Frame)xv_create(NULL, FRAME,
+
+FRAME_LABEL, argv[0],
+
+XV_WIDTH, 200,
+
+XV_HEIGHT, 100,
+
+NULL);
+
+panel = (Panel)xv_create(frame, PANEL,NULL);
+
+ (void) xv_create(panel, PANEL_BUTTON,
+
+PANEL_LABEL_STRING, &quot;Quit&quot;,
+
+PANEL_NOTIFY_PROC, quit,
+
+NULL);
+
+ (void) xv_create(panel, PANEL_LIST,
+
+PANEL_LIST_STRINGS,
+
+&quot;Business&quot;, &quot;Economics&quot;, &quot;History&quot;,
+
+&quot;Literature&quot;, &quot;TomFoolery&quot;, &quot;Math&quot;,
+
+&quot;Computer Sci.&quot;, &quot;Engineering&quot;, NULL,
+
+NULL);
+
+xv_main_loop(frame);
+
+exit(0);
+
+}
+
+void quit()
+
+{
+
+xv_destroy_safe(frame);
+
+}</FONT></PRE>
+
+<P>Lists are ordered from 0 and up, so the first row is 0, the second row is 1, and so on. To delete the rows 7 through 9 from a long list, use the xv_set function:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">xv_set(list_item,
+
+PANEL_LIST_DELETE_ROWS, 6, 3
+
+NULL);</FONT></PRE>
+
+<P>In the preceding example you are requesting that 3 rows be deleted starting from row index number 6 (which is the seventh row). All other rows are adjusted upward after these rows are deleted.
+
+<BR>
+
+<P>To insert items into this list you can use PANEL_LIST_INSERT and PANEL_LIST_STRING calls. If you wanted to replace the third row with a string pointed to by a pointer called buffer, you would use the following function call:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">xv_set(list_item,
+
+PANEL_LIST_DELETE, 2,
+
+PANEL_LIST_INSERT, 2,
+
+PANEL_LIST_STRING, buffer,
+
+NULL);</FONT></PRE>
+
+<P>The PANEL_NOTIFY_PROC function for a list is called when an item is selected, deselected, added, or deleted. The prototype for this function call is
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">listCallBack(
+
+Panel_item item,
+
+char *string,
+
+Xv_opaque client_data,
+
+Panel_list_op op,
+
+Event *event,
+
+int row);</FONT></PRE>
+
+<P>The item is the panel list itself in this function call. The string is the label for the row, or NULL if no item is defined in the list for the row. The opaque client_data is a user-specified value specified at list creation time with the 
+PANEL_LIST_CLIENT_DATA parameter. For example, the line
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">PANEL_LIST_CLIENT_DATA, 2, &quot;Hello&quot;,</FONT></PRE>
+
+<P>will assign the value of client_data to 2 for the row with the string &quot;Hello&quot; in it. Each client_data value must be assigned one line at a time.
+
+<BR>
+
+<P>The op parameter can be one of the following values:
+
+<BR>
+
+<UL>
+
+<LI>PANEL_LIST_OP_SELECT when the row is selected
+
+<BR>
+
+<BR>
+
+<LI>PANEL_LIST_OP_DESELECT when the row is deselected
+
+<BR>
+
+<BR>
+
+<LI>PANEL_LIST_OP_VALIDATE when a new row is added
+
+<BR>
+
+<BR>
+
+<LI>PANEL_LIST_OP_DELETE when the row has been deleted
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>You can take action based on the value of the op parameter in one handy function or have this function call other functions. For example, the following pseudocode illustrates how you could handle the op parameter:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">switch (op)
+
+{
+
+case PANEL_LIST_OP_SELECT: selectHandler();
+
+break;
+
+case PANEL_LIST_OP_DESELECT: unSelectHandler();
+
+break;
+
+case PANEL_LIST_OP_VALIDATE: addRowHandler();
+
+break;
+
+case PANEL_LIST_OP_DELETE: deleteRowHandler();
+
+break;
+
+}</FONT></PRE>
+
+<BR>
+
+<A NAME="E68E289"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Scale Bars</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Now look at how you create slider bars so the user can set the value of a variable. An example of this application is shown in Figure 33.8 and a corresponding listing is given in Listing 33.9.
+
+<BR>
+
+<P><B> <A HREF="33rhl08.gif">Figure 33.8. Using sliders.</A></B>
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 33.9. Using slider control.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">#include &lt;xview/generic.h&gt;
+
+#include &lt;xview/xview.h&gt;
+
+#include &lt;xview/frame.h&gt;
+
+#include &lt;xview/panel.h&gt;
+
+Frame frame;
+
+Panel_item stationName;
+
+void display_setting(Panel_item, int value, Event *ev);
+
+int main(int argc, char *argv[])
+
+{
+
+Panel panel;
+
+Panel_item slider;
+
+void quit();
+
+xv_init(XV_INIT_ARGC_PTR_ARGV, &amp;argc, argv, NULL);
+
+frame = (Frame)xv_create(NULL, FRAME,
+
+FRAME_LABEL, argv[0],
+
+XV_WIDTH, 400,
+
+XV_HEIGHT, 100,
+
+NULL);
+
+panel = (Panel)xv_create(frame, PANEL,
+
+PANEL_LAYOUT, PANEL_VERTICAL,
+
+NULL);
+
+ (void) xv_create(panel, PANEL_BUTTON,
+
+PANEL_LABEL_STRING, &quot;Quit&quot;,
+
+PANEL_NOTIFY_PROC, quit,
+
+NULL);
+
+slider = xv_create (panel, PANEL_SLIDER,
+
+PANEL_LABEL_STRING, &quot;Radio Station&quot;,
+
+PANEL_MIN_VALUE, 88,
+
+PANEL_MAX_VALUE, 108,
+
+PANEL_NOTIFY_PROC, display_setting,
+
+PANEL_VALUE,99,
+
+PANEL_NOTIFY_LEVEL, PANEL_ALL, /* not just at the end */
+
+PANEL_SHOW_RANGE, TRUE,
+
+PANEL_TICKS,10,
+
+PANEL_SLIDER_WIDTH, 100,
+
+NULL);
+
+stationName = xv_create(panel, PANEL_MESSAGE,
+
+PANEL_LABEL_STRING, &quot;sample&quot;,
+
+NULL);
+
+xv_main_loop(frame);
+
+exit(0);
+
+}
+
+void quit()
+
+{
+
+xv_destroy_safe(frame);
+
+}
+
+/*
+
+** This function is called when the slider value is changed.
+
+*/
+
+void display_setting(Panel_item item, int value, Event *ev)
+
+{
+
+switch (value)
+
+{
+
+case 89: xv_set(stationName,
+
+PANEL_LABEL_STRING,&quot;Classical&quot;, NULL); break;
+
+case 91: xv_set(stationName,
+
+PANEL_LABEL_STRING,&quot;Industrial&quot;, NULL); break;
+
+case 93: xv_set(stationName,
+
+PANEL_LABEL_STRING,&quot;Country&quot;, NULL); break;
+
+case 95: xv_set(stationName,
+
+PANEL_LABEL_STRING,&quot;Soft Rock&quot;, NULL); break;
+
+case 101: xv_set(stationName,
+
+PANEL_LABEL_STRING,&quot;Roll N Roll&quot;, NULL); break;
+
+case 104: xv_set(stationName,
+
+PANEL_LABEL_STRING,&quot;Pop&quot;, NULL); break;
+
+case 107: xv_set(stationName,
+
+PANEL_LABEL_STRING,&quot;Alternative&quot;, NULL); break;
+
+default: xv_set(stationName,
+
+PANEL_LABEL_STRING,&quot;bzzz&quot;, NULL); break;
+
+}
+
+}</FONT></PRE>
+
+<P>To create a slider, assign the PANEL_SLIDER value to the xv_create() function call. How the slider is used and displayed is governed by the following attributes:
+
+<BR>
+
+<UL>
+
+<LI>PANEL_MIN_VALUE and PANEL_MAX_VALUE: The range of values that this slider can take. These values have to be integers. For the example in this book we used 88 and 108.
+
+<BR>
+
+<BR>
+
+<LI>PANEL_SHOW_RANGE: Sets the slider to show the value of the ranges allowed for the selection.
+
+<BR>
+
+<BR>
+
+<LI>PANEL_NOTIFY_LEVEL: Can be set to one of two values: PANEL_ALL if the callback procedure is called while the slider is moving, or PANEL_DONE only when the pointer button is released.
+
+<BR>
+
+<BR>
+
+<LI>PANEL_DIRECTION: Can be used to set the orientation of the slider to either horizontal or vertical.
+
+<BR>
+
+<BR>
+
+<LI>PANEL_TICKS: The number of ticks that show on the display. Set it to 0 if you do not want ticks to be shown. The number of ticks are adjusted as you size the slider. You fix the width of the slider by setting the PANEL_SLIDER_WIDTH to 100 (refer to 
+Listing 33.8).
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>You can edit the selection value by clicking it and using the keyboard. This value will change the location of the slider as soon as you press the Enter key. Error values will be ignored.
+
+<BR>
+
+<P>Note how a message label displays the station name as the slider is being moved. To set the value of this label, make a call to xv_set() and give the attribute PANEL_LABEL_STRING a string value. For example, if the value of the slider is 89, you can set 
+the message to &quot;Classical&quot;, as shown in the following lines:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">case 89: xv_set(stationName,
+
+PANEL_LABEL_STRING,&quot;Classical&quot;, NULL); break;</FONT></PRE>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>You can create a gauge by using the PANEL_GAUGE package instead of PANEL_SLIDER. The dimensions of the gauge are set by the PANEL_GAUGE_WIDTH and PANEL_GAUGE_HEIGHT attributes. A user cannot change the value of the slider on a gauge because a gauge 
+can be used only as a feedback item.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E68E290"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Text Windows</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>XView has a lot of options for displaying data. This section will only cover a few portions of this feature. Please refer to the man pages for Text in /usr/openwin/man. Let's get started with some of the basics, though. A sample application is shown in 
+Listing 33.10 and its corresponding output is shown in Figure 33.9.
+
+<BR>
+
+<P><B> <A HREF="33rhl09.gif">Figure 33.9. Using text items.</A></B>
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 33.10. Using text items.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">#include &lt;xview/generic.h&gt;
+
+#include &lt;xview/xview.h&gt;
+
+#include &lt;xview/frame.h&gt;
+
+#include &lt;xview/panel.h&gt;
+
+Frame frame;
+
+int main(int argc, char *argv[])
+
+{
+
+Panel panel;
+
+void quit();
+
+xv_init(XV_INIT_ARGC_PTR_ARGV, &amp;argc, argv, NULL);
+
+frame = (Frame)xv_create(NULL, FRAME,
+
+FRAME_LABEL, argv[0],
+
+XV_WIDTH, 300,
+
+XV_HEIGHT, 300,
+
+NULL);
+
+panel = (Panel)xv_create(frame, PANEL,NULL);
+
+ (void) xv_create(panel, PANEL_BUTTON,
+
+PANEL_LABEL_STRING, &quot;Quit&quot;,
+
+PANEL_NOTIFY_PROC, quit,
+
+NULL);
+
+xv_create(panel, PANEL_TEXT,
+
+PANEL_LABEL_STRING, &quot;Single&quot;,
+
+PANEL_VALUE, &quot;Single Line of Text&quot;,
+
+NULL);
+
+xv_create(panel, PANEL_MULTILINE_TEXT,
+
+PANEL_LABEL_STRING, &quot;Multi&quot;,
+
+PANEL_DISPLAY_ROWS, 3,
+
+PANEL_VALUE_DISPLAY_LENGTH, 30,
+
+PANEL_VALUE, &quot;Multiple Lines of Text \
+
+in this example \
+
+This is a line 1\
+
+This is a line 2\
+
+This is a line 3\
+
+of some long string&quot;,
+
+NULL);
+
+xv_main_loop(frame);
+
+exit(0);
+
+}
+
+void quit()
+
+{
+
+xv_destroy_safe(frame);
+
+}</FONT></PRE>
+
+<P>We created a single panel text entry item with the following lines using the PANEL_TEXT package:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">xv_create(panel, PANEL_TEXT,
+
+PANEL_LABEL_STRING, &quot;Single&quot;,
+
+PANEL_VALUE, &quot;Single Line of Text&quot;,
+
+NULL);</FONT></PRE>
+
+<P>If the PANEL_LAYOUT value is set to PANEL_VERTICAL, the value will be placed below the label. The default is PANEL_HORIZONTAL. The number of characters is set with the PANEL_VALUE_DISPLAY_LENGTH attribute. This value should not be less than 4. (This is 
+not in the listing and is only for your information.)
+
+<BR>
+
+<P>If you want the user to enter private data such as password information, you can set the PANEL_MASK_CHAR value to something like an asterisk. This setting displays an asterisk for each character that the user types in. The value of the text remains what 
+the user typed in.
+
+<BR>
+
+<P>You can have notification procedures for four types of input for a text item with the PANEL_NOTIFY_LEVEL. (See Table 33.1.)
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 33.1. Notification procedures.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Notification</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Action to take on input</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+PANEL_NONE
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Never inform this package.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+PANEL_NON_PRINTABLE
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+On each non-printable character.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+PANEL_SPECIFIED
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+If the input character is found in a string specified by the attribute PANEL_NOTIFY_STRING.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+PANEL_ALL 
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+On all characters input.</FONT>
+
+</TABLE><P>You can also have multiple lines of text on a display. A sample of this is shown in Listing 33.10. Look at the following excerpted lines:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">xv_create(panel, PANEL_MULTILINE_TEXT,
+
+PANEL_LABEL_STRING, &quot;Multi&quot;,
+
+PANEL_DISPLAY_ROWS, 3,
+
+PANEL_VALUE_DISPLAY_LENGTH, 30,
+
+PANEL_VALUE, &quot;Multiple Lines of Text \
+
+in this example\
+
+This is a line 1\
+
+This is a line 2\
+
+This is a line 3\
+
+of some long string&quot;,
+
+NULL);</FONT></PRE>
+
+<P>The PANEL_MULTILINE_TEXT package can have the following attributes set for it: PANEL_DISPLAY_ROWS sets the number of lines that the viewing window will display, and PANEL_VALUE_DISPLAY_LENGTH is the number of characters wide you want the display to be.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E291"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Where To Go from Here</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>This chapter is a very brief introduction to the XView packages available under Linux. In this section you have learned a little about putting user interface items together on a panel. You should now have enough knowledge to start creating your own 
+interfaces in XView.
+
+<BR>
+
+<P>Some cool binaries to look for in the /usr/openwin/bin directory are props for setting window parameters and textedit, a pretty good editor.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E292"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Summary</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>You use objects to build XView applications. Each object is a class and is referred to as a package. Each package has attributes that can have values. Attributes can be shared among other objects, be common to a few objects only, or be specific to one 
+object.
+
+<BR>
+
+<P>You can retrieve an attribute's values by calling xv_get() and set a value by calling xv_set. An attribute may be assigned more than one value. Each attribute can have a different type of value attached to it.
+
+<BR>
+
+<P>You can use standard Xlib function calls to perform drawing operations. This gives you tremendous flexibility in rendering your custom graphics on screens and XView packages.
+
+<BR>
+
+<P>The XView packages enable you to create and place objects on panels. You can place these objects using absolute positioning from the top left corner of a panel, relative to other objects, or in row/column order.
+
+<BR>
+
+<P>The xv_create() call passes the type of object as a parameter to create XView objects. You can set other attributes by passing a NULL-terminated list to xv_create(). Default attribute values that are not explicitly set by xv_create() are inherited from 
+the object's parent.
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl32.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="#I0" TARGET="_self"><IMG SRC="purtop.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Page Top"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl34.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+</BODY></HTML>
+
+
+

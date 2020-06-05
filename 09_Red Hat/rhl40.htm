@@ -1,0 +1,714 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Red Hat Linux Unleashed rhl40.htm </TITLE>
+
+<LINK REL="ToC" HREF="index.htm">
+
+<LINK REL="Index" HREF="htindex.htm">
+
+<LINK REL="Next" HREF="rhl41.htm">
+
+<LINK REL="Previous" HREF="rhl39.htm"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+
+<A NAME="I0"></A>
+
+<H2>Red Hat Linux Unleashed rhl40.htm</H2>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl39.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl41.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+<HR ALIGN=CENTER>
+
+<P>
+
+<UL>
+
+<UL>
+
+<UL>
+
+<LI>
+
+<A HREF="#E68E340" >Processes</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E453" >Types of Processes</A></UL>
+
+<LI>
+
+<A HREF="#E68E341" >Using the ps Command</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E454" >ps Command Output</A>
+
+<LI>
+
+<A HREF="#E69E455" >Login Shells</A>
+
+<LI>
+
+<A HREF="#E69E456" >For the Superuser</A>
+
+<LI>
+
+<A HREF="#E69E457" >Useful ps options</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E70E11" >For System Administrators</A></UL></UL>
+
+<LI>
+
+<A HREF="#E68E342" >Using kill</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E458" >killing Child Processes</A>
+
+<LI>
+
+<A HREF="#E69E459" >killing Rights</A></UL>
+
+<LI>
+
+<A HREF="#E68E343" >Summary</A></UL></UL></UL>
+
+<HR ALIGN=CENTER>
+
+<A NAME="E66E40"></A>
+
+<H1 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>40</B></FONT></CENTER></H1>
+
+<BR>
+
+<A NAME="E67E40"></A>
+
+<H2 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>Processes</B></FONT></CENTER></H2>
+
+<BR>
+
+<P>Everything that runs on a Linux system is a process&#151;every user task, every system daemon&#151;everything is a process. Knowing how to manage the processes running on your Linux system is an important (indeed even critical) aspect of system 
+administration. This chapter looks processes in some detail. In this chapter you will see:
+
+<BR>
+
+<UL>
+
+<LI>How to find out what processes are running
+
+<BR>
+
+<BR>
+
+<LI>Determine when a process is hogging the system
+
+<BR>
+
+<BR>
+
+<LI>How to find out which processes are locked up
+
+<BR>
+
+<BR>
+
+<LI>How to terminate a process
+
+<BR>
+
+<BR>
+
+<LI>How to properly manage processes
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>In the course of discussing processes, we don't bother with the mechanics behind how processes are allocated, or how the Linux kernel manages to time-slice all the processes to run a multitasking operating system. Instead, we'll look at the nitty-gritty 
+aspects of process control that you need in order to keep your system running smoothly.
+
+<BR>
+
+<P>You may come across the terms process and job used when dealing with multitasking operating systems. For most purposes, both terms are correct. However, a job is usually a process started by a shell (and may involve many processes), while a process is a 
+single entity that is executing. To be correct, we'll use the term process throughout.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E340"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Processes</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>A formal definition of a process is that it is a single program running in its own virtual address space. This means that everything running under Linux is a process. This is compared to a job, which may involve several commands executing in series. 
+Alternatively, a single command line issued at the shell prompt may involve more than one process, especially when pipes or redirection are involved. For example, the command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">nroff -man ps.1 | grep kill | more</FONT></PRE>
+
+<P>will start three processes, one for each command.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E453"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Types of Processes</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>There are several types of processes involved with the Linux operating system. Each has its own special features and attributes. The processes involved with Linux are:
+
+<BR>
+
+<UL>
+
+<LI>Interactive processes: A process initiated from (and controlled by) a shell. Interactive processes may be in foreground or background.
+
+<BR>
+
+<BR>
+
+<LI>Batch processes: Processes that are not associated with a terminal but are submitted to a queue to be executed sequentially.
+
+<BR>
+
+<BR>
+
+<LI>Daemon processes: Processes usually initiated when Linux boots and that run in the background until required.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<BR>
+
+<A NAME="E68E341"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Using the </B><B>ps</B><B> Command</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The easiest method of finding out what processes are running on your system is to use the ps (process status) command. The ps command has a number of options and arguments, although most system administrators use only a couple of common command-line 
+formats. We can start by looking at the basic usage of the ps command, and then examine some of the useful options.
+
+<BR>
+
+<P>The ps command is available to all system users, as well as root, although the output changes a little depending on whether you are logged in as root when you issue the command.
+
+<BR>
+
+<P>When you are logged in as a normal system user (in other words, any login but root) and issue the ps command on the command line by itself, it displays information about every process you are running. For example, you might see the following output when 
+you issue the command:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ ps
+
+PID TTY STAT TIME COMMAND
+
+41 v01 S 0:00 -bash
+
+134 v01 R 0:00 ps</FONT></PRE>
+
+<BR>
+
+<A NAME="E69E454"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>ps</B><B> Command Output</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The output of the ps command is always organized in columns. Every process on the system has to have a unique identifier so Linux can tell which processes it is working with. Linux handles processes by assigning a unique number to each process, called 
+the &quot;Process ID&quot; number (or PID). PIDs start at zero when the system is booted and increment by one for each process run, up to some system-determined number (such as 65,564) at which point it starts numbering from zero again, ignoring those that 
+are still active. Usually, the lowest-number processes are the system kernel and daemons, which start when Linux boots and remain active as long as Linux is running. When you are working with processes (such as terminating them), you must use the PID.
+
+<BR>
+
+<P>The TTY column in the ps command output shows you which terminal the process was started from. If you are logged in as a user, this will usually be your terminal or console window. If you are running on multiple console windows, you will see all the 
+processes you started in every window displayed.
+
+<BR>
+
+<P>The STAT column in the ps command output shows you the current status of the process. The two most common entries in the status column are S for sleeping and R for running. A running process is one that is currently executing on the CPU. A sleeping 
+process is one which isn't currently active. Processes may switch between sleeping and running many times every second.
+
+<BR>
+
+<P>The TIME column shows the total amount of system (CPU) time used by the process so far. These numbers tend to be very small for most processes because they require only a short time to complete. The numbers under the TIME column are a total of the CPU 
+time, not the amount of time the process has been alive.
+
+<BR>
+
+<P>Finally, the COMMAND column contains the name of the command line you are running. This is usually the command line you used, although some commands start up other processes. These are called &quot;child&quot; processes, and they show up in the ps 
+output as if you had entered them as commands.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E455"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Login Shells</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>As a general convention, a login shell has a hyphen placed before its name (such as -bash in the previous output) to help you distinguish the startup shell from any shells you may have started afterwards. Any other shells that appear in the output do 
+not have the hyphen in front of the name, as the following example shows:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ ps
+
+PID TTY STAT TIME COMMAND
+
+46 v01 S 0:01 -bash
+
+75 v01 S 0:00 pdksh
+
+96 v01 R 0:00 bash
+
+123 v01 R 0:00 ps</FONT></PRE>
+
+<P>This output shows that the user's startup shell is bash (PID 46), and that he or she started up the Korn shell (pdksh, PID 75) and another Bourne shell (bash, PID 96) afterward.
+
+<BR>
+
+<P>Notice in the preceding outputs that the command that actually showed you the process status, ps, appears on the output because it was running when you issued the command. The ps command always appears on the output.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E456"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>For the Superuser</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>When normal users issue the ps command, they see only their own processes. If you issue the ps command when you are logged in as the superuser (usually root, although you can change the name), you will see all the processes on the system, because the 
+root login owns everything running. This can produce very long outputs, especially on a system with several users, so you probably want to pipe the output from the ps command to a page filter (such as more or less), or save the output in a file for further 
+examination. Both commands are shown here:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">ps | more
+
+ps &gt; /tmp/ps_file</FONT></PRE>
+
+<BR>
+
+<A NAME="E69E457"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Useful </B><B>ps</B><B> options</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>A useful ps option for checking user processes is -u, which adds several columns to the output of the ps command. The output from a user (not root) command using this option looks like this:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ ps -u
+
+USER PID %CPU %MEM SIZE RSS TTY STAT START TIME COMMAND
+
+bill 41 0.1 6.8 364 472 v01 S 23:19 0:01 -bash
+
+bill 138 0.0 3.3 72 228 v01 R 23:34 0:00 ps -u</FONT></PRE>
+
+<P>The most important addition to the output is the USER column, which shows who started and owns the process. The name listed under the USER column is the user's login name, as found in the /etc/passwd file. (ps does a look-up in the /etc/passwd file to 
+convert the user ID number&#151;UID&#151;to the proper user name.)
+
+<BR>
+
+<P>This option also adds the column labeled %CPU which shows the percentage of CPU time that has been used by the process so far. The column %MEM shows the percentage of your system's memory currently used by the process. These numbers can be handy for 
+finding processes that consume far too much CPU or memory, called &quot;CPU hogs&quot; and &quot;memory hogs&quot; by most administrators. If you see a user process that has very high usage, it is worth checking to make sure it is a valid process and not a 
+run-away that will continue to grind at your system's resources.
+
+<BR>
+
+<P>When you issue this command logged in as root, you see all the processes running on the system. As before, you should consider paginating the output to make it readable. With some versions of Linux's ps command, you can also use the -u option to specify 
+a user's processes by adding each username. For example, if you are logged in as root and want to see only Yvonne's processes, you could issue the command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">ps -u yvonne</FONT></PRE>
+
+<P>This format of the -u option works with System V versions of ps, but not the BSD-based version of ps included with most Linux distributions (including the one of the CD-ROM). You can obtain other versions of ps on FTP and BBS sites. Most users can issue 
+this command to examine other users' processes, as well. This lets them find out who is hogging all the CPU time! It also lets the superuser see the processes that users are running when they report problems, without having to wade through all the system 
+processes as well.
+
+<BR>
+
+<P>Users can also see all the processes running on the system (instead of just the processes started by them) by using the -a option. Because the superuser sees all the processes on the system anyway, the root login doesn't have to use this option, 
+although it is still legal to use it. This output doesn't change, though. When issued by a user (not root), the -a option produces the following output:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ ps -a
+
+PID TTY STAT TIME COMMAND
+
+1 psf S 0:00 init
+
+6 psf S 0:00 update (sync)
+
+23 psf S 0:00 /usr/sbin/crond -l10
+
+29 psf S 0:00 /usr/sbin/syslogd
+
+31 psf S 0:00 /usr/sbin/klogd
+
+33 psf S 0:00 /usr/sbin/lpd
+
+40 psf S 0:00 selection -t ms
+
+42 v02 S 0:01 -bash
+
+43 v03 S 0:00 /sbin/agetty 38400 tty3
+
+44 v04 S 0:00 /sbin/agetty 38400 tty4
+
+45 v05 S 0:00 /sbin/agetty 38400 tty5
+
+46 v06 S 0:00 /sbin/agetty 38400 tty6
+
+41 v01 S 0:01 -bash
+
+140 v01 R 0:00 ps -a</FONT></PRE>
+
+<P>This is a relatively short output showing a very lightly loaded system. Most of the entries are the Linux operating system kernel and daemons, as well as serial port getty processes. Only the last two commands were started by the user who issued the ps 
+command. Of course, you can't tell who started each process with this output, so you can combine the -u and -a options (note that you use only one hyphen, followed by the option letters):
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ ps -au
+
+USER PID %CPU %MEM SIZE RSS TTY STAT START TIME COMMAND
+
+root 64 0.0 1.5 41 224 v02 S 22:25 0:00 /sbin/agetty 38400 tty2
+
+root 65 0.0 1.5 41 224 v03 S 22:25 0:00 /sbin/agetty 38400 tty3
+
+root 66 0.0 1.5 41 224 v04 S 22:25 0:00 /sbin/agetty 38400 tty4
+
+root 67 0.0 1.5 41 224 v05 S 22:25 0:00 /sbin/agetty 38400 tty5
+
+root 68 0.0 1.5 41 224 v06 S 22:25 0:00 /sbin/agetty 38400 tty6
+
+root 69 0.0 1.5 56 228 s00 S 22:25 0:00 gpm -t mman
+
+root 71 0.3 3.6 388 532 pp0 S 22:26 0:02 -bash
+
+root 155 0.0 1.5 77 220 pp0 R 22:37 0:00 ps -au
+
+tparker 119 0.4 3.5 372 520 v01 S 22:32 0:01 -bash
+
+tparker 132 0.1 2.2 189 324 v01 S 22:33 0:00 vi test</FONT></PRE>
+
+<P>The -au options produce a list with all the same columns as the -u option, but shows all the processes running on the system. The order in which you enter the options doesn't matter, so -au is functionally the same as -ua. When you are adding several 
+options, this can be handy.
+
+<BR>
+
+<P>A few other ps command-line options are occasionally useful. The -l option adds information about which processes started each process (useful when you want to identify child processes):
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ ps -l
+
+F UID PID PPID PRI NI SIZE RSS WCHAN STAT TTY TIME COMMAND
+
+0 501 41 1 15 0 364 472 114d9c S v01 0:00 -bash
+
+0 501 121 41 29 0 64 208 0 R v01 0:00 ps -l</FONT></PRE>
+
+<P>The PPID (Parent Process ID) column shows which process started that particular process. You will see in the extract from the preceding output, that the ps command itself was started by a bash process, because the shell is the entity that is the parent 
+of all user commands. You also see that the PPID for the login Bourne shell is PID &quot;1&quot;, which is the init process of the operating system. (If you think about what this means, it implies that if init ever terminates, all other processes die, too. 
+Simply put, when init dies, the entire system is off.)
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>The Linux version of the ps command has a few idiosyncrasies. The hyphen before any options is not strictly necessary, so ps u would work in the same manner as ps -u. However, because UNIX convention (and most UNIX versions) require hyphens, you 
+should use them.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E70E11"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>For System Administrators</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>Most system administrators get by with three versions of the ps command (when logged in as root). To display information about the system as a whole, the following command lines show practically everything there is to know about processes:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">ps -ax
+
+ps -aux
+
+ps -le</FONT></PRE>
+
+<P>The meaning of the primary columns in the output from the two commands has been mentioned earlier in this section. The rest of the columns are either evident from their shortform or not that important. For complete information, see the ps man page 
+(which is not entirely accurate or complete, unfortunately).
+
+<BR>
+
+<BR>
+
+<A NAME="E68E342"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Using </B><B>kill</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Occasionally you will find a process that has locked up a terminal or isn't doing anything, which is generally referred to as a &quot;hung&quot; process. Sometimes a user will have a process that doesn't terminate properly (especially common with 
+programmers). These are &quot;run-away&quot; processes. In both cases, the only way to get rid of the process and restore some normality to the system is to terminate the process entirely. This is done with the kill command.
+
+<BR>
+
+<P>To use kill, you have to have access to another window or console where you can issue commands. If your terminal is completely locked up, you have to find another one to log in on. As a user, you can only kill your own processes&#151;you cannot affect 
+any process another user or the system is running. As root, you can terminate any process with the kill command.
+
+<BR>
+
+<P>In order to use the kill command, you need the process ID number (PID) of the process to be terminated. You have to obtain the PID with the ps command and note the PID. Next, use the kill command with the PID as an argument. For example, the following 
+terminal session shows a user process started by Walter called bad_prog, that has hung up and needs to be killed. The PID is obtained by displaying all of the system's processes with their user names (we've cut the other lines from the ps command output 
+for simplicity's sake):
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ ps -u
+
+USER PID %CPU %MEM SIZE RSS TTY STAT START TIME COMMAND
+
+walter 561 0.1 6.8 364 472 v01 S 13:19 0:01 -bash
+
+walter 598 9.3 4.1 2736 472 v01 R 15:26 2:01 bad_prog
+
+$ kill 598</FONT></PRE>
+
+<P>When you issue the kill command, you don't get any return message if it works properly. The only way to verify that the process termination has been properly conducted is to issue another ps command and look for the PID or process name.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E458"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>kill</B><B>ing Child Processes</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Because some processes spawn child processes with different PIDs, you must be sure to check that all the child processes are terminated. The best way to do this is to watch the names of the executing processes for a few minutes to ensure the child isn't 
+dormant, only to return later. This problem usually happens when the child processes are being generated by a parent. You should check the PPID column (use the ps -l option) to see which process is the parent and terminate that.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>When you are killing processes and logged in as root, make sure you type the correct PID or you may inadvertently terminate another process. Check the PID carefully! Also, don't kill any system processes unless you know what they do and why they need 
+to be terminated.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>If the process doesn't terminate properly with the kill command, you need to use sterner measures. The kill command actually has several levels of operation. When issued with no arguments other than the PID, kill tries to gracefully terminate the 
+process (which means any open files are closed, and generally, kill is polite to the process). If this doesn't work, you should use the -9 option, which is a little more forceful in its attempt to terminate the process. For example, to forcefully terminate 
+the process with PID 726, issue the following command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">kill -9 726</FONT></PRE>
+
+<P>If that doesn't work, then the process may be unkillable. This does happen occasionally with Linux, and the only solution is to shut down and reboot the machine.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E459"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>kill</B><B>ing Rights</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>To help prevent a user from killing another user's processes, ps checks for the process owner. If a user tries to kill another user's process, a message like this one is displayed:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">kill: - Not owner</FONT></PRE>
+
+<P>The superuser doesn't get this message because the superuser login can kill anything.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E343"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Summary</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>This chapter has shown you how to obtain listings of the processes currently executing on your Linux system and how to terminate them when they require it. Although you may not have to use this knowledge often, every operating system has occasions where 
+something gets out of hand and you need to control it. The problems multiply as the number of users increases. Instead of rebooting the Linux system, process commands enable you to correct the problem without terminating the operating system.<A 
+NAME="I2"></A>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl39.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="#I0" TARGET="_self"><IMG SRC="purtop.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Page Top"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl41.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+</BODY></HTML>
+
+
+

@@ -1,0 +1,2080 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Red Hat Linux Unleashed rhl25.htm </TITLE>
+
+<LINK REL="ToC" HREF="index.htm">
+
+<LINK REL="Index" HREF="htindex.htm">
+
+<LINK REL="Next" HREF="rhl26.htm">
+
+<LINK REL="Previous" HREF="rhl24.htm"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+
+<A NAME="I0"></A>
+
+<H2>Red Hat Linux Unleashed rhl25.htm</H2>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl24.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl26.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+<HR ALIGN=CENTER>
+
+<P>
+
+<UL>
+
+<UL>
+
+<UL>
+
+<LI>
+
+<A HREF="#E68E203" >What Is Ghostscript?</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E314" >Ghostscript Information</A></UL>
+
+<LI>
+
+<A HREF="#E68E204" >Installation</A>
+
+<LI>
+
+<A HREF="#E68E205" >The Ghostscript Interpreter</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E315" >Getting Help While in gs</A></UL>
+
+<LI>
+
+<A HREF="#E68E206" >Choosing the Output Device</A>
+
+<LI>
+
+<A HREF="#E68E207" >Paper Size Configuration</A>
+
+<LI>
+
+<A HREF="#E68E208" >Environment Variables</A>
+
+<LI>
+
+<A HREF="#E68E209" >Configuring for X Window</A>
+
+<LI>
+
+<A HREF="#E68E210" >Command-Line Arguments</A>
+
+<LI>
+
+<A HREF="#E68E211" >PostScript Viewer Ghostview</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E316" >Keyboard Accelerators</A>
+
+<LI>
+
+<A HREF="#E69E317" >X Resources</A></UL>
+
+<LI>
+
+<A HREF="#E68E212" >Using Other Fonts</A>
+
+<LI>
+
+<A HREF="#E68E213" >Getting More Help</A>
+
+<LI>
+
+<A HREF="#E68E214" >Summary</A></UL></UL></UL>
+
+<HR ALIGN=CENTER>
+
+<A NAME="E66E25"></A>
+
+<H1 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>25</B></FONT></CENTER></H1>
+
+<BR>
+
+<A NAME="E67E25"></A>
+
+<H2 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>Ghostscript</B></FONT></CENTER></H2>
+
+<BR>
+
+<P>This chapter covers installation and use of Ghostscript, a PostScript interpreter. Almost everything related to Linux is in PostScript. If you have a PostScript printer, you simply send the file to the printer for a hardcopy.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E203"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>What Is Ghostscript?</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Ghostscript is actually a set of programs. Collectively, these programs provide two important features:
+
+<BR>
+
+<UL>
+
+<LI>An interpreter for the PostScript language.
+
+<BR>
+
+<BR>
+
+<LI>A library of C functions for implementing primitive PostScript constructs.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>PostScript is a trademark of Adobe Systems, Incorporated.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>Ghostscript has been ported to several platforms from PCs, OS/2, Apple Macintoshes, Ataris, to various flavors of UNIX, for example, Sun workstations, IBM AIX machines, and so on. Since Ghostscript is written in C, chances are that it will be portable 
+to your platform. If you support X11, you will probably be able to run Ghostscript.
+
+<BR>
+
+<P>Several executable files come with Ghostscript. Some of the executables are also used by other packages under Linux. For example, HylaFAX (<A HREF="rhl59.htm">Chapter 59</A>, &quot;Using FlexFAX, sendfax, and mgetty&quot;) uses the main Ghostscript 
+program, gs. In short, if you use Linux, you will find a need for Ghostscript.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E314"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Ghostscript Information</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The primary contact for getting information about Ghostscript is:
+
+<BR>
+
+<UL>
+
+<UL>
+
+<P>Aladdin Enterprises
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>P.O. Box 60264
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Palo Alto, CA 94306
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>voice (415) 322-0103
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>FAX (415) 322-1734
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P><A HREF="mailto:ghost@aladdin.com">ghost@aladdin.com</A>
+
+<BR>
+
+</UL></UL>
+
+<P>In fact, the Ghostscript package that you get with Linux is from Aladdin Enterprises. The information about Ghostscript is best summarized in its README file:
+
+<BR>
+
+<P>&quot;L. Peter Deutsch, president of Aladdin Enterprises, was the original creator, and is the primary developer and maintainer, of Ghostscript. Aladdin Enterprises owns the copyright on Ghostscript; Ghostscript is distributed with the GNU General 
+Public License, and is also available for commercial licensing.&quot;
+
+<BR>
+
+<BR>
+
+<A NAME="E68E204"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Installation</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>To run Ghostscript, you need the executable program and some external initialization files:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">/usr/lib/ghostscript/bdftops.ps
+
+/usr/lib/ghostscript/decrypt.ps
+
+/usr/lib/ghostscript/font2c.ps
+
+/usr/lib/ghostscript/gs_dbt_e.ps
+
+/usr/lib/ghostscript/gs_dps1.ps
+
+/usr/lib/ghostscript/gs_fonts.ps
+
+/usr/lib/ghostscript/gs_init.ps
+
+/usr/lib/ghostscript/gs_lev2.ps
+
+/usr/lib/ghostscript/gs_statd.ps
+
+/usr/lib/ghostscript/gs_sym_e.ps
+
+/usr/lib/ghostscript/gs_type0.ps
+
+/usr/lib/ghostscript/gslp.ps
+
+/usr/lib/ghostscript/impath.ps
+
+/usr/lib/ghostscript/landscap.ps
+
+/usr/lib/ghostscript/level1.ps
+
+/usr/lib/ghostscript/prfont.ps
+
+/usr/lib/ghostscript/ps2ascii.ps
+
+/usr/lib/ghostscript/ps2epsi.ps
+
+/usr/lib/ghostscript/ps2image.ps
+
+/usr/lib/ghostscript/pstoppm.ps
+
+/usr/lib/ghostscript/quit.ps
+
+/usr/lib/ghostscript/showpage.ps
+
+/usr/lib/ghostscript/type1ops.ps
+
+/usr/lib/ghostscript/wrfont.ps
+
+/usr/lib/ghostscript/uglyr.gsf
+
+/usr/lib/ghostscript/Fontmap</FONT></PRE>
+
+<P>The Ghostscript file set includes a set of fonts (.gsf files). You should have them online as well.
+
+<BR>
+
+<P>Installing Ghostscript on a Linux system simply requires getting it from the CD-ROM or Internet. The name of the executable is gs.
+
+<BR>
+
+<P>You can build Ghostscript on your machine if you want to. The makefiles that come with the sources will install all the files and directories under your /usr/local directory.
+
+<BR>
+
+<P>The fonts for Ghostscript are stored in /usr/lib/ghostscript/fonts.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E205"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>The Ghostscript Interpreter</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The Ghostscript interpreter is the gs command in /usr/bin/gs. This is an interactive interpreter that also reads in files for its input. To invoke the gs interpreter, use the command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">gs [filename1] ... [filenameN]</FONT></PRE>
+
+<P>The interpreter will read in the files in sequence and interpret them. After doing this, it reads further input from the primary input stream (normally the keyboard). Each line (that is, characters up to a &lt;return&gt;) is interpreted separately. To 
+exit from the interpreter, type quit and press the Return key. The interpreter also exits gracefully if it encounters end-of-file. Typing the interrupt character (Ctrl-C), is also safe.
+
+<BR>
+
+<P>See Figure 25.1 for the input to the interpreter. (Your version number may be different than that shown in the figure.) The output is shown in a separate window as shown in Figure 25.2 (which shows the FlexFAX FAQ). The file in this example is the FAQ 
+for the HylaFAX program (see <A HREF="rhl59.htm">Chapter 59</A>) and is called fax-112894.ps. You can get this file via Mosaic (see <A HREF="rhl56.htm">Chapter 56</A>, &quot;Using Mosaic and Netscape&quot;) from www.vix.com from the HylaFAX directory.
+
+<BR>
+
+<P><B> <A HREF="25rhl01.gif">Figure 25.1. The </B><B>gs</B><B> interpreter.</A></B>
+
+<BR>
+
+<P><B> <A HREF="25rhl02.gif">Figure 25.2. The output from </B><B>gs</B><B> interpreter.</A></B>
+
+<BR>
+
+<BR>
+
+<A NAME="E69E315"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Getting Help While in </B><B>gs</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The gs interpreter recognizes several arguments. We will cover most of the important ones in this chapter. However, you can get help from gs too. Either the -h or -? option tells gs to print out a help screen. The help screen also lists all available 
+devices for gs on your system.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E206"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Choosing the Output Device</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Ghostscript may be built with multiple output devices. Ghostscript normally opens the first one and directs output to it. To use device Laserjet as the initial output device, include the following argument in the command line:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">-sDEVICE=laserjet</FONT></PRE>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Command line arguments to gs can appear anywhere on the command line. Once specified, these arguments apply to all subsequent files listed in the command line. These arguments will not apply to any files specified before the argument. So if you have 
+important arguments like sDEVICE, specify these arguments before you specify the PostScript file.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>PostScript files are usually specified with the .ps extension.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>For example, for printer output in a normal configuration that includes a Laserjet printer driver, you might use the shell command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">gs -sDEVICE=laserjet showme.ps</FONT></PRE>
+
+<P>Alternatively, in the interpreter you can type
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"> (laserjet) selectdevice
+
+ (showme.ps) run</FONT></PRE>
+
+<P>All output then goes to the printer instead of the display until changed. You can switch devices at any time by using the selectdevice function, for example,
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"> (vga) selectdevice # for VGA screen</FONT></PRE>
+
+<P>or
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"> (nec) selectdevice #for NEC printer</FONT></PRE>
+
+<P>As yet a third alternative, you can define an environment variable GS_DEVICE as the desired default device name. The order of precedence for these alternatives, highest to lowest, is this:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">selectdevice
+
+ (command line)
+
+GS_DEVICE
+
+ (first device in build list)</FONT></PRE>
+
+<P>To select the density on a printer, use the command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">gs -sDEVICE=&lt;device&gt; -r&lt;xres&gt;x&lt;yres&gt;</FONT></PRE>
+
+<P>For example, on a nine-pin, Epson-compatible printer, you can get the lowest-density (fastest) mode with the command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">gs -sDEVICE=epson -r60x72</FONT></PRE>
+
+<P>For the highest-density mode with Epson printers, use
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">gs -sDEVICE=epson -r240x72.</FONT></PRE>
+
+<P>If you select a printer as the output device, Ghostscript also enables you to control where the device sends its output.
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">-sOutputFile=print%d.xyz</FONT></PRE>
+
+<P>For compatibility with older versions of Ghostscript, -sOUTPUTFILE= also works.
+
+<BR>
+
+<P>The %d is a printf format specification. You can use other formats like %02d. Each file will receive one page of output. Alternatively, to send the output to a single file bigfile.xyz, with all the pages concatenated, use the command line argument: 
+-sOutputFile=foo.xyz.
+
+<BR>
+
+<P>On UNIX-like systems, you can send the output directly to a pipe. For example, to pipe the output to the command lpr (which, on many UNIX systems, is the command that spools output for a printer), use the switch
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">-sOutputFile=\|lpr</FONT></PRE>
+
+<P>Don't forget to escape the pipe symbol (|). You can also send output to stdout for piping with the dash as the output file. That is, use the option -sOutputFile=-. In this case you must also use the -q switch to prevent Ghostscript from writing messages 
+to stdout.
+
+<BR>
+
+<P>To find out what devices are available, type &quot;devicenames ==&quot; after starting up Ghostscript.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E207"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Paper Size Configuration</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Ghostscript is normally configured to expect U.S. letter size paper. To select a different paper size as the default, use the argument -sPAPERSIZE=known_paper_size. (You can create your own paper sizes with the devs.mak file.) Generally, you have a 
+large selection available. The entire list can be found in the file
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">/usr/lib/ghostscript/gs_statd.ps</FONT></PRE>
+
+<P>Print this file out if you can, to keep it handy. Some examples of setting the paper size are
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">-sPAPERSIZE=a4
+
+-sPAPERSIZE=legal
+
+-sPAPERSIZE=11x17
+
+-sPAPERSIZE=ledger</FONT></PRE>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>A PostScript file may explicitly specify the paper size. In this case, the file's specification will override any command line argument specification.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E68E208"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Environment Variables</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Ghostscript uses these environment variables: GS_LIB, GS_LIB_DEFAULT, and GS_FONTPATH.
+
+<BR>
+
+<P>When looking for the initialization files (gs_*.ps), the files related to fonts, or the file for the run operator, Ghostscript first tries opening the file with the name as given (that is, using the current working directory if none is specified). If 
+this fails, and the filename doesn't specify an explicit directory or drive (that is, doesn't begin with / on UNIX), Ghostscript will try directories in the following order:
+
+<BR>
+
+<UL>
+
+<LI>The GS_LIB variable specifies several directories for gs to look in for files if a full path name of an input file is not specified. The directory names are separated by colons (like the PATH command).
+
+<BR>
+
+<BR>
+
+<LI>The GS_LIB_DEFAULT variable is similar to the GS_LIB variable and is searched if GS_LIB's directories showed nothing. Both of these variables (GS_LIB and GS_LIB_DEFAULT) can be overridden by the -I argument.
+
+<BR>
+
+<BR>
+
+<LI>The GS_FONTPATH environment variable is a list of directories for PostScript fonts. All those files and fonts listed in this directory are added to gs's internal copy of the Fontmap. A Fontmap is a catalog of fonts and the files that contain them.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Ghostscript will create temporary files by using the TEMP environment variable as the location of the /tmp directory. These files are named gs_XXXXX, where XXXXX is replaced by a number or a string of jumbled characters. Ghostscript doesn't do a very 
+good job of deleting temporary files when it exits. If you see your /tmp space being used by these files you may have to delete them using the rm /tmp/gs_* command.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E68E209"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Configuring for X Window</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Ghostscript looks for the resources under the program name ghostscript and class name Ghostscript in the .Xdefaults file. To set a resource, put the resource in .Xdefaults in the following form:
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Ghostscript*geometry:
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-0+0</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Ghostscript*xResolution:
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+72</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Ghostscript*yResolution:
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+72</FONT>
+
+</TABLE><P>Then load the defaults into the X server:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">% xrdb -merge ~/.Xdefaults</FONT></PRE>
+
+<P>Table 25.1 lists the options available to you.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 25.1. Ghostscript resources.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Name</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Class</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Default</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+background
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Background
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+white</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+foreground
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Foreground
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+black</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+borderColor
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+BorderColor
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+black</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+borderWidth
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+BorderWidth
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+1</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+geometry
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Geometry
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+NULL</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+xResolution
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Resolution
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+calculated</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+yResolution
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Resolution 
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+calculated</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+useExternalFonts
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+UseExternalFonts
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+true</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+useScalableFonts
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+UseScalableFonts
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+true</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+logExternalFonts
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+LogExternalFonts
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+false</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+externalFontTolerance
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+ExternalFontTolerance
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+10.0</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+palette
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Palette
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Color</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+maxGrayRamp
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+MaxGrayRamp
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+128</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+maxRGBRamp
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+MaxRGBRamp
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+5</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+useBackingPixmap
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+UseBackingPixmap
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+true</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+useXPutImage
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+UseXPutImage
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+true</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+useXSetTile
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+UseXSetTile
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+true</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+regularFonts
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+RegularFonts
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080><BR></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+symbolFonts
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+SymbolFonts
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080><BR></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+dingbatFonts
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+DingbatFonts
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080><BR></FONT>
+
+</TABLE><P>Here are a few points on these resources:
+
+<BR>
+
+<UL>
+
+<LI>The geometry resource only affects window placement. This does not affect the position of the image on the display in the window.
+
+<BR>
+
+<BR>
+
+<LI>All resolution numbers are given in pixels per inch.
+
+<BR>
+
+<BR>
+
+<LI>The font tolerance gives the largest acceptable difference in the height of the screen font. The tolerance is expressed as a percentage of the height of the desired font.
+
+<BR>
+
+<BR>
+
+<LI>The palette resource can be used to restrict Ghostscript to using a grayscale or monochrome palette.
+
+<BR>
+
+<BR>
+
+<LI>The maxRGBRamp and maxGrayRamp control the maximum number of colors that Ghostscript allocates ahead of time for dithering. Ghostscript will never pre-allocate more than half of the cells in a color map.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>To use native X11 fonts, Ghostscript must map PostScript font names to the XLFD font names. The regularFonts, symbolFonts, and dingbatFonts resources give the name mapping for different encodings. The XLFD font name in the mapping must contain seven 
+dashes. The X driver adds the additional size and encoding fields to bring the total number of dashes in the font name to 14. The default font mappings are found in the FontMap file in /usr/lib/ghostscript or check the man pages.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E210"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Command-Line Arguments</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Ghostscript takes a lot of command-line arguments. Generally you would want to put these in a shell script file instead of having to type them in all the time. Some of the most often used arguments are listed here. For a comprehensive list check out the 
+documents in /usr/lib/ghostscript/doc. Let's look at the most commonly used arguments:
+
+<BR>
+
+<UL>
+
+<LI>@filename The filename specified here will contain a list of all the input file names. This beats typing in long names on every execution of gs with lots of input files.
+
+<BR>
+
+<BR>
+
+<LI>-Idirectories Adds the list of directories at the head of the library files' search path.
+
+<BR>
+
+<BR>
+
+<LI>-ffilename Executes the given file, even if its name begins with a -.
+
+<BR>
+
+<BR>
+
+<LI>-Dname=token or -dname=token Defines a name with the given token. The token must not contain any whitespace. You must specify each token with its own -Dname option. -Dname or -dname without the = will set the value to null.
+
+<BR>
+
+<BR>
+
+<LI>-Sname=string or -sname=string Defines a string.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>The differences between -d and -s are these:
+
+<BR>-dfoo=hello is equivalent to /foo hello def
+
+<BR>-sfoo=hello is equivalent to /foo (hello) def</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<UL>
+
+<LI>-q Suppresses normal startup messages.
+
+<BR>
+
+<BR>
+
+<LI>-gnumber1xnumber2 Number1 is the width, Number2 is the height of the display device. This is for devices that enable width and height to be specified. This is equivalent to -dDEVICEWIDTH=number1 and -dDEVICEHEIGHT=number2.
+
+<BR>
+
+<BR>
+
+<LI>-rnumber or -rnumber1xnumber2 This is for the benefit of devices (such as printers) that support multiple X and Y resolutions. You can also use -dDEVICEXRESOLUTION=number1 and -dDEVICEYRESOLUTION=number2.
+
+<BR>
+
+<BR>
+
+<LI>- Uses standard input instead of the file. Ghostscript will read from stdin until reaching end-of-file, and execute it as another file. After the end of file, gs will process any other items as arguments but will not go into interactive mode.
+
+<BR>
+
+<BR>
+
+<LI>-dDISKFONTS This argument causes individual character outlines to be loaded from the disk the first time they are encountered. Normally Ghostscript loads all the character outlines when it loads a font. This may enable loading more fonts into RAM at 
+the expense of slower rendering.
+
+<BR>
+
+<BR>
+
+<LI>-dNODISPLAY Suppresses the normal initialization of the output device. This may be useful when debugging.
+
+<BR>
+
+<BR>
+
+<LI>-dNOPAUSE Disables the prompt and pauses at the end of each page. This is useful for applications where another program is &quot;driving&quot; Ghostscript.
+
+<BR>
+
+<BR>
+
+<LI>-dNOPLATFONTS Disables the use of fonts supplied by your machine. It is needed if the platform fonts look bad when compared to scaleable fonts.
+
+<BR>
+
+<BR>
+
+<LI>-dSAFER Disables the deletefile and renamefile operators and the ability to open files in any mode other than read-only.
+
+<BR>
+
+<BR>
+
+<LI>-sDEVICE=device Selects an alternate initial output device.
+
+<BR>
+
+<BR>
+
+<LI>-sOutputFile=filename Selects an alternate output file instead of the default destination.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<BR>
+
+<A NAME="E68E211"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>PostScript Viewer Ghostview</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Ghostview is used to display encoded PostScript files. Ghostview is free. It was written and copyrighted by Tim Theisen. The ghostview command shows PostScript documents using Ghostscript.
+
+<BR>
+
+<P>Use the command line below to view a text file.
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ ghostview [filename]</FONT></PRE>
+
+<P>The ghostview program will create an X window, open the file, and display it. If the filename is '-', ghostview will read from stdin. The ghostview program provides an X11 user interface for the Ghostscript interpreter. ghostview and Ghostscript 
+function as two cooperating programs. ghostview creates the viewing window and Ghostscript draws in it.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Please use Ghostview to view files, especially those that require typesetting before sending them to the printer. You can save a lot of trees this way and get a quicker response about what to expect on the output. There are many programmers who still 
+print out files to see what the output would look like instead of previewing on the screen.
+
+<BR>In fact you may not even have to print out a document if you intend to send it to a remote site. If you have to FAX it, use HylaFAX (<A HREF="rhl59.htm">Chapter 59</A>) with your FAX/modem to send it directly. If you have to e-mail it, uuencode it and 
+then send it out.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>Ghostview has a bewildering number of options. You do not have to use any of these options at all. Most of the options are there to override any Xresources that you set in .Xdefaults. Let's look at the main window, which consists of a main viewer and 
+control menus (of HylaFAX). (See Figure 25.3.)
+
+<BR>
+
+<P><B> <A HREF="25rhl03.gif">Figure 25.3. Ghostview main window.</A></B>
+
+<BR>
+
+<P>The main viewport is on the right side of the main window. If the page is larger than the viewport, there will be scroll bars along the bottom and right edges of the viewport. To the left of the viewport is the table of contents. If the PostScript file 
+has document structuring convention (DSC) comments, the table of contents will display the page labels (these are usually page numbers). To the left of the table of contents is a menu box. Each push button brings up a pop-up menu.
+
+<BR>
+
+<P>Above the menu box and table of contents there are three optional labels that contain the title, date, and locator.
+
+<BR>
+
+<P>The title label contains the document title found in the DSC comments. If no title can be found, the filename is used in its place. The date label contains the document date found in the DSC comments. If no date can be found, the last modified date of 
+the file is used in its place. Since the title and date labels may be clipped by the main viewport, the date and title labels are pushbuttons that bring up a pop-up window with the title or date. These pop-up windows also show the document icon when the 
+displayed string comes from the DSC comments.
+
+<BR>
+
+<P>The locator shows the location of the cursor in the viewport. The location is expressed in the default user coordinate system. The locator is useful for measuring bounding boxes. Within the main viewport, the mouse cursor is a &quot;target&quot; when 
+Ghostscript is doing work. The cursor is a crosshair when Ghostscript is idle.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>When moving to another page in a document, it is generally best to wait for Ghostscript to become idle. Ghostscript does not handle a series of mouse clicks very well while it's working and can hang. You then have to use the kill command to get rid 
+of it, and start over.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>Ghostview will always check to see if the file has been modified just before it displays a page or when the application is de-iconified. If the file has changed, it will re-open the file. This causes a bit of an overhead, but is helpful when you are 
+trying to edit a file from another program and need to see your progress.
+
+<BR>
+
+<P>Clicking anywhere within the viewport will pop up a zoom window. The window is centered on the location that was clicked. Clicking with the left mouse button pops up a low-resolution zoom window. Clicking with the center mouse button pops up a 
+medium-resolution zoom window. Clicking with the right mouse button pops up a high-resolution zoom window.
+
+<BR>
+
+<P>In the table of contents, the left mouse button selects text and the right mouse button extends selections. However, clicking on a page label with the center mouse button will display that page. The page being displayed is marked with a greater than 
+symbol (&gt;) in the right margin of the table of contents.
+
+<BR>
+
+<P>There are five buttons in the menu box. These are listed below:
+
+<BR>
+
+<UL>
+
+<LI>File This menu enables you to open, reopen, print, show a copyright message, and quit the application. A Select File dialog box will appear when you click the open button. The Select File dialog widget enables you to select a file by typing the path or 
+by browsing in directory listings and selecting entries with the mouse. The Select File dialog box is system modal; that is, no other controls in ghostview will be active during this time.
+
+<BR>
+
+<BR>
+
+<LI>Page This pop-up menu controls which page you display. Next shows the next page, Redisplay redraws the current page, Previous shows the previous page, Mark and Unmark set a page in the table of contents as marked and unmarked.
+
+<BR>
+
+<BR>
+
+<LI>Magstep This menu controls the magnification of the display. Zero implies no magnification (what you see is what you get). The multiplication factor is 1.2, so with a magstep of -1, the document is reduced by -1.2, a magstep of 1 zooms in by 1.2.
+
+<BR>
+
+<BR>
+
+<LI>Orientation This enables you to select either a landscape or portrait orientation of the display. You can also flip the image with the Upsidedown to see FAXed documents. The Seascape option rotates the image 90 degrees counterclockwise.
+
+<BR>
+
+<BR>
+
+<LI>Media The entries on the Media menu set the page media. The standard sizes you can select are: Letter, Tabloid, Ledger, Legal, Statement, Executive, A3, A4, A5, B4, B5, Folio, Quarto, and 10&#180;14.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<BR>
+
+<A NAME="E69E316"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Keyboard Accelerators</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Some of the pop-up menu commands can be executed with the keyboard. The pop-up menu has to be active (in other words, selected by the user for input) for the action to have effect. Some of the bindings are listed in Table 25.2.
+
+<BR>
+
+<BR>
+
+<P ALIGN=CENTER>
+
+<CENTER>
+
+<FONT COLOR="#000080"><B>Table 25.2. Keyboard shortcuts.</B></FONT></CENTER>
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Key</I>
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+<I>Action</I></FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Q
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The Quit menu button</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+O
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The Open... menu button on the File menu</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+R
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The Reopen... menu button on the File menu</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+S
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The Save marked pages on the File menu</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+P
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The Print marked pages on the File menu</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Shift-P
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The Print all pages on the File menu</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+BackSpace, B space
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The Previous menu button on the Page menu</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Return, F period
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The Next menu button on the Page menu</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Ctrl-L
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The Redisplay menu button on the Page menu</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+M
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The Mark menu button on the Page menu</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+[lb]
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The Unmark menu button on the Page menu</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+0-5
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Selecting the 0 through 5 menu button on the Magstep menu</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
++
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Increases the Magstep by 1</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Decreases the Magstep by 1</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+U
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Scrolls Up</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+D
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Scrolls Down</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+H
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Scrolls Left</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+L
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Scrolls Right</FONT>
+
+</TABLE><BR>
+
+<A NAME="E69E317"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>X Resources</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>You can set the following resources for Ghostview. Only the most frequently used resources are listed. Please check the lengthy man page for Ghostview script for its long list of resources.
+
+<BR>
+
+<UL>
+
+<LI>showTitle (class Labels) Displays the Title comment. The default is true.
+
+<BR>
+
+<BR>
+
+<LI>showDate (class Labels) Displays the % %% %Data comment. The default is true.
+
+<BR>
+
+<BR>
+
+<LI>showLocator (class Labels) Displays the locator. The default is true.
+
+<BR>
+
+<BR>
+
+<LI>autoCenter (class AutoCenter) Centers the page in the viewport whenever the page size changes. The default is true.
+
+<BR>
+
+<BR>
+
+<LI>horizonalMargin (class Margin) Shows how many pixels ghostview should reserve for horizontal window decorations. The default value is 20.
+
+<BR>
+
+<BR>
+
+<LI>verticalMargin (class Margin) Shows how many pixels ghostview should reserve for vertical window decorations. The default value is 44.
+
+<BR>
+
+<BR>
+
+<LI>minimumMagstep (class Magstep) Sets the smallest magstep to display. The default is -5.
+
+<BR>
+
+<BR>
+
+<LI>maximumMagstep (class Magstep) Sets the largest magstep to display. The default is 5.
+
+<BR>
+
+<BR>
+
+<LI>magstep (class Magstep) Sets the default magstep. The default is 0.
+
+<BR>
+
+<BR>
+
+<LI>orientation (class Orientation) Sets the default orientation. The default is Portrait.
+
+<BR>
+
+<BR>
+
+<LI>page (class Page) Gives the initial page to display.
+
+<BR>
+
+<BR>
+
+<LI>pageMedia (class PageMedia) Sets the default page media. The default is Letter.
+
+<BR>
+
+<BR>
+
+<LI>forceOrientation (class Force) Forces the orientation on the document. The default is false.
+
+<BR>
+
+<BR>
+
+<LI>forcePageMedia (class Force) Forces the page media on the document. The default is false.
+
+<BR>
+
+<BR>
+
+<LI>swapLandscape (class SwapLandscape) Swaps the meaning of Landscape and Seascape. The default is false.
+
+<BR>
+
+<BR>
+
+<LI>printCommand (class PrintCommand) Sets the command used for printing.
+
+<BR>
+
+<BR>
+
+<LI>printerVariable (class PrinterVariable) Gives the name of the printer environment variable. The default value is PRINTER.
+
+<BR>
+
+<BR>
+
+<LI>busyCursor (class Cursor) The cursor shown when Ghostscript is drawing to the window. This is defaulted to a target icon.
+
+<BR>
+
+<BR>
+
+<LI>cursor (class Cursor) The cursor shown when Ghostscript is idle. The default cursor is the crosshair.
+
+<BR>
+
+<BR>
+
+<LI>safer (class Safer) Tells Ghostscript whether to run in safer mode. The default value is true.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>Remember that almost all of these resources can be set with the command line argument. For example, the -title argument is equivalent to setting Ghostview.showTitle resource to True, whereas the -notitle argument is equivalent to setting the Title 
+resource to False. Similarly, you can turn the date on or off with the -date and -nodate arguments, respectively.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E212"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Using Other Fonts</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The versions of Ghostscript come with a set of default fonts that you can use with any program capable of reading PostScript Type 1 and Type 3 fonts. If you have created your own Type 1 or Type 3 fonts, or have purchased some fonts from another source, 
+you can use these with Ghostscript. Place your fonts in the lib/ghostscript/fonts directory. Then edit the lib/ghostscript/FontMap file to add a line telling Ghostscript where to find the font. For example,
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">/Helvetica (hlv_xyz.pfb);</FONT></PRE>
+
+<P>where hlv_xyz.pfb is the name of the font file you have just added. You do not have to reset any X resources for this to work. Simply place the file in the directory, edit the FontMap and restart gs.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E213"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Getting More Help</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Aladdin Enterprises, the inventors of Ghostscript, do not have the resources to respond to questions from general users of Ghostscript. There are plenty of other places where you can get very detailed information about Ghostscript.
+
+<BR>
+
+<P>If you have access to newsgroups, post your questions to gnu.ghostscript.bug. There are literally hundreds of Ghostscript users all over the world who are very willing to help you. After all, we all started learning on our own. Using this newsgroup is 
+perhaps the quickest way to get more information on gs.
+
+<BR>
+
+<P>If you have access to Internet mail, but not news, send e-mail to <A NAME="I2"></A><A HREF="mailto:bug-ghostscript@prep.ai.mit.edu">bug-ghostscript@prep.ai.mit.edu</A>. If you are having trouble with a specific device driver, look in the file devs.mak 
+and see if it is a user-maintained driver. If so, please contact directly the person listed.
+
+<BR>
+
+<P>There are several files in the /usr/lib/ghostscript/doc directory which can provide more information. Some of these files are:
+
+<BR>
+
+<UL>
+
+<LI>readme.doc Information about problems, major changes, and new features in the current release.
+
+<BR>
+
+<BR>
+
+<LI>NEWS A detailed history of changes in the most recent Ghostscript releases.
+
+<BR>
+
+<BR>
+
+<LI>use.doc Information about how to install and use Ghostscript.
+
+<BR>
+
+<BR>
+
+<LI>devices.doc Detailed information about specific devices that Ghostscript supports.
+
+<BR>
+
+<BR>
+
+<LI>make.doc How to install, compile, and link Ghostscript.
+
+<BR>
+
+<BR>
+
+<LI>gs.1 The man page for Ghostscript.
+
+<BR>
+
+<BR>
+
+<LI>fonts.doc Information about the fonts distributed with Ghostscript, including how to add or replace fonts.
+
+<BR>
+
+<BR>
+
+<LI>language.doc A description of the Ghostscript language and its differences from the documented PostScript language.
+
+<BR>
+
+<BR>
+
+<LI>psfiles.doc Information about the .ps files distributed with Ghostscript other than fonts.
+
+<BR>
+
+<BR>
+
+<LI>drivers.doc The interface between Ghostscript and device drivers.
+
+<BR>
+
+<BR>
+
+<LI>ps2epsi.doc Documentation for the PostScript to EPSI conversion utility. Most commercial word processing packages can import EPSI documents for typesetting.
+
+<BR>
+
+<BR>
+
+<LI>hershey.doc Information about the Hershey fonts, which are the basis of some of the Ghostscript fonts.
+
+<BR>
+
+<BR>
+
+<LI>history.doc A history of changes in older Ghostscript releases.
+
+<BR>
+
+<BR>
+
+<LI>lib.doc Information about the Ghostscript library.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<BR>
+
+<A NAME="E68E214"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Summary</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>This chapter scratched the surface of a very important PostScript processing program called Ghostscript. The executable file for Ghostscript is called gs. You can use gs to decode PostScript files for displaying or printing hard copies.
+
+<BR>
+
+<P>Ghostscript is also used by other programs as a filter for working with PostScript printers that cannot switch from PostScript to text and back just by looking at a document. In this case, the gs command is used to convert text to PostScript with an 
+output filter for lp before sending the text to a PostScript printer. As another example, HylaFAX uses gs as its primary PostScript output filter program.
+
+<BR>
+
+<P>Ghostview is an X Window&#151;based program that provides a canvas for ghostscript to write its output to. Ghostview enables you to scroll through a multi-page document, zoom in and out, and save marked pages. The ability to view EPSI or PostScript via 
+Ghostscript saves time and paper when typesetting documents.
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl24.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="#I0" TARGET="_self"><IMG SRC="purtop.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Page Top"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl26.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+</BODY></HTML>
+
+
+

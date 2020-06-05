@@ -1,0 +1,2170 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Red Hat Linux Unleashed rhl42.htm </TITLE>
+
+<LINK REL="ToC" HREF="index.htm">
+
+<LINK REL="Index" HREF="htindex.htm">
+
+<LINK REL="Next" HREF="rhl43.htm">
+
+<LINK REL="Previous" HREF="rhl41.htm"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+
+<A NAME="I0"></A>
+
+<H2>Red Hat Linux Unleashed rhl42.htm</H2>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl41.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl43.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+<HR ALIGN=CENTER>
+
+<P>
+
+<UL>
+
+<UL>
+
+<UL>
+
+<LI>
+
+<A HREF="#E68E348" >What Is TCP/IP?</A>
+
+<LI>
+
+<A HREF="#E68E349" >Hardware Requirements</A>
+
+<LI>
+
+<A HREF="#E68E350" >Configuring Linux Files</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E464" >What You Need Before You Start</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E70E12" >IP Address</A>
+
+<LI>
+
+<A HREF="#E70E13" >Network Mask</A>
+
+<LI>
+
+<A HREF="#E70E14" >Network Address</A>
+
+<LI>
+
+<A HREF="#E70E15" >Broadcast Address</A>
+
+<LI>
+
+<A HREF="#E70E16" >Gateway Address</A>
+
+<LI>
+
+<A HREF="#E70E17" >Nameserver Address</A></UL>
+
+<LI>
+
+<A HREF="#E69E465" >Setting Up the Dummy Interface</A>
+
+<LI>
+
+<A HREF="#E69E466" >Configuration Files</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E70E18" >rc Files</A>
+
+<LI>
+
+<A HREF="#E70E19" >/etc/hosts</A>
+
+<LI>
+
+<A HREF="#E70E20" >/etc/networks</A>
+
+<LI>
+
+<A HREF="#E70E21" >/etc/host.conf</A>
+
+<LI>
+
+<A HREF="#E70E22" >resolv.conf</A>
+
+<LI>
+
+<A HREF="#E70E23" >/etc/protocols</A>
+
+<LI>
+
+<A HREF="#E70E24" >/etc/services</A>
+
+<LI>
+
+<A HREF="#E70E25" >/etc/hostname or /etc/HOSTNAME</A></UL></UL>
+
+<LI>
+
+<A HREF="#E68E351" >Testing and Troubleshooting</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E467" >The netstat Command</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E70E26" >Communications End Points</A>
+
+<LI>
+
+<A HREF="#E70E27" >Network Interface Statistics</A></UL>
+
+<LI>
+
+<A HREF="#E69E468" >ping</A></UL>
+
+<LI>
+
+<A HREF="#E68E352" >SLIP Connections</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E469" >Static IP Addresses</A>
+
+<LI>
+
+<A HREF="#E69E470" >Dynamic IP Addresses</A>
+
+<LI>
+
+<A HREF="#E69E471" >dip</A></UL>
+
+<LI>
+
+<A HREF="#E68E353" >Setting Up PPP</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E472" >Setting Up a PPP Account</A>
+
+<LI>
+
+<A HREF="#E69E473" >Dialing Out chat</A>
+
+<LI>
+
+<A HREF="#E69E474" >Running pppd</A>
+
+<LI>
+
+<A HREF="#E69E475" >Checking Problems</A>
+
+<LI>
+
+<A HREF="#E69E476" >PPP Authentication</A></UL>
+
+<LI>
+
+<A HREF="#E68E354" >Summary</A></UL></UL></UL>
+
+<HR ALIGN=CENTER>
+
+<A NAME="E66E42"></A>
+
+<H1 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>42</B></FONT></CENTER></H1>
+
+<BR>
+
+<A NAME="E67E42"></A>
+
+<H2 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>Networking</B></FONT></CENTER></H2>
+
+<BR>
+
+<P>In this chapter, you will look at the world of networking. In particular, you will learn the following:
+
+<BR>
+
+<UL>
+
+<LI>What is TCP/IP?
+
+<BR>
+
+<BR>
+
+<LI>How do you set up Linux to use TCP/IP and Ethernet?
+
+<BR>
+
+<BR>
+
+<LI>What changes are necessary to your configuration files?
+
+<BR>
+
+<BR>
+
+<LI>How can you test and troubleshoot Ethernet connections?
+
+<BR>
+
+<BR>
+
+<LI>What is necessary for a SLIP and PPP connection?
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>Linux offers a complete implementation of Transmission Control Protocol/Internet Protocol (TCP/IP), the protocol used extensively on the Internet and that is commonly found in local area networks involving UNIX machines. All you need to create a 
+network, or to add your existing machine to a TCP/IP network, is a network card or network interface and some modifications to files already on your Linux system.
+
+<BR>
+
+<P>Whether you are setting up two machines in your room to talk to each other, or adding your Linux machine to an existing network of 5,000 workstations, the process is the same.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E348"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>What Is TCP/IP?</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>TCP/IP is an open networking protocol, which simply means that the technical description of all aspects of the protocol have been published. They are available for anyone to implement on their hardware and software. This open nature has helped make 
+TCP/IP very popular. Versions of TCP/IP are now available for practically every hardware and software platform in existence, which has helped make TCP/IP the most widely used networking protocol in the world. The advantage of TCP/IP for a network operating 
+system is simple: Interconnectivity is possible for any type of operating system and hardware platform that you might want to add.
+
+<BR>
+
+<P>TCP/IP is not a single protocol but a set of more than a dozen protocols. Each protocol within the TCP/IP family is dedicated to a different task. All the protocols that make up TCP/IP use the primary components of TCP/IP to send packets of data.
+
+<BR>
+
+<P>Transmission Control Protocol and Internet Protocol are two of the primary protocols in the TCP/IP family. The different protocols and services that make up the TCP/IP family can be grouped according to their purposes. The groups and their protocols are 
+the following:
+
+<BR>
+
+<P>Transport: These protocols control the movement of data between two machines.
+
+<BR>
+
+<UL>
+
+<UL>
+
+<P>TCP (Transmission Control Protocol): A connection-based service, meaning that the sending and receiving machines communicate with each other through a stream of messages. TCP has message delivery assurance routines incorporated into it.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>UDP (User Datagram Protocol): A connectionless service, meaning that the data is sent without the sending and receiving machines being in contact with each other. It's like sending snail-mail (regular postal service) with an address but no guarantee it 
+will arrive.
+
+<BR>
+
+</UL></UL>
+
+<P>Routing: These protocols handle the addressing of the data and determine the best routing to the destination. They also handle the way large messages are broken up and reassembled at the destination.
+
+<BR>
+
+<UL>
+
+<UL>
+
+<P>IP (Internet Protocol): Handles the actual transmission of data.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>ICMP (Internet Control Message Protocol): Handles status messages for IP, such as errors and network changes that can affect routing.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>RIP (Routing Information Protocol): One of several protocols that determine the best routing method.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>OSPF (Open Shortest Path First): An alternative protocol for determining routing.
+
+<BR>
+
+</UL></UL>
+
+<P>Network Addresses: These services handle the way machines are addressed, both by a unique number and a more common symbolic name.
+
+<BR>
+
+<UL>
+
+<UL>
+
+<P>ARP (Address Resolution Protocol): Determines the unique network hardware addresses of machines on the network based on their IP address.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>DNS (Domain Name System): Determines numeric addresses from machine names.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>RARP (Reverse Address Resolution Protocol): Determines IP addresses of machines on the network based on their network address (the opposite of ARP).
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>BOOTP (Boot Protocol): This starts up a network machine by reading the boot information from a server. BOOTP is commonly used for diskless workstations.
+
+<BR>
+
+</UL></UL>
+
+<P>User Services: These are applications users have access to.
+
+<BR>
+
+<UL>
+
+<UL>
+
+<P>FTP (File Transfer Protocol): This protocol efficiently transfers files from one machine to another. FTP uses TCP as the transport.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>TFTP (Trivial File Transfer Protocol): A simple file transfer method that uses UDP as the transport.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>TELNET: Allows remote logins so that a user on one machine can connect to another machine and behave as though they are sitting at the remote machine's keyboard.
+
+<BR>
+
+</UL></UL>
+
+<P>Gateway Protocols: These services help the network communicate routing and status information, as well as handle data for local networks.
+
+<BR>
+
+<UL>
+
+<UL>
+
+<P>EGP (Exterior Gateway Protocol): Transfers routing information for external networks.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>GGP (Gateway-to-Gateway Protocol): Transfers routing information between Internet gateways.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>IGP (Interior Gateway Protocol): Transfers routing information for internal networks.
+
+<BR>
+
+</UL></UL>
+
+<P>Others: These are services that don't fall into the categories just mentioned but that provide important services over a network.
+
+<BR>
+
+<UL>
+
+<UL>
+
+<P>NFS (Network File System): Allows directories on one machine to be mounted on another, and then accessed by users as though the directories were on the local machine.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>NIS (Network Information Service): Maintains user accounts across networks, simplifying logins and password maintenance.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>RPC (Remote Procedure Call): Allows remote applications to communicate with each other using function calls.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>SMTP (Simple Mail Transfer Protocol): A protocol for transferring electronic mail between machines.
+
+<BR>
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>SNMP (Simple Network Management Protocol): An administrator's service that sends status messages about the network and devices attached to it.
+
+<BR>
+
+</UL></UL>
+
+<P>All the TCP/IP protocol definitions are maintained by a standards body that is part of the Internet organization. Although changes to the protocols occasionally occur when new features or better methods of performing older functions are developed, the 
+new versions are almost always backward compatible.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E349"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Hardware Requirements</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>You can actually configure Linux to use TCP/IP without any network card or connection to a network, using a technique called loopback. Loopback is a method of instruction that enables part of TCP/IP to talk to another part without leaving the machine. 
+Essentially, you are creating a loop between a software exit and a software entry. Loopbacks are frequently used to test TCP/IP configurations, and some software requires a loopback to be in place for proper operation.
+
+<BR>
+
+<P>If you want to connect your Linux machine to a network, you need a network card. Linux uses Ethernet, a network system that was designed to provide TCP/IP support. A term you'll see often is packet, which is the bundle of data and routing instructions 
+that is assembled by TCP/IP and Ethernet to be sent over the network cables. All messages are broken into packets, then reassembled properly at the destination.
+
+<BR>
+
+<P>Linux requires an Ethernet card that is compatible with one of the network cards in the following list:
+
+<BR>
+
+<UL>
+
+<UL>
+
+<P>3Com 3C505
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>3Com 3C503/16
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Novell NE1000
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Novell NE2000
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Western Digital WD8003
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Western Digital WD8013
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Hewlett-Packard HP27245
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Hewlett-Packard HP27247
+
+</UL></UL>
+
+<UL>
+
+<UL>
+
+<P>Hewlett-Packard HP27250
+
+<BR>
+
+</UL></UL>
+
+<P>Most Ethernet cards available are compatible with one of these cards, but you should carefully check the documentation with the card to ensure you don't buy a network card that won't work properly.
+
+<BR>
+
+<P>If you plan to do your networking over the telephone (using a serial port and a modem), you don't need a network card, but you will need a fast modem compatible with the service you are planning to use. For example, to use SLIP (Serial Line Interface 
+Protocol), you generally need a modem supporting at least V.32bis speeds (14.4kbps).
+
+<BR>
+
+<BR>
+
+<A NAME="E68E350"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Configuring Linux Files</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Let's assume you have a typical PC and an Ethernet card, and you want to set up your machine to run TCP/IP over the network. In most cases, the procedure described next will work. However, because there are many versions of Linux, many potential 
+conflicts with other cards and software, and unique software requirements for some systems, this should be considered a guide.
+
+<BR>
+
+<P>If, after following these instructions, your TCP/IP network doesn't work properly, it's time to carefully scan all the configuration files and error messages for a clue to the problem. Also, don't forget about the Linux UseNet newsgroups, Linux User 
+Groups, and other sources of information about Linux from which you can get help.
+
+<BR>
+
+<P>To configure the TCP/IP files, you must have installed the networking software on your system. If you haven't installed the networking portions of the distribution, you must do so before proceeding. Your kernel must also have been configured and 
+recompiled with network support added. This is usually done during the installation process, although some users will have to force the kernel recompilation manually if they installed their software in a nonstandard manner.
+
+<BR>
+
+<P>First we'll deal with the use of a network card, and then look at how to change the basic process to handle SLIP over a serial port and modem.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E464"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>What You Need Before You Start</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Before you start modifying system files, take a few minutes to determine a few basic pieces of information you'll need. It is advisable to write these down somewhere so that they will be handy when you need them, and also so that you won't enter two 
+different values in two files, thereby causing major problems for the system.
+
+<BR>
+
+<BR>
+
+<A NAME="E70E12"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>IP Address</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>First you need an IP address, a unique number for your machine. Every machine on the network has to be identified uniquely to allow proper routing. TCP/IP-based networks use 32-bit addresses to uniquely identify networks and all the devices that reside 
+within that network. These addresses are called Internet addresses or IP addresses.
+
+<BR>
+
+<P>The 32 bits of the IP address are broken into four 8-bit parts. Each 8-bit part can then have valid numbers ranging from 0 to 255. In IP addresses, the four 8-bit numbers are separated by a period, a notation called dotted quad. Examples of dotted quad 
+IP addresses are 255.255.255.255 and 147.14.123.8.
+
+<BR>
+
+<P>For convenience, IP addresses are divided into two parts: the network number and the device number within that network. This separation into two components allows devices on different networks to have the same host number. However, because the network 
+number is different, the devices are still uniquely identified.
+
+<BR>
+
+<P>For connection to the Internet, IP addresses are assigned by the Internet Network Information Center (NIC) based on the size of the network. Anyone who wants to connect to the Internet must register with the NIC to avoid duplication of network 
+addresses. If you don't plan to connect to the Internet, you are free to create your own numbering scheme, although future expansion and integration with Internet-using networks can cause serious problems.
+
+<BR>
+
+<P>For maximum flexibility, IP addresses are assigned according to network size. Networks are divided into three categories: Class A, Class B, and Class C. The three network classes break the 32-bit IP addresses into different sizes for the network and 
+host identifiers.
+
+<BR>
+
+<P>A Class A address uses one byte for the network address and three bytes for the device address, allowing more than 16 million different host addresses. Class B networks use two bytes for the network and two bytes for the host. Because 16 bits allows 
+more than 65,000 hosts, only a few large companies will be limited by this type of class. Class C addresses have three bytes for the network and one for the number of hosts. This provides for a maximum of 254 hosts (the numbers 0 and 255 are reserved) but 
+many different network IDs. The majority of networks are Class B and Class C.
+
+<BR>
+
+<P>You do have a limitation as to the first value. A Class A network's first number must be between 0 and 127, Class B addresses are between 128 and 191, and Class C addresses are between 192 and 223. This is because of the way the first byte is broken up, 
+with a few of the bits at the front saved to identify the class of the network. Also, you can't use the values 0 and 255 for any part, because they are reserved for special purposes.
+
+<BR>
+
+<P>Messages sent using TCP/IP use the IP address to identify sending and receiving devices, as well as any routing information put within the message headers. If you are going to connect to an existing network, you should find out what their IP addresses 
+are and what numbers you can use. If you are setting up a network for your own use but plan to connect to the Internet at some point, contact the Network Information Center for an IP address. On the other hand, if you are setting up a network for your own 
+use and don't plan to have more than a telephone connection to other networks (including the Internet), you can make up your own IP addresses.
+
+<BR>
+
+<P>If you are only setting up a loopback driver, you don't even need an IP address. The default value for a loopback driver is 127.0.0.1.
+
+<BR>
+
+<BR>
+
+<A NAME="E70E13"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Network Mask</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>Next, you need a network mask. This is pretty easy if you have picked out an IP address. The network mask is the network portion of the IP address set to the value 255, and it's used to blank out the network portion to determine routing.
+
+<BR>
+
+<P>If you have a Class C IP address (three bytes for network and one for devices), your network mask is 255.255.255.0. A Class B network has a network mask of 255.255.0.0, and a Class A network mask is 255.0.0.0.
+
+<BR>
+
+<P>If you are configuring only a loopback driver, your network mask is 255.0.0.0 (Class A). If you have a complex network setup with subnets or shared IP addresses, you should consult your network administrator for more information about setting your 
+network mask and IP address.
+
+<BR>
+
+<BR>
+
+<A NAME="E70E14"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Network Address</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>The network address is, strictly speaking, the IP address bitwise-ANDed to the netmask. In English, what this means is that it's the network portion of your IP address, so if your IP address is 147.120.46.7 and it's a Class B network, the network 
+address is 147.120.0.0.
+
+<BR>
+
+<P>To get your own network address, just drop the device-specific part of the IP address and set it to zero. A Class C network with an IP address of 201.12.5.23 has a network address of 201.12.5.0.
+
+<BR>
+
+<P>If you're only working with a loopback address, you don't need a network mask.
+
+<BR>
+
+<BR>
+
+<A NAME="E70E15"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Broadcast Address</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>The broadcast address is used when a machine wants to send the same packet to all devices on the network. To get your broadcast address, you set the device portion of the IP address to 255. Therefore, if you have the IP address 129.23.123.2, your 
+broadcast address will be 129.23.123.255. Your network address will be 129.23.123.0.
+
+<BR>
+
+<P>If you are configuring only a loopback driver, you needn't worry about the broadcast address.
+
+<BR>
+
+<BR>
+
+<A NAME="E70E16"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Gateway Address</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>The gateway address is the IP address of the machine that is the network's gateway out to other networks (such as the Internet). You need a gateway address only if you have a network that has a dedicated gateway out. If you are configuring a small 
+network for your own use and don't have a dedicated Internet connection, you don't need a gateway address.
+
+<BR>
+
+<P>Normally, gateways have the same IP address as your machines, but they have the digit 1 as the device number. For example, if your IP address is 129.23.123.36, chances are that the gateway address is 129.23.123.1. This convention has been used since the 
+early days of TCP/IP.
+
+<BR>
+
+<P>Loopback drivers do not require a gateway address, so if you are configuring your system only for loopback, ignore this address.
+
+<BR>
+
+<BR>
+
+<A NAME="E70E17"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Nameserver Address</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>Many larger networks have a machine whose purpose is to translate IP addresses into English-like names, and vice versa. It is a lot easier to call a machine bobs_pc instead of 123.23.124.23. This translation is done with a system called the Domain Name 
+System (DNS). If your network has a name server, that's the address you need. If you want to have your own machine act as a name server (which requires some extra configuration not mentioned here), use the loopback address 127.0.0.1.
+
+<BR>
+
+<P>Loopback drivers don't need a name server because the machine only talks to itself. Therefore, you can ignore the nameserver address if you are only configuring a loopback driver.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E465"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Setting Up the Dummy Interface</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>What's a dummy interface? It's a bit of a trick to give your machine an IP address to work with when it uses only SLIP and PPP interfaces. A dummy interface solves the problem of a stand-alone machine (no network cards connecting it to other machines) 
+whose only valid IP address to send data to is the loopback driver (127.0.0.1). While SLIP and PPP may be used for connecting your machine to the outside world, when the interface is not active you have no internal IP address that applications can use.
+
+<BR>
+
+<P>The problem arises with some applications that require a valid IP address to work. Some word processors and desktop layout tools, for example, require the TCP/IP system to be operational with an IP address for the target machine. The dummy interface 
+essentially sets an IP address for your local machine that is valid as far as TCP/IP is concerned, but doesn't really get used except to fool applications.
+
+<BR>
+
+<P>Creating a dummy interface is very simple. If your machine has an IP address already assigned for it in the /etc/hosts file, all you need to do is set up the interface and create a route. The two commands required are
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">ifconfig dummy machine_name
+
+route add machine_name</FONT></PRE>
+
+<P>where machine_name is your local machine's name (such as darkstar). This will create a link to your own IP address. If you do not have an IP address for your machine in the /etc/hosts file, add one before you create the dummy interface.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E466"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Configuration Files</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Configuring Linux for TCP/IP is not difficult because only a few configuration files need to have the information about IP address and such added to them. You can do this with any editor as long as it saves the files in ASCII format. It is advisable to 
+make copies of the configuration files before you modify them, just in case you damage the format in some way.
+
+<BR>
+
+<P>Many of these files are similar in every version of UNIX, including most versions of Linux, except for one or two slight naming variations. If you've ever set up a UNIX system (or snooped around one in detail), these files and steps might seem familiar. 
+If you haven't done anything with Linux or UNIX before, just take it one step at a time and follow the instructions!
+
+<BR>
+
+<BR>
+
+<A NAME="E70E18"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>rc</B><B> Files</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>Linux reads the rc (run command) files when the system boots. The init program initiates the reading of these files, and they usually serve to start processes such as mail, printers, cron, and so on. They are also used to initiate TCP/IP connections. 
+Most Linux systems have the rc command files in the directory /etc/rc.d.
+
+<BR>
+
+<P>The files of interest to TCP/IP, at least as far as Red Hat Linux is concerned, are under the /etc/rc.d/rc2.d directory. The files in this directory start different TCP/IP services. The names of most of the files identify their purposes. For example, 
+the file K20nfs deals with starting the NFS service.
+
+<BR>
+
+<P>If you want to change services that are started when Red Hat Linux boots, you can edit these files with as ASCII editor. Identify the file that is involved with the service you need to modify (you can often use grep to find the right file, or you can 
+look through them all with more). Whichever file is involved, look for a line that refers to the service. In some cases, this line or lines will be commented out (have a pound sign as the first character) to prevent the system from trying to run them. If 
+the lines are commented out, remove the comment symbol.
+
+<BR>
+
+<BR>
+
+<A NAME="E70E19"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>/etc/hosts</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>The /etc/hosts file is a simple list of IP addresses and the hostnames to which they correspond. This is a good location to list all your favorite machines so that you can use the name and have the system look up the IP address. On very small networks, 
+you can add all the machines in the network here and avoid the need to run the nameserver.
+
+<BR>
+
+<P>Every /etc/hosts file will have an entry for localhost (also called loopback, IP address 127.0.0.1) and probably one for your machine if you named it when you installed the software. If you didn't supply a name and there is no line other than localhost, 
+you can add it now. Use an editor and set your IP address and machine name. Don't bother adding too many other machines until you're sure the network works properly! Here's a sample /etc/hosts file:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">127.0.0.1 localhost
+
+147.12.2.42 merlin.tpci merlin</FONT></PRE>
+
+<P>You will notice that the format is quite simple: an IP address in one column and the name in another column, separated by tabs. If the machine may have more than one name, supply them all. In the example, which uses random numbers for the IP address, 
+the machine 147.12.2.42 has the name merlin. Since it is also part of a larger network called tpci, the machine can be addressed as merlin.tpci. Both names on the line ensure that the system can resolve either name to the same address.
+
+<BR>
+
+<P>You can expand the file a little if you want by adding other machines on your local network, or those you will communicate with regularly:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">127.0.0.1 localhost
+
+147.12.2.42 merlin.tpci merlin
+
+147.12.2.43 wizard.tpci wizard
+
+147.12.2.44 arthur.tpci arthur bobs_machine
+
+147.12.2.46 lancelot.tpci lancelot</FONT></PRE>
+
+<P>In this example, there are several machines from the same network (the same network mask). One has three different names.
+
+<BR>
+
+<P>If you are only using the loopback driver, the only line that should be in the file is for the IP address 127.0.0.1 with the name localhost and your machine's name after it.
+
+<BR>
+
+<BR>
+
+<A NAME="E70E20"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>/etc/networks</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>The /etc/networks file lists names and IP address of your own network and other networks you connect to frequently. This file is used by the route command. One advantage of this file is that it lets you call remote networks by name, so instead of typing 
+149.23.24, you can type eds_net.
+
+<BR>
+
+<P>The /etc/networks file should have an entry for every network that will be used with the route command if you plan on using the network name as an identifier. If there is no entry, errors will be generated, and the network won't work properly. On the 
+other hand, if you don't need to use a network name instead of its IP address, then you can skip the /etc/networks file.
+
+<BR>
+
+<P>A sample /etc/networks file using random IP addresses is shown next. Remember that you need only the network mask and not the device portion of a remote machine's IP address, although you must fill in the rest with zeroes.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">loopback 127.0.0.0
+
+localnet 147.13.2.0
+
+eds_net 197.32.1.0
+
+big_net 12.0.0.0</FONT></PRE>
+
+<P>At a minimum, you should have a loopback and localnet address in the file.
+
+<BR>
+
+<BR>
+
+<A NAME="E70E21"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>/etc/host.conf</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>The system uses the host.conf file to resolve hostnames. It usually contains two lines that look like this:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">order hosts, bind
+
+multi on</FONT></PRE>
+
+<P>These tell the system to first check the /etc/hosts file, then check the nameserver (if one exists) when trying to resolve a name. The multi entry lets you have multiple IP addresses for a machine in the /etc/hosts file (which happens with gateways and 
+machines on more than one network).
+
+<BR>
+
+<P>If your /etc/host.conf file looks like these two lines, you don't need to make any changes at all.
+
+<BR>
+
+<BR>
+
+<A NAME="E70E22"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>resolv.conf</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>The resolv.conf file is used by the name resolver program. It gives the address of your name server (if you have one) and your domain name (if you have one). You will have a domain name if you are on the Internet.
+
+<BR>
+
+<P>A sample resolv.conf file for the system merlin.tpci.com has an entry for the domain name, which is tpci.com (merlin is the name of an individual machine):
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">domain tpci.com</FONT></PRE>
+
+<P>If a name server is used on your network, you should add a line that gives its IP address:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">domain tpci.com
+
+nameserver 182.23.12.4</FONT></PRE>
+
+<P>If there are multiple name servers, which is not unusual on a larger network, each name server should be specified on its own line.
+
+<BR>
+
+<P>If you don't have a domain name for your system, you can safely ignore this file for the moment.
+
+<BR>
+
+<BR>
+
+<A NAME="E70E23"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>/etc/protocols</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>UNIX systems use the /etc/protocols file to identify all the transport protocols available on the system and their respective protocol numbers. (Each protocol supported by TCP/IP has a special number, but that's not really important at this point.) 
+Usually, this file is not modified but is maintained by the system and updated automatically as part of the installation procedure when new software is added.
+
+<BR>
+
+<P>The /etc/protocols file contains the protocol name, its number, and any alias that may be used for that protocol. A sample /etc/protocols file looks like this:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"># Internet protocols (IP)
+
+ip 0 IP
+
+icmp 1 ICMP
+
+ggp 3 GGP
+
+tcp 6 TCP
+
+egp 8 EGP
+
+pup 12 PUP
+
+udp 17 UDP
+
+hello 63 HELLO</FONT></PRE>
+
+<P>If your entries don't match this, don't worry. You shouldn't have to make any changes to this file at all, but you should know what it does.
+
+<BR>
+
+<BR>
+
+<A NAME="E70E24"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>/etc/services</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>The /etc/services file identifies the existing network services. This file is maintained by software as it is installed or configured.
+
+<BR>
+
+<P>This file consists of the service name, a port number, and the protocol type. The port number and protocol type are separated by a slash, following the conventions mentioned in previous chapters. Any optional service alias names follow. Here's a short 
+extract from a sample /etc/services file:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"># network services
+
+echo 7/tcp
+
+echo 7/udp
+
+discard 9/tcp sink null
+
+discard 9/udp sink null
+
+ftp 21/tcp
+
+telnet 23/tcp
+
+smtp 25/tcp mail mailx
+
+tftp 69/udp
+
+# specific services
+
+login 513/tcp
+
+who 513/udp whod</FONT></PRE>
+
+<P>You shouldn't change this file at all, but you do need to know what it is and why it is there to help you understand TCP/IP a little better.
+
+<BR>
+
+<BR>
+
+<A NAME="E70E25"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>/etc/hostname or /etc/HOSTNAME</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>The file /etc/HOSTNAME is used to store the name of the system you are on. (Red Hat Linux uses the uppercase version of the name.) This file should have your local machine's name in it:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">merlin.tpci</FONT></PRE>
+
+<P>That's all it needs. The host name is used by most protocols on the system and many applications, so it is important for proper system operation. The host name can be changed by editing the system file and rebooting the machine, although many operating 
+systems provide a utility program to ensure that this process is performed correctly.
+
+<BR>
+
+<P>Linux systems have a utility called hostname, which displays the current setting of the system name, as well as the uname program, which can give the node name with the command uname -n. When issued, the hostname and uname commands echo the local 
+machine name, as the following sample session shows:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ hostname
+
+merlin.tpci.com
+
+$ uname -n
+
+merlin</FONT></PRE>
+
+<P>All the configuration files necessary for TCP/IP to function have now been set properly, so you should be able to reboot the machine and see what happens.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E351"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Testing and Troubleshooting</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>To try out TCP/IP, reboot your machine and carefully watch the messages displayed on-screen. If you see any error messages, they may help guide you to the faulty file or process. Otherwise, you will see the TCP/IP daemons load one after another.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E467"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>The </B><B>netstat</B><B> Command</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Probably the best approach to checking on TCP/IP is to use the netstat command, which gives you many different summaries of all network connections and their status. The netstat program provides comprehensive information. It's the program most commonly 
+used by administrators to quickly diagnose a problem with TCP/IP.
+
+<BR>
+
+<P>There are many more netstat options than the ones mentioned in the next sections. For more information on netstat, start with the man page on the Linux system, then check a good UNIX networking book.
+
+<BR>
+
+<BR>
+
+<A NAME="E70E26"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Communications End Points</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>The netstat command with no options shows information on all active communications end points (where data is actually being transferred or communications are established). To display all end points (active and passive), netstat uses the -a option.
+
+<BR>
+
+<P>The netstat output is formatted in columns that show the protocol (Proto), the amount of data in the receive and send queues (Recv-Q and Send-Q), the local and remote addresses, and the current state of the connection. Here's a truncated sample output:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">merlin&gt; netstat -a
+
+Active Internet connections (including servers)
+
+Proto Recv-Q Send-Q Local Address Foreign Address (state)
+
+ip 0 0 *.* *.*
+
+tcp 0 2124 tpci.login oscar.1034 ESTABL.
+
+tcp 0 0 tpci.1034 prudie.login ESTABL.
+
+tcp 11212 0 tpci.1035 treijs.1036 ESTABL.
+
+tcp 0 0 tpci.1021 reboc.1024 TIME_WAIT
+
+tcp 0 0 *.1028 *.* LISTEN
+
+tcp 0 0 *.* *.* CLOSED
+
+udp 0 0 localhost.1036 localhost.syslog
+
+udp 0 0 *.1034 *.*
+
+udp 0 0 *.* *.*
+
+udp 0 0 *.* *.*</FONT></PRE>
+
+<P>This excerpt has three active TCP connections, as identified by the state ESTABL., with one that has data being sent (as shown in the Send-Q column). An asterisk means that no end point is yet associated with that address.
+
+<BR>
+
+<BR>
+
+<A NAME="E70E27"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Network Interface Statistics</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>The behavior of the network interface (such as the network interface card) can be shown with the netstat -i option. This quickly shows administrators whether there are major problems with the network connection. The meaning of each column in the netstat 
+command output is intuitive from the title, but if you need clarification check the man page on netstat.
+
+<BR>
+
+<P>Routing tables are continually updated to reflect connections to other machines. To obtain information about the routing tables (if there are any on your system), the netstat -r option is used.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E468"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>ping</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The ping (Packet Internet Groper) program is used to query another system and ensure a connection is active. The ping program operates by sending a request to the destination machine for a reply. If the destination machine's IP software receives the 
+request, it issues a reply immediately.
+
+<BR>
+
+<P>The sending machine will continue to send requests until the ping program is terminated with a break sequence. After termination, ping displays a set of statistics. A sample ping session is shown as follows:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">prudie&gt; ping merlin
+
+PING merlin: 64 data bytes
+
+64 bytes from 142.12.130.12: icmp_seq=0 time=20.0 ms
+
+64 bytes from 142.12.130.12: icmp_seq=1 time=10.1 ms
+
+64 bytes from 142.12.130.12: icmp_seq=2 time=10.3 ms
+
+64 bytes from 142.12.130.12: icmp_seq=3 time=20.2 ms
+
+64 bytes from 142.12.130.12: icmp_seq=4 time=10.1 ms
+
+64 bytes from 142.12.130.12: icmp_seq=5 time=10.2 ms
+
+64 bytes from 142.12.130.12: icmp_seq=6 time=10.1 ms
+
+&#151; merlin PING Statistics &#151;
+
+7 packets transmitted, 7 packets received, 0% packet loss
+
+round-trip (ms) min/avg/max = 10/12/20</FONT></PRE>
+
+<P>If ping was unable to reach the remote machine, it will display error messages. You can also ping the localhost, which will show if there is an error in the loopback driver configuration files.
+
+<BR>
+
+<P>The ping program is useful because it provides four important pieces of information: whether the TCP/IP software is functioning correctly, whether a local network device can be addressed (validating its address), whether a remote machine can be accessed 
+(again validating the address and testing the routing), and verifying the software on the remote machine.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E352"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>SLIP Connections</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>SLIP connections are configured in much the same manner as the TCP/IP connections described earlier. SLIP is one method of using a modem (or other serial port device) to communicate instead of a network card. SLIP is especially useful for connecting to 
+the Internet through service providers such as UUNET Technologies or NetCom.
+
+<BR>
+
+<P>For SLIP connections, two Linux programs are involved: dip and slattach. Both programs are used to initiate the SLIP connection. One of the two must be used to initiate the connection. You cannot dial into a SLIP line with a standard communications 
+program because of the special system calls SLIP uses.
+
+<BR>
+
+<P>dip and slattach have different purposes. The slattach program, which simply connects to the serial device, is used when there is a permanent connection to the SLIP server (no modem or setup handshaking is required). The dip program handles the 
+initiation of the connection, the login, and connection handshaking. If you use a modem to connect to a SLIP server, you should use dip. The dip program can also be used to configure your own system as a SLIP server, allowing others to call in to it.
+
+<BR>
+
+<P>SLIP is a fairly simple network protocol because only two devices are involved: yours and the server's. When the connection is established, SLIP sends an IP address that will be used for that connection. Some systems use the same IP address (static), 
+while others will have a different IP address each time a connection is made (dynamic). The configuration is slightly different for each type.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E469"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Static IP Addresses</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>A static connection requires that the IP addresses be included in the same files as for an Ethernet network connection. Your machine's IP address should be in the files /etc/hosts, host.conf, and resolv.conf. The gateway address should be the IP address 
+of the SLIP server. The SLIP device files used are sl0, sl1, sl2, and so on.
+
+<BR>
+
+<P>The only difference in configuration between Ethernet and SLIP is that you only want to execute the ifconfig and route programs for the loopback driver with SLIP. If you use dip to establish the SLIP connection, it will probably take care of this for 
+you, although some problems are occasionally encountered. In these cases, manual changes to the file should be made to allow ifconfig and route to be executed manually from the shell, or from inside a shell script.
+
+<BR>
+
+<P>The ifconfig routine might need to be modified with the argument pointopoint. SLIP is a variation of Point-to-Point Protocol (PPP). The line would look like this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">ifconfig sl0 147.123.12.2 pointopoint 121.12.234.2</FONT></PRE>
+
+<P>The first IP address (147.123.12.2) is your machine's IP address, and the numbers following the argument (121.12.234.2) are the IP address of the SLIP server.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E470"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Dynamic IP Addresses</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>If the SLIP server you are connecting to allocates IP addresses dynamically, you can't put an IP address in the configuration files, because it will change each time. Most SLIP servers display a message with the IP address when you connect, and dip can 
+capture these numbers and use them to alter the system parameters appropriately.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E471"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>dip</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The dip program greatly simplifies the connection to a SLIP server. To use it, you need a chat script that contains all the commands used to establish communications with the SLIP server during login. The chat script usually includes your login and 
+password too, automating the login process.
+
+<BR>
+
+<P>A sample dip chat script is included in the man pages for dip, so you should display the man page and read the contents, then save the file (by redirection or copying the man page source) and edit the script. Here's a sample chat script that you can 
+enter by hand if necessary, making sure you put in your own data:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"># Connection script for SLIP
+
+# Fetch the IP address of our target host.
+
+main:
+
+# Set the desired serial port and speed.
+
+port /dev/cua0
+
+speed 38400
+
+# Reset the modem and terminal line.
+
+reset
+
+# Prepare for dialing.
+
+send ATZ1\r
+
+wait OK 4
+
+if $errlvl != 0 goto error
+
+dial 666-0999 ## Change to your server's number!
+
+if $errlvl != 0 goto error
+
+wait CONNECT 60
+
+if $errlvl != 0 goto error
+
+# We are connected. Log in to the system.
+
+login:
+
+sleep 3
+
+send \r\n\r\n
+
+wait merlin&gt; 20 ## Change to your server's prompt
+
+if $errlvl != 0 goto error
+
+send login\n
+
+wait name: 10 ## Wait username: prompt
+
+if $errlvl != 0 goto erro
+
+send login_name\n ## Change to your own
+
+wait ord: 10 ## Wait password prompt
+
+if $errlvl != 0 goto error
+
+send my_password\n ## Change to your own!
+
+wait merlin&gt; 10
+
+if $errlvl != 0 goto error
+
+send slip\n ## Change to suit your server
+
+wait SLIP 30 ### Wait for SLIP prompt
+
+if $errlvl != 0 goto error
+
+get $local remote 10 ## Assumes the server sends your IP..
+
+if $errlvl != 0 goto error ## address as soon as you enter slip.
+
+get $remote merlin ## slip server address from /etc/hosts
+
+done:
+
+print CONNECTED to $remote with address $rmtip we are $local
+
+default
+
+mode SLIP
+
+goto exit
+
+error:
+
+print SLIP to $host failed.
+
+exit:
+
+# End dip script</FONT></PRE>
+
+<P>Several different variations of the chat scripts are currently available, including a few on most CD-ROM distributions. If you have access to the Internet, you can find them on some FTP sites or posted on a Linux newsgroup.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E353"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Setting Up PPP</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>PPP is a more talented and faster protocol than SLIP and is preferable for most uses. The configuration, however, is a little more complex than SLIP's. Linux divides the PPP functions into two parts: one for the High-Level Data Link Control (HLDC) 
+protocol which helps define the rules for sending PPP datagrams to between the two machines, and one for the PPP daemon, called pppd, which handles the protocol once the HLDC system has established communications parameters. In addition, Linux includes a 
+program called chat that can be used to call a remote system, although there are several other applications that make use of PPP for the same reason. One popular communications package for this purpose is Kermit.
+
+<BR>
+
+<P>As with SLIP, PPP establishes a modem link between the two machines, and then hands over the control of the line to PPP. As the user, you never get to see a shell prompt or login, as PPP handles it all for you. Both HLDC and pppd are complex utilities 
+with many options available to fine-tune their behavior. Because you will never use most of these options, we can safely ignore all but the most important aspects necessary to get a PPP connection up and running properly.
+
+<BR>
+
+<P>Prior to establishing a PPP link, you must have a loopback driver established. You should also have a name resolution system in operation, even if it's the /etc/hosts file or a simple DNS cache-only name server.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E472"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Setting Up a PPP Account</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>It is best to use PPP with a special user account called PPP for optimum protection and behavior. This is not necessary, and you can easily use PPP from any user account, but for more secure operation, you should consider creating a ppp user. The 
+process is simple. First, you need to add a new user to the /etc/passwd file. You can use whatever script your system normally uses to add new users, or edit the /etc/passwd file yourself.
+
+<BR>
+
+<P>A sample /etc/passwd entry for the ppp account (with UID set to 201 and GID set to 51) looks like this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">ppp:*:201:51:PPP account:/tmp:/etc/ppp/pppscript</FONT></PRE>
+
+<P>In this case, the account is set with no password (so that no one can log into the account) and a home directory of /tmp (because no files are created). The startup program is set to /etc/ppp/pppscript, a file you create with the configuration 
+information in it (you can use any filename, of course). A sample contents for the pppscript file looks like this:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">#!/bin/sh
+
+mesg n
+
+stty -echo
+
+exec pppd -detach silent modem crtscts</FONT></PRE>
+
+<P>The first line forces execution of the script into the Bourne shell. The second command turns off all attempts to write to the ppp account's tty. The stty command is necessary to stop everything the remote sends being echoed again. Finally, the exec 
+command runs the pppd daemon (which handles all PPP traffic). You will see the pppd daemon and the options later in this section.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E473"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Dialing Out </B><B>chat</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>PPP requires you to establish a modem connection to the remote machine before it can take over and handle the communications. Several utilities are available to do this, the most commonly used of which is chat. The chat program is popular because it 
+uses a scripting style similar to that used by UUCP (see <A HREF="rhl43.htm">Chapter 43</A>, &quot;UUCP&quot;).
+
+<BR>
+
+<P>To use chat, you have to assemble a command line that looks almost the same as a UUCP /etc/Systems file entry. For example, to call a remote machine with a Hayes-compatible modem (using the AT command set) at the number 555-1234, you use the following 
+command, which is all formatted as a &quot;chat script,&quot; UUCP style:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">chat &quot;&quot; ATZ OK ATDT5551234 CONNECT &quot;&quot; ogin: ppp word: secret1</FONT></PRE>
+
+<P>If you read the UUCP chapter, this may look familiar. If not, all the entries are in a &quot;send-expect&quot; format, with what you send to the remote specified after what you receive from it. The chat script always starts with an expect string, which 
+we must set to be empty because the modem won't talk to us without any signal to it. After the empty string, we send the ATZ (reset) command, wait for an &quot;OK&quot; back from the modem, and then send the dial command. Once a CONNECT message is received 
+back from the modem, the login script for the remote machine is executed: we send a blank character, wait for the ogin: (login) prompt, send the login name ppp, wait for word: (password) prompt, and then send our password. After the login is complete, chat 
+terminates but leaves the line open.
+
+<BR>
+
+<P>If you want to see all the activity that goes on with the chat program, you can force all messages to the syslog daemon for future study. The -v option forces the messages to syslog, so the command would be:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">chat -v &quot;&quot; ATZ OK ATDT5551234 CONNECT &quot;&quot; ogin: ppp word: secret1</FONT></PRE>
+
+<P>If the other end of the connection doesn't answer with a login script as soon as their modem answers, you may have to force a BREAK command down the line to jog the remote end. This is done in the same way as with UUCP:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">chat -v &quot;&quot; ATZ OK ATDT5551234 CONNECT &quot;&quot; ogin:-BREAK-ogin: ppp word: secret1</FONT></PRE>
+
+<P>There's a security problem with this type of chat entry, as any user doing a ps -ef command will see the entire command line (with its passwords). If you are the only user of your system, this isn't a concern, but to save yourself any problems you can 
+embed the script portion of the command in a file and read the file into chat. The script will not appear on a ps output, then. To call a file for use with chat, use the -f option:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">chat -f chat_file</FONT></PRE>
+
+<P>The chat_file will contain the string:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">&quot;&quot; ATZ OK ATDT5551234 CONNECT &quot;&quot; ogin: ppp word: secret1</FONT></PRE>
+
+<P>The chat script can help you detect common error conditions such as a line busy or no connection established. The messages from your modem (Hayes uses BUSY and NO CARRIER) are embedded in the chat script with the ABORT option, which allows you to exit 
+gracefully from the chat script if one of these error conditions occurs.
+
+<BR>
+
+<P>To handle these abort conditions, you embed the chat keyword ABORT, followed by the message that should trigger an abort, prior to your normal chat script. For example, to modify the chat script above to abort on a BUSY or NO CARRIER message from the 
+modem, the script would look like this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">ABORT BUSY ABORT 'NO CARRIER' &quot;&quot; ATZ OK ATDT5551234 CONNECT &quot;&quot; ogin: ppp word: secret1</FONT></PRE>
+
+<P>We needed two ABORT commands, as each takes only one argument. The rest of the chat script is as usual. Note the need to put quotation marks around the NO CARRIER message as the space in the middle would confuse the script otherwise.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E474"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Running </B><B>pppd</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>To set up a PPP connection, you need to invoke the pppd daemon. If you have a PPP connection already established and your machine is logged into a remote using the ppp account, you can start the pppd daemon. If we assume your local machine is using the 
+device /dev/cua1 for its PPP connection at 38,400 baud, you would start up the pppd daemon with this command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">pppd /dev/cua1 38400 crtscts defaultroute</FONT></PRE>
+
+<P>This command tells the Linux kernel to switch the interface on /dev/cua1 to PPP, and to establish an IP link to the remote machine. The crtscts option, which is usually used on any PPP connection about 9,600 baud, switches on hardware handshaking. The 
+IP address the local system will use is taken from the local hostname unless one is specified on the pppd command line (which you will seldom need to do, as the local host IP address should be correct for the PPP line).
+
+<BR>
+
+<P>Other than the machine's default values, you can add the addresses with an option to pppd. The general format is to specify the local IP address, a colon, and then the remote IP address. For example, the option
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">147.23.43.1:36.23.1.34</FONT></PRE>
+
+<P>when added to the pppd command line sets the local IP address as 147.23.43.1 and the remote IP address to 36.23.1.34, regardless of that the local values are. If you only want to modify one IP address, leave the other portion blank. The command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">147.23.43.1:</FONT></PRE>
+
+<P>sets the local IP address and accepts the remote IP address as whatever the machine sends.
+
+<BR>
+
+<P>Because you need chat to establish the connection in the first place, you can embed the chat command as part of the pppd command. This is best done when reading the contents of the chat script from a file (using the -f option). For example, you could 
+issue the following pppd command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">pppd connect &quot;chat -f chat_file&quot; /dev/cua1 38400 -detach crtscts modem defaultroute</FONT></PRE>
+
+<P>You will notice a few modifications to the pppd command other than the addition of the chat command in quotation marks. The connect command specifies the dialup script that pppd should start with, while the -detach command tells pppd not to detach from 
+the console and move to background. The modem keyword tells pppd to monitor the modem port (in case the line drops prematurely) and hang up the line when the call is finished.
+
+<BR>
+
+<P>The pppd daemon begins setting up the connection parameters with the remote by exchanging IP addresses, then setting communications values. Once that is done, pppd sets the network layer on your Linux kernel to use the PPP link by setting the interface 
+to /dev/ppp0 (if it's the first PPP link active on the machine). Finally, pppd establishes a kernel routing table entry to point to the machine on the other end of the PPP link.
+
+<BR>
+
+<P>If you want to change the default behavior of the pppd daemon, you can do it through command line options or a control file. The file is a better approach if you want to change the parameters for every connection established using PPP.
+
+<BR>
+
+<P>Before completing the command line, pppd scans a number of possible options files. The more common file is /etc/ppp/options, which usually is used to set global defaults. An example of a /etc/ppp/options file looks like this:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"># /etc/ppp/options: global definitions
+
+domain merlin.com
+
+auth # force authentication
+
+usehostname # use local hostname for authentication
+
+lock # use file locking UUCP-style</FONT></PRE>
+
+<P>The domain is established with the domain keyname followed by the full domain name (minus the machine name). The next two lines above (auth and usehostname) deal with authentication of the PPP line, preventing unwanted usage and access. We will look at 
+authentication later in this section. The lock keyword tells pppd to use UUCP-style file locking to prevent device clashes. Locking should be used on all PPP systems to prevent problems.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E475"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Checking Problems</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The pppd daemon echoes all warnings and error messages to the syslog facility. If you used the -v option with the chat script, chat's messages are also sent to syslog. If you are having trouble with your PPP connections, you can check the syslog for 
+details and try to isolate the problem.
+
+<BR>
+
+<P>Unless there is an entry in the /etc/syslog.conf file that redirects incoming error and warning messages to another file, the messages are discarded by syslog. To save the messages from pppd and chat, add this line to the /etc/syslog.conf file:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">daemon.* /tmp/ppp-log</FONT></PRE>
+
+<P>This entry tells syslog to save any incoming messages from a daemon to the /tmp/ppp-log file. You can use any filename you want instead of /tmp/ppp-log. Many Linux versions of the syslog.conf file insist on tabs to separate the columns instead of 
+spaces. Once your script is working, remember to remove this line or the log file will grow quite large!
+
+<BR>
+
+<P>If you really want to watch what is going on with pppd, you can invoke a debugging option with the kdebug command followed by a number. There are three values for debugging, which are:
+
+<BR>
+
+<OL>
+
+<LI>1. general debug messages
+
+<BR>
+
+<BR>
+
+<LI>2. display incoming HLDC data
+
+<BR>
+
+<BR>
+
+<LI>3. display outgoing HLDC data
+
+<BR>
+
+<BR>
+
+</OL>
+
+<P>The numbers are added together to give the debug level you want. For example, the command kdebug 5 will display all general debug messages and all outgoing HLDC data. A value of 7 displays everything (this display gets very long!). You can send the 
+output to a file or the console.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E476"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>PPP Authentication</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>PPP is a wonderful protocol for modem-based communications, but it has one major problem: it has security holes large enough to drive a bus through. If even slightly incorrectly configured, anyone can use the PPP line to get into your machine, or use 
+the PPP line to get out to other systems. To help prevent this, authentication is often used. Authentication essentially makes sure that each end of the connection is who they say they are and are allowed to use the link. Authentication can also be used 
+with SLIP, but not many systems support it.
+
+<BR>
+
+<P>There are two authentication schemes used by PPP: the Password Authentication Protocol (PAP) and the Challenge Handshake Authentication Protocol (CHAP). PAP is much like a login procedure. When one machine sends the login name and password to the other, 
+the receiving machine verifies the information with a database on its end. While simple, PAP has the problem that anyone can tap into the line and monitor the passwords being sent.
+
+<BR>
+
+<P>CHAP solves this problem, and hence is the most favored form of authentication for PPP links. CHAP allows one machine to send a random string to the other, along with its hostname. The other end uses the hostname to look up the proper reply, combine it 
+with the first string, encrypt it, then resend it to the first machine along with its hostname. The first machine performs the same sort of manipulation on the random string it first sent, and if the two replies match, the authentication is complete. CHAP 
+doesn't authenticate only a start time, but at random intervals throughout the connection, which adds to its power.
+
+<BR>
+
+<P>When two machines connect they don't use authentication unless explicitly instructed to do so (see the auth entry in the /etc/ppp/options file, discussed earlier). When authentication is active, one end will try to use CHAP first, then, if that fails 
+because the other end doesn't support CHAP, it will use PAP. If neither authentication scheme is supported by the other end, the connection is terminated. If you are going to use authentication for all your PPP connections, put the auth entry in the 
+/etc/ppp/options file. If not all your connections support authentication, then those connections will fail if auth is specified.
+
+<BR>
+
+<P>The information needed for both CHAP and PPP are kept in two files called /etc/ppp/chap-secrets and /etc/ppp/ppp-secrets respectively. When authentication is active, one end will check the other for these files, trying CHAP first. If you are going to 
+use authentication for all your connections (which is a very good idea), you can build up the chap-secrets and pap-secrets files. If you configure both chap-secrets and pap-secrets and specify the auth option in /etc/ppp/options, no unauthenticated host 
+can connect to your machine.
+
+<BR>
+
+<P>The /etc/ppp/chap-secrets file consists of four columns for the client name, the server name, the secret password string, and an optional list of IP addresses. The behavior of the system is different depending on whether the local machine is being 
+challenged to authenticate itself, or is issuing a challenge to the remote. When the local machine has to authenticate itself, pppd examines the /etc/ppp/chap-secrets file for an entry in the client field that matches the local host name and the server 
+field equal to the remote hostname, then uses the string to build the authentication message. Such as entry in the /etc/ppp/chap-secrets file looks like this:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"># client server string addresses
+
+merlin.tpci.com big_guy.big_net.com &quot;I hate DOS&quot;</FONT></PRE>
+
+<P>This entry will use the string &quot;I hate DOS&quot; to build an authentication message back to big_guy.big_net.com. The quotations are necessary to surround the string in the file. (We will look at the addresses column in a moment.) If you are setting 
+up your system to connect to three different PPP remotes, you will want an entry for each server, so your file may look like this:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"># client server string addresses
+
+merlin.tpci.com big_guy.big_net.com &quot;I hate DOS&quot;
+
+merlin.tpci.com chatton.cats.com &quot;Meow, Meow, Meow&quot;
+
+merlin.tpci.com roy.sailing.ca &quot;Hoist the spinnaker&quot;</FONT></PRE>
+
+<P>When your machine is sending the challenge, the process is reversed. The pppd daemon looks for the remote hostname in the client field, the local hostname in the server field, and uses the string to compare the encryption results with the string sent 
+back by the remote. Entries in the /etc/ppp/chap-secrets file for this purpose look like this:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"># client server string addresses
+
+big_guy.big_net.com merlin.tpci.com &quot;Size isn't everything&quot;</FONT></PRE>
+
+<P>Again, you will have an entry for each remote machine you may need to authenticate. You can see that you will end up having mirror image entries for the client and server fields for each machine you connect to (as either end may require authentication 
+at any time). A simple /etc/ppp/chap-secrets file really looks like this:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"># client server string addresses
+
+merlin.tpci.com big_guy.big_net.com &quot;I hate DOS&quot;
+
+big_guy.big_net.com merlin.tpci.com &quot;Size isn't everything&quot;
+
+merlin.tpci.com chatton.cats.com &quot;Meow, Meow, Meow&quot;
+
+chatton.cats.com merlin.tpci.com &quot;Here, Kitty, Kitty&quot;
+
+merlin.tpci.com roy.sailing.ca &quot;Hoist the spinnaker&quot;
+
+roy.sailing.ca merlin.tpci.com &quot;Man overboard&quot;</FONT></PRE>
+
+<P>The size of the file could get quite large, so CHAP allows you to use a wildcard match, usually only for your local machine. For example, in the /etc/ppp/chap-secrets file below:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"># client server string addresses
+
+merlin.tpci.com big_guy.big_net.com &quot;I hate DOS&quot;
+
+big_guy.big_net.com merlin.tpci.com &quot;Size isn't everything&quot;
+
+merlin.tpci.com chatton.cats.com &quot;Meow, Meow, Meow&quot;
+
+chatton.cats.com merlin.tpci.com &quot;Here, Kitty, Kitty&quot;
+
+merlin.tpci.com roy.sailing.ca &quot;Hoist the spinnaker&quot;
+
+* merlin.tpci.com &quot;Man overboard&quot;</FONT></PRE>
+
+<P>The last entry allows any other machine connecting to the local host and requiring authentication to use the same string. Of course, the remote must have the same string in its chap-secrets file. This is a little less secure that a dedicated string for 
+each remote, but can be a handy time-saver when using a number of machines only rarely.
+
+<BR>
+
+<P>The addresses field, which wasn't used in the samples above, lets you list either symbolic names or IP addresses for the clients. This is necessary if the remote wants to use another IP address than its normal one, which would cause the authentication 
+to fail normally. If the addresses field is empty (as they all are in the samples), any IP address is allowed. A hyphen in the field disallows all IP addresses with that client.
+
+<BR>
+
+<P>The /etc/ppp/pap-secrets file is much the same as the chap-secrets file. The fields in the pap-secrets file are the client (called a user in the pap-secrets format) and server names, a secret string, and valid address aliases. However, the look of the 
+file is different because the client and server names are not full domain names and the secret string is a single block of text. A sample pap-secrets file looks like this:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"># /etc/ppp/pap-secrets
+
+# user server string addresses
+
+merlin darkstar yG55Sj29 darkstar.big_net.com
+
+darkstar merlin 5Srg7S merlin.tpci.com
+
+merlin chatton MeowMeow chatton.cats.com
+
+chatton merlin 73wrh6s merlin.tpci.com</FONT></PRE>
+
+<P>In this example, the first two lines show a connection to the machine darkstar. The first line is how we authenticate a request from darkstar, and the second how we authenticate a request from us to them. The user name in the first column is the name we 
+send to the remote, while the server field is their identification to us. This poses a problem: The pppd daemon has no way of knowing the remote hosts name, as all it gets is an IP address. You can put the IP address in the addresses column of the file, or 
+you can specify the remote host name at the end of the pppd command line like this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">pppd ..... remotename chatton user merlin</FONT></PRE>
+
+<P>This shows that the remote is called chatton, and our local host <A NAME="I2"></A>is merlin. The last portion giving the local host name override the default values, if specified.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E354"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Summary</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>In this chapter, you've seen how to install, configure, and test Ethernet connections to your Linux machine. You've also seen how to set up a SLIP or PPP connection. The only other networking process usually found on a Linux box uses UUCP (UNIX-to-UNIX 
+Copy), which is described in <A HREF="rhl43.htm">Chapter 43</A>, &quot;UUCP.&quot;
+
+<BR>
+
+<P>If you want to install a network to connect several of your machines (assuming you have more than one), you will find it quite easy and useful. If you have two machines, it is fast and efficient to connect a Linux machine and a DOS machine, as long as 
+the DOS machine is running TCP/IP. There are shareware versions of TCP/IP for Windows and many commercial implementations for both DOS and Windows, and TCP/IP is built into both Windows 95 and Windows NT.
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl41.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="#I0" TARGET="_self"><IMG SRC="purtop.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Page Top"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl43.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+</BODY></HTML>
+
+
+

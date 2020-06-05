@@ -1,0 +1,1078 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Red Hat Linux Unleashed rhl06.htm </TITLE>
+
+<LINK REL="ToC" HREF="index.htm">
+
+<LINK REL="Index" HREF="htindex.htm">
+
+<LINK REL="Next" HREF="rhl07.htm">
+
+<LINK REL="Previous" HREF="rhl05.htm"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+
+<A NAME="I0"></A>
+
+<H2>Red Hat Linux Unleashed rhl06.htm</H2>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl05.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl07.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+<HR ALIGN=CENTER>
+
+<P>
+
+<UL>
+
+<UL>
+
+<UL>
+
+<LI>
+
+<A HREF="#E68E34" >Starting (and Stopping!) Your Linux System</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E35" >What's This About Logging In?</A>
+
+<LI>
+
+<A HREF="#E69E36" >Why You Shouldn't Use the root Login</A>
+
+<LI>
+
+<A HREF="#E69E37" >Your First Login</A></UL>
+
+<LI>
+
+<A HREF="#E68E35" >Passwords</A>
+
+<LI>
+
+<A HREF="#E68E36" >Creating a New Login</A>
+
+<LI>
+
+<A HREF="#E68E37" >Logging Out</A>
+
+<LI>
+
+<A HREF="#E68E38" >Trying Out Your New Login</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E38" >Linux Error Messages</A>
+
+<LI>
+
+<A HREF="#E69E39" >Search Paths</A></UL>
+
+<LI>
+
+<A HREF="#E68E39" >Virtual Terminals</A>
+
+<LI>
+
+<A HREF="#E68E40" >Commands and Programs</A>
+
+<LI>
+
+<A HREF="#E68E41" >Summary</A></UL></UL></UL>
+
+<HR ALIGN=CENTER>
+
+<A NAME="E66E6"></A>
+
+<H1 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>6</B></FONT></CENTER></H1>
+
+<BR>
+
+<A NAME="E67E6"></A>
+
+<H2 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>Getting Started with Linux</B></FONT></CENTER></H2>
+
+<BR>
+
+<P>Congratulations! Now that you have successfully installed Linux, you can start using it. In this chapter we will look at the steps you need to take to begin working with Linux, including the following:
+
+<BR>
+
+<UL>
+
+<LI>Starting and stopping Linux
+
+<BR>
+
+<BR>
+
+<LI>Logging in and out
+
+<BR>
+
+<BR>
+
+<LI>Creating a new user with adduser
+
+<BR>
+
+<BR>
+
+<LI>Changing your password
+
+<BR>
+
+<BR>
+
+<LI>Using virtual terminals
+
+<BR>
+
+<BR>
+
+<LI>Displaying system users with who
+
+<BR>
+
+<BR>
+
+</UL>
+
+<BR>
+
+<A NAME="E68E34"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Starting (and Stopping!) Your Linux System</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Depending on the setup you chose during Linux installation and configuration, either Linux starts automatically when you power on your computer, or it requires you to type something (such as Linux) to specify that you want to boot Linux.
+
+<BR>
+
+<P>As your Linux system starts up, you see quite a few Linux initialization messages scroll through your screen. When Linux has completed its startup, you should see the following prompt:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Welcome to Linux 1.2.13.
+
+darkstar login:</FONT></PRE>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>A Linux system must always be shut down properly. Improper shutdown, such as simply turning off your system, can cause serious damage to your Linux system! When you are finished using your Linux system, you must shut it down properly, as described in 
+the next section. If you start to boot Linux, and then change your mind, you should let the system start up fully and then follow the shutdown procedure.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>Because you know how to start Linux, it's even more important to know how to shut it down properly. Like many UNIX systems, if Linux is not powered down properly, damage to files can result. The easiest way to ensure a proper shutdown is to press the 
+Ctrl, Alt, and Delete keys simultaneously. (This is the famous Ctrl-Alt-Delete &quot;three-finger salute&quot; used in DOS.)
+
+<BR>
+
+<P>Pressing Ctrl-Alt-Delete causes a number of advisory messages and Linux shutdown messages to be displayed. You must wait until the Linux shutdown procedure has finished, at which point your monitor shows the initial &quot;power-on&quot; screen, before 
+turning your computer off.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E35"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>What's This About Logging In?</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Linux waits for a login. A login is simply the name that you supply to Linux to identify yourself to the operating system. Linux keeps track of which names are permitted to log in or access the system, and only allows valid users to have access.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>If you supplied a name to your system when installing Linux, the system name is used at the prompt. In the login shown earlier, the system has been called darkstar. The system name enables you to identify your machine to others when using networks or 
+modem connections. Don't worry if you didn't name your system yet, because you can change the system's name at any time.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>Every login name on the system is unique. Normally, a password is assigned to each login, too. This secret password is like the identification number you use with your bank card to prove that you really are who you say you are. Also, the things you can 
+do with your login&#151;the login's privileges&#151;are controlled by Linux; different logins have different levels of privileges.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Usually, login names reflect a person's real name. Although you can't have two identically named logins on your system, you can easily create logins for users with the same (real) name by having one or two characters different. So, for example, the 
+login names suej and suek are treated by Linux as completely separate logins.
+
+<BR>Conversely, there is no reason that one human being (for instance, yourself) can't have two, three, or a dozen login names. In fact, because you will be the system administrator of your Linux system, you will have one or more administrative logins, and 
+one or more regular user logins.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>At the login prompt, try typing your name, your dog's name, or any other random name that occurs to you. None of these are valid logins (at least not yet). The system asks you for a password; it won't matter what you type, so just press Enter or type a 
+random string of characters. Because the logins are not valid on the system, Linux won't let you in. It displays the message Login incorrect to tell you that either the name or the password you entered is not valid.
+
+<BR>
+
+<P>The only valid login on your Linux system after installation is the most powerful and dangerous login Linux offers: root. In the section &quot;Creating a New Login,&quot; later in this chapter, we will create a safe login for you to use. This login can 
+have your name, your dog's name, or whatever else you choose.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>The login prompt is actually produced by a program called login whose only task is to accept your user ID and password, verify it, and then display a message preventing your access or letting you through to the next program that starts your user 
+session.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E69E36"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Why You Shouldn't Use the root Login</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>You will have to use the root login from time to time. Some things simply cannot be done on the Linux system without logging in as root. You should not, however, use the root login as your regular login. This is especially true if you are exploring the 
+system, poking around, and trying out new commands that may not do what you thought they would!
+
+<BR>
+
+<P>Linux, as you already know, is a multiuser, multitasking operating system. Multiuser means that several people can be using Linux at the same time (of course, you have to add some additional terminals to your system, or it will get very crowded around 
+the keyboard). Multitasking means that Linux can do more than one thing at a time. For example, you can spell-check a document while downloading information from some remote system. (Multiuser implies multitasking, because all users must be able to do 
+their own work at the same time.) Linux, therefore, is very good at juggling all these tasks, keeping them from interfering with each other, and providing safeguards so that you cannot damage the system or another user's work.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>The root login does not restrict you in any way. With one simple command, issued either on purpose or by accident, you can destroy your entire Linux installation. For this reason, use the root login only when necessary. Avoid experimenting with 
+commands when you do log in as root.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>When you log in as root, you become the system. The root login is also sometimes called the superuser login, and with good reason. To use an analogy, instead of being a passenger on an airplane, you suddenly have all the privileges of the flight crew, 
+the mechanics, and the cabin crew. &quot;Hmm, what does this do?&quot; becomes an extremely dangerous phrase when logged in as root.
+
+<BR>
+
+<P>One of the oldest stories in UNIX lore tells of new users who log in as root and, in ten keystrokes, destroy their system completely and irrevocably. But if you're careful to follow the steps given here, and stop and take a moment to think about the 
+commands you are giving, none of the &quot;How many new users does it take to nuke a system?&quot; jokes will apply to you!
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>System administrator is another term you will see often. A system administrator is the actual person who sets up and maintains the Linux system. The amount of work involved in system administration varies from system to system. A full-time system 
+administrator may be required in an office for powerful machines that have many users, peripheral units such as printers and tape drives, and are connected to a network. Your Linux system will not require that level of dedication!</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>System administration, because it deals with sensitive matters such as creating or deleting log-ins, requires superuser privileges. These privileges are provided by the root login. So, the sys-tem administrator is an actual person wielding superuser 
+powers gained by logging in as root.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E69E37"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Your First Login</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>After all the cautions about using the root login, we're going to have you log in as root. Because root is the only authorized login on a newly installed Linux system, this is unavoidable. Also, we will be performing a couple of important procedures 
+that require root privileges. However, after this first login, we will create a user ID that can prevent accidental damage to the operating system.
+
+<BR>
+
+<P>At the login prompt
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">darkstar login:</FONT></PRE>
+
+<P>type
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">root</FONT></PRE>
+
+<P>and press the Enter key.
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Password:</FONT></PRE>
+
+<P>Type in the root password that you set during installation and press the Enter key.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Linux is case-sensitive (as are all UNIX versions). A capital R is, to Linux, a completely different letter from a lowercase r. When you type Linux commands, you must use the proper case or Linux will not understand them. The majority of Linux 
+commands are typed in lowercase. This includes the login root; if you type Root or rOoT, Linux will reject the login.
+
+<BR>There is a curious exception, though. If you type the login IN ALL CAPITALS, the system will accept it&#151;but from then on, everything on your screen will be in capital letters! This is left over from the days when some terminals only had uppercase 
+letters. Although these terminals are now all gone or in museums, the login program retains this historical curiosity.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>After you have logged in as root, the system starts up a user session for you. At this point you should see the following on your screen:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">darkstar login: root
+
+Last login: Sun Dec 11 17:26:18 on tty1
+
+Linux 1.2.13.
+
+You have mail.
+
+If it's Tuesday, this must be someone else's fortune.
+
+darkstar:~#</FONT></PRE>
+
+<P>Linux tells you when the login for this user was last recorded (although this information may not appear the very first time you log in), and then provides you with some version information. Linux also tells you that this login has a mail message 
+waiting to be read. Finally, if games were installed on your system, Linux gives you a witty saying or aphorism.
+
+<BR>
+
+<P>It is always good practice to scan the line that starts with Last login, and check that the time given is correct. This is especially important if your Linux system is accessed by other users or connected to other systems. If the time given does not 
+look right, it could be that someone is using the login to break into your system, or using your username without your permission.
+
+<BR>
+
+<P>We will read the mail message later, after taking care of some important steps. If you are curious, the same mail message is sent by the install procedure when the operating system is installed. It concerns registration matters for Linux.
+
+<BR>
+
+<P>Your &quot;fortune&quot; is chosen randomly from a long list, so don't expect to see the same one shown in the previous example. If you didn't install the games package during the Linux installation routine, you won't see a fortune. You can install the 
+games package at any time.
+
+<BR>
+
+<P>The final line you see on the screen is the system prompt. This tells you that Linux is waiting for you to type in your commands&#151;it's prompting you for input. The system prompt also displays the following useful information:
+
+<BR>
+
+<UL>
+
+<LI>darkstar is the system name.
+
+<BR>
+
+<BR>
+
+<LI>The ~ character indicates your location in the file system (explained in <A HREF="rhl08.htm">Chapter 8</A>, &quot;The Linux File System&quot;).
+
+<BR>
+
+<BR>
+
+<LI>The # character usually specifically indicates that you're logged in as root (although the $ sign is used in some operating systems which makes it difficult to quickly ascertain whether you are logged in as root or a regular user). According to UNIX 
+conventions, regular user prompts are either % or $, depending on the shell; while # is reserved for root. These symbols are called shell prompts because they are used by the shell to prompt you for commands.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<BR>
+
+<A NAME="E68E35"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Passwords</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>In Linux (and just about all other UNIX systems) the superuser login name is root. No matter how humble or huge the system, if you can log in as root, the system is wide open for you to do whatever you want. Obviously, letting just anyone log in as root 
+is unacceptable because it exposes the system to too much potential for serious damage.
+
+<BR>
+
+<P>To prevent unauthorized access, the root login should always have a password, and that password should be secure. You may have noticed that the Red Hat installation requested that you set a root password during the installation process. Some Linux 
+installations do not set the root password; it is set to a null string, which is a word with no characters. With root and any other login, Linux does not bother asking for the password if it's the null string.
+
+<BR>
+
+<P>The null string is the least secure password there is, because anyone who knows a valid username (such as root) can access the system. It is up to you to change the password. Linux lets you choose what the new password will be, and accepts it without 
+complaint. Unfortunately, this can lead to a false sense of security.
+
+<BR>
+
+<P>It was noticed a long time ago that users chose passwords that they could easily remember: their dog's name, their birthday, their hometown, their spouse's name, and so on. The problem is that these passwords were also easy to break, either through 
+guessing or by more sophisticated means. This led some system administrators to insist on difficult-to-break, randomly picked passwords (such as S8t6WLk). People could not remember these passwords at all, so they wrote them down on pieces of paper and 
+stuck them on their desks. Others, who were trying to break into the system, would find these pieces of paper and gain use of that login.
+
+<BR>
+
+<P>The best passwords are ones with a combination of uppercase letters, lowercase letters, and numbers, that are still easy to remember. Fri13th, 22Skidoo, and 2Qt4U are just a few examples. These hard-to-guess passwords are known as strong passwords, 
+while easy-to-guess ones are called weak.
+
+<BR>
+
+<P>Of course, you should never use these exact passwords, or any other published sample passwords, because they're so easy to guess. There are many mischievous minds out there who, on strolling by a Linux system, might try root and Fri13th for the fun of 
+it. You don't want to be the one with the nightmare of getting your system broken into.
+
+<BR>
+
+<P>For the best security, passwords should be changed every so often. Many system administrators recommend once every two or three months as reasonable. This guards against dictionary-based guessing attacks, and also minimizes damage in cases in which the 
+password has been broken but nothing has really been done with it yet.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Don't leave your terminal unattended while you're logged in. The idly malicious may take the opportunity to make some changes to your files, or send a nasty mail message off to people you'd hate to alienate. Always log out or lock your terminal when 
+you leave.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>Of course, the amount of system security you require depends on how much access there is to your system, and how sensitive is the information found on it. The root password should always be a good, secure one. If nothing else, it will discourage you 
+from casually logging on as root, especially if you leave your user logins with null passwords.
+
+<BR>
+
+<P>If you are using Linux at home for experimenting, much of the security worries mentioned previously may seem silly. However, it doesn't hurt to use good security, and the practice can be carried over to larger UNIX systems at work.
+
+<BR>
+
+<P>We must assign a password for the root login using the Linux command passwd. The spelling of the command has its history in the development of UNIX, when long commands, such as password, were avoided due to the number of characters that had to be typed! 
+To change the root password at the system prompt, type the command passwd, and you see the following:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">darkstar:~# passwd
+
+Changing password for root
+
+Enter new password:</FONT></PRE>
+
+<P>At the prompt, type your new, secure password. What you type is not displayed on the screen. This keeps anyone looking over your shoulder (called &quot;shoulder surfing&quot;) from reading the password you've entered.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Make sure you type the password slowly and carefully! If any other user's password is lost or forgotten, it can be reset by the root login. But, if the root password is lost or forgotten, you must reinstall Linux.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>Because it's so important that passwords are entered correctly, the system double-checks the spelling of the password for you by asking you to type it again:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Re-type new password:</FONT></PRE>
+
+<P>Again, what you type is not displayed on the screen. If your two password entries match, you see the following:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Password changed.
+
+darkstar:~#</FONT></PRE>
+
+<P>The password is now changed in the system's configuration files. If the two entries do not match completely (remember, case is important), Linux gives you the message
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">You misspelled it. Password not changed.</FONT></PRE>
+
+<P>and changes are not made to the password. You need to start over with the passwd command.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Do not forget your new root password! Chant it to yourself before going to sleep, if necessary. But don't write it down on a piece of paper and slip it under the keyboard, either!</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>If you want to leave a program right away and return to the shell prompt, try Ctrl-C (hold down the Ctrl key and press C; this is sometimes written as ^C). This usually terminates whatever program you're in (usually without ill effects), and 
+redisplays the shell prompt.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E68E36"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Creating a New Login</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Now that you have assigned a password for the root account, the next thing you should do is create a login with which you can safely explore the Linux system and try out some of the basic commands covered in the following chapters.
+
+<BR>
+
+<P>Login names are used by valid system users. You can create a login for yourself that you will use permanently, or you can create a temporary login for exploring the system and remove it later. Login names can be any character or number string you want. 
+Typically, login names bear a resemblance to the user's real name, so Joe Smith's login name may be joe, jsmith, or joes.
+
+<BR>
+
+<P>Linux has a utility called adduser, which simplifies and automates the task of adding a new user to the system. (This isn't how they did it in the good old days. You should be glad. In the past, files had to be manually edited to add users, a tedious 
+and error-prone process.)
+
+<BR>
+
+<P>To create a user, at the shell prompt type adduser and the username you want to add.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">darkstar:-# adduser fido
+
+Looking for first available UID_ 505
+
+Looking for first available GID_ 507
+
+Adding login: fido_done.
+
+Creating home directory: /home/fido_done.
+
+Creating mailbox: /var/spool/mail/fido_done.
+
+Don't forget to set the password</FONT></PRE>
+
+<P>To complete adding the user, you'll need to use the passwd command to set password.
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Darkstar:-# passwd</FONT></PRE>
+
+<P>The adduser command included with Red Hat automatically assigns the UID, GID, and the home directory for the user added. The adduser command included with other Linux distributions will prompt you for these parameters.
+
+<BR>
+
+<P>An even more user-friendly method of adding users is to use the &quot;user and group management&quot; portion of the control-panel available under X.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>The User ID is used by Linux whenever it is referring to something you have done. The operating system is designed to use a number rather than the full login name because it takes up less room and is easier to manipulate. The User ID is important, 
+and each login on the system has its own unique number. By convention, UIDs of 500 or less are special system UIDs; root's UID is 0. Regular users get UIDs starting at 501.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E68E37"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Logging Out</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Now that you have created a new user, you can use it in the next couple of chapters to explore Linux. To finish with your session as root, log out of the system by typing logout:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">darkstar:~# logout
+
+Welcome to Linux 1.2.13
+
+darkstar login:</FONT></PRE>
+
+<P>You see the login prompt displayed again. At this point, you can log back in as root, or as the new user you have just created.
+
+<BR>
+
+<P>Some systems enable you to log out with the Ctrl-D sequence. If the shell you are using supports Ctrl-D as a logout command, the login prompt reappears. Otherwise, you may see a message such as this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Use &quot;logout&quot; to leave the shell.</FONT></PRE>
+
+<P>If you have used other UNIX systems before, you may be used to using Ctrl-D to log out. The default shell used by Linux does not support Ctrl-D unless the keymappings are changed to allow it.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E38"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Trying Out Your New Login</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Now we can try out our new login. We can also look at some of the interesting features and capabilities of Linux.
+
+<BR>
+
+<P>At the login prompt, type the login name you have just created. If you were conscientious and assigned a nonzero-length password to your new login, enter the password when prompted.
+
+<BR>
+
+<P>You should now see the following:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">darkstar login: fido
+
+Password:
+
+Last login: Sun Dec 11 19:14:22 on tty1
+
+Linux 1.2.13.
+
+Quiet! I hear a hacker....
+
+darkstar:~$</FONT></PRE>
+
+<P>Note that your prompt looks different from the root prompt. The $ prompt indicates that you are a regular user running under the bash shell (which was the default choice presented by the adduser program). Also, there is no You have mail message.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Linux can be configured to automatically mail a message to all new users. This can be a greeting, or can give system information and etiquette.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>To see an example of the difference between the root login and a regular user login, type adduser at the shell prompt and press Enter.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">darkstar:~$ adduser
+
+bash: adduser: command not found</FONT></PRE>
+
+<P>The message you get looks somewhat cryptic. However, it has a typical Linux error message structure, so it's worth taking a little effort to understand it.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E38"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Linux Error Messages</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>First of all, the program that's giving you the message is your shell, bash. It therefore announces itself with bash:, somewhat like the character in a play script. Next is the shell's &quot;monologue.&quot; Being the &quot;strong and silent&quot; type 
+of character, bash's monologue is very terse and to the point. It declares the object that is causing it problems (adduser), and the problem with this object: the command (adduser) can't be found.
+
+<BR>
+
+<P>If the error message were expanded into real English, it would go something like this: &quot;Hi, I'm bash. You know that adduser command you gave me? I looked everywhere for adduser but I couldn't find it, so I couldn't perform whatever actions adduser 
+would have specified.&quot; With time, you will get quite good at understanding Linux error message grammar.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E39"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Search Paths</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Why can root find adduser, but an ordinary user cannot? Linux has many directories, and each directory can hold many files (one of which can be the elusive adduser). In theory, Linux could go search through the file system until it found adduser. But if 
+root accidentally mistyped adduser as aduser, Linux would have to rummage through every nook and cranny before finally giving up. This could take 10 or more seconds, and cause needless wear and tear on your hard drive.
+
+<BR>
+
+<P>Therefore, Linux has search paths for finding commands (discussed in <A HREF="rhl08.htm">Chapter 8</A>). Usually, only a small part of the entire Linux file system is on the search path, which literally is the path along which Linux searches. Because 
+root makes use of many system administration programs such as adduser, the directories that hold these programs are in root's search path. Ordinary users do not have system administration directories in their search path.
+
+<BR>
+
+<P>However, if you explicitly tell Linux where a file is located, it does not need to look through its search path. As it happens, adduser is found in the /sbin directory. Try running /sbin/adduser.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">darkstar:~$ /sbin/adduser
+
+bash: /sbin/adduser: Only root may add users to the system.</FONT></PRE>
+
+<P>This time, bash could find adduser (because you told it exactly where to look), but discovered that an ordinary user does not have permission to run adduser. As you can see, Linux limits the actions of logins to their privilege level.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E39"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Virtual Terminals</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Linux, as mentioned earlier, is a multiuser, multitasking system. This means that more than one login can access the system at the same time, and that each login can be doing one or more different things all at the same time. A serious multiuser system 
+will have several terminals (consisting of a keyboard and a display screen) wired or networked to the main computer unit.
+
+<BR>
+
+<P>Although you probably don't have any terminals attached to your system, you still can log in several times under the same or different login names, using your single keyboard and screen! This magic is performed by using virtual terminals.
+
+<BR>
+
+<P>Press Alt-F2. When you do so, everything on your screen should disappear, to be replaced by the following:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Welcome to Linux 1.2.13
+
+darkstar login:</FONT></PRE>
+
+<P>Log in as your &quot;regular&quot; login (not root). When the shell prompt is displayed, type who at the prompt and press Enter. You should see the following:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">darkstar:~$ who
+
+fido tty2 Dec 14 01:42
+
+fido tty1 Dec 14 01:40</FONT></PRE>
+
+<P>When you run the Linux command who, your screen displays the names of all logins currently logged into the system, and where they are logged in from. (Your login name will appear, of course, instead of fido in the preceding example.)
+
+<BR>
+
+<P>By convention, tty1 is the main console screen. It is the &quot;normal&quot; one that appears after Linux has started up, so you don't have to do anything special to get it. If you have switched to any other virtual consoles, you can return to tty1 by 
+pressing Alt-F1.
+
+<BR>
+
+<P>How many virtual screens are active on your system? Try going through all the Alt-Fn keys. Alternatively, you can scroll through the virtual screens by using the Alt-right arrow combination to move up through the screens, or Alt-left arrow to move down.
+
+
+<BR>
+
+<P>Quite often you find yourself doing something, perhaps in a long and complicated program, and realize that you should have done something else first. Flip to another virtual terminal and do whatever it is.
+
+<BR>
+
+<P>Another handy use of virtual terminals is when, through experimentation or otherwise, your screen locks up or starts typing in strange symbols. From a different virtual terminal, you can try to fix things, or restart the system if necessary.
+
+<BR>
+
+<P>Linux also comes with a very powerful multitasking windowing environment called X. Installing and running X Window systems is described in <A HREF="rhl21.htm">Chapter 21</A>, &quot;Installing X Window on Linux.&quot;
+
+<BR>
+
+<BR>
+
+<A NAME="E68E40"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Commands and Programs</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>&quot;Run the who command&quot; and &quot;Run who&quot; are much more common ways of saying &quot;Type who at the prompt and press Enter.&quot; We will use the shorter expressions wherever their meaning is clear. Sometimes people familiar with Linux 
+drop the word &quot;run,&quot; so that one user might tell another, &quot;I tried who but didn't see anything unusual.&quot; It's understood by the context that when they &quot;tried who,&quot; they actually ran it.
+
+<BR>
+
+<P>Something else you will notice if you are reading carefully is that there seem to be both Linux programs and Linux commands. A command is what you type at the shell prompt. For this reason, the combination of the shell prompt and what you type after it 
+is often called a command line. When you press the Enter key, Linux takes the command you've entered and tries to perform it. The Linux system has built-in responses to some commands; for other commands it finds the appropriately named program on your hard 
+disk and executes that program.
+
+<BR>
+
+<P>In the strictest sense, then, the command is what you type, and the program is what performs your command. However, very simple programs with straightforward results, such as who, are often referred to as commands, although there is actually a who 
+program on your hard disk. More complicated programs, usually interactive such as adduser, or open-ended such as a text editor, are called programs. So you might hear one experienced user tell another, &quot;The adduser program worked fine. I tried the who 
+command 15 minutes later and the new user had logged in already.&quot;
+
+<BR>
+
+<BR>
+
+<A NAME="E68E41"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Summary</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>In this chapter, we assigned a password to the root login and created a new user ID to be used in the next few chapters. We tried out Linux multitasking, and we learned some useful Linux terminology tips that will serve us well in the future (we will 
+try to avoid seeing too many error messages, though). At this point, you can either ensure that you have logged out of all virtual terminals, or move on to the following chapters.
+
+<BR>
+
+<P>In the next two chapters, we will become more familiar with using Linux. In <A HREF="rhl07.htm">Chapter 7</A>, &quot;Basic Linux Commands and Utilities,&quot; we try out a variety of Linux commands as we exercise our Linux muscles. In <A 
+HREF="rhl08.htm">Chapter 8</A>, we learn more about how Linux stores its programs and data, and explore some of the interesting terrain on your hard drive.<A NAME="I2"></A>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl05.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="#I0" TARGET="_self"><IMG SRC="purtop.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Page Top"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl07.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+</BODY></HTML>
+
+
+

@@ -1,0 +1,1724 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Red Hat Linux Unleashed rhl59.htm </TITLE>
+
+<LINK REL="ToC" HREF="index.htm">
+
+<LINK REL="Index" HREF="htindex.htm">
+
+<LINK REL="Next" HREF="rhl60.htm">
+
+<LINK REL="Previous" HREF="rhl58.htm"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+
+<A NAME="I0"></A>
+
+<H2>Red Hat Linux Unleashed rhl59.htm</H2>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl58.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl60.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+<HR ALIGN=CENTER>
+
+<P>
+
+<UL>
+
+<UL>
+
+<UL>
+
+<LI>
+
+<A HREF="#E68E454" >Installing HylaFAX</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E589" >Where To Get HylaFAX</A>
+
+<LI>
+
+<A HREF="#E69E590" >Types of Modems</A>
+
+<LI>
+
+<A HREF="#E69E591" >Installation Steps</A></UL>
+
+<LI>
+
+<A HREF="#E68E455" >Troubleshooting</A>
+
+<LI>
+
+<A HREF="#E68E456" >Setting Up a Send and Receive Daemon</A>
+
+<LI>
+
+<A HREF="#E68E457" >Sending a Fax</A>
+
+<LI>
+
+<A HREF="#E68E458" >Receiving Faxes</A>
+
+<LI>
+
+<A HREF="#E68E459" >Special Features</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E592" >Cover Pages</A>
+
+<LI>
+
+<A HREF="#E69E593" >Polling</A>
+
+<LI>
+
+<A HREF="#E69E594" >Receiving Data Calls</A>
+
+<LI>
+
+<A HREF="#E69E595" >Checking Status</A>
+
+<LI>
+
+<A HREF="#E69E596" >E-Mail Setup</A>
+
+<LI>
+
+<A HREF="#E69E597" >Files Used</A>
+
+<LI>
+
+<A HREF="#E69E598" >Multiple Modems</A></UL>
+
+<LI>
+
+<A HREF="#E68E460" >Another Fax Solution</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E599" >The Sticky Copyright Issue</A>
+
+<LI>
+
+<A HREF="#E69E600" >Troubleshooting the Modems</A></UL>
+
+<LI>
+
+<A HREF="#E68E461" >Summary</A></UL></UL></UL>
+
+<HR ALIGN=CENTER>
+
+<A NAME="E66E59"></A>
+
+<H1 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>59</B></FONT></CENTER></H1>
+
+<BR>
+
+<A NAME="E67E59"></A>
+
+<H2 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>Using HylaFAX, </B><B>sendfax</B><B>, and </B><B>mgetty</B></FONT></CENTER></H2>
+
+<BR>
+
+<P>This chapter deals with a fax application for Linux: HylaFAX. Though there are other fax facilities for UNIX systems, such as netfax, in this chapter, I concentrate on HylaFAX because it may be the most comprehensive. You also have access to the C++ 
+source code to make any necessary modifications to the application to adapt it to your PC.
+
+<BR>
+
+<P>HylaFAX was invented by Sam Leffler. You can send thanks and an &quot;Atta boy&quot; to him via e-mail at sam@sgi.com. HylaFAX is indeed a great piece of work.
+
+<BR>
+
+<P>HylaFAX is a system for sending and receiving fax documents. Some of the notable features of HylaFAX include the following:
+
+<BR>
+
+<UL>
+
+<LI>Queued fax transmission by date and time
+
+<BR>
+
+<BR>
+
+<LI>Asynchronous fax reception via a daemon
+
+<BR>
+
+<BR>
+
+<LI>Most programs are part of a tool kit. You can update portions of the application by updating the executable file.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<BR>
+
+<A NAME="E68E454"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Installing HylaFAX</B></FONT></CENTER></H3>
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>The Display PostScript interpreter, Ghostscript, is supplied in binary form for Silicon Graphics machines. There is information on obtaining and setting up Ghostscript (see <A HREF="rhl25.htm">Chapter 25</A>, &quot;Ghostscript&quot;).</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E69E589"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Where To Get HylaFAX</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>HylaFAX can be obtained via public FTP on the Internet. It is also available on a number of public domain and shareware-style CD-ROMs. The master distribution site for HylaFAX is the host <A HREF="ftp://ftp.sgi.com">ftp.sgi.com</A>. (See the 
+/sgi/fax/binary directory at that site.)
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>HylaFax is essentially the same program as FlexFAX, but with a new name and many more features.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>All the HylaFAX documentation is online on the World Wide Web (WWW). This documentation describes how to unpack and install the source distribution images. The HylaFAX home page at sgi.com is the place to go for all the HylaFAX documentation.
+
+<BR>
+
+<P>The HylaFAX source code is available for public FTP on <A HREF="ftp://ftp.sgi.com">ftp.sgi.com</A> as /sgi/fax/source HylaFAX-v3.0.pl0-tar.gz.
+
+<BR>
+
+<P>You can get more information about HylaFAX from the WWW by accessing the Web page <A HREF="http://www.vix.com/hylaFAX">http://www.vix.com/hylaFAX</A>. Check out the FAQs at this site for the most up-to-date information.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E590"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Types of Modems</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>HylaFAX comes with detailed information on specific modems and configuration instructions in a file called MODEMS. Read this file carefully to see whether your modem is listed. If it is, you should have no problems with HylaFAX. If you cannot find your 
+exact modem, choose the one that best fits the description you have. Chances are that a close enough setting will work fine.
+
+<BR>
+
+<P>Most of the modems on the list are either Class 1 or 2, and both types are supported by HylaFAX. Do not confuse the fax Group I, II, or III standards with Class 1 or 2. The groups discuss how faxes are encoded, and classes explain how you 
+&quot;talk&quot; to a modem.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E591"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Installation Steps</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>First, unzip and untar the source files from the distribution in a local directory. After you get the source file for HylaFAX, the first installation steps are to configure your system and then do a make install command.
+
+<BR>
+
+<P>The source code is in a compressed tar file. To extract the software
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ mkdir fax
+
+$ cd fax
+
+$ uncompress $(DOWNLOAD_DIR)/v2.3.src.tar.Z
+
+$ tar -xf $(DOWNLOAD_DIR)/v2.3.src.tar</FONT></PRE>
+
+<P>The DOWNLOAD_DIR is the directory you downloaded the tar file to. Because the software is written mostly in C++, you need gnu C++. The versions guaranteed to work with gcc 2.5.8 and libg++ 2.5.3 are the current recommended versions of the GNU tools.
+
+<BR>
+
+<P>To build and install executables from the sources, look first for any port/target/README file that has target-specific information. In this case, look at port/linux/README.
+
+<BR>
+
+<P>Then, enter the following commands.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ su
+
+# configure
+
+# make clean
+
+# make install</FONT></PRE>
+
+<P>I have deliberately not shown output from the configure and make commands because I discuss them in detail in this section. You have to run the make commands as root because they access the /usr/local tree, and you will need write permissions when you 
+write files to that tree.
+
+<BR>
+
+<P>The output from a sample configure command is shown in Listing 59.1.
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 59.1. The output from the </B><B>configure</B><B> command.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ configure
+
+...(Extraneous text deleted here)...
+
+this means that only a crummy built-in font will be available for imaging text.
+
+Warning, /usr/local/bin/gs does not seem to be an executable program;
+
+you'll need to correct this before starting up the fax server.
+
+HylaFAX configuration parameters are:
+
+Directory for applications: /usr/local/bin
+
+Directory for lib data files: /usr/local/lib/fax
+
+Directory for lib executables: /usr/local/lib/fax
+
+Directory for servers: /usr/local/etc
+
+Directory for manual pages: /usr/local/man
+
+Directory for documentation: /usr/local/doc/HylaFAX
+
+Directory for spooling: /usr/spool/fax
+
+Type of uucp lock files: ascii
+
+Directory for uucp lock files: /usr/spool/uucp
+
+Mode for uucp lock files: 0444
+
+Type of PostScript imager: gs
+
+PostScript imager program: /usr/local/bin/gs
+
+Default page size: North American Letter
+
+Default vertical res (lpi): 98
+
+Directory for font metrics: /usr/local/lib/afm
+
+Location of sendmail program: /usr/lib/sendmail
+
+Are these ok [yes]?</FONT></PRE>
+
+<P>It's important to maintain the locations of all the listed files. Changing these locations is not a good idea because they are the default values for other applications. For example, the sendfax command did not work with any other location of the afm 
+tree other than at /usr/local/lib/afm. Changing the location via configure did not help at all.
+
+<BR>
+
+<P>The make install process takes a while because the make install script has to traverse several directories and build source files in each sub-directory. The files are placed in different parts of your system based on the output of the configure command.
+
+
+<BR>
+
+<P>You may have to copy the files mkfifo, chown, and chgrp from the /bin directory to the /usr/local/bin directory. The make files exclusively use these files to set the file permissions. You have to edit the location of the echo command in the make files 
+to reflect the correct location for your echo command. If you see /usr/local/bin/echo not found error messages, either copy echo to /usr/local/bin, or edit the make files to point to the correct location. To get rid of the message Warning, 
+/usr/local/bin/gs does not ... in the previous listing, you create a link to gs from /usr/local/bin/gs.
+
+<BR>
+
+<P>After the installation is done, check /usr/local/bin/fax for executable files. At a minimum, you should have faxcover, faxd, and sendfax in this directory.
+
+<BR>
+
+<P>Once you have HylaFAX installed, you can add modems with the faxaddmodem shell script. This script is interactive and steps you through the configuration and installation of a new or existing modem.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Even if you have a previous version of this software installed, run the faxaddmodem script to update the configuration information for your modems. Running faxaddmodem twice will not ruin anything.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>If your modem is configured to communicate to the host at a fixed baud rate, use the -s option with faxaddmodem. See the faxaddmodem manual page for details.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>A sample configuration session for my machine is shown in Listing 59.2. Note that I ran as root while I did this. I pressed the Enter key after each [yes] command to accept the default responses. If you do not like what you see, type n and then press 
+Enter.
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 59.2. Sample configuration for HylaFAX.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"># faxaddmodem
+
+Verifying your system is set up properly for fax service...
+
+There is no entry for the fax user in the password file.
+
+The fax software needs a name to work properly; add it [yes]?
+
+Added user &quot;fax&quot; to /etc/passwd.
+
+Added fax user to &quot;/etc/passwd.sgi&quot;.
+
+There does not appear to be an entry for the fax service in
+
+either the yellow pages database or the /etc/services file;
+
+should an entry be added to /etc/services [yes]?
+
+There is no entry for the fax service in &quot;/usr/etc/inetd.conf&quot;;
+
+should one be added [yes]?
+
+Poking inetd so that it rereads the configuration file.
+
+There does not appear to be an entry for the FaxMaster in
+
+either the yellow pages database or the /usr/lib/aliases file;
+
+should an entry be added to /usr/lib/aliases [yes]?
+
+Users to receive fax-related mail [root]?
+
+Rebuilding /usr/lib/aliases database.
+
+41 aliases, longest 81 bytes, 823 bytes total
+
+Done verifying system setup.
+
+Serial port that modem is connected to []? cua1
+
+Ok, time to set up a configuration file for the modem. The manual
+
+page config(4F) may be useful during this process. Also be aware
+
+that at any time you can safely interrupt this procedure.
+
+No existing configuration. Let's do this from scratch.
+
+Phone number of fax modem []? +1.713.265.1539
+
+This is the phone number associated with the modem being configured.
+
+It is passed as an &quot;identity&quot; to peer fax machines and it may
+
+also appear on tag lines created by the fax server.
+
+The phone number should be a complete international dialing specification
+
+in the form +&amp;ltcountry code&amp;gt; &amp;ltarea code&amp;gt; &amp;ltlocal part&amp;gt;.
+
+Any other characters included for readability are automatically
+
+removed if they might cause problems.
+
+Area code []? 713
+
+Country code [1]?
+
+Long distance dialing prefix [1]?
+
+International dialing prefix [011]?
+
+Tracing during normal server operation [1]?
+
+Tracing during send and receive sessions [11]?
+
+Protection mode for received fax [0600]?
+
+Rings to wait before answering [1]?
+
+Modem speaker volume [off]?
+
+The server configuration parameters are
+
+FAXNumber: +1.713.265.1539
+
+AreaCode 713
+
+CountryCode 1
+
+LongDistancePrefix: 1
+
+InternationalPrefix: 011
+
+ServerTracing: 1
+
+SessionTracing: 11
+
+RecvFileMode: 0600
+
+RingsBeforeAnswer: 1
+
+SpeakerVolume: off
+
+Are these ok [yes]? n
+
+Phone number of fax modem [+1.713.265.1539]?
+
+Area code [713]?
+
+Country code [1]?
+
+Long distance dialing prefix [1]?
+
+International dialing prefix [011]?
+
+Tracing during normal server operation [1]?
+
+Tracing during send and receive sessions [11]?
+
+Protection mode for received fax [0600]?
+
+Rings to wait before answering [1]?
+
+Modem speaker volume [off]? low
+
+The server configuration parameters are
+
+FAXNumber: +1.713.265.1539
+
+AreaCode 713
+
+CountryCode 1
+
+LongDistancePrefix: 1
+
+InternationalPrefix: 011
+
+ServerTracing: 1
+
+SessionTracing: 11
+
+RecvFileMode: 0600
+
+RingsBeforeAnswer: 1
+
+SpeakerVolume: low
+
+Are these ok [yes]?
+
+Now we are going to probe the tty port to figure out the type
+
+of modem that is attached. This takes a few seconds, so be patient.
+
+Note that if you do not have the modem cabled to the port, or the
+
+modem is turned off, this may hang (just go and cable up the modem
+
+or turn it on, or whatever).
+
+Hmm, this looks like a Class 1 modem.
+
+Product code is &quot;1444&quot;.
+
+Modem manufacturer is &quot;USRobotics&quot;.
+
+Modem model is &quot;Courier&quot;.
+
+Using prototype configuration file config.usr-courier...
+
+The modem configuration parameters are:
+
+ModemRate: 19200
+
+ModemFlowControl: xonxoff
+
+ModemFlowControlCmd: &amp;H2
+
+ModemSetupDTRCmd: S13=1&amp;D2
+
+ModemSetupDCDCmd: &amp;C1
+
+ModemDialCmd: DT%s@
+
+ModemResultCodesCmd X4
+
+Are these ok [yes]?
+
+Startup a fax server for this modem [yes]
+
+/usr/etc/faxd -m /dev/cua1
+
+#</FONT></PRE>
+
+<P>HylaFAX requires that a fax user exist in the password file on the server machine. This user should have the same user ID as uucp so that lock files can be easily shared.
+
+<BR>
+
+<P>Client applications communicate with the server machine via the faxd.recv program. This program is designed to be started by the inetd program. If the appropriate entry is not present in inetd's configuration file, confirming this prompt causes it to be 
+added. Note that there must also be a fax service already set up for this step to succeed (see above).
+
+<BR>
+
+<P>A fax server entry must exist so that the inetd program can set up the fax job submission server, faxd.recv, on the appropriate port. If the server machine is running NIS (formerly known as Yellow Pages), it may be necessary to create the entry in the 
+appropriate map. Otherwise the entry is installed in the /etc/services file.
+
+<BR>
+
+<P>The fax server sends mail notices to a well-known user called the FaxMaster when certain events occur. Some examples are when faxes are received or when modems appear to be on the blink. This step sets up a mail alias for this the FaxMaster. The alias 
+lists those system administrators that handle HylaFAX-specific problems. I chose root because I have a small system and I usually wind up doing all my administrative stuff as root anyway. If you have a large user base, perhaps a specific user could handle 
+all the fax-related problems.
+
+<BR>
+
+<P>This completes the collection of server-related parameters. The remaining steps identify and configure the modem. Note that if you do not specify a fixed rate for modem communications, faxaddmodem will probe for a good speed. The faxaddmodem command is 
+good at finding what type of modem you have and configuring it. Unless you have a compelling reason to change the responses to settings other than the defaults, leave them.
+
+<BR>
+
+<P>The fax daemon is now started for you. This is done with /usr/etc/faxd -m /dev/cua1. You may want to put this command in your /etc/rc.d file for subsequent boots so that you don't have to remember to start it yourself.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E455"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Troubleshooting</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>You are bound to run into difficulties while installing HylaFAX. Despite my assertions in the last section about two simple steps to complete the installation, you still have the potential of running into problems. Here is a brief list of problems and 
+their solutions. The list is by no means complete, nor is it guaranteed the examples will apply to you, but at least it will give you an idea of what could be wrong.
+
+<BR>
+
+<UL>
+
+<LI>You need the afm-tar.Z file for the Adobe Font Metric (AFM) fonts required by the sendfax program. You can get this file via FTP from sgi.com. Some HylaFAX distributions do not include these Metric files. A subset of these fonts is available via FTP 
+from sgi.com in the file /sgi/fax/afm-tar.Z. If you do not install the AFM files, you get error messages about fonts not found.
+
+<BR>
+
+<BR>
+
+<LI>Add a user called fax to the same group as uucp. The faxaddmodem call may not work and bomb with errors about too many arguments. If this happens, make sure your modem works. If you cannot use cu on your modem, fix that problem first. Check the cables, 
+initialization strings, and so on. For external modems, check to see whether the cable has the relevant signals for doing hardware flow control if necessary and that it passes the DCD and DTR signals appropriately.
+
+<BR>
+
+<BR>
+
+<LI>If you have a Class 1 modem, you cannot use hardware flow control. Class 2 modems do support hardware control. Ensure that you have the correct cables for the type of external modem you plan to connect to.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<BR>
+
+<A NAME="E68E456"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Setting Up a Send and Receive Daemon</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The faxd daemon is the main processing agent of the HylaFAX package. You need one faxd process and FIFO for each fax modem on your system. faxd listens to its own FIFO for all its command directives. When you start faxd, you can use the following 
+options:
+
+<BR>
+
+<UL>
+
+<LI>-m to specify the terminal device the fax modem is attached to. For example, /dev/cua1 is a mandatory argument to faxd.
+
+<BR>
+
+<BR>
+
+<LI>-q to specify a spooling area in which to operate other than /var/spool/HylaFAX.
+
+<BR>
+
+<BR>
+
+<LI>-i to specify the interval in seconds that a job should be held between transmission attempts. By default, this interval is 900 seconds.
+
+<BR>
+
+<BR>
+
+<LI>-g option can be used to indicate that faxd should act like the getty program if it receives a call from a data modem. See the getty man page for details. If this option is not specified and the server is not configured to support incoming data 
+connections, incoming data connections will be rejected.
+
+<BR>
+
+<BR>
+
+<LI>-d stops faxd from detaching itself from the terminal. This is useful for debugging.
+
+<BR>
+
+<BR>
+
+<LI>-1 option causes faxd to generate only 1D-encoded fax when sending.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>There is no way to abort an incoming fax. Just sit back and wait until it's over.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>The faxd.recv daemon is the program that implements the server side of the fax job submission protocol. It also implements extensions to this protocol to support job removal and the return of status information. faxd.recv is normally invoked by inetd 
+with a line in the following form:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">fax stream tcp nowait fax /usr/libexec/faxd.recv faxd.recv</FONT></PRE>
+
+<P>The faxd.recv daemon accepts requests for transmitting faxes and creates the appropriate queue and document files in the HylaFAX spooling area. If a job is received properly, a request to process the job is then sent to a fax server by writing to a FIFO 
+special file named FIFO in the spooling directory. The faxd.recv daemon then returns a message to the sender indicating the Job ID (an integer number associated with the job). This Job ID can be used later to remove the job from the queue and to query the 
+job's status.
+
+<BR>
+
+<P>Diagnostics generated by faxd.recv are logged with the syslog facility. The user is always informed of any problem that affects the status of the queued job. Check the man pages for a list of these error messages.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E457"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Sending a Fax</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>To send a fax, you will use the sendfax program. The syntax for this command from the man page is
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">sendfax [ -a transmit-time ]
+
+[ -c comments ]
+
+[ -r regarding ]
+
+[ -x to-company ]
+
+[ -y to-location ]
+
+[ -d destination ]
+
+[ -f from ]
+
+[ -h host[:modem] ]
+
+[ -i identifier ]
+
+[ -k kill-time ]
+
+[ -lm ]
+
+[ -n ]
+
+[ -p ]
+
+[ -s pagesize-name ]
+
+[ -t tries ]
+
+[ -v ]
+
+[ -DR ]
+
+[ files... ]</FONT></PRE>
+
+<P>sendfax queues up fax requests to a faxd server. These requests normally are processed immediately, although they may also be queued for later transmission using a syntax identical to the at command. For each job that is queued, Sendfax prints on the 
+standard output a job identifier. This number can be supplied to the faxrm command to remove the job or to the faxalter(1) command to alter some of its parameters.
+
+<BR>
+
+<P>Fax documents are made from the concatenation of files specified on the command line. If no files are supplied, sendfax reads data from the standard input unless polling is requested. sendfax passes PostScript and TIFF documents directly to the fax 
+server for transmission and attempts to convert other file formats to either PostScript or TIFF. In normal operation, sendfax automatically converts ASCII-text or troff output before transmission.
+
+<BR>
+
+<P>By default, sendfax will generate a cover page for each fax that is transmitted. This cover page is created by the faxcover program using information determined by sendfax and by information supplied on the command line. The -x option is used to specify 
+the receiver's company; the -y option to specify the receiver's geographical location; the -c option to specify a comments field; and the -r option to specify a Re: subject. If a destination is specified as user@fax-number, the user string is passed to 
+faxcover as the identity of the recipient.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>The preceding options must precede the -d option on the command line. Note also that multiword names must be enclosed in quote marks (&quot;).</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>If you don't want a cover page, specify the -n option.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>Here are a few other things about sending faxes:
+
+<BR>
+
+<UL>
+
+<LI>You can use *70, on the -d parameter of sendfax when you want to disable call waiting.
+
+<BR>
+
+<BR>
+
+<LI>By default, a fax is sent at low resolution (98 lines per inch). Medium resolution (196 lines per inch), often called fine mode, is requested with the -m option. Low resolution is requested with the -l option.
+
+<BR>
+
+<BR>
+
+<LI>Faxes are on 8.5&#180;11 pages unless otherwise configured. Other sizes include A3, ISO A4, ISO A5, ISO A6, ISO B4, North American Letter, American Legal, American Ledger, American Executive, Japanese Letter, and Japanese Legal.
+
+<BR>
+
+<BR>
+
+<LI>By default, sendfax uses the FAXSERVER environment variable to identify the fax server to which the job should be directed. This can be overridden with a -h option. The server specified with the -h option, and by the environment variable, is a host 
+name or address and optionally, a modem identifier. The syntax for the latter is either host:modem or modem@host. For example, cua2@no.inhale.edu. If no modem is specified, the job will be submitted to any available modem.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>If the first attempt to send a fax is unsuccessful, HylaFAX periodically tries to resend the fax. By default, HylaFAX tries to transmit the fax for one day from the time of the initial transmission. The -k option is used to specify an alternate time for 
+killing the job. This time is specified using notation compatible with at and as a time relative to the time of the initial transmission attempt.
+
+<BR>
+
+<P>If an error is encountered while HylaFAX is processing a job, the fax server sends an electronic mail message to the account submitting the job. If the -D option is specified, HylaFAX also notifies the account by mail when the job is completed. In 
+addition, if the -R option is specified, notification also is returned any time the job must be queued for retransmission.
+
+<BR>
+
+<P>Notification messages identify a job by its job identifier.
+
+<BR>
+
+<P>An arbitrary identification string can be specified instead with the -i option.
+
+<BR>
+
+<P>If the -v option is specified, sendfax prints information on the standard output about what sendfax does. If you specify &#151;v -v, even faxd.recv displays its status messages as it works.
+
+<BR>
+
+<P>See the man pages for more information on the options available with this sendfax command.
+
+<BR>
+
+<P>Only two types of files are accepted by the fax server for transmission: PostScript files or TIFF Class F (bi-level Group 3-encoded) files. All other types of files must be converted to one of these two formats. The sendfax program applies a set of 
+rules against the contents of each input file to identify the file's type and to figure out how to convert the file to a format that is suitable for transmission. These rules are stored in the /usr/local/lib/HylaFAX/typerules file, an ASCII file similar to 
+/etc/magic. See the man pages on type rules for a detailed look at how these type rules work.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E458"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Receiving Faxes</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Server processes can be configured to answer incoming phone calls and automatically receive faxes. Received documents are placed in the recvq subdirectory as TIFF Class F files. The server can be configured to make these files publicly accessible, or 
+they can be made private, in which case an administrator must manage their delivery.
+
+<BR>
+
+<P>When a fax is received, the server process invokes the bin/faxrcvd command. The default command is a shell script that sends a mail message to a well-known user, the FaxMaster, but you might also, for example, automatically spool the document for 
+printing.
+
+<BR>
+
+<P>Actually the man pages for HylaFAX are well written (for man pages). In the man pages for faxd, you get a lot of detailed information about how received faxes are handled.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E459"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Special Features</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>HylaFAX comes with several features from creating cover pages and receiving incoming data calls to handling polling requests. In each of these cases you can get more information for the man pages for each command discussed in the remainder of this 
+chapter.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E592"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Cover Pages</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>You generate PostScript cover sheets for your outgoing faxes with the faxcover command. The syntax for this command from the man page is
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ faxcover [ -t to-name ]
+
+[ -l to-location ]
+
+[ -x to-company ]
+
+[ -v to-voice-number ]
+
+[ -c comments ]
+
+[ -r regarding ]
+
+[ -p page-count ]
+
+[ -s pagesize-name ]
+
+[ -C template-file ]
+
+-f from-name -n fax-number</FONT></PRE>
+
+<P>To generate the cover page for each outgoing fax, faxcover is invoked by the sendfax program. Faxcover generates a PostScript cover-page document on the standard output. The cover page fills the entire area of the default page and is created according 
+to the information supplied on the command line and a cover sheet template file. The default template file is named faxcover.ps. You can override the default cover sheet with the -C option by specifying a file in the FAXCOVER environment variable.
+
+<BR>
+
+<P>If the cover sheet's filename is not an absolute path, faxcover looks first for this file in the sender's home directory. If no such file is present, faxcover looks in the library directory where the HylaFAX client application data is installed. If no 
+template file is located, faxcover terminates without generating a cover page.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E593"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Polling</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>HylaFAX supports the polled retrieval of fax documents. Documents received because of a poll request are stored in the recvq subdirectory and also delivered directly to the requester using the bin/pollrcvd command. This script typically encodes the 
+binary fax data and returns it to the recipient via e-mail.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E594"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Receiving Data Calls</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Most fax modems also support non-fax communications. HylaFAX uses the locking mechanism employed by uucp and cu. Therefore, HylaFAX transparently relinquishes the serial port when an application uses the modem for an outgoing call. In addition, HylaFAX 
+attempts to deduce whether an incoming call is for fax or data use. If an incoming call comes from a data modem and the -g argument is specified in the configuration file (or on the command line when the fax server process is started), HylaFAX invokes the 
+getty program so that the caller may log in to the system.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E595"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Checking Status</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>HylaFAX maintains status information in several forms. General status information for each server process can be displayed by the faxstat(1) program. The server processes may also be configured to log various kinds of debugging and tracing information. 
+For more information about configuration, see the section entitled &quot;Installation Steps&quot; in this chapter. The faxstat utility provides information such as the remote status of jobs queued for transmission, jobs received, and the general status of 
+server processes. See Listing 59.3.
+
+<BR>
+
+<P>
+
+<FONT COLOR="#000080"><B>Listing 59.3. Output of the </B><B>faxstat</B><B> command.</B></FONT>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"># faxstat
+
+Server on localhost:cua1 for C: Running and idle.
+
+Job Modem Destination Time-To-Send Sender Status
+
+2 any 5551212 root Queued and waiting
+
+1 any 5551212 kamran Being processed
+
+Server on localhost:cua1 for C: Sending job 1 to 5796555.</FONT></PRE>
+
+<P>Any problems encountered during fax transmission are reported to the user by e-mail. A user may also request notification by mail when a job is requeued. The server process uses the /bin/notify command to inform the user via e-mail.
+
+<BR>
+
+<P>The file etc/xferlog contains status information about all faxes sent and received. This file is in a simple ASCII format that is easy to manipulate with programs such as vi or emacs.
+
+<BR>
+
+<P>To get more accounting information, use the following commands.
+
+<BR>
+
+<UL>
+
+<LI>xferlog&#151;A log file of all transmitted files
+
+<BR>
+
+<BR>
+
+<LI>xferstats&#151;Accounting information about all faxes sent or received
+
+<BR>
+
+<BR>
+
+</UL>
+
+<BR>
+
+<A NAME="E69E596"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>E-Mail Setup</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>It is easy to set up a simple mail-to-fax gateway facility with HylaFAX. If your system uses sendmail to deliver mail, follow the instructions in the faxmail/mailfax.sh-sendmail document. If your system uses smail (Linux users), follow the instructions 
+in faxmail/mailfax.sh-smail. Restart your mail software.
+
+<BR>
+
+<P>Now, mail to user@dest.fax will be formatted and submitted as a facsimile job to user at the specified destination. By writing a more involved mailfax script, you can add options and display parameters such as different resolutions by parsing the user 
+string. See the faxgateway documentation on www.vix.com in HylaFAX/faxgateway.html or the /sgi/fax/contrib/dirks-faxmailer/README on sgi.com for more information.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E597"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Files Used</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>HylaFAX stores its data, configuration, and faxes in several places on the file system in Linux. Here is a list of the important files and directories:
+
+<BR>
+
+<UL>
+
+<LI>HylaFAX uses a spool area on the disk for sending and receiving faxes. The spooling area is located under the directory /var/spool/HylaFAX.
+
+<BR>
+
+<BR>
+
+<LI>The /usr/local/bin directory has the commands used by the HylaFAX package. The commands are fax2ps, faxaddmodem, faxalter, faxanswer, faxcover, faxmail, faxquit, faxrm, faxstat, and sendfax.
+
+<BR>
+
+<BR>
+
+<LI>The ./etc directory stores all the configuration, access control, and accounting information.
+
+<BR>
+
+<BR>
+
+<LI>The ./sendq directory has all the outgoing fax jobs.
+
+<BR>
+
+<BR>
+
+<LI>The ./recvq directory contains a copy of all received faxes.
+
+<BR>
+
+<BR>
+
+<LI>The ./docq and ./temp subdirectories are used in fax transmission also.
+
+<BR>
+
+<BR>
+
+<LI>The info subdirectory contains files that describe the capabilities of fax machines called by HylaFAX. This information is used in preparing documents for transmission.
+
+<BR>
+
+<BR>
+
+<LI>The cinfo subdirectory contains files with per-machine control parameters to use when sending faxes.
+
+<BR>
+
+<BR>
+
+<LI>The status subdirectory contains files to which server processes write their current status.
+
+<BR>
+
+<BR>
+
+<LI>The log subdirectory contains logging information about send and receive sessions.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<BR>
+
+<A NAME="E69E598"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Multiple Modems</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>HylaFAX supports multiple fax modems on a single host. Associated with each modem is a server process that handles transmission and asynchronous reception. Server processes operate independently of each other and use file-locking to avoid conflicts when 
+handling jobs submitted for transmission. All modems are treated equally at the same priority. A HylaFAX server process accepts messages and commands through FIFOs. A FIFO is basically a communications data channel where the first data in (FI) is the first 
+data out (FO).
+
+<BR>
+
+<BR>
+
+<A NAME="E68E460"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Another Fax Solution</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The mgetty+sendfax+vgetty package is a set of programs to send and receive faxes in a UNIX environment. The package only supports Class 2 modems. The filename is called mgetty+sendfax-0.98.tar.gz, and you can get it from tsx-11.mit.edu in the 
+/pub/linux/sources/sbin directory. There are three parts to this package: sendfax, vgetty, and mgetty. The program mgetty is for receiving faxes and handling external logins without killing any outgoing calls. sendfax is a program that sends fax files. 
+vgetty is an extended version of mgetty that can answer the telephone like an answering machine and record voice-mail messages in addition to mgetty's fax or data call handling capabilities. The entire package lets you manage faxes and voice messages.
+
+<BR>
+
+<P>So what's the difference between mgetty and the regular versions of getty? Unlike traditional versions of getty or uugetty, which will put a modem into auto-answer mode, mgetty does not. When a call comes in, mgetty tells the modem to answer and tell 
+mgetty what kind of call is being received. If it is fax, mgetty will receive the fax itself. If the modem is getting data, mgetty prompts for a user ID, and then hands the open line off to login for a normal data login.
+
+<BR>
+
+<P>It's the modem's job to distinguish a fax call from a data call. Not all fax modems can do this, so if yours does not do this, there is no way for mgetty to do this for you. mgetty can be used with modems that cannot distinguish a fax call from a data 
+call, but you must tell it ahead of time what type of call to expect. You can configure mgetty to allow for uucp and other connections.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Note that mgetty also supports caller ID and can be programmed to deny connections based on originating telephone number.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>If you have a voice-capable modem, then you can use vgetty. The vgetty program is an extension to mgetty that provides additional call-handling capabilities. When the modem reports an incoming call, vgetty has the modem pick up the line and play a 
+greeting. Then, as with mgetty, the modem reports the type of call. If it hears &quot;human voices&quot; (stuff it can't identify), the modem reports a voice connection and vgetty records the noise as an incoming voice message. If the modem reports that it 
+identifies a fax tone, vgetty acts like mgetty and receives a fax or answers a poll. If instead, the modem hears nothing following the greeting (a certain level of silence that continues for a certain number of seconds), the modem assumes the caller is a 
+data modem and attempts a data connection.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Do not use vgetty if you expect a large number of voice calls and very few data calls on the phone line you hook up. Most modems will hang up during the incoming message.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>Basically the sendfax portion does the following:
+
+<BR>
+
+<UL>
+
+<LI>Send faxes directly or using shell scripts.
+
+<BR>
+
+<BR>
+
+<LI>Do fax polling. The polling means that you can call another fax machine and request data from it.
+
+<BR>
+
+<BR>
+
+<LI>Create a fax queue: outgoing faxes get sent automatically, and the user is informed by mail about the result.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>You will need the Portable Bitmap Toolkit (pbmplus) for converting from the standard G3 fax format to printable images. The reason is that mgetty itself can only send or receive G3 (raster) format. However, the distribution includes tools to convert raw 
+G3 files to or from the format used by pbmplus. The pbmplus toolkit is available from tsx-11 or sunsite archives. You will have to use the pbmtog3 and g3topbm utilities in mgetty to convert between PBM and G3. Also, the Ghostscript interpreter can convert 
+PostScript to G3, but not vice versa.
+
+<BR>
+
+<P>To compile the package, copy the policy.h-dist over to the policy.h file. Then run make all to make all the packages.
+
+<BR>
+
+<P>To enable logins with fax capability, replace the getty with mgetty (or vgetty if your modem can handle voice) for the /dev/tty device you have configured for incoming calls. To send faxes, you have to use sendfax. The syntax for the command is:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">sendfax [-p] [-xdebuglevel] [-v] [-lmodemlines]
+
+ [-minitstring]] [-dpolldirectory] [-Cmodemclass] [-S]
+
+ [-n] phone-number [g3file]</FONT></PRE>
+
+<P>The options for this command are as follows:
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-p
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Tells sendfax to try fax polling, that is, get any documents queued in the remote fax machine for you.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-x 
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Uses the given level of verbosity for logging&#151;0 means no logging, 5 is really noisy.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-v
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Gives some progress report on stdout.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-l
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Uses the given modem lines. Multiple lines can be separated by a colon. Example: sendfax -l tty1a:tty2a</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-m
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Sends an additional init string. This string is sent right after initializing the modem and setting it into Class 2 mode. You can use this to set the speaker value, some special registers, and so on.
+
+<BR>The modem must return &quot;OK.&quot; If it returns &quot;ERROR,&quot; sendfax prints an error message and aborts. You do not have to prepend the &quot;AT&quot; prefix, but it won't do any harm either.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-d
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Specifies the directory where polled fax files should go to. Defaults to the directory from which the program was invoked for the current directory. Unused if not polling a fax.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-C
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+The values for class are the type of modem: &quot;auto&quot; (the default), or &quot;cls2.&quot;</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-S
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Assumes modem connection on stdin, do not try to lock or initialize anything. To take over existing connections use with a dial string of T1. The T1 command sends out a short beep and no phone number at all. Such a behavior would confuse many modems. In 
+the case of a pulse dialed number, this action may confuse the telco switch. You may also use the -m ATX1 option with the -S option if you do not wait for dial tone.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-n
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Tells sendfax to send the fax pages in &quot;normal&quot; (204&#180;98 dpi) mode. Default is &quot;fine&quot; mode (204&#180;196 dpi).</FONT>
+
+</TABLE><P>Now that we have discussed all these options, you may be happy to know that none of these options are required to send a fax. So the following command by itself will send out a fax:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ sendfax 5551212 sample.g3</FONT></PRE>
+
+<P>will send the G3 encoded file fax to the number 5551212. For sending graphic images in the popular PBM format, you can also pipe the output of the pbm2g3 command to sendfax:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">$ pbm2g3 sample.pbm | sendfax 555-1212</FONT></PRE>
+
+<BR>
+
+<A NAME="E69E599"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>The Sticky Copyright Issue</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>From the FAQ, the note about the copyright is as follows:
+
+<BR>
+
+<P>&quot;The mgetty+sendfax package is Copyright &quot; 1993 Gert Doering. You are permitted to do anything you want with this program&#151;redistribute it, use parts of the code in your own programs, _, but you have to give me credit&#151;do not remove my 
+name.
+
+<BR>
+
+<P>&quot;If the program works for you, and you want to honour my efforts, you are invited to donate as much as you want.
+
+<BR>
+
+<P>&quot;If you make money with mgetty, I want a share. What I mean by that is: it's perfectly OK with me to get paid for mgetty installation or support, but if you want to actually sell mgetty, or pack mgetty with a modem and sell it as &quot;UNIX FAX 
+package,&quot; contact me first.&quot;
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>This package is still BETA software. Use it at your own risk, there is NO warranty. If it erases all the data on your hard disk, damages your hardware, or kills your dog, that is entirely your problem. Anyway, the program works for me and quite a lot 
+of other people.
+
+<BR>For more info on the copyright issue, please contact Mr. Doering directly.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E69E600"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Troubleshooting the Modems</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The FAQ has some interesting questions and answers to the commonly found bugs, &quot;features,&quot; and fixes. In most cases, if your modem is not supported, twiddling with a few files here or there will not do the trick. I tried four different types 
+of known name-brand modems before a cheap clone modem worked. I have no idea why this modem, which by the way has no visible markings, worked whereas the others did not. You may have better luck than I did.
+
+<BR>
+
+<P>In short, trying to fax out of Linux may not be as easy as you think. It's possible, but will take time and effort on your part.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E461"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Summary</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>This is a brief introduction to HylaFAX, a complete fax-handling package for UNIX and Linux. I covered the following items in this chapter.
+
+<BR>
+
+<UL>
+
+<LI>How to get HylaFAX for your machine.
+
+<BR>
+
+<BR>
+
+<LI>HylaFAX installation involves untarring the source files in a local directory. Then it's a matter of running configure to customize the program for your machine and running make install. You have to be root to install HylaFAX.
+
+<BR>
+
+<BR>
+
+<LI>How to check the MODEMS file to see whether your modem is supported.
+
+<BR>
+
+<BR>
+
+<LI>HylaFAX requires a background daemon faxd to handle incoming and outgoing faxes. You have to start the daemon with the -m option to specify where your modem exists. You need a FIFO and daemon for each modem on your system.
+
+<BR>
+
+<BR>
+
+<LI>The sendfax program requires the Adobe Font Metric files (in /usr/local/lib/afm) for converting from text to fax.
+
+<BR>
+
+<BR>
+
+<LI>Install Ghostscript before you install the HylaFAX package. This saves you a lot of time and gets rid of most installation problems.
+
+<BR>
+
+<BR>
+
+<LI>How to check the status of received or sent faxes with the faxstat program.
+
+<BR>
+
+<BR>
+
+<LI>The fax daemon, faxd, can be configured to answer either data or fax transmissions if faxd is invoked with the -g argument.
+
+<BR>
+
+<BR>
+
+<LI>HylaFAX supports polling via fax machines.
+
+<BR>
+
+<BR>
+
+<LI>How to get more information about HylaFAX via the WWW by accessing the Web page http://www.vix.com/hylafax.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>The source code for HylaFAX is available for public FTP on <A HREF="ftp://<A NAME="I2"></A>ftp.sgi.com">ftp.sgi.com</A> as /sgi/fax/source/ hylaFAX-v3.0.pl0-tar.gz.
+
+<BR>
+
+<P>I have also introduced you to sendfax, mgetty, and vgetty. These three programs enable you to send faxes, receive faxes, and even set up voice mail on your Linux box, provided your modem is supported.
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl58.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="#I0" TARGET="_self"><IMG SRC="purtop.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Page Top"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl60.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+</BODY></HTML>
+
+
+

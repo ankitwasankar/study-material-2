@@ -1,0 +1,654 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Red Hat Linux Unleashed rhl35.htm </TITLE>
+
+<LINK REL="ToC" HREF="index.htm">
+
+<LINK REL="Index" HREF="htindex.htm">
+
+<LINK REL="Next" HREF="rhl36.htm">
+
+<LINK REL="Previous" HREF="rhl34.htm"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+
+<A NAME="I0"></A>
+
+<H2>Red Hat Linux Unleashed rhl35.htm</H2>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl34.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl36.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+<HR ALIGN=CENTER>
+
+<P>
+
+<UL>
+
+<UL>
+
+<UL>
+
+<LI>
+
+<A HREF="#E68E308" >Scilab</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E407" >How To Get and Install Scilab</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E70E10" >Running Scilab</A></UL>
+
+<LI>
+
+<A HREF="#E69E408" >More Information on Scilab</A></UL>
+
+<LI>
+
+<A HREF="#E68E309" >Pari</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E409" >Where To Get Pari</A>
+
+<LI>
+
+<A HREF="#E69E410" >Running Pari</A></UL>
+
+<LI>
+
+<A HREF="#E68E310" >Using LISP-STAT</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E411" >Where To Get LISP-STAT</A>
+
+<LI>
+
+<A HREF="#E69E412" >Running xlispstat</A></UL>
+
+<LI>
+
+<A HREF="#E68E311" >A Last Note</A>
+
+<LI>
+
+<A HREF="#E68E312" >Summary</A></UL></UL></UL>
+
+<HR ALIGN=CENTER>
+
+<A NAME="E66E35"></A>
+
+<H1 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>35</B></FONT></CENTER></H1>
+
+<BR>
+
+<A NAME="E67E35"></A>
+
+<H2 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>Mathematics on Linux</B></FONT></CENTER></H2>
+
+<BR>
+
+<P>This book has dealt with many issues regarding the tools available for Linux. Now, let's look at some of the mathematics tools for Linux. Specifically, we will work with tools for doing mathematical and statistical applications under Linux. One such 
+tool we will be working with is Scilab, an interactive math and graphics package. Another tool for symbolic math is Pari. For statistical operations using LISP choose LISP-STAT.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E308"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Scilab</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The Scilab application was developed by the Institut National de Recherche de Informatique et en Automatique (INRIA) in France. Although this application is not as formidable as MATLAB, a commercial product with more bells and whistles, Scilab is still 
+powerful enough to provide decent graphics and solutions to math problems.
+
+<BR>
+
+<P>With Scilab you can do matrix multiplication, plot graphs, and so on. Using its built-in functions, Scilab enables you to write your own functions. With its toolbox, you can build your own signal- processing functions in addition to those provided by 
+Scilab.
+
+<BR>
+
+<P>Added to all its features, the help file is quite voluminous. If you want to find out how to do a math problem with Scilab, you will probably find it in the docs. Added to the good documentation are sample programs to get you started.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E407"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>How To Get and Install Scilab</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Now that you are probably interested in Scilab, you will want to know where to get it. Scilab is free via the Internet. The primary site is <A HREF="ftp://ftp.inria.fr">ftp.inria.fr</A>, and the directory for this is in INRIA/Projects/Meta2/Scilab. Look 
+for the zipped file with the latest date. Each zipped file is complete in itself.
+
+<BR>
+
+<P>The file you are looking for is called scilab-2.2-Linux-elf.tar.gz. In its unzipped form, the file is about 15MB in size. After moving scilab-2.2-Linux-elf.tar.gz to the directory you want it installed in (such as /usr/local), untar by typing gunzip 
+scilab-2.2-Linux-elf.tar.gz | tar xvf-.
+
+<BR>
+
+<P>After you have installed it (into the /usr/local/scilab-2.2 directory), go to the /usr/local/scilab-2.2/bin subdirectory and modify the scilab shell script file. Replace the assignment of the SCI variable with the path to the location of your scilab 
+files. For example, in my case I set the value to
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">SCI=&quot;/home/khusain/scilab-2.1.1&quot;</FONT></PRE>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>If Scilab does not show up in color the first time you invoke it, try *customization: -color in your .Xdefaults file. Don't forget to run xrdb .Xdefaults to enforce the change.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E70E10"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Running Scilab</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>To invoke scilab, type scilab in an Xterm window while in the /usr/local/scilab-2.2/bin directory.
+
+<BR>
+
+<P>The prompt for Scilab is &#151;&gt;. You will see responses to your commands immediately below where you type in entries.
+
+<BR>
+
+<P>A healthy example of how to use Scilab would probably be beneficial. Let's see how to declare values:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">&#151;&gt;x=1.0</FONT></PRE>
+
+<P>This sets x equal to 1.0. To declare an array, use square brackets:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">&#151;&gt;x=[1 2 3]
+
+x =
+
+! 1. 2. 3. !</FONT></PRE>
+
+<P>See Figure 35.1 to see what it looks like on your screen.
+
+<BR>
+
+<P><B> <A HREF="35rhl01.gif">Figure 35.1. Main screen for Scilab.</A></B>
+
+<BR>
+
+<P>To declare a large array you can use indices of the form [start:end]. Use a semicolon at the end of the line to indicate that you really do not want Scilab to echo the results back to you. So, the following statement
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">&#151;&gt;x=[1:100];</FONT></PRE>
+
+<P>declares x as a vector of values from 1 to 100 and does not display the contents of x back to you. If you want to give staggered values of x, you can use an increment operator in the form [start:increment:stop]. So, this statement declares x to contain 
+five odd numbers from 1:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">&#151;&gt;x=[1:2:10]
+
+x =
+
+! 1. 3. 5. 7. 9. !</FONT></PRE>
+
+<P>Let's try an example of a simple matrix multiplication problem of ax=b. First declare the a matrix, separating all the rows with semicolons. If you do not use semicolons, the values in matrix a will be interpreted as a 25&#180;1 vector instead of a 
+5&#180;5 matrix.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">&#151;&gt;a=[ 1 1 0 0 0; 1 1 1 0 0; 0 1 1 1 0; 0 0 1 1 1; 0 0 0 1 1]
+
+a =
+
+! 1. 1. 0. 0. 0. !
+
+! 1. 1. 1. 0. 0. !
+
+! 0. 1. 1. 1. 0. !
+
+! 0. 0. 1. 1. 1. !
+
+! 0. 0. 0. 1. 1. !</FONT></PRE>
+
+<P>Then declare X as a vector.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">&#151;&gt;X=[ 1 3 5 7 9 ]
+
+X =
+
+! 1. 3. 5. 7. 9. !</FONT></PRE>
+
+<P>To get the dimensions right for the multiplication, you have to use the single quotes ():Scilab multiplication;single quote operator () to get the transpose of X. Then put the results of the multiplication of a and X transpose into b.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">&#151;&gt;b= a * X'
+
+b =
+
+! 4. !
+
+! 9. !
+
+! 15. !
+
+! 21. !
+
+! 16. !
+
+&#151;&gt;</FONT></PRE>
+
+<P>The results look right. In fact, Scilab displayed the dimensions correctly too, since the results of the multiplication are a matrix of size 5&#180;1.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E408"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>More Information on Scilab</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The documentation for the Scilab application is available from <A HREF="ftp://ftp.inria.fr">ftp.inria.fr</A> in the /INRIA/Projects/Meta2/Scilab/doc directory. It contains a PostScript document called intro.ps which contains the user's manual titled 
+Introduction to Scilab. Take time to read this manual carefully.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E309"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Pari</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The Pari package is useful for doing symbolic mathematical operations. Its primary features include an arbitrary precision calculator, its own programming facilities, and interfaces to C libraries.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E409"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Where To Get Pari</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>To get Pari, use the FTP site <A HREF="ftp://megrez.math.u-bordeaux.fr">megrez.math.u-bordeaux.fr</A>, and from the /pub/pari/unix directory get the gplinux.tar.gz file. The binaries may not work with a later version of Linux because the binaries are 
+built with older versions of shared libraries. If you have a newer version of Linux than the one supported by Pari, either you can edit the sources yourself or wait until the authors of Pari catch up. Sorry.
+
+<BR>
+
+<P>With the version of Linux on the CD-ROM, you need to compile your own version of Pari. The source files are in the pari-1.39.03.tar.gz file. The source tar file unpacks into three directories: src, doc, and examples. You will find the examples very 
+useful indeed.
+
+<BR>
+
+<P>To compile the sources, run the Makemakefile command in the src directory. When creating this version, remove the definition of the option -DULONG_NOT_DEFINED from the CFLAGS macro in the newly created Makefile. Then type make at the prompt. Be prepared 
+to wait awhile for this package to compile.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E410"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Running Pari</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>After you have compiled the source files for Pari, type gp at the console prompt. Your prompt will be a question mark (?). Start by typing simple arithmetic expressions at this prompt. You should be rewarded with answers immediately. Let's look at the 
+following sample session:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">? 4*8
+
+%1 = 32
+
+? 4/7*5/6
+
+%2 = 10/21</FONT></PRE>
+
+<P>The answer was returned to us in fractions. To get real numbers, introduce just one real number in the equation. You will then get the answer as a real number. The percent signs identify the returned line numbers.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">? 4.0/7 * 5/6
+
+%3 = 0.4761904761904761904761904761</FONT></PRE>
+
+<P>To set the precision in number of digits, you use the ?\precision command. The maximum number of digits is 315,623, a large number for just about all users. For a modest precision of 10 digits to the right of the decimal point, use
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">?\precision = 10
+
+precision = 10 significant digits
+
+? 4.0/7*5/6
+
+%4 = 0.47619004761</FONT></PRE>
+
+<P>You can even work with expressions, as shown in the following example:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">? (x+2)*(x+3)
+
+%5 = x^2+5*x + 6</FONT></PRE>
+
+<P>You can assign values to variables to get the correct answer from evaluating an expression.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">? x = 3
+
+%6 = 3
+
+? eval(%5)
+
+%7 = 60</FONT></PRE>
+
+<P>This is not where the power of Pari ends, though. You can factor numbers, solve differential equations, and even factor polynomials. The FTP site for Pari contains a wealth of information and samples. See megrez.math.u-bordeaux.fr. Also, the examples 
+and docs directories contain samples and the manual to help you get started.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E310"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Using LISP-STAT</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>For statistical computing, consider using LISP-STAT. Written by Luke Tierney at the University of Minnesota, LISP-STAT is a very powerful, interactive, object-oriented LISP package.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E411"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Where To Get LISP-STAT</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The LISP-STAT package is available from <A HREF="ftp://ftp.stat.umn.edu">ftp.stat.umn.edu</A> in the /pub/xlispstat directory. Get the latest tar file version you can&#151;currently, xlispstat-3-44.tar.gz. In order to build this file you need the dld 
+library for Linux. This dld library is found in <A HREF="ftp://tsx-11.mit.edu">tsx-11.mit.edu</A> in the /pub/linux/binaries/libs directory as dld-3.2.5.bin.tar.gz. Install this dld library in the /lib directory first.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E412"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Running xlispstat</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>At the command prompt in an Xterm, type xlispstat. You will be presented with a &gt; prompt. Type commands at this prompt. For example, to multiply two matrices together, use the command:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">&gt; (def a (matrix '(3 3) '(2 5 7 1 2 3 1 1 2)))
+
+A
+
+&gt; (def b (matrix '(3 1) '(4 5 6)))
+
+B
+
+&gt; (matmult a b)
+
+#2A((75.0) (32.0) (21))</FONT></PRE>
+
+<P>The variables in LISP-STAT are not case-sensitive. Note the single quote (') before the list of numbers for the matrix. If you omit the quote, the list will be evaluated and replaced with the result of the evaluation. By leaving the single quote in 
+there, you are forcing the interpreter to leave the list in its place.
+
+<BR>
+
+<P>Let's try solving a simple set of linear equations using LISP-STAT. The following would be a simple example to solve:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">3.8x + 7.2y = 16.5
+
+1.3x - 0.9y = -22.1</FONT></PRE>
+
+<P>The following script would set up and solve this linear equation problem:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">&gt; (def a (matrix '(2 2) '(3.8 7.2 1.3 -0.9)))
+
+A
+
+&gt; (def b (matrix '(2 1) '(16.5 -22.1)))
+
+B
+
+&gt; (matmult (inverse a) b)
+
+#2A((-11.288732394366198) (8.249608763693271))</FONT></PRE>
+
+<P>You can do other math operations on lists of numbers as well. See the following example for calculating the mean of a list of numbers:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">&gt; (def sm (list 1.1 2.3 4.1 5.7 2.1))
+
+SM
+
+&gt; (mean SM)
+
+3.06</FONT></PRE>
+
+<P>There are many plotting functions available for LISP-STAT. For plotting one variable, try the function plot-function. For (x,y) pairs of numbers, use the plot-lines function. For a function of two variables, use the spin-function. For 3-D plots, use the 
+spin-plot function.
+
+<BR>
+
+<P>Plots are not limited to lines. You can do histograms, planar plots, and so on. See the help pages for details on specifics of how to generate these plots. Two or more plots can be linked together so that changes in one set of data can be reflected in 
+another. You can add points to a plot using the add-points function. For reconfiguring how the points are displayed, you can send commands to the plot windows. Plots can be linked together to enable more than one view of the same data.
+
+<P>
+<B>
+<a href="35rhl02.gif">Figure 35.2 A Histogram sample</A></B>
+
+<BR>
+
+<P>Each plot is displayed in an X window. You can move the mouse cursor over a point, and it will echo back a value for you.
+
+<BR>
+
+<P>To get help on this system, use the help command. The help documentation for this command should be visible. If nothing shows up, check the environment variables to see if the binaries are in the PATH.
+
+<P>
+<B>
+<a href="35rhl03.gif">Figure 35.3 Sample of using EIGEN-VALUES</A></B>
+
+<A NAME="E68E311"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>A Last Note</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>For simple math operations involving spreadsheets, you can always use the xspread program provided with the X package. (The CD-ROM at the back of the book has version 2.1.) For more powerful spreadsheet functions, you might want to resort to a 
+commercial spreadsheet package and take advantage of its support, too. The XESS spreadsheet is available for Linux from Applied Information systems, (919) 942-7801 or <A NAME="I2"></A><A HREF="http://www.ais.com/Xess">http://www.ais.com/Xess</A>. You can 
+share data between spreadsheets, or use the API to develop and have access to a full suite of math functions available on spreadsheets that run under DOS or UNIX.
+
+<BR>
+
+<P>Wolfram Research has released its Mathematica program for Linux. The Mathematica package has extensive numeric and symbolic capabilities, 2-D and 3-D graphics, and a very large library of application programs. With an additional feature called MathLink, 
+you can exchange information between other applications on a network. You can get more information about Mathematica from <A HREF="mailto:info@wri.com">info@wri.com</A> or <A HREF="http://www.wri.com">http://www.wri.com</A>.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E312"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Summary</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>You have several options when it comes to performing mathematical operations or writing such applications under Linux. You can either write the code yourself using C, FORTRAN, or other available languages&#151;or you can use a package. If you are 
+familiar with MATLAB, consider using Scilab. For regular expressions and polynomials, try using Pari. If you are a LISP user or want to do vector operations or statistics, consider using the LISP-STAT package.
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl34.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="#I0" TARGET="_self"><IMG SRC="purtop.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Page Top"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl36.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+</BODY></HTML>
+
+
+

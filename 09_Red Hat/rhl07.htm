@@ -1,0 +1,1622 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Red Hat Linux Unleashed rhl07.htm </TITLE>
+
+<LINK REL="ToC" HREF="index.htm">
+
+<LINK REL="Index" HREF="htindex.htm">
+
+<LINK REL="Next" HREF="rhl08.htm">
+
+<LINK REL="Previous" HREF="rhl06.htm"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+
+<A NAME="I0"></A>
+
+<H2>Red Hat Linux Unleashed rhl07.htm</H2>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl06.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl08.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+<HR ALIGN=CENTER>
+
+<P>
+
+<UL>
+
+<UL>
+
+<UL>
+
+<LI>
+
+<A HREF="#E68E42" >How Linux Commands Work</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E40" >Command Options</A>
+
+<LI>
+
+<A HREF="#E69E41" >Other Parameters</A>
+
+<LI>
+
+<A HREF="#E69E42" >Input and Output Redirection</A></UL>
+
+<LI>
+
+<A HREF="#E68E43" >Notational Conventions Used to Describe Linux Commands</A>
+
+<LI>
+
+<A HREF="#E68E44" >Online Help Available in Linux</A>
+
+<LI>
+
+<A HREF="#E68E45" >The Linux Man Pages</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E43" >Finding Keywords in Man Pages</A>
+
+<LI>
+
+<A HREF="#E69E44" >The bash Shell help Facility</A></UL>
+
+<LI>
+
+<A HREF="#E68E46" >Wildcards * and ?</A>
+
+<LI>
+
+<A HREF="#E68E47" >Environment Variables</A>
+
+<LI>
+
+<A HREF="#E68E48" >Processes and How to Terminate Them</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E45" >The Process Status Command ps</A>
+
+<LI>
+
+<A HREF="#E69E46" >The Process Termination Command kill</A></UL>
+
+<LI>
+
+<A HREF="#E68E49" >Becoming Someone Else The su Command</A>
+
+<LI>
+
+<A HREF="#E68E50" >The grep Command</A>
+
+<LI>
+
+<A HREF="#E68E51" >Summary</A></UL></UL></UL>
+
+<HR ALIGN=CENTER>
+
+<A NAME="E66E7"></A>
+
+<H1 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>7</B></FONT></CENTER></H1>
+
+<BR>
+
+<A NAME="E67E7"></A>
+
+<H2 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>Basic Linux Commands and Utilities</B></FONT></CENTER></H2>
+
+<BR>
+
+<P>In this chapter, we will discover the following:
+
+<BR>
+
+<UL>
+
+<LI>How to modify the basic function of Linux commands by using command options
+
+<BR>
+
+<BR>
+
+<LI>How to run two or more Linux commands in tandem by using input and output re-direction
+
+<BR>
+
+<BR>
+
+<LI>How to use parameters, such as filenames, with Linux commands
+
+<BR>
+
+<BR>
+
+<LI>How to read and understand the notational shorthand used in Linux and UNIX documentation
+
+<BR>
+
+<BR>
+
+<LI>How to use Linux online man pages and help facilities
+
+<BR>
+
+<BR>
+
+<LI>How to use wildcards that fill in for one or more filenames
+
+<BR>
+
+<BR>
+
+<LI>How to check your environment variables
+
+<BR>
+
+<BR>
+
+<LI>How to list processes running on the Linux system
+
+<BR>
+
+<BR>
+
+<LI>How to kill processes
+
+<BR>
+
+<BR>
+
+<LI>How to temporarily become another user
+
+<BR>
+
+<BR>
+
+<LI>How to use grep (and understand what grep means!)
+
+<BR>
+
+<BR>
+
+</UL>
+
+<BR>
+
+<A NAME="E68E42"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>How Linux Commands Work</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Most Linux commands are very flexible. When you enter a Linux command, there are several ways to tailor the basic command to your specific needs. We will look at the two main ways used to modify the effect of a command:
+
+<BR>
+
+<UL>
+
+<LI>Specifying or redirecting a command's input and output
+
+<BR>
+
+<BR>
+
+<LI>Using command options
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>A simple way to picture what a Linux command does is to imagine that it's a black box that is part of an assembly line. Items come down a conveyor belt, enter the black box, get processed in some way, come out of the black box, and are taken away on 
+another conveyor belt. Command options let you fine-tune the basic process happening inside the black box. Command redirection lets you specify which conveyor belt will supply the black box with items and which conveyor belt will take away the resulting 
+products.
+
+<BR>
+
+<P>Once you understand how redirection and command options work, you will be able to (at least in principle) use any Linux or UNIX command. This is because UNIX was based on a few simple design principles. Commands, therefore, should work in consistent 
+ways. Of course, UNIX has grown and changed over the years, and the design principles can sometimes get buried under all the changes. But they still make up the foundation, so that UNIX-based systems such as Linux are quite coherent and consistent in how 
+they work.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Pressing Ctrl-U at any point, right up to before you press Enter, lets you clear everything you've typed on the command line. You can use this whenever you spot an error at the very beginning of your typing, or when you decide you don't want to run a 
+particular command after all. You can also use the Backspace key to &quot;back up&quot; by erasing characters (in fact, it can be almost a reflex action), but it's usually faster to just erase the whole command line and start again.
+
+<BR>Perhaps the most powerful keys to use at the command prompt are the arrow keys. The left and right arrows move the cursor non-destructively. If you make a typo early in the line, you can left-arrow your way to the character and type in a correction. 
+Additionally, the up and down arrows enable you to jump through a list of the last several commands used (similar to DOS's DOSKEY utility).</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E69E40"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Command Options</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>You can use command options to fine-tune the actions of a Linux command. Quite often, a Linux command will do almost&#151;but not quite&#151;what you want it to do. Instead of making you learn a second command, Linux lets you modify the basic, or 
+default, actions of the command by using options.
+
+<BR>
+
+<P>The ls command is an excellent, and useful, example of a command that has a great many options. The ls command lists the files found on the Linux system's hard drive. This sounds simple enough, doesn't it? Try entering the command
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">darkstar:~$ ls
+
+darkstar:~$</FONT></PRE>
+
+<P>Well, nothing much seemed to happen.
+
+<BR>
+
+<P>Now try typing ls -a. Type it exactly as listed. The space between ls and -a is necessary, and there must be no space between the - and the a.
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">darkstar:~$ ls -a
+
+./ .bash_history .less .term/
+
+../ .kermrc .lessrc</FONT></PRE>
+
+<P>What you have done is modified what ls does by adding a command option&#151;in this case, -a. By default, ls lists only files whose names don't begin with a period. However, -a tells ls to list all files, even ones that begin with a period. (These are 
+usually special files created for you by Linux.) At present, all the files in your directory start with a period, so ls by itself does not list any files; you must add -a to see the files you have at present.
+
+<BR>
+
+<P>The ls command has many more options. You can use more than one option at a time. For example, try typing ls -al:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">darkstar:~$ ls -al
+
+total 10
+
+drwxr-xr-x 3 fido users 1024 Dec 21 22:11 ./
+
+drwxr-xr-x 6 root root 1024 Dec 14 01:39 ../
+
+-rw-r&#151;r&#151; 1 fido users 333 Dec 21 22:11 .bash_history
+
+-rw-r&#151;r&#151; 1 fido users 163 Dec 7 14:31 .kermrc
+
+-rw-r&#151;r&#151; 1 fido users 34 Jun 6 1993 .less
+
+-rw-r&#151;r&#151; 1 fido users 114 Nov 23 1993 .lessrc
+
+drwxr-xr-x 2 fido users 1024 Dec 7 13:36 .term/</FONT></PRE>
+
+<P>You now get a listing with many more details about the files. (These will be explained in <A HREF="rhl08.htm">Chapter 8</A>, &quot;The Linux File System.&quot;) The l option can be used by itself; ls -l will give detailed descriptions of files that 
+don't begin with a period. Sometimes filenames are so long they don't fit on a single line. Linux simply wraps the remainder to the next line.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Strictly speaking, the dash (-) is not part of the command option. The dash simply tells Linux to understand each letter immediately following it as a command option. There must be a space before the dash, and there must not be a space between the 
+dash and the letter or letters making up the command option. There must be a space after the command option if anything else is to be entered on the command line after it.
+
+<BR>You can type more than one command option after the dash, as we did with ls -al. In this case, we are specifying both the a and the l options. The order you specify options in usually doesn't matter; ls -al will give the same results as ls -la. 
+Combining options doesn't work with all Linux commands, and then only with those that use a single letter to specify each option.
+
+<BR>Multiple options can also be specified individually, with each option preceded by a dash and separated from other options by spaces&#151;for example, ls -a -l. This is usually done only when a particular option requires a further parameter.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>By default, ls lists files in alphabetical order. Sometimes you might be more interested in when a file was created or last modified. The t option tells ls to sort files by date instead of alphabetically by filename, showing the newest files first. 
+Therefore, typing ls -alt gives
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">darkstar:~$ ls -alt
+
+total 10
+
+drwxr-xr-x 3 fido users 1024 Jan 2 13:48 ./
+
+-rw-r&#151;r&#151; 1 fido users 333 Dec 21 22:11 .bash_history
+
+drwxr-xr-x 6 root root 1024 Dec 14 01:39 ../
+
+-rw-r&#151;r&#151; 1 fido users 163 Dec 7 14:31 .kermrc
+
+drwxr-xr-x 2 fido users 1024 Dec 7 13:36 .term/
+
+-rw-r&#151;r&#151; 1 fido users 114 Nov 23 1993 .lessrc
+
+-rw-r&#151;r&#151; 1 fido users 34 Jun 6 1993 .less</FONT></PRE>
+
+<P>The r option tells ls to produce a reverse output. This is often used with the t option. The following is an example of what you might get if you entered ls -altr:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">darkstar:~$ ls -altr
+
+total 10
+
+-rw-r&#151;r&#151; 1 fido users 34 Jun 6 1993 .less
+
+-rw-r&#151;r&#151; 1 fido users 114 Nov 23 1993 .lessrc
+
+drwxr-xr-x 2 fido users 1024 Dec 7 13:36 .term/
+
+-rw-r&#151;r&#151; 1 fido users 163 Dec 7 14:31 .kermrc
+
+drwxr-xr-x 6 root root 1024 Dec 14 01:39 ../
+
+-rw-r&#151;r&#151; 1 fido users 333 Dec 21 22:11 .bash_history
+
+drwxr-xr-x 3 fido users 1024 Jan 2 13:48 ./</FONT></PRE>
+
+<P>Many other options can be used with ls, although we have now tried the most commonly used ones. The important thing to remember is that you can usually customize a Linux command by using one or more command options.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>As with basic Linux commands, case is important! For instance, ls has an R option (recursive: show files in subdirectories, too) that gives much different results from the r option.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>You can think of a as the &quot;all files&quot; option, l as the &quot;long list&quot; option, t as the &quot;sort by time&quot; option, r as the &quot;reverse sort&quot; option, and so on. In fact, most options in Linux are mnemonic&#151;the option 
+letter stands for a word or phrase. Some option letters mean the same thing in many different Linux commands. For instance, v often means verbose&#151;in other words, &quot;Give me lots of detail.&quot;
+
+<BR>However, do not assume that, on any unfamiliar command, certain options will work in the &quot;usual&quot; way! For instance, r is the recursive option for many Linux commands; however, in the case of ls, reverse sort is more commonly used, and 
+therefore it gets the easier-to-type lowercase r, while recursive is left with the capital R. It might seem like not much extra effort to press the Shift key to get the capital letter, but try typing a string of four or five options, one of which is 
+capitalized!</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>You can easily find out which options are available for any Linux command by using the man command. See the section &quot;The Linux Man Pages&quot; later in this chapter.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E69E41"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Other Parameters</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Linux commands often use parameters that are not actual command options. These parameters, such as filenames or directories, are not preceded by a dash.
+
+<BR>
+
+<P>For instance, by default ls lists the files in your current directory. You can, however, tell ls to list the files in any other directory simply by adding the directory to the command line. For instance, ls /bin will list everything in the /bin 
+directory. This can be combined with command options, so that ls -l /bin gives you detailed listings of the files in /bin. Try this. You will be impressed by the number of files in the /bin directory!
+
+<BR>
+
+<P>You can also specify ls to list information about any particular file by entering its filename. For instance, ls -la .lessrc gives detailed information only about the .lessrc file.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E42"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Input and Output Redirection</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Many Linux commands let you specify which file or directory they are to act upon, as we saw with the example ls -l /bin earlier.
+
+<BR>
+
+<P>You can also &quot;pipe&quot; the output from a command so that it becomes another command's input. This is done by typing two or more commands separated by the | character. (This character normally is found on the same key as the \ character. You must 
+hold down the Shift key or you will get \ instead of |). The | character means &quot;Use the output from the previous command as the input for the next command.&quot; Therefore, typing command_1|command_2 does both commands, one after the other, before 
+giving you the results.
+
+<BR>
+
+<P>Using our assembly-line metaphor, we are processing items through two black boxes instead of just one. When we use piping, it's like hooking up the first command's output conveyor belt to become the input conveyor belt for the second command.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Although Linux doesn't care whether | is set off by spaces, if command_1 | command_2 is easier for you to read and understand than command_1|command_2, by all means use spaces around |.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>You will have noticed that the output of ls -l /bin is many lines long, so that much of the information scrolls off the screen before you can read it. You can pipe this output to a formatting program called more, which displays information in 
+screen-sized chunks. When you enter ls -l /bin | more, you will see the following:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">darkstar:~$ ls -l /bin | more
+
+total 1611
+
+-rwxr-xr-x 1 root bin 1248 Sep 17 04:25 arch*
+
+-rwxr-xr-x 1 root bin 295940 Sep 5 01:45 bash*
+
+-rwxr-xr-x 1 root bin 4840 Nov 24 1993 cat*
+
+-rwxr-xr-x 1 root bin 9220 Jul 20 12:06 chgrp*
+
+-rwxr-xr-x 1 root bin 13316 Jul 20 12:06 chmod*
+
+-rwxr-xr-x 1 root bin 13316 Jul 20 12:06 chown*
+
+lrwxrwxrwx 1 root root 17 Dec 7 13:37 compress -&gt; /usr/bin/comp_ress*
+
+-rwxr-xr-x 1 root bin 21508 Jul 20 12:06 cp*
+
+-rwxr-xr-x 1 root bin 41988 May 1 1994 cpio*
+
+lrwxrwxrwx 1 root root 4 Dec 7 13:40 csh -&gt; tcsh*
+
+-rwxr-xr-x 1 root bin 5192 Nov 24 1993 cut*
+
+-rwxr-xr-x 1 root bin 19872 Mar 23 1994 date*
+
+-rwxr-xr-x 1 root bin 17412 Jul 20 12:06 dd*
+
+-rwxr-xr-x 1 root bin 13316 Jul 20 12:06 df*
+
+-rwxr-xr-x 1 root bin 66564 Jun 9 1994 dialog*
+
+-rwxr-xr-x 1 root bin 1752 Sep 17 04:25 dmesg*
+
+lrwxrwxrwx 1 root root 8 Dec 7 13:37 dnsdomainname -&gt; hostname*
+
+-rwxr-xr-x 1 root bin 13316 Jul 20 12:06 du*
+
+-rwxr-xr-x 1 root bin 3312 Mar 23 1994 echo*
+
+-rwxr-xr-x 1 root bin 36684 May 4 1994 ed*
+
+-rwxr-xr-x 1 root bin 326 Mar 23 1994 false*
+
+&#151;More&#151;</FONT></PRE>
+
+<P>The &#151;More&#151; at the bottom of the screen tells you that there's more text to come. To go to the next screen of text, press the spacebar. Every time you press the spacebar, more displays another screenful of text. When the last screenful of text 
+has been displayed, more returns you to the Linux prompt.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>The more command can do many other things. For instance, to move back one screen at a time, type b for &quot;back.&quot; Another useful command is q for &quot;quit.&quot; This lets you leave immediately, without having to go through all the remaining 
+screens of text.
+
+<BR>While in more, type h for &quot;help.&quot; This will list the commands available within more.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>The Linux system sometimes uses the command less instead of more. One difference you will notice is that, unlike more, less requires you to type q to return to the command line, even if you're at the end of the text to be displayed. This might seem 
+cumbersome, but it prevents you from accidentally exiting the program by pressing the spacebar once too often.
+
+<BR>The name less is a play on more. Originally, less was designed to have many features that more lacked. The version of more included in your Linux system has most of these features, however.
+
+<BR>The Linux man program, discussed later, uses less to display text. Most other UNIX systems use more by default. Don't get confused. Remember to type q to exit from less!</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>Another thing you can do in Linux is to send output to a file instead of the screen. There are many different reasons why you might want to do this. You might want to save a &quot;snapshot&quot; of a command's output as it was at a certain time, or you 
+might want to save a command's output for further examination. You might also want to save the output from a command that takes a very long time to run, and so on.
+
+<BR>
+
+<P>To send output to a file, use the &gt; symbol (found above the period on your keyboard). For instance, you can place the output of the ls -l /bin command into a file called test by typing ls -l /bin &gt; test. Again, spaces around &gt; are optional and 
+not strictly necessary, but they do make the command much more readable.
+
+<BR>
+
+<P>If you now do an ls or ls -l, you will see that you've created a new file called test in your own directory.
+
+<BR>
+
+<P>To see the contents of a file, you can again use the more command. Just specify the name of the file you want to look at. In this case, you would type more test.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Be careful! When you use &gt;, you completely overwrite the previous contents of the file you specify to take the output (if that file existed). For example, if we already had a file called test in our directory, its old contents would be completely 
+replaced by the output from ls -l /bin. Linux will not warn you that you are about to do this!
+
+<BR>Be particularly careful if you're not in your usual directory, or if you're logged in as root. You could, for instance, accidentally clobber the Linux program test, which exists as a file named test&#151;fortunately, not in the directory where we 
+created our test file! It's a good idea to check if the output file already exists before using &gt;. In our example, we could have typed ls -l test beforehand. If no information is displayed, the file does not exist.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>You can specify that you want to add your output to the end of the file, rather than replace the file's contents, by using &gt;&gt;. Type who &gt;&gt; test to add the output of the who command to the end of the text already in the file test.
+
+<BR>
+
+<P>You can examine the results by using either more or less and paging through to the end of the file, or by using the Linux command tail, which displays the last few lines of the specified file. In this case, you would type tail test to see the last few 
+lines of the file test. Try using tail!
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>For a more detailed discussion of redirection and piping, see <A HREF="rhl10.htm">Chapter 10</A>, &quot;Using bash.&quot;</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E68E43"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Notational Conventions Used to Describe Linux Commands</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>There is a set of accepted notational conventions used to describe, in a concise and consistent way, the correct syntax for any given Linux command. This specifies what options or parameters you must use, what options or parameters you can use or not 
+use, and so on. Sometimes this set of conventions is used to give a complete and exhaustive listing of a command's syntax, showing every possible command and parameter. Sometimes it is used to make a particular example more general and the command's basic 
+usage clearer.
+
+<BR>
+
+<P>If you remember the following six basic rules, you will be able, in principle, to understand the syntax of any Linux or UNIX command.
+
+<BR>
+
+<OL>
+
+<LI>Any text standing by itself, and not within [], &lt;&gt;, or {}, must be typed exactly as shown.
+
+<BR>
+
+<BR>
+
+<LI>Any text within square brackets ([]) is optional. You can type it or not type it. For instance, the syntax ls [-l] means you must type ls (per the first rule), while adding -l is optional, but not necessary. Do not type the square brackets themselves! 
+In our example, type ls or ls -l. Don't type ls [-l].
+
+<BR>
+
+<BR>
+
+<LI>Angle brackets (&lt;&gt;) and the text within them must be replaced by appropriate text (usually a name or value). The text within the brackets usually indicates the nature of the replacement. For instance, the syntax more &lt;filename&gt; means that 
+you should replace &lt;filename&gt; with the name of the file you wish to examine using more. If you want to look at the file test, you would type more test. Remember, do not use the angle brackets when you actually type the command!
+
+<BR>
+
+<BR>
+
+<LI>Curly braces ({}) indicate that you must choose one of the values given within the braces. The values are separated by | (which in this case means or, not pipe!). For example, the syntax command -{a|b} means you must enter either command -a or command 
+-b.
+
+<BR>
+
+<BR>
+
+<LI>An ellipsis (...) means &quot;and so on.&quot; It is normally used with parameters such as filenames, as described later.
+
+<BR>
+
+<BR>
+
+<LI>The sixth basic rule states that the brackets can be combined as necessary. For instance, you don't have to type a filename with the more command. This would be indicated as more [&lt;filename&gt;]. The outer set of square brackets makes the entire 
+parameter optional. If you do decide to use the parameter, replace the inner set of angle brackets with the appropriate value. Because the more command enables one or more filenames to be specified, the syntax becomes more [&lt;filename&gt;...]. The 
+ellipsis means you can have as many &lt;filenames&gt; as you wish.
+
+<BR>
+
+<BR>
+
+</OL>
+
+<BR>
+
+<A NAME="E68E44"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Online Help Available in Linux</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Linux has help facilities available online. If you forget the exact use of a command, or you're looking for the right command to use, the answer might be available straight from Linux. The two help facilities we will try out are the bash shell's help 
+command, and the man command, which is available on almost all UNIX systems, including Linux.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>If you have not installed the man pages package, you should do so now. Although it is possible to get by without man pages, they are a very valuable resource for both novice and expert Linux users.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E68E45"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>The Linux Man Pages</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The &quot;man&quot; in &quot;man pages&quot; stands for &quot;manual.&quot; (As usual, the creators of UNIX shortened a long but descriptive word to a shorter, cryptic one!) Typing man &lt;command&gt; lets you view the manual pages dealing with a 
+particular command.
+
+<BR>
+
+<P>Try typing man passwd to see what the Linux manual has to say about the passwd command.
+
+<BR>
+
+<P>The general layout of a man page is as follows:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">COMMAND(1) Linux Programmer's Manual COMMAND(1)
+
+NAME
+
+command - summary of what command does
+
+SYNOPSIS
+
+&lt;complete syntax of command in the standard Linux form&gt;
+
+DESCRIPTION
+
+More verbose explanation of what &quot;command&quot; does.
+
+OPTIONS
+
+Lists each available option with description of what it does
+
+FILES
+
+lists files used by, or related to, command
+
+SEE ALSO
+
+command_cousin(1), command_spouse(1), etc.
+
+BUGS
+
+There are bugs in Linux commands??
+
+AUTHOR
+
+J. S. Goobly (goobly@hurdly-gurdly.boondocks)
+
+Linux 1.0 22 June 1994 1</FONT></PRE>
+
+<P>The man page for passwd is actually quite understandable. Be warned, however, that man pages are often written in a very formal and stylized way that sometimes bears little resemblance to English. This is done not to baffle people, but to cram a great 
+deal of information into as short a description as possible.
+
+<BR>
+
+<P>For example, try man ls. Notice how many options are available for ls and how long it takes to explain them!
+
+<BR>
+
+<P>Although it can take practice (and careful reading!) to understand man pages, once you get used to them, the first thing you'll do when you encounter a strange command is call up the man page for that command.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E43"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Finding Keywords in Man Pages</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Sometimes you know what you want to do, but you don't know which command you should use to do it. You can use the keyword option by typing man -k &lt;keyword&gt;. The man program will return the name of every command whose name entry (which includes a 
+very brief description) contains that keyword.
+
+<BR>
+
+<P>For instance, you can search on manual:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">darkstar:~$ man -k manual
+
+man (1) - Format and display the on-line manual pages
+
+whereis (1) - Locate binary, manual, and or source for program
+
+xman (1) - Manual page display program for the X Window System</FONT></PRE>
+
+<P>You have to be careful to specify your keyword well, though! Using directory as your keyword isn't too bad, but using file will give you many more entries than you will want to wade through.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>You might have noticed that commands seem to be followed by numbers in brackets, usually (1). This refers to the manual section. Back in the days when UNIX manuals came in printed, bound volumes, normal commands were in Section 1, files used by 
+administrators were in Section 5, programming routines were described in Section 3, and so on.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Therefore, some man pages are not about commands at all, but rather about files or system calls used in Linux!
+
+<BR>If a particular entry shows up in more than one section, man will show you the lowest-numbered entry by default. You can see higher-numbered entries by specifying the section number. For instance, Section 5 has a manual entry on the passwd file. To see 
+this rather than the manual entry for the passwd command type man 5 passwd.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E69E44"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>The bash Shell help Facility</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>When you type a command at the prompt, the shell program takes what you've written, interprets it as necessary, and passes the result to the Linux operating system. Linux then performs the actions requested of it. Many Linux commands require Linux to 
+find and start up a new program. However, the shell itself can perform a number of functions. These functions can be simple, often-used commands, so that the overhead of starting up separate programs is eliminated, or they can be facilities that make the 
+shell environment friendlier and more useful. One of these facilities is the help command, which provides information on the bash shell's built-in functions.
+
+<BR>
+
+<P>Type help at the prompt. You will see at least some of the following:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">GNU bash, version 1.14.6(1)
+
+Shell commands that are defined internally. Type 'help' to see this list.
+
+Type 'help name' to find out more about the function 'name'.
+
+Use 'info bash' to find out more about the shell in general.
+
+A star (*) next to a name means that the command is disabled.
+
+%[DIGITS | WORD] [&amp;] . [filename]
+
+: [ arg... ]
+
+alias [ name[=value] ... ] bg [job_spec]
+
+bind [-lvd] [-m keymap] [-f filena break [n]
+
+builtin [shell-builtin [arg ...]] case WORD in [PATTERN [| PATTERN].
+
+cd [dir] command [-pVv] [command [arg ...]]
+
+continue [n] declare [-[frxi]] name[=value] ...
+
+dirs [-l] echo [-neE] [arg ...]
+
+enable [-n] [name ...] eval [arg ...]
+
+exec [ [-] file [redirection ...]] exit [n]
+
+export [-n] [-f] [name ...] or exp fc [-e name] [-nlr] [first] [last
+
+fg [job_spec] for NAME [in WORDS ... ;] do COMMA
+
+function NAME { COMMANDS ; } or NA getopts optstring name [arg]
+
+hash [-r] [name ...] help [pattern ...]
+
+history [n] [ [-awrn] [filename]] if COMMANDS; then COMMANDS; [elif
+
+jobs [-lnp] [jobspec ...] | jobs - kill [-s sigspec | -sigspec] [pid
+
+let arg [arg ...] local name[=value] ...
+
+logout popd [+n | -n]
+
+pushd [dir | +n | -n] pwd
+
+read [-r] [name ...] readonly [-n] [-f] [name ...] or r
+
+return [n] select NAME [in WORDS ... ;] do CO
+
+set [&#151;abefhknotuvxldHCP] [-o opti shift [n]
+
+source filename suspend [-f]
+
+test [expr] times
+
+trap [arg] [signal_spec] type [-all] [-type | -path] [name
+
+typeset [-[frxi]] name[=value] ... ulimit [-SHacdmstfpnuv [limit]]
+
+umask [-S] [mode] unalias [-a] [name ...]
+
+unset [-f] [-v] [name ...] until COMMANDS; do COMMANDS; done
+
+variables - Some variable names an wait [n]
+
+while COMMANDS; do COMMANDS; done { COMMANDS }</FONT></PRE>
+
+<P>You will have to pipe the output of help to more (help | more) to keep the first part from scrolling off your screen.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E46"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Wildcards * and ?</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>In many a late-night card game, jokers are shuffled into the deck. The jokers are wildcards that can become any card of your choice. This is obviously very useful! Linux has wildcards also. They are, if anything, more useful than jokers in a card game.
+
+<BR>
+
+<P>Linux has several wildcards. Wildcards are used as a convenient and powerful shortcut when specifying files (or directories) that a command is to operate on. We will briefly look at the two most popular wildcards: * and ?.
+
+<BR>
+
+<P>The most commonly used wildcard is *, which stands in for any combination of one or more characters. For example, c* will match all filenames that begin with c. You can see this for yourself by typing ls /bin/c*.
+
+<BR>
+
+<P>What happens if you type ls /bin/c*t? How about ls /bin/*t?
+
+<BR>
+
+<P>The ? wildcard is more restrictive than *. It only stands in for any one character. You can see this by comparing ls/bin/d* with ls/bin/d?.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Wildcards can only be used to match filenames and directory names. You can't, for example, type pass* at the Linux prompt and expect Linux to run the passwd program for you.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Be very careful when using wildcards with dangerous commands, such as the ones used to permanently delete files! A good check is to run ls with the wildcards you plan to use and examine the resulting list of files to see if the wildcard combination 
+did what you expected it to do. Also double-check that you typed everything correctly before pressing the Enter key!</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E68E47"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Environment Variables</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>When you log in, Linux keeps a number of useful data items in the background ready for the system to use. The actual data is held in something called an environment variable, whose name is often descriptive or mnemonic. In fact, this is no different 
+from the way you and I remember things. We know that there always is a piece of information called &quot;day of the week&quot; (the environment variable); however, we change the data in this variable, from Monday to Tuesday to Wednesday, and so on, as days 
+go by.
+
+<BR>
+
+<P>To see the list of exported environment variables, type env. The environment variable's name is on the left, and the value held by the variable is on the right.
+
+<BR>
+
+<P>The most important variable to note is the PATH, whose value is your search path. As we will see in the next chapter, when you type a command, Linux will search every place listed in your search path for that command.
+
+<BR>
+
+<P>A longer list of environment variables, consisting of several new variables in addition to the ones you saw earlier, is displayed by the command set. The new variables are local: they have not been marked for export. For more information on exporting 
+variables, see <A HREF="rhl10.htm">Chapter 10</A>. You can think of local variables as items of information you need for only a certain time or location. For instance, remembering the variable &quot;what-floor-am-I-on&quot; becomes an unnecessary piece of 
+information once you leave the building!
+
+<BR>
+
+<BR>
+
+<A NAME="E68E48"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Processes and How to Terminate Them</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>In the previous chapter, we learned about the who command, which shows you the usernames of everyone who is logged into the system. The who program actually gets its information from the Linux system, which maintains and updates the list of the system's 
+current users.
+
+<BR>
+
+<P>In fact, Linux keeps much more detailed records about what is happening on the system than just who is logged in. Because Linux is a multitasking system, in which many programs or program threads may be running simultaneously, Linux keeps track of 
+individual tasks or processes.
+
+<BR>
+
+<P>Although these processes are usually well-behaved and well-managed by Linux, sometimes they might go out of control. This can happen if a program hits a bug or a flaw in its internal code or supplied data, or if you accidentally enter the wrong command 
+or command option.
+
+<BR>
+
+<P>Being able to identify these misbehaving processes, and then being able to terminate or kill them, is an essential piece of knowledge for all Linux/UNIX users. (Obviously the world was a less kind and gentle place when the kill command was developed and 
+named.) When you are your own system administrator, as in our case, it's doubly important!
+
+<BR>
+
+<BR>
+
+<A NAME="E69E45"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>The Process Status Command ps</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>To find out what processes are running, we use the ps command. ps stands for &quot;process status,&quot; not the &quot;post script&quot; you would write at the end of a letter.
+
+<BR>
+
+<P>Typing ps by itself gives you a concise listing of your own processes:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">darkstar:~$ ps
+
+PID TTY STAT TIME COMMAND
+
+41 v01 S&lt; 0:00 -bash
+
+134 v01 R&lt; 0:00 ps</FONT></PRE>
+
+<P>The information in the first column, headed PID, is important. This is the Process ID number, which is unique, and which Linux uses to identify that particular process. You must know a process's PID to be able to kill it.
+
+<BR>
+
+<P>The TTY column shows you which terminal the process was started from.
+
+<BR>
+
+<P>The STAT column gives the status of the process. The two most common entries in the status column are S for sleeping and R for running. A sleeping process is one that isn't currently active. However, don't be misled. A sleeping process might just be 
+taking a very brief catnap! In fact, a process might switch between sleeping and running many times every second.
+
+<BR>
+
+<P>The TIME column shows the amount of system time used by the process. Clearly, neither of our processes are taking up any appreciable system time!
+
+<BR>
+
+<P>Finally, the COMMAND column contains the name of the program you're running. This will usually be the command you typed at the command line. However, sometimes the command you type starts one or more child processes, and in this case, you would see 
+these additional processes show up as well, without ever having typed them yourself. Your login shell will have a - before it, as in -bash in the previous example. This helps to distinguish this primary shell from any shells you might enter from it. These 
+will not have the - in front.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>If you are logged in as root, you will see a list of all processes on the system. This is because the root username, being the superuser, owns everything that happens on the Linux system.
+
+<BR>If you are an &quot;ordinary&quot; user, but have also logged in on another terminal (including another virtual terminal you have selected by pressing Alt-Fn as discussed in <A HREF="rhl06.htm">Chapter 6</A>, &quot;Getting Started with Linux&quot;), 
+you will see the processes you are running on the other terminal (or terminals) as well.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>One useful option with ps is u. Although it stands for &quot;user,&quot; as in &quot;List the username as well,&quot; it actually adds quite a few more columns of information in addition to just the username:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">darkstar:~$ ps -u
+
+USER PID %CPU %MEM SIZE RSS TTY STAT START TIME COMMAND
+
+fido 41 0.1 6.8 364 472 v01 S&lt; 23:19 0:01 -bash
+
+fido 138 0.0 3.3 72 228 v01 R&lt; 23:34 0:00 ps -u</FONT></PRE>
+
+<P>In addition to the username in the USER column, other interesting new items include %CPU, which shows you what percentage of your computer's processing power is being used by the process, and %MEM, which shows you what percentage of your computer's 
+memory is being used by the process.
+
+<BR>
+
+<P>If you want to see all processes running on the system, and not just the processes started by your own username, you can use the a command option. (The root login sees everyone's processes automatically and does not have to use a, so root can get the 
+following output by simply typing ps.)
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">darkstar:~$ ps -a
+
+PID TTY STAT TIME COMMAND
+
+62 v03 S&lt; 0:00 /sbin/agetty 38400 tty3
+
+63 v04 S&lt; 0:00 /sbin/agetty 38400 tty4
+
+64 v05 S&lt; 0:00 /sbin/agetty 38400 tty5
+
+65 v06 S&lt; 0:00 /sbin/agetty 38400 tty6
+
+330 v02 S&lt; 0:00 -bash
+
+217 v01 S&lt; 0:00 -bash
+
+217 v01 S&lt; 0:00 ps -a</FONT></PRE>
+
+<P>As you can see, quite a few &quot;other&quot; processes are happening on the system! In fact, most of the processes we see here will be running whether or not anyone is actually logged into the Linux system. All the processes listed as running on tty 
+psf are actually system processes, and are started every time you boot up the Linux system. Processes of the form /sbin/agetty 38400 tty6 are login processes running on a particular terminal waiting for your login.
+
+<BR>
+
+<P>It can be useful to combine the a and u options (if you're not root).
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">darkstar:~$ ps -au
+
+USER PID %CPU %MEM SIZE RSS TTY STAT START TIME COMMAND
+
+root 72 0.0 3.6 390 532 v01 S&lt; 17:55 0:01 -bash
+
+root 74 0.0 1.5 41 224 v03 S&lt; 17:55 0:00 /sbin/agetty 38400 tty3
+
+root 75 0.0 1.5 41 224 v04 S&lt; 17:55 0:00 /sbin/agetty 38400 tty4
+
+root 76 0.0 1.5 41 224 v05 S&lt; 17:55 0:00 /sbin/agetty 38400 tty5
+
+root 77 0.0 1.5 41 224 v06 S&lt; 17:55 0:00 /sbin/agetty 38400 tty6
+
+root 78 0.0 1.5 56 228 s00 S&lt; 17:55 0:00 gpm -t mman
+
+root 98 0.0 1.5 41 224 v02 S&lt; 18:02 0:00 /sbin/agetty 38400 tty2
+
+root 108 18.8 3.6 384 528 pp0 S&lt; 18:27 0:01 -bash</FONT></PRE>
+
+<P>A more technical l option can sometimes be useful:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">darkstar:~$ ps -l
+
+F UID PID PPID PRI NI SIZE RSS WCHAN STAT TTY TIME COMMAND
+
+0 501 41 1 15 0 364 472 114d9c S&lt; v01 0:00 -bash
+
+0 501 121 41 29 0 64 208 0 R&lt; v01 0:00 ps -l</FONT></PRE>
+
+<P>The interesting information is in the PPID column. PPID stands for &quot;Parent Process ID&quot;&#151;in other words, the process that started the particular process. Notice that the ps -l command was started by -bash, the login shell. In other words, 
+ps -l was started from the command line. Notice also that the PPID for the login shell is PID 1. If you check the output from ps -au shown previously, you will see that the process with PID of 1 is init. The init process is the one that spawns, or starts, 
+all other processes. If init dies, the system crashes!
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>The Linux ps command has some quirks when it comes to options.
+
+<BR>First of all, the dash before the options is not necessary. In the earlier example, ps l would work the same as ps -l. Because most Linux commands do require the use of dashes with their command options, and other versions of UNIX might require dashes 
+when using ps, it's best to use the dash anyway.
+
+<BR>Second, the order in which you enter the options does matter, especially if you try to combine the l and u options! Try typing ps -lu, and then ps -ul. This behavior is not covered in the ps man page. The moral is twofold: First, use the minimum 
+possible number of command options. Second, the man pages are, alas, not always correct and complete.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E69E46"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>The Process Termination Command kill</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The kill command is used to terminate processes that can't be stopped by other means.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Before going through the following procedure, if it's a program you're stuck in, make sure you can't stop or exit it by typing Ctrl-C or some other key combination.</NOTE>
+
+<BR>
+
+<OL>
+
+<LI><A NAME="I2"></A>Switch to another virtual console and log in as root.
+
+<BR>
+
+<BR>
+
+<LI>Run ps -u and identify the offending process. You will use its PID in the next step.
+
+<BR>
+
+<BR>
+
+<LI>Use the kill program by typing kill &lt;PID&gt;, where PID is the Process ID you wish to kill. Make sure that you have correctly identified the offending process! As root, you can kill any user process, including the wrong one if you misread or mistype 
+the PID.
+
+<BR>
+
+<BR>
+
+<LI>Verify that the process has been killed by using ps -u again. You can type ps -u &lt;PID&gt;, which shows you the status of only the specified PID. If there's a null result and you're just given the Linux prompt again, the PID is dead, so go to step 8. 
+However, it's best to look at the complete ps -u list if it's not too long. Sometimes the offending process reappears with a new PID! If that is the case, go to step 6.
+
+<BR>
+
+<BR>
+
+<LI>If the process is still alive and has the same PID, use kill's 9 option. Type kill -9 &lt;PID&gt;. Check it as in step 4. If this does not kill the process, go to step 7. If the process is now dead, go to step 8.
+
+<BR>
+
+<BR>
+
+<LI>If the offending process has reappeared with a new PID, that means that it's being created automatically by some other process. The only thing to do now is to kill the parent process, which is the true offender! You might also have to kill the parent 
+process when kill -9 does not work.
+
+<BR>
+
+<BR>
+
+<LI>Use ps -l to identify the troublesome process's PPID. This is the PID of the parent process. You should check the parent's identity more closely by typing ps -u &lt;Parent PID&gt; before going ahead and killing it as described in step 3, using the PID 
+of the parent in the kill command. You should follow through with step 4 and, if necessary, step 5, making sure the parent process has been killed.
+
+<BR>
+
+<BR>
+
+<LI>The process is killed. Remember to log off. You should not leave root logged in on virtual consoles, because you will forget that the root logins are there!
+
+<BR>
+
+<BR>
+
+</OL>
+
+<BR>
+
+<NOTE>Sometimes processes are simply unkillable! In this case, you're best off shutting down the Linux system and rebooting.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>Linux keeps ordinary users (as opposed to root) from killing other users' processes (maliciously or otherwise). For instance, if you are an ordinary user and you try to kill the init process, which always has PID=1, you will see
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">darkstar:~$ kill 1
+
+kill: (1) - Not owner</FONT></PRE>
+
+<P>Actually, not even root can kill the init process, although there is no error message. The init process is one of those &quot;unkillable&quot; processes discussed earlier, because it's such a key process. That's all for the best!
+
+<BR>
+
+<BR>
+
+<A NAME="E68E49"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Becoming Someone Else The su Command</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Usually, when you want to temporarily become a different user, you will simply switch to another virtual terminal, log in as the other user, log out when you're done, and return to your &quot;home&quot; virtual terminal. However, there are times when 
+this is impractical or inconvenient. Perhaps all your virtual terminals are already busy, or perhaps you're in a situation (such as logged on via a telephone and modem) in which you don't have virtual terminals available.
+
+<BR>
+
+<P>In these cases, you can use the su command. &quot;su&quot; stands for &quot;super user.&quot; If you type su by itself, you will be prompted for the root password. If you successfully enter the root password, you will see the root # prompt, and you will 
+have all of root's privileges.
+
+<BR>
+
+<P>You can also become any other user by typing su &lt;username&gt;. If you are root when you type su &lt;username&gt;, you are not asked for that user's password since in principle you could change the user's password or examine all the user's files from 
+the root login anyway. If you are an &quot;ordinary&quot; user trying to change to another ordinary user, you will be asked to enter the password of the user you are trying to become.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Although su grants you all the privileges you would get if you logged on as that user, be aware that you won't inherit that login's exact environment or run that login's startup files (if any). This means that su is not really suited to doing 
+extended work, and it's quite unsuitable for troubleshooting problems with that login.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E68E50"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>The grep Command</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>&quot;What on earth does grep mean?&quot; you ask.
+
+<BR>
+
+<P>This is a fair question. grep must be the quintessential UNIX acronym, because it's impossible to understand even when it's spelled out in full!
+
+<BR>
+
+<P>grep stands for Global Regular Expression Parser. You will understand the use of this command right away, but when &quot;Global Regular Expression Parser&quot; becomes a comfortable phrase in itself, you should probably consider taking a vacation.
+
+<BR>
+
+<P>What grep does, essentially, is find and display lines that contain a pattern that you specify. There are two basic ways to use grep.
+
+<BR>
+
+<P>The first use of grep is to filter the output of other commands. The general syntax is &lt;command&gt; | grep &lt;pattern&gt;. For instance, if we wanted to see every actively running process on the system, we would type ps -a | grep R. In this 
+application, grep passes on only those lines that contain the pattern (in this case, the single letter) R. Note that if someone were running a program called Resting, it would show up even if its status were S for sleeping, because grep would match the R 
+in Resting. An easy way around this problem is to type grep &quot; R &quot;, which explicitly tells grep to search for an R with a space on each side. You must use quotes whenever you search for a pattern that contains one or more blank spaces.
+
+<BR>
+
+<P>The second use of grep is to search for lines that contain a specified pattern in a specified file. The syntax here is grep &lt;pattern&gt; &lt;filename&gt;. Be careful. It's easy to specify the filename first and the pattern second by mistake! Again, 
+you should be as specific as you can with the pattern to be matched, in order to avoid &quot;false&quot; matches.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E51"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Summary</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>By this point you should have tried enough different Linux commands to start getting familiar (if not yet entirely comfortable) with typical Linux usage conventions.
+
+<BR>
+
+<P>It is important that you be able to use the man pages provided online by Linux. A very good exercise at this point is to pull up man pages for all the commands we have looked at in the past two chapters: login, passwd, who, adduser, and so on. If some 
+of the commands listed under &quot;See also:&quot; look interesting, by all means take a look at their man pages too!
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Some man pages, such as the one for bash, are extremely long. Do not plan to read them all in one sitting!</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>In <A HREF="rhl08.htm">Chapter 8</A>, we head out from &quot;home&quot; and poke around in the Linux filesystem. As system administrators, we should know what our hard drives contain! For instance, there are special &quot;administrator-only&quot; 
+directories crammed with goodies.
+
+<BR>
+
+<P>Several more &quot;essential&quot; commands will be introduced. By the end of the next chapter, you will have seen and tried most of the important &quot;user&quot; Linux commands and will have had a taste of some of the &quot;administrator&quot; 
+commands.
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl06.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="#I0" TARGET="_self"><IMG SRC="purtop.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Page Top"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl08.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+</BODY></HTML>
+
+
+

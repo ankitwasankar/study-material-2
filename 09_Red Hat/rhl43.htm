@@ -1,0 +1,1344 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Red Hat Linux Unleashed rhl43.htm </TITLE>
+
+<LINK REL="ToC" HREF="index.htm">
+
+<LINK REL="Index" HREF="htindex.htm">
+
+<LINK REL="Next" HREF="rhl44.htm">
+
+<LINK REL="Previous" HREF="rhl42.htm"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+
+<A NAME="I0"></A>
+
+<H2>Red Hat Linux Unleashed rhl43.htm</H2>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl42.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl44.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+<HR ALIGN=CENTER>
+
+<P>
+
+<UL>
+
+<UL>
+
+<UL>
+
+<LI>
+
+<A HREF="#E68E355" >UUCP Configuration</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E477" >Taylor UUCP Configuration</A>
+
+<LI>
+
+<A HREF="#E69E478" >HDB UUCP Configuration</A></UL>
+
+<LI>
+
+<A HREF="#E68E356" >A UUCP Connection</A>
+
+<LI>
+
+<A HREF="#E68E357" >Direct Connections</A>
+
+<LI>
+
+<A HREF="#E68E358" >Login Scripts</A>
+
+<LI>
+
+<A HREF="#E68E359" >Changing Access Times</A>
+
+<LI>
+
+<A HREF="#E68E360" >UUCP Security</A>
+
+<LI>
+
+<A HREF="#E68E361" >Using UUCP</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E479" >Sending E-Mail with UUCP</A>
+
+<LI>
+
+<A HREF="#E69E480" >Transferring Files with UUCP</A>
+
+<LI>
+
+<A HREF="#E69E481" >Checking on Transfers</A></UL>
+
+<LI>
+
+<A HREF="#E68E362" >Summary</A></UL></UL></UL>
+
+<HR ALIGN=CENTER>
+
+<A NAME="E66E43"></A>
+
+<H1 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>43</B></FONT></CENTER></H1>
+
+<BR>
+
+<A NAME="E67E43"></A>
+
+<H2 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>UUCP</B></FONT></CENTER></H2>
+
+<BR>
+
+<P>UUCP (UNIX to UNIX CoPy) was developed to provide a simple dial-up networking protocol for UNIX systems. It is most often used today as an e-mail transfer system, allowing non-networked machines to transfer e-mail easily over a modem connection. It can 
+also be used for Usenet news and access to similar services that do not require a dedicated connection. UUCP is a two-machine connection, between your Linux machine and another machine running UUCP. UUCP cannot be used as a remote system access system 
+(like FTP or Telnet), nor can it be used as a standard login because the protocols do not support this type of interactive behavior. UUCP does have security features that are adequate for most purposes, but UUCP is the primary source of break-ins for many 
+systems because most system administrators don't bother to set the security system up properly.
+
+<BR>
+
+<P>Linux can run any of several different versions of UUCP, most of which are compatible with each other to a reasonable extent, except when it comes to configuration and installation procedures. Many Linux versions offer you a choice between the Taylor 
+UUCP version (included on the Red Hat distribution accompanying this book) and the HDB (HoneyDanBer) UUCP. You can use whichever single version came with your Linux software, or if you have both, you can choose between the two (or use both versions as the 
+mood strikes you). Many Linux users prefer the Taylor UUCP implementation, while users who have worked on other UNIX systems prefer HDB because it is more recent. We'll look at both versions in this chapter. (There are even more UUCP versions, but we will 
+ignore them because they are seldom used under Linux.) The first part of the chapter deals with configuring UUCP, while the rest covers using it.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E355"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>UUCP Configuration</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Most of the configuration required for UUCP takes place under the /usr/lib/uucp directory. There are several files used by UUCP, most of which need direct administrator modification to set up properly. While the configuration process can seem awfully 
+complex to someone who has never done it before, there are really only a few files that need changing, and only one or two entries in each file.
+
+<BR>
+
+<P>The configuration process for Taylor UUCP and HDB UUCP are completely different, so we will look at them separately. However, you don't have to worry which version of UUCP is being run at the remote end of the connection because both can talk to each 
+other (at least that's usually the case), as long as the configuration files are set up properly.
+
+<BR>
+
+<P>Some versions of Linux have semiautomated UUCP configuration scripts. These are more common with HDB UUCP than Taylor UUCP, but a few helpful scripts are also available for the latter. If you have one of these scripts, by all means use it, but do check 
+the files manually afterwards.
+
+<BR>
+
+<P>For the configuration processes discussed in the following section, we will assume that our host machine's name is merlin, and we want to connect via UUCP to another Linux system called arthur. As you go through the process, take care to enter the 
+information in the same format as the examples, but don't mix Taylor and HDB UUCP information.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E477"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Taylor UUCP Configuration</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>We can begin with a quick look at the configuration files involved in the Taylor UUCP system. These are the filenames and their primary purposes:
+
+<BR>
+
+<UL>
+
+<LI>/usr/lib/uucp/config&#151;Defines the local machine name.
+
+<BR>
+
+<BR>
+
+<LI>/usr/lib/uucp/sys&#151;Defines the remote systems and how to call them.
+
+<BR>
+
+<BR>
+
+<LI>/usr/lib/uucp/port&#151;Describes each port for calling out and its parameters.
+
+<BR>
+
+<BR>
+
+<LI>/usr/lib/uucp/dial&#151;Describes the dialers for calling out.
+
+<BR>
+
+<BR>
+
+<LI>/usr/lib/uucp/dialcode&#151;Used to contain expansions for symbolic dialcodes, but is rarely used when a straight-out telephone connection exists.
+
+<BR>
+
+<BR>
+
+<LI>/usr/lib/uucp/call&#151;Can contain the login name and password for remote systems, but it is rarely used now.
+
+<BR>
+
+<BR>
+
+<LI>/usr/lib/uucp/passwd&#151;Contains the login names and passwords used when remote systems connect to your local machine. Used only when uucico is password checking instead of using the login process.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>To make the configuration process easier, we will ignore all the theory and background information and proceed with a sample configuration. You need only modify the entries to suit your own names, telephone numbers, device files, and so on, and the 
+configuration process will be the same. It can then be repeated for as many systems as you want to connect to.
+
+<BR>
+
+<P>The first file to modify holds your system name and other general parameters. The file /usr/lib/uucp/config needs a single line entry for your system name such as this one:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">nodename merlin</FONT></PRE>
+
+<P>The keyword nodename must be first on the line followed by whitespace (spaces or tabs), then your machine name. The information in this file may have been completed when you installed Linux, but you should manually check the contents to make sure. If 
+your system's name isn't set correctly, the connection to the remote system won't work properly.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>To use UUCP, you must have a system name. For compatibility with most versions of UUCP, keep the name to seven characters or less. Ideally, the UUCP name is the same name you assigned to your host during configuration. The name doesn't have to follow 
+a convention (such as the system name used by TCP/IP for Internet access), but if you use other network protocols, keep a consistent name. If you have a domain name (for TCP/IP access) use the first component of the machine's full TCP/IP name as the UUCP 
+name. For example, if your full domain name is merlin.wizards.com, use the UUCP name merlin.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>You also need information about the remote system you want to connect to. The /usr/lib/uucp/sys file holds all the information about remote systems. This file usually has a few sample entries in it, which you can copy or modify. Make sure you don't 
+leave comment marks (pound or hash marks) in the first column or the entries will be ignored. A /usr/lib/uucp/sys entry for the remote machine merlin looks like this:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"># system: arthur (Bill Smallwood's Linux system)
+
+system arthur
+
+time Any
+
+phone 555-1212
+
+port com1
+
+speed 9600
+
+chat login: merlin password: secret1</FONT></PRE>
+
+<P>The first line in the preceding extract is a comment line. Most system administrators like to put a comment line in to identify each system. The next lines identify the different aspects of the remote system, including its name (arthur), times at which 
+it can be called (Any in this case, meaning no restrictions), the telephone number (including any area code or special digits that have to be dialed), the serial port to be used for the connection (in this case, com1), the speed at which to connect (9600 
+baud), and the chat script or login process. In this case, the chat script tells UUCP to wait until it sees the string login: then to send merlin, then wait for the prompt password: and then to send secret1.
+
+<BR>
+
+<P>Most login scripts will require a login and password, and they must be placed in the configuration file because UUCP doesn't allow interactive sessions. This can be a bit of a problem because it allows other users on your system to see the login 
+password for the remote machine, but since it can only be used by UUCP, this is not a major concern. Also, the file permissions on the UUCP configuration files can be set to prevent any system users (other than root) from looking into the file.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Not all remote sites need a password for entry through UUCP. For example, some public archives let you log in and retrieve files using the uucp login with no password. Some sites use readily available passwords, such as uucp.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>The port name used in the /usr/lib/uucp/sys entry does not have to match a device name on the Linux system, because another file is used to match the entry to a physical device. This file is /usr/lib/uucp/port, and it requires an entry similar to this 
+for a 9600 baud modem:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"># com1 device port
+
+port com1
+
+type modem
+
+device /dev/cua0
+
+speed 9600
+
+dialer Hayes</FONT></PRE>
+
+<P>In the /usr/lib/uucp/port file, the name of the port used in the /usr/lib/uucp/sys file is identified on the first line. The type of connection to be used (usually modem) is on the next. The actual Linux device that corresponds to the port name is 
+specified as a device driver (for many Linux systems this can be /dev/modem, which is linked to the serial port device driver).
+
+<BR>
+
+<P>The modem connection speed comes next, and shows the maximum speed the modem can be used at. Finally, the name of a dialer is entered. This is a throwback to the days when modems couldn't dial themselves, but used another device (called a dialer) to 
+make the connection.
+
+<BR>
+
+<P>The dialer entry in the /usr/lib/uucp/port file is then matched to an entry in the file /usr/lib/uucp/dial, which tells the modem how to dial the phone. Here's a simple entry:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080"># Hayes modem
+
+dialer Hayes
+
+chat &quot;&quot; ATZ OK ATDT\T CONNECT</FONT></PRE>
+
+<P>This shows the script that the system uses to communicate to the Hayes modem. In this case, the \T in the command line is replaced with the telephone number to be called. Some Linux systems simplify the use of the /usr/lib/uucp/port and 
+/usr/lib/uucp/dial files into one single entry in the /usr/lib/uucp/sys file, which names the modem file directly.
+
+<BR>
+
+<P>The remote end of the connection (in this case, the system arthur) must have corresponding entries for merlin. The files will be similar with only name, telephone number, and (possibly) device name and chat script changes. Until both ends are configured 
+properly, you can't get a connection between the two machines.
+
+<BR>
+
+<P>Some Linux systems with Taylor UUCP have a utility called uuchck that verifies the syntax in the UUCP configuration files and prints out summary information. If you don't have the uuchck utility, it can be downloaded from many FTP and BBS sites. Check 
+<A HREF="rhlxa.htm">Appendix A</A> for some of the possible sites.
+
+<BR>
+
+<P>By default, Taylor UUCP allows a remote system to execute only a limited number of commands when they log into your system. Typically, the remote is only allowed to execute rmail and rnews, to transfer mail and news, respectively. If you want to allow 
+extra programs to be executed, add a line to the /usr/lib/uucp/sys file that includes all the commands the remote system can execute. For example, the entry:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">system chatton
+
+....
+
+commands rmail rnews rsmtp rdataupdate</FONT></PRE>
+
+<P>specifies that the system chatton can execute any of the four commands given after the commands keyword. Note that all four commands must be in the usual search path used by the UUCP utilities (actually by uuxqt).
+
+<BR>
+
+<P>If you intend to transfer files between two machines, you must also modify the configuration files. When a remote system sends a file to your machine, the files usually should be stored in the directory /usr/spool/uucppublic (some systems use 
+/var/spool/uucppublic) as a safety precaution. You don't want to allow a remote system to write files anywhere on your file system, or they could overwrite critical system files. The convention for most UUCP systems is to use either /usr/spool/uucppublic 
+or /usr/spool/uucp/system (where system is the remote system's name) as the transfer directories.
+
+<BR>
+
+<P>You can specify transfer and receive directories in the /usr/lib/uucp/sys file. For example, the following entry for the remote system chatton has been modified to include specific directories for file transfers:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">system chatton
+
+...
+
+local-send ~/send
+
+local-receive ~/receive</FONT></PRE>
+
+<P>In this configuration, the users on your local machine can send any file that is in the send directory under the uucp directory (~/send, which means that any file to be sent to a remote system must be transferred there first), and any file incoming from 
+a remote system is stored in the receive directory under the uucp directory. If you want to allow transfers from a user's home directory, you can specify the /usr directory as a starting point. Multiple entries are separated by spaces, so the entry
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">local-send ~/send /usr</FONT></PRE>
+
+<P>allows transfers from the send directory under the uucp directory, or from any directory under /usr.
+
+<BR>
+
+<P>The preceding two lines deal only with file transfers requested or sent from your machine. If you want to enable requests for transfers from the remote machine, you need to add two more lines:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">remote-send /usr/lib/uucppublic
+
+remote-request /usr/lib/uucppublic</FONT></PRE>
+
+<P>This forces the remote machine to request files and send them only to the /usr/lib/uucppublic directory. Again, you can offer several choices if you want, as long as they are separated by spaces.
+
+<BR>
+
+<P>Finally, UUCP allows machines to forward data through other machines, a process called hopping. In other words, if you want to send mail to the system warlock but can only get there through the system wizard, you have to instruct UUCP that your local 
+system can get to warlock through wizard. You add a forward command to the /usr/lib/uucp/sys file:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">system wizard
+
+...
+
+forward warlock</FONT></PRE>
+
+<P>You should then add an entry for the warlock system that tells UUCP that any mail for you will be coming back through wizard. The matching entry would be:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">system warlock
+
+...
+
+forward-to merlin</FONT></PRE>
+
+<P>The forward-to entry is necessary so that any files returned by warlock are passed to merlin, the local host machine. Otherwise, they would be discarded by UUCP as not being routable.
+
+<BR>
+
+<P>By default, Taylor UUCP does not allow forwarding, and most system administrators should think carefully about allowing it because the potential for abuse is high.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E478"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>HDB UUCP Configuration</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>HDB UUCP is a more recent version of UUCP and its configuration files are different. In many ways, the HDB configuration is easier than Taylor UUCP's, although neither is difficult once you know the basic process.
+
+<BR>
+
+<P>The name of the local system is not set in the UUCP configuration files but by the Linux hostname itself. To set the system name use the hostname command.
+
+<BR>
+
+<P>The names of the remote systems are stored in the file /usr/lib/uucp/Systems (some older versions used the name /usr/lib/uucp/L.sys). There is a single line for each remote system that you will be connected to. The format of each line is as follows:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">sitename schedule device_type speed phone login_script</FONT></PRE>
+
+<P>where sitename is the name of the remote machine, schedule is when it can be connected to, device_type is the type of device to use to call the remote system, speed is the speed (or range of speeds) that can be used to connect, phone is the telephone 
+number, and login_script is the script used when a connection is made (such as the chat script in Taylor UUCP). For example, to call the remote system arthur, the /usr/lib/uucp/Systems file would have a line like this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">arthur Any ACU 9600 555-1212 login: uucp password: secret1</FONT></PRE>
+
+<P>The Any entry in the schedule field tells UUCP that it can call at any time. The ACU entry in the device field tells UUCP to use the ACU (automatic calling unit) defined in the /usr/lib/uucp/Devices file.
+
+<BR>
+
+<P>The /usr/lib/uucp/Devices file (or /usr/lib/uucp/L-devices file in some older versions) contains information about the devices that can be used to call the remote systems. The Devices file follows this syntax:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">devicetype ttyline dialerline speed dialer [token Dialer ...]</FONT></PRE>
+
+<P>where devicetype is the name of the device (which should match the device name in the /usr/lib/uucp/Systems file), ttyline is the device driver to be used for the connecting port (usually a serial line, such as /dev/tty2a or /dev/modem), dialerline is 
+an obsolete field left as a hyphen, speed is the speed range of the device, and dialer is the name of the file that tells UUCP how to use the device. A sample line for a Hayes 9600 baud modem used to connect on the second serial port of the system might 
+have an entry in the /usr/lib/uucp/Devices file like this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">ACU tty2A - 9600 dialHA96</FONT></PRE>
+
+<P>This identifies the ACU entry as a 9600 baud connection through /dev/tty2A (the /dev portion of the name is not needed with HDB UUCP), and it uses a program called dialHA96 to handle the setup and dialing of the modem. There are usually programs 
+available for most popular modems that set the modem configuration parameters automatically, leaving Linux out of that process.
+
+<BR>
+
+<P>If a modem program is not available to handle the modem, an entry in the file /usr/lib/uucp/Dialers can be used. The format of the Dialers entries is:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">dialer translation expect send ...</FONT></PRE>
+
+<P>where dialer is the name of the dialer (matching the Devices file), translation is the translation table to use for the phone number (converting characters where needed to pauses, beeps, and so on), and the expect/send entries are the chat script to set 
+up the modem. A sample line in the Dialers file looks like this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">hayes1200 =,-, &quot;&quot; AT\r\c OK\r \EATDT\T\r\c CONNECT</FONT></PRE>
+
+<P>This is the entry for a Hayes 1200 Smartmodem, identified by the name hayes1200, with translations for the = and - characters, followed by the AT commands used to set up the modem. Since these entries are usually supplied in the Dialers file for most 
+popular modems, we won't bother going into detail about them.
+
+<BR>
+
+<P>Permissions for file transfers are a little more convoluted with HDB UUCP than Taylor UUCP, because HDB UUCP adds many features for special handling. Instead of looking at all the file transfer permissions, you are better advised to consult a specialty 
+book on UUCP, because the subject can easily consume 100 pages by itself! For this reason, we'll look at the fundamentals&#151;just enough to get you set up properly.
+
+<BR>
+
+<P>Permissions for remote system access and file transfers are handled by the file /usr/lib/uucp/Permissions. The general format of the entries in this file is:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">MACHINE=remotename LOGNAME=uucp \
+
+COMMANDS=rmail:rnews:uucp \
+
+READ=/usr/spool/uucppublic:/usr/tmp \
+
+WRITE=/usr/spool/uucppublic:/usr/tmp \
+
+SENDFILES=yes REQUEST=no</FONT></PRE>
+
+<P>where MACHINE identifies the remote machine's name, LOGNAME is the name they use to log in (or you use to log in to their system), COMMANDS are the commands they can execute on your local system, READ is the list of directories they can read files from, 
+WRITE is the list of directories where they can write files, SENDFILES means they can send files (yes or no), and REQUEST means they can request files from your system (yes or no). Notice the use of slashes at the end of the first four lines, to indicate 
+this is really a single long line broken up for readability. This is a typical UNIX convention.
+
+<BR>
+
+<P>A complete entry for the remote system wizard shows that it is allowed to both send and receive files, but only from the /usr/spool/uucppublic directory, and it can only execute mail and uucp commands (the later transfers files):
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">MACHINE=wizard LOGNAME=uucp1 \
+
+COMMANDS=rmail: uucp \
+
+READ=/usr/spool/uucppublic: \
+
+WRITE=/usr/spool/uucppublic: \
+
+SENDFILES=yes REQUEST=yes</FONT></PRE>
+
+<P>To prevent the remote system from sending files, change SENDFILES to no. To prevent the remote system from requesting files, change REQUEST to no.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E356"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>A UUCP Connection</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>When UUCP connects to a remote machine, it follows a particular series of steps. You can better understand the configuration files used by UUCP, and the processes that are involved, by following through a typical session. UUCP uses a process called 
+uucico (UUCP Call In/Call Out) to handle the process of connecting and sending information. A UUCP connection can be started with the uucico command followed by the remote system name, such as:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">uucico -s arthur</FONT></PRE>
+
+<P>When uucico starts, it examines the /usr/lib/uucp/sys file (Taylor UUCP) or /usr/lib/uucp/Systems (HDB UUCP) to see if the remote system name exists there. When it finds the proper remote system name, uucico reads the rest of the entries for that 
+system, including the port to be used. From there, uucico uses /usr/lib/uucp/port and /usr/lib/uucp/dial (Taylor UUCP) or /usr/lib/uucp/Devices and /usr/lib/uucp/Dialers (HDB UUCP) to start the modem connection (assuming it is a modem used to establish the 
+session, of course). When the modem is in use, uucico creates a lock on the device so no other application can use it (the lock is a file starting with LCK.. and followed by the device name, such as LCK..cua0).
+
+<BR>
+
+<P>Once the chat scripts for setting up and dialing the modem have been executed and the remote system is connected, uucico uses the chat script in the /usr/lib/uucp/sys or /usr/lib/uucp/Systems file to log into the remote. Once logged in, the remote 
+machine starts up its copy of uucico, and the two uucico processes establish handshaking between themselves. Finally, after the handshaking has been established, uucico goes ahead and handles any transfers that are queued.
+
+<BR>
+
+<P>When completed with the session, the local machine checks to make sure that the remote has nothing further to send and then breaks the connection. Finally, uucico terminates.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E357"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Direct Connections</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>If your two machines are directly connected through a serial port, for example (no modems involved in the connection), you can use UUCP as a simple network protocol for file transfer. The only changes to the configuration files mentioned earlier are in 
+the port specification. Instead of using a modem device, you specify a direct connection. For example, in the /usr/lib/uucp/sys file (Taylor UUCP), you would have an entry like this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">port direct1</FONT></PRE>
+
+<P>with a matching entry in the /usr/lib/uucp/port file that looks like this:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">port direct1
+
+type direct
+
+speed 38400
+
+device /dev/cua1</FONT></PRE>
+
+<P>with the speed of the direct connection and the port which uses it specified. The entries in the HDB UUCP version are similar, using the /usr/lib/uucp/Systems and /usr/lib/uucp/Devices files.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E358"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Login Scripts</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The login scripts that form part of the /usr/lib/uucp/sys or /usr/lib/uucp/Systems file can be the most difficult part of a UUCP connection to get correct. If the machine you are logging into is a typical UNIX system, there should be only the usual 
+login and password prompts to worry about. Other systems may require some special handling to gain access. For this reason, the login script is worth a quick look.
+
+<BR>
+
+<P>Generally, the layout of the login script is in a pattern-action pair, with the pattern coming from the remote machine and the action from the local. A simple login is:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">login: merlin password: secret1</FONT></PRE>
+
+<P>In this case, the local system waits until it sees the string login: coming from the remote, sends merlin, waits for password:, then sends secret1. You can simplify the script a little by cutting out extra letters from the remote, because all you really 
+need are the last couple of characters and the colon. The script could have been written like this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">gin: merlin word: secret1</FONT></PRE>
+
+<P>This type of script has a good use. Suppose the remote system sends Login: instead of login:; then the shortened form will work and the longer match won't.
+
+<BR>
+
+<P>One useful feature of the uucico login script is the ability to wait for the remote machine to reset itself (or start a getty process, more likely). This is implemented by using a hyphen and the word BREAK in the script, which tells uucico to send a 
+break sequence if the remote site hasn't responded in a timely manner. For example, the script would be similar to this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">ogin:-BREAK-ogin: merlin sword: secret1</FONT></PRE>
+
+<P>In this case, if the remote machine doesn't respond with an ogin: prompt after a short period of time, the local machine sends a break sequence and waits for the prompt again.
+
+<BR>
+
+<P>A few special characters can be used in the login script. The most important ones for most UUCP purposes are the following:
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\c
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Suppresses sending carriage return (send only)</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\d
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Delays one second (send only)</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\p
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Pauses for a fraction of a second (send only)</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\t
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Sends a tab (send and receive)</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\r
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Sends a carriage return (send and receive)</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\s
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Sends a space (send and receive)</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\n
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Sends a newline (send and receive)</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+\\
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Sends a backslash (send and receive)</FONT>
+
+</TABLE><P>Sometimes you need to use one or more of the characters to get the remote machine to respond to a modem login. For example, the following script
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">\n\r\p ogin: merlin word: secret1</FONT></PRE>
+
+<P>sends a carriage return-line feed pair before starting to match characters. This is usually enough to get the remote machine to start a getty on the port.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E359"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Changing Access Times</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Both Taylor and HDB UUCP versions let you specify a time to call the remote systems. While the examples so far show Any (meaning the system can be called at any time, day or night), you may want to restrict calls to local-cost times, or on certain days 
+of the week. The reason for limiting calls may be at your end (costs, for example), or at the remote (limited access times during the day, for example).
+
+<BR>
+
+<P>To specify particular days of the week to allow calls, use a two-digit abbreviation of the day (Mo, Tu, We, Th, Fr, Sa, Su), or Wk for weekdays (Monday through Friday), Any (for any time), or Never (for not allowed to connect). Any combination of the 
+days may be used, as you will see in a moment. The times for connecting are specified as a range, in 24-hour format, when a time span is required. If no time is given, it is assumed that any time during the day is allowed.
+
+<BR>
+
+<P>Dates and times are run together without spaces, while subsequent entries are separated by commas. Examples of restricted access times are as follows:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Wk1800-0730
+
+MoWeFi
+
+Wk2300-2400, SaSu</FONT></PRE>
+
+<P>The first example allows connection only on weekdays between 6 p.m. and 7:30 a.m. The second allows connection any time on Monday, Wednesday, or Friday. The last example allows connections only between 11 p.m. and midnight on weekdays, and any time on 
+weekends. You can build up any time and date specifications you want. These apply to both Taylor and HDB UUCP versions.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E360"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>UUCP Security</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The permissions of the UUCP configuration files must be carefully set to allow UUCP to function properly, as well as to allow better security for the system. Simply stated, the files should all be owned by uucp, and the group should be uucp on most 
+systems that have that group in the /etc/group file. The ownerships can be set either by making all the file changes while logged in as uucp, or by setting the changes as root and then issuing the following commands when you are in the /usr/lib/uucp 
+directory:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">chown uucp *
+
+chgrp uucp *</FONT></PRE>
+
+<P>As a security precaution, you should set a strong password for the uucp login if there is one on your system. Some versions of Linux do not supply a password by default, leaving the system wide open for anyone who can type uucp at the login prompt!
+
+<BR>
+
+<P>The file permissions should be set very tightly, preferably to read-write (and execute for directories) only for the owner (uucp). The group and other permissions should be blanked because a read access can give valuable login information, as well as 
+passwords to someone.
+
+<BR>
+
+<P>When UUCP logs into a remote system it requires a password and login. This information is contained in the /usr/lib/uucp/sys or /usr/lib/uucp/Systems files, and should be protected to prevent unauthorized snooping by setting file ownerships and 
+permissions as mentioned.
+
+<BR>
+
+<P>If you have several systems connecting into yours, they can all use the same uucp login and password, or you can assign new logins and passwords as you need them. All you need to do is create a new /etc/passwd entry for each login (with a different 
+login name from uucp, such as uucp1, uucp_arthur, and so forth) and a unique passwd. The remote system can then use that login to access your system. When you create new UUCP users in the /etc/passwd, force them to use uucico only to prevent access to 
+other areas of your system. For example, the login uucp1, shown here, forces uucico as the startup command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">uucp1::123:52:UUCP Login for Arthur:/usr/spool/uucppublic:/usr/lib/uucp/uucico</FONT></PRE>
+
+<P>The home directory is set to the uucppublic directory, and uucico is the only startup program that can be run. Using different logins for remote machines also allows you to grant different access permissions for each system, preventing unwanted access.
+
+<BR>
+
+<P>You should also carefully control the commands that remote systems can execute on your local machine. This is done through the permissions fields of the local access file and should be monitored carefully to prevent abuse and unauthorized access. In a 
+similar manner, if you are allowing forwarding of files through your system, you should control who is allowed to forward, and where they are forwarded to.
+
+<BR>
+
+<P>Most important of all is to ensure that whoever accesses your system on a regular basis is someone you want access to be granted to. Don't leave your system wide open for anyone to enter because you are guaranteeing yourself disaster. Carefully watch 
+logins and make sure file permissions and ownerships are properly set at all times.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E361"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Using UUCP</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Once you have configured UUCP, you can use it to transfer files and e-mail. In order to use UUCP, you have to know the addressing syntax, which is different than what you may know from the Internet. The UUCP address syntax is:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">machine!target</FONT></PRE>
+
+<P>where machine is the remote machine name and target is the name of the user or file that you are trying to get to. For example, to send mail to the user yvonne on machine arthur, you would use the mail command with the destination user name:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">mail arthur!yvonne</FONT></PRE>
+
+<P>UUCP lets you move through several machines to get to a target. This can help save on telephone bills, or make a much wider network available to you from a small number of connections. Suppose you want to send mail to a user called bill on a system 
+called warlock, which isn't in your configuration files but can be connected to through arthur. If you have permission to send mail through the system arthur (called a &quot;hop&quot;), you could send the mail with this command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">mail arthur!warlock!bill</FONT></PRE>
+
+<P>When UUCP decodes this address, it reads the first system name (arthur) and sends it to that system. The UUCP processes on arthur then examines the rest of the address and realizes the mail is to be sent on to warlock. If you have permission to forward 
+through arthur, UUCP on arthur sends the mail through to warlock for you. You can have many hops in an address, as long as each system you are connecting to allows the pass-through and can connect to the next machine on the list. For example, the address:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">arthur!warlock!chatton!vader!alex</FONT></PRE>
+
+<P>would send data through arthur, warlock, chatton, and vader in order, and then to the user alex. The addresses must be specified in the proper hop order or the address will fail. This multihop addressing can be very useful if a number of friends have 
+local connections to other machines, allowing you to easily set up a complex network. The hard part is usually tracking the names of the systems involved. (The exclamation mark in the address is called a bang, so the address above is spoken as 
+&quot;arthur-bang-warlock-bang-chatton-bang-vader-bang-alex.&quot;)
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Some shells don't like the bang character because they are interpreted as a special shell command. Shells, such as the C Shell, use the exclamation mark to recall previous commands, so you must escape the bang with a slash to prevent the shell's 
+interpretation. Addresses then become arthur\!chatton\!yvonne. This looks funny, but you get used to it.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>Depending on how you have your UUCP system set, it may call out to the other systems in an address whenever something is submitted to it, or if callout times are limited, the data may be spooled until a call is allowed. You have already seen how to set 
+callout times in the /usr/lib/uucp/sys and /usr/lib/uucp/Systems files.
+
+<BR>
+
+<P>A quick caution about relying on UUCP for delivery of information: If the systems that are being used are not set to call immediately when there is something queued, your data can take a long time to get to its destination. For example, if one of the 
+hops in your address calls the next machine in the address only once a day, you may have a 24-hour delay in delivery. This can be exacerbated by each machine in the network.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Don't rely on the contents of your data sent through UUCP to be kept confidential. Once on a remote system, any user with access privileges to the queue could snoop into your data. Ideally, the file permission prevents anyone but the superuser 
+accessing the data, but not all systems keep tight security. If you must send sensitive data, encrypt it and let the recipient know the decryption key through another format (not in a mail message!).</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>UUCP deals with all transfers as jobs, a term you'll encounter often when working with UUCP and its documentation. A job is a command that is to be executed on the remote system, a file that is to be transferred to or from the remote, or any other task 
+that you want performed between the two systems.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E479"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Sending E-Mail with UUCP</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Most utilities like mail packages understand the UUCP addresses, so that you don't have to worry about e-mail not reaching the proper destination. You don't usually have to make any changes at all to applications running under Linux to get them to 
+understand this UUCP address format. In the last section you saw how the mail package can be used with UUCP addresses.
+
+<BR>
+
+<P>You can use any of the usual mail command options to modify the behavior of the package. For example, to send the contents of the file data_1 to yvonne on system chatton through the system arthur, and tag the mail with a subject heading, you would issue 
+the command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">mail -s &quot;Data file&quot; arthur\!chatton\!yvonne &lt; data_1</FONT></PRE>
+
+<P>Most mail packages available for Linux, including X-based mailers, work perfectly well with UUCP addresses, as well as the more common Internet addresses, but you may want to check before adopting a new mail package.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E480"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Transferring Files with UUCP</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>UUCP's most common use is to transfer files from one machine to another. To transfer files using UUCP, you use the uucp command. The syntax of the uucp command is:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">uucp [options] source destination</FONT></PRE>
+
+<P>The options supported by UUCP vary a little depending on the version and type of UUCP implementation, but most versions support the following useful options:
+
+<BR>
+
+
+
+<TABLE  BORDERCOLOR=#000040 BORDER=1 CELLSPACING=2 WIDTH="100%" CELLPADDING=2 >
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-c
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Do not copy the file to a spool directory before sending. The default action is to copy to a spool directory, and using the -c option explicitly specifies it.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-f
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Don't create directories on the remote system, if needed. The default action is to create directories as needed and can be explicitly specified with the -d option.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-m
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Sends mail to the person who issued the uucp command when the copy is complete.</FONT>
+
+<TR>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+-n  user
+
+</FONT>
+
+<TD VALIGN=top  BGCOLOR=#80FFFF ><FONT COLOR=#000080>
+
+Sends mail to the user on the remote system when the copy is complete.</FONT>
+
+</TABLE><P>The default behaviors are usually sufficient for most users, although you may want the mail options when you need confirmation of an action.
+
+<BR>
+
+<P>Both source and destination are the names of files or directories as appropriate, much like the cp command. However, when you are dealing with a remote system for the<A NAME="I2"></A> source or destination, you need to format the file or directory in 
+valid UUCP address formats. For example, to send the file data_1 from your local machine's current directory to the directory /usr/spool/uucppublic on the machine arthur, you would use the command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">uucp data_1 arthur\!/usr/spool/uucppublic</FONT></PRE>
+
+<P>Notice that the remote machine name was prepended to the full target directory name. In most cases, when transferring files to remote systems you will want to use the uucppublic directories as you likely will not have permission to transfer files 
+anywhere else in the file system. Once on the remote system in the /usr/spool/uucppublic directory, it is up to the remote system's users to find the file and copy it to its intended destination directory.
+
+<BR>
+
+<P>If you want to send the same file to the user bill on the remote machine, and store it in a subdirectory called /usr/spool/uucppublic/bill and send mail to both yourself and bill when the copy is completed, you would issue the command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">uucp -m -nbill data_1 arthur\!/usr/spool/uucppublic/bill/</FONT></PRE>
+
+<P>To copy a file from a remote machine to yours, you need to specify the location of the remote. Remember, you must have access to the directory that the files reside in (as well as read permission on the file), or have the sender copy them to uucppublic. 
+The command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">uucp chatton\!/usr/tmp/bigfile /usr/tparker/</FONT></PRE>
+
+<P>would transfer the bigfile file from the directory /usr/tmp on the machine chatton to your /usr/tparker directory.
+
+<BR>
+
+<P>UUCP allows wildcards to be used, although you must escape them in quotation marks to prevent the shell from interpreting them. For example, to copy all the files starting with chap on the remote machine warlock's /usr/bill/book directory (assuming you 
+have permission) to your own /usr/bigbook directory, you would issue the command
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">uucp &quot;warlock!/usr/bill/book/chap*&quot; /usr/bigbook/</FONT></PRE>
+
+<P>You can also specify hops in the machine transfers by adding the extra machine names to the command. This requires permissions to be set on all the machines that the hop will pass through, and is seldom done. Although you probably don't want to do this 
+either, you could transfer files from one remote system to another by specifying their names on the command line like this:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">uucp arthur\!/usr/lib/uucppublic/bigfile warlock\!/usr/lib/uucppublic/</FONT></PRE>
+
+<P>This sends the file from the arthur system to the warlock system. In most cases, the users on either of the two remote systems would issue the commands, relieving some of the file permission problems.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E481"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Checking on Transfers</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>You can check on the status of transfers that are scheduled but haven't taken place yet using the uustat command. When you issue the uustat command, all the UUCP transfers that are queued are listed. The format of the list is:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">jobID system user date command size</FONT></PRE>
+
+<P>where jobID is the ID of the UUCP job, system is the name of the system to transfer to (the first system in an address when multiple hops are taking place), user is the user name who queued the job, date is when the job was queued, command is the exact 
+command to be executed, and size is the size of the transfer in bytes.
+
+<BR>
+
+<P>If you issue the command as a user (not superuser), only your jobs are listed. The superuser lists all jobs that are queued. If you are logged in as a regular user and want to see all jobs, use the -a option:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">uustat -a</FONT></PRE>
+
+<P>To cancel a queued job, use the -k option of the uustat command along with the job ID. For example, to cancel job 17, issue the command:
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">uustat -k 17</FONT></PRE>
+
+<P>You can only cancel your own jobs, unless you are logged in as superuser, in which case you can cancel any jobs.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E362"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Summary</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>UUCP is quite easy to set up, as long as you follow the rules. Once the configuration files are properly set, UUCP offers an easy way to transfer e-mail, news, and files to other systems. UUCP is also one of the easiest methods to establish a low-volume 
+network because all you need is a modem or a direct connection. Using UUCP to transfer mail and files is as easy as using the usual mail and cp commands.
+
+<BR>
+
+<P>Although UUCP is less popular nowadays because of the LAN craze, it does provide a simple, very low-cost network for those who need to connect only a couple of machines. It's also great for connecting your machine to those of your friends, allowing 
+e-mail back and forth, and really making your Linux system feel like a well-connected workstation.
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl42.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="#I0" TARGET="_self"><IMG SRC="purtop.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Page Top"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl44.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+</BODY></HTML>
+
+
+

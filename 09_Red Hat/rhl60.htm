@@ -1,0 +1,1873 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Red Hat Linux Unleashed rhl60.htm </TITLE>
+
+<LINK REL="ToC" HREF="index.htm">
+
+<LINK REL="Index" HREF="htindex.htm">
+
+<LINK REL="Next" HREF="rhlxa.htm">
+
+<LINK REL="Previous" HREF="rhl59.htm"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+
+<A NAME="I0"></A>
+
+<H2>Red Hat Linux Unleashed rhl60.htm</H2>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl59.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhlxa.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+<HR ALIGN=CENTER>
+
+<P>
+
+<UL>
+
+<UL>
+
+<UL>
+
+<LI>
+
+<A HREF="#E68E462" >Which Games Have You Installed?</A>
+
+<LI>
+
+<A HREF="#E68E463" >X Games</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E601" >Games in the fvwm Root Menu</A>
+
+<LI>
+
+<A HREF="#E69E602" >X Games Not in the Menus</A>
+
+<LI>
+
+<A HREF="#E69E603" >Spider (Small and Large)</A>
+
+<LI>
+
+<A HREF="#E69E604" >GNU Chess</A>
+
+<LI>
+
+<A HREF="#E69E605" >Xtetris</A>
+
+<LI>
+
+<A HREF="#E69E606" >Xlander</A>
+
+<LI>
+
+<A HREF="#E69E607" >Ico</A>
+
+<LI>
+
+<A HREF="#E69E608" >Maze</A>
+
+<LI>
+
+<A HREF="#E69E609" >Xeyes</A>
+
+<LI>
+
+<A HREF="#E69E610" >Xlogo</A>
+
+<LI>
+
+<A HREF="#E69E611" >Xhextris</A>
+
+<LI>
+
+<A HREF="#E69E612" >Minesweeper</A>
+
+<LI>
+
+<A HREF="#E69E613" >Xpaint</A></UL>
+
+<LI>
+
+<A HREF="#E68E464" >Character-Based Games</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E614" >A Summary of Games in /usr/games</A>
+
+<LI>
+
+<A HREF="#E69E615" >Text Adventure Games</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E70E39" >Battlestar</A>
+
+<LI>
+
+<A HREF="#E70E40" >Paranoia</A>
+
+<LI>
+
+<A HREF="#E70E41" >Wump</A></UL>
+
+<LI>
+
+<A HREF="#E69E616" >Word Games</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E70E42" >Boggle</A>
+
+<LI>
+
+<A HREF="#E70E43" >Hangman</A></UL>
+
+<LI>
+
+<A HREF="#E69E617" >Card Games</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E70E44" >Canfield</A>
+
+<LI>
+
+<A HREF="#E70E45" >Cribbage</A>
+
+<LI>
+
+<A HREF="#E70E46" >Go Fish</A></UL>
+
+<LI>
+
+<A HREF="#E69E618" >Board Games</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E70E47" >Backgammon</A>
+
+<LI>
+
+<A HREF="#E70E48" >Chess</A>
+
+<LI>
+
+<A HREF="#E70E49" >Mille Miglia</A>
+
+<LI>
+
+<A HREF="#E70E50" >Monopoly</A></UL>
+
+<LI>
+
+<A HREF="#E69E619" >Simulations</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E70E51" >Air Traffic Control</A>
+
+<LI>
+
+<A HREF="#E70E52" >Trek</A></UL>
+
+<LI>
+
+<A HREF="#E69E620" >Video Games</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E70E53" >Robots</A>
+
+<LI>
+
+<A HREF="#E70E54" >Tetris</A>
+
+<LI>
+
+<A HREF="#E70E55" >Worm</A></UL>
+
+<LI>
+
+<A HREF="#E69E621" >Math Games and Utilities</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E70E56" >Arithmetic</A>
+
+<LI>
+
+<A HREF="#E70E57" >BCD Punch Card Code, Morse Code, Paper Tape Punch Code</A>
+
+<LI>
+
+<A HREF="#E70E58" >Factor</A>
+
+<LI>
+
+<A HREF="#E70E59" >Primes</A></UL>
+
+<LI>
+
+<A HREF="#E69E622" >Other Thinking Games</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E70E60" >Sokoban</A>
+
+<LI>
+
+<A HREF="#E70E61" >DOOM</A>
+
+<LI>
+
+<A HREF="#E70E62" >Conquest</A></UL>
+
+<LI>
+
+<A HREF="#E69E623" >Miscellaneous Demos and Utilities</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E70E63" >Caesar</A>
+
+<LI>
+
+<A HREF="#E70E64" >Fortune</A>
+
+<LI>
+
+<A HREF="#E70E65" >Number</A>
+
+<LI>
+
+<A HREF="#E70E66" >Rain</A>
+
+<LI>
+
+<A HREF="#E70E67" >Worms</A></UL></UL>
+
+<LI>
+
+<A HREF="#E68E465" >Summary</A></UL></UL></UL>
+
+<HR ALIGN=CENTER>
+
+<A NAME="E66E60"></A>
+
+<H1 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>60</B></FONT></CENTER></H1>
+
+<BR>
+
+<A NAME="E67E60"></A>
+
+<H2 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>Linux Games</B></FONT></CENTER></H2>
+
+<BR>
+
+<P>A variety of games comes with Linux. The games can be roughly divided between those that require the X Window system to run and those that will run in plain text mode. In this chapter, you will learn about both types. The chapter provides a reasonably 
+complete list of both X- and character-based games.
+
+<BR>
+
+<P>This is the final chapter in the book. We decided to save the most fun and addictive Linux programs for last!
+
+<BR>
+
+<BR>
+
+<A NAME="E68E462"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Which Games Have You Installed?</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The games listed in this chapter come in several different installation packages, so you might not have one or more of these games on your system. For instance, the graphical version of Tetris, GNU Chess, and Xfractint are each installed separately.
+
+<BR>
+
+<P>If one of the listed games sounds intriguing, you might want to install it if you haven't done so already.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Many more games are available from Internet sites.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E68E463"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>X Games</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>The following games require X Window to run.
+
+<BR>
+
+<P>As X Window is a graphical, windowing environment, you might guess that X games are graphically oriented. You would be right! Almost all of the following games use color and bitmapped graphics. Often, you can specify the palette of colors the game will 
+use.
+
+<BR>
+
+<P>However, you should keep in mind the following:
+
+<BR>
+
+<UL>
+
+<LI>Arcade games, and home video game systems, have dedicated hardware that is designed specifically for running games. X Window is a generic environment. Even today's powerful personal computers can't match the speed and smoothness of movement of a game 
+machine.
+
+<BR>
+
+<BR>
+
+<LI>Games work your hardware and operating system software harder than any other application. For best performance, games are often programmed to run &quot;close to the edge&quot; and do various software and hardware tricks. You might find that one or more 
+of these games will crash your system or have strange side effects.
+
+<BR>
+
+<BR>
+
+<LI>The X games that come with Linux are personal efforts. The individuals who wrote the games, and allowed free distribution, appreciate suggestions and help in further development. Don't hold these games to commercial standards&#151;they are not 
+commercial products.
+
+<BR>
+
+<BR>
+
+<LI>The Red Hat version on the CD-ROM will let you install two types games. The &quot;Y&quot; set contains the BSD games collection and the other set &quot;XAP&quot; contains the games with X Window support. Install both versions and then remove the ones 
+you don't like.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>It's tempting to put new games in /usr/games, though the most common area for user installed games is in /usr/local/games. The /usr/games directory is usually reserved for games that come with the system.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<P>Following is a discussion of the X games you should find on your system. Keep in mind that installation differences might mean that you have more or fewer games.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E601"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Games in the </B><B>fvwm</B><B> Root Menu</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>If you use the X display manager fvwm, the fvwm Root menu (usually accessed by holding down the left mouse button while the cursor is in the root screen area) has a Games submenu choice. If you use a different window manager, such as Motif, your menus 
+will be correspondingly different.
+
+<BR>
+
+<P>The menu choices are listed here. Some of the games they start are described in detail later in this chapter.
+
+<BR>
+
+<P>The Games menu features the following entries:
+
+<BR>
+
+<UL>
+
+<LI>Hextris
+
+<BR>
+
+<BR>
+
+<LI>Xbill
+
+<BR>
+
+<BR>
+
+<LI>Chess (GNU Chess)
+
+<BR>
+
+<BR>
+
+<LI>Xchomp
+
+<BR>
+
+<BR>
+
+<LI>Minesweeper
+
+<BR>
+
+<BR>
+
+<LI>Backgammon
+
+<BR>
+
+<BR>
+
+<LI>Xjewel
+
+<BR>
+
+<BR>
+
+<LI>Xlander
+
+<BR>
+
+<BR>
+
+<LI>Xsnow
+
+<BR>
+
+<BR>
+
+<LI>Tetris (Xtetris)
+
+<BR>
+
+<BR>
+
+<LI>Trojka
+
+<BR>
+
+<BR>
+
+</UL>
+
+<BR>
+
+<A NAME="E69E602"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>X Games Not in the Menus</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The following games can be started by typing the appropriate command at the Linux prompt in a command-line window. These, and any other games you may install, can be added to the Games menu if you desire. See <A HREF="rhl21.htm">Chapter 21</A>, 
+&quot;Installing X Window on Linux,&quot; for more information.
+
+<BR>
+
+<UL>
+
+<LI>Spider
+
+<BR>
+
+<BR>
+
+<LI>Xboing
+
+<BR>
+
+<BR>
+
+<LI>Xpaint
+
+<BR>
+
+<BR>
+
+<LI>Xcannon
+
+<BR>
+
+<BR>
+
+<LI>Xgal
+
+<BR>
+
+<BR>
+
+<LI>Xcurling
+
+<BR>
+
+<BR>
+
+<LI>attraction
+
+<BR>
+
+<BR>
+
+<LI>Xsnooker
+
+<BR>
+
+<BR>
+
+<LI>Xcarrom
+
+<BR>
+
+<BR>
+
+<LI>Xpool
+
+<BR>
+
+<BR>
+
+<LI>Xhockey
+
+<BR>
+
+<BR>
+
+<LI>hopalong
+
+<BR>
+
+<BR>
+
+<LI>Xdino
+
+<BR>
+
+<BR>
+
+<LI>Xevil
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>Look in the /usr/x11/bin directory for still more games not listed here.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E603"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Spider (Small and Large)</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>This is double-deck solitaire. To see this game's man page, type man spider. To start this game, type spider in a command-line window.
+
+<BR>
+
+<P>This game requires a fair bit of thought, planning, and skill. The aim is to arrange cards of the same suit in descending order. You can also, however, have cards of different suits arranged in descending order. Sometimes this can help you immediately, 
+but hinder you in the long run! Note that, if you do have two or more consecutive cards of the same suit, the cards will move as a group. Spider is challenging; don't try to play it just to pass the time!
+
+<BR>
+
+<BR>
+
+<A NAME="E69E604"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>GNU Chess</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>This is a graphical version of GNU Chess that uses the xboard display system.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Running GNU Chess under xboard is very resource-intensive. It may crash your system.
+
+<BR>Adding more swap space may correct an agonizingly long response time. Do not worry, it's not your system, it's GNU Chess.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E69E605"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Xtetris</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>If you've never been hooked on Tetris, here's your chance. This is a nice X implementation of a game that always seems to suffer when taken from the video arcade and placed on a home computer.
+
+<BR>
+
+<P>To see this game's man page, type man xtetris.
+
+<BR>
+
+<P>To start this game, type xtetris in a command-line window.
+
+<BR>
+
+<P>The colors are nicely done, and the movement is relatively smooth. However, if you're used to the arcade version of Tetris, watch out for the following:
+
+<BR>
+
+<UL>
+
+<LI>Left and right arrow keys move from side to side; up and down arrow keys rotate clockwise and counterclockwise. Most people have a preferred direction of rotation for the pieces; experiment to find out which way is right for you.
+
+<BR>
+
+<BR>
+
+<LI>The spacebar, as is usual on home-computer implementation, slam-dunks the piece to the bottom rather than just hauling it down faster.
+
+<BR>
+
+<BR>
+
+<LI>The colors of the pieces, though attractive, are sometimes confusing. For instance, the L-shaped piece that is yellow in the arcade version is purple in xtetris, and the L-shaped piece that is purple in the arcade version is light blue in xtetris. 
+Again, very confusing if you're used to the arcade version.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>The purpose of the game? Arrange the pieces so they interlock without gaps. As soon as you create a (horizontal) row that's completely filled, it vaporizes. This is good, because when the pieces stack up to the top, the game is over. (Pity the Cossack 
+doesn't come out and tap his feet when things start to get a little out of control.)
+
+<BR>
+
+<BR>
+
+<A NAME="E69E606"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Xlander</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>This is an update of the old arcade game, Lunar Lander. You get a bird's-eye view from the window of your lunar lander. By operating the main and directional thruster engines, you attempt to touch down softly on the landing pad. If things go wrong, 
+instead of a bird's-eye view, you get a meteorite's-eye view!
+
+<BR>
+
+<P>To see this game's man page, type man xlander.
+
+<BR>
+
+<P>To start this game, type xlander in a command-line window.
+
+<BR>
+
+<P>You may have problems getting the game to respond to your keyboard input. In that case, the moon's surface is only a short plummet away.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E607"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Ico</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Ico sets a polyhedron (a solid, multisided geometric shape) bouncing around your screen. Depending on the options specified, this three-dimensional polygon can occupy its own window or use the entire root window.
+
+<BR>
+
+<P>To see this game's man page, type man ico. It can be started from the command line (within X Window) by typing ico. In fact, you should start it from the command line because of the options available. If you start it from the Demo/Gadgets menu, you will 
+only get a wireframe polygon in its own, small window.
+
+<BR>
+
+<P>One interesting option you can use from the command line is -colors. If you specify more than one color, you get a multicolored polyhedron, with each face a different color.
+
+<BR>
+
+<P>With the -colors option, you must type in the colors to be used in the following format: rgb:&lt;red intensity&gt;/&lt;green intensity&gt;/&lt;blue intensity&gt;. The intensities have to be specified in hexadecimal notation; 000 is the lowest value and 
+fff is the highest. For example, the complete command might be
+
+<BR>
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">ico -colors rgb:000/888/fff rgb:e00/400/b80 rgb:123/789/def</FONT></PRE>
+
+<P>This program is fairly resource-intensive and might slow down your system.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E608"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Maze</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>This draws a maze, and then solves it. There is no way you can solve it for yourself. Maze is a demo, not a game. On a fast system, it solves it too quickly to follow!
+
+<BR>
+
+<BR>
+
+<A NAME="E69E609"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Xeyes</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Not really a game, but cute anyway. Whenever you start Xeyes, you get a large pair of bodiless eyes that follow your cursor's movements. Running four or five copies of Xeyes at once gives your system a surrealistic touch.
+
+<BR>
+
+<P>To see this game's man page, type man xeyes.
+
+<BR>
+
+<P>To start this game, type xeyes in a command-line window.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E610"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Xlogo</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>This displays the official X logo.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E611"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Xhextris</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>This is a version of Tetris that uses pieces made up of hexagons. To start the game, type xhextris on an X Window command line. No man page is available.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E612"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Minesweeper</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>You are given a large grid. Some of the squares contain mines. Your job is to flag all of the mines.
+
+<BR>
+
+<P>This game is started by typing xdemineur at the Linux prompt in a command-line window.
+
+<BR>
+
+<P>Starting Minesweeper brings up the playing field, which is a dark gray grid, and a Score window.
+
+<BR>
+
+<P>You uncover a square by clicking on it with the left mouse button. If you uncover a mine, you are blown up and the game is over!
+
+<BR>
+
+<P>It's more likely, though, that you will either uncover a number or open up several light gray, blank squares (with no numbers or mines). The number tells you how many mines are found adjacent to that square, horizontally, vertically, or diagonally. For 
+example, a &quot;1&quot; means there is only one mine adjacent to that square. If you've already determined the location of one mine adjacent to a &quot;1&quot; square, then it's safe to uncover all other squares next to the &quot;1&quot; square because 
+they can't possibly contain a mine! In this fashion, you try to deduce the location of the mines. If you happen to uncover a square that has no number (and therefore no mines next to it), the game will automatically uncover the entire numberless area and 
+its border.
+
+<BR>
+
+<P>When you think you've located a mine, you &quot;sweep&quot; or mark it by clicking on it with the right mouse button (if you click the left button accidentally, and there is indeed a mine there, the game is over). The right button toggles on and off a 
+flag marker. Note that the game does not tell you whether you have correctly placed the flag.
+
+<BR>
+
+<P>You will soon discover that certain patterns of numbers let you place a mine without any doubt; other times, you have to make an educated guess.
+
+<BR>
+
+<P>Of course, sometimes you miscalculate and blow up. To restart the game, click with either mouse button in the Score window. If you complete the game successfully, your time will be recorded.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E613"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Xpaint</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>This is a color drawing-and-painting program. Start it from the Linux prompt in a command-line window by typing xpaint. A Tool menu will appear. Start a new canvas from the File menu. The Tool menu holds your drawing and painting implements (brushes, 
+pencils, spray cans, and so on); the palette of colors and patterns is found underneath the canvas.
+
+<BR>
+
+<P>To see the man page, type man xpaint.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E464"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Character-Based Games</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>There is a long history of games being written for the UNIX operating system. Your Linux /usr/games directory contains a number of these games, from various time periods.
+
+<BR>
+
+<P>Many of these games were written before color, bitmapped windowing systems became common. Most of the games in /usr/games (except for Tetris, for instance) are character-based. This means that graphics (if there are any!) are displayed on your screen 
+using standard screen characters: A, *, |, x, and so on. In addition, all input is from the keyboard.
+
+<BR>
+
+<P>An advantage of character-based games is that they do not require a graphical or windowing environment to run. A monochrome display is fine.
+
+<BR>
+
+<P>The character-based nature of some games, such as Hangman or Bog (Boggle), takes nothing away from the play; you don't really wish for fancy color graphics when playing them. Other character-based games might strike you as interesting historical 
+curiosities: they show you what their ingenious programmers could manage with such a simple display system, but clearly would be better served by color graphics.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E614"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>A Summary of Games in </B><B>/usr/games</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The games found in /usr/games can be roughly categorized into the following types:
+
+<BR>
+
+<UL>
+
+<LI>Text adventure: Battlestar; Paranoia; Wump
+
+<BR>
+
+<BR>
+
+<LI>Word games: Bog (Boggle); Hangman
+
+<BR>
+
+<BR>
+
+<LI>Card games: Canfield; Cribbage; Go Fish
+
+<BR>
+
+<BR>
+
+<LI>Board games: Backgammon; GNU Chess; Mille Miglia; Monop (Monopoly)
+
+<BR>
+
+<BR>
+
+<LI>Simulations: ATC (air traffic control); Trek
+
+<BR>
+
+<BR>
+
+<LI>Character-based &quot;video&quot; games: Robots, Snake, Tetris, Worm
+
+<BR>
+
+<BR>
+
+<LI>Math games/utilities: arithmetic; bcd, Morse, and ppt; Factor; Primes
+
+<BR>
+
+<BR>
+
+<LI>Full graphics games: DOOM
+
+<BR>
+
+<BR>
+
+<LI>Miscellaneous demos and utilities: Caesar; Fortune; Number; Rain; and Worms
+
+<BR>
+
+<BR>
+
+</UL>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Two of the more interesting character-based games, Rogue and Hack, do not come with the Linux distribution. These games use the screen to display the rooms and corridors of a dungeon. You (and, in Hack, your trusty dog) move around the dungeon, 
+mapping out the corridors, entering the rooms (be careful when you explore dark, unlit rooms), picking up treasure and magical items&#151;and, last but not least, fighting monsters (or running from them!). After you have fully explored the level you're on, 
+you can descend to a lower, more difficult level.
+
+<BR>Every time you run Hack or Rogue, the dungeons are different. Every monster has different fighting skills, and some monsters have special talents. The magical items, which include rings, wands, scrolls, and potions, have a variety of effects. Some of 
+the items you find, such as armor, might be enchanted or magically enhanced; but if you find a cursed item, you may have been better off not picking it up at all!
+
+<BR>Both Rogue and Hack have their enthusiasts, but Hack is a later, more elaborate version that is generally preferred. If you come across either game on the Internet, pick it up and try it! There are also versions of Hack available for MS-DOS-based 
+computers.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E69E615"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Text Adventure Games</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>These games follow the classic text-based formula: the system informs you that &quot;you are in a maze of small twisty passages, all alike&quot; or something similar; you type in your actions as go forward, east, take sword, and so on. If you like 
+solving puzzles, these games will appeal to you. With text-based games, the adventure follows a defined path, and your responses are usually limited.
+
+<BR>
+
+<P>The following example is the start of the text-based game Battlestar, which you will learn about in the next section. Your commands are typed at the &gt;-: prompt:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">Version 4.2, fall 1984.
+
+First Adventure game written by His Lordship, the honorable
+
+Admiral D.W. Riggle
+
+This is a luxurious stateroom.
+
+The floor is carpeted with a soft animal fur and the great wooden furniture
+
+is inlaid with strips of platinum and gold. Electronic equipment built
+
+into the walls and ceiling is flashing wildly. The floor shudders and
+
+the sounds of dull explosions rumble though the room. From a window in
+
+the wall ahead comes a view of darkest space. There is a small adjoining
+
+room behind you, and a doorway right.
+
+&gt;-: right
+
+These are the executive suites of the battlestar.
+
+Luxurious staterooms carpeted with crushed velvet and adorned with beaten
+
+gold open onto this parlor. A wide staircase with ivory banisters leads
+
+up or down. This parlor leads into a hallway left. The bridal suite is right.
+
+Other rooms lie ahead and behind you.
+
+&gt;-: up
+
+You are at the entrance to the dining hall.
+
+A wide staircase with ebony banisters leads down here.
+
+The dining hall is to the ahead.
+
+&gt;-: quit
+
+Your rating was novice.</FONT></PRE>
+
+<BR>
+
+<A NAME="E70E39"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Battlestar</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>Type battlestar at the command prompt. A sample session is shown in the code in the previous section. A man page is available by typing man battlestar.
+
+<BR>
+
+<BR>
+
+<A NAME="E70E40"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Paranoia</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>Type paranoia at the command prompt. In this humorous game, you play a secret agent on a desperate mission. Unlike most text-based adventure games, Paranoia lets you choose your actions from a menu. This is useful if you hate having to find a command 
+that the game will understand. There is no man page for Paranoia.
+
+<BR>
+
+<BR>
+
+<A NAME="E70E41"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Wump</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>Type wump at the command prompt. You are out hunting the Wumpus, armed with some custom arrows and relying on your wit and sense of smell. When you start the game, you are given the choice of seeing the instructions.
+
+<BR>
+
+<P>Type man wump to see the man page.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E616"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Word Games</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The following two games are versions of popular word-finding and word-guessing games.
+
+<BR>
+
+<BR>
+
+<A NAME="E70E42"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Boggle</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>Type bog at the command prompt. This is a version of the Parker Brothers game Boggle Deluxe. You are given a 5&#180;5 grid of letters. In the allotted time of three minutes, you type in words made up from the given letters. By default, you must use 
+letters that adjoin horizontally, vertically, and diagonally, without reusing any letters. Plurals and different tenses count as different words&#151;for instance, &quot;use,&quot; &quot;uses,&quot; &quot;used,&quot; and &quot;user&quot; are all allowed in 
+your word list. This follows the official Boggle rules. You can change these defaults, if you want.
+
+<BR>
+
+<P>At the end, the computer displays the list of words which it found. You can never beat the computer, because it only allows you to type in real words. You will discover that the Boggle dictionary has some odd omissions; this can be annoying, but it 
+isn't very serious.
+
+<BR>
+
+<P>This game works well without color graphics, although the small size of the letter grid makes your eyes blur after a while.
+
+<BR>
+
+<BR>
+
+<A NAME="E70E43"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Hangman</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>Type hangman at the command prompt. You won't miss the color graphics. The game is self-explanatory, but just in case, a man page is available; type man hangman. Hangman picks its words at random; sometimes the choices seem quite impossible to guess.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E617"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Card Games</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Because of the lack of graphics, the following games are not as successful as the character-based word games.
+
+<BR>
+
+<BR>
+
+<A NAME="E70E44"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Canfield</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>Type canfield at the command prompt. This is a version of solitaire. A man page is available by typing man canfield. This game does not have the time-wasting potential of graphics and mouse-based solitaire games.
+
+<BR>
+
+<BR>
+
+<A NAME="E70E45"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Cribbage</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>Type cribbage at the command prompt. If you're a cribbage fan, this game is for you. A man page is available by typing man cribbage.
+
+<BR>
+
+<BR>
+
+<A NAME="E70E46"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Go Fish</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>Type fish at the command prompt. It's you against the computer at Go Fish. A man page is available by typing man fish. One confusing aspect is that sometimes several actions are displayed all together on the screen (for instance, you have to go fish, 
+the computer has to go fish, and it's back to you, all in one block).
+
+<BR>
+
+<BR>
+
+<A NAME="E69E618"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Board Games</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>These are character-based versions of board games. The play quality is variable; Backgammon is probably the best of the lot.
+
+<BR>
+
+<BR>
+
+<A NAME="E70E47"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Backgammon</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>Type backgammon at the command prompt; or, for an easy-to-follow tutorial on how to play Backgammon, type teachgammon. These games don't suffer from lack of graphics, but the lack of a pointing device such as a mouse means that specifying your moves is 
+a cumbersome task, requiring entries such as 8-12,4-5. Typing ? at the game prompt gives you help on entering your moves.
+
+<BR>
+
+<P>Typing man backgammon will give you the manual entry for both Backgammon and Teachgammon.
+
+<BR>
+
+<BR>
+
+<A NAME="E70E48"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Chess</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>Several chess and chess-related programs come in the GNU Chess package. Type gnuchess at the prompt to play chess against the computer. There is an analysis program, gnuan. The game utility prints the chessboard position to a PostScript printer or file.
+
+
+<BR>
+
+<P>Enter your moves using standard algebraic notation&#151;for instance, e2-4.
+
+<BR>
+
+<P>This is an elaborate package; you should start by reading the man page.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>There seem to be some problems with startup messages overwriting parts of the chessboard.</NOTE>
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E70E49"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Mille Miglia</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>Type mille at the command prompt. This is the Linux version of a Parker Brothers racing game. You should read the man page before starting, because the game's commands are not very intuitive. To see the man page, type man mille.
+
+<BR>
+
+<BR>
+
+<A NAME="E70E50"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Monopoly</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>Type monop at the command prompt. This is a character-based version of the Parker Brothers game Monopoly. The computer does not actually play; it simply keeps track of who owns what and how much money each player has. You can play by yourself, but it's 
+pretty obvious that you will, eventually, win! Unfortunately, the board is not displayed in any form, making it quite difficult to keep track of what's happening. This is an interesting effort, but the play is poor. A man page is available.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E619"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Simulations</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The following games let you try your hand at being in charge. They are open-ended, in that each game is different and does not follow a canned plot. They combine character graphics, for instance, a radar display, with text readouts and text-based 
+commands.
+
+<BR>
+
+<BR>
+
+<A NAME="E70E51"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Air Traffic Control</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>Type atc at the command prompt. Type man atc and read the man page first; otherwise, you will be responsible for one or more air tragedies! This game runs in real time. A good supply of caffeine will probably help you do well.
+
+<BR>
+
+<BR>
+
+<A NAME="E70E52"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Trek</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>Type trek at the command prompt. You can &quot;go where no one has gone before,&quot; hunt (and be hunted by) Klingons, and so on. A man page is available by typing man trek; read it before playing to avoid being a disgrace to the Federation.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E620"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Video Games</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The following games all rely on a full-screen display, although all graphics are assembled from the standard character set.
+
+<BR>
+
+<BR>
+
+<A NAME="E70E53"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Robots</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>Type robots at the command prompt. Robots on the screen pursue you; your only hope is to make two robots collide, at which point the robots explode. The resulting junk heap destroys any robots that run into it. You move about the screen using the hjkl 
+keys, as used by the vi editor (diagonal movement is allowed, using yubn). Moves are simultaneous: each time you move, so do the robots. Sometimes, though, you have to teleport to get out of an impossible situation. You die if a robot touches you; 
+otherwise, after clearing the screen, you go on to a bigger and better wave of robots. A man page is available by typing man robots.
+
+<BR>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+
+<HR ALIGN=CENTER>
+
+<BR>
+
+<NOTE>Some Linux distributions might include a version of Robots that has been hacked or modified so that you can't make a misstep that brings you in contact with a robot (thus leading to your demise). This takes away from the challenge of the game.</NOTE>
+
+
+<BR>
+
+<HR ALIGN=CENTER>
+
+</BLOCKQUOTE></BLOCKQUOTE>
+
+<BR>
+
+<A NAME="E70E54"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Tetris</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>Type tetris at the command prompt. Ironically, although it does not look anywhere near as professional as Xtetris or other full-graphics versions, it plays very well&#151;especially if you're used to the arcade version of Tetris. Use the arrow keys for 
+piece movement and rotation.
+
+<BR>
+
+<BR>
+
+<A NAME="E70E55"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Worm</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>Type worm at the command prompt. You are a worm, moving about the screen and eating numbers. As you eat the numbers, you grow in length. Do not run into yourself or into the wall! How long can you get before you (inevitably) run into something? Note 
+that you still slowly crawl forward, even if you don't enter a move command.
+
+<BR>
+
+<P>A man page is available by typing man worm.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E621"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Math Games and Utilities</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The following programs are small and interesting, although perhaps not that exciting.
+
+<BR>
+
+<BR>
+
+<A NAME="E70E56"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Arithmetic</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>Type arithmetic at the command prompt. You are asked the answer to simple addition questions. This goes on until you type Ctrl-C to exit. A man page is available by typing man arithmetic.
+
+<BR>
+
+<BR>
+
+<A NAME="E70E57"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>BCD Punch Card Code, Morse Code, Paper Tape Punch Code</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>Type bcd at the command line to convert text you type to a punched card, type morse to see your text converted to Morse code, or type ppt for paper punch tape output. If the command line doesn't contain any text to encode, the programs go into 
+interactive mode. Note that the Enter character you must use to finish each line of input gets coded as well. The bcd man page covers all three programs.
+
+<BR>
+
+<BR>
+
+<A NAME="E70E58"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Factor</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>Type factor at the command line. This command provides you with the prime factors of any number you supply. You can type factor &lt;number&gt; to factor just the one number, or factor without any number to go into interactive mode. Numbers can range 
+from &#151;2,147,483,648 to 2,147,483,648. The following is a sample run of Factor:
+
+<BR>
+
+<PRE>
+
+<FONT COLOR="#000080">d$ factor
+
+123
+
+123: 3 41
+
+36
+
+36: 2 2 3 3
+
+1234567
+
+1234567: 127 9721
+
+6378172984028367
+
+factor: ouch
+
+d$</FONT></PRE>
+
+<BR>
+
+<A NAME="E70E59"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Primes</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>Type primes at the command prompt. If you include a range on the command line, Primes displays all prime numbers in the range. If no range is included, Primes waits for you to enter a number, and then starts displaying primes greater than that number. 
+The program is surprisingly fast! A man page is available by typing man primes.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E622"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Other Thinking Games</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The following programs might actually be a bit frustrating to play with initially, but they can also provide hours of addiction!
+
+<BR>
+
+<BR>
+
+<A NAME="E70E60"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Sokoban</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>Imagine yourself in charge of a warehouse containing a maze and lots of bales of cotton. Each bale is so heavy that you can only push it and not pull it. So don't push a bale into a spot where you cannot push it out. Each level in this game gets more 
+and more challenging as you attempt to collect all the bales into a loading area where you can move to the next level. The source code is available from sunsite.unc.edu in the file sokoban-src.tar.gz.
+
+<BR>
+
+<BR>
+
+<A NAME="E70E61"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>DOOM</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>This exciting, though controversially gory, game is now ported to Linux as well. Complete with sound support and exquisite graphics, this Linux port does its DOS counterpart justice. One problem to keep in mind though, is that your colormaps in X may be 
+mixed up once your cursor moves out of the X terminal you run DOOM under. Two other things to keep in mind&#151;you have to rebuild your kernel to add the sound support, and the version 1.666 of DOOM will not run external WAD files. (I recommend that you 
+get the registered version.)
+
+<BR>
+
+<BR>
+
+<A NAME="E70E62"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Conquest</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>This is an elaborate game of global conquest with equally complex instructions and display. At least the files are in an executable form, and you do not have to build them. One thing to remember is to use the xconq file and run xset fp rehash to bring 
+up the correct fonts. A comparable game, called Empire, is also available in source from tsx-11.mit.edu, but you need a network connection to run this game.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E623"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Miscellaneous Demos and Utilities</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>The following programs might interest you.
+
+<BR>
+
+<BR>
+
+<A NAME="E70E63"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Caesar</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>Type caesar at the command line. This program attempts to decrypt encoded words. Type man caesar to see the man page.
+
+<BR>
+
+<BR>
+
+<A NAME="E70E64"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Fortune</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>Type fortune at the command line for your Linux fortune-cookie message.
+
+<BR>
+
+<BR>
+
+<A NAME="E70E65"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Number</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>Type number &lt;number&gt; at the command line. Converts the Arabic number given as &lt;number&gt; (for example, 41) to its equivalent in English (forty-one).
+
+<BR>
+
+<BR>
+
+<A NAME="E70E66"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Rain</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>Type rain at the command prompt. Your screen becomes rippled like a puddle in a rainstorm. On most Linux console screens, the program runs too fast to look even remotely convincing. Press Ctrl-C to exit.
+
+<BR>
+
+<BR>
+
+<A NAME="E70E67"></A>
+
+<H5 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Worms</B></FONT></CENTER></H5>
+
+<BR>
+
+<P>Type worms at the command prompt (do not confuse with the Worm program described previously). This fills your screen with squirming worms. Like Rain, the program runs much too fast on a Linux console screen. A man page is available by typing man worms.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E465"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Summary</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>You should now be able to while away the time by sitting at your machine and playing your favorite games. If you haven't installed the X Window system yet, maybe this is an extra incentive!<A NAME="I2"></A>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl59.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="#I0" TARGET="_self"><IMG SRC="purtop.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Page Top"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhlxa.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+</BODY></HTML>
+
+
+

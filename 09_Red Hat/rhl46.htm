@@ -1,0 +1,372 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Red Hat Linux Unleashed rhl46.htm </TITLE>
+
+<LINK REL="ToC" HREF="index.htm">
+
+<LINK REL="Index" HREF="htindex.htm">
+
+<LINK REL="Next" HREF="rhl47.htm">
+
+<LINK REL="Previous" HREF="rhl45.htm"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+
+<A NAME="I0"></A>
+
+<H2>Red Hat Linux Unleashed rhl46.htm</H2>
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl45.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl47.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+<HR ALIGN=CENTER>
+
+<P>
+
+<UL>
+
+<UL>
+
+<UL>
+
+<LI>
+
+<A HREF="#E68E374" >Connecting to the Internet</A>
+
+<UL>
+
+<LI>
+
+<A HREF="#E69E493" >Services You Need</A>
+
+<LI>
+
+<A HREF="#E69E494" >Direct Connection Through a Gateway</A>
+
+<LI>
+
+<A HREF="#E69E495" >Connecting Through Another Gateway</A>
+
+<LI>
+
+<A HREF="#E69E496" >Using a Service Provider</A></UL>
+
+<LI>
+
+<A HREF="#E68E375" >Summary</A></UL></UL></UL>
+
+<HR ALIGN=CENTER>
+
+<A NAME="E66E46"></A>
+
+<H1 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>46</B></FONT></CENTER></H1>
+
+<BR>
+
+<A NAME="E67E46"></A>
+
+<H2 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=6 COLOR="#FF0000"><B>Setting Up an Internet Site</B></FONT></CENTER></H2>
+
+<BR>
+
+<P>Linux is well suited for connecting to the Internet and for using many of the Internet services. This chapter looks at the ways you can connect to the Internet. The following chapters in this section show you how to set up your Linux system as a server 
+for four popular services.
+
+<BR>
+
+<P>If you only want to use your Linux system to access other servers, you don't have to worry about any of the material in the next four chapters (although you might want to read this chapter to find out how to connect to the Net). On the other hand, 
+sharing your system's resources with others, whether in a local area network, a small circle of friends, or the worldwide Internet community, can be most of the fun.
+
+<BR>
+
+<P>If you intend to use your Linux system to offer some of the Internet services (such as FTP, WWW, or Gopher) but you don't want to let everyone gain access (maybe just a few friends), you might not need to worry about connecting to the Internet. You 
+still have to set up the server software, though.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E374"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Connecting to the Internet</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>There are many different ways to connect to the Internet. Your choice of method depends primarily on your usage habits and the services you want access to. It may seem as though an overwhelming number of companies offer Internet access or services. 
+Luckily, there are really only four ways to connect to the Internet.
+
+<BR>
+
+<P>Briefly, your options for connecting to the Internet are as follows:
+
+<BR>
+
+<UL>
+
+<LI>A direct connection to the Internet&#151;This method uses a dedicated machine (a gateway) to connect into the Internet backbone. This method gives you full access to all services but is expensive to set up and maintain.
+
+<BR>
+
+<BR>
+
+<LI>Connecting through someone else's gateway&#151;This usually involves getting permission to use someone else's machine for full access to all Internet services.
+
+<BR>
+
+<BR>
+
+<LI>Using a direct service provider&#151;Uses a specialty company's gateway that your machine can access to offer limited or full access to Internet services. These companies are not the same as online services, because all they do is act as a gateway to 
+the Internet. Usually, this type of service provider uses modem or dedicated telephone connections with high-speed lines to provide fast service.
+
+<BR>
+
+<BR>
+
+<LI>Using an indirect service provider&#151;Using an online company (such as Delphi or CompuServe) to access some or all of the Internet's services. This is usually suitable only for low-volume usage, and doesn't take advantage of Linux at all.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>If you are part of a company or sharing the costs with a number of friends, online service providers seldom are able to offer the level of performance you need for support of e-mail, FTP, and other Internet services. As a further reason against online 
+services, most do not allow you to have your own domain name.
+
+<BR>
+
+<P>It is rare to find a gateway that you can &quot;borrow&quot; for access of your own, unless you are willing to share the costs of the gateway. Most companies that have a gateway will be reluctant to allow many outsiders to use their systems.
+
+<BR>
+
+<P>That leaves only a direct gateway of your own to the Internet or the use of a service provider. The choice between these two options usually comes down to an issue of the costs to connect both ways. Setting up your own gateway is expensive, but may be 
+cheaper than arranging accounts with a service provider if the volume of traffic is high.
+
+<BR>
+
+<P>If you want access for yourself or for a very small company, it is unreasonable to have your own dedicated gateway. Setting up an account with a service provider is possible for individuals, but sometimes the costs and machine overhead are too high. 
+Service providers are typically used by small companies, but there is no reason why you can't use a service provider if you anticipate a high Internet usage.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E493"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Services You Need</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>When deciding which method you will use to access the Internet, one of the important items to consider is the type of services you want from the Internet. If all you need is e-mail, then any kind of access will provide it, but some may be ridiculously 
+expensive for what you get.
+
+<BR>
+
+<P>As a starting point, decide which of the following services are necessary and which are less important:
+
+<BR>
+
+<UL>
+
+<LI>Electronic mail&#151;Sending mail to and from other Internet users.
+
+<BR>
+
+<BR>
+
+<LI>Telnet&#151;Remote logins to other machines on the Internet.
+
+<BR>
+
+<BR>
+
+<LI>FTP&#151;File transfers between machines.
+
+<BR>
+
+<BR>
+
+<LI>World Wide Web (WWW) access&#151;A popular hypertext-based (and usually graphical) information service.
+
+<BR>
+
+<BR>
+
+<LI>Usenet newsgroups&#151;A set of bulletin boards for conversations on many different subjects.
+
+<BR>
+
+<BR>
+
+<LI>Gopher&#151;An information search and retrieval system.
+
+<BR>
+
+<BR>
+
+<LI>WAIS&#151;A menu-based document search and retrieval system
+
+<BR>
+
+<BR>
+
+<LI>Archie&#151;A method for finding files to transfer.
+
+<BR>
+
+<BR>
+
+<LI>Internet Relay Chat (IRC)&#151;A conversation system much like CB radio.
+
+<BR>
+
+<BR>
+
+</UL>
+
+<P>Any system that is directly connected to the Internet through a gateway (yours, a borrowed gateway, or most direct service providers) will provide complete access to all the services listed. Some direct service providers support all the services, but at 
+a slower speed than a gateway. Slower speeds may be a limitation for the World Wide Web if you intend to use and offer graphics (instead of just text). Some service providers limit their access to e-mail and newsgroups, so a little research is necessary.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E494"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Direct Connection Through a Gateway</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>A direct connection (often called a dedicated connection) is one in which you attach into the Internet backbone through a dedicated machine called a gateway or IP router. The connection is over a dedicated telephone line capable of high-speed transfers 
+(usually at 1.44 megabits per second or faster). The gateway becomes part of the Internet architecture and must remain online at all times. You can then use any other computer on the gateway's network to access the Internet services.
+
+<BR>
+
+<P>Typically, dedicated connections mean high volumes of traffic and require systems with an absolute minimum line speed of 9,600 baud, although high-speed fiber-optic lines with speed capabilities of 45Mbps are not unusual. It is very unlikely an 
+individual or small company would have direct gateway access, primarily because of the high cost of installation and maintenance requirements.
+
+<BR>
+
+<P>To create a direct access system, you must work with the Internet Network Information Center (NIC) to set up the proper gateways on the Internet backbone for your domain. The capital expense of such a system is high, both for the initial hardware and 
+software and for continuing support. High costs may also be involved with a dedicated telephone line capable of supporting high-speed data transfer.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E495"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Connecting Through Another Gateway</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>An alternative method of connecting to the Internet through a gateway relies on using a &quot;friendly&quot; machine or network. In such a system, a corporation or educational institution that has an Internet gateway may allow you to access the Internet 
+through their system. Because this type of access gives you freedom on their networks, many organizations now refuse this type of piggyback access.
+
+<BR>
+
+<P>If you are lucky enough to find a company or school that will let you use their network, you simply call into a communications port on the network or gateway, then route through the gateway to the Internet. In many ways, it is as though you are a 
+machine on the provider's network. Typically, you have unlimited access to the Internet's services, although some companies do set restrictions.
+
+<BR>
+
+<BR>
+
+<A NAME="E69E496"></A>
+
+<H4 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=4 COLOR="#FF0000"><B>Using a Service Provider</B></FONT></CENTER></H4>
+
+<BR>
+
+<P>Service providers are companies that have an Internet gateway that they share, although the gateway is often transparent to the users. This type of connection is often called &quot;dialup&quot; and uses SLIP (serial line interface protocol) or PPP 
+(point-to-point protocol). Some service providers offer UUCP connections for e-mail.
+
+<BR>
+
+<P>Service providers usually charge a flat fee for membership with an additional charge based on the amount of time or the number of characters transferred. Joining one of these services is quite easy. Domain names can be registered through many service 
+providers, too, allowing you to use your own domain even though you use a provider.
+
+<BR>
+
+<P>The primary advantage of direct service providers is that effectively you are directly connected to the Internet. All of the interworking with the service provider's gateway is hidden inside your operating system's setup, making it transparent. A 
+disadvantage is that you cannot always arrange full access to the Internet. Some services do not allow you to FTP through their gateway to another Internet site, for example.
+
+<BR>
+
+<P>If you are considering using a direct service provider, you should ask the providers in your area about the services they offer, whether special hardware or software is needed, what the fees are, and whether they are based on a flat monthly rate or 
+based on usage, and the kind of technical support available in case you have trouble.
+
+<BR>
+
+<P>An alternative to using a commercial service provider is to rely on one of the command-line access systems that are springing up in major cities. Such systems provide Internet access through their own gateways as a free service (subsidized by a 
+corporation or government) or at a minimal cost. One popular access provider of this type is FreeNet, an international organization that gives users a unique user name through the FreeNet domain. FreeNet is currently only available in some cities, but it 
+does provide an extremely inexpensive and easy access method to the Internet. All you need is an account (which is usually just a telephone call away), a modem, and communications software.
+
+<BR>
+
+<BR>
+
+<A NAME="E68E375"></A>
+
+<H3 ALIGN=CENTER>
+
+<CENTER>
+
+<FONT SIZE=5 COLOR="#FF0000"><B>Summary</B></FONT></CENTER></H3>
+
+<BR>
+
+<P>Choosing the method with which you connect to the Internet is up to you, but most individuals find a direct service provider the best balance between cost and features, as long as you plan to keep your system running most of the time. Once you have a 
+connection to the Internet, you can set up your server, as explained in the next four chapters.
+
+<P ALIGN=LEFT>
+
+<A HREF="rhl45.htm" TARGET="_self"><IMG SRC="purprev.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Previous Page"></A>
+
+<A HREF="#I0" TARGET="_self"><IMG SRC="purtop.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Page Top"></A>
+
+<A HREF="index.htm" TARGET="_self"><IMG SRC="purtoc.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="TOC"></A>
+
+<A HREF="rhl47.htm" TARGET="_self"><IMG SRC="purnext.gif" WIDTH = 32 HEIGHT = 32 BORDER = 0 ALT="Next Page"></A>
+
+
+</BODY></HTML>
+
+
+

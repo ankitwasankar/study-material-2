@@ -1,0 +1,237 @@
+/* -- JOURNAL LEVEL LAYOUT RULES ---------------------------------------------- */
+
+/* -- true for all journal pages */
+#contentFrame #intro { padding: 0 !important; }
+#contentFrame #intro .item { padding: 10px; }
+#contentFrame #intro .published { margin: 10px 0 10px 0; padding: 0 0 6px 8px; border-left: 1px solid #CCC; }
+#contentFrame #intro .published P { margin: 0; color: #999; }
+#contentFrame #intro .info { padding: 0 10px; }
+#contentFrame #intro .info H2 {
+        color: #369;
+        font-size: medium; /* just for NS4 */
+        /*/*/font-size: 80%;/* */
+        }
+#contentFrame #intro .info H6 { margin: 3px 0; }
+#contentFrame #intro .info H6 A { color: #333; }
+#contentFrame #intro .info P { color: #666; margin: 0; padding-left: 2em; text-indent: -2em; }
+#contentFrame #intro .tools { padding-left: 6px; }
+#contentFrame #intro .lCol { padding-right: 10px; }
+#contentFrame #intro .rCol LI A { font-weight: bold; }
+#contentFrame #intro #subnav { border-top: 1px solid #CCC; padding-top: 4px; margin-top: 8px; line-height: 150%; color: #000; }
+#contentFrame #intro #subnav SPAN A { font-weight: bold; }
+
+/* 
+ * Special rule for the pdf pages. 
+ * In the normal case we use a <p> to set the correct text but we don't
+ * want the block display here.                                                  */
+#contentFrame #intro #pdfInfoArea 
+{
+        font-family: geneva, arial, helvetica, sans-serif;
+        color: #333;
+        font-size: small; /* just for NS4 */
+        /*/*/font-size: 70%;/* */
+}
+
+#contentFrame .mainCol #content { padding-top: 16px; }
+
+.journalAbstract .mainCol #content,
+.journalReferences .mainCol #content,
+.journalArticleMain .mainCol #content { padding: 16px 0 0 0 !important; }
+.journalArticleMain .mainCol #content .subContent { }
+
+#contentFrame #content UL,
+#contentFrame #content OL { padding-bottom: 10px; }
+
+#contentFrame #content .issueNav { text-align: center; margin: 0; }
+#contentFrame #content .issueNav SPAN { color: #F90;  font-weight: bold; }
+
+/* 
+* Special rule for the pdf pages. 
+* In the normal case we use a <p> to set the correct text but we don't
+* want the block display here.         */
+#contentFrame #intro #pdfInfoArea 
+{
+         font-family: geneva, arial, helvetica, sans-serif;
+         color: #333;
+         font-size: small; /* just for NS4 */
+         /*/*/font-size: 70%;/* */
+ }
+
+/* -- per-page settings */
+.journalLevel #intro #branding { /* next rule can be overridden */ background-color: #fff; }
+
+.journalIssues { }
+.journalIssues #content .item { margin-bottom: 1em; }
+/* -- andy : slightly looser display for P for issues */
+.journalIssues #content .item P { margin-bottom: 1em; }
+.journalIssues #content .inlineNav { border-top: 1px solid #CCC; border-bottom: 1px solid #CCC; padding: .5em 0; margin: 4em 0 .5em 0; }
+.journalIssues #content .featureBox .item { margin-bottom: 0; }
+
+
+.journalToc #intro H2 { margin-bottom: 2px; }
+.journalToc #content .line { margin: 4px 0; }
+
+.journalLevel #content OL { padding-left: 10px; }
+.journalLevel #content .refListing LI { padding-bottom: 10px; padding-left: 6px; }
+
+.journalAbstract #content .item P { margin-bottom: 0.5em; }
+
+.journalAdvertising { }
+.journalAdvertising #content .line { margin-top: 2em; }
+
+.journalSubscribe { }
+.journalSubscribe #content .line { margin-top: 1em; }
+
+.journalAuthors { }
+.journalAuthors OL { padding-left: 0.5em; }
+.journalAuthors OL LI { /*/*/padding-bottom: 1em;/* */ }
+
+.journalEditorial { }
+
+.journalProductinfo { }
+
+
+
+/* -- framed page */
+.journalArticleMain { }
+.journalArticleMain .mainCol #intro { background-image: none !important; }
+.journalArticleMain #intro .item { padding: 0px !important; }
+.journalArticleMain #intro .item .info { padding-left: 0px !important; padding-top: 10px !important; }
+.journalArticleMain #intro .item .tools { padding-top: 10px !important; }
+.journalArticleMain #searchBox { width: 150px; border-right: 1px solid #99C2D6; }
+.journalArticleMain #intro #searchBox .item { padding: 10px !important; }
+.journalArticleMain #intro #searchBox #articleKeywords { width: 120px; }
+
+.journalArticleMain #content { padding-top: 0px !important; padding-left: 0px !important; }
+.journalArticleMain #content .item P { margin-bottom: 0.5em; }
+
+#headerFrame .BGdrkblue .item { padding: 10px; background: #565565;}
+#headerFrame .item IMG { display: inline; }
+
+/*
+ *      Added July 13th 2003, Jonathan Sugar.
+ *      Hack to get correct padding on the header frame for pdf/html fulltext
+ *      because the above style:
+ *              #headerFrame .BGdrkblue .item { padding: 10px; background: #565565;}
+ *      doesn't work.
+ *      Used in File: journal-article.pdf-navbar.tpl (line 41).
+ *      We should probably revisit this to get the proper style to work. I think
+ *      the cascading is messed up somehow.
+ */
+div.framedHeaderHack { padding: 10px;}
+H2.framedHeaderHack
+{
+        color: #369;
+        font-size: medium; /* just for NS4 */
+        /*/*/font-size: 80%;/* */
+}
+
+
+
+/* -- attempting to style pre-rendered content */
+
+#contentFrame #content .prerendered { font-family: arial, helvetica, sans-serif; font-size: 12px; color: #333; }
+#contentFrame #content .prerendered TABLE { padding: 0; }
+#contentFrame #content .prerendered TD { background-color: #FFF; color: #333; font-size: 12px; }
+#contentFrame #content .prerendered TH { background-color: #FFF; color: #333; font-size: 12px; font-weight: bold; }
+#contentFrame #content .prerendered TD A { color: #333; }
+#contentFrame #content .prerendered TD FONT { font-size: 12px; color: #333; font-weight: bold; }
+#contentFrame #content .prerendered FONT A { font-size: 12px; color: #333; }
+#contentFrame #content .prerendered FONT[size="+1"] { font-size: 12px; font-weight: bold; color: #666; }
+#contentFrame #content .prerendered FONT[size="+2"] { font-size: 14px; font-weight: bold; }
+#contentFrame #content .prerendered FONT[size="4"] A { font-size: 14px; color: #090; }
+#contentFrame #content .prerendered P { font-size: 12px; color: #333; }
+#contentFrame #content .prerendered HR { display: block; }
+
+.journalArticleNav { margin-top: 10px; }
+.journalArticleNav .prerendered { font-family: arial, helvetica, sans-serif; font-size: 12px; color: #333; }
+.journalArticleNav .prerendered UL { margin: 1em 0 1em 0.5em; }
+.journalArticleNav .prerendered UL LI { margin: 0.5em 0; }
+
+
+/** Fix broken styling for pre-rendered content **/
+
+/* Link colors*/
+.prerendered A:LINK {color:#369;}
+.prerendered A:VISITED {color:#369;}
+.prerendered A:ACTIVE {color:#369;}
+.prerendered A:HOVER {} /* We need this otherwise anchored links will highlight on hover */
+
+.prerendered .articleTitle
+{
+        display: block;
+        font-size: 140%;
+        font-weight: bold;
+}
+
+.prerendered .articleSubTitle
+{
+        display: block;
+        font-weight: bold;
+}
+
+.prerendered .mainSectionHeader
+{
+        display: block;
+        font-size: 110%;
+        font-weight: bold;
+        text-transform: uppercase;
+        color:#f90;
+}
+
+.prerendered .firstLevelHeading
+{
+        display: block;
+        color:#369;
+        font-size: 11pt;
+        font-weight: bold;
+}
+
+.prerendered .secondLevelHeading
+{
+        display: block;
+        color:#369;
+        font-size: 11pt;
+}
+
+.prerendered .thirdLevelHeading
+{
+        display: block;
+        color:#369;
+}
+
+.prerendered .otherHeadings
+{
+        color:#369;
+        font-size: 10pt;
+}
+
+.prerendered .referenceNum
+{
+        color:#369;
+        font-size: 10pt;
+}
+
+
+.journalReferences #content .subContent .item P { margin-bottom: 0.5em; }
+
+/*
+ *      Additional styling required for Access Denied pages
+ */
+#contentFrame #content #accessdeniedLogin TD P
+{
+        font-family: arial, helvetica, sans-serif;
+        font-size: 11px;
+}
+
+#contentFrame #content #accessdeniedPurchaseBox TD P
+{
+        font-family: arial, helvetica, sans-serif;
+        font-size: 11px;
+}
+
+#contentFrame #content #accessdeniedRegisterBox TD P
+{
+        font-family: arial, helvetica, sans-serif;
+        font-size: 11px;
+}

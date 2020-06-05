@@ -1,0 +1,17 @@
+To work around this behavior, perform the following steps:
+
+    Click Start, and then click Run.
+    Type taskmgr.exe.(do not press enter before holding CTRL+ALT+SHIFT )
+    Hold down CTRL+ALT+SHIFT at the same time, and while holding them down press ENTER.
+
+
+
+
+################################################################################################
+#################################################################################################
+
+
+
+This behavior can occur if Task Manager is running in Tiny Footprint mode.
+
+When you double-click the empty space in the border around the tabs, Task Manager switches to this mode. 
